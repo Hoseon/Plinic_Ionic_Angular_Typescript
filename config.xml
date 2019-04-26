@@ -93,4 +93,5 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.937070120101-0ot47na7qtj97bhj4pc9h2up273dioeb" />
     </plugin>
     <engine name="ios" spec="~4.5.5" />
+    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
 </widget>
