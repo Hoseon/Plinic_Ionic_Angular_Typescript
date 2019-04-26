@@ -34,7 +34,7 @@ import { Http, HttpModule } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 //import { PlinicErrorHandlerProvider } from '../providers/plinic-error-handler/plinic-error-handler';
 
-
+  
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
