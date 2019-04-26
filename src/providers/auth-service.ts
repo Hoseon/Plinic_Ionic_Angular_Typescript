@@ -1,8 +1,8 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Http, HttpModule } from '@angular/http';
-import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { Http } from '@angular/http';
+import { AuthHttp, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
 import { Platform, AlertController } from 'ionic-angular';
@@ -30,7 +30,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  apiUrl: 'http://plinic.cafe24app.com/',
+    // apiUrl: 'http://plinic.cafe24app.com/',
+    apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
