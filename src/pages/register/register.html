@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>회원가입</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="login-content" padding>
+  <div class="login-box">
+    <form (ngSubmit)="register()" #registerForm="ngForm">
+        <ion-row>
+          <ion-col>
+            <ion-list inset>
+
+            <!-- <ion-item *ngFor="let item of items">
+              <ion-thumbnail slot="start">
+                <ion-img [src]="resources\android\profile\drawable-profile-hdpi.jpg"></ion-img>
+              </ion-thumbnail>
+              <ion-label>회원사진</ion-label>
+            </ion-item> -->
+
+
+              <ion-item>
+                <ion-label>이메일</ion-label>
+                <ion-input type="email" name="이메일" text-align="right" [(ngModel)]="registerCredentials.email" required></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>패스워드</ion-label>
+                <ion-input type="password" name="패스워드" text-align="right" [(ngModel)]="registerCredentials.password" required></ion-input>
+              </ion-item>
+
+
+              <ion-item>
+                <ion-label>이름</ion-label>
+                <ion-input type="text" name="이름" text-align="right" [(ngModel)]="registerCredentials.name" required></ion-input>
+              </ion-item>
+
+
+              <ion-item>
+                <ion-label>성별</ion-label>
+                <ion-select #gender placeholder="선택" name="gender"
+                            okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.gender" require>
+                  <ion-option value="여성" checked="true" >여성</ion-option>
+                  <ion-option value="남성">남성</ion-option>
+                </ion-select>
+              </ion-item>
+
+  <!-- [compareWith]="compareWith"
+  (ionChange)="onChange(country.country_name)" -->
+
+              <ion-item>
+                <ion-label>국가 </ion-label>
+                <ion-select placeholder="선택"
+                            name="country" okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.country" required >
+                  <ion-option *ngFor="let country of countries" [value]="country.country_name" >{{country.country_name}}</ion-option>
+                </ion-select>
+              </ion-item>
+
+
+              <ion-item>
+                <ion-label position="floating">생년월일</ion-label>
+                <ion-datetime #birthday type="text" placeholder="선택" name="birthday"
+                doneText="확인" cancelText="취소"displayFormat="YYYY년 MM월 DD일" min="1900-01-01" max="2019-12-31" [(ngModel)]="registerCredentials.birthday" required></ion-datetime>
+              </ion-item>
+
+
+              <ion-item>
+                <ion-label>피부타입</ion-label>
+                <ion-select #skincomplaint placeholder="선택"
+                            name="skincomplaint" okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.skincomplaint" required>
+                  <ion-option value="지성" checked="true">지성</ion-option>
+                  <ion-option value="건성">건성</ion-option>
+                  <ion-option value="복합성">복합성</ion-option>
+                </ion-select>
+              </ion-item>
+
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="signup-col">
+            <button ion-button class="submit-btn" color="primary" full type="submit" [disabled]="!registerForm.form.valid">Register</button>
+          </ion-col>
+        </ion-row>
+
+      </form>
+  </div>
+</ion-content>

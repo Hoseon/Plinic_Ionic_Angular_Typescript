@@ -1,0 +1,29 @@
+page-home {
+  .card-title {
+    position: absolute;
+    top: 10%;
+    left : 4%;
+    font-size: 0.9em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+    text-align: left;
+  }
+
+  .chart_btn {
+    border-radius: 40px !important;
+    border: 1px solid color($colors, light);
+    font-size: 0.9em;
+    width: 70px;
+    height: 40px;
+  }
+
+  .home_div {
+    background-color: #d0d0d0;
+    width: 120%;
+    height: 1px;
+    position: relative;
+    left: -8%;
+  }
+
+}
