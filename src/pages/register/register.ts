@@ -11,7 +11,7 @@ import { AuthService } from '../../providers/auth-service';
 export class RegisterPage {
   createSuccess = false;
   public country: any;
-  registerCredentials = {email: '' , password: '', name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
+  registerCredentials = {email: '' , password: '', name: '', gender: '', country: '' , birthday: '', skincomplaint: '' };
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) {}
 
@@ -19,8 +19,6 @@ export class RegisterPage {
     this.country = JSON.parse(value);
     console.log(value)
 }
-
-
 
   // Register a new user at our API
   public register() {

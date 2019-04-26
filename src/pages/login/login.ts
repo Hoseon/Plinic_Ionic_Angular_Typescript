@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-import { KakaoCordovaSDK } from 'kakao-sdk';
+import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 
 @Component({
   selector: 'page-login',

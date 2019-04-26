@@ -22,24 +22,18 @@
 
               <ion-item>
                 <ion-label>이메일</ion-label>
-                <ion-input type="email" name="email" text-align="right" [(ngModel)]="registerCredentials.email" required></ion-input>
-                <button ion-button name="email confirm">메일확인</button>
+                <ion-input type="email" name="이메일" text-align="right" [(ngModel)]="registerCredentials.email" required></ion-input>
               </ion-item>
-
 
               <ion-item>
                 <ion-label>패스워드</ion-label>
-                <ion-input type="password" name="password" text-align="right" [(ngModel)]="registerCredentials.password" required></ion-input>
+                <ion-input type="password" name="패스워드" text-align="right" [(ngModel)]="registerCredentials.password" required></ion-input>
               </ion-item>
 
-              <ion-item>
-                <ion-label>패스워드 확인</ion-label>
-                <ion-input type="password" name="password confirm" text-align="right" ></ion-input>
-              </ion-item>
 
               <ion-item>
                 <ion-label>이름</ion-label>
-                <ion-input type="text" name="name" text-align="right" [(ngModel)]="registerCredentials.name" required></ion-input>
+                <ion-input type="text" name="이름" text-align="right" [(ngModel)]="registerCredentials.name" required></ion-input>
               </ion-item>
 
 
@@ -81,24 +75,10 @@
                 </ion-select>
               </ion-item>
 
-              <ion-item>
-                <ion-label>관심분야</ion-label>
-                <ion-select #interest placeholder="선택"
-                            name="interest" okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.interest" required>
-                  <ion-option value="미백" checked="true">미백</ion-option>
-                  <ion-option value="탄력">탄력</ion-option>
-                  <ion-option value="유수분 개선">유수분 개선</ion-option>
-                  <ion-option value="트러블 개선">트러블 개선</ion-option>
-                </ion-select>
-              </ion-item>
-
-              <!-- <ion-item>
-                <ion-input type="hidden" name="user_jwt" value="true" [(ngModel)]="registerCredentials.user_jwt" [hidden]>true</ion-input>
-              </ion-item> -->
-
             </ion-list>
           </ion-col>
         </ion-row>
+
         <ion-row>
           <ion-col class="signup-col">
             <button ion-button class="submit-btn" color="primary" full type="submit" [disabled]="!registerForm.form.valid">Register</button>
