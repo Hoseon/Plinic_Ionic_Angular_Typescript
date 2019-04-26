@@ -32,7 +32,6 @@ import { AuthService } from '../providers/auth-service';
 
 import { Http, HttpModule } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
-import { ImagesProvider } from '../providers/images/images';
 //import { PlinicErrorHandlerProvider } from '../providers/plinic-error-handler/plinic-error-handler';
 
 
@@ -93,8 +92,7 @@ export function getAuthHttp(http, storage) {
       provide: AuthHttp,
       useFactory: getAuthHttp,
       deps: [Http, Storage]
-    },
-    ImagesProvider
+    }
 
   ]
 })
