@@ -32,9 +32,12 @@ import { AuthService } from '../providers/auth-service';
 
 import { Http, HttpModule } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
-//import { PlinicErrorHandlerProvider } from '../providers/plinic-error-handler/plinic-error-handler';
 
-  
+import { ImagesProvider } from '../providers/images/images';
+
+import { Transfer } from '@ionic-native/transfer';
+import { Camera } from '@ionic-native/camera';
+
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -50,11 +53,9 @@ export function getAuthHttp(http, storage) {
   declarations: [
     MyApp,
     LoginPage,
-    //    LoginplinicPage,
     AboutPage,
     ContactPage,
     MyinfoPage,
-    // TabsPage,
     HomePage,
     PlinicManualPage,
     QnaPage,
@@ -74,7 +75,6 @@ export function getAuthHttp(http, storage) {
     AboutPage,
     ContactPage,
     MyinfoPage,
-    //    TabsPage,
     HomePage,
     PlinicManualPage,
     QnaPage,
@@ -88,6 +88,9 @@ export function getAuthHttp(http, storage) {
     IonicErrorHandler,
     Facebook,
     GooglePlus,
+    ImagesProvider,
+    Transfer,
+    Camera,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
