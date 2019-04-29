@@ -1,182 +1,177 @@
-<ion-header>
-  <ion-item no-lines>
-    <ion-slides pager autoplay=500>
-      <ion-slide style="background-image: url('assets/img/home/carezone1.png')">
-        <h2 class="card-title">플리닉을 연동하여<br />피부날씨를 확인해보세요.</h2>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
+<ion-content class="page_home" no-padding>
 
-      </ion-slide>
 
-      <ion-slide style="background-image: url('assets/img/home/carezone2.png')">
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-      </ion-slide>
+  <ion-slides class="img-banner_top_19000501" pager autoplay=500>
+    <!-- <ion-slide style="background-image: url('assets/img/home/carezone1.png')"> -->
+    <ion-slide>
+      <img src='assets/img/home/img-banner-top-19000501.png' />
+    </ion-slide>
+    <ion-slide>
+      <img src='assets/img/home/img-banner-top-19000501.png' />
+    </ion-slide>
+    <ion-slide>
+      <img src='assets/img/home/img-banner-top-19000501.png' />
+    </ion-slide>
+  </ion-slides>
 
-      <ion-slide style="background-image: url('assets/img/home/carezone3.png')">
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
-        <p>.</p>
 
-      </ion-slide>
-    </ion-slides>
-  </ion-item>
-</ion-header>
+  <ion-list class="skin_chart">
 
-<ion-content padding>
 
-  <ion-list>
-    <ion-item no-lines item-start>
-      <h2>스킨차트</h2>
-      <button ion-button clear item-end>더 보기</button>
-    </ion-item>
+    <ion-row>
+      <ion-col class="font_skin_chart">스킨 차트</ion-col>
+    </ion-row>
+    <!-- <div style="text-align: center" class="font_skin_chart">스킨 차트</div> -->
+    <!-- <button ion-button clear item-end>더 보기</button> -->
+    <ion-row>
+      <ion-col style="text-align: center">
 
-    <ion-item no-lines>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>어제</ion-col>
-          <ion-col col-6>오늘</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+      </ion-col>
+    </ion-row>
 
-    <ion-item no-lines>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>나쁨</ion-col>
-          <ion-col col-6>보통</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item no-lines>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-            <button ion-button color="dark" outline class="chart_btn">모공관리</button>
-          </ion-col>
-          <ion-col col-6>
-            <button ion-button color="dark" outline class="chart_btn">수분보충</button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+    <ion-row>
+      <ion-col class="font_skin_chart2" style="text-align: center">
+        측정 이력이 없습니다.<br />
+        지금 바로 플리닉으로 피부측정을 해보세요.<br />
+      </ion-col>
+    </ion-row>
 
-    <ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-4>60.5%</ion-col>
-          <ion-col col-4>수분</ion-col>
-          <ion-col col-4>60.5%</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+    <ion-row>
+      <ion-col style="text-align: center">
+        <button class="skin_btn" ion-button>
+          <ion-icon name="happy">&nbsp;&nbsp;</ion-icon>
+          피부 측정하기
+        </button>
+      </ion-col>
+    </ion-row>
 
-    <ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-4>32.5%</ion-col>
-          <ion-col col-4>유분</ion-col>
-          <ion-col col-4>32.5%</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-
-    <ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-4>60.5%</ion-col>
-          <ion-col col-4>주름</ion-col>
-          <ion-col col-4>60.5%</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-
-    <ion-item no-lines>
-      <p>* 진단 결과는 환경에 따라 상이할 수 있습니다.</p>
-    </ion-item>
-
-    <ion-item no-lines>
-      <button ion-button full>
-        <ion-icon name="happy">&nbsp;&nbsp;</ion-icon>
-        피부 측정하기
-      </button>
-    </ion-item>
+    <!-- </ion-item> -->
   </ion-list>
 
-  <ion-list>
-    <ion-item no-lines item-start>
-      <h2>케어존 미션</h2>
-      <button ion-button clear item-end>더 보기</button>
-    </ion-item>
-    <ion-item no-lines>
-      <img src="assets/img/home/carezone1.png" />
-      <p>인생은즐겁다.</p>
-      <p>요즘 내가 쓰는 꿀템</p>
-    </ion-item>
+  <ion-list class="carezone">
+    <ion-row>
+      <ion-col class="font_carezone">
+        케어존 미션
+      </ion-col>
+    </ion-row>
 
-    <ion-item no-lines>
-      <img src="assets/img/home/carezone2.png" />
-      <p>인생은즐겁다.</p>
-      <p>요즘 내가 쓰는 꿀템</p>
-    </ion-item>
+    <ion-row>
+      <ion-col class="img_carezone_background" style="text-align: center">
+        <img class="img_carezone" src="assets/img/home/carezone1.png" />
+      </ion-col>
+      <button class="carezon_btn1" ion-button>진행 중</button>
+    </ion-row>
+    <ion-row>
+      <ion-col class="font_carezone2">
+        할수 있다 물광미인!
+      </ion-col>
+      <ion-col class="font_carezone2_page">
+        2/30
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="font_carezone2_sub">
+        진단 결과는 환경에 따라 상이할 수 있습니다.
+      </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col class="img_carezone_background2" style="text-align: center">
+        <img class="img_carezone2" src="assets/img/home/carezone2.png" />
+      </ion-col>
+      <button class="carezon_btn2" ion-button>진행 중</button>
+    </ion-row>
+    <ion-row>
+      <ion-col class="font_carezone3">
+        할수 있다 물광미인!
+      </ion-col>
+      <ion-col class="font_carezone3_page">
+        2/30
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="font_carezone3_sub">
+        진단 결과는 환경에 따라 상이할 수 있습니다.
+      </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col class="img_carezone_background3" style="text-align: center">
+        <img class="img_carezone2" src="assets/img/home/carezone2.png" />
+      </ion-col>
+      <button class="carezon_btn3" ion-button>마감</button>
+    </ion-row>
+    <ion-row>
+      <ion-col class="font_carezone4">
+        할수 있다 물광미인!
+      </ion-col>
+      <ion-col class="font_carezone4_page">
+        2/30
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="font_carezone4_sub">
+        진단 결과는 환경에 따라 상이할 수 있습니다.
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col style="text-align: center">
+        <button class="mission_btn" outline ion-button>
+          미션 더 보기 >
+        </button>
+      </ion-col>
+    </ion-row>
   </ion-list>
 
-  <ion-list>
-    <ion-item no-lines item-start>
-      <h2>뷰티 팁</h2>
-      <button ion-button clear item-end>더 보기</button>
-    </ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-6><img src="assets/img/home/tip1.png" />
-          <p>인생은 즐겁쟈니</p>
-          <p>요즘 내가쓰는 꿀템 리스트</p>
-        </ion-col>
-        <ion-col col-6><img src="assets/img/home/tip2.png" />
-          <p>인생은 즐겁쟈니</p>
-          <p>요즘 내가쓰는 꿀템 리스트</p>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-6><img src="assets/img/home/tip3.png" />
-          <p>인생은 즐겁쟈니</p>
-          <p>요즘 내가쓰는 꿀템 리스트</p>
-        </ion-col>
-        <ion-col col-6><img src="assets/img/home/tip4.png" />
-          <p>인생은 즐겁쟈니</p>
-          <p>요즘 내가쓰는 꿀템 리스트</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
 
-  </ion-list>
+  <ion-grid class="beauty_tip">
+    <ion-row>
+      <ion-col class="beauty_tip_title">
+        뷰티 팁
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class=beauty_grid1 style="text-align: center" col-6>
+        <img class="beauty_img" src="assets/img/home/tip1.png" />
+        <div class="beauty_title">인생은 즐겁쟈니</div>
+        <div class="beauty_desc">요즘 내가쓰는 꿀템 리스트</div>
+      </ion-col>
+      <ion-col class=beauty_grid2 style="text-align: center" col-6>
+        <img class="beauty_img" src="assets/img/home/tip2.png" />
+        <div class="beauty_title">인생은 즐겁쟈니</div>
+        <div class="beauty_desc">요즘 내가쓰는 꿀템 리스트</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="beauty_grid3" style="text-align: center" col-6>
+        <img class="beauty_img" src="assets/img/home/tip3.png" />
+        <div class="beauty_title">인생은 즐겁쟈니</div>
+        <div class="beauty_desc">요즘 내가쓰는 꿀템 리스트</div>
+      </ion-col>
+      <ion-col class="beauty_grid4" style="text-align: center" col-6>
+        <img class="beauty_img" src="assets/img/home/tip4.png" />
+        <div class="beauty_title">인생은 즐겁쟈니</div>
+        <div class="beauty_desc">요즘 내가쓰는 꿀템 리스트 피부</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="text-align: center">
+        <button ion-button outline class="beauty_btn">뷰티 팁 더보기</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <ion-list>
-    <ion-item no-lines>
-      <h2>유용한 정보</h2>
-    </ion-item>
-    <button ion-item icon-start>사용법</button>
-    <button ion-item icon-start>뷰티 꿀팁</button>
-    <button ion-item icon-start>고객센터</button>
+  <ion-list class="bottom-tip">
+
+      <div class="tip_title">유용한 정보</div>
+      <br />
+      <br />
+      <br />
+      <br />
+    <button ion-item icon-start><div class="font_tip_btn">사용법</div></button>
+    <button ion-item icon-start><div class="font_tip_btn">뷰티 꿀팁</div></button>
+    <button ion-item icon-start><div class="font_tip_btn">고객센터</div></button>
   </ion-list>
 
 </ion-content>

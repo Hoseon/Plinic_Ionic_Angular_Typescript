@@ -1,4 +1,112 @@
 page-home {
+
+  .page_home{
+    position: relative;
+    //height: 4715px;
+    align-items: center;
+    align-self: center;
+    background-color: #f1f1f1;
+  }
+
+  .img-banner_top_19000501{
+    position: relative;
+    top: 0px;
+    width: auto;
+    height: 143px;
+    object-fit: contain;
+    //margin: -27px -27px -12px 0px;
+    //padding: -0px 0px 0px 0px;
+    //font-size:0;
+    //line-height:0;
+  }
+
+  .font_skin_chart{
+    top: 30px;
+    left: 20px;
+    width: 59px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+  }
+
+  .font_skin_chart2{
+    top: 60px;
+    width: 236px;
+    height: 40px;
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+  }
+
+  .font_carezone{
+    position: absolute;
+    top: 485px;
+    left: 20px;
+    width: 80px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+  }
+
+  .skin_chart{
+    align-self: center;
+    width: auto;
+    height: 273px;
+    background-color: #ffffff;
+    margin-bottom: 8px;
+  }
+
+  .carezone{
+    width: auto;
+    height: 976px;
+    background-color: #ffffff;
+    margin-bottom: 8px;
+  }
+
+  .beauty_tip{
+    width: auto;
+    height: 630px;
+    background-color: #ffffff;
+    margin-bottom: 8px;
+  }
+
+  .bottom-tip{
+    width: auto;
+    height: 251.5px;
+    background-color: #ffffff;
+    margin-bottom: 8px;
+  }
+
+
+
+
+
+
+  .ion-content-padding{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+
+
   .card-title {
     position: absolute;
     top: 10%;
@@ -18,6 +126,15 @@ page-home {
     height: 40px;
   }
 
+  .skin_btn {
+    top :110px;
+    align: center;
+    border-radius: 5px !important;
+    width: 320px;
+    height: 50px;
+    background-color: #5c59b6;
+  }
+
   .home_div {
     background-color: #d0d0d0;
     width: 120%;
@@ -26,4 +143,348 @@ page-home {
     left: -8%;
   }
 
+  .img_carezone{
+    width: 320px;
+    height: 180px;
+    border-radius: 5px;
+    background-color: #e2e1e6;
+  }
+
+  .img_carezone_background{
+    position: absolute;
+    top: 527.5px;
+  }
+
+  .font_carezone2{
+    position: absolute;
+    left : 20px;
+    top: 720.5px;
+    width: 150.5px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+  }
+
+  .font_carezone2_page{
+    position: absolute;
+    top: 724.5px;
+    left: 312.5px;
+    width: 40.5px;
+    height: 15px;
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #939393;
+  }
+
+  .font_carezone2_sub{
+    position: absolute;
+    top: 746px;
+    left: 20px;
+    width: 239.5px;
+    height: 19px;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #939393;
+  }
+
+  .carezon_btn1 {
+    position: absolute;
+    top: 542.5px;
+    left : 35px;
+    width: 53px;
+    height: 25px;
+    opacity: 0.9;
+    border-radius: 2.5px;
+    background-color: #5c59b6;
+  }
+
+  .img_carezone_background2{
+    position: absolute;
+    top: 811.5px;
+  }
+
+  .img_carezone2{
+    width: 320px;
+    height: 180px;
+    border-radius: 5px;
+    background-color: #e2e1e6;
+  }
+
+  .font_carezone3{
+    position: absolute;
+    left : 20px;
+    top: 1008px;
+    width: 150.5px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+  }
+
+  .carezon_btn2 {
+    position: absolute;
+    top: 826.5px;
+    left : 35px;
+    width: 53px;
+    height: 25px;
+    opacity: 0.9;
+    border-radius: 2.5px;
+    background-color: #5c59b6;
+  }
+
+  .font_carezone3_page{
+    position: absolute;
+    top: 1012.5px;
+    left: 312.5px;
+    width: 40.5px;
+    height: 15px;
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #939393;
+  }
+
+  .font_carezone3_sub{
+    position: absolute;
+    top: 1033.5px;
+    left: 20px;
+    width: 239.5px;
+    height: 19px;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #939393;
+  }
+
+  .img_carezone_background3{
+    position: absolute;
+    top: 1082.5px;
+  }
+
+  .img_carezone3{
+    width: 320px;
+    height: 180px;
+    border-radius: 5px;
+    background-color: #e2e1e6;
+  }
+
+  .carezon_btn3{
+    position: absolute;
+    top: 1097.5px;
+    left : 35px;
+    width: 40.5px;
+    height: 25px;
+    opacity: 0.3;
+    border-radius: 2.5px;
+    background-color: #000000;
+  }
+
+  .font_carezone4{
+    position: absolute;
+    left : 20px;
+    top: 1275.5px;
+    width: 150.5px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+  }
+
+  .font_carezone4_sub{
+    position: absolute;
+    top: 1301px;
+    left: 20px;
+    width: 239.5px;
+    height: 19px;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #939393;
+  }
+
+  .font_carezone4_page{
+    position: absolute;
+    top: 1279.5px;
+    left: 312.5px;
+    width: 40.5px;
+    height: 15px;
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #939393;
+  }
+
+  .mission_btn {
+    position: absolute;
+    top: 870px;
+    left: 20px;
+    width: 325px;
+    height: 50px;
+    border: solid 0.5px #c7c7c7;
+  }
+
+  .beauty_tip_title{
+    position: absolute;
+    top: 1478px;
+    left: 20px;
+    width: 70px;
+    height: 23.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+  }
+
+  .beauty_grid1{
+    position: absolute;
+    left: 22px;
+    top: 1511.5px;
+    width: 150px;
+    height: 150px;
+  }
+
+  .beauty_grid2{
+    position: absolute;
+    left: 188px;
+    top: 1511.5px;
+    width: 150px;
+    height: 150px;
+  }
+
+  .beauty_grid3{
+    position: absolute;
+    left: 22px;
+    top: 1734.5px;
+    width: 150px;
+    height: 150px;
+  }
+
+  .beauty_grid4{
+    position: absolute;
+    left: 188px;
+    top: 1734.5px;
+    width: 150px;
+    height: 150px;
+  }
+
+  .beauty_img{
+      border-radius: 5px;
+  }
+
+  .beauty_title{
+    width: 90px;
+    height: 19px;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #5c59b6;
+    text-align: left;
+  }
+
+  .beauty_desc{
+    width: 149.5px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    text-align: left;
+  }
+}
+
+
+.beauty_btn {
+  position: relative;
+  top: 530.5px;
+  //left: 20px;
+  width: 325px;
+  height: 50px;
+  border: solid 0.5px #c7c7c7;
+  text-align: center;
+}
+
+.tip_title{
+  position: relative;
+  left: 20px;
+  top: 15%;
+  width: 77.5px;
+  height: 23.5px;
+  font-family: NotoSansCJKkr;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #292929;
+}
+
+.font_tip_btn{
+  width: 39px;
+  height: 19px;
+  font-family: NotoSansCJKkr;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.36;
+  letter-spacing: normal;
+  color: #292929;
 }
