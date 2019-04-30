@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { CareZoneIngPage } from '../care-zone-ing/care-zone-ing'
+
 
 /**
  * Generated class for the CareZonePage page.
@@ -15,11 +17,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CareZonePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public nav: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CareZonePage');
+}
+
+
+
+  public carezone_ing(){
+        this.nav.push(CareZoneIngPage);
   }
 
 }

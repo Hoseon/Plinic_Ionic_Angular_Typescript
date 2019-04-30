@@ -22,10 +22,19 @@
       <ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample.png" srcset="assets/img/ic-system-profile-sample@2x.png 2x,
              assets/img/ic-system-profile-sample@3x.png 3x"></ion-img><br>
 
-      <p class="top-text" text-wrap>{{name}} 님 피부관리를 위한<br> 미션을 선택해주세요.</p><br>
-
-      <button ion-button class="button_outline" text-align="center" outline (click)="carezone_ing()">케어존 이란?&nbsp;&nbsp;&nbsp;></button>
-    </ion-item><br><br><br>
+      <p class="top-text" text-wrap>{{name}} 님 진행 중인<br> 미션이 있습니다.</p>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-grid>
+      <ion-row class="container">
+      <ion-col>
+      <button ion-button class="button_outline" text-align="center" outline (click)="mission_ing()">진행중인 미션 </button>
+      <ion-img class="inglogo" src="assets/img/care-zone/ing/ic-system-step-01.png" srcset="assets/img/care-zone/ing/ic-system-step-01@2x.png 2x,
+                    assets/img/care-zone/ing/ic-system-step-01@3x.png 3x"></ion-img>
+      </ion-col>
+    </ion-row>
+      </ion-grid>
+    </ion-item><br><br>
 
 
     <ion-row class="row">
@@ -44,7 +53,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="sub">
-      ※진단 결과는 환경에 따라 상이할 수 있습니다. 
+      ※진단 결과는 환경에 따라 상이할 수 있습니다.
       </ion-col>
     </ion-row><br><br><br>
 
@@ -85,7 +94,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="sub">
-      ※진단 결과는 환경에 따라 상이할 수 있습니다.
+      ※진단 결과는 환경에 따라 상이할 수 있습니다. 
       </ion-col>
     </ion-row><br><br><br>
 
