@@ -206,7 +206,34 @@ page-care-zone-mission-ing {
 
               }
 
+              .container {
+                position: relative;
+                width: 50%;
+              }
 
+              .container .imagealign {
+                width: 100%;
+                height: auto;
+              }
+
+              .container .ing_btn{
+              position: absolute;
+              top: 17%;
+              left: 17%;
+              transform: translate(-50%, -50%);
+              -ms-transform: translate(-50%, -50%);
+              color: white;
+              font-size: 10px;
+              padding: 12px 24px;
+              border: none;
+              cursor: pointer;
+              border-radius: 5px;
+              background-color: #5c59b6;
+            }
+
+            .container .ing_btn:hover{
+              background-color: black;
+            }
 
 
 }
