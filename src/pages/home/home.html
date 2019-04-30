@@ -1,4 +1,4 @@
-<ion-content class="page_home" no-padding>
+﻿<ion-content class="page_home" no-padding>
 
 
   <ion-slides class="img-banner_top_19000501" pager autoplay=500>
@@ -38,7 +38,7 @@
 
     <ion-row>
       <ion-col style="text-align: center">
-        <button class="skin_btn" ion-button>
+        <button ion-button class="skin_btn" (click)="skin_chart()">
           <ion-icon name="happy">&nbsp;&nbsp;</ion-icon>
           피부 측정하기
         </button>
@@ -118,9 +118,7 @@
 
     <ion-row>
       <ion-col style="text-align: center">
-        <button class="mission_btn" outline ion-button>
-          미션 더 보기 >
-        </button>
+        <button ion-button class="mission_btn" outline (click)="care_zone()">미션 더 보기</button>
       </ion-col>
     </ion-row>
   </ion-list>
