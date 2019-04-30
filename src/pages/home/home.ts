@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { NavController, Platform, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
+import { SkinChartPage } from '../skin-chart/skin-chart'
+import { CareZonePage } from '../care-zone/care-zone'
 
 
 @IonicPage()
@@ -12,7 +14,7 @@ import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 })
 export class HomePage {
     userData: any;
-  constructor(public platform: Platform, public navCtrl: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK, private alertCtrl: AlertController) {
+  constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK, private alertCtrl: AlertController) {
     // this.platform.ready().then(() => {
     //   this.roadstorage();
     // });
@@ -51,6 +53,13 @@ export class HomePage {
   }
 
 
+  public skin_chart(){
+        this.nav.push(SkinChartPage);
+  }
+
+  public care_zone(){
+        this.nav.push(CareZonePage);
+  }
 
   // public logout(){
   //   this.auth.logout();

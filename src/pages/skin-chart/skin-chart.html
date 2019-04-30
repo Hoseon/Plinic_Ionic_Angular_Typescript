@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-wrap >스킨 차트</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+
+<ion-content padding>
+
+
+
+  <ion-list>
+    <ion-item no-lines>
+      <ion-grid>
+          <ion-row>
+              <br><h2 class="skinscore">현재 피부 점수</h2>
+              <ion-img class="img-logo" src="assets/img/skin_chart/ic-system-infomation.png" srcset="assets/img/skin_chart/ic-system-infomation@2x.png,
+             assets/img/skin_chart/ic-system-infomation@3x.png" ></ion-img>
+        </ion-row>
+      </ion-grid>
+   </ion-item>
+
+
+
+   <ion-item no-lines >
+     <ion-grid>
+         <ion-row>
+         <ion-col col-6><canvas class="doughnutCanvas" #doughnutCanvas width="300px" height="300px" ></canvas></ion-col>
+         <ion-col col-6><canvas class="doughnutCanvas" #doughnutCanvas2 width="300px" height="300px"></canvas></ion-col>
+         </ion-row>
+     </ion-grid>
+   </ion-item>
+
+
+
+    <ion-item no-lines>
+      <ion-grid>
+        <ion-row >
+          <ion-col col-6 class="status">나쁨</ion-col>
+          <ion-col col-6 class="secondstatus" >보통</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item><br>
+
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="data">60.5%</ion-col>
+          <ion-col class="data">수분</ion-col>
+          <ion-col class="data">60.5%</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="data">32.5%</ion-col>
+          <ion-col class="data">유분</ion-col>
+          <ion-col class="data">32.5%</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="data">60.5%</ion-col>
+          <ion-col class="data">주름</ion-col>
+          <ion-col class="data">60.5%</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid class="grid">
+        <ion-row>
+          <ion-col class="data">60.5%</ion-col>
+          <ion-col class="data">탄력</ion-col>
+          <ion-col class="data">60.5%</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <ion-item no-lines>
+    <p>※ 진단 결과는 환경에 따라 상이할 수 있습니다.</p><br><br>
+  </ion-item>
+
+
+  <ion-list>
+    <ion-item no-lines>
+      <h2 class="skinscore">기간별 피부 변화</h2><br><br>
+
+        <canvas #barCanvas height="300"></canvas>
+
+    </ion-item>
+  </ion-list>
+  <ion-item no-lines text-wrap>
+    <p>※{{threeDaysAgo}} ~ {{today}}까지 데이터 분석입니다.</p><br>
+  </ion-item>
+
+
+  <ion-list >
+    <ion-item>
+
+      <br><h2 class="skinscore">플리닉 솔루션</h2><br>
+
+      <h1 class="care">당신의 피부는<br> "건성피부" 맞춤 케어가 필요합니다. </h1><br><br>
+
+      <p class="ex" text-wrap>
+        미세먼지는 피부 노화를 촉진하는 산소를 만들어내고, 주름과 염증, 색소 침착을 유발하는 멜라노사이트 증식을 촉진하는 유전자를 활성화하는 한편 피부장벽마저 약화시킵니다. 따라서 우리 피부는 건조해지지요. 피부 건조 및 노화까지 앞당기므로 미세먼지 피부관리는 반드시 필요합니다. </p>
+
+      <br><button ion-button class="button_outline" outline> "건성맞춤" &nbsp; 화장품 보러가기&nbsp;&nbsp; > </button>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

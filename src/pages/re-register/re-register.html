@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="dark">
-    <ion-title>회원가입</ion-title>
+    <ion-title>회원정보수정</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -22,8 +22,7 @@
 
               <ion-item>
                 <ion-label>이메일</ion-label>
-                <ion-input type="email" name="email" text-align="right" [readonly]="isReadonly()" [(ngModel)]="registerCredentials.email" required></ion-input>
-                <button ion-button name="email confirm">메일확인</button>
+                <ion-input type="email" name="email" text-align="right" [(ngModel)]="registerCredentials.email" required>{{email}}</ion-input>
               </ion-item>
 
 
@@ -39,7 +38,7 @@
 
               <ion-item>
                 <ion-label>이름</ion-label>
-                <ion-input type="text" name="name" text-align="right" [(ngModel)]="registerCredentials.name" required></ion-input>
+                <ion-input type="text" name="name" text-align="right" [(ngModel)]="registerCredentials.name" required>{{nickname}}</ion-input>
               </ion-item>
 
 
@@ -48,12 +47,15 @@
                 <ion-select #gender placeholder="선택" name="gender"
                             okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.gender" require>
                   <ion-option value="여성" checked="true" >여성</ion-option>
-                  <ion-option value="남성">남성</ion-option>
+                  <ion-option value="남성">남성</ion-option>{{gender}}
                 </ion-select>
               </ion-item>
 
+
   <!-- [compareWith]="compareWith"
   (ionChange)="onChange(country.country_name)" -->
+
+
 
               <ion-item>
                 <ion-label>국가 </ion-label>
@@ -67,7 +69,8 @@
               <ion-item>
                 <ion-label position="floating">생년월일</ion-label>
                 <ion-datetime #birthday type="text" placeholder="선택" name="birthday"
-                doneText="확인" cancelText="취소"displayFormat="YYYY년 MM월 DD일" min="1900-01-01" max="2019-12-31" [(ngModel)]="registerCredentials.birthday" required></ion-datetime>
+                doneText="확인" cancelText="취소"displayFormat="YYYY년 MM월 DD일" min="1900-01-01" max="2019-12-31"
+                [(ngModel)]="registerCredentials.birthday" required>{{birthday}}</ion-datetime>
               </ion-item>
 
 
@@ -101,7 +104,7 @@
         </ion-row>
         <ion-row>
           <ion-col class="signup-col">
-            <button ion-button class="submit-btn" color="primary" full type="submit" [disabled]="!registerForm.form.valid">Register</button>
+            <button ion-button class="submit-btn" color="primary" full type="submit" [disabled]="!registerForm.form.valid">수정하기</button>
           </ion-col>
         </ion-row>
 

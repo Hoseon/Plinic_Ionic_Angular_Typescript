@@ -19,7 +19,10 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { PlinicManualPage } from '../pages/myinfo/details/plinic-manual/plinic-manual';
 import { QnaPage } from '../pages/myinfo/details/qna/qna';
-import { TermsPage } from '../pages/myinfo/details/terms/terms'
+import { TermsPage } from '../pages/myinfo/details/terms/terms';
+import { ReRegisterPage } from '../pages/re-register/re-register';
+import { SkinChartPage } from '../pages/skin-chart/skin-chart';
+import {CareZonePage} from '../pages/care-zone/care-zone';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,10 +36,13 @@ import { AuthService } from '../providers/auth-service';
 import { Http, HttpModule } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
+<<<<<<< HEAD
+=======
 import { ImagesProvider } from '../providers/images/images';
 
 import { Transfer } from '@ionic-native/transfer';
 import { Camera } from '@ionic-native/camera';
+>>>>>>> 3c7009ea1db0d853433715ddcda233e9f2a1d8b0
 
 
 export function getAuthHttp(http, storage) {
@@ -57,9 +63,12 @@ export function getAuthHttp(http, storage) {
     ContactPage,
     MyinfoPage,
     HomePage,
+    SkinChartPage,
+    CareZonePage,
     PlinicManualPage,
     QnaPage,
-    TermsPage
+    TermsPage,
+    ReRegisterPage
   ],
   imports: [
     HttpModule,
@@ -76,9 +85,12 @@ export function getAuthHttp(http, storage) {
     ContactPage,
     MyinfoPage,
     HomePage,
+    SkinChartPage,
+    CareZonePage,
     PlinicManualPage,
     QnaPage,
-    TermsPage
+    TermsPage,
+    ReRegisterPage
   ],
   providers: [
     StatusBar,

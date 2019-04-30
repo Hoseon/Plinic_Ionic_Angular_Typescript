@@ -1,0 +1,31 @@
+page-care-zone {
+
+    .profile-img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      text-align: center;
+      background-color: #ffffff;
+    }
+
+    .top-text{
+      font-size: 16px;
+      letter-spacing: normal;
+      text-align: center;
+      color: #292929;
+    }
+
+    .button_outline{
+      width: 250px;
+      height: 50px;
+      font-size: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      font-weight: bold;
+    }
+
+}

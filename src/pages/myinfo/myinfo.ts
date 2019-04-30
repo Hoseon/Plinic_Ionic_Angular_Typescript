@@ -4,7 +4,7 @@ import { AuthService } from '../../providers/auth-service';
 import { PlinicManualPage } from './details/plinic-manual/plinic-manual';
 import { QnaPage } from './details/qna/qna';
 import { TermsPage } from './details/terms/terms';
-
+import { ReRegisterPage } from '../re-register/re-register'
 /**
  * Generated class for the MyinfoPage page.
  *
@@ -34,8 +34,19 @@ export class MyinfoPage {
      this.plt.ready().then(() => {
        this.loadItems();
      });
-
   }
+
+  public Reregiter(){
+    this.navCtrl.push(ReRegisterPage, {
+      birthday : this.userData.birthday,
+        email : this.userData.email,
+        gender : this.userData.gender,
+        nickname : this.userData.nickname
+    });
+  }
+
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyinfoPage');
