@@ -36,13 +36,10 @@ import { AuthService } from '../providers/auth-service';
 import { Http, HttpModule } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
-<<<<<<< HEAD
-=======
 import { ImagesProvider } from '../providers/images/images';
 
 import { Transfer } from '@ionic-native/transfer';
 import { Camera } from '@ionic-native/camera';
->>>>>>> 3c7009ea1db0d853433715ddcda233e9f2a1d8b0
 
 
 export function getAuthHttp(http, storage) {
