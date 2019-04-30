@@ -206,7 +206,7 @@ page-home {
 
   .carezon_btn1 {
     position: absolute;
-    top: 542.5px;
+    top: 10px;
     left : 35px;
     width: 53px;
     height: 25px;
@@ -221,6 +221,7 @@ page-home {
   }
 
   .img_carezone2{
+    position: relative;
     width: 320px;
     height: 180px;
     border-radius: 5px;
@@ -245,13 +246,14 @@ page-home {
 
   .carezon_btn2 {
     position: absolute;
-    top: 826.5px;
+    top: 10px;
     left : 35px;
     width: 53px;
     height: 25px;
     opacity: 0.9;
     border-radius: 2.5px;
     background-color: #5c59b6;
+    z-index: 1;
   }
 
   .font_carezone3_page{
@@ -293,6 +295,7 @@ page-home {
   }
 
   .img_carezone3{
+    position: relative;
     width: 320px;
     height: 180px;
     border-radius: 5px;
@@ -301,13 +304,14 @@ page-home {
 
   .carezon_btn3{
     position: absolute;
-    top: 1097.5px;
+    top: 10px;
     left : 35px;
     width: 40.5px;
     height: 25px;
     opacity: 0.3;
     border-radius: 2.5px;
     background-color: #000000;
+    z-index: 1;
   }
 
   .font_carezone4{
