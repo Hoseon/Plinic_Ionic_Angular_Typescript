@@ -1,17 +1,13 @@
           page-skin-chart {
 
 
-             .doughnutCanvas{
-                  width: 300px;
-                  height: 300px;
-
-             }
-
+              min-width: 100%;
+              min-height: 100%;
 
              .img-logo{
                 background-color: #ffffff;
-                width: 5px;
-                height: 5px;
+                width: 4px;
+                height: 4px;
              }
 
 
@@ -28,8 +24,10 @@
              color: #292929;
             }
 
-
-             .date{
+             .grid{
+               min-width: 40px;
+               min-height: 19px;
+               text-align: center;
                margin-left: auto;
                margin-right: auto;
                display: block;
@@ -37,7 +35,7 @@
 
              .status{
             font-weight: normal;
-            font-size: 17px;
+            font-size: 15px;
             text-align: center;
             color: #ffa000;
              }
@@ -45,7 +43,7 @@
 
             .secondstatus{
 
-            font-size: 17px;
+            font-size: 15px;
             font-weight: normal;
             text-align: center;
             color: #00af66;
@@ -81,4 +79,8 @@
             display: block;
             font-weight: bold;
           }
+
+
+
+
   }

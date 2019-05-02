@@ -1,9 +1,19 @@
 page-care-zone {
 
 
-      min-width: 360px;
+      min-width: 100%;
+      min-height: 100%;
 
 
+    .title{
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 70%;
+      text-align: center;
+    }
     .profile-img {
       width: 60px;
       height: 60px;
@@ -16,23 +26,29 @@ page-care-zone {
     }
 
     .top-text{
+      font-family: NotoSansCJKkr;
       font-size: 16px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.41;
       letter-spacing: normal;
       text-align: center;
       color: #292929;
-      font-weight:bold;
     }
 
     .button_outline{
       margin-left: auto;
       margin-right: auto;
       display: block;
-      font-size: 13px;
+      font-size: 14px;
       border: solid 0.5px #c7c7c7;
       background-color:#FFF;
-      font-weight:bold;
-      min-width: 325px;
+      min-width: 90%;
       min-height: 50px;
+      font-weight: normal;
+      text-align: center;
+      color: #292929;
     }
 
 
@@ -84,7 +100,7 @@ page-care-zone {
   -ms-transform: translate(-50%, -50%);
   background-color: #555;
   color: white;
-  font-size: 10px;
+  font-size: 11px;
   padding: 12px 24px;
   border: none;
   cursor: pointer;
@@ -116,7 +132,7 @@ page-care-zone {
     width: 239.5px;
     height: 19px;
     font-family: NotoSansCJKkr;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;

@@ -1,5 +1,18 @@
 page-care-zone-mission-ing {
 
+               min-width: 100%;
+               min-height: 100%;
+
+               .title{
+                 position: absolute;
+                 left: 50%;
+                 top: 0;
+                 transform: translateX(-50%);
+                 height: 100%;
+                 width: 70%;
+                 text-align: center;
+               }
+
 
 
               .goods-img{
@@ -36,6 +49,15 @@ page-care-zone-mission-ing {
                letter-spacing: normal;
                text-align: center;
              }
+
+              .progress{
+                width: 100%;
+                height: 100%;
+        
+              }
+
+
+
 
               .event-col{
                 width: 5px;
@@ -84,7 +106,7 @@ page-care-zone-mission-ing {
                   background-color: #ffffff;
                   font-family: NotoSansCJKkr;
                   font-size: 14px;
-                  font-weight: bold;
+                  font-weight: normal;
                   font-style: normal;
                   margin-top: auto;
                   margin-bottom: auto;
@@ -98,7 +120,7 @@ page-care-zone-mission-ing {
                 background-color: #ffffff;
                 font-family: NotoSansCJKkr;
                 font-size: 12px;
-                font-weight: bold;
+                font-weight: normal;
                 font-style: normal;
                 color: #5c59b6;
               }
@@ -125,7 +147,7 @@ page-care-zone-mission-ing {
                 background-color: #ffffff;
                 font-family: NotoSansCJKkr;
                 font-size: 12px;
-                font-weight: bold;
+                font-weight: normal;
                 font-style: normal;
               }
               .event-col8{
@@ -151,6 +173,7 @@ page-care-zone-mission-ing {
                 object-fit: contain;
                 text-align: left;
                 background-color: #ffffff;
+
               }
 
               .event-col9{
@@ -160,10 +183,15 @@ page-care-zone-mission-ing {
                 font-family: NotoSansCJKkr;
                 font-size: 12px;
                 font-style: normal;
-                font-weight: bold;
+                font-weight: normal;
                 text-align: right;
                 margin-left: 75%;
               }
+
+              .grid{
+               width: 100%;
+              }
+
 
               .sub{
                 width: 239.5px;
@@ -183,16 +211,35 @@ page-care-zone-mission-ing {
                 margin-left: auto;
                 margin-right: auto;
                 display: block;
-                font-size: 13px;
+                font-size: 14px;
                 border: solid 0.5px #c7c7c7;
-                background-color:#FFF;
-                font-weight:bold;
-                min-width: 300px;
+                background-color:#d2d4d6;
+                color: #ffffff;
+                font-family: AppleSDGothicNeo;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: center;
+                min-width: 100%;
                 min-height: 50px;
               }
 
+              .button_add{
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                font-size: 14px;
+                border: solid 0.5px #c7c7c7;
+                background-color:#FFF;
+                font-weight:bold;
+                min-width: 100%;
+                min-height: 50px;
+              }
 
               .bottom_text{
+                padding-left: 5%;
                 font-family: NotoSansCJKkr;
                 font-size: 16px;
                 font-weight: bold;

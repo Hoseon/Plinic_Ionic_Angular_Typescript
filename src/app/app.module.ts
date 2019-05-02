@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -23,6 +23,11 @@ import { TermsPage } from '../pages/myinfo/details/terms/terms';
 import { ReRegisterPage } from '../pages/re-register/re-register';
 import { SkinChartPage } from '../pages/skin-chart/skin-chart';
 import {CareZonePage} from '../pages/care-zone/care-zone';
+import { CareZoneIngPage } from '../pages/care-zone-ing/care-zone-ing';
+import { CareZoneMissionIngPage } from '../pages/care-zone-mission-ing/care-zone-mission-ing';
+import {ProgressBarModule} from "angular-progress-bar";
+import { CareZoneMissionDeadlinePage } from '../pages/care-zone-mission-deadline/care-zone-mission-deadline';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -35,11 +40,12 @@ import { AuthService } from '../providers/auth-service';
 
 import { Http, HttpModule } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+//import { PlinicErrorHandlerProvider } from '../providers/plinic-error-handler/plinic-error-handler';
 
 import { ImagesProvider } from '../providers/images/images';
-
 import { Transfer } from '@ionic-native/transfer';
 import { Camera } from '@ionic-native/camera';
+
 
 
 export function getAuthHttp(http, storage) {
@@ -56,12 +62,17 @@ export function getAuthHttp(http, storage) {
   declarations: [
     MyApp,
     LoginPage,
+    //    LoginplinicPage,
     AboutPage,
     ContactPage,
     MyinfoPage,
+    // TabsPage,
     HomePage,
     SkinChartPage,
     CareZonePage,
+    CareZoneIngPage,
+    CareZoneMissionIngPage,
+    CareZoneMissionDeadlinePage,
     PlinicManualPage,
     QnaPage,
     TermsPage,
@@ -71,8 +82,12 @@ export function getAuthHttp(http, storage) {
     HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    ProgressBarModule,
     IonicStorageModule.forRoot()
 
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -81,9 +96,13 @@ export function getAuthHttp(http, storage) {
     AboutPage,
     ContactPage,
     MyinfoPage,
+    //    TabsPage,
     HomePage,
     SkinChartPage,
     CareZonePage,
+    CareZoneIngPage,
+    CareZoneMissionIngPage,
+    CareZoneMissionDeadlinePage,
     PlinicManualPage,
     QnaPage,
     TermsPage,
