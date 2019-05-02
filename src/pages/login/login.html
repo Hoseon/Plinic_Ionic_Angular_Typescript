@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 
-<ion-content class="login-content" padding>
+<ion-content padding>
   <ion-row class="logo-row">
     <img src="assets/img/ic_system_logo_symbol.png" />
   </ion-row>
@@ -34,27 +34,36 @@
       </ion-row>
 
       <ion-row>
-        <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" color="primary" [disabled]="!registerForm.form.valid">Login</button>
-          <button ion-button class="register-btn" full type="button" block (click)="createAccount()" color="dark">회원가입</button>
+        <ion-col>
+          <button ion-button class="login-btn" [disabled]="!registerForm.form.valid" outline>Login</button>
+          <button ion-button class="register-btn" (click)="createAccount()" outline>회원가입</button>
         </ion-col>
       </ion-row>
 
+      <ion-item no-lines>
+          <ion-grid>
+              <ion-row>
+                  <ion-col class="Line"></ion-col>
+                  <ion-col >또는</ion-col>
+                  <ion-col class="Line"></ion-col>
+              </ion-row>
+          </ion-grid>
+    </ion-item>
 
       <ion-row>
-        <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="button" (click)="kakao_login()">
+        <ion-col >
+          <button ion-button class="submit-btn" (click)="kakao_login()" outline>
             <img class="kakao_btn" src="assets/img/ic_service_kakao.png" />
             카카오로 시작하기</button>
-          <button ion-button class="submit-btn" full type="button" (click)="facebook_login()">
+          <button ion-button class="submit-btn" (click)="facebook_login()" outline>
             <img class="face_btn" src="assets/img/ic_service_facebook.png" />
             페이스북으로 시작하기</button>
-          <button ion-button class="submit-btn" full type="button" (click)="google_login()">
+          <button ion-button class="submit-btn" (click)="google_login()" outline>
             <img class="google_btn" src="assets/img/ic_service_google.png" />
             Google로 시작하기</button>
-          <button ion-button class="submit-btn" full type="button" (click)="kakao_logout()">
+          <!-- <button ion-button class="submit-btn" (click)="kakao_logout()" outline>
             <img class="kakao_btn" src="assets/img/ic_service_naver.png" />
-            네이버로 시작하기</button>
+            네이버로 시작하기</button> -->
         </ion-col>
       </ion-row>
 

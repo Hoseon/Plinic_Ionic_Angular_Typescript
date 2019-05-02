@@ -1,6 +1,24 @@
 page-care-zone-mission-deadline {
 
 
+
+
+                min-width: 100%;
+                min-height: 100%;
+                
+
+                .title{
+                  position: absolute;
+                  left: 50%;
+                  top: 0;
+                  transform: translateX(-50%);
+                  height: 100%;
+                  width: 70%;
+                  text-align: center;
+                }
+
+
+
                 .goods-img{
                   width: 120px;
                   height: 120px;
@@ -36,6 +54,28 @@ page-care-zone-mission-deadline {
                  letter-spacing: normal;
                  text-align: center;
                }
+
+
+               .progress-outer {
+              text-align: center;
+              background-color: #FFF;
+              border: 0.5px solid #FFF;
+              color: #fff;
+              border-radius: 5px;
+              font-size: 8px;
+
+            }
+
+            .progress-inner {
+              white-space: nowrap;
+              overflow: hidden;
+              border-radius: 10px;
+              background-color: #5c59b6;
+              color: #FFF;
+              height: 9px;
+
+            }
+
 
                 .event-col{
                   width: 5px;
@@ -84,7 +124,7 @@ page-care-zone-mission-deadline {
                     background-color: #ffffff;
                     font-family: NotoSansCJKkr;
                     font-size: 14px;
-                    font-weight: bold;
+                    font-weight: normal;
                     font-style: normal;
                     margin-top: auto;
                     margin-bottom: auto;

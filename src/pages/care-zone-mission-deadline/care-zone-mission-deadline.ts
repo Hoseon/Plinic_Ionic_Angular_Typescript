@@ -15,11 +15,34 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CareZoneMissionDeadlinePage {
 
+    public loadProgress : number = 0;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CareZoneMissionDeadlinePage');
   }
+
+
+  ngOnInit() {
+    // 프로그레스바 로직
+    setInterval(() => {
+      if (this.loadProgress < 100)
+        this.loadProgress += 1;
+      else
+        clearInterval(this.loadProgress);
+    }, 50);
+  }
+
+
+
+
+
+
+
+
+
+
 
 }

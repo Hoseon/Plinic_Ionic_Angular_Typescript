@@ -1,7 +1,11 @@
 page-care-zone-mission-ing {
 
+
+
+
                min-width: 100%;
                min-height: 100%;
+
 
                .title{
                  position: absolute;
@@ -50,14 +54,26 @@ page-care-zone-mission-ing {
                text-align: center;
              }
 
-              .progress{
-                width: 100%;
-                height: 100%;
-        
-              }
 
+              .progress-outer {
+             text-align: center;
+             background-color: #FFF;
+             border: 0.5px solid #FFF;
+             color: #fff;
+             border-radius: 5px;
+             font-size: 8px;
 
+           }
 
+           .progress-inner {
+             white-space: nowrap;
+             overflow: hidden;
+             border-radius: 10px;
+             background-color: #5c59b6;
+             color: #FFF;
+             height: 9px;
+
+           }
 
               .event-col{
                 width: 5px;

@@ -23,6 +23,8 @@
 
       <button ion-button class="button_outline" outline >진행중 </button><br>
 
+
+
       <h1 class="top_text"> 할수 있다! 물광미인 </h1>
       </ion-item>
 
@@ -40,11 +42,11 @@
 
 
 <!-- 프로그레스바 -->
-<ion-item no-lines>
-  <progress-bar ion-progress-bar class="progress" value="15" mode="Determinate" [progress]="30"> </progress-bar>
-  
-</ion-item>
 
+<ion-item no-lines class="progress-outer" >
+  <progress-bar id="progress-inners" class="progress-inners" [color]="mycolor"[progress]="loadProgress"></progress-bar>
+  <!-- <ion-progress-bar class="progress" [max]="100" [value]="progress" [type]="indeterminate" [progress]="loadProgress"></ion-progress-bar> -->
+</ion-item>
 
 
 

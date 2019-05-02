@@ -22,6 +22,8 @@ import { QnaPage } from '../pages/myinfo/details/qna/qna';
 import { TermsPage } from '../pages/myinfo/details/terms/terms';
 import { ReRegisterPage } from '../pages/re-register/re-register';
 import { SkinChartPage } from '../pages/skin-chart/skin-chart';
+
+//케어존
 import {CareZonePage} from '../pages/care-zone/care-zone';
 import { CareZoneIngPage } from '../pages/care-zone-ing/care-zone-ing';
 import { CareZoneMissionIngPage } from '../pages/care-zone-mission-ing/care-zone-mission-ing';

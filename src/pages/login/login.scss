@@ -1,5 +1,7 @@
 page-login {
-  .login-content {
+
+
+
     .logo-row {
       padding-top: 50px;
       //padding-bottom: 20px;
@@ -26,11 +28,11 @@ page-login {
       margin-top: 20px;
     }
 
-    ion-row {
+    .ion-row {
       align-items: center;
     }
 
-    ion-item {
+    .ion-item {
       border-radius: 30px !important;
       padding-left: 30px !important;
       font-size: 0.9em;
@@ -41,40 +43,75 @@ page-login {
       background: color($colors, light);
     }
 
-    .signup-col {
-      margin: 0 16px;
-      padding-bottom: 20px;
-    }
+
 
     .item-inner {
       border-bottom-color: color($colors, light) !important;
       box-shadow: none !important;
     }
 
+
+    .login-btn{
+      font-weight: normal;
+      width: 100%;
+      border: solid 1px #c7c7c7;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      font-size: 14px;
+      color: #292929;
+    }
     .submit-btn {
-      border-radius: 5px !important;
-      border: 1px solid color($colors, light);
-      font-size: 0.9em;
+      border: solid 1px #c7c7c7;
+      font-size: 14px;
+      color: #292929;
+      width: 100%;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
     }
 
-    .kakao_btn {
-      padding-right: 5px;
-    }
-
-    .face_btn {
-      padding-right: 5px;
-      width: 35px;
-      height: 25px;
-    }
-
-    .google_btn {
-      padding-right: 5px;
-      width: 35px;
-      height: 25px;
-    }
 
     .register-btn {
-      font-size: 0.8em;
+      background-color: #5c59b6;
+      min-width: 100%;
+      font-family: NotoSansCJKkr;
+      font-size: 14px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: #ffffff;
     }
-  }
+
+    .Line{
+
+      width: 134px;
+       height: 0.1px;
+       background-color: #e5e5e5;
+
+    }
+        .kakao_btn {
+          padding-right: 5px;
+        }
+
+        .face_btn {
+          padding-right: 5px;
+          width: 35px;
+          height: 25px;
+        }
+
+        .google_btn {
+          padding-right: 5px;
+          width: 35px;
+          height: 25px;
+        }
 }
