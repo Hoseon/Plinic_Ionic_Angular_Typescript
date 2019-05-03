@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
+import { Naver} from 'ionic-plugin-naver';
+import {AgreementPage} from '../agreement/agreement';
 
 @Component({
   selector: 'page-login',
@@ -15,9 +17,16 @@ export class LoginPage {
   userData: any;
   constructor(private nav: NavController, private auth: AuthService,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-    public _kakaoCordovaSDK: KakaoCordovaSDK
+    public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver
   ) {
 
+  }
+
+
+  public naver_login(){
+       this.naver.login()
+         .then(response => console.log(response))
+         .catch(error => console.error(error));
   }
 
   public google_login(){
@@ -47,9 +56,16 @@ export class LoginPage {
   }
 
   // Push the registerPage
-  public createAccount() {
-    this.nav.push('RegisterPage');
+  // public createAccount() {
+  //   this.nav.push('RegisterPage');
+  // }
+
+
+  public agreement(){
+        this.nav.push(AgreementPage);
   }
+
+
 
   // Submit the login form, login the user with our provider and push Home page if successful
   public onSubmit() {

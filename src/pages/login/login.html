@@ -6,21 +6,18 @@
 -->
 
 <ion-content padding>
-  <ion-row class="logo-row">
-    <img src="assets/img/ic_system_logo_symbol.png" />
-  </ion-row>
-
-  <ion-row class="logo-plinic">
-    <img src="assets/img/ic_system_logo_word.png" />
-  </ion-row>
 
 
-  <div class="login-box">
+    <ion-img class="inglogo" src="assets/img/pliniclogo/ic-system-logo-symbol.png" srcset="assets/img/pliniclogo/ic-system-logo-symbol@2x.png,
+                  assets/img/pliniclogo/ic-system-logo-symbol@3x.png"></ion-img>
+
+    <ion-img class="inglogo" src="assets/img/pliniclogo/ic-system-logo-word.png" srcset="assets/img/pliniclogo/ic-system-logo-word@2x.png,
+                  assets/img/pliniclogo/ic-system-logo-word@3x.png"></ion-img>
+
+
+
     <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-      <ion-row>
-        <ion-col>
-          <ion-list inset>
-
+      <ion-list inset>
             <ion-item>
               <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
             </ion-item>
@@ -28,45 +25,47 @@
             <ion-item>
               <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
             </ion-item>
+      </ion-list>
 
-          </ion-list>
-        </ion-col>
-      </ion-row>
 
       <ion-row>
         <ion-col>
-          <button ion-button class="login-btn" [disabled]="!registerForm.form.valid" outline>Login</button>
-          <button ion-button class="register-btn" (click)="createAccount()" outline>회원가입</button>
+          <!-- <button ion-button class="login-btn" [disabled]="!registerForm.form.valid" outline>Login</button> -->
+          <button ion-button class="login-btn" outline>Login</button>
+          <button ion-button class="register-btn" (click)="agreement()" outline>회원가입</button>
         </ion-col>
       </ion-row>
 
       <ion-item no-lines>
           <ion-grid>
               <ion-row>
-                  <ion-col class="Line"></ion-col>
-                  <ion-col >또는</ion-col>
-                  <ion-col class="Line"></ion-col>
+                  <ion-col class="Lineleft"></ion-col>
+                  <ion-col class="Linetext">또는</ion-col>
+                  <ion-col class="Lineright"></ion-col>
               </ion-row>
           </ion-grid>
     </ion-item>
 
       <ion-row>
         <ion-col >
+
           <button ion-button class="submit-btn" (click)="kakao_login()" outline>
-            <img class="kakao_btn" src="assets/img/ic_service_kakao.png" />
-            카카오로 시작하기</button>
+            <img class="kakao_btn" src="assets/img/kakaologo/ic-sns-kakao.png" srcset="assets/img/kakaologo/ic-sns-kakao@2x.png,
+                          assets/img/kakaologo/ic-sns-kakao@3x.png" /> 카카오로 시작하기</button>
+
           <button ion-button class="submit-btn" (click)="facebook_login()" outline>
-            <img class="face_btn" src="assets/img/ic_service_facebook.png" />
-            페이스북으로 시작하기</button>
+            <img class="face_btn" src="assets/img/facebooklogo/ic-sns-facebook.png" srcset="assets/img/facebooklogo/ic-sns-facebook@2x.png,
+                          facebooklogo/ic-sns-facebook@3x.png" /> 페이스북으로 시작하기</button>
+
           <button ion-button class="submit-btn" (click)="google_login()" outline>
-            <img class="google_btn" src="assets/img/ic_service_google.png" />
-            Google로 시작하기</button>
-          <!-- <button ion-button class="submit-btn" (click)="kakao_logout()" outline>
-            <img class="kakao_btn" src="assets/img/ic_service_naver.png" />
-            네이버로 시작하기</button> -->
+            <img class="google_btn" src="assets/img/googlelogo/ic-sns-google.png" srcset="assets/img/googlelogo/ic-sns-google@2x.png,
+                          assets/img/googlelogo/ic-sns-google@3x.png" /> 구글로 시작하기</button>
+
+          <button ion-button class="submit-btn" (click)="naver_login()" outline>
+            <img class="naver_btn" src="assets/img/naverlogo/ic-sns-naver.png" srcset="assets/img/naverlogo/ic-sns-naver@2x.png,
+                          assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기</button>
         </ion-col>
       </ion-row>
 
     </form>
-  </div>
 </ion-content>

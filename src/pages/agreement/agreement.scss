@@ -1,0 +1,109 @@
+page-agreement {
+
+              min-width: 100%;
+              min-height: 100%;
+
+  .title{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 70%;
+    text-align: center;
+  }
+
+   .h1{
+      height: 100px;
+      font-family: NotoSansCJKkr;
+      font-size: 23px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: #292929;
+      padding-top: 10%;
+   }
+
+   .label{
+     overflow:visible;
+   }
+
+    .labelex{
+      text-align: right;
+      width: 1px;
+      min-width: 1px;
+      overflow:visible;
+      font-family: NotoSansCJKkr;
+     font-size: 14px;
+     font-weight: normal;
+     font-style: normal;
+     font-stretch: normal;
+     line-height: normal;
+     letter-spacing: normal;
+     text-align: right;
+     color: #939393;
+    }
+
+   .checkbox{
+     text-align:center;
+     width: 10%;
+     font-family: NotoSansCJKkr;
+     font-size: 15px;
+     font-weight: normal;
+     font-style: normal;
+     font-stretch: normal;
+     line-height: normal;
+     letter-spacing: normal;
+     color: #292929;
+   }
+
+
+
+       .sub{
+
+      width: 262.5px;
+       height: 50px;
+       font-family: AppleSDGothicNeo;
+       font-size: 13px;
+       font-weight: normal;
+       font-style: normal;
+       font-stretch: normal;
+       line-height: 1.62;
+       letter-spacing: normal;
+       color: #939393;
+      }
+
+      .item-md .item-button {
+
+          font-size: 14px;
+      }
+
+      .button_sign{
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        border: solid 0.5px #c7c7c7;
+        background-color:#5c59b6;
+        color: #FFF;
+        font-weight:normal;
+        min-width: 100%;
+        min-height: 50px;
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

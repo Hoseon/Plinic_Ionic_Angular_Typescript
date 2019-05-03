@@ -38,47 +38,21 @@ page-care-zone-ing {
       }
 
       .button_outline{
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
         font-size: 12px;
         border: solid 0.5px #c7c7c7;
         background-color:#FFF;
         font-weight:normal;
-        min-width: 200%;
+        min-width: 100%;
         min-height: 50px;
-        padding-right: 30%;
         text-align: center;
         color: #292929;
       }
 
-        .container .inglogo{
-        position: absolute;
-        top: 49%;
-        left: 125%;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        background-color: #FFF;
-        min-width: 15px;
-        min-height: 15px;
-        object-fit: contain;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        text-align: center;
-        border-radius: 15px;
-
-      }
-
-      .container .inglogo:hover{
-        background-color: black;
-      }
 
       .inglogo{
+          margin-left: 10px;
+          text-align: center;
           background-color: #FFF;
-          padding: 0;
-          border: none;
-          background: none;
 
       }
       .imagealign{

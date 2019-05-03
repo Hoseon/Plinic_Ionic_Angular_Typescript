@@ -2,6 +2,8 @@ import { IonicPage } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
+// import {LoginPage } from '../login/login';
+
 
 @IonicPage()
 @Component({
@@ -9,9 +11,13 @@ import { AuthService } from '../../providers/auth-service';
   templateUrl: 'register.html'
 })
 export class RegisterPage {
+
   createSuccess = false;
   public country: any;
-  registerCredentials = {email: '' , password: '', name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
+  password: any;
+  passwordconfirm: any;
+
+  registerCredentials = {email: '' , password: '', passwordconfirm:'', name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) {}
 
@@ -25,9 +31,13 @@ export class RegisterPage {
   // Register a new user at our API
   public register() {
     this.auth.register(this.registerCredentials).subscribe(success => {
-      if (success !== '') {
+
+      if ((success !== '') && (this.registerCredentials.password===this.registerCredentials.passwordconfirm)) {
+          console.log("password" + this.registerCredentials.password);
+          console.log("passwordconfirm" + this.registerCredentials.passwordconfirm);
         this.createSuccess = true;
-        this.showPopup("Success", "Account created.");
+        this.showPopup("회원가입 완료", "");
+        // this.nav.push(LoginPage);
       } else {
         this.showPopup("Error", "Problem creating account.");
       }

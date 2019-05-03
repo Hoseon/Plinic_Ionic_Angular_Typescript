@@ -22,24 +22,24 @@
 
               <ion-item>
                 <ion-label>이메일</ion-label>
-                <ion-input type="email" name="email" text-align="right" [readonly]="isReadonly()" [(ngModel)]="registerCredentials.email" required></ion-input>
+                <ion-input class="inputtext" type="email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
                 <button ion-button name="email confirm">메일확인</button>
               </ion-item>
 
 
               <ion-item>
                 <ion-label>패스워드</ion-label>
-                <ion-input type="password" name="password" text-align="right" [(ngModel)]="registerCredentials.password" required></ion-input>
+                <ion-input class="inputtext" type="password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
               </ion-item>
 
               <ion-item>
                 <ion-label>패스워드 확인</ion-label>
-                <ion-input type="password" name="password confirm" text-align="right" ></ion-input>
+                <ion-input class="inputtext" type="password" name="passwordconfirm" [(ngModel)]="registerCredentials.passwordconfirm"></ion-input>
               </ion-item>
 
               <ion-item>
                 <ion-label>이름</ion-label>
-                <ion-input type="text" name="name" text-align="right" [(ngModel)]="registerCredentials.name" required></ion-input>
+                <ion-input class="inputtext" type="text" name="name" [(ngModel)]="registerCredentials.name" required></ion-input>
               </ion-item>
 
 

@@ -16,13 +16,18 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { MyinfoPage } from '../pages/myinfo/myinfo';
 import { TabsPage } from '../pages/tabs/tabs';
+import {AgreementPage }from '../pages/agreement/agreement';
 
 import { PlinicManualPage } from '../pages/myinfo/details/plinic-manual/plinic-manual';
 import { QnaPage } from '../pages/myinfo/details/qna/qna';
 import { TermsPage } from '../pages/myinfo/details/terms/terms';
+import { PersonalinfoPage } from '../pages/myinfo/details/personalinfo/personalinfo';
+import { MarketingPage } from '../pages/myinfo/details/marketing/marketing';
+
+
 import { ReRegisterPage } from '../pages/re-register/re-register';
 import { SkinChartPage } from '../pages/skin-chart/skin-chart';
-
+import {RegisterPage} from '../pages/register/register';
 //케어존
 import {CareZonePage} from '../pages/care-zone/care-zone';
 import { CareZoneIngPage } from '../pages/care-zone-ing/care-zone-ing';
@@ -38,6 +43,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Storage } from '@ionic/storage';
 
 import { KakaoCordovaSDK } from 'kakao-sdk';
+import { Naver} from 'ionic-plugin-naver';
 import { AuthService } from '../providers/auth-service';
 
 import { Http, HttpModule } from '@angular/http';
@@ -78,7 +84,11 @@ export function getAuthHttp(http, storage) {
     PlinicManualPage,
     QnaPage,
     TermsPage,
-    ReRegisterPage
+    RegisterPage,
+    ReRegisterPage,
+    AgreementPage,
+    PersonalinfoPage,
+    MarketingPage,
   ],
   imports: [
     HttpModule,
@@ -108,7 +118,11 @@ export function getAuthHttp(http, storage) {
     PlinicManualPage,
     QnaPage,
     TermsPage,
-    ReRegisterPage
+    RegisterPage,
+    ReRegisterPage,
+    AgreementPage,
+    PersonalinfoPage,
+    MarketingPage,
   ],
   providers: [
     StatusBar,
@@ -121,6 +135,7 @@ export function getAuthHttp(http, storage) {
     ImagesProvider,
     Transfer,
     Camera,
+    Naver,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
