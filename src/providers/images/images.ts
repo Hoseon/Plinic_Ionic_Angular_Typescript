@@ -18,6 +18,12 @@ export class ImagesProvider {
 
   constructor(public http: Http, private transfer: Transfer, private alertCtrl: AlertController) { }
 
+
+  public bannerRoad() {
+    return this.http.get(this.apiURL + 'banner/list')
+      .map(response => response.json());
+  }
+
   getImages() {
     return this.http.get(this.apiURL + 'images').map(res => res.json());
   }
