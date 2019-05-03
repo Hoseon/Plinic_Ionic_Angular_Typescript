@@ -8,6 +8,7 @@ import { UploadModalPage } from './upload-modal';
   ],
   imports: [
     IonicPageModule.forChild(UploadModalPage),
+    
   ],
 })
 export class UploadModalPageModule {}

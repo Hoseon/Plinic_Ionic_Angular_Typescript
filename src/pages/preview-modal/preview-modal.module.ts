@@ -8,6 +8,7 @@ import { PreviewModalPage } from './preview-modal';
   ],
   imports: [
     IonicPageModule.forChild(PreviewModalPage),
+    
   ],
 })
 export class PreviewModalPageModule {}

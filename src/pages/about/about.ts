@@ -18,6 +18,7 @@ export class AboutPage {
   constructor(public navCtrl: NavController, private imagesProvider: ImagesProvider, private camera: Camera, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController,
     private alertCtrl: AlertController, public _DomSanitizer: DomSanitizer, ) {
     this.reloadImages();
+    
   }
 
 
