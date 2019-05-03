@@ -60,6 +60,11 @@ export class AuthService {
 
   }
 
+  public bannerRoad() {
+    return this.http.get(CONFIG.apiUrl + 'banner/list')
+      .map(response => response.json());
+  }
+
   checkToken() {
     this.storage.get(TOKEN_KEY).then(token => {
       if (token) {

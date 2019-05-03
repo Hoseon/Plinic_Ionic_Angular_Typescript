@@ -2,6 +2,7 @@ import { IonicPage } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { NavController, Platform, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
+import { ImagesProvider } from '../../providers/images/images';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { SkinChartPage } from '../skin-chart/skin-chart'
 import { CareZonePage } from '../care-zone/care-zone'
@@ -14,17 +15,29 @@ import { CareZonePage } from '../care-zone/care-zone'
 })
 export class HomePage {
     userData: any;
-  constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK, private alertCtrl: AlertController) {
-    // this.platform.ready().then(() => {
-    //   this.roadstorage();
-    // });
+    bannerData: any;
+    imageUrl: any;
+  constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK, private alertCtrl: AlertController, private images: ImagesProvider) {
+    this.platform.ready().then(() => {
+       this.bannerData = this.roadbanner();
+     });
+
+  }
+
+  public roadbanner(){
+    //this.bannerData = this.auth.bannerRoad();
+
+    this.images.bannerRoad().subscribe(data => {
+      this.bannerData = data;
+    });
+
 
   }
 
   public kakao_request() {
     this._kakaoCordovaSDK
       .requestMe().then((res) =>{
-        this.showAlert("리퀘스트미 :" + JSON.stringify(res));
+        //this.showAlert("리퀘스트미 :" + JSON.stringify(res));
       })
   }
 

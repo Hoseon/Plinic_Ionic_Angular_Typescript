@@ -1,23 +1,13 @@
 <ion-content class="page_home" no-padding>
 
 
-  <ion-slides class="img-banner_top_19000501" pager autoplay=500>
-    <!-- <ion-slide style="background-image: url('assets/img/home/carezone1.png')"> -->
-    <ion-slide>
-      <img src='assets/img/home/img-banner-top-19000501.png' />
-    </ion-slide>
-    <ion-slide>
-      <img src='assets/img/home/img-banner-top-19000501.png' />
-    </ion-slide>
-    <ion-slide>
-      <img src='assets/img/home/img-banner-top-19000501.png' />
+  <ion-slides *ngIf="bannerData && bannerData.length" class="img-banner_top_19000501" pager loop=true autoplay=2000>
+    <ion-slide *ngFor="let banner of bannerData">
+      <img src='http://plinic.cafe24app.com/images/{{banner._id}}' />
     </ion-slide>
   </ion-slides>
 
-
   <ion-list class="skin_chart">
-
-
     <ion-row>
       <ion-col class="font_skin_chart">스킨 차트</ion-col>
     </ion-row>
@@ -91,7 +81,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone3_sub">
-      ※진단 결과는 환경에 따라 상이할 수 있습니다.
+        ※진단 결과는 환경에 따라 상이할 수 있습니다.
       </ion-col>
     </ion-row>
 
@@ -112,7 +102,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone4_sub">
-      ※진단 결과는 환경에 따라 상이할 수 있습니다.
+        ※진단 결과는 환경에 따라 상이할 수 있습니다.
       </ion-col>
     </ion-row><br><br><br><br>
 
@@ -123,7 +113,7 @@
     </ion-row>
   </ion-list>
 
-<br>
+  <br>
   <ion-grid class="beauty_tip">
     <ion-row>
       <ion-col class="beauty_tip_title">
@@ -163,14 +153,20 @@
 
   <ion-list class="bottom-tip">
 
-      <div class="tip_title">유용한 정보</div>
-      <br />
-      <br />
-      <br />
-      <br />
-    <button ion-item icon-start><div class="font_tip_btn">사용법</div></button>
-    <button ion-item icon-start><div class="font_tip_btn">뷰티 꿀팁</div></button>
-    <button ion-item icon-start><div class="font_tip_btn">고객센터</div></button>
+    <div class="tip_title">유용한 정보</div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <button ion-item icon-start>
+      <div class="font_tip_btn">사용법</div>
+    </button>
+    <button ion-item icon-start>
+      <div class="font_tip_btn">뷰티 꿀팁</div>
+    </button>
+    <button ion-item icon-start>
+      <div class="font_tip_btn">고객센터</div>
+    </button>
   </ion-list>
 
 </ion-content>
