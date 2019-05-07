@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title text_wrap text-align="center" font-weight="bold">스킨 차트</ion-title>
+    <ion-title class="title" >스킨 차트</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -21,6 +21,50 @@
         </ion-row>
       </ion-grid>
    </ion-item>
+
+
+
+
+   <ion-item no-lines >
+     <ion-grid>
+         <ion-row>
+             <ion-col><circle-progress class="roundprogressbar"
+             [percent]="85"
+             [radius]="100"
+             [outerStrokeWidth]="11"
+             [innerStrokeWidth]="2"
+             [outerStrokeColor]="'#00af66'"
+             [innerStrokeColor]="'#00af66'"
+             [animation]="true"
+             [animationDuration]="300"
+             [titleFontSize]="30"
+             [unitsFontSize]="30"
+             [subtitleFontSize]="20"
+             [toFixed] = "1"
+             [space] = "-6"
+             subtitle = "유분"
+           ></circle-progress></ion-col>
+
+             <ion-col><circle-progress class="roundprogressbar"
+             [percent]="35"
+             [radius]="100"
+             [outerStrokeWidth]="11"
+             [innerStrokeWidth]="2"
+             [outerStrokeColor]="'#ffa000'"
+             [innerStrokeColor]="'#ffa000'"
+             [animation]="true"
+             [animationDuration]="300"
+             [titleFontSize]="30"
+             [unitsFontSize]="30"
+             [subtitleFontSize]="20"
+             [toFixed] = "1"
+             [space] = "-6"
+             subtitle = "수분"
+           ></circle-progress></ion-col>
+         </ion-row>
+     </ion-grid>
+   </ion-item>
+
 
 
 
@@ -86,7 +130,7 @@
     </ion-item>
   </ion-list>
   <ion-item no-lines>
-    <p> ※진단 결과는 환경에 따라 상이할 수 있습니다.</p><br><br>
+    <p class="data"> ※진단 결과는 환경에 따라 상이할 수 있습니다.</p><br><br>
   </ion-item>
 
 
@@ -97,13 +141,15 @@
         <canvas #barCanvas height="300"></canvas>
 
     </ion-item>
+
   </ion-list>
-  <ion-item no-lines text-wrap>
-    <p>※{{threeDaysAgo}} ~ {{today}}까지 데이터 분석입니다.</p><br>
+  <ion-list no-lines>
+  <ion-item text-wrap>
+    <p class="data">※&nbsp;{{exthreeDaysAgo}} ~ {{extoday}}까지 데이터 분석입니다.</p><br>
   </ion-item>
+ </ion-list>
 
-
-  <ion-list >
+  <ion-list no-lines>
     <ion-item>
 
       <br><h2 class="skinscore">플리닉 솔루션</h2><br>
@@ -113,7 +159,7 @@
       <p class="ex" text-wrap>
         미세먼지는 피부 노화를 촉진하는 산소를 만들어내고, 주름과 염증, 색소 침착을 유발하는 멜라노사이트 증식을 촉진하는 유전자를 활성화하는 한편 피부장벽마저 약화시킵니다. 따라서 우리 피부는 건조해지지요. 피부 건조 및 노화까지 앞당기므로 미세먼지 피부관리는 반드시 필요합니다. </p>
 
-      <br><button ion-button class="button_outline" outline> "건성맞춤" &nbsp; 화장품 보러가기&nbsp;&nbsp; > </button>
+      <br><button ion-button style="font-size:14px" class="button_outline" outline> "건성맞춤" <p class="button_outlinetext">화장품 보러가기&nbsp;&nbsp;></p></button>
     </ion-item>
   </ion-list>
 

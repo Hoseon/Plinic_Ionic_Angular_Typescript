@@ -38,6 +38,8 @@ threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*3);
 //date count
 
 
+extoday = format(this.today, 'YYYY/MM/DD')
+exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD')
 
   constructor(public navCtrl: NavController , public navParams: NavParams  ) {
   }
@@ -45,10 +47,10 @@ threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*3);
   ionViewDidLoad() {
     console.log('ionViewDidLoad SkinChartPage');
 
-    this.today = format(this.today, 'YYYY/MM/DD')
-    this.yesterday = format(this.yesterday, 'YYYY/MM/DD')
-    this.twoDaysAgo = format(this.twoDaysAgo, 'YYYY/MM/DD')
-    this.threeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD')
+    this.today = format(this.today, 'MM/DD')
+    this.yesterday = format(this.yesterday, 'MM/DD')
+    this.twoDaysAgo = format(this.twoDaysAgo, 'MM/DD')
+    this.threeDaysAgo = format(this.threeDaysAgo, 'MM/DD')
 
     this.barChart = new Chart(this.barCanvas.nativeElement, {
 
@@ -56,7 +58,7 @@ threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*3);
         data: {
         labels: [ this.threeDaysAgo, this.twoDaysAgo, this.yesterday, this.today ],
                     datasets: [{
-                        label: format(this.today, 'YYYY/MM'),
+                        label: format(this.today, 'MM/DD'),
                         data: [90, 10, 30, 50],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',

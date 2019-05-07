@@ -34,7 +34,7 @@ import { CareZoneIngPage } from '../pages/care-zone-ing/care-zone-ing';
 import { CareZoneMissionIngPage } from '../pages/care-zone-mission-ing/care-zone-mission-ing';
 import {ProgressBarModule} from "angular-progress-bar";
 import { CareZoneMissionDeadlinePage } from '../pages/care-zone-mission-deadline/care-zone-mission-deadline';
-
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -53,6 +53,8 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { ImagesProvider } from '../providers/images/images';
 import { Transfer } from '@ionic-native/transfer';
 import { Camera } from '@ionic-native/camera';
+
+
 
 
 
@@ -95,8 +97,8 @@ export function getAuthHttp(http, storage) {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     ProgressBarModule,
-    IonicStorageModule.forRoot()
-
+    IonicStorageModule.forRoot(),
+    NgCircleProgressModule.forRoot(),
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

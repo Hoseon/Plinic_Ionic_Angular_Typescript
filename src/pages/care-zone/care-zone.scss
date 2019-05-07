@@ -5,15 +5,23 @@ page-care-zone {
       min-height: 100%;
 
 
-    .title{
-      position: absolute;
-      left: 50%;
-      top: 0;
-      transform: translateX(-50%);
-      height: 100%;
-      width: 70%;
-      text-align: center;
-    }
+      .title{
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        height: 100%;
+        width: 70%;
+        font-family: NotoSansCJKkr;
+        font-size: 17px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #292929;
+      }
     .profile-img {
       width: 60px;
       height: 60px;
@@ -25,13 +33,32 @@ page-care-zone {
       background-color: #ffffff;
     }
 
-    .top-text{
+      .top-text{
+        margin-left:auto;
+        margin-right: auto;
+        font-family: NotoSansCJKkr;
+        font-size: 16px;
+        font-weight: normal;
+        display: inline;
+        line-height: 1.41;
+        font-style: normal;
+        font-stretch: normal;
+        letter-spacing: normal;
+        text-align: center;
+        font-weight: bold;
+        color: #5c59b6;
+    }
+
+    .top-text2{
+      margin-left:auto;
+      margin-right: auto;
       font-family: NotoSansCJKkr;
       font-size: 16px;
       font-weight: normal;
+      display: inline;
+      line-height: 1.41;
       font-style: normal;
       font-stretch: normal;
-      line-height: 1.41;
       letter-spacing: normal;
       text-align: center;
       color: #292929;
@@ -41,12 +68,17 @@ page-care-zone {
       margin-left: auto;
       margin-right: auto;
       display: block;
-      font-size: 14px;
       border: solid 0.5px #c7c7c7;
       background-color:#FFF;
       min-width: 90%;
       min-height: 50px;
+      font-family: NotoSansCJKkr;
+      font-size: 14px;
       font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
       text-align: center;
       color: #292929;
     }
@@ -57,6 +89,7 @@ page-care-zone {
       margin-right: auto;
       display: block;
       border-radius: 5px;
+      background-color: #f1f1f1;
     }
 
 
@@ -77,13 +110,20 @@ page-care-zone {
     left: 13%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    background-color: #555;
     color: white;
-    font-size: 10px;
-    padding: 12px 24px;
-    border: none;
+    padding: 12px 0px;
+    height: 10%;
+    width: 15%;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 2.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
     background-color: #5c59b6;
   }
 
@@ -98,17 +138,39 @@ page-care-zone {
   left: 13%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  background-color: #555;
   color: white;
   font-size: 11px;
   padding: 12px 24px;
+  height: 10%;
+  width: 15%;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 2.5px;
+  font-family: NotoSansCJKkr;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  background-color: #000000 ;
   }
 
   .container .deadline_btn:hover{
   background-color: black;
+  }
+  .imagetitle{
+  width: 122.5px;
+  height: 22.5px;
+  font-family: NotoSansCJKkr;
+  font-size: 15px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #292929;
   }
 
    .right_align{

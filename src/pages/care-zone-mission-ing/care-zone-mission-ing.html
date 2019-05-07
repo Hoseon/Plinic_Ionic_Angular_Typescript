@@ -30,7 +30,7 @@
 
 
     <ion-item no-lines>
-        <ion-grid>
+        <ion-grid style="height:30px">
             <ion-row>
                 <ion-col class="event-col">3건</ion-col>
                 <ion-col class="event-col2">/27건 남음</ion-col>
@@ -43,9 +43,12 @@
 
 <!-- 프로그레스바 -->
 
-<ion-item no-lines class="progress-outer" >
-  <progress-bar id="progress-inners" class="progress-inners" [color]="mycolor"[progress]="loadProgress"></progress-bar>
-  <!-- <ion-progress-bar class="progress" [max]="100" [value]="progress" [type]="indeterminate" [progress]="loadProgress"></ion-progress-bar> -->
+<ion-item no-lines>
+  <ion-grid style="height:40px">
+  <ion-col class="progress-outer">
+  <progress-bar class="progress-inner" [color]="mycolor"[progress]="loadProgress"></progress-bar>
+  </ion-col>
+  </ion-grid>
 </ion-item>
 
 
@@ -84,7 +87,7 @@
          </ion-grid>
    </ion-item>
    <ion-item no-lines>
-     <ion-col class="sub">
+     <ion-col class="sub" text-wrap>
        ※진단 결과는 환경에 따라 상이할 수 있습니다.
      </ion-col>
     </ion-item><br><br>
@@ -103,10 +106,10 @@
 
 
 <!-- 참여자만큼 반복문 -->
-<ion-item >
+<ion-item no lines>
     <ion-grid>
         <ion-row>
-            <ion-col class="event-col4">{{index}}00</ion-col>
+            <ion-col class="event-col0">{{index}}00</ion-col>
             <ion-col><ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample.png" srcset="assets/img/ic-system-profile-sample@2x.png 2x,
                    assets/img/ic-system-profile-sample@3x.png 3x"></ion-img></ion-col>
             <ion-col class="event-col8">{{id}} 아이디</ion-col>
@@ -114,11 +117,10 @@
         </ion-row>
     </ion-grid>
 </ion-item>
-
-<ion-item>
+<ion-item no lines>
     <ion-grid>
         <ion-row>
-            <ion-col class="event-col4">{{index}}00</ion-col>
+            <ion-col class="event-col0">{{index}}00</ion-col>
             <ion-col><ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample.png" srcset="assets/img/ic-system-profile-sample@2x.png 2x,
                    assets/img/ic-system-profile-sample@3x.png 3x"></ion-img></ion-col>
             <ion-col class="event-col8">{{id}} 아이디</ion-col>
@@ -126,11 +128,10 @@
         </ion-row>
     </ion-grid>
 </ion-item>
-
-<ion-item>
+<ion-item no lines>
     <ion-grid>
         <ion-row>
-            <ion-col class="event-col4">{{index}}00</ion-col>
+            <ion-col class="event-col0">{{index}}00</ion-col>
             <ion-col><ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample.png" srcset="assets/img/ic-system-profile-sample@2x.png 2x,
                    assets/img/ic-system-profile-sample@3x.png 3x"></ion-img></ion-col>
             <ion-col class="event-col8">{{id}} 아이디</ion-col>
@@ -138,10 +139,31 @@
         </ion-row>
     </ion-grid>
 </ion-item>
-
+<ion-item no lines>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="event-col0">{{index}}00</ion-col>
+            <ion-col><ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample.png" srcset="assets/img/ic-system-profile-sample@2x.png 2x,
+                   assets/img/ic-system-profile-sample@3x.png 3x"></ion-img></ion-col>
+            <ion-col class="event-col8">{{id}} 아이디</ion-col>
+            <ion-col class="event-col6">{{count}} 횟수</ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-item>
+<ion-item no lines>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="event-col0">{{index}}00</ion-col>
+            <ion-col><ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample.png" srcset="assets/img/ic-system-profile-sample@2x.png 2x,
+                   assets/img/ic-system-profile-sample@3x.png 3x"></ion-img></ion-col>
+            <ion-col class="event-col8">{{id}} 아이디</ion-col>
+            <ion-col class="event-col6">{{count}} 횟수</ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-item>
 
  <ion-item no-lines>
-   <button ion-button class="button_add" outline>더보기&nbsp;&nbsp;></button>
+   <button ion-button class="button_add" style="font-size: 14px" outline>더보기&nbsp;&nbsp;></button>
  </ion-item><br><br><br>
 
 
@@ -154,22 +176,22 @@
    <h3 class="bottom_text"> 진행중인 미션</h3>
 
 
- <ion-grid>
+ <ion-grid class="gridimage">
    <ion-row>
      <ion-col class="container">
        <img class="imagealign" src="assets/img/home/carezone1.png" />
-       <button class="ing_btn" ion-button>진행 중</button>
+       <button class="ing_btn" style="font-size: 9px" ion-button>진행 중</button>
      </ion-col>
      <ion-col class="container">
        <img class="imagealign" src="assets/img/home/carezone2.png" />
-       <button class="ing_btn" ion-button>진행 중</button>
+       <button class="ing_btn" style="font-size: 9px" ion-button>진행 중</button>
      </ion-col>
    </ion-row>
 </ion-grid>
 
 
    <ion-item no-lines>
-     <button ion-button class="button_add" outline>미션 더보기&nbsp;&nbsp;></button>
+     <button ion-button class="button_add" style="font-size: 14px" outline>미션 더보기&nbsp;&nbsp;></button>
    </ion-item>
 </ion-list>
 

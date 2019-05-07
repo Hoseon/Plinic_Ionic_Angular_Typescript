@@ -4,25 +4,38 @@
               min-width: 100%;
               min-height: 100%;
 
+              .title{
+                position: absolute;
+                left: 50%;
+                top: 0;
+                transform: translateX(-50%);
+                height: 100%;
+                width: 70%;
+                font-family: NotoSansCJKkr;
+                font-size: 17px;
+                font-weight: bold;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: center;
+                color: #292929;
+              }
+
              .img-logo{
                 background-color: #ffffff;
                 width: 4px;
                 height: 4px;
              }
 
+             .roundprogressbar{
+               width: 100%;
+               height: 100%;
+               margin-left: auto;
+               margin-right: auto;
+               display: block;
+             }
 
-             .skinscore{
-
-             height: 45px;
-             font-family: NotoSansCJKkr;
-             font-size: 14px;
-             font-style: normal;
-             font-stretch: normal;
-             line-height: normal;
-             letter-spacing: normal;
-             font-weight: bold;
-             color: #292929;
-            }
 
              .grid{
                min-width: 40px;
@@ -49,19 +62,46 @@
             color: #00af66;
           }
 
+          .data{
+            font-family: Roboto;
+            font-size: 13px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #b6b6b6;
+          }
+          .skinscore{
+
+          height: 45px;
+          font-family: NotoSansCJKkr;
+          font-size: 15px;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          font-weight: bold;
+          color: #292929;
+         }
 
           .care{
-            font-size: 17px;
+            font-family: Roboto;
+            font-size: 18px;
             font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
             line-height: 1.5;
+            letter-spacing: normal;
             text-align: center;
             color: #5c59b6;
 
           }
 
           .ex{
+          min-width: 100%;
            font-family: Roboto;
-           font-size: 13px;
+           font-size: 14px;
            font-weight: normal;
            font-style: normal;
            font-stretch: normal;
@@ -70,17 +110,41 @@
            color: #292929;
           }
 
-          .button_outline{
-            width: 250px;
-            height: 50px;
-            font-size: 20px;
+
+          .button_outline {
+            font-size: 14px;
+            border: solid 0.5px #c7c7c7;
+            background-color:#FFF;
+            min-width: 90%;
+            min-height: 50px;
+            margin-top: auto;
+            margin-bottom: auto;
             margin-left: auto;
             margin-right: auto;
             display: block;
-            font-weight: bold;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #5c59b6;
           }
 
-
+          .button_outlinetext{
+            font-size: 14px;
+            padding-left: 5px;
+            margin-top: auto;
+            margin-bottom: auto;
+            display: block;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #292929;
+          }
 
 
   }

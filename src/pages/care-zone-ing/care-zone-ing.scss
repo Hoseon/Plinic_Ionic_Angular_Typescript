@@ -5,15 +5,23 @@ page-care-zone-ing {
         min-height: 100%;
 
 
-      .title{
-        position: absolute;
-        left: 50%;
-        top: 0;
-        transform: translateX(-50%);
-        height: 100%;
-        width: 70%;
-        text-align: center;
-      }
+        .title{
+          position: absolute;
+          left: 50%;
+          top: 0;
+          transform: translateX(-50%);
+          height: 100%;
+          width: 70%;
+          font-family: NotoSansCJKkr;
+          font-size: 17px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #292929;
+        }
       .profile-img {
         width: 60px;
         height: 60px;
@@ -26,16 +34,35 @@ page-care-zone-ing {
       }
 
       .top-text{
+        margin-left:auto;
+        margin-right: auto;
         font-family: NotoSansCJKkr;
         font-size: 16px;
         font-weight: normal;
+        display: inline;
+        line-height: 1.41;
         font-style: normal;
         font-stretch: normal;
-        line-height: 1.41;
         letter-spacing: normal;
         text-align: center;
-        color: #292929;
-      }
+        font-weight: bold;
+        color: #5c59b6;
+    }
+
+    .top-text2{
+      margin-left:auto;
+      margin-right: auto;
+      font-family: NotoSansCJKkr;
+      font-size: 16px;
+      font-weight: normal;
+      display: inline;
+      line-height: 1.41;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: #292929;
+    }
 
       .button_outline{
         font-size: 12px;
@@ -63,29 +90,36 @@ page-care-zone-ing {
       }
 
 
-
       .container {
         position: relative;
         width: 50%;
       }
 
-      .container .imagealign {
+      .container img {
         width: 100%;
         height: auto;
       }
 
-      .container .ing_btn{
+        .container .ing_btn{
       position: absolute;
       top: 13%;
       left: 13%;
       transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
       color: white;
-      font-size: 10px;
-      padding: 12px 24px;
-      border: none;
+      padding: 12px 0px;
+      height: 10%;
+      width: 15%;
       cursor: pointer;
-      border-radius: 5px;
+      border-radius: 2.5px;
+      font-family: NotoSansCJKkr;
+      font-size: 11px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
       background-color: #5c59b6;
     }
 
@@ -100,36 +134,52 @@ page-care-zone-ing {
     left: 13%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    background-color: #555;
     color: white;
-    font-size: 10px;
+    font-size: 11px;
     padding: 12px 24px;
+    height: 10%;
+    width: 15%;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 2.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    background-color: #000000;
     }
 
     .container .deadline_btn:hover{
     background-color: black;
     }
-
-     .right_align{
-      text-align: right;
-      width: 27.5px;
-      height: 15px;
-      font-family: Roboto;
-      font-size: 13px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: right;
-      color: #939393;
-
-
-     }
-
+    .imagetitle{
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    }
+    .right_align{
+    text-align: right;
+    width: 27.5px;
+    height: 15px;
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #939393;
+    }
     .sub{
       width: 239.5px;
       height: 19px;
