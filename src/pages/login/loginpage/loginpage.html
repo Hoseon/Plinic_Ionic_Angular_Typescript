@@ -12,7 +12,7 @@
                   assets/img/login\ic-system-close-black@3x.png" (click)="dissmiss()"></ion-img>
 
 
-  <h1 class="h1" [yourDirective]="content"> 로그인 </h1>
+  <h1 class="h1" > 로그인 </h1>
 
   <ion-list>
     <ion-row>
@@ -60,7 +60,8 @@
 
 
 
-    <br><br><br>  <p class="find"> 회원가입 • 비밀번호 찾기</p>
+    <br><br><br>
+    <ion-col class="find" (click)="agreepage()">회원가입&nbsp;•&nbsp;</ion-col><ion-col class="find" (click)="passwordfind()">비밀번호 찾기</ion-col>
 
 
 

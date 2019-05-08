@@ -1,8 +1,8 @@
 import { Component,Input, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController, Loading, ViewController } from 'ionic-angular';
 import { AuthService } from '../../../providers/auth-service';
-import {ScrollingHeaderModule} from 'ionic-scrolling-header';
-
+import { AgreementPage} from '../../agreement/agreement';
+import { PasswordfindPage} from '../passwordfind/passwordfind';
 
 
 /**
@@ -20,7 +20,6 @@ import {ScrollingHeaderModule} from 'ionic-scrolling-header';
 export class LoginpagePage {
 
 
-  @Input('yourDirective') content: Content;
   loading: Loading;
   registerCredentials = { email: '', password: '' };
 
@@ -36,6 +35,13 @@ export class LoginpagePage {
   }
 
 
+
+  public agreepage(){
+     this.nav.push(AgreementPage);
+  }
+  public passwordfind(){
+     this.nav.push(PasswordfindPage);
+  }
   public dissmiss(){
     this.viewCtrl.dismiss();
   }
