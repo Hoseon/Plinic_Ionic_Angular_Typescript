@@ -1,0 +1,97 @@
+page-skin-measure-start {
+  .font_title {
+    width: 153.5px;
+    height: 34px;
+    font-family: NotoSansCJKkr;
+    font-size: 23px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #292929;
+    margin: 0 auto;
+  }
+
+  .font-sub {
+    width: 207px;
+    height: 42px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+    margin: 0 auto;
+  }
+
+  .ic_system_skin_face {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+  }
+
+  .ic-system-close-black {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+  }
+
+  .center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    // padding-bottom: 10%;
+  }
+
+  .cell {
+    width: 315px;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #5c59b6;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .font_button {
+    width: 55.5px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    margin: 0 auto;
+  }
+
+  .cancel_button {
+    width: 55.5px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+    margin: 0 auto;
+  }
+
+  .img {
+    margin: auto;
+    display: block;
+    //height: 100%;
+    margin-top: 8%;
+  }
+}

@@ -16,7 +16,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { MyinfoPage } from '../pages/myinfo/myinfo';
 import { TabsPage } from '../pages/tabs/tabs';
-import {AgreementPage }from '../pages/agreement/agreement';
+import { AgreementPage } from '../pages/agreement/agreement';
 
 import { PlinicManualPage } from '../pages/myinfo/details/plinic-manual/plinic-manual';
 import { QnaPage } from '../pages/myinfo/details/qna/qna';
@@ -27,12 +27,12 @@ import { MarketingPage } from '../pages/myinfo/details/marketing/marketing';
 
 import { ReRegisterPage } from '../pages/re-register/re-register';
 import { SkinChartPage } from '../pages/skin-chart/skin-chart';
-import {RegisterPage} from '../pages/register/register';
+import { RegisterPage } from '../pages/register/register';
 //케어존
-import {CareZonePage} from '../pages/care-zone/care-zone';
+import { CareZonePage } from '../pages/care-zone/care-zone';
 import { CareZoneIngPage } from '../pages/care-zone-ing/care-zone-ing';
 import { CareZoneMissionIngPage } from '../pages/care-zone-mission-ing/care-zone-mission-ing';
-import {ProgressBarModule} from "angular-progress-bar";
+import { ProgressBarModule } from "angular-progress-bar";
 import { CareZoneMissionDeadlinePage } from '../pages/care-zone-mission-deadline/care-zone-mission-deadline';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
@@ -43,7 +43,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Storage } from '@ionic/storage';
 
 import { KakaoCordovaSDK } from 'kakao-sdk';
-import { Naver} from 'ionic-plugin-naver';
+import { Naver } from 'ionic-plugin-naver';
 import { AuthService } from '../providers/auth-service';
 
 import { Http, HttpModule } from '@angular/http';
@@ -54,7 +54,13 @@ import { ImagesProvider } from '../providers/images/images';
 import { Transfer } from '@ionic-native/transfer';
 import { Camera } from '@ionic-native/camera';
 
-
+//피부측정 페이지
+import { SkinMeasureStartPage } from '../pages/skin-measure-start/skin-measure-start';
+import { DeviceConnectIngPage } from '../pages/device-connect-ing/device-connect-ing';
+import { DeviceConnectCompletePage } from '../pages/device-connect-complete/device-connect-complete';
+import { DeviceConnectFailPage } from '../pages/device-connect-fail/device-connect-fail';
+import { DeviceSkinStartPage } from '../pages/device-skin-start/device-skin-start';
+import { DeviceSkinIngPage } from '../pages/device-skin-ing/device-skin-ing';
 
 
 
@@ -91,6 +97,12 @@ export function getAuthHttp(http, storage) {
     AgreementPage,
     PersonalinfoPage,
     MarketingPage,
+    SkinMeasureStartPage,
+    DeviceConnectIngPage,
+    DeviceConnectCompletePage,
+    DeviceConnectFailPage,
+    DeviceSkinStartPage,
+    DeviceSkinIngPage,
   ],
   imports: [
     HttpModule,
@@ -125,6 +137,12 @@ export function getAuthHttp(http, storage) {
     AgreementPage,
     PersonalinfoPage,
     MarketingPage,
+    SkinMeasureStartPage,
+    DeviceConnectIngPage,
+    DeviceConnectCompletePage,
+    DeviceConnectFailPage,
+    DeviceSkinStartPage,
+    DeviceSkinIngPage,
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,64 @@
+page-device-connect-ing {
+  .font_title {
+    width: 158px;
+    height: 34px;
+    font-family: NotoSansCJKkr;
+    font-size: 23px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #292929;
+    margin: 0 auto;
+  }
+
+  .font_sub {
+    width: 159.5px;
+    height: 42px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+    margin: 0 auto;
+  }
+
+  .ic_system_sync_on {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+  }
+
+  .cell {
+    width: 315px;
+    height: 50px;
+    background-color: #d2d4d8;
+  }
+
+  .center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    // padding-bottom: 10%;
+  }
+
+  .img {
+    margin: auto;
+    display: block;
+    height: 100%;
+    margin-top: 8%;
+  }
+
+  .ic-system-back-black {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+  }
+}

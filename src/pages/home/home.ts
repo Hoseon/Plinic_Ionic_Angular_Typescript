@@ -1,11 +1,12 @@
 import { IonicPage } from 'ionic-angular';
 import { Component } from '@angular/core';
-import { NavController, Platform, AlertController } from 'ionic-angular';
+import { NavController, Platform, AlertController, ModalController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { SkinChartPage } from '../skin-chart/skin-chart'
 import { CareZonePage } from '../care-zone/care-zone'
+import { SkinMeasureStartPage } from '../skin-measure-start/skin-measure-start'
 
 
 @IonicPage()
@@ -17,12 +18,24 @@ export class HomePage {
     userData: any;
     bannerData: any;
     imageUrl: any;
-  constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK, private alertCtrl: AlertController, private images: ImagesProvider) {
+  constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
+    private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController) {
     this.platform.ready().then(() => {
        this.bannerData = this.roadbanner();
      });
 
   }
+
+  openBasicModal() {
+    let myModal = this.modalCtrl.create(SkinMeasureStartPage);
+    myModal.present();
+  }
+  openModalWithParams() {
+    let myModal = this.modalCtrl.create(SkinMeasureStartPage, { 'myParam': "test" });
+    myModal.present();
+  }
+
+
 
   public roadbanner(){
     //this.bannerData = this.auth.bannerRoad();

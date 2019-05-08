@@ -1,0 +1,116 @@
+page-device-skin-ing {
+  .font_title {
+    width: 139px;
+    height: 34px;
+    font-family: NotoSansCJKkr;
+    font-size: 23px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #292929;
+    margin: 0 auto;
+  }
+
+  .font_sub {
+    width: 315px;
+    height: 69.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5c59b6;
+    margin: 0 auto;
+  }
+
+  .ic_system_skin_face_cheek {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+  }
+
+  .cell {
+    width: 315px;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #5c59b6;
+  }
+
+  .center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    // padding-bottom: 10%;
+  }
+
+  .img {
+    margin: auto;
+    display: block;
+    height: 100%;
+    margin-top: 8%;
+  }
+
+  .ic-system-back-black {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+  }
+
+  .font_button {
+    position: relative !important;
+    width: 45px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    margin: 0 0 0 0 !important;
+  }
+
+  .cancel_button {
+    width: 55.5px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+    margin: 0 auto;
+  }
+
+  .ic_system_sync {
+    width: 25px;
+    height: 25px;
+    color: #ffffff;
+    object-fit: contain;
+  }
+
+  ion-spinner {
+    position: absolute;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    left: 30%;
+    top: 20%;
+
+  }
+
+  .spinner-ios-crescent circle {
+    stroke: #fff;
+  }
+}
