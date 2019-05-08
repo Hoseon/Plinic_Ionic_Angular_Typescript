@@ -18,7 +18,9 @@ import { HomePage } from '../pages/home/home';
 import { MyinfoPage } from '../pages/myinfo/myinfo';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AgreementPage } from '../pages/agreement/agreement';
-
+import { LoginpagePage} from '../pages/login/loginpage/loginpage';
+import {AddinfoPage} from '../pages/register/addinfo/addinfo';
+import {PasswordfindPage} from '../pages/login/passwordfind/passwordfind';
 import { PlinicManualPage } from '../pages/myinfo/details/plinic-manual/plinic-manual';
 import { QnaPage } from '../pages/myinfo/details/qna/qna';
 import { TermsPage } from '../pages/myinfo/details/terms/terms';
@@ -80,6 +82,9 @@ export function getAuthHttp(http, storage) {
   declarations: [
     MyApp,
     LoginPage,
+    LoginpagePage,
+    PasswordfindPage,
+    AddinfoPage,
     //    LoginplinicPage,
     AboutPage,
     ContactPage,
@@ -121,6 +126,9 @@ export function getAuthHttp(http, storage) {
   entryComponents: [
     MyApp,
     LoginPage,
+    LoginpagePage,
+    PasswordfindPage,
+    AddinfoPage,
     AboutPage,
     ContactPage,
     MyinfoPage,
