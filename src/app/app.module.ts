@@ -8,6 +8,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 
 
+
 //탭페이지 구성
 import { LoginPage } from '../pages/login/login';
 //import { LoginplinicPage } from '../pages/loginplinic/loginplinic';
@@ -38,6 +39,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { Storage } from '@ionic/storage';
@@ -147,6 +149,7 @@ export function getAuthHttp(http, storage) {
   providers: [
     StatusBar,
     SplashScreen,
+    ScreenOrientation,
     KakaoCordovaSDK,
     AuthService,
     IonicErrorHandler,
