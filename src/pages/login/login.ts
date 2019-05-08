@@ -1,10 +1,13 @@
 //import { IonicPage } from 'ionic-angular';
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, Loading, ModalController, ViewController} from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { Naver} from 'ionic-plugin-naver';
 import {AgreementPage} from '../agreement/agreement';
+import {LoginpagePage} from '../login/loginpage/loginpage';
+
+
 
 @Component({
   selector: 'page-login',
@@ -17,10 +20,30 @@ export class LoginPage {
   userData: any;
   constructor(private nav: NavController, private auth: AuthService,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-    public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver
+    public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver, public modalCtrl: ModalController
   ) {
 
   }
+
+
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad Loginpage');
+  }
+
+
+
+  public loginpage(){
+    const modal = this.modalCtrl.create(LoginpagePage);
+    modal.present();
+  }
+
+
+
+    public agreement(){
+      const modal = this.modalCtrl.create(AgreementPage);
+      modal.present();
+    }
 
 
   public naver_login(){
@@ -59,11 +82,6 @@ export class LoginPage {
   // public createAccount() {
   //   this.nav.push('RegisterPage');
   // }
-
-
-  public agreement(){
-        this.nav.push(AgreementPage);
-  }
 
 
 

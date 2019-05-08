@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
 import {RegisterPage} from '../register/register';
 import { TermsPage } from '../myinfo/details/terms/terms';
 import { PersonalinfoPage } from '../myinfo/details/personalinfo/personalinfo';
@@ -24,7 +24,8 @@ agree: boolean;
 agree1: boolean;
 agree2: boolean;
 
-  constructor(public nav: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  constructor(public nav: NavController, public navParams: NavParams, private alertCtrl: AlertController
+  , public viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
@@ -37,6 +38,9 @@ agree2: boolean;
   console.log('agree new state:' + this.agree1);
   console.log('agree new state:' + this.agree2);
 
+}
+public dissmiss(){
+  this.viewCtrl.dismiss();
 }
 
 

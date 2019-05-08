@@ -1,7 +1,6 @@
 page-agreement {
 
-              min-width: 100%;
-              min-height: 100%;
+
 
   .title{
     position: absolute;
@@ -12,6 +11,35 @@ page-agreement {
     width: 70%;
     text-align: center;
   }
+
+
+  .close{
+
+   background-color: #FFF;
+   width: 25px;
+   height: 25px;
+   object-fit: contain;
+  }
+
+
+  .toolaralign{
+   background-color: #FFF;
+   width: 25px;
+   height: 25px;
+   object-fit: contain;
+   margin-top: 5px;
+   margin-right: 15px;
+  }
+
+  .toolaralign2{
+    background-color: #FFF;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    margin-top: 15px;
+    margin-right: -5px;
+  }
+
 
    .h1{
       height: 100px;
@@ -89,7 +117,7 @@ page-agreement {
         background-color:#5c59b6;
         color: #FFF;
         font-weight:normal;
-        min-width: 100%;
+        width: 100%;
         min-height: 50px;
       }
 

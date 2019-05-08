@@ -15,27 +15,14 @@
                   assets/img/pliniclogo/ic-system-logo-word@3x.png"></ion-img>
 
 
-
-    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-      <ion-list inset>
-            <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
-            </ion-item>
-      </ion-list>
-
-
+   <ion-list>
       <ion-row>
         <ion-col>
-          <!-- <button ion-button class="login-btn" [disabled]="!registerForm.form.valid" outline>Login</button> -->
-          <button ion-button class="login-btn" outline>Login</button>
-          <button ion-button class="register-btn" (click)="agreement()" outline>회원가입</button>
+          <button ion-button class="register-btn" (click)="agreement()" outline>이메일로 시작하기</button>
         </ion-col>
       </ion-row>
-
+   </ion-list>
+   <ion-list>
       <ion-item no-lines>
           <ion-grid>
               <ion-row>
@@ -45,10 +32,10 @@
               </ion-row>
           </ion-grid>
     </ion-item>
-
+   </ion-list>
+   <ion-list>
       <ion-row>
         <ion-col >
-
           <button ion-button class="submit-btn" (click)="kakao_login()" outline>
             <img class="kakao_btn" src="assets/img/kakaologo/ic-sns-kakao.png" srcset="assets/img/kakaologo/ic-sns-kakao@2x.png,
                           assets/img/kakaologo/ic-sns-kakao@3x.png" /> 카카오로 시작하기</button>
@@ -63,9 +50,12 @@
 
           <button ion-button class="submit-btn" (click)="naver_login()" outline>
             <img class="naver_btn" src="assets/img/naverlogo/ic-sns-naver.png" srcset="assets/img/naverlogo/ic-sns-naver@2x.png,
-                          assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기</button>
+                          assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기</button><br>
         </ion-col>
       </ion-row>
+    </ion-list>
+    <ion-item no-lines>
+      <ion-label class="bottom_text" (click)="loginpage()">이미 계정이 있으신가요?</ion-label>
+    </ion-item>
 
-    </form>
 </ion-content>

@@ -1,0 +1,51 @@
+page-addinfo {
+
+
+
+
+        .h1{
+          height: 80px;
+          font-family: NotoSansCJKkr;
+          font-size: 23px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #292929;
+          padding-top: 10%;
+
+        }
+
+        .toolbar-background {
+          background-color: #FFF;
+        }
+
+        .close{
+
+         background-color: #FFF;
+         width: 25px;
+         height: 25px;
+         object-fit: contain;
+        }
+
+
+        .toolaralign{
+         background-color: #FFF;
+         width: 25px;
+         height: 25px;
+         object-fit: contain;
+         margin-top: 5px;
+         margin-right: 15px;
+        }
+
+        .toolaralign2{
+          background-color: #FFF;
+          width: 25px;
+          height: 25px;
+          object-fit: contain;
+          margin-top: 15px;
+          margin-right: -5px;
+        }
+}

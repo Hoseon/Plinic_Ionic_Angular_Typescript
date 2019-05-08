@@ -1,29 +1,37 @@
-import { IonicPage } from 'ionic-angular';
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service';
-import {AgreementPage } from '../agreement/agreement';
-import {AddinfoPage} from '../register/addinfo/addinfo';
+import { IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
+import { AuthService } from '../../../providers/auth-service';
+import { RegisterPage} from '../../register/register';
+
+/**
+ * Generated class for the AddinfoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
-  selector: 'page-register',
-  templateUrl: 'register.html'
+  selector: 'page-addinfo',
+  templateUrl: 'addinfo.html',
 })
-export class RegisterPage {
+export class AddinfoPage {
 
   createSuccess = false;
   public country: any;
-  password: any;
-  passwordconfirm: any;
+  registerCredentials = {email: '' , password: '', name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
 
-  registerCredentials = {email: '' , password: '', passwordconfirm:'', name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) {}
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad registerpage');
+    console.log('ionViewDidLoad AddinfoPage');
+  }
+
+
+  public navpop(){
+    this.nav.popTo(RegisterPage);
   }
 
 
@@ -32,26 +40,13 @@ export class RegisterPage {
     console.log(value)
 }
 
-    public anddinfo(){
-      this.nav.push(AddinfoPage);
-    }
-
-
-  public navpop(){
-    this.nav.popTo(AgreementPage);
-  }
-
 
   // Register a new user at our API
   public register() {
     this.auth.register(this.registerCredentials).subscribe(success => {
-
-      if ((success !== '') && (this.registerCredentials.password===this.registerCredentials.passwordconfirm)) {
-          console.log("password" + this.registerCredentials.password);
-          console.log("passwordconfirm" + this.registerCredentials.passwordconfirm);
+      if (success !== '') {
         this.createSuccess = true;
-        this.showPopup("회원가입 완료", "");
-        // this.nav.push(LoginPage);
+        this.showPopup("Success", "Account created.");
       } else {
         this.showPopup("Error", "Problem creating account.");
       }
