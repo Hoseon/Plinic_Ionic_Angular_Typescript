@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LoginpagePage } from '../loginpage/loginpage';
+import {LoginpagePage} from '../loginpage/loginpage';
 
 /**
  * Generated class for the PasswordfindPage page.
