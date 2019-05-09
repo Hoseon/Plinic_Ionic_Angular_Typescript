@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { DeviceConnectCompletePage } from '../device-connect-complete/device-connect-complete';
 import { DeviceConnectFailPage } from '../device-connect-fail/device-connect-fail';
+import { BluetoothLE } from '@ionic-native/bluetooth-le';
 
 /**
  * Generated class for the DeviceConnectIngPage page.
@@ -17,23 +18,54 @@ import { DeviceConnectFailPage } from '../device-connect-fail/device-connect-fai
 })
 export class DeviceConnectIngPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  spintime: any = 0;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public bluetoothle: BluetoothLE,
+    public platform: Platform, private alertCtrl: AlertController
+  ) {
+    this.platform.ready().then((readySource) => {
+
+      setTimeout(() => {
+        this.spintime = 1;
+        if (this.platform.is('cordova')) {
+          this.bluetoothle.initialize().then(ble => {
+            //console.log('ble', ble.status) // logs 'enabled'
+            if (ble.status === "enabled") {
+              this.navCtrl.push(DeviceConnectCompletePage);
+            } else {
+              this.navCtrl.push(DeviceConnectFailPage);
+            }
+          });
+        }
+      }, 3500);
+    });
+
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DeviceConnectIngPage');
   }
 
-  public measureBack(){
+  public measureBack() {
     this.navCtrl.pop();
   }
 
-  public deviceComplete(){
+  public deviceComplete() {
     this.navCtrl.push(DeviceConnectCompletePage);
   }
 
-  public deviceFail(){
+  public deviceFail() {
     this.navCtrl.push(DeviceConnectFailPage);
+  }
+
+  showAlert(text) {
+    let alert = this.alertCtrl.create({
+      title: 'Alert',
+      message: text,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 

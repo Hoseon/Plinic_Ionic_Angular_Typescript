@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LoginPagePage} from '../loginpage/loginpage';
+import { LoginpagePage } from '../loginpage/loginpage';
 
 /**
  * Generated class for the PasswordfindPage page.
@@ -26,7 +26,7 @@ export class PasswordfindPage {
 
 
   public navpop(){
-    this.nav.popTo(LoginPagePage);
+    this.nav.popTo(LoginpagePage);
   }
 
 

@@ -11,6 +11,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 
 //탭페이지 구성
 import { LoginPage } from '../pages/login/login';
+import { LoginpagePage } from '../pages/login/loginpage/loginpage';
 //import { LoginplinicPage } from '../pages/loginplinic/loginplinic';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -65,6 +66,9 @@ import { DeviceSkinStartPage } from '../pages/device-skin-start/device-skin-star
 import { DeviceSkinIngPage } from '../pages/device-skin-ing/device-skin-ing';
 
 
+//Bluetooth 모듈 추가
+import { BluetoothLE } from '@ionic-native/bluetooth-le';
+
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -80,6 +84,7 @@ export function getAuthHttp(http, storage) {
   declarations: [
     MyApp,
     LoginPage,
+    LoginpagePage,
     //    LoginplinicPage,
     AboutPage,
     ContactPage,
@@ -121,6 +126,7 @@ export function getAuthHttp(http, storage) {
   entryComponents: [
     MyApp,
     LoginPage,
+    LoginpagePage,
     AboutPage,
     ContactPage,
     MyinfoPage,
@@ -159,6 +165,7 @@ export function getAuthHttp(http, storage) {
     Transfer,
     Camera,
     Naver,
+    BluetoothLE,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
