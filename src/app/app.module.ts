@@ -70,6 +70,10 @@ import { DeviceSkinIngPage } from '../pages/device-skin-ing/device-skin-ing';
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
 
 
+//다국어 처리 모듈 추가 20190510-추호선
+import { TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
+
+
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
     headerPrefix: '',
@@ -118,6 +122,11 @@ export function getAuthHttp(http, storage) {
     ProgressBarModule,
     IonicStorageModule.forRoot(),
     NgCircleProgressModule.forRoot(),
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (createTranslateLoader),
+      deps: [Http]
+    })
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -175,3 +184,7 @@ export function getAuthHttp(http, storage) {
   ]
 })
 export class AppModule { }
+
+export function createTranslateLoader(http: Http){
+  return new TranslateStaticLoader(http, '/assets/i18n', '.json');
+}

@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../providers/auth-service';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { TranslateService } from 'ng2-translate/ng2-translate';
 
 
 @Component({
@@ -14,12 +15,15 @@ export class MyApp {
   rootPage: any = LoginPage;
 
   constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
-    private screenOrientation: ScreenOrientation) {
+    private screenOrientation: ScreenOrientation, public translateService: TranslateService) {
     this.initializeApp();
   }
 
   initializeApp() {
-
+    let browserLanguage = this.translateService.getBrowserLang();
+    let defaultlanguage = browserLanguage.substring(0, 2).toLowerCase();
+    console.log("defaultlanguage:"+defaultlanguage)
+    this.translateService.use(defaultlanguage);
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

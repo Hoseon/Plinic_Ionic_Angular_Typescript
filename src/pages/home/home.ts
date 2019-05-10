@@ -8,6 +8,7 @@ import { SkinChartPage } from '../skin-chart/skin-chart'
 import { CareZonePage } from '../care-zone/care-zone'
 import { SkinMeasureStartPage } from '../skin-measure-start/skin-measure-start'
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
+import { TranslateService } from 'ng2-translate/ng2-translate'
 
 
 @IonicPage()
@@ -20,7 +21,7 @@ export class HomePage {
   bannerData: any;
   imageUrl: any;
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
-    private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController,
+    private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController, public translateService : TranslateService
     //public bluetoothle: BluetoothLE
   ) {
     this.platform.ready().then((readySource) => {
@@ -35,6 +36,18 @@ export class HomePage {
     });
 
   }
+
+  // ionViewDidEnter(){
+  //   this.translateService.get('helloWorld').subscribe(
+  //     hi => {
+  //       let alert = this.alertCtrl.create({
+  //         title: hi,
+  //         buttons: ['OK']
+  //       });
+  //       alert.present();
+  //     }
+  //   )
+  // }
 
   openBasicModal() {
     let myModal = this.modalCtrl.create(SkinMeasureStartPage);
