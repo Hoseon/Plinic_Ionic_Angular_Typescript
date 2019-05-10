@@ -11,6 +11,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 
 //탭페이지 구성
 import { LoginPage } from '../pages/login/login';
+import { LoginpagePage } from '../pages/login/loginpage/loginpage';
 //import { LoginplinicPage } from '../pages/loginplinic/loginplinic';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -18,9 +19,7 @@ import { HomePage } from '../pages/home/home';
 import { MyinfoPage } from '../pages/myinfo/myinfo';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AgreementPage } from '../pages/agreement/agreement';
-import { LoginpagePage} from '../pages/login/loginpage/loginpage';
-import {AddinfoPage} from '../pages/register/addinfo/addinfo';
-import {PasswordfindPage} from '../pages/login/passwordfind/passwordfind';
+
 import { PlinicManualPage } from '../pages/myinfo/details/plinic-manual/plinic-manual';
 import { QnaPage } from '../pages/myinfo/details/qna/qna';
 import { TermsPage } from '../pages/myinfo/details/terms/terms';
@@ -31,7 +30,6 @@ import { MarketingPage } from '../pages/myinfo/details/marketing/marketing';
 import { ReRegisterPage } from '../pages/re-register/re-register';
 import { SkinChartPage } from '../pages/skin-chart/skin-chart';
 import { RegisterPage } from '../pages/register/register';
-import { RegistercompletePage} from '../pages/register/registercomplete/registercomplete';
 //케어존
 import { CareZonePage } from '../pages/care-zone/care-zone';
 import { CareZoneIngPage } from '../pages/care-zone-ing/care-zone-ing';
@@ -68,6 +66,9 @@ import { DeviceSkinStartPage } from '../pages/device-skin-start/device-skin-star
 import { DeviceSkinIngPage } from '../pages/device-skin-ing/device-skin-ing';
 
 
+//Bluetooth 모듈 추가
+import { BluetoothLE } from '@ionic-native/bluetooth-le';
+
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -84,8 +85,6 @@ export function getAuthHttp(http, storage) {
     MyApp,
     LoginPage,
     LoginpagePage,
-    PasswordfindPage,
-    AddinfoPage,
     //    LoginplinicPage,
     AboutPage,
     ContactPage,
@@ -102,7 +101,6 @@ export function getAuthHttp(http, storage) {
     TermsPage,
     RegisterPage,
     ReRegisterPage,
-    RegistercompletePage,
     AgreementPage,
     PersonalinfoPage,
     MarketingPage,
@@ -129,8 +127,6 @@ export function getAuthHttp(http, storage) {
     MyApp,
     LoginPage,
     LoginpagePage,
-    PasswordfindPage,
-    AddinfoPage,
     AboutPage,
     ContactPage,
     MyinfoPage,
@@ -146,7 +142,6 @@ export function getAuthHttp(http, storage) {
     TermsPage,
     RegisterPage,
     ReRegisterPage,
-    RegistercompletePage,
     AgreementPage,
     PersonalinfoPage,
     MarketingPage,
@@ -170,6 +165,7 @@ export function getAuthHttp(http, storage) {
     Transfer,
     Camera,
     Naver,
+    BluetoothLE,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,

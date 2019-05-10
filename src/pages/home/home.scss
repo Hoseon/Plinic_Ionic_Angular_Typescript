@@ -1,7 +1,5 @@
 page-home {
-
-    
-  .page_home{
+  .page_home {
     position: relative;
     //height: 4715px;
     align-items: center;
@@ -9,9 +7,9 @@ page-home {
     background-color: #f1f1f1;
   }
 
-  .img-banner_top_19000501{
+  .img-banner_top_19000501 {
     position: relative;
-    top: 0px;
+    top: 0;
     width: auto;
     height: 143px;
     object-fit: contain;
@@ -21,14 +19,12 @@ page-home {
     //line-height:0;
   }
 
-  .font_skin_chart{
-    top: 30px;
-    left: 20px;
+  .font_skin_chart {
     width: 59px;
     height: 22.5px;
     font-family: NotoSansCJKkr;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: bold;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -36,7 +32,7 @@ page-home {
     color: #292929;
   }
 
-  .font_skin_chart2{
+  .font_skin_chart2 {
     top: 60px;
     width: 236px;
     height: 40px;
@@ -51,15 +47,15 @@ page-home {
     color: #939393;
   }
 
-  .font_carezone{
+  .font_carezone {
     position: absolute;
-    top: 485px;
+    top: 3%;
     left: 20px;
     width: 100px;
     height: 22.5px;
     font-family: NotoSansCJKkr;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: bold;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -67,7 +63,8 @@ page-home {
     color: #292929;
   }
 
-  .skin_chart{
+  .skin_chart {
+    position: relative;
     align-self: center;
     width: auto;
     height: 273px;
@@ -75,43 +72,38 @@ page-home {
     margin-bottom: 8px;
   }
 
-  .carezone{
+  .carezone {
+    position: relative;
     width: auto;
     height: 976px;
     background-color: #ffffff;
-    margin-bottom: 8px;
+    margin-bottom: -9px;
   }
 
-  .beauty_tip{
+  .beauty_tip {
+    position: relative;
     width: auto;
     height: 630px;
     background-color: #ffffff;
     margin-bottom: 8px;
   }
 
-  .bottom-tip{
+  .bottom-tip {
     width: auto;
     height: 251.5px;
     background-color: #ffffff;
     margin-bottom: 8px;
   }
 
-
-
-
-
-
-  .ion-content-padding{
-    padding-left: 0px;
-    padding-right: 0px;
+  .ion-content-padding {
+    padding-left: 0;
+    padding-right: 0;
   }
-
-
 
   .card-title {
     position: absolute;
     top: 10%;
-    left : 4%;
+    left: 4%;
     font-size: 0.9em;
     width: 100%;
     font-weight: bold;
@@ -128,7 +120,6 @@ page-home {
   }
 
   .skin_btn {
-    top :110px;
     align: center;
     border-radius: 5px !important;
     width: 320px;
@@ -144,22 +135,21 @@ page-home {
     left: -8%;
   }
 
-  .img_carezone{
+  .img_carezone {
     width: 320px;
     height: 180px;
     border-radius: 5px;
     background-color: #e2e1e6;
   }
 
-  .img_carezone_background{
+  .img_carezone_background {
     position: absolute;
-    top: 527.5px;
+    top: 7%;
   }
 
-  .font_carezone2{
+  .font_carezone2 {
     position: absolute;
-    left : 20px;
-    top: 720.5px;
+    top: 27%;
     width: 150.5px;
     height: 22.5px;
     font-family: NotoSansCJKkr;
@@ -172,10 +162,9 @@ page-home {
     color: #292929;
   }
 
-  .font_carezone2_page{
+  .font_carezone2_page {
     position: absolute;
-    top: 724.5px;
-    left: 312.5px;
+    top: 27%;
     width: 40.5px;
     height: 15px;
     font-family: Roboto;
@@ -189,11 +178,10 @@ page-home {
     color: #939393;
   }
 
-  .font_carezone2_sub{
+  .font_carezone2_sub {
     position: absolute;
-    top: 746px;
-    left: 20px;
-    width: 239.5px;
+    top: 29.5%;
+    width: 250.5px;
     height: 19px;
     font-family: NotoSansCJKkr;
     font-size: 13px;
@@ -208,7 +196,7 @@ page-home {
   .carezon_btn1 {
     position: absolute;
     top: 10px;
-    left : 35px;
+    left: 35px;
     width: 53px;
     height: 25px;
     opacity: 0.9;
@@ -216,12 +204,40 @@ page-home {
     background-color: #5c59b6;
   }
 
-  .img_carezone_background2{
-    position: absolute;
-    top: 811.5px;
+  .carezon_btn_font {
+    width: 33px;
+    height: 16.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
   }
 
-  .img_carezone2{
+  .carezon_btn_font2 {
+    width: 20.5px;
+    height: 16.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .img_carezone_background2 {
+    position: absolute;
+    top: 35%;
+  }
+
+  .img_carezone2 {
     position: relative;
     width: 320px;
     height: 180px;
@@ -229,10 +245,9 @@ page-home {
     background-color: #e2e1e6;
   }
 
-  .font_carezone3{
+  .font_carezone3 {
     position: absolute;
-    left : 20px;
-    top: 1008px;
+    top: 55%;
     width: 150.5px;
     height: 22.5px;
     font-family: NotoSansCJKkr;
@@ -248,7 +263,7 @@ page-home {
   .carezon_btn2 {
     position: absolute;
     top: 10px;
-    left : 35px;
+    left: 35px;
     width: 53px;
     height: 25px;
     opacity: 0.9;
@@ -257,9 +272,9 @@ page-home {
     z-index: 1;
   }
 
-  .font_carezone3_page{
+  .font_carezone3_page {
     position: absolute;
-    top: 1012.5px;
+    top: 55%;
     left: 312.5px;
     width: 40.5px;
     height: 15px;
@@ -274,11 +289,10 @@ page-home {
     color: #939393;
   }
 
-  .font_carezone3_sub{
+  .font_carezone3_sub {
     position: absolute;
-    top: 1033.5px;
-    left: 20px;
-    width: 239.5px;
+    top: 57.5%;
+    width: 250.0px;
     height: 19px;
     font-family: NotoSansCJKkr;
     font-size: 13px;
@@ -290,12 +304,12 @@ page-home {
     color: #939393;
   }
 
-  .img_carezone_background3{
+  .img_carezone_background3 {
     position: absolute;
-    top: 1082.5px;
+    top: 64%;
   }
 
-  .img_carezone3{
+  .img_carezone3 {
     position: relative;
     width: 320px;
     height: 180px;
@@ -303,10 +317,10 @@ page-home {
     background-color: #e2e1e6;
   }
 
-  .carezon_btn3{
+  .carezon_btn3 {
     position: absolute;
     top: 10px;
-    left : 35px;
+    left: 35px;
     width: 40.5px;
     height: 25px;
     opacity: 0.3;
@@ -315,10 +329,9 @@ page-home {
     z-index: 1;
   }
 
-  .font_carezone4{
+  .font_carezone4 {
     position: absolute;
-    left : 20px;
-    top: 1275.5px;
+    top: 84.5%;
     width: 150.5px;
     height: 22.5px;
     font-family: NotoSansCJKkr;
@@ -331,11 +344,10 @@ page-home {
     color: #292929;
   }
 
-  .font_carezone4_sub{
+  .font_carezone4_sub {
     position: absolute;
-    top: 1301px;
-    left: 20px;
-    width: 239.5px;
+    top: 87%;
+    width: 250.5px;
     height: 19px;
     font-family: NotoSansCJKkr;
     font-size: 13px;
@@ -347,10 +359,9 @@ page-home {
     color: #939393;
   }
 
-  .font_carezone4_page{
+  .font_carezone4_page {
     position: absolute;
-    top: 1279.5px;
-    left: 312.5px;
+    top: 84.5%;
     width: 40.5px;
     height: 15px;
     font-family: Roboto;
@@ -365,23 +376,20 @@ page-home {
   }
 
   .mission_btn {
-    position: absolute;
-    top: 870px;
-    left: 20px;
+    top: 1535%;
     width: 325px;
     height: 50px;
     border: solid 0.5px #c7c7c7;
   }
 
-  .beauty_tip_title{
+  .beauty_tip_title {
     position: absolute;
-    top: 1478px;
-    left: 20px;
+    top: 5%;
     width: 70px;
     height: 23.5px;
     font-family: NotoSansCJKkr;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: bold;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -389,43 +397,67 @@ page-home {
     color: #292929;
   }
 
-  .beauty_grid1{
+  .beauty_grid_width {
+    position: relative;
+    top: 11%;
+    width: 320px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    display: block;
+  }
+
+  .beauty_grid1 {
     position: absolute;
-    left: 22px;
-    top: 1511.5px;
+    top: 0;
     width: 150px;
     height: 150px;
+    // margin-left: auto;
+    // margin-right: auto;
+    // left: 0;
+    // right: 0;
+    left: 25%;
+    transform: translateX(-50%);
   }
 
-  .beauty_grid2{
+  .beauty_grid2 {
     position: absolute;
-    left: 188px;
-    top: 1511.5px;
+    top: 0;
     width: 150px;
     height: 150px;
+    // margin-left: auto;
+    // margin-right: auto;
+    // left: 0;
+    // right: 0;
+    left: 75%;
+    transform: translateX(-50%);
   }
 
-  .beauty_grid3{
+  .beauty_grid3 {
     position: absolute;
-    left: 22px;
-    top: 1734.5px;
+    top: 50%;
     width: 150px;
     height: 150px;
+    left: 25%;
+    transform: translateX(-50%);
   }
 
-  .beauty_grid4{
+  .beauty_grid4 {
     position: absolute;
-    left: 188px;
-    top: 1734.5px;
+    top: 50%;
     width: 150px;
     height: 150px;
+    left: 75%;
+    transform: translateX(-50%);
   }
 
-  .beauty_img{
-      border-radius: 5px;
+  .beauty_img {
+    border-radius: 5px;
   }
 
-  .beauty_title{
+  .beauty_title {
     width: 90px;
     height: 19px;
     font-family: NotoSansCJKkr;
@@ -439,8 +471,11 @@ page-home {
     text-align: left;
   }
 
-  .beauty_desc{
-    width: 149.5px;
+  .beauty_desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150.5px;
     height: 22.5px;
     font-family: NotoSansCJKkr;
     font-size: 15px;
@@ -452,44 +487,59 @@ page-home {
     color: #292929;
     text-align: left;
   }
-}
 
+  .beauty_btn {
+    position: absolute;
+    top: 2200%;
+    width: 325px;
+    height: 50px;
+    border: solid 0.5px #c7c7c7;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-.beauty_btn {
-  position: relative;
-  top: 530.5px;
-  //left: 20px;
-  width: 325px;
-  height: 50px;
-  border: solid 0.5px #c7c7c7;
-  text-align: center;
-}
+  .tip_title {
+    position: relative;
+    left: 20px;
+    top: 15%;
+    width: 77.5px;
+    height: 23.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+  }
 
-.tip_title{
-  position: relative;
-  left: 20px;
-  top: 15%;
-  width: 77.5px;
-  height: 23.5px;
-  font-family: NotoSansCJKkr;
-  font-size: 16px;
-  font-weight: 500;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #292929;
-}
+  .font_tip_btn {
+    width: 39px;
+    height: 19px;
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    color: #292929;
+  }
 
-.font_tip_btn{
-  width: 39px;
-  height: 19px;
-  font-family: NotoSansCJKkr;
-  font-size: 14px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.36;
-  letter-spacing: normal;
-  color: #292929;
+  .left-margin {
+    left: 5%;
+  }
+
+  .right-margin {
+    right: 6%;
+  }
+
+  .bound {
+    width: 320px;
+    height: 55px;
+    background-color: #ffffff;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }

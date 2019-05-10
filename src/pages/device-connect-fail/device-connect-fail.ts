@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../home/home';
+import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing';
 
 /**
  * Generated class for the DeviceConnectFailPage page.
@@ -22,8 +24,12 @@ export class DeviceConnectFailPage {
     console.log('ionViewDidLoad DeviceConnectFailPage');
   }
 
+  public deviceReConnect(){
+    this.navCtrl.push(DeviceConnectIngPage);
+  }
+
   public measureBack(){
-    this.navCtrl.pop();
+    this.navCtrl.setRoot(HomePage);
   }
 
 }
