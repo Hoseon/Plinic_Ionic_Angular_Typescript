@@ -31,6 +31,7 @@ import { MarketingPage } from '../pages/myinfo/details/marketing/marketing';
 import { ReRegisterPage } from '../pages/re-register/re-register';
 import { SkinChartPage } from '../pages/skin-chart/skin-chart';
 import { RegisterPage } from '../pages/register/register';
+import { RegistercompletePage} from '../pages/register/registercomplete/registercomplete';
 //케어존
 import { CareZonePage } from '../pages/care-zone/care-zone';
 import { CareZoneIngPage } from '../pages/care-zone-ing/care-zone-ing';
@@ -67,9 +68,6 @@ import { DeviceSkinStartPage } from '../pages/device-skin-start/device-skin-star
 import { DeviceSkinIngPage } from '../pages/device-skin-ing/device-skin-ing';
 
 
-//Bluetooth 모듈 추가
-import { BluetoothLE } from '@ionic-native/bluetooth-le';
-
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -104,6 +102,7 @@ export function getAuthHttp(http, storage) {
     TermsPage,
     RegisterPage,
     ReRegisterPage,
+    RegistercompletePage,
     AgreementPage,
     PersonalinfoPage,
     MarketingPage,
@@ -147,6 +146,7 @@ export function getAuthHttp(http, storage) {
     TermsPage,
     RegisterPage,
     ReRegisterPage,
+    RegistercompletePage,
     AgreementPage,
     PersonalinfoPage,
     MarketingPage,
@@ -170,7 +170,6 @@ export function getAuthHttp(http, storage) {
     Transfer,
     Camera,
     Naver,
-    BluetoothLE,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,

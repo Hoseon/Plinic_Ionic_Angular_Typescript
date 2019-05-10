@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import { AuthService } from '../../../providers/auth-service';
 import { RegisterPage} from '../../register/register';
-
+import {RegistercompletePage} from '../registercomplete/registercomplete';
 /**
  * Generated class for the AddinfoPage page.
  *
@@ -19,16 +19,30 @@ export class AddinfoPage {
 
   createSuccess = false;
   public country: any;
-  registerCredentials = {email: '' , password: '', name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
+  email: any;
+  password: any;
 
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) {}
+  // registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
+  registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', user_jwt: 'true' };
+
+
+  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public navParams: NavParams) {
+
+    this.email = navParams.get('email');
+    this.password = navParams.get('password');
+  }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddinfoPage');
+    console.log(this.email);
+    console.log(this.password);
   }
 
+  public radiotest(){
+      console.log('radio test');
+  }
 
   public navpop(){
     this.nav.popTo(RegisterPage);
@@ -43,10 +57,14 @@ export class AddinfoPage {
 
   // Register a new user at our API
   public register() {
+    this.registerCredentials.email = this.email;
+    this.registerCredentials.password = this.password;
+
     this.auth.register(this.registerCredentials).subscribe(success => {
       if (success !== '') {
         this.createSuccess = true;
-        this.showPopup("Success", "Account created.");
+        this.nav.push(RegistercompletePage);
+        // this.showPopup("Success", "Account created.");
       } else {
         this.showPopup("Error", "Problem creating account.");
       }

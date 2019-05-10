@@ -6,6 +6,26 @@
 -->
 
 
+  <!-- <ion-item style="background:#FFF">
+  <ion-label color="primary" stacked>성별</ion-label>
+  <ion-select #gender placeholder="선택" name="gender"
+              okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.gender" require>
+    <ion-option value="여성" checked="true" >여성</ion-option>
+    <ion-option value="남성">남성</ion-option>
+  </ion-select>
+  </ion-item> -->
+
+  <!-- <ion-item>
+    <ion-label color="primary" stacked>피부타입</ion-label>
+    <ion-select #skincomplaint placeholder="선택"
+                name="skincomplaint" okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.skincomplaint" required>
+      <ion-option value="지성" checked="true">지성</ion-option>
+      <ion-option value="건성">건성</ion-option>
+      <ion-option value="복합성">복합성</ion-option>
+    </ion-select>
+  </ion-item> -->
+
+
 <ion-content padding>
 
   <ion-item  no-lines>
@@ -29,37 +49,78 @@
   <h1 class="h1"> 부가정보를 입력해주세요. </h1>
 
   <ion-item style="background:#FFF">
-  <ion-label color="primary" stacked>닉네임</ion-label>
-  <ion-input type="text" placeholder="닉네임 입력해주세요." clearInput></ion-input>
+  <ion-label class="titlelabel" stacked>닉네임</ion-label>
+  <ion-input type="text" name="name" style="font-size:15px" placeholder="닉네임 입력해주세요." [(ngModel)]="registerCredentials.name" required clearInput></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label color="primary"> 생년월일</ion-label>
-    <ion-datetime #birthday type="text" placeholder="선택" name="birthday"
-    doneText="확인" cancelText="취소"displayFormat="YYYY년 MM월 DD일" min="1940-01-01" max="2019-12-31" [(ngModel)]="registerCredentials.birthday" required></ion-datetime>
-  </ion-item>
-
-
-  <ion-item style="background:#FFF">
-  <ion-label color="primary" stacked>성별</ion-label>
-  <ion-select #gender placeholder="선택" name="gender"
-              okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.gender" require>
-    <ion-option value="여성" checked="true" >여성</ion-option>
-    <ion-option value="남성">남성</ion-option>
-  </ion-select>
+    <ion-label class="titlelabel" stacked> 생년월일</ion-label>
+    <ion-datetime #birthday type="text" style="font-size:15px" placeholder="선택" name="birthday"
+    doneText="확인" cancelText="취소"displayFormat="YYYY년 MM월 DD일" min="1940-01-01" max="2015-12-31" [(ngModel)]="registerCredentials.birthday" required></ion-datetime>
   </ion-item>
 
   <ion-item>
-    <ion-label>피부타입</ion-label>
-    <ion-select #skincomplaint placeholder="선택"
-                name="skincomplaint" okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.skincomplaint" required>
-      <ion-option value="지성" checked="true">지성</ion-option>
-      <ion-option value="건성">건성</ion-option>
-      <ion-option value="복합성">복합성</ion-option>
+    <ion-label class="titlelabel" stacked>국가</ion-label>
+    <ion-select placeholder="선택" style="font-size:15px"
+                name="country" okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.country" required >
+      <ion-option *ngFor="let country of countries" [value]="country.country_name" >{{country.country_name}}</ion-option>
     </ion-select>
   </ion-item>
 
-  <ion-item>
+  <ion-item no-lines>
+  <ion-label class="titlelabel" stacked>성별</ion-label>
+  </ion-item>
+
+  <ion-list radio-group [(ngModel)]="registerCredentials.gender" required [ngModelOptions]="{standalone: true}">
+    <ion-row>
+    <ion-col class="container"><ion-item no-lines>
+      <ion-label class="radiolabel" name="gender" for="여성" checked>여성
+      <ion-radio class="radiobutton" name="gender" id="여성" value="여성" checked></ion-radio></ion-label>
+    </ion-item></ion-col>
+
+    <ion-col class="container"><ion-item no-lines>
+      <ion-label class="radiolabel" name="gender" for="남성">남성
+      <ion-radio class="radiobutton" name="gender" id="남성" value="남성"></ion-radio></ion-label>
+    </ion-item></ion-col></ion-row>
+  </ion-list>
+
+
+<ion-item no-lines >
+<ion-label class="titlelabel" stacked>피부타입</ion-label>
+</ion-item>
+
+
+<ion-list radio-group [(ngModel)]="registerCredentials.skincomplaint" required [ngModelOptions]="{standalone: true}">
+
+  <ion-row><ion-col class="container"><ion-item no-lines>
+    <ion-label class="radiolabel" for="건성" checked>건성
+    <ion-radio class="radiobutton" id="건성" value="건성" checked></ion-radio></ion-label>
+  </ion-item></ion-col>
+  <ion-col class="container"><ion-item no-lines>
+    <ion-label class="radiolabel" for="지성">지성
+    <ion-radio class="radiobutton" id="지성" value="지성"></ion-radio></ion-label>
+  </ion-item></ion-col>
+  <ion-col class="container"><ion-item no-lines>
+    <ion-label class="radiolabel" for="중성">중성
+    <ion-radio class="radiobutton" id="중성" value="중성"></ion-radio></ion-label>
+  </ion-item></ion-col></ion-row>
+
+  <ion-row><ion-col class="container"><ion-item no-lines>
+    <ion-label class="radiolabel" for="복합성">복합성
+    <ion-radio class="radiobutton" id="복합성" value="복합성"></ion-radio></ion-label>
+  </ion-item></ion-col>
+  <ion-col class="container"><ion-item no-lines>
+    <ion-label class="radiolabel" for="민감성">민감성
+    <ion-radio class="radiobutton" id="민감성" value="민감성"></ion-radio></ion-label>
+  </ion-item></ion-col>
+  <ion-col class="container"><ion-item no-lines>
+    <ion-label class="radiolabel" for="모름">모름
+    <ion-radio class="radiobutton" id="모름" value="모름"></ion-radio></ion-label>
+  </ion-item></ion-col></ion-row>
+</ion-list>
+
+
+  <!-- <ion-item>
     <ion-label>관심분야</ion-label>
     <ion-select #interest placeholder="선택"
                 name="interest" okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.interest" required>
@@ -68,17 +129,19 @@
       <ion-option value="유수분 개선">유수분 개선</ion-option>
       <ion-option value="트러블 개선">트러블 개선</ion-option>
     </ion-select>
-  </ion-item>
-
+  </ion-item> -->
+  <br><p class="text" text-wrap>
+      · 정확한 이메일 주소를 입력해주세요.<br>
+      · 비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.</p>
 
   <ion-item no-lines>
-    <ion-input type="hidden" name="user_jwt" value="true" [(ngModel)]="registerCredentials.user_jwt" [hidden]>true</ion-input>
+    <ion-input type="hidden" name="user_jwt" value="true" [(ngModel)]="registerCredentials.user_jwt" required hidden>true</ion-input>
   </ion-item>
 
 
     <ion-row>
       <ion-col class="signup-col">
-          <button ion-button class="submit-btn" color="primary" full type="submit" [disabled]="!registerForm.form.valid">Register</button>
+          <button ion-button class="submit-btn" name="register" color="primary" full type="submit" [disabled]="!registerForm.form.valid">완료</button>
     </ion-col>
   </ion-row>
   </form>

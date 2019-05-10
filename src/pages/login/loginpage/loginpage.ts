@@ -22,7 +22,7 @@ export class LoginpagePage {
 
   loading: Loading;
   registerCredentials = { email: '', password: '' };
-
+  userData: any;
 
   constructor(public nav: NavController, public navParams: NavParams,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
@@ -44,6 +44,20 @@ export class LoginpagePage {
   }
   public dissmiss(){
     this.viewCtrl.dismiss();
+  }
+
+
+  public kakao_login() {
+    this.showLoading()
+    this.userData = this.auth.kakao_login();
+    this.loading.dismiss();
+  }
+
+
+  public google_login(){
+    this.showLoading()
+    this.auth.google_login();
+    this.loading.dismiss();
   }
 
 

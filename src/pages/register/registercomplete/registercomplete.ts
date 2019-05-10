@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the DeviceConnectFailPage page.
+ * Generated class for the RegistercompletePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,20 +10,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-device-connect-fail',
-  templateUrl: 'device-connect-fail.html',
+  selector: 'page-registercomplete',
+  templateUrl: 'registercomplete.html',
 })
-export class DeviceConnectFailPage {
+export class RegistercompletePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DeviceConnectFailPage');
-  }
+    console.log('ionViewDidLoad RegistercompletePage');
 
-  public measureBack(){
-    this.navCtrl.pop();
+
   }
 
 }

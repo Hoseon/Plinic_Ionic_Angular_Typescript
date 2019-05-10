@@ -1,7 +1,6 @@
 page-login {
 
-      min-width: 100%;
-      min-height: 100%;
+
 
       .inglogo{
       width: 100px;
@@ -10,8 +9,22 @@ page-login {
       background-color: #FFF;
       margin-left: auto;
       margin-right: auto;
-      margin-top: 10%;
+      margin-top: 20%;
       display: block;
+
+      }
+
+
+      .inglogo2{
+      width: 102px;
+      height: 40px;
+      object-fit: contain;
+      background-color: #FFF;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      margin-top: 5%;
+      margin-bottom: 15%;
 
       }
 
@@ -55,7 +68,7 @@ page-login {
       margin-right: auto;
       display: block;
       background-color: #5c59b6;
-      width: 90%;
+      width: 315px;
       height: 50px;
       border-radius: 4px;
       font-family: NotoSansCJKkr;
@@ -102,31 +115,34 @@ page-login {
        margin-top: 10px;
        background-color: #e5e5e5;
     }
+
+        // .face_btn {
+        //   width: 10%;
+        //   height: 40%;
+        //   text-align: center;
+        //   padding-right: 5px;
+        //   margin-right: 5px;
+        // }
+
+
         .kakao_btn {
           text-align: center;
-          width: 13%;
-          height: 60%;
+          width: 25px;
+          height: 25px;
           padding-right: 5px;
         }
 
-        .face_btn {
-          width: 10%;
-          height: 40%;
-          text-align: center;
-          padding-right: 5px;
-          margin-right: 5px;
-        }
 
         .google_btn {
-          width: 20%;
-          height: 100%;
+          width: 25px;
+          height: 25px;
           text-align: center;
           padding-right: 5px;
         }
 
         .naver_btn{
-          width: 15%;
-          height: 60%;
+          width: 25px;
+          height: 25px;
           text-align: center;
           padding-right: 5px;
         }
