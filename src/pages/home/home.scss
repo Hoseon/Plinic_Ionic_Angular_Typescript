@@ -89,7 +89,6 @@ page-home {
   }
 
   .bottom-tip {
-    position: relative;
     width: auto;
     height: 251.5px;
     background-color: #ffffff;
@@ -500,10 +499,10 @@ page-home {
   }
 
   .tip_title {
-    position: absolute;
-    //left: 20px;
+    position: relative;
+    left: 20px;
     top: 15%;
-    width: 100px;
+    width: 77.5px;
     height: 23.5px;
     font-family: NotoSansCJKkr;
     font-size: 16px;
@@ -513,7 +512,6 @@ page-home {
     line-height: normal;
     letter-spacing: normal;
     color: #292929;
-    z-index: 1;
   }
 
   .font_tip_btn {
@@ -538,37 +536,10 @@ page-home {
   }
 
   .bound {
-    position: absolute;
-    top: 750%;
-    width: 90%;
+    width: 320px;
     height: 55px;
     background-color: #ffffff;
     left: 50%;
     transform: translateX(-50%);
   }
-
-
-
-  .bound2 {
-    position: absolute;
-    top: 1200%;
-    width: 90%;
-    height: 55px;
-    background-color: #ffffff;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .bound3 {
-    position: absolute;
-    top: 1650%;
-    width: 90%;
-    height: 55px;
-    background-color: #ffffff;
-    margin: 0 auto;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-
 }
