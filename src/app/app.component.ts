@@ -15,7 +15,7 @@ export class MyApp {
   rootPage: any = LoginPage;
 
   constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
-    private screenOrientation: ScreenOrientation, public translateService: TranslateService) {
+    private screenOrientation: ScreenOrientation,public translateService: TranslateService) {
     this.initializeApp();
   }
 

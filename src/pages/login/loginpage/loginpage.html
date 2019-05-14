@@ -8,13 +8,13 @@
 <ion-content padding>
 
 
-    <ion-img class="close" src="assets/img/login/ic-system-close-black.png" srcset="assets/img/login\ic-system-close-black2x.png,
+    <ion-img class="close" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
                   assets/img/login\ic-system-close-black@3x.png" (click)="dissmiss()"></ion-img>
 
 
   <h1 class="h1" > 로그인 </h1>
 
-  <ion-list>
+  <ion-list id="hide">
     <ion-row>
      <ion-col>
        <button ion-button class="submit-btn" (click)="naver_login()" outline>
@@ -26,42 +26,27 @@
        <button ion-button class="submit-btn" (click)="google_login()" outline>
          <img class="google_btn" src="assets/img/googlelogo/ic-sns-google.png" srcset="assets/img/googlelogo/ic-sns-google@2x.png,
                        assets/img/googlelogo/ic-sns-google@3x.png" /> 구글로 시작하기</button>
+      <ion-col class="Linetext">또는</ion-col>
      </ion-col>
    </ion-row>
   </ion-list>
 
-  <ion-list>
-     <ion-item no-lines>
-         <ion-grid>
-             <ion-row>
-                 <ion-col class="Lineleft"></ion-col>
-                 <ion-col class="Linetext">또는</ion-col>
-                 <ion-col class="Lineright"></ion-col>
-             </ion-row>
-         </ion-grid>
-   </ion-item>
-  </ion-list>
-
      <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-     <ion-list inset>
-     <ion-item style="background:#FFF">
-     <ion-label color="primary" stacked>이메일</ion-label>
-     <ion-input class="text" type="email"  inputmode="full-width-latin" name="email" placeholder="이메일을 입력해주세요." [(ngModel)]="registerCredentials.email" required clearInput></ion-input>
+     <ion-list inset lines>
+
+     <ion-item style="background:#FFF" >
+     <!-- <ion-label class="titlelabel" stacked>이메일</ion-label> -->
+     <ion-input style="font-size:15px; width:315px; height:50px;" type="email" name="email" placeholder="이메일" [(ngModel)]="registerCredentials.email" required clearInput></ion-input>
      </ion-item>
 
      <ion-item style="background:#FFF">
-     <ion-label color="primary" stacked>비밀번호 </ion-label>
-     <ion-input class="text" type="password"  inputmode="full-width-latin" name="password" placeholder="비밀번호를 입력해주세요." [(ngModel)]="registerCredentials.password" required clearInput></ion-input>
+     <!-- <ion-label class="titlelabel" stacked>비밀번호 </ion-label> -->
+     <ion-input style="font-size:15px; width:315px; height:50px;" type="password" name="password" placeholder="비밀번호" [(ngModel)]="registerCredentials.password" required clearInput></ion-input>
      </ion-item>
      </ion-list> <br>
 
-     <!-- <p class="sub" >·정확한 이메일 주소를 입력해주세요.<br>·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.</p><br><br><br>
- -->
-
      <button ion-button class="login-btn" [disabled]="!registerForm.form.valid" outline>로그인</button>
 </form>
-
-
 
     <br><br><br>
     <ion-item style="text-align:center" no-lines>

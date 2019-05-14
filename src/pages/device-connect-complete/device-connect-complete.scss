@@ -1,4 +1,10 @@
 page-device-connect-complete {
+
+
+  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+    height: 0px;
+  }
+  
   .font_title {
     width: 197.5px;
     height: 34px;

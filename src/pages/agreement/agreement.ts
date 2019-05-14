@@ -59,7 +59,9 @@ public dissmiss(){
  public registerpage() {
 
   if(this.agree===true && this.agree1===true){
+      this.viewCtrl.dismiss();
        this.nav.push(RegisterPage);
+       // this.viewCtrl.dismiss();
   }
   else{
     this.showPopup("이용약관 ", "필수조건에 만족하지 못합니다.");

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
 import { AuthService } from '../../../providers/auth-service';
 import { RegisterPage} from '../../register/register';
 import {RegistercompletePage} from '../registercomplete/registercomplete';
+
+
 /**
  * Generated class for the AddinfoPage page.
  *
@@ -16,18 +18,19 @@ import {RegistercompletePage} from '../registercomplete/registercomplete';
   templateUrl: 'addinfo.html',
 })
 export class AddinfoPage {
-
   createSuccess = false;
   public country: any;
   email: any;
   password: any;
+  alertEvent : boolean = false;
 
 
   // registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
   registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', user_jwt: 'true' };
 
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public navParams: NavParams) {
+  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public navParams: NavParams
+  , public viewCtrl: ViewController) {
 
     this.email = navParams.get('email');
     this.password = navParams.get('password');
@@ -39,6 +42,12 @@ export class AddinfoPage {
     console.log(this.email);
     console.log(this.password);
   }
+
+  public mcAnswer(event){
+       console.log(event);
+
+
+   }
 
   public radiotest(){
       console.log('radio test');
@@ -64,7 +73,7 @@ export class AddinfoPage {
       if (success !== '') {
         this.createSuccess = true;
         this.nav.push(RegistercompletePage);
-        // this.showPopup("Success", "Account created.");
+        this.viewCtrl.dismiss();
       } else {
         this.showPopup("Error", "Problem creating account.");
       }

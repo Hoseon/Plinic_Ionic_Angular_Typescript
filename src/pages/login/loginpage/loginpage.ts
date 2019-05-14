@@ -1,4 +1,5 @@
-import { Component,Input, ViewChild } from '@angular/core';
+import { Component,Input, ViewChild, Inject  } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController, Loading, ViewController } from 'ionic-angular';
 import { AuthService } from '../../../providers/auth-service';
 import { AgreementPage} from '../../agreement/agreement';
@@ -26,7 +27,7 @@ export class LoginpagePage {
 
   constructor(public nav: NavController, public navParams: NavParams,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-     private auth: AuthService, public viewCtrl: ViewController) {
+     private auth: AuthService, public viewCtrl: ViewController, @Inject(DOCUMENT) document) {
   }
 
 
@@ -34,6 +35,16 @@ export class LoginpagePage {
     console.log('ionViewDidLoad LoginpagePage');
   }
 
+//   public hide(){
+//     console.log('hide');
+//     document.getElementById("hide").style.display = "none";
+// }
+//
+//   public view(){
+//       console.log('visible');
+//     document.getElementById("hide").style.display = "";
+// }
+//
 
 
   public agreepage(){

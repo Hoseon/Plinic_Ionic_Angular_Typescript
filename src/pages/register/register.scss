@@ -8,23 +8,32 @@ page-register {
     .toolbar-background {
       background-color: #FFF;
     }
-
-    .close{
-
-     background-color: #FFF;
-     width: 25px;
-     height: 25px;
-     object-fit: contain;
+    
+    .error {
+      color: rgb(223, 62, 62);
+      font-size: 11px;
     }
 
+    .error1 {
+      color: rgb(75, 75, 75);
+      border-bottom: 1px solid #ff0000;
+    }
 
+    .close{
+    position: absolute;
+    background-color: #FFF;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    left:-9px;
+    top: -0px;
+   }
     .toolaralign{
      background-color: #FFF;
      width: 25px;
      height: 25px;
      object-fit: contain;
-     margin-top: 5px;
-     margin-right: 15px;
+     margin-right: -5px;
     }
 
     .toolaralign2{
@@ -32,11 +41,11 @@ page-register {
       width: 25px;
       height: 25px;
       object-fit: contain;
-      margin-top: 15px;
+      margin-top: 10px;
       margin-right: -5px;
     }
 
-    
+
   .h1{
 
      height: 100px;
