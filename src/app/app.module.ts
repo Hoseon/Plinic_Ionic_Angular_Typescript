@@ -8,18 +8,20 @@ import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 
 
-
+  
 //탭페이지 구성
 import { LoginPage } from '../pages/login/login';
-import { LoginpagePage } from '../pages/login/loginpage/loginpage';
 //import { LoginplinicPage } from '../pages/loginplinic/loginplinic';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
+import {SuccessHomePage} from '../pages/success-home/success-home';
 import { MyinfoPage } from '../pages/myinfo/myinfo';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AgreementPage } from '../pages/agreement/agreement';
-
+import { LoginpagePage} from '../pages/login/loginpage/loginpage';
+import {AddinfoPage} from '../pages/register/addinfo/addinfo';
+import {PasswordfindPage} from '../pages/login/passwordfind/passwordfind';
 import { PlinicManualPage } from '../pages/myinfo/details/plinic-manual/plinic-manual';
 import { QnaPage } from '../pages/myinfo/details/qna/qna';
 import { TermsPage } from '../pages/myinfo/details/terms/terms';
@@ -30,12 +32,17 @@ import { MarketingPage } from '../pages/myinfo/details/marketing/marketing';
 import { ReRegisterPage } from '../pages/re-register/re-register';
 import { SkinChartPage } from '../pages/skin-chart/skin-chart';
 import { RegisterPage } from '../pages/register/register';
+import { RegistercompletePage} from '../pages/register/registercomplete/registercomplete';
 //케어존
 import { CareZonePage } from '../pages/care-zone/care-zone';
 import { CareZoneIngPage } from '../pages/care-zone-ing/care-zone-ing';
 import { CareZoneMissionIngPage } from '../pages/care-zone-mission-ing/care-zone-mission-ing';
-import { ProgressBarModule } from "angular-progress-bar";
 import { CareZoneMissionDeadlinePage } from '../pages/care-zone-mission-deadline/care-zone-mission-deadline';
+import { CareZoneMissionDeadlineEndPage} from '../pages/care-zone-mission-deadline-end/care-zone-mission-deadline-end';
+import { CareZoneMissionStartPage} from '../pages/care-zone-mission-start/care-zone-mission-start';
+import { CareZoneMissionCompletePage} from '../pages/care-zone-mission-complete/care-zone-mission-complete';
+
+import { ProgressBarModule } from "angular-progress-bar";
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -64,16 +71,15 @@ import { DeviceConnectCompletePage } from '../pages/device-connect-complete/devi
 import { DeviceConnectFailPage } from '../pages/device-connect-fail/device-connect-fail';
 import { DeviceSkinStartPage } from '../pages/device-skin-start/device-skin-start';
 import { DeviceSkinIngPage } from '../pages/device-skin-ing/device-skin-ing';
-
-
 //Bluetooth 모듈 추가
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
 //import { OneSignal } from '@ionic-native/onesignal';
 
 
-
 //다국어 처리 모듈 추가 20190510-추호선
 import { TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
+
+
 
 
 export function getAuthHttp(http, storage) {
@@ -91,22 +97,29 @@ export function getAuthHttp(http, storage) {
     MyApp,
     LoginPage,
     LoginpagePage,
+    PasswordfindPage,
+    AddinfoPage,
     //    LoginplinicPage,
     AboutPage,
     ContactPage,
     MyinfoPage,
     // TabsPage,
     HomePage,
+    SuccessHomePage,
     SkinChartPage,
     CareZonePage,
     CareZoneIngPage,
     CareZoneMissionIngPage,
     CareZoneMissionDeadlinePage,
+    CareZoneMissionDeadlineEndPage,
+    CareZoneMissionStartPage,
+    CareZoneMissionCompletePage,
     PlinicManualPage,
     QnaPage,
     TermsPage,
     RegisterPage,
     ReRegisterPage,
+    RegistercompletePage,
     AgreementPage,
     PersonalinfoPage,
     MarketingPage,
@@ -125,10 +138,10 @@ export function getAuthHttp(http, storage) {
     IonicStorageModule.forRoot(),
     NgCircleProgressModule.forRoot(),
     TranslateModule.forRoot({
-      provide: TranslateLoader,
-      useFactory: (createTranslateLoader),
-      deps: [Http]
-    })
+   provide: TranslateLoader,
+   useFactory: (createTranslateLoader),
+   deps: [Http]
+ }),
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -138,21 +151,28 @@ export function getAuthHttp(http, storage) {
     MyApp,
     LoginPage,
     LoginpagePage,
+    PasswordfindPage,
+    AddinfoPage,
     AboutPage,
     ContactPage,
     MyinfoPage,
     //    TabsPage,
     HomePage,
+    SuccessHomePage,
     SkinChartPage,
     CareZonePage,
     CareZoneIngPage,
     CareZoneMissionIngPage,
     CareZoneMissionDeadlinePage,
+    CareZoneMissionDeadlineEndPage,
+    CareZoneMissionStartPage,
+    CareZoneMissionCompletePage,
     PlinicManualPage,
     QnaPage,
     TermsPage,
     RegisterPage,
     ReRegisterPage,
+    RegistercompletePage,
     AgreementPage,
     PersonalinfoPage,
     MarketingPage,

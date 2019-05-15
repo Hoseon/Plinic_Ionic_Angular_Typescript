@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import{ CareZoneMissionDeadlineEndPage } from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end';
 /**
  * Generated class for the CareZoneMissionDeadlinePage page.
  *
@@ -17,7 +17,7 @@ export class CareZoneMissionDeadlinePage {
 
     public loadProgress : number = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public nav: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -36,7 +36,10 @@ export class CareZoneMissionDeadlinePage {
   }
 
 
+  public mission_deadline_end(){
 
+    this.nav.push(CareZoneMissionDeadlineEndPage);
+  }
 
 
 

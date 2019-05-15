@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DeviceSkinStartPage } from '../device-skin-start/device-skin-start';
 import { DeviceSkinIngPage } from '../device-skin-ing/device-skin-ing';
-
+import {SuccessHomePage} from '../success-home/success-home';
 /**
  * Generated class for the DeviceConnectCompletePage page.
  *
@@ -25,8 +25,9 @@ export class DeviceConnectCompletePage {
   }
 
   public deviceComplete() {
-    let myModal = this.modalCtrl.create(DeviceSkinStartPage);
-    myModal.present();
+    // let myModal = this.modalCtrl.create(DeviceSkinStartPage);
+    // myModal.present();
+      this.navCtrl.push(SuccessHomePage);
   }
 
   public measureBack(){

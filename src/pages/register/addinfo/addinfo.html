@@ -5,39 +5,19 @@
   Ionic pages and navigation.
 -->
 
-
-  <!-- <ion-item style="background:#FFF">
-  <ion-label color="primary" stacked>성별</ion-label>
-  <ion-select #gender placeholder="선택" name="gender"
-              okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.gender" require>
-    <ion-option value="여성" checked="true" >여성</ion-option>
-    <ion-option value="남성">남성</ion-option>
-  </ion-select>
-  </ion-item> -->
-
-  <!-- <ion-item>
-    <ion-label color="primary" stacked>피부타입</ion-label>
-    <ion-select #skincomplaint placeholder="선택"
-                name="skincomplaint" okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.skincomplaint" required>
-      <ion-option value="지성" checked="true">지성</ion-option>
-      <ion-option value="건성">건성</ion-option>
-      <ion-option value="복합성">복합성</ion-option>
-    </ion-select>
-  </ion-item> -->
-
-
 <ion-content padding>
 
+
   <ion-item  no-lines>
-     <ion-grid class="imagealign">
-       <ion-row>
-      <ion-col><ion-img class="close" src="assets/img/agreement/ic-system-back-black.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
+     <ion-grid>
+      <ion-row>
+      <ion-col><ion-img class="close" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
                     assets/img/agreement/ic-system-back-black@3x.png" (click)="navpop()"></ion-img></ion-col>
 
-      <ion-img class="toolaralign2"src="assets/img/agreement/ic-system-step-on.png" srcset="assets/img/agreement/ic-system-step-on@2x.png,
+      <ion-img  class="toolaralign2" src="assets/img/agreement/ic-system-step-on.png" srcset="assets/img/agreement/ic-system-step-on@2x.png,
                       assets/img/agreement/ic-system-step-on@3x.png"></ion-img>
 
-      <ion-img class="toolaralign"src="assets/img/agreement/ic-system-step-02.png" srcset="assets/img/agreement/ic-system-step-02@2x.png,
+      <ion-img class="toolaralign" src="assets/img/agreement/ic-system-step-02@3x.png" srcset="assets/img/agreement/ic-system-step-02@2x.png,
                       assets/img/agreement/ic-system-step-02@3x.png"></ion-img>
         </ion-row>
      </ion-grid>
@@ -73,12 +53,12 @@
 
   <ion-list radio-group [(ngModel)]="registerCredentials.gender" required [ngModelOptions]="{standalone: true}">
     <ion-row>
-    <ion-col class="container"><ion-item no-lines>
+    <ion-col><ion-item no-lines>
       <ion-label class="radiolabel" name="gender" for="여성" checked>여성
       <ion-radio class="radiobutton" name="gender" id="여성" value="여성" checked></ion-radio></ion-label>
     </ion-item></ion-col>
 
-    <ion-col class="container"><ion-item no-lines>
+    <ion-col><ion-item no-lines>
       <ion-label class="radiolabel" name="gender" for="남성">남성
       <ion-radio class="radiobutton" name="gender" id="남성" value="남성"></ion-radio></ion-label>
     </ion-item></ion-col></ion-row>
@@ -92,44 +72,34 @@
 
 <ion-list radio-group [(ngModel)]="registerCredentials.skincomplaint" required [ngModelOptions]="{standalone: true}">
 
-  <ion-row><ion-col class="container"><ion-item no-lines>
+  <ion-row><ion-col><ion-item no-lines>
     <ion-label class="radiolabel" for="건성" checked>건성
     <ion-radio class="radiobutton" id="건성" value="건성" checked></ion-radio></ion-label>
   </ion-item></ion-col>
-  <ion-col class="container"><ion-item no-lines>
+  <ion-col><ion-item no-lines>
     <ion-label class="radiolabel" for="지성">지성
     <ion-radio class="radiobutton" id="지성" value="지성"></ion-radio></ion-label>
   </ion-item></ion-col>
-  <ion-col class="container"><ion-item no-lines>
+  <ion-col><ion-item no-lines>
     <ion-label class="radiolabel" for="중성">중성
     <ion-radio class="radiobutton" id="중성" value="중성"></ion-radio></ion-label>
   </ion-item></ion-col></ion-row>
 
-  <ion-row><ion-col class="container"><ion-item no-lines>
+  <ion-row><ion-col><ion-item no-lines>
     <ion-label class="radiolabel" for="복합성">복합성
     <ion-radio class="radiobutton" id="복합성" value="복합성"></ion-radio></ion-label>
   </ion-item></ion-col>
-  <ion-col class="container"><ion-item no-lines>
+  <ion-col><ion-item no-lines>
     <ion-label class="radiolabel" for="민감성">민감성
     <ion-radio class="radiobutton" id="민감성" value="민감성"></ion-radio></ion-label>
   </ion-item></ion-col>
-  <ion-col class="container"><ion-item no-lines>
+  <ion-col><ion-item no-lines>
     <ion-label class="radiolabel" for="모름">모름
     <ion-radio class="radiobutton" id="모름" value="모름"></ion-radio></ion-label>
   </ion-item></ion-col></ion-row>
 </ion-list>
 
 
-  <!-- <ion-item>
-    <ion-label>관심분야</ion-label>
-    <ion-select #interest placeholder="선택"
-                name="interest" okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.interest" required>
-      <ion-option value="미백" checked="true">미백</ion-option>
-      <ion-option value="탄력">탄력</ion-option>
-      <ion-option value="유수분 개선">유수분 개선</ion-option>
-      <ion-option value="트러블 개선">트러블 개선</ion-option>
-    </ion-select>
-  </ion-item> -->
   <br><p class="text" text-wrap>
       · 정확한 이메일 주소를 입력해주세요.<br>
       · 비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.</p>

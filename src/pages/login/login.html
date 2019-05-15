@@ -22,18 +22,8 @@
         </ion-col>
       </ion-row>
    </ion-list>
-   <ion-list>
-      <ion-item no-lines>
-          <ion-grid>
-              <ion-row>
-                  <ion-col class="Lineleft"></ion-col>
-                  <ion-col class="Linetext">또는</ion-col>
-                  <ion-col class="Lineright"></ion-col>
-              </ion-row>
-          </ion-grid>
-    </ion-item>
-   </ion-list>
-   <ion-list>
+
+                  <p class="Linetext">또는</p>
       <ion-row>
         <ion-col >
           <button ion-button class="submit-btn" (click)="kakao_login()" outline>
@@ -50,10 +40,9 @@
 
           <button ion-button class="submit-btn" (click)="naver_login()" outline>
             <img class="naver_btn" src="assets/img/naverlogo/ic-sns-naver@3x.png" srcset="assets/img/naverlogo/ic-sns-naver@2x.png,
-                          assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기</button><br>
+                          assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기</button>
         </ion-col>
       </ion-row>
-    </ion-list>
     <ion-item no-lines>
       <ion-label class="bottom_text" (click)="loginpage()">이미 계정이 있으신가요?</ion-label>
     </ion-item>

@@ -1,0 +1,195 @@
+<!--
+  Generated template for the CareZoneMissionIngPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title class="title" text-wrap>할수 있다! 물광미인</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+<br>
+  <ion-list>
+    <ion-item no-lines>
+      <ion-img class="goods-img" src="assets/img/care-zone/ic-system-profile-sample@3x.png" srcset="assets/img/ic-system-profile-sample@2x.png,
+             assets/img/ic-system-profile-sample@3x.png"></ion-img><br><br>
+
+      <button ion-button style="height:28px" class="button_outline" outline (click)="mission_start()">종료 </button>
+      </ion-item>
+      <h1 class="top_text"> 할수 있다! 물광미인 </h1>
+
+
+
+
+    <ion-item class="top_count" no-lines>
+                <ion-col class="event-col">3건
+                <ion-col class="event-col2">/&nbsp;27건 남음</ion-col></ion-col>
+                <ion-col class="event-col3">목표 30건</ion-col>
+    </ion-item>
+
+
+
+<!-- 프로그레스바 -->
+
+  <progress-bar [color]="mycolor"[progress]="loadProgress"></progress-bar><br><br>
+
+
+
+
+     <ion-item style="width:97%;"  >
+         <ion-grid class="gridtext">
+             <ion-row style="width:89.7%">
+                 <ion-col class="event-col4">미션명</ion-col>
+                 <ion-col class="event-col5">할수있다! 물광미인</ion-col>
+             </ion-row>
+         </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%" >
+       <ion-grid class="gridtext">
+             <ion-row style="width:89.7%">
+                 <ion-col class="event-col4">보상 상품</ion-col>
+                 <ion-col class="event-col7">1025 독도 토너</ion-col>
+            </ion-row>
+       </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%" >
+       <ion-grid class="gridtext">
+             <ion-row style="width:89.7%">
+                 <ion-col class="event-col4">미션 횟수
+                 <ion-col><ion-img class="mission-img"src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png"
+                 srcset="assets/img/ic-system-infomation@2x.png, assets/img/ic-system-infomation@3x.png"></ion-img></ion-col></ion-col>
+                 <ion-col class="event-col9">3
+                 <ion-col class="event-col11">/30</ion-col></ion-col>
+             </ion-row>
+        </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%" >
+       <ion-grid class="gridtext">
+             <ion-row style="width:89.7%">
+                 <ion-col class="event-col4">미션 종료일</ion-col>
+                 <ion-col class="event-col12">2019.08.30</ion-col>
+             </ion-row>
+         </ion-grid>
+   </ion-item>
+   <ion-item no-lines>
+     <ion-col class="sub" text-wrap>
+       ※진단 결과는 환경에 따라 상이할 수 있습니다.
+     </ion-col>
+    </ion-item>
+<!--
+   <ion-item no-lines>
+    <button ion-button class="button_giveup" text-align="center" outline (click)="mission_deadline()">미션 포기하기</button>
+    </ion-item> -->
+  </ion-list>
+
+<ion-list><br>
+
+
+
+
+   <h3 class="bottom_text"> 참여자 </h3>
+
+
+<!-- 참여자만큼 반복문 -->
+<ion-item>
+    <ion-grid class="eventgrid">
+        <ion-row>
+            <ion-col class="event-col0">{{index}}00</ion-col>
+            <ion-col><ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample@3x.png"
+              srcset="assets/img/ic-system-profile-sample@2x.png,
+                   assets/img/ic-system-profile-sample@3x.png"></ion-img></ion-col>
+            <ion-col class="event-col8">{{id}} 아이디</ion-col>
+            <ion-col class="event-col6">{{count}}20회</ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-item>
+<ion-item>
+    <ion-grid class="eventgrid">
+        <ion-row>
+            <ion-col class="event-col0">{{index}}00</ion-col>
+            <ion-col><ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample@3x.png"
+              srcset="assets/img/ic-system-profile-sample@2x.png,
+                   assets/img/ic-system-profile-sample@3x.png"></ion-img></ion-col>
+            <ion-col class="event-col8">{{id}} 아이디</ion-col>
+            <ion-col class="event-col6">{{count}}20회</ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-item>
+<ion-item>
+    <ion-grid class="eventgrid">
+        <ion-row>
+            <ion-col class="event-col0">{{index}}00</ion-col>
+            <ion-col><ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample@3x.png"
+              srcset="assets/img/ic-system-profile-sample@2x.png,
+                   assets/img/ic-system-profile-sample@3x.png"></ion-img></ion-col>
+            <ion-col class="event-col8">{{id}} 아이디</ion-col>
+            <ion-col class="event-col6">{{count}}20회</ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-item>
+<ion-item>
+    <ion-grid class="eventgrid">
+        <ion-row>
+            <ion-col class="event-col0">{{index}}00</ion-col>
+            <ion-col><ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample@3x.png"
+              srcset="assets/img/ic-system-profile-sample@2x.png,
+                   assets/img/ic-system-profile-sample@3x.png"></ion-img></ion-col>
+            <ion-col class="event-col8">{{id}} 아이디</ion-col>
+            <ion-col class="event-col6">{{count}}20회</ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-item>
+<ion-item>
+    <ion-grid class="eventgrid">
+        <ion-row>
+            <ion-col class="event-col0">{{index}}00</ion-col>
+            <ion-col><ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample@3x.png"
+              srcset="assets/img/ic-system-profile-sample@2x.png,
+                   assets/img/ic-system-profile-sample@3x.png"></ion-img></ion-col>
+            <ion-col class="event-col8">{{id}} 아이디</ion-col>
+            <ion-col class="event-col6">{{count}}20회</ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-item>
+ <ion-item no-lines>
+   <button ion-button class="button_add" style="font-size: 14px" outline>더보기&nbsp;&nbsp;></button>
+ </ion-item><br><br><br>
+
+
+
+</ion-list>
+
+
+
+<ion-list>
+   <h3 class="bottom_text"> 진행중인 미션</h3>
+
+
+ <ion-grid class="gridimage">
+   <ion-row>
+     <ion-col class="container">
+       <img class="imagealign" src="assets/img/home/carezone1.png" />
+       <button class="ing_btn" style="font-size: 9px" ion-button>진행 중</button>
+     </ion-col>
+     <ion-col class="container">
+       <img class="imagealign" src="assets/img/home/carezone2.png" />
+       <button class="ing_btn" style="font-size: 9px" ion-button>진행 중</button>
+     </ion-col>
+   </ion-row>
+</ion-grid>
+
+
+   <ion-item no-lines>
+     <button ion-button class="button_add" style="font-size: 14px" outline>미션 더보기&nbsp;&nbsp;></button>
+   </ion-item>
+</ion-list>
+
+
+</ion-content>

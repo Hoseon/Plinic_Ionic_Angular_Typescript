@@ -37,9 +37,11 @@
   <ion-footer no-shadow>
   	<!-- <ion-toolbar position="bottom"> -->
     <div class="center">
-      <button #myButton class="cell" ion-button>
-      <ion-spinner name="crescent" *ngIf="spintime == 0"></ion-spinner>
-        <div class="font_button">연동 중</div>
+      <!-- <button class="cell" ion-button (click)="deviceComplete();">
+        <div class="font_button">시작하기</div> -->
+        <button #myButton class="cell" ion-button>
+        <ion-spinner name="crescent" *ngIf="spintime == 0"></ion-spinner>
+      <div class="font_button">연동 중</div>
       </button>
     </div>
 

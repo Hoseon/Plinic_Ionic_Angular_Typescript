@@ -1,14 +1,6 @@
 page-addinfo {
 
 
-
-         .radio{
-           border-radius: 8px;
-       color: #000;
-       width: 105px;
-       height: 45px;
-       border: solid 0.5px #5c59b6;
-         }
         .h1{
           height: 80px;
           font-family: NotoSansCJKkr;
@@ -41,13 +33,33 @@ page-addinfo {
         .toolbar-background {
           background-color: #FFF;
         }
-
+        .imgcol{
+          padding: 5px;
+        }
         .close{
-
+        position: absolute;
+        background-color: #FFF;
+        width: 25px;
+        height: 25px;
+        object-fit: contain;
+        left:-9px;
+        top: -0px;
+       }
+        .toolaralign{
          background-color: #FFF;
          width: 25px;
          height: 25px;
          object-fit: contain;
+         margin-right: -5px;
+        }
+
+        .toolaralign2{
+          background-color: #FFF;
+          width: 25px;
+          height: 25px;
+          object-fit: contain;
+          margin-top: 10px;
+          margin-right: -5px;
         }
 
 
@@ -68,24 +80,9 @@ page-addinfo {
          background-color: #FFF;
         }
 
-        .radiobutton{
-          width: 0px;
-          height: 0px;
-          border: 0px;
-        }
-
-        .container {
-          // position:relative;
-          width: 105px;
-          height: 45px;
-          border: 0px;
-          margin-left: auto;
-          margin-right: auto;
-        }
         .item-radio{
-          // 라디오 버튼 크기 조절
           width: 105%;
-          padding: 0px;
+          padding: 0.1px;
           border: 0px;
           margin-left: auto;
           margin-right: auto;
@@ -98,7 +95,8 @@ page-addinfo {
           margin-left: auto;
           margin-right: auto;
         }
-        .container .radiolabel{
+
+        .radiolabel{
         padding-top: 10px;
         width: 105px;
         height: 45px;
@@ -114,16 +112,35 @@ page-addinfo {
         background-color: #FFF;
         text-align: center;
         color:#e5e5e5;
-        margin: 0px;
+        margin: 1px;
         margin-left: auto;
         margin-right: auto;
       }
+       .item-radio.item-md ion-label{
+         margin-right: 1px;
+       }
+       .item-radio.item-ios ion-label{
+         margin-right: 1px;
+       }
+       .item-radio-checked.item-md ion-label{
+         background-color: #FFF !important;
+         border: solid 1.5px #5c59b6 !important;
+         font-weight: bold !important;
+         color: #5c59b6 !important;
+       }
 
-      .container .radiolabel:hover{
-        background-color: #FFF;
-        border: solid 0.5px #5c59b6;
-        font-weight: bold;
-        color: #5c59b6;
+       .item-radio-checked.item-ios ion-label{
+         background-color: #FFF !important;
+         border: solid 1.5px #5c59b6 !important;
+         font-weight: bold !important;
+         color: #5c59b6 !important;
+       }
+
+       .radiolabel:hover{
+        background-color: #FFF !important;
+        border: solid 1.5px #5c59b6 !important;
+        font-weight: bold !important;
+        color: #5c59b6 !important;
       }
 
 
@@ -133,8 +150,7 @@ page-addinfo {
          width: 25px;
          height: 25px;
          object-fit: contain;
-         margin-top: 5px;
-         margin-right: 15px;
+         margin-right: -5px;
         }
 
         .toolaralign2{
@@ -142,9 +158,12 @@ page-addinfo {
           width: 25px;
           height: 25px;
           object-fit: contain;
-          margin-top: 15px;
+          margin-top: 10px;
           margin-right: -5px;
+
         }
+
+
         .text{
           width: 314px;
          height: 48px;

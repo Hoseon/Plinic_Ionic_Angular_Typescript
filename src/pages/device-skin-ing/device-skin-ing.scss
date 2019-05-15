@@ -1,4 +1,10 @@
 page-device-skin-ing {
+
+
+  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+    height: 0px;
+  }
+
   .font_title {
     width: 139px;
     height: 34px;
