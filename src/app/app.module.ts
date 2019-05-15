@@ -68,6 +68,8 @@ import { DeviceSkinIngPage } from '../pages/device-skin-ing/device-skin-ing';
 
 //Bluetooth 모듈 추가
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
+//import { OneSignal } from '@ionic-native/onesignal';
+
 
 
 //다국어 처리 모듈 추가 20190510-추호선
@@ -175,6 +177,7 @@ export function getAuthHttp(http, storage) {
     Camera,
     Naver,
     BluetoothLE,
+    //OneSignal,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
