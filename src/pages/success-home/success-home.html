@@ -1,18 +1,209 @@
-<!--
-  Generated template for the SuccessHomePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>success_home</ion-title>
-  </ion-navbar>
-
-</ion-header>
+<ion-content class="page_home" no-padding>
 
 
-<ion-content padding>
+  <ion-slides *ngIf="bannerData && bannerData.length" class="img-banner_top_19000501" pager loop=true autoplay=2000>
+    <ion-slide *ngFor="let banner of bannerData">
+      <img src='http://plinic.cafe24app.com/images/{{banner._id}}' />
+    </ion-slide>
+  </ion-slides>
+
+  <ion-list class="skin_chart">
+    <br />
+    <ion-row>
+      <ion-col class="font_skin_chart left-margin">{{ 'skinchart' | translate }}</ion-col>
+    </ion-row>
+    <!-- <div style="text-align: center" class="font_skin_chart">스킨 차트</div> -->
+    <!-- <button ion-button clear item-end>더 보기</button> -->
+    <!-- <ion-row>
+      <ion-col style="text-align: center">
+      </ion-col>
+    </ion-row> -->
+
+    <ion-row>
+      <ion-col class="font_skin_chart2" style="text-align: center">
+        측정 이력이 없습니다.<br />
+        지금 바로 플리닉으로 피부측정을 해보세요.<br />
+      </ion-col>
+    </ion-row>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <ion-row>
+      <ion-col style="text-align: center">
+        <button ion-button class="skin_btn" (click)="openBasicModal()">
+          <!-- <ion-icon name="happy">&nbsp;&nbsp;</ion-icon> -->
+          피부 측정하기 >
+        </button>
+      </ion-col>
+      <ion-col style="text-align: center">
+        <button ion-button class="detail_btn" (click)="skin_chart()">
+          <!-- <ion-icon name="happy">&nbsp;&nbsp;</ion-icon> -->
+          자세히 보기 >
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+
+
+
+  <ion-list class="carezone">
+    <ion-row>
+      <ion-col class="font_carezone left-margin">
+        케어존 미션
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="img_carezone_background" style="text-align: center">
+        <img class="img_carezone" src="assets/img/home/carezone1.png" />
+        <button class="carezon_btn1" ion-button><div class="carezon_btn_font">진행 중</div></button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="font_carezone2 left-margin">
+        할 수 있다 물광미인!
+      </ion-col>
+      <ion-col class="font_carezone2_page right-margin">
+        1/30
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="font_carezone2_sub left-margin">
+        ※진단 결과는 환경에 따라 상이할 수 있습니다.
+      </ion-col>
+    </ion-row>
+
+
+
+
+    <ion-row>
+      <ion-col class="img_carezone_background2" style="text-align: center">
+        <button class="carezon_btn2" ion-button><div class="carezon_btn_font">진행 중</div></button>
+        <img class="img_carezone2" src="assets/img/home/carezone2.png" />
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="font_carezone3 left-margin">
+        할 수 있다 물광미인!
+      </ion-col>
+      <ion-col class="font_carezone3_page right-margin">
+        2/30
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="font_carezone3_sub left-margin">
+        ※진단 결과는 환경에 따라 상이할 수 있습니다.
+      </ion-col>
+    </ion-row>
+
+
+
+
+    <ion-row>
+      <ion-col class="img_carezone_background3" style="text-align: center">
+        <button class="carezon_btn3" ion-button><div class="carezon_btn_font2">마감</div></button>
+        <img class="img_carezone2" src="assets/img/home/carezone2.png" />
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+      <ion-col class="font_carezone4 left-margin">
+        할 수 있다 물광미인!
+      </ion-col>
+      <ion-col class="font_carezone4_page right-margin">
+        2/30
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="font_carezone4_sub left-margin">
+        ※진단 결과는 환경에 따라 상이할 수 있습니다.
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col style="text-align: center">
+        <button ion-button class="mission_btn" outline (click)="care_zone()">미션 더 보기</button>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+  <br />
+  <ion-grid class="beauty_tip">
+    <ion-row>
+      <ion-col class="beauty_tip_title left-margin">
+        뷰티 팁
+      </ion-col>
+    </ion-row>
+    <ion-row class="beauty_grid_width">
+      <ion-col class=beauty_grid1 col-6>
+        <img class="beauty_img" src="assets/img/home/tip1.png" />
+        <div class="beauty_title">기초 화장</div>
+        <div class="beauty_desc">요즘 내가쓰는 꿀템 리스트</div>
+      </ion-col>
+      <ion-col class=beauty_grid2 col-6>
+        <img class="beauty_img" src="assets/img/home/tip2.png" />
+        <div class="beauty_title">기초 화장</div>
+        <div class="beauty_desc">요즘 내가쓰는 꿀템 리스트</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="beauty_grid_width">
+      <ion-col class="beauty_grid3" col-6>
+        <img class="beauty_img" src="assets/img/home/tip3.png" />
+        <div class="beauty_title">기초 화장</div>
+        <div class="beauty_desc">요즘 내가쓰는 꿀템 리스트</div>
+      </ion-col>
+      <ion-col class="beauty_grid4" col-6>
+        <img class="beauty_img" src="assets/img/home/tip4.png" />
+        <div class="beauty_title">기초 화장</div>
+        <div class="beauty_desc">요즘 내가쓰는 꿀템 리스트 피부</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="text-align: center">
+        <button ion-button outline class="beauty_btn">뷰티 팁 더보기</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list class="bottom-tip">
+
+    <ion-row>
+      <ion-col class="tip_title left-margin">유용한 정보</ion-col>
+    </ion-row>
+
+    <!-- <div class="tip_title left-margin">유용한 정보</div> -->
+    <ion-row>
+      <ion-col style="text-align: center">
+        <button class="bound" ion-item icon-start>
+          <div class="font_tip_btn">사용법</div>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <button class="bound2" ion-item icon-start>
+          <div class="font_tip_btn">뷰티 꿀팁</div>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <button class="bound3" ion-item icon-start>
+          <div class="font_tip_btn">고객센터</div>
+        </button>
+      </ion-col>
+    </ion-row>
+
+
+
+
+  </ion-list>
 
 </ion-content>

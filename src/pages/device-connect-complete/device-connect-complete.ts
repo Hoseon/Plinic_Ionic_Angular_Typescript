@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
 import { DeviceSkinStartPage } from '../device-skin-start/device-skin-start';
 import { DeviceSkinIngPage } from '../device-skin-ing/device-skin-ing';
 import {SuccessHomePage} from '../success-home/success-home';
@@ -17,7 +17,7 @@ import {SuccessHomePage} from '../success-home/success-home';
 })
 export class DeviceConnectCompletePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
@@ -25,9 +25,9 @@ export class DeviceConnectCompletePage {
   }
 
   public deviceComplete() {
-    // let myModal = this.modalCtrl.create(DeviceSkinStartPage);
-    // myModal.present();
-      this.navCtrl.push(SuccessHomePage);
+    this.viewCtrl.dismiss();
+    let myModal = this.modalCtrl.create(DeviceSkinStartPage);
+    myModal.present();
   }
 
   public measureBack(){

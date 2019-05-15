@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, Platform, AlertController } from '
 import { DeviceConnectCompletePage } from '../device-connect-complete/device-connect-complete';
 import { DeviceConnectFailPage } from '../device-connect-fail/device-connect-fail';
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
-
+import { SuccessHomePage} from '../success-home/success-home';
 /**
  * Generated class for the DeviceConnectIngPage page.
  *
@@ -45,6 +45,10 @@ export class DeviceConnectIngPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DeviceConnectIngPage');
+  }
+
+  public successpage(){
+      this.navCtrl.push(SuccessHomePage);
   }
 
   public measureBack() {

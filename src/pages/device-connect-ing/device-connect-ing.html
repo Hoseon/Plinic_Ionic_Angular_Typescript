@@ -41,7 +41,7 @@
         <div class="font_button">시작하기</div> -->
         <button #myButton class="cell" ion-button>
         <ion-spinner name="crescent" *ngIf="spintime == 0"></ion-spinner>
-      <div class="font_button">연동 중</div>
+      <div class="font_button" (click)="successpage()">연동 중</div>
       </button>
     </div>
 

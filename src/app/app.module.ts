@@ -8,7 +8,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 
 
-  
+
 //탭페이지 구성
 import { LoginPage } from '../pages/login/login';
 //import { LoginplinicPage } from '../pages/loginplinic/loginplinic';

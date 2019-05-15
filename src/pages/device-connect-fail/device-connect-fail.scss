@@ -1,4 +1,9 @@
 page-device-connect-fail {
+
+  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+
+    height: 0px;
+  }
   .font_title {
     width: 224px;
   height: 34px;
