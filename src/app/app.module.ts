@@ -71,7 +71,9 @@ import { DeviceConnectCompletePage } from '../pages/device-connect-complete/devi
 import { DeviceConnectFailPage } from '../pages/device-connect-fail/device-connect-fail';
 import { DeviceSkinStartPage } from '../pages/device-skin-start/device-skin-start';
 import { DeviceSkinIngPage } from '../pages/device-skin-ing/device-skin-ing';
+//Bluetooth 모듈 추가
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
+
 //다국어 처리 모듈 추가 20190510-추호선
 import { TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 
@@ -192,6 +194,7 @@ export function getAuthHttp(http, storage) {
     Transfer,
     Camera,
     Naver,
+    BluetoothLE,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
