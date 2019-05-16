@@ -35,7 +35,8 @@ threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*3);
 //date count
 
 
-skinbtnText = format(this.today, 'YYYY/MM');
+skinbtnYear = format(this.today, 'YYYY');
+skinbtnMonth = format(this.today, 'MM');
 extoday = format(this.today, 'YYYY/MM/DD');
 exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD');
 
@@ -153,7 +154,7 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD');
                 },
                 options: {
                   animation: {
-                      duration: 10000 // general animation time
+                      duration: 5000 // general animation time
                   },
                   legend: {
                     display: true     //라벨표시

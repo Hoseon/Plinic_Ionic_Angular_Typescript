@@ -1,10 +1,10 @@
-import { Component,Input, ViewChild, Inject  } from '@angular/core';
+import { Component,Input, ViewChild, Inject,ElementRef  } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController, Loading, ViewController } from 'ionic-angular';
 import { AuthService } from '../../../providers/auth-service';
 import { AgreementPage} from '../../agreement/agreement';
 import { PasswordfindPage} from '../passwordfind/passwordfind';
-
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 /**
  * Generated class for the LoginpagePage page.
@@ -20,10 +20,12 @@ import { PasswordfindPage} from '../passwordfind/passwordfind';
 })
 export class LoginpagePage {
 
-
+   @ViewChild("messageInput") public messageInput: ElementRef;
   loading: Loading;
   registerCredentials = { email: '', password: '' };
   userData: any;
+  signupform: FormGroup;
+
 
   constructor(public nav: NavController, public navParams: NavParams,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
@@ -35,16 +37,30 @@ export class LoginpagePage {
     console.log('ionViewDidLoad LoginpagePage');
   }
 
-//   public hide(){
-//     console.log('hide');
-//     document.getElementById("hide").style.display = "none";
-// }
-//
-//   public view(){
-//       console.log('visible');
-//     document.getElementById("hide").style.display = "";
-// }
-//
+  ngOnInit() {
+     let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+     this.signupform = new FormGroup({
+       password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]),
+       passwordconfirm: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]),
+       email: new FormControl('', [Validators.required, Validators.pattern(EMAILPATTERN)])
+     });
+  }
+
+  public setInputFocus(){
+      var elem:any = this.messageInput;
+      elem._native.nativeElement.focus(); // Keep the focus on input field.
+  }
+
+  public hide(){
+    console.log('hide');
+    document.getElementById("hide").style.display = "none";
+}
+
+  public view(){
+      console.log('visible');
+    document.getElementById("hide").style.display = "";
+}
+
 
 
   public agreepage(){
@@ -57,7 +73,12 @@ export class LoginpagePage {
     this.viewCtrl.dismiss();
   }
 
-
+  public naver_login(){
+       this.naver.login()
+         .then(response => console.log(response))
+         .catch(error => console.error(error));
+  }
+  
   public kakao_login() {
     this.showLoading()
     this.userData = this.auth.kakao_login();

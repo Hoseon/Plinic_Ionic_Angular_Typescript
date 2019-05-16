@@ -22,43 +22,40 @@
       </ion-grid>
    </ion-item>
 
-
-
-
    <ion-item no-lines >
      <ion-grid style="margin:0 auto;">
          <ion-row>
              <ion-col><circle-progress class="roundprogressbar"
-             [percent]="85"
+             [percent]="93"
              [radius]="100"
              [outerStrokeWidth]="11"
-             [innerStrokeWidth]="2"
+             [innerStrokeWidth]="11"
              [outerStrokeColor]="'#00af66'"
-             [innerStrokeColor]="'#00af66'"
+             [innerStrokeColor]="'#d8d8d8'"
              [animation]="true"
-             [animationDuration]="300"
+             [animationDuration]="500"
              [titleFontSize]="30"
              [unitsFontSize]="30"
              [subtitleFontSize]="25"
              [toFixed] = "1"
-             [space] = "-6"
+             [space] = "-10"
              subtitle = "유분"
            ></circle-progress></ion-col>
 
              <ion-col><circle-progress class="roundprogressbar"
-             [percent]="35"
+             [percent]="54"
              [radius]="100"
              [outerStrokeWidth]="11"
-             [innerStrokeWidth]="2"
+             [innerStrokeWidth]="11"
              [outerStrokeColor]="'#ffa000'"
-             [innerStrokeColor]="'#ffa000'"
+             [innerStrokeColor]="'#d8d8d8'"
              [animation]="true"
-             [animationDuration]="300"
+             [animationDuration]="500"
              [titleFontSize]="30"
              [unitsFontSize]="30"
              [subtitleFontSize]="25"
              [toFixed] = "1"
-             [space] = "-6"
+             [space] = "-10"
              subtitle = "수분"
            ></circle-progress></ion-col>
          </ion-row>
@@ -79,7 +76,7 @@
 
 
 
-    <ion-item>
+    <ion-item style="width: 320px; margin:0 auto">
       <ion-grid>
         <ion-row class="gridstatus">
           <ion-col class="secondstatus">보통</ion-col>
@@ -89,7 +86,7 @@
     </ion-item>
 
 
-    <ion-item>
+    <ion-item style="width: 320px; margin:0 auto">
       <ion-grid class="griddata">
          <ion-row>
           <ion-col class="data1">60.5%</ion-col>
@@ -99,7 +96,7 @@
       </ion-grid>
     </ion-item>
 
-    <ion-item>
+    <ion-item style="width:320px; margin:0 auto;">
       <ion-grid class="griddata">
         <ion-row>
           <ion-col class="data1">32.5%</ion-col>
@@ -107,27 +104,24 @@
           <ion-col class="data3">32.5%</ion-col>
         </ion-row>
       </ion-grid>
-    </ion-item>
-  </ion-list>
+    </ion-item><br>
+
+
   <ion-item no-lines>
-    <p class="data"> ※진단 결과는 환경에 따라 상이할 수 있습니다.</p>
-  </ion-item><br><br>
+    <p class="sub"> ※진단 결과는 환경에 따라 상이할 수 있습니다.</p>
+  </ion-item>
+</ion-list><br><br>
 
 
   <ion-list>
       <ion-row class="skinrow">
-      <ion-col><h2 class="skinscore">기간별 피부 변화</h2></ion-col>
       <ion-col>
-      <ion-item no-lines>
-      <ion-select placeholder="{{skinbtnText}}" interface="popover" multiple="false" class="linechart_btn">
-      <ion-option *ngFor="let days of monthdate" >{{days.day}}</ion-option>2019년 8월</ion-select>
-      </ion-item>
-      </ion-col>
+      <h2 class="skinscore">기간별 피부 변화</h2></ion-col>
+      <ion-col><ion-select placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover" multiple="false" class="linechart_btn">
+      <ion-option *ngFor="let days of monthdate" >{{days.day}}</ion-option></ion-select></ion-col>
       </ion-row>
-      <br>
-    <canvas #lineCanvas height="300"></canvas>
-  </ion-list>
-
+  </ion-list><br>
+<canvas #lineCanvas height="300"></canvas><br>
 
   <ion-list no-lines>
   <ion-item text-wrap>
