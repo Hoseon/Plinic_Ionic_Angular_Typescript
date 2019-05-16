@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
-import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-mission-ing';
 import { ImagesProvider } from '../../providers/images/images';
 import { CareZoneMissionIngPage} from '../care-zone-mission-ing/care-zone-mission-ing'
 import { CareZoneMissionStartPage} from '../care-zone-mission-start/care-zone-mission-start'
