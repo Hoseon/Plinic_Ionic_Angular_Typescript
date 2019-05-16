@@ -22,7 +22,7 @@
     <ion-row>
       <ion-col class="font_skin_chart2" style="text-align: center">
         측정 이력이 없습니다.<br />
-        지금 바로 플리닉으로 피부측정을 해보세요111.<br />
+        지금 바로 플리닉으로 피부측정을 해보세요<br />
       </ion-col>
     </ion-row>
     <br />
@@ -54,13 +54,13 @@
 
     <ion-row>
       <ion-col class="img_carezone_background" style="text-align: center">
-        <img class="img_carezone" src="assets/img/home/carezone1.png" />
+        <img class="img_carezone" src="http://plinic.cafe24app.com/carezone_images/{{first_carezone__id}}" />
         <button class="carezon_btn1" ion-button><div class="carezon_btn_font">진행 중</div></button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone2 left-margin">
-        할 수 있다 물광미인!
+        {{first_carezone_title}}
       </ion-col>
       <ion-col class="font_carezone2_page right-margin">
         1/30
@@ -68,7 +68,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone2_sub left-margin">
-        ※진단 결과는 환경에 따라 상이할 수 있습니다.
+        {{first_carezone_body}}
       </ion-col>
     </ion-row>
 
@@ -78,12 +78,12 @@
     <ion-row>
       <ion-col class="img_carezone_background2" style="text-align: center">
         <button class="carezon_btn2" ion-button><div class="carezon_btn_font">진행 중</div></button>
-        <img class="img_carezone2" src="assets/img/home/carezone2.png" />
+        <img class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{second_carezone__id}}" />
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone3 left-margin">
-        할 수 있다 물광미인!
+        {{second_carezone_title}}
       </ion-col>
       <ion-col class="font_carezone3_page right-margin">
         2/30
@@ -91,7 +91,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone3_sub left-margin">
-        ※진단 결과는 환경에 따라 상이할 수 있습니다.
+        {{second_carezone_body}}
       </ion-col>
     </ion-row>
 
@@ -101,13 +101,13 @@
     <ion-row>
       <ion-col class="img_carezone_background3" style="text-align: center">
         <button class="carezon_btn3" ion-button><div class="carezon_btn_font2">마감</div></button>
-        <img class="img_carezone2" src="assets/img/home/carezone2.png" />
+        <img class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{third_carezone__id}}" />
       </ion-col>
 
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone4 left-margin">
-        할 수 있다 물광미인!
+        {{third_carezone_title}}
       </ion-col>
       <ion-col class="font_carezone4_page right-margin">
         2/30
@@ -115,7 +115,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone4_sub left-margin">
-        ※진단 결과는 환경에 따라 상이할 수 있습니다.
+        {{third_carezone_body}}
       </ion-col>
     </ion-row>
 

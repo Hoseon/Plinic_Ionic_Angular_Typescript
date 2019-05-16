@@ -20,12 +20,28 @@ export class HomePage {
   userData: any;
   bannerData: any;
   imageUrl: any;
+  carezoneData: any;
+  careDataOBJ: any;
+  first_carezone_title: any;
+  first_carezone_body: any;
+  first_carezone__id: any;
+  second_carezone_title: any;
+  second_carezone_body: any;
+  second_carezone__id: any;
+  third_carezone_title: any;
+  third_carezone_body: any;
+  third_carezone__id: any;
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController, public translateService : TranslateService
     //public bluetoothle: BluetoothLE
   ) {
     this.platform.ready().then((readySource) => {
       this.bannerData = this.roadbanner();
+      this.roadcareZone();
+
+      //this.first_carezone = this.careDataOBJ[0];
+      //this.second_carezone = this.careDataOBJ[1];
+      //this.third_carezone = this.careDataOBJ[2];
       //console.log('Platform ready from', readySource);
       //this.showAlert(readySource);
 
@@ -61,14 +77,27 @@ export class HomePage {
 
 
   public roadbanner() {
-    //this.bannerData = this.auth.bannerRoad();
-
     this.images.bannerRoad().subscribe(data => {
       this.bannerData = data;
     });
-
-
   }
+
+  public roadcareZone() {
+    this.images.maincarezoneRoad().subscribe(data => {
+      this.first_carezone_title = data[0].title;
+      this.first_carezone_body = data[0].body;
+      this.first_carezone__id = data[0]._id;
+      this.second_carezone_title = data[1].title;
+      this.second_carezone_body = data[1].body;
+      this.second_carezone__id = data[1]._id;
+      this.third_carezone_title = data[2].title;
+      this.third_carezone_body = data[2].body;
+      this.third_carezone__id = data[2]._id;
+      this.carezoneData = data;
+    });
+  }
+
+
 
   public kakao_request() {
     this._kakaoCordovaSDK

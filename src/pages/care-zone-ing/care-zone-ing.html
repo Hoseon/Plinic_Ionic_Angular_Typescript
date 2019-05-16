@@ -17,24 +17,29 @@
     <ion-item no-lines>
       <ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample.png" srcset="assets/img/ic-system-profile-sample@2x.png 2x,
              assets/img/ic-system-profile-sample@3x.png 3x"></ion-img><br>
-      <div style="text-align:center"><p class="top-text">이성균</p><p class="top-text2">님 진행 중인<br> 미션이 있습니다.</p></div><br>
+      <div style="text-align:center">
+        <p class="top-text">이성균</p>
+        <p class="top-text2">님 진행 중인<br> 미션이 있습니다.</p>
+      </div><br>
     </ion-item>
 
 
-      <button ion-button class="button_outline" outline style="font-size: 14px" (click)="mission_ing()">진행중인 미션
+    <button ion-button class="button_outline" outline style="font-size: 14px" (click)="mission_ing()">진행중인 미션
       <ion-img class="inglogo" src="assets/img/care-zone/ing/ic-system-step-01.png" srcset="assets/img/care-zone/ing/ic-system-step-01@2x.png 2x,
                     assets/img/care-zone/ing/ic-system-step-01@3x.png 3x"></ion-img></button>
+  </ion-list>
 
 
+  <ion-list *ngFor="let carezone of carezoneData">
     <ion-row class="row">
       <ion-col class="container">
-        <img class="imagealign" src="assets/img/home/carezone1.png" />
+        <img class="imagealign" src="http://plinic.cafe24app.com/carezone_images/{{carezone._id}}" />
         <button class="ing_btn" ion-button>진행 중</button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="imagetitle">
-        할 수 있다 물광미인!
+        {{carezone.title}}
       </ion-col>
       <ion-col class="right_align">
         2/30
@@ -42,48 +47,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="sub">
-      ※진단 결과는 환경에 따라 상이할 수 있습니다.
-      </ion-col>
-    </ion-row><br><br><br>
-
-    <ion-row class="row">
-      <ion-col class="container">
-        <img class="imagealign" src="assets/img/home/carezone2.png" />
-        <button class="ing_btn" ion-button>진행 중</button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="imagetitle">
-        할 수 있다 물광미인!
-      </ion-col>
-      <ion-col class="right_align">
-        2/30
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="sub">
-      ※진단 결과는 환경에 따라 상이할 수 있습니다.
-      </ion-col>
-    </ion-row><br><br><br>
-
-    <ion-row class="row">
-      <ion-col class="container">
-        <img class="imagealign" src="assets/img/home/carezone2.png" />
-        <button class="deadline_btn" ion-button>마감</button>
-      </ion-col>
-
-    </ion-row>
-    <ion-row>
-      <ion-col class="imagetitle">
-        할 수 있다 물광미인!
-      </ion-col>
-      <ion-col class="right_align">
-        2/30
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="sub">
-      ※진단 결과는 환경에 따라 상이할 수 있습니다.
+        {{carezone.body}}
       </ion-col>
     </ion-row><br><br><br>
 

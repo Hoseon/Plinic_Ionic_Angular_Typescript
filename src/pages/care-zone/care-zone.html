@@ -23,16 +23,16 @@
 
 
 
-  <ion-list>
+  <ion-list *ngFor="let carezone of carezoneData">
     <ion-row class="row">
       <ion-col class="container">
-        <img class="imagealign" src="assets/img/home/carezone1.png" />
+        <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}'  />
         <button class="ing_btn" ion-button>진행 중</button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="imagetitle">
-        할 수 있다 물광미인!
+        {{carezone.title}}
       </ion-col>
       <ion-col class="right_align">
         2/30
@@ -40,51 +40,9 @@
     </ion-row>
     <ion-row>
       <ion-col class="sub">
-      ※진단 결과는 환경에 따라 상이할 수 있습니다.
+      {{carezone.body}}
       </ion-col>
-    </ion-row><br><br><br>
-
-    <ion-row class="row">
-      <ion-col class="container">
-        <img class="imagealign" src="assets/img/home/carezone2.png" />
-        <button class="ing_btn" ion-button>진행 중</button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="imagetitle">
-        할 수 있다 물광미인!
-      </ion-col>
-      <ion-col class="right_align">
-        2/30
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="sub">
-      ※진단 결과는 환경에 따라 상이할 수 있습니다.
-      </ion-col>
-    </ion-row><br><br><br>
-
-    <ion-row class="row">
-      <ion-col class="container">
-        <img class="imagealign" src="assets/img/home/carezone2.png" />
-        <button class="deadline_btn" ion-button>마감</button>
-      </ion-col>
-
-    </ion-row>
-    <ion-row>
-      <ion-col class="imagetitle">
-        할 수 있다 물광미인!
-      </ion-col>
-      <ion-col class="right_align">
-        2/30
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="sub">
-      ※진단 결과는 환경에 따라 상이할 수 있습니다.
-      </ion-col>
-    </ion-row><br><br><br>
-
+    </ion-row><br><br>
   </ion-list>
 
 

@@ -16,20 +16,14 @@ export class MyApp {
   rootPage: any = LoginPage;
 
   constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
-<<<<<<< HEAD
-    private screenOrientation: ScreenOrientation, public translateService: TranslateService,
-    //private oneSignal: OneSignal
-    ) {
-=======
     private screenOrientation: ScreenOrientation,public translateService: TranslateService) {
->>>>>>> 3e3e5954feac797cdd8f4546d02e3c89e0a95756
     this.initializeApp();
   }
 
   initializeApp() {
     let browserLanguage = this.translateService.getBrowserLang();
     let defaultlanguage = browserLanguage.substring(0, 2).toLowerCase();
-    console.log("defaultlanguage:"+defaultlanguage)
+    //console.log("defaultlanguage:"+defaultlanguage)
     this.translateService.use(defaultlanguage);
     this.platform.ready().then(() => {
       // Okay, so the  platform is ready and our plugins are available.

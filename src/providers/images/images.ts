@@ -15,12 +15,23 @@ import { Transfer, TransferObject, FileUploadOptions } from '@ionic-native/trans
 export class ImagesProvider {
 
   apiURL = 'http://plinic.cafe24app.com/';
+  //apiURL = 'http://localhost:8001/';
 
   constructor(public http: Http, private transfer: Transfer, private alertCtrl: AlertController) { }
 
 
   public bannerRoad() {
     return this.http.get(this.apiURL + 'banner/list')
+      .map(response => response.json());
+  }
+
+  public carezoneRoad() {
+    return this.http.get(this.apiURL + 'carezone/list')
+      .map(response => response.json());
+  }
+
+  public maincarezoneRoad() {
+    return this.http.get(this.apiURL + 'carezone/main_list')
       .map(response => response.json());
   }
 

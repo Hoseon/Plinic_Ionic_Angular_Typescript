@@ -60,7 +60,7 @@ export class AuthService {
 
   }
 
-  
+
 
   checkToken() {
     this.storage.get(TOKEN_KEY).then(token => {
