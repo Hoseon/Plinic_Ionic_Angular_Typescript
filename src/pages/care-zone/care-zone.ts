@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { CareZoneIngPage } from '../care-zone-ing/care-zone-ing';
 import { ImagesProvider } from '../../providers/images/images';
+import { CareZoneMissionIngPage} from '../care-zone-mission-ing/care-zone-mission-ing'
+import { CareZoneMissionStartPage} from '../care-zone-mission-start/care-zone-mission-start'
+import { CareZoneMissionDeadlineEndPage} from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end'
 
 
 /**
@@ -32,9 +35,18 @@ export class CareZonePage {
 
 
 
-  public carezone_ing(){
-        this.nav.push(CareZoneIngPage);
-  }
+public carezone_ing(){
+      this.nav.push(CareZoneIngPage);
+}
+public mission_ing(){
+      this.nav.push(CareZoneMissionIngPage);
+}
+public mission_start(){
+      this.nav.push(CareZoneMissionStartPage);
+}
+public mission_deadline_end(){
+      this.nav.push(CareZoneMissionDeadlineEndPage);
+}
 
 
 

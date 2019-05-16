@@ -56,9 +56,12 @@ page-care-zone-mission-deadline-end {
                     object-fit: contain;
                     margin-left: auto;
                     margin-right: auto;
-                    display: block;
+                    display: flex;
                     text-align: center;
                     background-color: #ffffff;
+                    padding-left: 9.5%;
+                    -webkit-filter: grayscale(100%);
+                    filter: grayscale(100%);
                   }
 
                   .button_outline{

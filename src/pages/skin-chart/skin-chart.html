@@ -108,41 +108,27 @@
         </ion-row>
       </ion-grid>
     </ion-item>
-<!--
-    <ion-item>
-      <ion-grid class="grid">
-        <ion-row>
-          <ion-col>60.5%</ion-col>
-          <ion-col>주름</ion-col>
-          <ion-col>60.5%</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-
-    <ion-item>
-      <ion-grid class="grid">
-        <ion-row>
-          <ion-col>60.5%</ion-col>
-          <ion-col>탄력</ion-col>
-          <ion-col>60.5%</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item> -->
-  </ion-list><br>
+  </ion-list>
   <ion-item no-lines>
-    <p class="data"> ※진단 결과는 환경에 따라 상이할 수 있습니다.</p><br><br>
-  </ion-item>
+    <p class="data"> ※진단 결과는 환경에 따라 상이할 수 있습니다.</p>
+  </ion-item><br><br>
 
 
   <ion-list>
-    <ion-item no-lines>
-      <h2 class="skinscore">기간별 피부 변화</h2><br>
-
-        <canvas #lineCanvas height="300"></canvas>
-
-    </ion-item>
-
+      <ion-row class="skinrow">
+      <ion-col><h2 class="skinscore">기간별 피부 변화</h2></ion-col>
+      <ion-col>
+      <ion-item no-lines>
+      <ion-select placeholder="{{skinbtnText}}" interface="popover" multiple="false" class="linechart_btn">
+      <ion-option *ngFor="let days of monthdate" >{{days.day}}</ion-option>2019년 8월</ion-select>
+      </ion-item>
+      </ion-col>
+      </ion-row>
+      <br>
+    <canvas #lineCanvas height="300"></canvas>
   </ion-list>
+
+
   <ion-list no-lines>
   <ion-item text-wrap>
     <p class="data">※&nbsp;{{exthreeDaysAgo}} ~ {{extoday}}까지 데이터 분석입니다.</p><br>

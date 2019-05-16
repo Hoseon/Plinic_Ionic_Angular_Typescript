@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController , NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
-import { format } from 'date-fns'
-//import ko from 'date-fns/locale/ko'
+import { format } from 'date-fns';
 import 'chartjs-plugin-labels';
+import ko from 'date-fns/locale/ko';
+
 
 /**
  * Generated class for the SkinChartPage page.
@@ -24,12 +25,7 @@ export class SkinChartPage {
 @ViewChild('lineCanvas') lineCanvas;
 
 
-
-// OilChart: any;
-// MoistureChart: any;
-
 lineChart: any;
-percentage: any;
 //chart
 
 today: any = new Date();
@@ -39,8 +35,9 @@ threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*3);
 //date count
 
 
-extoday = format(this.today, 'YYYY/MM/DD')
-exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD')
+skinbtnText = format(this.today, 'YYYY/MM');
+extoday = format(this.today, 'YYYY/MM/DD');
+exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD');
 
   constructor(public navCtrl: NavController , public navParams: NavParams  ) {
   }
@@ -48,10 +45,10 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD')
   ionViewDidLoad() {
     console.log('ionViewDidLoad SkinChartPage');
 
-    this.today = format(this.today, 'MM/DD')
-    this.yesterday = format(this.yesterday, 'MM/DD')
-    this.twoDaysAgo = format(this.twoDaysAgo, 'MM/DD')
-    this.threeDaysAgo = format(this.threeDaysAgo, 'MM/DD')
+    this.today = format(this.today, 'MM/DD');
+    this.yesterday = format(this.yesterday, 'MM/DD');
+    this.twoDaysAgo = format(this.twoDaysAgo, 'MM/DD');
+    this.threeDaysAgo = format(this.threeDaysAgo, 'MM/DD');
 
 
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
@@ -183,9 +180,105 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD')
                     //   }
                 }
             });
-
-
 }
+
+monthdate: any[] = [
+  {
+    "day": "1일"
+  },
+  {
+    "day": "2일"
+  },
+  {
+    "day": "3일"
+  },
+  {
+    "day": "4일"
+  },
+  {
+    "day": "5일"
+  },
+  {
+    "day": "6일"
+  },
+  {
+    "day": "7일"
+  },
+  {
+    "day": "8일"
+  },
+  {
+    "day": "9일"
+  },
+  {
+    "day": "10일"
+  },
+  {
+    "day": "11일"
+  },
+  {
+    "day": "12일"
+  },
+  {
+    "day": "13일"
+  },
+  {
+    "day": "14일"
+  },
+  {
+    "day": "15일"
+  },
+  {
+    "day": "16일"
+  },
+  {
+    "day": "17일"
+  },
+  {
+    "day": "18일"
+  },
+  {
+    "day": "19일"
+  },
+  {
+    "day": "20일"
+  },
+  {
+    "day": "21일"
+  },
+  {
+    "day": "22일"
+  },
+  {
+    "day": "23일"
+  },
+  {
+    "day": "24일"
+  },
+  {
+    "day": "25일"
+  },
+  {
+    "day": "26일"
+  },
+  {
+    "day": "27일"
+  },
+  {
+    "day": "28일"
+  },
+  {
+    "day": "29일"
+  },
+  {
+    "day": "30일"
+  },
+  {
+    "day": "31일"
+  }
+];
+
+
 
     // this.OilChart = new Chart(this.doughnutCanvas2.nativeElement, {
     //

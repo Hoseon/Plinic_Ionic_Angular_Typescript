@@ -10,6 +10,9 @@ import { SkinMeasureStartPage } from '../skin-measure-start/skin-measure-start'
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { TranslateService } from 'ng2-translate/ng2-translate'
 import { TabsPage } from '../tabs/tabs'
+import { CareZoneMissionIngPage} from '../care-zone-mission-ing/care-zone-mission-ing'
+import { CareZoneMissionStartPage} from '../care-zone-mission-start/care-zone-mission-start'
+import { CareZoneMissionDeadlineEndPage} from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end'
 
 
 @IonicPage()
@@ -138,6 +141,16 @@ export class HomePage {
 
   public care_zone() {
     this.nav.push(CareZonePage);
+  }
+
+  public mission_ing(){
+        this.nav.push(CareZoneMissionIngPage);
+  }
+  public mission_start(){
+        this.nav.push(CareZoneMissionStartPage);
+  }
+  public mission_deadline_end(){
+        this.nav.push(CareZoneMissionDeadlineEndPage);
   }
 
   // public logout(){
