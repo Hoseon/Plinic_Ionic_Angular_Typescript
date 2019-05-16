@@ -37,6 +37,8 @@ export class CareZonePage {
   }
 
 
+
+
   public roadcareZone() {
     this.images.carezoneRoad().subscribe(data => {
       this.carezoneData = data;

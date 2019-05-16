@@ -6,7 +6,6 @@ import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../providers/auth-service';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { TranslateService } from 'ng2-translate/ng2-translate';
-//import { OneSignal } from '@ionic-native/onesignal';
 
 
 @Component({
@@ -26,7 +25,7 @@ export class MyApp {
     //console.log("defaultlanguage:"+defaultlanguage)
     this.translateService.use(defaultlanguage);
     this.platform.ready().then(() => {
-      // Okay, so the  platform is ready and our plugins are available.
+      // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.auth.authenticationState.subscribe(state => {
@@ -40,17 +39,6 @@ export class MyApp {
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       }
       this.splashScreen.hide();
-      this.setupPush();
     });
-  }
-
-  setupPush(){
-    // var notificationOpenedCallback = function(jsonData){
-    //   console.log('Notificaton' + JSON.stringify(jsonData));
-    // }
-    // window["plugins"].oneSignal
-    // .oneSignal.startInit('446afa5d-3e5d-4088-9c7c-8d51980d042c')
-    // .oneSignal.handleNotificationOpened(notificationOpenedCallback)
-    // .oneSignal.endInit()
   }
 }

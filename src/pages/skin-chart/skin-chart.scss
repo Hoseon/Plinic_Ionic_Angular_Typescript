@@ -1,31 +1,63 @@
           page-skin-chart {
 
 
-              min-width: 100%;
-              min-height: 100%;
 
-              .title{
-                position: absolute;
-                left: 50%;
-                top: 0;
-                transform: translateX(-50%);
-                height: 100%;
-                width: 70%;
-                font-family: NotoSansCJKkr;
-                font-size: 17px;
-                font-weight: bold;
-                font-style: normal;
-                font-stretch: normal;
-                line-height: normal;
-                letter-spacing: normal;
-                text-align: center;
-                color: #292929;
-              }
+
+                          .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+                            height: 1px;
+                            margin-bottom: 5px;
+                          }
+                          .toolbar-title-md{
+                            font-weight: bold;
+                            font-size: 17px;
+                            background-color: #FFF;
+                            font-family: NotoSansCJKkr;
+                            font-style: normal;
+                            font-stretch: normal;
+                            line-height: normal;
+                            letter-spacing: normal;
+                            text-align: center;
+                          }
+                          .toolbar-title-ios{
+                            font-weight: bold;
+                            font-size: 17px;
+                            background-color: #FFF;
+                            font-family: NotoSansCJKkr;
+                            font-style: normal;
+                            font-stretch: normal;
+                            line-height: normal;
+                            letter-spacing: normal;
+                            text-align: center;
+                          }
+                          .toolbar-background {
+                            background-color: #FFF;
+                          }
+
+                          .ion-md-arrow-back:before {
+                            position: absolute;
+                            content: "\f27d";
+                            left: 13px;
+                            top: 4px;
+                            width: 25px;
+                            height: 25x;
+                        }
+
+                          .title{
+                            position: absolute;
+                            left: 50%;
+                            top: 0;
+                            transform: translateX(-50%);
+                            height: 100%;
+                            width: 70%;
+                            color: #292929;
+                          }
 
              .img-logo{
                 background-color: #ffffff;
                 width: 4px;
                 height: 4px;
+                margin-top: 2px;
+                margin-left: 3px;
              }
 
              .roundprogressbar{
@@ -35,32 +67,58 @@
                margin-right: auto;
                display: block;
              }
-
-
-             .grid{
-               min-width: 40px;
-               min-height: 19px;
-               text-align: center;
-               margin-left: auto;
-               margin-right: auto;
-               display: block;
+              .label-md{
+                 padding: 0px;
+                 margin: 0px;
+              }
+              .gridstatus{
+                margin-bottom: 30px;
+              }
+              .secondstatus{
+              font-family: AppleSDGothicNeo;
+              font-size: 16px;
+              font-weight: bold;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              text-align: center;
+              color: #00af66;
+              padding: 0px;
              }
-
              .status{
-            font-weight: normal;
-            font-size: 15px;
-            text-align: center;
-            color: #ffa000;
+               font-family: AppleSDGothicNeo;
+               font-size: 16px;
+               font-weight: bold;
+               font-style: normal;
+               font-stretch: normal;
+               line-height: normal;
+               letter-spacing: normal;
+               text-align: center;
+               color: #ffa000;
+              padding: 0px;
              }
 
-
-            .secondstatus{
-
-            font-size: 15px;
-            font-weight: normal;
-            text-align: center;
-            color: #00af66;
+          .item-md.item-block .item-inner{
+            padding: 0px;
           }
+          .item-ios.item-block .item-inner{
+            padding: 0px;
+          }
+          ion-app.md [padding] .scroll-content{
+            padding: 20px;
+          }
+          ion-app.ios [padding] .scroll-content{
+            padding: 20px;
+          }
+
+          .griddata{
+
+            text-align: center;
+           margin-left: auto;
+            margin-right: auto;
+            display: block;
+         }
 
           .data{
             font-family: Roboto;
@@ -72,8 +130,53 @@
             letter-spacing: normal;
             color: #b6b6b6;
           }
-          .skinscore{
 
+          .data1{
+            position: absolute;
+            right:25%;
+            font-family: Roboto;
+            font-size: 14px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #292929;
+          }
+           .data2{
+            font-family: NotoSansCJKkr;
+            font-size: 14px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #858585;
+           }
+          .data3{
+            position: absolute;
+            right:-21%;
+            font-family: Roboto;
+            font-size: 14px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #292929;
+          }
+
+          .item-md{
+            padding: 0px;
+            margin: 0px;
+          }
+          .item-ios{
+            padding: 0px;
+            margin: 0px;
+          }
+          .skinscore{
+          left: 4px;
           height: 45px;
           font-family: NotoSansCJKkr;
           font-size: 15px;
@@ -86,6 +189,10 @@
          }
 
           .care{
+            width: 316px;
+            height: 54px;
+            margin-left: auto;
+            margin-right: auto;
             font-family: Roboto;
             font-size: 18px;
             font-weight: bold;
@@ -99,23 +206,30 @@
           }
 
           .ex{
-          min-width: 100%;
-           font-family: Roboto;
-           font-size: 14px;
-           font-weight: normal;
-           font-style: normal;
-           font-stretch: normal;
-           line-height: 1.79;
-           letter-spacing: normal;
-           color: #292929;
+            width: 320px;
+            height: 150px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: Roboto;
+            font-size: 14px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.79;
+            letter-spacing: normal;
+            color: #292929;
+
           }
 
-
+          .item-ios h2:last-child, .item-ios h3:last-child, .item-ios h4:last-child, .item-ios h5:last-child, .item-ios h6:last-child, .item-ios p:last-child{
+            margin-top: auto;
+            margin-bottom: auto;
+          }
           .button_outline {
             font-size: 14px;
             border: solid 0.5px #c7c7c7;
             background-color:#FFF;
-            min-width: 90%;
+            min-width: 100%;
             min-height: 50px;
             margin-top: auto;
             margin-bottom: auto;
