@@ -18,15 +18,56 @@
       <ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample.png" srcset="assets/img/ic-system-profile-sample@2x.png 2x,
              assets/img/ic-system-profile-sample@3x.png 3x"></ion-img></ion-item>
       <div style="text-align:center"><p class="top-text">이성균</p><p class="top-text2">님 피부관리를 위한<br> 미션을 선택해주세요.</p></div><br>
-      <button ion-button style="font-size: 14px" class="button_outline" outline (click)="carezone_ing()">케어존이란?&nbsp;&nbsp;&nbsp;></button>
+      <button ion-button style="font-size: 14px" class="button_outline" outline (click)="carezone_ing()">케어존이란?&nbsp;&nbsp;></button>
   </ion-list>
 
 
 
   <ion-list>
     <ion-row class="row">
-      <ion-col class="container">
-        <img class="imagealign" src="assets/img/home/carezone1.png" />
+      <ion-col class="container" (click)="mission_ing()">
+        <img class="imagealign" src="assets/img/home/carezone4.png" />
+        <button class="in_btn" ion-button >참여중</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="imagetitle">
+        할 수 있다 물광미인!
+      </ion-col>
+      <ion-col class="right_align">
+        2/30
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="sub">
+      ※진단 결과는 환경에 따라 상이할 수 있습니다.
+      </ion-col>
+    </ion-row><br><br><br>
+
+
+      <ion-row class="row">
+        <ion-col class="container" (click)="mission_start()">
+          <img class="imagealign" src="assets/img/home/carezone1.png" />
+          <button class="closing_btn" ion-button >마감 입박</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="imagetitle">
+          할 수 있다 물광미인!
+        </ion-col>
+        <ion-col class="right_align">
+          2/30
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="sub">
+        ※진단 결과는 환경에 따라 상이할 수 있습니다.
+        </ion-col>
+      </ion-row><br><br><br>
+
+    <ion-row class="row">
+      <ion-col class="container" (click)="mission_start()">
+        <img class="imagealign" src="assets/img/home/carezone5.png" />
         <button class="ing_btn" ion-button>진행 중</button>
       </ion-col>
     </ion-row>
@@ -45,8 +86,8 @@
     </ion-row><br><br><br>
 
     <ion-row class="row">
-      <ion-col class="container">
-        <img class="imagealign" src="assets/img/home/carezone2.png" />
+      <ion-col class="container" (click)="mission_start()">
+        <img class="imagealign" src="assets/img/home/carezone6.png" />
         <button class="ing_btn" ion-button>진행 중</button>
       </ion-col>
     </ion-row>
@@ -65,7 +106,7 @@
     </ion-row><br><br><br>
 
     <ion-row class="row">
-      <ion-col class="container">
+      <ion-col class="container" (click)="mission_deadline_end()">
         <img class="imagealign" src="assets/img/home/carezone2.png" />
         <button class="deadline_btn" ion-button>마감</button>
       </ion-col>
@@ -86,10 +127,6 @@
     </ion-row><br><br><br>
 
   </ion-list>
-
-
-
-
 
 
 

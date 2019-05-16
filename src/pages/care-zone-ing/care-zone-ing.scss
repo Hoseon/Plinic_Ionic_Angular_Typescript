@@ -27,7 +27,9 @@ page-care-zone-ing {
         .ion-ios-arrow-back:before{
           content: "";
         }
-
+        .back-button.show-back-button{
+          display: none;
+        }
         .title{
           position: absolute;
           left: 50%;
@@ -92,7 +94,7 @@ page-care-zone-ing {
       display: block;
       border: solid 0.5px #c7c7c7;
       background-color:#FFF;
-      min-width: 325px;
+      min-width: 97%;
       min-height: 50px;
       font-family: NotoSansCJKkr;
       font-size: 14px;
@@ -118,7 +120,8 @@ page-care-zone-ing {
         margin-left: auto;
         margin-right: auto;
         display: block;
-        border-radius: 15px;
+        border-radius: 5px;
+        background-color: #e2e1e6;
       }
 
 
@@ -131,7 +134,58 @@ page-care-zone-ing {
         width: 100%;
         height: auto;
       }
+          .container .in_btn{
+        position: absolute;
+        top: 13%;
+        left: 13%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        color: #FFF;
+        padding: 12px 0px;
+        height: 10%;
+        width: 15%;
+        cursor: pointer;
+        border-radius: 2.5px;
+        font-family: NotoSansCJKkr;
+        font-size: 11px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        background-color: #00af66;
+      }
 
+      .container .in_btn:hover{
+        background-color: black;
+      }
+        .container .closing_btn{
+      position: absolute;
+      top: 13%;
+      left: 13%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      color: #FFF;
+      padding: 12px 0px;
+      height: 10%;
+      width: 15%;
+      cursor: pointer;
+      border-radius: 2.5px;
+      font-family: NotoSansCJKkr;
+      font-size: 11px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      background-color: #FF2424;
+      }
+
+      .container .closing_btn:hover{
+      background-color: black;
+      }
       .container .ing_btn{
       position: absolute;
       top: 13%;
