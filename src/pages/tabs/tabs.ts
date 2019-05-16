@@ -5,6 +5,7 @@ import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
 import { MyinfoPage } from '../myinfo/myinfo';
+import { CareZonePage } from '../care-zone/care-zone';
 
 @IonicPage() @Component({
   templateUrl: 'tabs.html'
@@ -12,9 +13,9 @@ import { MyinfoPage } from '../myinfo/myinfo';
 export class TabsPage {
 
   tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
-  tab4Root = ContactPage;
+  tab2Root = CareZonePage;
+  tab3Root = AboutPage;
+  // tab4Root = ContactPage;
   tab5Root = MyinfoPage;
 
   constructor() {

@@ -9,6 +9,7 @@ import { CareZonePage } from '../care-zone/care-zone'
 import { SkinMeasureStartPage } from '../skin-measure-start/skin-measure-start'
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { TranslateService } from 'ng2-translate/ng2-translate'
+import { TabsPage } from '../tabs/tabs'
 
 
 @IonicPage()
@@ -147,5 +148,12 @@ export class HomePage {
   //   this.userData = this.auth.getUserInfo();
   //
   // }
+
+
+  public openCareZoneTab(): void {
+    // The second tab is the one with the index = 1
+    //this.nav.push(TabsPage, { selectedTab: 1 });
+    this.nav.parent.select(1);
+  }
 
 }
