@@ -9,41 +9,63 @@
 
   <ion-list class="skin_chart">
     <br />
+  <ion-item no-lines>
     <ion-row>
       <ion-col class="font_skin_chart left-margin">{{ 'skinchart' | translate }}</ion-col>
     </ion-row>
-    <!-- <div style="text-align: center" class="font_skin_chart">스킨 차트</div> -->
-    <!-- <button ion-button clear item-end>더 보기</button> -->
-    <!-- <ion-row>
-      <ion-col style="text-align: center">
-      </ion-col>
-    </ion-row> -->
+  </ion-item>
+
+
+          <ion-row class="row_align">
+          <ion-col class="left_grid"><ion-label class="day">어제</ion-label>
+          <ion-img class="img-status" src="assets/img/successhome/ic-system-skin-bad@3x.png"></ion-img>
+          <ion-label class="status">나쁨</ion-label>
+          <button ion-button class="status_btn">수분보충
+          <ion-img class="img-logo" src="assets/img/successhome/ic-system-infomation@3x.png" (click)="moisture_help()"></ion-img></button></ion-col>
+
+          <ion-col class="right_grid"><ion-label class="day" >오늘</ion-label>
+          <ion-img class="img-status" src="assets/img/successhome/ic-system-skin-normal@3x.png"></ion-img>
+          <ion-label class="secondstatus">보통</ion-label>
+          <button ion-button class="status_btn">수분보충
+            <ion-img class="img-logo" src="assets/img/successhome/ic-system-infomation@3x.png" (click)="moisture_help()"></ion-img></button>
+        </ion-col></ion-row>
+
+
+
+        <ion-label id="view" class="moisture_help">
+        <img class="close" id="view"src="assets/img/login/ic-system-close-black@3x.png" (click)="close()" />
+        <p class="help_title">수분 보충</p>
+        <p text-wrap class="help_sub">물체 중에 함유되는 물. 대기 중의 수분은 습도 또는 수증기압으로 나타낸다.
+          모든 식품은 조금이라도 수분을 함유하고 이론적으로 무수물은 존재하지 않는다. </p></ion-label>
+
+
+
+     <ion-item style="margin:0 auto">
+       <ion-grid class="griddata">
+          <ion-row>
+           <ion-col class="data1">60.5%</ion-col>
+           <ion-col class="data2">수분</ion-col>
+           <ion-col class="data3">60.5%</ion-col>
+         </ion-row>
+       </ion-grid><br>
+
+       <ion-grid class="griddata">
+         <ion-row>
+           <ion-col class="data1">32.5%</ion-col>
+           <ion-col class="data2">유분</ion-col>
+           <ion-col class="data3">32.5%</ion-col>
+         </ion-row>
+       </ion-grid>
+     </ion-item>
+
+     <ion-item no-lines>
+       <p class="sub"> ※진단 결과는 환경에 따라 상이할 수 있습니다.</p>
+     </ion-item><br>
 
     <ion-row>
-      <ion-col class="font_skin_chart2" style="text-align: center">
-        측정 이력이 없습니다.<br />
-        지금 바로 플리닉으로 피부측정을 해보세요.<br />
-      </ion-col>
-    </ion-row>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
-    <ion-row>
       <ion-col style="text-align: center">
-        <button ion-button class="skin_btn" (click)="openBasicModal()">
-          <!-- <ion-icon name="happy">&nbsp;&nbsp;</ion-icon> -->
-          피부 측정하기 >
-        </button>
-      </ion-col>
-      <ion-col style="text-align: center">
-        <button ion-button class="detail_btn" (click)="skin_chart()">
-          <!-- <ion-icon name="happy">&nbsp;&nbsp;</ion-icon> -->
-          자세히 보기 >
-        </button>
+        <button ion-button class="skin_btn" (click)="openBasicModal()">피부 측정하기 >  </button>
+        <button ion-button class="detail_btn" (click)="skin_chart()">자세히 보기 >  </button>
       </ion-col>
     </ion-row>
   </ion-list>
@@ -59,14 +81,14 @@
     </ion-row>
 
     <ion-row>
-      <ion-col class="img_carezone_background" style="text-align: center">
-        <img class="img_carezone" src="assets/img/home/carezone1.png" />
+      <ion-col *ngIf="first_carezone__id" class="img_carezone_background" style="text-align: center" (click)="mission_start(first_carezone__id)">
+        <img class="img_carezone" src="http://plinic.cafe24app.com/carezone_images/{{first_carezone__id}}" />
         <button class="carezon_btn1" ion-button><div class="carezon_btn_font">진행 중</div></button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone2 left-margin">
-        할 수 있다 물광미인!
+        {{first_carezone_title}}
       </ion-col>
       <ion-col class="font_carezone2_page right-margin">
         1/30
@@ -74,7 +96,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone2_sub left-margin">
-        ※진단 결과는 환경에 따라 상이할 수 있습니다.
+        {{first_carezone_body}}
       </ion-col>
     </ion-row>
 
@@ -82,14 +104,14 @@
 
 
     <ion-row>
-      <ion-col class="img_carezone_background2" style="text-align: center">
+      <ion-col *ngIf="second_carezone__id" class="img_carezone_background2" style="text-align: center" (click)="mission_start(second_carezone__id)">
         <button class="carezon_btn2" ion-button><div class="carezon_btn_font">진행 중</div></button>
-        <img class="img_carezone2" src="assets/img/home/carezone2.png" />
+        <img class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{second_carezone__id}}" />
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone3 left-margin">
-        할 수 있다 물광미인!
+        {{second_carezone_title}}
       </ion-col>
       <ion-col class="font_carezone3_page right-margin">
         2/30
@@ -97,7 +119,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone3_sub left-margin">
-        ※진단 결과는 환경에 따라 상이할 수 있습니다.
+        {{second_carezone_body}}
       </ion-col>
     </ion-row>
 
@@ -105,15 +127,15 @@
 
 
     <ion-row>
-      <ion-col class="img_carezone_background3" style="text-align: center">
+      <ion-col *ngIf="third_carezone__id" class="img_carezone_background3" style="text-align: center"  (click)="mission_deadline_end(third_carezone__id)">
         <button class="carezon_btn3" ion-button><div class="carezon_btn_font2">마감</div></button>
-        <img class="img_carezone2" src="assets/img/home/carezone2.png" />
+        <img class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{third_carezone__id}}" />
       </ion-col>
 
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone4 left-margin">
-        할 수 있다 물광미인!
+        {{third_carezone_title}}
       </ion-col>
       <ion-col class="font_carezone4_page right-margin">
         2/30
@@ -121,13 +143,13 @@
     </ion-row>
     <ion-row>
       <ion-col class="font_carezone4_sub left-margin">
-        ※진단 결과는 환경에 따라 상이할 수 있습니다.
+        {{third_carezone_body}}
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col style="text-align: center">
-        <button ion-button class="mission_btn" outline (click)="care_zone()">미션 더 보기</button>
+        <button ion-button class="mission_btn" outline (click)="openCareZoneTab()">미션 더 보기</button>
       </ion-col>
     </ion-row>
   </ion-list>
@@ -200,9 +222,6 @@
         </button>
       </ion-col>
     </ion-row>
-
-
-
 
   </ion-list>
 
