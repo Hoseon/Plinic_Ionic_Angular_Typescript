@@ -117,7 +117,8 @@
       <ion-row class="skinrow">
       <ion-col>
       <h2 class="skinscore">기간별 피부 변화</h2></ion-col>
-      <ion-col><ion-select placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover" multiple="false" class="linechart_btn">
+      <ion-col><ion-select placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover" [(ngModel)]="valueday.day"
+                            multiple="false" class="linechart_btn">
       <ion-option *ngFor="let days of monthdate" >{{days.day}}</ion-option></ion-select></ion-col>
       </ion-row>
   </ion-list><br>

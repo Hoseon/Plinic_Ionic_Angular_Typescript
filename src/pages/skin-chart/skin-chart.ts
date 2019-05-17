@@ -28,6 +28,9 @@ export class SkinChartPage {
 lineChart: any;
 //chart
 
+valueday = { "day": "1"}
+
+
 today: any = new Date();
 yesterday: any = new Date((new Date()).valueOf() - 1000*60*60*24);
 twoDaysAgo:any = new Date((new Date()).valueOf() - 1000*60*60*24*2);
@@ -54,9 +57,10 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD');
 
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
 
+
         type: 'line',
-        data: {
-        labels: [ this.threeDaysAgo, this.twoDaysAgo, this.yesterday, this.today],
+        data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
+        labels: [ this.threeDaysAgo , this.twoDaysAgo, this.yesterday, this.today],
         datasets: [{
                       // label: format(this.today, 'MM/DD', '유분'),
                       label: '내 수분 점수',
@@ -182,6 +186,28 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD');
                 }
             });
 }
+
+
+
+  public selectclick(){
+       console.log('ionViewDidLoad selectclick');
+       this.lineChart.update();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 monthdate: any[] = [
   {

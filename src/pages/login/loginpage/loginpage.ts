@@ -5,6 +5,7 @@ import { AuthService } from '../../../providers/auth-service';
 import { AgreementPage} from '../../agreement/agreement';
 import { PasswordfindPage} from '../passwordfind/passwordfind';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Naver} from 'ionic-plugin-naver';
 
 /**
  * Generated class for the LoginpagePage page.
@@ -28,7 +29,7 @@ export class LoginpagePage {
 
 
   constructor(public nav: NavController, public navParams: NavParams,
-    private alertCtrl: AlertController, private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController, private loadingCtrl: LoadingController, public naver: Naver,
      private auth: AuthService, public viewCtrl: ViewController, @Inject(DOCUMENT) document) {
   }
 
@@ -49,17 +50,18 @@ export class LoginpagePage {
   public setInputFocus(){
       var elem:any = this.messageInput;
       elem._native.nativeElement.focus(); // Keep the focus on input field.
+
   }
 
-  public hide(){
-    console.log('hide');
-    document.getElementById("hide").style.display = "none";
-}
-
-  public view(){
-      console.log('visible');
-    document.getElementById("hide").style.display = "";
-}
+//   public hide(){
+//     console.log('hide');
+//     document.getElementById("hide").style.display = "none";
+// }
+//
+//   public view(){
+//       console.log('visible');
+//     document.getElementById("hide").style.display = "";
+// }
 
 
 
@@ -74,9 +76,9 @@ export class LoginpagePage {
   }
 
   public naver_login(){
-       // this.naver.login()
-       //   .then(response => console.log(response))
-       //   .catch(error => console.error(error));
+       this.naver.login()
+         .then(response => console.log(response))
+         .catch(error => console.error(error));
   }
 
   public kakao_login() {
