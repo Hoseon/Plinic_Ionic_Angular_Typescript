@@ -147,11 +147,11 @@ export class HomePage {
         this.nav.push(CareZoneMissionIngPage);
   }
   public mission_start(_id){
-    console.log(_id);
+    //console.log(_id);
         this.nav.push(CareZoneMissionStartPage,{_id: _id});
   }
-  public mission_deadline_end(){
-        this.nav.push(CareZoneMissionDeadlineEndPage);
+  public mission_deadline_end(id){
+        this.nav.push(CareZoneMissionDeadlineEndPage,{_id: id});
   }
 
   // public logout(){

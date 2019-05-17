@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, Platform, AlertController } from '
 import { DeviceConnectCompletePage } from '../device-connect-complete/device-connect-complete';
 import { DeviceConnectFailPage } from '../device-connect-fail/device-connect-fail';
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
-import { SuccessHomePage} from '../success-home/success-home';
+import { SuccessHomePage } from '../success-home/success-home';
 /**
  * Generated class for the DeviceConnectIngPage page.
  *
@@ -36,6 +36,8 @@ export class DeviceConnectIngPage {
               this.navCtrl.push(DeviceConnectFailPage);
             }
           });
+        } else {  // 웹 개발 시에는 무조건 성공페이지로 넘어가 데이터를 강제적으로 보여준다
+          this.navCtrl.push(DeviceConnectCompletePage);
         }
       }, 3500);
     });
@@ -47,8 +49,8 @@ export class DeviceConnectIngPage {
     console.log('ionViewDidLoad DeviceConnectIngPage');
   }
 
-  public successpage(){
-      this.navCtrl.push(SuccessHomePage);
+  public successpage() {
+    this.navCtrl.push(SuccessHomePage);
   }
 
   public measureBack() {

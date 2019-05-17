@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ModalController } from 'ionic-angular';
 
 /**
  * Generated class for the DeviceSkinIngPage page.
@@ -15,7 +15,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DeviceSkinIngPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  spintime: any = 0;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public modalCtrl: ModalController,) {
+
+    this.platform.ready().then((readySource)=>{
+      setTimeout(()=>{
+        this.spintime = 1;
+        let myModal = this.modalCtrl.create('TabsPage');
+        myModal.present();
+      }, 3500);
+    });
+
+
+
   }
 
   ionViewDidLoad() {
@@ -24,5 +37,10 @@ export class DeviceSkinIngPage {
 
   cancel(){
     this.navCtrl.pop();
+  }
+
+
+  cancel_home(){
+    this.navCtrl.setRoot('TabsPage');
   }
 }

@@ -16,14 +16,13 @@
 <ion-content>
 
 <br>
-  <ion-list>
-    <ion-item no-lines>
-      <ion-img class="goods-img" src="assets/img/care-zone/goods/ic-system-goods.png" srcset="assets/img/ic-system-profile-sample@2x.png,
-             assets/img/ic-system-profile-sample@3x.png"></ion-img><br><br>
+  <ion-list *ngIf="carezoneData">
+    <ion-item *ngIf="imgUrl" no-lines>
+      <img class="goods-img" src="{{imgUrl}}" /><br><br>
 
       <button ion-button style="height:28px" class="button_outline" outline (click)="mission_deadline()">진행중 </button>
       </ion-item>
-      <h1 class="top_text"> 할수 있다! 물광미인 </h1>
+      <h1 class="top_text"> {{carezoneData.missontitle}} </h1>
 
 
 
@@ -55,7 +54,7 @@
        <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
                  <ion-col class="event-col4">보상 상품</ion-col>
-                 <ion-col class="event-col7">1025 독도 토너</ion-col>
+                 <ion-col class="event-col7">{{carezoneData.product}}</ion-col>
             </ion-row>
        </ion-grid>
     </ion-item>
@@ -74,7 +73,7 @@
        <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
                  <ion-col class="event-col4">미션 종료일</ion-col>
-                 <ion-col class="event-col12">2019.08.30</ion-col>
+                 <ion-col class="event-col12">{{endDate}}</ion-col>
              </ion-row>
          </ion-grid>
    </ion-item>
@@ -85,7 +84,7 @@
     </ion-item>
 
    <ion-item no-lines>
-    <button ion-button class="button_giveup" text-align="center" outline >미션 포기하기</button>
+    <button ion-button class="button_giveup" text-align="center" outline (click)="navpop()" >미션 포기하기</button>
     </ion-item>
   </ion-list>
 

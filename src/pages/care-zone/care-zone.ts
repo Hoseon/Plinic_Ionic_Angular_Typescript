@@ -42,8 +42,10 @@ export class CareZonePage {
   public mission_ing() {
     this.nav.push(CareZoneMissionIngPage);
   }
-  public mission_start() {
-    this.nav.push(CareZoneMissionStartPage);
+  public mission_start(id) {
+    console.log(id);
+    //this.nav.push(CareZoneMissionStartPage);
+    this.nav.push(CareZoneMissionStartPage, { _id: id });
   }
   public mission_deadline_end() {
     this.nav.push(CareZoneMissionDeadlineEndPage);

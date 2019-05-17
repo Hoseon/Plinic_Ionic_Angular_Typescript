@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ViewController, Platform } from 'ionic-angular';
 import { DeviceSkinStartPage } from '../device-skin-start/device-skin-start';
 import { DeviceSkinIngPage } from '../device-skin-ing/device-skin-ing';
-import {SuccessHomePage} from '../success-home/success-home';
+import { SuccessHomePage } from '../success-home/success-home';
 /**
  * Generated class for the DeviceConnectCompletePage page.
  *
@@ -17,7 +17,17 @@ import {SuccessHomePage} from '../success-home/success-home';
 })
 export class DeviceConnectCompletePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public viewCtrl: ViewController) {
+  spintime: any = 0;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public modalCtrl: ModalController, public viewCtrl: ViewController, public platform: Platform) {
+
+      this.platform.ready().then((readySource)=>{
+        setTimeout(()=>{
+          this.spintime = 1;
+          let myModal = this.modalCtrl.create(DeviceSkinStartPage);
+          myModal.present();
+        }, 3500);
+      });
   }
 
   ionViewDidLoad() {

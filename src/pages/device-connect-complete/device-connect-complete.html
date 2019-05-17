@@ -38,7 +38,8 @@
   <ion-footer no-shadow>
   	<!-- <ion-toolbar position="bottom"> -->
     <div class="center">
-      <button class="cell" ion-button (click)="deviceComplete();">
+      <button class="cell" ion-button >
+        <ion-spinner name="crescent" *ngIf="spintime == 0"></ion-spinner>
         <div class="font_button">잠시만 기다려주세요.</div>
       </button>
     </div>

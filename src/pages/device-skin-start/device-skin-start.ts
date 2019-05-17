@@ -24,7 +24,8 @@ export class DeviceSkinStartPage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.navCtrl.setRoot('TabsPage');
+    //this.viewCtrl.dismiss();
   }
 
   public measureStart(){

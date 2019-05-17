@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController, Platform } from 'ionic-angular';
 import { CareZoneMissionCompletePage } from '../care-zone-mission-complete/care-zone-mission-complete';
 import { ImagesProvider } from '../../providers/images/images';
+import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-mission-ing'
 /**
  * Generated class for the CareZoneMissionStartPage page.
  *
@@ -22,7 +23,7 @@ export class CareZoneMissionStartPage {
   constructor(public nav: NavController, public navParams: NavParams, private images: ImagesProvider,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform,
   ) {
-    this.platform.ready().then((readySource)=>{
+    this.platform.ready().then((readySource) => {
       this._id = this.navParams.get('_id');
       this.roadmission(this._id);
     });
@@ -46,7 +47,7 @@ export class CareZoneMissionStartPage {
     this.images.missionRoad(id).subscribe(data => {
       if (data !== '') {
         this.carezoneData = data;
-        this.endDate = data.endmission.substr(0,10);
+        this.endDate = data.endmission.substr(0, 10);
         //console.log(JSON.stringify(data));
         this.loading.dismiss();
       } else {
@@ -75,5 +76,10 @@ export class CareZoneMissionStartPage {
     alert.present();
   }
 
+
+  satrtMission(id) {
+    //console.log(id);
+    this.nav.push(CareZoneMissionIngPage, { _id: id });
+  }
 
 }

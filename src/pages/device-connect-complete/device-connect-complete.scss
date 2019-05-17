@@ -67,4 +67,15 @@ page-device-connect-complete {
     height: 25px;
     object-fit: contain;
   }
+
+  ion-spinner {
+   position: absolute;
+   display: inline-block;
+   width: 28px;
+   height: 28px;
+   left: 20%;
+   top: 20%;
+ }
+
+
 }
