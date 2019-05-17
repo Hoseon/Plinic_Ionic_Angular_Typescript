@@ -74,11 +74,11 @@ export class LoginpagePage {
   }
 
   public naver_login(){
-       this.naver.login()
-         .then(response => console.log(response))
-         .catch(error => console.error(error));
+       // this.naver.login()
+       //   .then(response => console.log(response))
+       //   .catch(error => console.error(error));
   }
-  
+
   public kakao_login() {
     this.showLoading()
     this.userData = this.auth.kakao_login();
