@@ -53,7 +53,7 @@
     </ion-row>
 
     <ion-row>
-      <ion-col class="img_carezone_background" style="text-align: center" (click)="mission_start()">
+      <ion-col *ngIf="first_carezone__id" class="img_carezone_background" style="text-align: center" (click)="mission_start(first_carezone__id)">
         <img class="img_carezone" src="http://plinic.cafe24app.com/carezone_images/{{first_carezone__id}}" />
         <button class="carezon_btn1" ion-button><div class="carezon_btn_font">진행 중</div></button>
       </ion-col>
@@ -76,7 +76,7 @@
 
 
     <ion-row>
-      <ion-col class="img_carezone_background2" style="text-align: center" (click)="mission_start()">
+      <ion-col *ngIf="second_carezone__id" class="img_carezone_background2" style="text-align: center" (click)="mission_start(second_carezone__id)">
         <button class="carezon_btn2" ion-button><div class="carezon_btn_font">진행 중</div></button>
         <img class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{second_carezone__id}}" />
       </ion-col>
@@ -99,7 +99,7 @@
 
 
     <ion-row>
-      <ion-col class="img_carezone_background3" style="text-align: center"  (click)="mission_deadline_end()">
+      <ion-col *ngIf="third_carezone__id" class="img_carezone_background3" style="text-align: center"  (click)="mission_deadline_end(third_carezone__id)">
         <button class="carezon_btn3" ion-button><div class="carezon_btn_font2">마감</div></button>
         <img class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{third_carezone__id}}" />
       </ion-col>

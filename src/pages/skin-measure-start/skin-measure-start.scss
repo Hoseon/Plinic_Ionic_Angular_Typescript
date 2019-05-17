@@ -1,11 +1,11 @@
 page-skin-measure-start {
 
-
+  position: relative;
 
   .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
     height: 0px;
   }
-  
+
   .font_title {
     width: 153.5px;
     height: 34px;
@@ -37,8 +37,8 @@ page-skin-measure-start {
   }
 
   .ic_system_skin_face {
-    width: 160px;
-    height: 160px;
+    width: 50%;
+    height: 50%;
     object-fit: contain;
   }
 
@@ -57,7 +57,7 @@ page-skin-measure-start {
   }
 
   .cell {
-    width: 315px;
+    width: 91%;
     height: 50px;
     border-radius: 4px;
     background-color: #5c59b6;

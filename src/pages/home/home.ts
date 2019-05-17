@@ -146,8 +146,9 @@ export class HomePage {
   public mission_ing(){
         this.nav.push(CareZoneMissionIngPage);
   }
-  public mission_start(){
-        this.nav.push(CareZoneMissionStartPage);
+  public mission_start(_id){
+    console.log(_id);
+        this.nav.push(CareZoneMissionStartPage,{_id: _id});
   }
   public mission_deadline_end(){
         this.nav.push(CareZoneMissionDeadlineEndPage);

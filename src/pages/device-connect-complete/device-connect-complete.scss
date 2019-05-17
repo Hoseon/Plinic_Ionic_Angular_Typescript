@@ -4,7 +4,7 @@ page-device-connect-complete {
   .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
     height: 0px;
   }
-  
+
   .font_title {
     width: 197.5px;
     height: 34px;
@@ -36,13 +36,13 @@ page-device-connect-complete {
   }
 
   .ic_system_done {
-  width: 160px;
-  height: 160px;
+  width: 50%;
+  height: 50%;
   object-fit: contain;
 }
 
 .cell {
-  width: 315px;
+  width: 91%;
   height: 50px;
   background-color: #d2d4d8;
 }

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title class="title" text-wrap>할 수 있다! 물광미인</ion-title>
+    <ion-title class="title" text-wrap></ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,14 +16,13 @@
 <ion-content>
 
 <br>
-  <ion-list>
+  <ion-list *ngIf="carezoneData">
     <ion-item no-lines>
-      <ion-img class="goods-img" src="assets/img/care-zone/goods/ic-system-goods.png" srcset="assets/img/ic-system-profile-sample@2x.png,
-             assets/img/ic-system-profile-sample@3x.png"></ion-img><br><br>
+      <img class="goods-img" src="http://plinic.cafe24app.com/carezone_prodimages/{{carezoneData._id}}" /><br><br>
 
       <button ion-button style="height:28px" class="button_outline" outline (click)="mission_complete()">미션</button>
       </ion-item>
-      <h1 class="top_text"> 할수 있다! 물광미인 </h1><br>
+      <h1 class="top_text"> {{carezoneData.missontitle}} </h1><br>
 
 
 
@@ -33,7 +32,7 @@
          <ion-grid class="gridtext">
                <ion-row style="width:89.7%">
                    <ion-col class="event-col4">보상 상품</ion-col>
-                   <ion-col class="event-col7">1025 독도 토너</ion-col>
+                   <ion-col class="event-col7">{{carezoneData.product}}</ion-col>
               </ion-row>
          </ion-grid>
       </ion-item>
@@ -59,7 +58,7 @@
        <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
                  <ion-col class="event-col4">미션 종료일</ion-col>
-                 <ion-col class="event-col12">2019.08.30</ion-col>
+                 <ion-col class="event-col12">{{endDate}}</ion-col>
              </ion-row>
          </ion-grid>
    </ion-item>

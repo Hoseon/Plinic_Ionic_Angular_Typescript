@@ -30,6 +30,11 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public missionRoad(id) {
+    return this.http.get(this.apiURL + 'carezone/mission/' + id)
+      .map(response => response.json());
+  }
+
   public maincarezoneRoad() {
     return this.http.get(this.apiURL + 'carezone/main_list')
       .map(response => response.json());
