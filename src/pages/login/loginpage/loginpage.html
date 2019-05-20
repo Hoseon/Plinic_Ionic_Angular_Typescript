@@ -34,8 +34,8 @@
 
      <form novalidate (ngSubmit)="onSubmit()" #registerForm="ngForm" [formGroup]="signupform">
 
-     <ion-item style="background:#FFF" >
-     <ion-input #messageInput style="font-size:15px; width:315px; height:50px;" type="email" placeholder="이메일"
+     <ion-item class="email_align" style="background:#FFF" >
+     <ion-input #messageInput style="font-size:15px;" type="email" placeholder="이메일"
      [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty"
      formControlName="email" [(ngModel)]="registerCredentials.email" required clearInput></ion-input>
      </ion-item>
@@ -48,9 +48,9 @@
      </div>
      </ion-item>
 
-     <ion-item style="background:#FFF">
+     <ion-item class="password_align" style="background:#FFF">
      <!-- <ion-label class="titlelabel" stacked>비밀번호 </ion-label> -->
-     <ion-input #messageInput style="font-size:15px; width:315px; height:50px;" placeholder="비밀번호"
+     <ion-input #messageInput style="font-size:15px;" placeholder="비밀번호"
      type="password" formControlName="password" name="password" [(ngModel)]="registerCredentials.password"
      [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty" required clearInput></ion-input>
      </ion-item>

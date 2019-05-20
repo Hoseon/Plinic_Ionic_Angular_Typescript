@@ -11,7 +11,7 @@
 <ion-item no-lines>
    <ion-grid>
      <ion-row>
-    <ion-col><ion-img class="close" src="assets/img/login/ic-system-close-black.png" srcset="assets/img/login\ic-system-close-black2x.png,
+    <ion-col><ion-img class="close" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
                   assets/img/login\ic-system-close-black@3x.png" (click)="dissmiss()"></ion-img></ion-col>
 
     <ion-col><ion-img class="toolaralign" src="assets/img/agreement/ic-system-step-01@3x.png" srcset="assets/img/agreement/ic-system-step-01@2x.png,
@@ -26,24 +26,24 @@
 
 
     <h1 class="h1" no-lines> 약관에 동의해주세요. </h1>
-    
-  <ion-list>
-       <ion-item>
-         <ion-label class="agree_label">서비스 이용약관 동의(필수)</ion-label>
+
+  <ion-list class="agree_list" no-lines>
+       <ion-item >
+         <ion-label class="agree_label">서비스 이용약관 동의&nbsp;(필수)</ion-label>
          <ion-checkbox mode="ios" class="checkbox"
          [(ngModel)]="agree" (ionChange)="updateagree($event)" checked="unchecked"></ion-checkbox>
          <ion-label class="labelex" (click)="service()">보기</ion-label>
          </ion-item><br>
 
        <ion-item>
-         <ion-label class="agree_label">개인정보 수집 및 이용 동의(필수)</ion-label>
+         <ion-label class="agree_label">개인정보 수집 및 이용 동의&nbsp;(필수)</ion-label>
          <ion-checkbox mode="ios" class="checkbox"
          [(ngModel)]="agree1" (ionChange)="updateagree($event)" checked="unchecked"></ion-checkbox>
          <ion-label class="labelex" (click)="information()">보기</ion-label>
        </ion-item><br>
 
        <ion-item>
-         <ion-label class="agree_label">마케팅 알림 수신 동의(선택)</ion-label>
+         <ion-label class="agree_label">마케팅 알림 수신 동의&nbsp;(선택)</ion-label>
          <ion-checkbox mode="ios" class="checkbox"
          [(ngModel)]="agree2" (ionChange)="updateagree($event)" checked="unchecked" ></ion-checkbox>
          <ion-label class="labelex" (click)="marketing()">보기</ion-label>
