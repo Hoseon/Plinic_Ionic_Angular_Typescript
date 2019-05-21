@@ -4,7 +4,6 @@ page-register {
     min-height: 100%;
 
 
-
     .toolbar-background {
       background-color: #FFF;
     }
@@ -22,6 +21,41 @@ page-register {
       color: #e9513c;
       padding-left: 2%;
     }
+
+
+    .email_img{
+      position: absolute;
+      background-color: #FFF;
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      right: 3%;
+      top:50%;
+      z-index: 1;
+      display: block;
+    }
+
+
+    .email_img2{
+      position: absolute;
+      background-color: #FFF;
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      right: 3%;
+      top:50%;
+      z-index: 2;
+      display: block;
+    }
+
+    .text-input-clear-icon{
+          background-repeat: no-repeat;
+          background-position: center;
+          color: #e9513c;
+      }
+
+
+
 
     .error1 {
       color: #292929;
@@ -106,6 +140,9 @@ page-register {
     .item-md{
       padding: 0px;
     }
+
+
+
     .email_align{
       padding-left: 2%;
       padding-right: 2%;
@@ -160,6 +197,7 @@ page-register {
     .input-ios[clearInput] .text-input{
       width: 100%;
     }
+
 
     .close{
     position: absolute;
@@ -240,5 +278,6 @@ page-register {
      letter-spacing: normal;
      text-align: center;
      color: #ffffff;
+     box-shadow: none;
    }
 }

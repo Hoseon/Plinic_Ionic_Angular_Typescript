@@ -1,5 +1,5 @@
 import { IonicPage } from 'ionic-angular';
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import {AgreementPage } from '../agreement/agreement';
@@ -19,6 +19,8 @@ export class RegisterPage {
   signupform: FormGroup;
 
 
+
+
   userData = { "password": "", "passwordconfirm": "", "email": ""};
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) {}
@@ -27,6 +29,21 @@ export class RegisterPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad registerpage');
   }
+
+
+
+  public email_delete(){
+   this.userData.email="";
+  }
+  public password_delete(){
+    this.userData.password="";
+  }
+  public passwordconfirm_delete(){
+  this.userData.passwordconfirm="";
+  }
+
+
+
 
   ngOnInit() {
      let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;

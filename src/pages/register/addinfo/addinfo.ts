@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, ViewController } 
 import { AuthService } from '../../../providers/auth-service';
 import { RegisterPage} from '../../register/register';
 import {RegistercompletePage} from '../registercomplete/registercomplete';
+import { SelectSearchableComponent } from 'ionic-select-searchable';
 
 
 /**
@@ -36,6 +37,12 @@ export class AddinfoPage {
     this.password = navParams.get('password');
   }
 
+  portChange(event: {
+      component: SelectSearchableComponent,
+      value: any
+  }) {
+      console.log('countries:', event.value);
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddinfoPage');
@@ -43,10 +50,9 @@ export class AddinfoPage {
     console.log(this.password);
   }
 
+
   public mcAnswer(event){
        console.log(event);
-
-
    }
 
   public radiotest(){
@@ -102,6 +108,21 @@ export class AddinfoPage {
   }
 
   countries: any[] = [
+    {
+      "country_code": "KR",
+      "country_name": "South Korea",
+      "dialling_code": "+82"
+    },
+    {
+      "country_code": "CN",
+      "country_name": "China",
+      "dialling_code": "+86"
+    },
+    {
+      "country_code": "JP",
+      "country_name": "Japan",
+      "dialling_code": "+81"
+    },
     {
 			"country_code": "AF",
 			"country_name": "Afghanistan",
@@ -311,11 +332,6 @@ export class AddinfoPage {
 			"country_code": "CL",
 			"country_name": "Chile",
 			"dialling_code": "+56"
-		},
-		{
-			"country_code": "CN",
-			"country_name": "China",
-			"dialling_code": "+86"
 		},
 		{
 			"country_code": "CO",
@@ -596,11 +612,6 @@ export class AddinfoPage {
 			"country_code": "JM",
 			"country_name": "Jamaica",
 			"dialling_code": "+1"
-		},
-		{
-			"country_code": "JP",
-			"country_name": "Japan",
-			"dialling_code": "+81"
 		},
 		{
 			"country_code": "JO",
@@ -1051,11 +1062,6 @@ export class AddinfoPage {
 			"country_code": "ZA",
 			"country_name": "South Africa",
 			"dialling_code": "+27"
-		},
-		{
-			"country_code": "KR",
-			"country_name": "South Korea",
-			"dialling_code": "+82"
 		},
 		{
 			"country_code": "ES",

@@ -53,7 +53,7 @@ page-addinfo {
             width: 50%;
             margin-bottom: 3%;
           }
-  
+
         .h1{
           height: 80px;
           font-family: NotoSansCJKkr;
@@ -120,6 +120,7 @@ page-addinfo {
         }
 
 
+
         .radio-ios .radio-icon{
          display: none;
          background-color: #FFF;
@@ -137,13 +138,11 @@ page-addinfo {
          background-color: #FFF;
         }
 
-        .item-radio{
-          width: 105%;
-          padding: 0.1px;
-          border: 0px;
-          margin-left: auto;
-          margin-right: auto;
+
+        .item-md.item-block .item-inner{
+         padding: 0px;
         }
+
         .col{
           min-width: 0px;
           width: 0px;
@@ -153,9 +152,24 @@ page-addinfo {
           margin-right: auto;
         }
 
+        .row_align{
+          width: 97%;
+          margin-left: auto;
+          margin-right: auto;
+          display: flex;
+        }
+
+        .row_align2{
+          width: 97%;
+          margin-left: auto;
+          margin-right: auto;
+          display: flex;
+          margin-top: -3.5px;
+        }
+
+
         .radiolabel{
         padding-top: 10px;
-        width: 105px;
         height: 45px;
         border: solid 0.5px #e5e5e5  ;
         font-family: NotoSansCJKkr;
@@ -168,39 +182,35 @@ page-addinfo {
         letter-spacing: normal;
         background-color: #FFF;
         text-align: center;
-        color:#e5e5e5;
-        margin: 1px;
-        margin-left: auto;
-        margin-right: auto;
+        color:#c7c7c7;
+        margin: 0px;
       }
-       .item-radio.item-md ion-label{
-         margin-right: 1px;
-       }
-       .item-radio.item-ios ion-label{
-         margin-right: 1px;
-       }
+
+
        .item-radio-checked.item-md ion-label{
-         background-color: #FFF !important;
-         border: solid 1.5px #5c59b6 !important;
-         font-weight: bold !important;
-         color: #5c59b6 !important;
+         background-color: #FFF;
+         border: solid 1.5px #5c59b6;
+         font-weight: bold;
+         color: #5c59b6;
        }
 
        .item-radio-checked.item-ios ion-label{
-         background-color: #FFF !important;
-         border: solid 1.5px #5c59b6 !important;
-         font-weight: bold !important;
-         color: #5c59b6 !important;
+         background-color: #FFF;
+         border: solid 1.5px #5c59b6;
+         font-weight: bold;
+         color: #5c59b6;
        }
 
        .radiolabel:hover{
-        background-color: #FFF !important;
-        border: solid 1.5px #5c59b6 !important;
-        font-weight: bold !important;
-        color: #5c59b6 !important;
+        background-color: #FFF;
+        border: solid 1.5px #5c59b6;
+        font-weight: bold;
+        color: #5c59b6;
       }
 
-
+        .toolbar-title-md{
+          color: #FFF;
+        }
 
         .toolaralign{
          background-color: #FFF;
@@ -217,34 +227,45 @@ page-addinfo {
           object-fit: contain;
           margin-top: 10px;
           margin-right: -5px;
-
         }
+
 
 
         .text{
           width: 314px;
          height: 48px;
          font-family: NotoSansCJKkr;
-         font-size: 13px;
+         font-size: 12px;
          font-weight: normal;
          font-style: normal;
          font-stretch: normal;
          line-height: 1.85;
          letter-spacing: normal;
          color: #b6b6b6;
-         margin-left: 10px;
+         margin-left: 4%;
+         margin-top: 8%;
+
         }
 
 
         .submit-btn{
           margin-left: auto;
           margin-right: auto;
-          border: solid 0.5px #c7c7c7;
-          background-color:#5c59b6;
-          color: #FFF;
-          font-weight:normal;
-          width: 315px;
+          display: block;
+          border: solid 0.5px #d2d4d8;
+          width: 97%;
           height: 50px;
+          border-radius: 4px;
+          background-color:#d2d4d8;
+          margin-top: -10%;
+          font-family: NotoSansCJKkr;
+          font-size: 14.4px;
+          font-weight: 500;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
           text-align: center;
+          color: #ffffff;
         }
 }
