@@ -5,7 +5,7 @@
 -->
 <ion-header>
 
-  <ion-item start no-lines>
+  <ion-item class="header" start no-lines>
     <ion-buttons >
       <br />
       <button ion-button clear (click)="measureBack()">
@@ -20,21 +20,21 @@
   <!-- <ion-item no-lines>
     <div class="font_title"></div>
   </ion-item> -->
-  <ion-item no-lines>
+  <ion-item class="title" no-lines>
     <div class="font_title">연동에 실패하였습니다.</div>
   </ion-item>
 
-  <ion-item no-lines><div class="font_sub">
+  <ion-item class="subtitle" no-lines><div class="font_sub">
     디바이스 연결상태를 확인해주세요.<br />
 
   </div></ion-item>
 
 
-  <ion-item no-lines>
+  <ion-item class="face_img" no-lines>
     <img class="img ic_system_sync_fail" src="assets/img/ic-system-sync-fail/ic-system-sync-fail@3x.png"  />
   </ion-item>
 
-  <ion-footer no-shadow>
+  <ion-footer class="footer" no-shadow>
   	<!-- <ion-toolbar position="bottom"> -->
     <div class="center">
       <button class="cell" ion-button (click)="deviceReConnect();">

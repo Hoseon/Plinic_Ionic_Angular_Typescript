@@ -19,11 +19,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="30000" />
-<<<<<<< HEAD
     <preference name="ShowSplashScreenSpinner" value="false" />
-=======
-    <preference value="false" name="ShowSplashScreenSpinner"/>
->>>>>>> 5220f770b8380b68859828f2ee45d3bab8da1002
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />

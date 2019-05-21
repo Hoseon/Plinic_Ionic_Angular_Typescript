@@ -41,7 +41,7 @@ page-device-connect-fail {
   }
 
   .cell {
-  width: 91%;
+  width: 88%;
   height: 50px;
   background-color: #e9513c;
 }
@@ -66,6 +66,26 @@ page-device-connect-fail {
     width: 25px;
     height: 25px;
     object-fit: contain;
+  }
+
+  .header{
+    left: -4%;
+  }
+
+  .title{
+    top: -2%;
+  }
+
+  .subtitle{
+    top: -5%;
+  }
+
+  .face_img{
+    top: -4%;
+  }
+
+  .footer{
+    bottom: -1.8%
   }
 
 }

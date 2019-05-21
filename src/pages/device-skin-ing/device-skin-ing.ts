@@ -24,7 +24,7 @@ export class DeviceSkinIngPage {
       setTimeout(()=>{
         this.spintime = 1;
         let myModal = this.modalCtrl.create('TabsPage',{
-          home : 'successHome' 
+          home : 'successHome'
         });
         myModal.present();
       }, 3500);

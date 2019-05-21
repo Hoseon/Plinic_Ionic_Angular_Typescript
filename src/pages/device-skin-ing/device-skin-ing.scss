@@ -42,7 +42,7 @@ page-device-skin-ing {
   }
 
   .cell {
-    width: 91%;
+    width: 88%;
     height: 50px;
     border-radius: 4px;
     background-color: #5c59b6;
@@ -119,4 +119,25 @@ page-device-skin-ing {
   .spinner-ios-crescent circle {
     stroke: #fff;
   }
+
+  .header{
+    left: -4%;
+  }
+
+  .title{
+    top: -2%;
+  }
+
+  .subtitle{
+    top: -3.5%;
+  }
+
+  .face_img{
+    top: -4%;
+  }
+
+  .footer{
+    bottom: -1.8%;
+  }
+
 }

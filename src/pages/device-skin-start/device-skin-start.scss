@@ -41,7 +41,7 @@ page-device-skin-start {
   }
 
   .cell {
-    width: 91%;
+    width: 88%;
     height: 50px;
     border-radius: 4px;
     background-color: #5c59b6;
@@ -103,4 +103,25 @@ page-device-skin-start {
     height: 25px;
     object-fit: contain;
   }
+
+  .header{
+    left: -4%;
+  }
+
+  .title{
+    top: -2%;
+  }
+
+  .subtitle{
+    top: -4%;
+  }
+
+  .face_img{
+    top: -4%;
+  }
+
+  .footer{
+    bottom: -1.5%;
+  }
+
 }

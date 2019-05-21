@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-item start no-lines>
+  <ion-item class="header" start no-lines>
     <ion-buttons >
       <br />
       <button ion-button clear (click)="dismiss()">
@@ -21,23 +21,23 @@
   <!-- <ion-item no-lines>
     <div class="font_title"></div>
   </ion-item> -->
-  <ion-item no-lines>
+  <ion-item class="title" no-lines>
     <div class="font_title">데일리 피부측정</div>
   </ion-item>
 
 
-  <ion-item no-lines>
+  <ion-item class="face_img" no-lines>
     <img class="img ic_system_skin_face_cheek" src="assets/img/ic-system-skin-face-cheek/ic-system-skin-face-cheek@3x.png"  />
   </ion-item>
 
-  <ion-item no-lines><div class="font_sub">
+  <ion-item class="subtitle" no-lines><div class="font_sub">
     플리닉 디바이스를 볼에 3초간 접촉해주세요.<br />
     다른 부위 및 접촉이 약할 경우<br />
     측정에 오차가 발생 할 수 있습니다.
   </div></ion-item>
 
 
-  <ion-footer no-shadow>
+  <ion-footer class="footer" no-shadow>
   	<!-- <ion-toolbar position="bottom"> -->
     <div class="center">
       <button class="cell" ion-button (click)="measureStart();">

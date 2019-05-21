@@ -6,6 +6,10 @@ page-skin-measure-start {
     height: 0px;
   }
 
+  ion-header{
+    left: -7%;
+  }
+
   .font_title {
     width: 153.5px;
     height: 34px;
@@ -57,7 +61,7 @@ page-skin-measure-start {
   }
 
   .cell {
-    width: 91%;
+    width: 87%;
     height: 50px;
     border-radius: 4px;
     background-color: #5c59b6;
@@ -100,5 +104,21 @@ page-skin-measure-start {
     display: block;
     //height: 100%;
     margin-top: 8%;
+  }
+
+  .title{
+    top: -3%;
+  }
+
+  .subtitle{
+    top: -7%;
+  }
+
+  .face_img{
+    top: -10%;
+  }
+
+  .footer{
+    bottom: -1.5%;
   }
 }
