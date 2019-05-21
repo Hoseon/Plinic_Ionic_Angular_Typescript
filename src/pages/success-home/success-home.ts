@@ -1,6 +1,6 @@
 import { IonicPage } from 'ionic-angular';
-import { Component,Inject } from '@angular/core';
-import { NavController, Platform, AlertController, ModalController } from 'ionic-angular';
+import { Component, Inject } from '@angular/core';
+import { NavController, Platform, AlertController, ModalController, Loading, LoadingController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
@@ -10,9 +10,9 @@ import { SkinMeasureStartPage } from '../skin-measure-start/skin-measure-start'
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { TranslateService } from 'ng2-translate/ng2-translate'
 import { TabsPage } from '../tabs/tabs'
-import { CareZoneMissionIngPage} from '../care-zone-mission-ing/care-zone-mission-ing'
-import { CareZoneMissionStartPage} from '../care-zone-mission-start/care-zone-mission-start'
-import { CareZoneMissionDeadlineEndPage} from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end'
+import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-mission-ing'
+import { CareZoneMissionStartPage } from '../care-zone-mission-start/care-zone-mission-start'
+import { CareZoneMissionDeadlineEndPage } from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end'
 import { DOCUMENT } from '@angular/common';
 
 
@@ -36,12 +36,15 @@ export class SuccessHomePage {
   third_carezone_title: any;
   third_carezone_body: any;
   third_carezone__id: any;
+  loading: Loading;
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
-    private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController, public translateService : TranslateService //public bluetoothle: BluetoothLE
-  , @Inject(DOCUMENT) document  ) {
+    private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController, public translateService: TranslateService //public bluetoothle: BluetoothLE
+    , @Inject(DOCUMENT) document) {
     this.platform.ready().then((readySource) => {
+      this.showLoading();
       this.bannerData = this.roadbanner();
       this.roadcareZone();
+      this.loading.dismiss();
       //this.first_carezone = this.careDataOBJ[0];
       //this.second_carezone = this.careDataOBJ[1];
       //this.third_carezone = this.careDataOBJ[2];
@@ -68,19 +71,19 @@ export class SuccessHomePage {
   //   )
   // }
 
-   public ionViewDidLoad(){
-     document.getElementById("view").style.display = "none";
-   }
-   public moisture_help(){
-        console.log('view');
-   document.getElementById("view").style.display = "block";
-   }
+  public ionViewDidLoad() {
+    document.getElementById("view").style.display = "none";
+  }
+  public moisture_help() {
+    console.log('view');
+    document.getElementById("view").style.display = "block";
+  }
 
-   public close(){
-     console.log('close');
-   document.getElementById("view").style.display = "none";
-   // document.getElementById("view2").style.display = "none";
-   }
+  public close() {
+    console.log('close');
+    document.getElementById("view").style.display = "none";
+    // document.getElementById("view2").style.display = "none";
+  }
 
   openBasicModal() {
     let myModal = this.modalCtrl.create(SkinMeasureStartPage);
@@ -156,15 +159,15 @@ export class SuccessHomePage {
     this.nav.push(CareZonePage);
   }
 
-  public mission_ing(){
-        this.nav.push(CareZoneMissionIngPage);
+  public mission_ing() {
+    this.nav.push(CareZoneMissionIngPage);
   }
-  public mission_start(_id){
+  public mission_start(_id) {
     console.log(_id);
-        this.nav.push(CareZoneMissionStartPage,{_id: _id});
+    this.nav.push(CareZoneMissionStartPage, { _id: _id });
   }
-  public mission_deadline_end(id){
-        this.nav.push(CareZoneMissionDeadlineEndPage,{_id: id});
+  public mission_deadline_end(id) {
+    this.nav.push(CareZoneMissionDeadlineEndPage, { _id: id });
   }
 
   // public logout(){
@@ -184,5 +187,24 @@ export class SuccessHomePage {
     //this.nav.push(TabsPage, { selectedTab: 1 });
     this.nav.parent.select(1);
   }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.loading.present();
+  }
+
+  showError(text) {
+    this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      title: 'Fail',
+      message: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
 
 }

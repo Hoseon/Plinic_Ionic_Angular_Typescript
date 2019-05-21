@@ -1,9 +1,14 @@
 <ion-content class="page_home" no-padding>
 
 
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content>refresher</ion-refresher-content>
+    </ion-refresher>
+
   <ion-slides *ngIf="bannerData && bannerData.length" class="img-banner_top_19000501" pager loop=true autoplay=2000>
     <ion-slide *ngFor="let banner of bannerData">
-      <img src='http://plinic.cafe24app.com/images/{{banner._id}}' />
+      <!-- <img [src]='http://plinic.cafe24app.com/images/{{banner._id}}' /> -->
+      <img-loader src='http://plinic.cafe24app.com/images/{{banner._id}}' useImg (load)="onImageLoad($event)"></img-loader>
     </ion-slide>
   </ion-slides>
 
@@ -55,7 +60,9 @@
     <ion-row>
       <ion-col *ngIf="first_carezone__id" class="img_carezone_background" style="text-align: center" (click)="mission_start(first_carezone__id)">
         <img class="img_carezone" src="http://plinic.cafe24app.com/carezone_images/{{first_carezone__id}}" />
-        <button class="carezon_btn1" ion-button><div class="carezon_btn_font">진행 중</div></button>
+        <button class="carezon_btn1" ion-button>
+          <div class="carezon_btn_font">진행 중</div>
+        </button>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -77,7 +84,9 @@
 
     <ion-row>
       <ion-col *ngIf="second_carezone__id" class="img_carezone_background2" style="text-align: center" (click)="mission_start(second_carezone__id)">
-        <button class="carezon_btn2" ion-button><div class="carezon_btn_font">진행 중</div></button>
+        <button class="carezon_btn2" ion-button>
+          <div class="carezon_btn_font">진행 중</div>
+        </button>
         <img class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{second_carezone__id}}" />
       </ion-col>
     </ion-row>
@@ -99,8 +108,10 @@
 
 
     <ion-row>
-      <ion-col *ngIf="third_carezone__id" class="img_carezone_background3" style="text-align: center"  (click)="mission_deadline_end(third_carezone__id)">
-        <button class="carezon_btn3" ion-button><div class="carezon_btn_font2">마감</div></button>
+      <ion-col *ngIf="third_carezone__id" class="img_carezone_background3" style="text-align: center" (click)="mission_deadline_end(third_carezone__id)">
+        <button class="carezon_btn3" ion-button>
+          <div class="carezon_btn_font2">마감</div>
+        </button>
         <img class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{third_carezone__id}}" />
       </ion-col>
 

@@ -203,6 +203,11 @@ page-home {
     opacity: 0.9;
     border-radius: 2.5px;
     background-color: #5c59b6;
+    outline: 0 !important;
+    outline-offset: 0 !important;
+    background-image: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
   }
 
   .carezon_btn_font {
@@ -271,6 +276,11 @@ page-home {
     border-radius: 2.5px;
     background-color: #5c59b6;
     z-index: 1;
+    outline: 0 !important;
+    outline-offset: 0 !important;
+    background-image: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
   }
 
   .font_carezone3_page {
@@ -328,6 +338,11 @@ page-home {
     border-radius: 2.5px;
     background-color: #000000;
     z-index: 1;
+    outline: 0 !important;
+    outline-offset: 0 !important;
+    background-image: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
   }
 
   .font_carezone4 {
@@ -549,8 +564,6 @@ page-home {
     transform: translateX(-50%);
   }
 
-
-
   .bound2 {
     position: absolute;
     top: 1200%;
@@ -571,6 +584,4 @@ page-home {
     left: 50%;
     transform: translateX(-50%);
   }
-
-
 }

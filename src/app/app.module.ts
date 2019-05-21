@@ -77,6 +77,9 @@ import { BluetoothLE } from '@ionic-native/bluetooth-le';
 //다국어 처리 모듈 추가 20190510-추호선
 import { TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 
+//이미지 모듈 개선 추가
+import { HttpClientModule } from '@angular/common/http';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 
 
@@ -135,9 +138,12 @@ export function getAuthHttp(http, storage) {
     ProgressBarModule,
     IonicStorageModule.forRoot(),
     NgCircleProgressModule.forRoot(),
+    HttpClientModule,
+    IonicImageLoader.forRoot(),
     TranslateModule.forRoot({
    provide: TranslateLoader,
    useFactory: (createTranslateLoader),
+
    deps: [Http]
  }),
   ],

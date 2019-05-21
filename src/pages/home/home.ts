@@ -1,18 +1,19 @@
 import { IonicPage } from 'ionic-angular';
 import { Component } from '@angular/core';
-import { NavController, Platform, AlertController, ModalController } from 'ionic-angular';
+import { NavController, Platform, AlertController, ModalController, Loading, LoadingController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
-import { SkinChartPage } from '../skin-chart/skin-chart'
-import { CareZonePage } from '../care-zone/care-zone'
-import { SkinMeasureStartPage } from '../skin-measure-start/skin-measure-start'
+import { SkinChartPage } from '../skin-chart/skin-chart';
+import { CareZonePage } from '../care-zone/care-zone';
+import { SkinMeasureStartPage } from '../skin-measure-start/skin-measure-start';
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
-import { TranslateService } from 'ng2-translate/ng2-translate'
-import { TabsPage } from '../tabs/tabs'
-import { CareZoneMissionIngPage} from '../care-zone-mission-ing/care-zone-mission-ing'
-import { CareZoneMissionStartPage} from '../care-zone-mission-start/care-zone-mission-start'
-import { CareZoneMissionDeadlineEndPage} from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end'
+import { TranslateService } from 'ng2-translate/ng2-translate';
+import { TabsPage } from '../tabs/tabs';
+import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-mission-ing';
+import { CareZoneMissionStartPage } from '../care-zone-mission-start/care-zone-mission-start';
+import { CareZoneMissionDeadlineEndPage } from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end';
+import { ImageLoader } from 'ionic-image-loader';
 
 
 @IonicPage()
@@ -23,7 +24,9 @@ import { CareZoneMissionDeadlineEndPage} from '../care-zone-mission-deadline-end
 export class HomePage {
   userData: any;
   bannerData: any;
-  imageUrl: any;
+  jsonData = null;
+  imageUrl: any = [];
+  connectedCspList:Array<string>=[null];
   carezoneData: any;
   careDataOBJ: any;
   first_carezone_title: any;
@@ -35,14 +38,21 @@ export class HomePage {
   third_carezone_title: any;
   third_carezone_body: any;
   third_carezone__id: any;
+  loading: Loading;
+
+  imgUrl: any;
+
+
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
-    private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController, public translateService : TranslateService
+    private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController, public translateService: TranslateService,
+    private loadingCtrl: LoadingController, private imageLoader: ImageLoader
     //public bluetoothle: BluetoothLE
   ) {
     this.platform.ready().then((readySource) => {
+      this.showLoading();
       this.bannerData = this.roadbanner();
       this.roadcareZone();
-
+      this.loading.dismiss();
       //this.first_carezone = this.careDataOBJ[0];
       //this.second_carezone = this.careDataOBJ[1];
       //this.third_carezone = this.careDataOBJ[2];
@@ -81,9 +91,44 @@ export class HomePage {
 
 
   public roadbanner() {
-    this.images.bannerRoad().subscribe(data => {
-      this.bannerData = data;
-    });
+    if (!this.jsonData) {
+      this.images.bannerRoad().subscribe(data => {
+        this.bannerData = data;
+        this.jsonData = data;
+
+        for(let i = 0; i < Object.keys(this.jsonData).length; i++ ){
+            //this.imgUrl[i] = this.jsonData[i]._id;
+            this.imgUrl = 'http://plinic.cafe24app.com/images/'
+            this.connectedCspList.push('http://plinic.cafe24app.com/images/'.concat(this.jsonData[i]._id));
+            console.log(this.connectedCspList[i]);
+        }
+      });
+    } else {
+      this.bannerData = [];
+      setTimeout(() => {
+        this.bannerData = this.jsonData;
+      }, 1000);
+    }
+  }
+
+  doRefresh(event) {
+    // this.imageLoader.clearCache();
+    // refresher.complete();
+
+    console.log('Begin async operation');
+
+
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      this.imageLoader.clearCache();
+      event.complete();
+    }, 2000);
+
+  }
+
+  onImageLoad(event) {
+    console.log('image ready: ', event);
   }
 
   public roadcareZone() {
@@ -143,15 +188,15 @@ export class HomePage {
     this.nav.push(CareZonePage);
   }
 
-  public mission_ing(){
-        this.nav.push(CareZoneMissionIngPage);
+  public mission_ing() {
+    this.nav.push(CareZoneMissionIngPage);
   }
-  public mission_start(_id){
+  public mission_start(_id) {
     //console.log(_id);
-        this.nav.push(CareZoneMissionStartPage,{_id: _id});
+    this.nav.push(CareZoneMissionStartPage, { _id: _id });
   }
-  public mission_deadline_end(id){
-        this.nav.push(CareZoneMissionDeadlineEndPage,{_id: id});
+  public mission_deadline_end(id) {
+    this.nav.push(CareZoneMissionDeadlineEndPage, { _id: id });
   }
 
   // public logout(){
@@ -168,6 +213,24 @@ export class HomePage {
     // The second tab is the one with the index = 1
     //this.nav.push(TabsPage, { selectedTab: 1 });
     this.nav.parent.select(1);
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.loading.present();
+  }
+
+  showError(text) {
+    this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      title: 'Fail',
+      message: text,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }
