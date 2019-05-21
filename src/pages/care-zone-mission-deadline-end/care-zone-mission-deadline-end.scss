@@ -5,6 +5,9 @@ page-care-zone-mission-deadline-end {
                     height: 1px;
                     margin-bottom: 5px;
                   }
+                  .item-md.item-block .item-inner{
+                    padding-right: 12px;
+                  }
                   .toolbar-title-md{
                     font-weight: bold;
                     font-size: 17px;
@@ -59,7 +62,6 @@ page-care-zone-mission-deadline-end {
                     display: flex;
                     text-align: center;
                     background-color: #ffffff;
-                    padding-left: 9.5%;
                     -webkit-filter: grayscale(100%);
                     filter: grayscale(100%);
                   }
@@ -222,9 +224,9 @@ page-care-zone-mission-deadline-end {
 
                   .event-col5{
                     position:absolute;
-                    right: 20px;
+                    right: 1%;
                     text-align: right;
-                    width: 114px;
+                    width: 50%;
                     height: 20.5px;
                     background-color: #ffffff;
                     font-family: NotoSansCJKkr;
@@ -238,9 +240,9 @@ page-care-zone-mission-deadline-end {
 
                   .event-col7{
                     position:absolute;
-                    right: 80px;
+                    right: 1%;
                     background-color: #ffffff;
-                    width: 29.5px;
+                    width: 50%;
                     height: 20.5px;
                     font-family: NotoSansCJKkr;
                     font-size: 14px;
@@ -255,8 +257,8 @@ page-care-zone-mission-deadline-end {
 
                   .event-col9{
                    position:absolute;
-                   right: 20px;
-                   width: 29.5px;
+                   right: 0.5%;
+                   width: 50%;
                    height: 16.5px;
                    font-family: Roboto;
                    font-size: 14px;
@@ -270,7 +272,7 @@ page-care-zone-mission-deadline-end {
                   }
 
                   .event-col11{
-                    width: 29.5px;
+                    width: 50%;
                     height: 16.5px;
                     font-family: Roboto;
                     font-size: 14px;
@@ -286,8 +288,8 @@ page-care-zone-mission-deadline-end {
 
                   .event-col12{
                      position:absolute;
-                     right: 20px;
-                     width: 70.5px;
+                     right: 1%;
+                     width: 50%;
                      height: 16.5px;
                      font-family: Roboto;
                      font-size: 14px;

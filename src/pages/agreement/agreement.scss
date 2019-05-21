@@ -1,7 +1,6 @@
 page-agreement {
 
 
-
   .title{
     position: absolute;
     left: 50%;
@@ -40,7 +39,7 @@ page-agreement {
    height: 25px;
    object-fit: contain;
    margin-top: -5px;
-   right: -105px;
+   right: -145%;
   }
 
   .toolaralign2{
@@ -50,7 +49,7 @@ page-agreement {
     height: 25px;
     object-fit: contain;
     margin-top: 5px;
-    right: -70px;
+    right: -90%;
   }
 
   .toolaralign3{
@@ -60,7 +59,7 @@ page-agreement {
     height: 25px;
     object-fit: contain;
     margin-top: 5px;
-    right: -20px;
+    right: -20%;
   }
 
    .h1{
@@ -77,7 +76,7 @@ page-agreement {
       margin-left: auto;
       margin-right: auto;
       color: #292929;
-      padding-top: 10%;
+      padding-top: 4%;
    }
 
    .label{
@@ -113,29 +112,60 @@ page-agreement {
      color: #292929;
    }
 
-
+       .list-md{
+         margin: 0px;
+       }
+       .list-ios{
+         margin: 0px;
+       }
 
        .sub{
-
-      width: 262.5px;
-       height: 50px;
-       font-family: AppleSDGothicNeo;
-       font-size: 13px;
-       font-weight: normal;
-       font-style: normal;
-       font-stretch: normal;
-       line-height: 1.62;
-       letter-spacing: normal;
-       color: #939393;
+         width: 262.5px;
+         height: 40px;
+         font-family: AppleSDGothicNeo;
+         font-size: 12px;
+         font-weight: normal;
+         font-style: normal;
+         font-stretch: normal;
+         line-height: 1.54;
+         letter-spacing: normal;
+         color: #b6b6b6;
+         margin-left: 5px;
       }
 
+      .agree_list{
+        margin-left: 6px;
+        margin-right: 8px;
+        margin-top: -5%;
+      }
+
+
+      .item-md{
+        padding: 0px;
+      }
+      .item-ios{
+        padding: 0px;
+      }
+      .item-md.item-block .item-inner{
+        padding-right: 0px;
+      }
+      .item-ios.item-block .item-inner{
+        padding-right: 0px;
+      }
+      .label-md{
+          margin-right: 0px;
+      }
+      .label-ios{
+          margin-right: 0px;
+      }
       .item-md .item-button {
-          font-size: 14px;
+          font-size: 15px;
+          padding-left: 0px;
+      }
+      .item-ios .item-button {
+          font-size: 15px;
       }
 
-      .item-ios .item-button {
-          font-size: 14px;
-      }
       .button_sign{
         margin-left: auto;
         margin-right: auto;
@@ -143,9 +173,13 @@ page-agreement {
         border: solid 0.5px #c7c7c7;
         background-color:#5c59b6;
         color: #FFF;
+        font-size: 15px;
         font-weight:normal;
-        width: 315px;
+        width: 97%;
         min-height: 50px;
+        text-align: center;
+        border-radius: 4px;
+
       }
 
 

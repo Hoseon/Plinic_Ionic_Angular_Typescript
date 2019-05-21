@@ -66,6 +66,7 @@ export class LoginpagePage {
 
 
   public agreepage(){
+    this.viewCtrl.dismiss();
      this.nav.push(AgreementPage);
   }
   public passwordfind(){

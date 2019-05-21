@@ -33,7 +33,7 @@ page-login {
       margin-right: auto;
       display: block;
       font-weight: normal;
-      width: 90%;
+      width: 97%;
       border: solid 0.5px #c7c7c7;
       font-weight: normal;
       font-style: normal;
@@ -52,7 +52,7 @@ page-login {
       border: solid 0.5px #c7c7c7;
       font-size: 14px;
       color: #292929;
-      width: 315px;
+      width: 97%;
       height: 50px;
       font-weight: normal;
       font-style: normal;
@@ -60,6 +60,8 @@ page-login {
       line-height: normal;
       letter-spacing: normal;
       text-align: center;
+      border-radius: 4px;
+      margin-bottom: 10px;
     }
 
 
@@ -68,7 +70,7 @@ page-login {
       margin-right: auto;
       display: block;
       background-color: #5c59b6;
-      width: 315px;
+      width: 97%;
       height: 50px;
       border-radius: 4px;
       font-family: NotoSansCJKkr;
@@ -86,6 +88,7 @@ page-login {
 
 
     .Linetext{
+      width: 85%;
       display: table;
       white-space: nowrap;
       font-family: AppleSDGothicNeo;

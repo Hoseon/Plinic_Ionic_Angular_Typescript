@@ -60,7 +60,6 @@ page-care-zone-mission-start {
                 display: flex;
                 text-align: center;
                 background-color: #ffffff;
-                padding-left: 9.5%;
               }
 
               .button_outline{
@@ -91,7 +90,7 @@ page-care-zone-mission-start {
                 font-size: 19px;
                 font-weight: bold;
                 color: #292929;
-                width: 175px;
+                width: 80%;
                 height: 28px;
                font-style: normal;
                font-stretch: normal;
@@ -145,7 +144,9 @@ page-care-zone-mission-start {
                 }
 
 
-
+              .item-md.item-block .item-inner{
+                padding-right: 12px;
+              }
               .mission-img{
                 margin-left: auto;
                 margin-right: auto;
@@ -163,10 +164,10 @@ page-care-zone-mission-start {
 
               .event-col5{
                 position:absolute;
-                right: 33.5px;
+                right: 1%;
                 text-align: right;
-                width: 111px;
-                height: 17px;
+                width: 50%;
+                height: 30px;
                 background-color: #ffffff;
                 font-family: NotoSansCJKkr;
                 font-size: 14px;
@@ -179,10 +180,10 @@ page-care-zone-mission-start {
 
                 .event-col7{
                 position:absolute;
-                right: 80px;
+                right: 1%;
                 background-color: #ffffff;
-                width: 29.5px;
-                height: 20.5px;
+                width: 50%;
+                height: 30px;
                 font-family: Roboto;
                 font-size: 14px;
                 font-weight: normal;
@@ -196,9 +197,9 @@ page-care-zone-mission-start {
 
               .event-col11{
                 position:absolute;
-                right: 20px;
-                width: 29.5px;
-                height: 16.5px;
+                right: 1%;
+                width: 50%;
+                height: 30px;
                 font-family: Roboto;
                 font-size: 14px;
                 font-weight: normal;
@@ -212,9 +213,9 @@ page-care-zone-mission-start {
 
               .event-col12{
                  position:absolute;
-                 right: 20px;
-                 width: 70.5px;
-                 height: 16.5px;
+                 right: 1%;
+                 width: 50%;
+                 height: 30px;
                  font-family: Roboto;
                  font-size: 14px;
                  font-weight: normal;

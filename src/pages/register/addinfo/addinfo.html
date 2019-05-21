@@ -9,7 +9,7 @@
 
 
   <ion-item  no-lines>
-     <ion-grid>
+     <ion-grid style="height: 46px;">
       <ion-row>
       <ion-col><ion-img class="close" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
                     assets/img/agreement/ic-system-back-black@3x.png" (click)="navpop()"></ion-img></ion-col>
@@ -26,20 +26,20 @@
 
   <form (ngSubmit)="register()" #registerForm="ngForm" no-lines>
 
-  <h1 class="h1"> 부가정보를 입력해주세요. </h1>
+  <h1 class="h1" style="margin-top:2%"> 부가정보를 입력해주세요. </h1>
 
-  <ion-item style="background:#FFF">
+  <ion-item class="item_align" style="background:#FFF">
   <ion-label class="titlelabel" stacked>닉네임</ion-label>
   <ion-input type="text" name="name" style="font-size:15px" placeholder="닉네임 입력해주세요." [(ngModel)]="registerCredentials.name" required clearInput></ion-input>
   </ion-item>
 
-  <ion-item>
+  <ion-item class="item_align">
     <ion-label class="titlelabel" stacked> 생년월일</ion-label>
     <ion-datetime #birthday type="text" style="font-size:15px" placeholder="선택" name="birthday"
     doneText="확인" cancelText="취소"displayFormat="YYYY년 MM월 DD일" min="1940-01-01" max="2015-12-31" [(ngModel)]="registerCredentials.birthday" required></ion-datetime>
   </ion-item>
 
-  <ion-item>
+  <ion-item class="item_align">
     <ion-label class="titlelabel" stacked>국가</ion-label>
     <ion-select placeholder="선택" style="font-size:15px"
                 name="country" okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.country" required >
@@ -47,7 +47,7 @@
     </ion-select>
   </ion-item>
 
-  <ion-item no-lines>
+  <ion-item class="item_align" no-lines>
   <ion-label class="titlelabel" stacked>성별</ion-label>
   </ion-item>
 
@@ -65,7 +65,7 @@
   </ion-list>
 
 
-<ion-item no-lines >
+<ion-item class="item_align" no-lines >
 <ion-label class="titlelabel" stacked>피부타입</ion-label>
 </ion-item>
 
@@ -104,7 +104,7 @@
       · 정확한 이메일 주소를 입력해주세요.<br>
       · 비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.</p>
 
-  <ion-item no-lines>
+  <ion-item class="item_align" no-lines>
     <ion-input type="hidden" name="user_jwt" value="true" [(ngModel)]="registerCredentials.user_jwt" required hidden>true</ion-input>
   </ion-item>
 

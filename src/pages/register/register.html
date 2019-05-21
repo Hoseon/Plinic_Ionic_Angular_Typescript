@@ -11,7 +11,7 @@
 
 
   <ion-item  no-lines>
-     <ion-grid>
+     <ion-grid style="height: 46px;">
        <ion-row>
       <ion-col><ion-img class="close" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
                     assets/img/agreement/ic-system-back-black@3x.png" (click)="navpop()"></ion-img></ion-col>
@@ -28,11 +28,11 @@
 
       <h1 class="h1"> 회원정보를 입력해주세요. </h1>
 
-      <ion-list>
+      <ion-list class="register_list">
         <form novalidate (ngSubmit)="anddinfo()" [formGroup]="signupform">
 
-      <ion-item>
-        <ion-label color="primary" stacked>이메일</ion-label>
+      <ion-item class="email_align">
+        <ion-label class="email_label" stacked>이메일</ion-label>
         <ion-input type="email" [(ngModel)]="userData.email" formControlName="email" placeholder="이메일을 입력해주세요."
          [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty" clearInput required></ion-input>
       </ion-item>
@@ -43,11 +43,11 @@
         <div class="error" *ngIf="signupform.get('email').hasError('pattern') && signupform.get('email').touched">
           올바른 이메일 형식이 아닙니다.
         </div>
-      </ion-item>
+      </ion-item><br>
 
-      <ion-item>
-          <ion-label color="primary" stacked>비밀번호 </ion-label>
-        <ion-input type="password" [(ngModel)]="userData.password" formControlName="password" name="password" placeholder="비밀번호를 입력해주세요."
+      <ion-item class="password_align" >
+          <ion-label class="password_label" stacked>비밀번호 </ion-label>
+        <ion-input type="password" class="password_input" [(ngModel)]="userData.password" formControlName="password" name="password" placeholder="비밀번호를 입력해주세요."
          [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty" clearInput required></ion-input>
       </ion-item>
 
@@ -61,11 +61,10 @@
         <div class="error" *ngIf="signupform.get('password').hasError('maxlength') && signupform.get('password').touched">
           ·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.
         </div>
-      </ion-item>
+      </ion-item><br>
 
-
-      <ion-item>
-          <ion-label color="primary" stacked>비밀번호 확인 </ion-label>
+      <ion-item class="password_align">
+          <ion-label class="password_label" stacked>비밀번호 확인 </ion-label>
         <ion-input type="password" [(ngModel)]="userData.passwordconfirm" formControlName="passwordconfirm" name="passwordconfirm" placeholder="비밀번호를 입력해주세요."
          [class.error1]="!signupform.controls.passwordconfirm.valid && signupform.controls.passwordconfirm.dirty" clearInput required></ion-input>
       </ion-item>
@@ -86,7 +85,7 @@
 
       <p class="sub" >·정확한 이메일 주소를 입력해주세요.<br>·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.</p><br>
 
-      <button type="submit" ion-button class="login_btn" name="next" [disabled]="signupform.invalid">다음</button>
+      <button type="submit" style="opacity:1" ion-button class="login_btn" name="next" [disabled]="signupform.invalid">다음</button>
 
         </form>
       </ion-list>
