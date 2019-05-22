@@ -43,6 +43,7 @@ page-login {
       text-align: center;
       font-size: 14px;
       color: #292929;
+      box-shadow: none;
     }
 
     .submit-btn {
@@ -62,6 +63,7 @@ page-login {
       text-align: center;
       border-radius: 4px;
       margin-bottom: 10px;
+      box-shadow: none;
     }
 
 
@@ -82,6 +84,7 @@ page-login {
       letter-spacing: normal;
       text-align: center;
       color: #ffffff;
+      box-shadow: none;
     }
 
 
@@ -130,6 +133,7 @@ page-login {
           width: 25px;
           height: 25px;
           padding-right: 5px;
+          box-shadow: none;
         }
 
 
@@ -138,6 +142,7 @@ page-login {
           height: 25px;
           text-align: center;
           padding-right: 5px;
+          box-shadow: none;
         }
 
         .naver_btn{
@@ -145,9 +150,16 @@ page-login {
           height: 25px;
           text-align: center;
           padding-right: 5px;
+          box-shadow: none;
         }
 
+        .label-md{
+          margin: 0px;
+        }
         .bottom_text{
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
           font-family: AppleSDGothicNeo;
           font-size: 14px;
           font-weight: normal;
@@ -157,11 +169,7 @@ page-login {
           letter-spacing: normal;
           text-align: center;
           color: #939393;
-
+          margin-top: -15px;
         }
-        // .label{
-        //   overflow:visible;
-        // }
-
 
 }

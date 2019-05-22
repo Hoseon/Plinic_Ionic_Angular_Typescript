@@ -20,7 +20,7 @@
     <ion-item no-lines>
       <img class="goods-img" src="http://plinic.cafe24app.com/carezone_prodimages/{{carezoneData._id}}" /><br><br>
 
-      <button ion-button style="height:28px" class="button_outline" outline (click)="mission_complete()">미션</button>
+      <button ion-button style="height:28px;box-shadow: none;" class="button_outline" outline (click)="mission_complete()">미션</button>
       </ion-item>
       <h1 class="top_text"> {{carezoneData.missontitle}} </h1><br>
 
@@ -61,13 +61,13 @@
    </ion-item>
    <ion-item no-lines>
      <ion-col class="sub" text-wrap>
-       ※진단 결과는 환경에 따라 상이할 수 있습니다.
+       ※&nbsp;진단 결과는 환경에 따라 상이할 수 있습니다.
      </ion-col>
     </ion-item>
 
     <ion-item no-lines>
-      <button ion-button class="button_start" style="font-size: 14px" outline (click)="satrtMission(carezoneData._id)" >미션 시작&nbsp;&nbsp;></button>
-      <button ion-button class="button_detail" style="font-size: 14px" outline outline >제품 상세정보&nbsp;&nbsp;></button>
+      <button ion-button class="button_start" style="font-size: 14px;box-shadow: none;" outline (click)="satrtMission(carezoneData._id)" >미션 시작&nbsp;&nbsp;></button>
+      <button ion-button class="button_detail" style="font-size: 14px;box-shadow: none;" outline outline >제품 상세정보&nbsp;&nbsp;></button>
     </ion-item>
   </ion-list>
 
@@ -78,7 +78,7 @@
 <ion-list>
  <ion-item>
     <ion-grid>
-          <ion-row style="margin: 0 auto;">
+          <ion-row class="sns_row">
               <ion-col><ion-img class="mission-img"src="assets/img/care-zone/sns/ic-sns-kakao@3x.png"
               srcset="assets/img/sns/ic-sns-kakao@2x.png, assets/img/sns/ic-sns-kakao@3x.png"></ion-img>
               <ion-col><ion-img class="mission-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png"
@@ -93,7 +93,7 @@
 
 
 
- <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
+ <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
 
 
 <ion-list>

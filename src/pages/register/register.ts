@@ -17,10 +17,9 @@ export class RegisterPage {
   createSuccess = false;
   public country: any;
   signupform: FormGroup;
-
-
-
-
+  myImage: any;
+  myImage2: any;
+  myImage3: any;
   userData = { "password": "", "passwordconfirm": "", "email": ""};
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) {}
@@ -33,18 +32,40 @@ export class RegisterPage {
 
 
   public email_delete(){
-   this.userData.email="";
+      console.log('email_delete');
+   return this.userData.email="";
   }
   public password_delete(){
-    this.userData.password="";
+      console.log('password_delete');
+    return this.userData.password="";
   }
   public passwordconfirm_delete(){
-  this.userData.passwordconfirm="";
+      console.log('passwordconfirm_delete');
+  return this.userData.passwordconfirm="";
   }
 
+  changeImage(image){
+      if(image){
+        return this.myImage = "assets/img/register/ic-system-clear-grey@3x.png"
+      } else{
+        return this.myImage = "assets/img/register/ic-system-clear-red@3x.png"
+      }
+  }
 
-
-
+  changeImage2(image){
+      if(image){
+        return this.myImage2 = "assets/img/register/ic-system-clear-grey@3x.png"
+      } else{
+        return this.myImage2 = "assets/img/register/ic-system-clear-red@3x.png"
+      }
+  }
+  changeImage3(image){
+      if(image){
+        return this.myImage3 = "assets/img/register/ic-system-clear-grey@3x.png"
+      } else{
+        return this.myImage3 = "assets/img/register/ic-system-clear-red@3x.png"
+      }
+  }
   ngOnInit() {
      let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
      this.signupform = new FormGroup({

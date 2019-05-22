@@ -24,7 +24,7 @@ export class AddinfoPage {
   email: any;
   password: any;
   alertEvent : boolean = false;
-
+  myImage: any;
 
   // registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
   registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', user_jwt: 'true' };
@@ -50,6 +50,14 @@ export class AddinfoPage {
     console.log(this.password);
   }
 
+  changeImage(){
+      return this.myImage = "assets/img/register/ic-system-clear-grey@3x.png"
+  }
+
+  public name_delete(){
+      console.log('email_delete');
+   return this.registerCredentials.name="";
+  }
 
   public mcAnswer(event){
        console.log(event);

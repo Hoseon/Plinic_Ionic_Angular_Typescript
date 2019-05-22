@@ -50,8 +50,8 @@ page-loginpage {
                   width: 25px;
                   height: 25px;
                   object-fit: contain;
-                  margin-top: 20px;
-                  margin-left: -5px;
+                  margin-top: 2%;
+                  margin-left: -0.5%;
                  }
 
                   .submit-btn {
@@ -70,7 +70,9 @@ page-loginpage {
                     letter-spacing: normal;
                     text-align: center;
                     border-radius: 4px;
-                    margin-bottom: 10px;
+                    margin-bottom: 5%;
+                    margin-top: -2%;
+                    box-shadow: none;
 
                   }
                   .col{
@@ -81,19 +83,26 @@ page-loginpage {
                     text-align: center;
                     width: 25px;
                     height: 25px;
+                    object-fit: contain;
                     padding-right: 5px;
+                    box-shadow: none;
                   }
                   .naver_btn{
+                    text-align: center;
                     width: 25px;
                     height: 25px;
-                    text-align: center;
+                    object-fit: contain;
                     padding-right: 5px;
+                    box-shadow: none;
                   }
                   .google_btn{
+                    text-align: center;
                     width: 25px;
                     height: 25px;
-                    text-align: center;
+                    object-fit: contain;
+                    color: #292929;
                     padding-right: 5px;
+                    box-shadow: none;
                   }
 
                   .Linetext{
@@ -112,8 +121,8 @@ page-loginpage {
                     color: #b6b6b6;
                     margin-left: auto;
                     margin-right: auto;
-                    margin-top: 30px;
-                    margin-bottom: 6px;
+                    margin-top: 10%;
+                    margin-bottom: 5%;
                     &:before, &:after {
                       border-top: 0.5px solid #b6b6b6;
                       content: '';
@@ -145,8 +154,15 @@ page-loginpage {
                   padding-right: 2%;
                 }
                 .password_align{
+                  margin-top: 5%;
                   padding-left: 2%;
                   padding-right: 2%;
+                }
+                .text-input-md{
+                  margin-left: 0px;
+                }
+                .text-input-ios{
+                  margin-left: 0px;
                 }
                 .text-input::-webkit-input-placeholder {
                   width: 55.5px;
@@ -224,6 +240,8 @@ page-loginpage {
                     letter-spacing: normal;
                     text-align: center;
                     color: #ffffff;
+                    box-shadow: none;
+                    margin-top: 3%;
                   }
 
                   .passwordfind{
@@ -238,6 +256,7 @@ page-loginpage {
                     letter-spacing: normal;
                     text-align: center;
                     color: #939393;
+                    box-shadow: none;
                   }
 
 }
