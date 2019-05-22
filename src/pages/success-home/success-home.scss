@@ -706,7 +706,7 @@ background-color: #FFF;
 
   .beauty_grid3 {
     position: absolute;
-    top: 50%;
+    top: 61%;
     width: 95%;
     height: 95%;
     left: 25%;
@@ -715,7 +715,7 @@ background-color: #FFF;
 
   .beauty_grid4 {
     position: absolute;
-    top: 50%;
+    top: 61%;
     width: 95%;
     height: 95%;
     left: 75%;
@@ -724,11 +724,12 @@ background-color: #FFF;
 
   .beauty_img {
     width: 100%;
-    height: 100%;
+    height: 113%;
     border-radius: 5px;
   }
 
   .beauty_title {
+    padding-top: 8%;
     width: 90px;
     height: 19px;
     font-family: NotoSansCJKkr;
@@ -743,11 +744,12 @@ background-color: #FFF;
   }
 
   .beauty_desc {
+    padding-top: 8%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 150.5px;
-    height: 22.5px;
+    height: 30.5px;
     font-family: NotoSansCJKkr;
     font-size: 15px;
     font-weight: normal;
@@ -757,12 +759,13 @@ background-color: #FFF;
     letter-spacing: normal;
     color: #292929;
     text-align: left;
+    z-index: 5;
   }
 
   .beauty_btn {
     position: absolute;
-    top: 2200%;
-    width: 91%;
+    top: 2428%;
+    width: 92%;
     height: 50px;
     border: solid 0.5px #c7c7c7;
     left: 50%;
@@ -772,7 +775,7 @@ background-color: #FFF;
   .tip_title {
     position: absolute;
     //left: 20px;
-    top: 15%;
+    top: 12%;
     width: 100px;
     height: 23.5px;
     font-family: NotoSansCJKkr;
@@ -809,20 +812,18 @@ background-color: #FFF;
 
   .bound {
     position: absolute;
-    top: 750%;
-    width: 91%;
+    top: 564%;
+    width: 96%;
     height: 55px;
     background-color: #ffffff;
     left: 50%;
     transform: translateX(-50%);
   }
 
-
-
   .bound2 {
     position: absolute;
-    top: 1200%;
-    width: 91%;
+    top: 1027%;
+    width: 98%;
     height: 55px;
     background-color: #ffffff;
     left: 50%;
@@ -831,8 +832,8 @@ background-color: #FFF;
 
   .bound3 {
     position: absolute;
-    top: 1650%;
-    width: 91%;
+    top: 1475%;
+    width: 96%;
     height: 55px;
     background-color: #ffffff;
     margin: 0 auto;
