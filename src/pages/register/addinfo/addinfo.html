@@ -17,8 +17,12 @@
       <ion-img  class="toolaralign2" src="assets/img/agreement/ic-system-step-on.png" srcset="assets/img/agreement/ic-system-step-on@2x.png,
                       assets/img/agreement/ic-system-step-on@3x.png"></ion-img>
 
-      <ion-img class="toolaralign" src="assets/img/agreement/ic-system-step-02@3x.png" srcset="assets/img/agreement/ic-system-step-02@2x.png,
+      <ion-img class="toolaralign" src="assets/img/agreement/ic-system-step-03@3x.png" srcset="assets/img/agreement/ic-system-step-02@2x.png,
                       assets/img/agreement/ic-system-step-02@3x.png"></ion-img>
+
+      <ion-img class="toolaralign3" src="assets/img/agreement/ic-system-step-on.png" srcset="assets/img/agreement/ic-system-step-02@2x.png,
+                      assets/img/agreement/ic-system-step-02@3x.png"></ion-img>
+
         </ion-row>
      </ion-grid>
   </ion-item>
@@ -30,19 +34,21 @@
 
   <ion-item class="item_align" style="background:#FFF">
   <ion-label class="titlelabel" stacked>닉네임</ion-label>
-  <ion-input type="text" name="name" style="font-size:15px" placeholder="닉네임 입력해주세요." [(ngModel)]="registerCredentials.name" required clearInput></ion-input>
+  <ion-input class="input_name" (ionChange)="changeImage()" mode="ios" type="text" name="name" placeholder="닉네임 입력해주세요." [(ngModel)]="registerCredentials.name" required></ion-input>
+  <ion-img class="email_img" src="assets/img/register/ic-system-clear-grey@3x.png" item-right (click)="name_delete()"></ion-img>
+
   </ion-item><br>
 
   <ion-item class="item_align">
-    <ion-label class="titlelabel" stacked> 생년월일</ion-label>
-    <ion-datetime #birthday type="text" style="font-size:15px" placeholder="선택" name="birthday"
+    <ion-label class="birthdaylabel" stacked> 생년월일</ion-label>
+    <ion-datetime type="text" style="font-size:15px" placeholder="19900101" name="birthday"
     doneText="확인" cancelText="취소" [pickerOptions]="customPickerOptions" displayFormat="YYYY년 MM월 DD일" min="1940-01-01" max="1988-12-31" [(ngModel)]="registerCredentials.birthday" required></ion-datetime>
   </ion-item><br>
 
   <!-- <ion-item class="item_align">
-    <ion-label class="titlelabel" stacked>국가</ion-label>
+    <ion-label class="countrylabel" stacked>국가</ion-label>
     <ion-searchbar [(ngModel)]="registerCredentials.country" [ngModelOptions]="{standalone: true}"></ion-searchbar>
-    <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="선택" style="font-size:15px"
+    <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="국가를 선택해주세요." style="font-size:15px"
                 name="country" okText="확인" cancelText="취소" [(ngModel)]="registerCredentials.country" required >
       <ion-option *ngFor="let country of countries" [value]="country.country_name" >{{country.country_name}}</ion-option>
     </ion-select>
@@ -66,7 +72,7 @@
   <ion-label class="titlelabel" stacked>성별</ion-label>
   </ion-item>
 
-  <ion-list radio-group [(ngModel)]="registerCredentials.gender" required [ngModelOptions]="{standalone: true}">
+  <ion-list class="gender_list" radio-group [(ngModel)]="registerCredentials.gender" required [ngModelOptions]="{standalone: true}">
     <ion-row class="row_align">
     <ion-col><ion-item no-lines>
       <ion-label class="radiolabel" name="gender" for="여성" checked>여성
@@ -84,8 +90,7 @@
 <ion-label class="titlelabel" stacked>피부타입</ion-label>
 </ion-item>
 
-
-<ion-list radio-group [(ngModel)]="registerCredentials.skincomplaint" required [ngModelOptions]="{standalone: true}">
+<ion-list class="skincomplaint_list" radio-group [(ngModel)]="registerCredentials.skincomplaint" required [ngModelOptions]="{standalone: true}">
 
   <ion-row class="row_align"><ion-col><ion-item no-lines>
     <ion-label class="radiolabel" for="건성" checked>건성
@@ -123,7 +128,7 @@
     <ion-input type="hidden" name="user_jwt" value="true" [(ngModel)]="registerCredentials.user_jwt" required hidden>true</ion-input>
   </ion-item>
 
-  <button ion-button class="submit-btn" name="register" color="primary" full type="submit" [disabled]="!registerForm.form.valid">완료</button>
+  <button ion-button class="complete-btn" name="register" type="submit" [disabled]="!registerForm.form.valid">완료</button>
 
   </form>
 </ion-content>

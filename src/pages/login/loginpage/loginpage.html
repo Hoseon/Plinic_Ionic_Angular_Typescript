@@ -14,7 +14,7 @@
 
   <h1 class="h1" > 로그인 </h1>
 
-  <ion-list id="hide">
+  <ion-list>
     <ion-row>
      <ion-col>
        <button ion-button class="submit-btn" (click)="naver_login()" outline>
@@ -35,7 +35,7 @@
      <form novalidate (ngSubmit)="onSubmit()" #registerForm="ngForm" [formGroup]="signupform">
 
      <ion-item class="email_align" style="background:#FFF" >
-     <ion-input #messageInput style="font-size:15px;" type="email" placeholder="이메일"
+     <ion-input #messageInput mode="ios" style="font-size:15px;" type="email" placeholder="이메일"
      [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty"
      formControlName="email" [(ngModel)]="registerCredentials.email" required clearInput></ion-input>
      </ion-item>
@@ -50,7 +50,7 @@
 
      <ion-item class="password_align" style="background:#FFF">
      <!-- <ion-label class="titlelabel" stacked>비밀번호 </ion-label> -->
-     <ion-input #messageInput style="font-size:15px;" placeholder="비밀번호"
+     <ion-input #messageInput mode="ios" style="font-size:15px;" placeholder="비밀번호"
      type="password" formControlName="password" name="password" [(ngModel)]="registerCredentials.password"
      [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty" required clearInput></ion-input>
      </ion-item>

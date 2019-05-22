@@ -1,6 +1,11 @@
 page-agreement {
 
 
+
+.list-md[no-lines] .item-block, .list-md[no-lines] ion-item-options, .list-md[no-lines] .item .item-inner{
+
+  margin-bottom: -1%;
+}
   .title{
     position: absolute;
     left: 50%;
@@ -27,8 +32,8 @@ page-agreement {
    width: 25px;
    height: 25px;
    object-fit: contain;
-   left:-10px;
-   top: -0px;
+   left: -8%;
+   bottom: -25%;
 
   }
 
@@ -38,7 +43,7 @@ page-agreement {
    width: 25px;
    height: 25px;
    object-fit: contain;
-   margin-top: -5px;
+   margin-top: -23%;
    right: -145%;
   }
 
@@ -48,8 +53,8 @@ page-agreement {
     width: 25px;
     height: 25px;
     object-fit: contain;
-    margin-top: 5px;
-    right: -90%;
+    margin-top: -12%;
+    right: -88%;
   }
 
   .toolaralign3{
@@ -58,7 +63,7 @@ page-agreement {
     width: 25px;
     height: 25px;
     object-fit: contain;
-    margin-top: 5px;
+    margin-top: -12%;
     right: -20%;
   }
 
@@ -76,7 +81,7 @@ page-agreement {
       margin-left: auto;
       margin-right: auto;
       color: #292929;
-      padding-top: 4%;
+      margin-top: 2%;
    }
 
    .label{
@@ -136,7 +141,7 @@ page-agreement {
       .agree_list{
         margin-left: 6px;
         margin-right: 8px;
-        margin-top: -5%;
+        margin-top: -15%;
       }
 
 
@@ -179,20 +184,8 @@ page-agreement {
         min-height: 50px;
         text-align: center;
         border-radius: 4px;
+        box-shadow: none;
 
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

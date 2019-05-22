@@ -161,7 +161,7 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD');
                       duration: 5000 // general animation time
                   },
                   legend: {
-                    display: true     //라벨표시
+                    display: false     //라벨표시
                   },
                     scales: {
                         yAxes: [{
