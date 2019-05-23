@@ -74,7 +74,8 @@
 
       <ion-item class="password_align">
           <ion-label class="password_label" stacked>비밀번호 확인 </ion-label>
-        <ion-input (ionChange)="changeImage3(signupform.controls.passwordconfirm.valid && signupform.controls.passwordconfirm.dirty)" mode="ios" type="password" [(ngModel)]="userData.passwordconfirm" formControlName="passwordconfirm" name="passwordconfirm" placeholder="비밀번호를 입력해주세요."
+        <ion-input (ionChange)="changeImage3(signupform.controls.passwordconfirm.valid && signupform.controls.passwordconfirm.dirty)"
+        mode="ios" type="password" [(ngModel)]="userData.passwordconfirm" formControlName="passwordconfirm" name="passwordconfirm" placeholder="비밀번호를 입력해주세요."
          [class.error1]="!signupform.controls.passwordconfirm.valid && signupform.controls.passwordconfirm.dirty" required></ion-input>
            <ion-img class="email_img" src="{{myImage3}}" item-right (click)="passwordconfirm_delete()"></ion-img>
       </ion-item>

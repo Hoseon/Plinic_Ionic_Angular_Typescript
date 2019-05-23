@@ -41,10 +41,24 @@ export class AddinfoPage {
       name: 'country',
       options: [
         { text: '대한민국', value: '대한민국'},
-        { text: '中國, China', value: '中國, China' },
-        { text: '日本, Japan', value: '日本, Japan' },
+        { text: '中國,China', value: '中國,China' },
+        { text: '日本,Japan', value: '日本,Japan' },
         { text: 'Spain', value: 'Spain' },
         { text: 'Afghanistan', value: 'Afghanistan' },
+        { text: 'Albania', value: 'Albania' },
+        { text: 'Algeria', value: 'Algeria' },
+        { text: 'American Samoa', value: 'American Samoa' },
+        { text: 'Andorra', value: 'Andorra' },
+        { text: 'Angola', value: 'Angola' },
+        { text: 'Antigua', value: 'Antigua' },
+        { text: 'Argentina', value: 'Argentina' },
+        { text: 'Armenia', value: 'Armenia' },
+        { text: 'Aruba', value: 'Aruba' },
+        { text: 'Australia', value: 'Australia' },
+        { text: 'Austria', value: 'Austria' },
+        { text: 'Azerbaijan', value: 'Azerbaijan' },
+        { text: 'Bahrain', value: 'Bahrain' },
+
       ]
     },
   ];

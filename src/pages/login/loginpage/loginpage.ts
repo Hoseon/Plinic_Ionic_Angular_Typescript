@@ -67,6 +67,8 @@ export class LoginpagePage {
   visibleState = 'visible';
   startTime = null;
   endTime = null;
+  myImage: any;
+  myImage2 : any;
 
   @ViewChild('myElement') myElem;
   constructor(public nav: NavController, public navParams: NavParams, animationService: AnimationService,
@@ -89,6 +91,30 @@ export class LoginpagePage {
     });
   }
 
+
+  public email_delete(){
+      console.log('email_delete');
+   return this.registerCredentials.email="";
+  }
+  public password_delete(){
+      console.log('password_delete');
+    return this.registerCredentials.password="";
+  }
+  changeImage(image){
+      if(image){
+        return this.myImage = "assets/img/register/ic-system-clear-grey@3x.png"
+      } else{
+        return this.myImage = "assets/img/register/ic-system-clear-red@3x.png"
+      }
+  }
+
+  changeImage2(image){
+      if(image){
+        return this.myImage2 = "assets/img/register/ic-system-clear-grey@3x.png"
+      } else{
+        return this.myImage2 = "assets/img/register/ic-system-clear-red@3x.png"
+      }
+  }
   public setInputFocus() {
     var elem: any = this.messageInput;
     elem._native.nativeElement.focus(); // Keep the focus on input field.

@@ -141,7 +141,7 @@
 }
 .picker-md .picker-prefix, .picker-md .picker-suffix, .picker-md .picker-opt.picker-opt-selected{
   font-family: Roboto;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
@@ -149,6 +149,8 @@
   letter-spacing: normal;
   text-align: center;
   color: #5C59B6;
+  border-style: solid;
+  border-width: 1.5px 0px 1.5px 0px;
 }
   .picker-toolbar-button .picker-toolbar-multi-picker-cancel{
     height: 0px;
@@ -157,7 +159,7 @@
 
 .picker-md .picker-opt{
   font-family: Roboto;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
