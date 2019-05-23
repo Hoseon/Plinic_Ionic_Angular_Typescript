@@ -28,9 +28,10 @@
   </ion-item>
 
 
+
   <form (ngSubmit)="register()" #registerForm="ngForm" no-lines>
 
-  <h1 class="h1" style="margin-top:2%"> 부가정보를 입력해주세요. </h1>
+  <h1 class="h1" style="margin-top:2%" (click)="selectANumber()" >부가정보를 입력해주세요. </h1>
 
   <ion-item class="item_align" style="background:#FFF">
   <ion-label class="titlelabel" stacked>닉네임</ion-label>
@@ -39,10 +40,11 @@
 
   </ion-item><br>
 
-  <ion-item class="item_align">
-    <ion-label class="birthdaylabel" stacked> 생년월일</ion-label>
+  <ion-item class="item_align" style="margin-bottom:3%;">
+    <ion-label class="birthdaylabel"  stacked> 생년월일</ion-label>
     <ion-datetime type="text" style="font-size:15px" placeholder="19900101" name="birthday"
-    doneText="확인" cancelText="취소" [pickerOptions]="customPickerOptions" displayFormat="YYYY년 MM월 DD일" min="1940-01-01" max="1988-12-31" [(ngModel)]="registerCredentials.birthday" required></ion-datetime>
+    doneText="확인" cancelText="취소" pickerFormat="YYYY년 MM월 DD일" displayFormat="YYYY년 MM월 DD일" min="1940-01-01" max="1988-12-31"
+           [(ngModel)]="registerCredentials.birthday" required></ion-datetime>
   </ion-item><br>
 
   <!-- <ion-item class="item_align">
@@ -54,8 +56,8 @@
     </ion-select>
   </ion-item><br> -->
 
-  <ion-item class="item_align">
-      <ion-label class="titlelabel" stacked>국가</ion-label>
+  <!-- <ion-item class="item_align">
+      <ion-label class="countrylabel" stacked>국가</ion-label>
       <select-searchable [ngModelOptions]="{standalone: true}" placeholder="선택"
           item-content
           [(ngModel)]="registerCredentials.country"
@@ -65,11 +67,16 @@
           [canSearch]="true"
           (onChange)="portChange($event)">
       </select-searchable>
-  </ion-item><br>
+  </ion-item><br> -->
 
+  <ion-item class="item_align" style="margin-bottom:4%;">
+     <ion-label  class="countrylabel" stacked>국가</ion-label>
+     <ion-multi-picker (ionChange)="toggle()" item-content [multiPickerColumns]="simpleColumns" doneText="확인" placeholder="국가를 선택해 주세요."
+                         [(ngModel)]="registerCredentials.country" required [ngModelOptions]="{standalone: true}"></ion-multi-picker>
+ </ion-item><br>
 
   <ion-item class="item_align" no-lines>
-  <ion-label class="titlelabel" stacked>성별</ion-label>
+  <ion-label class="genderlabel" stacked>성별</ion-label>
   </ion-item>
 
   <ion-list class="gender_list" radio-group [(ngModel)]="registerCredentials.gender" required [ngModelOptions]="{standalone: true}">

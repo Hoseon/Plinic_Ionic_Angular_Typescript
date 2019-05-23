@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title class="title" text-wrap>미션</ion-title>
+    <ion-title *ngIf="carezoneData" class="title" text-wrap> {{carezoneData.missontitle}} </ion-title>
   </ion-navbar>
 
 </ion-header>

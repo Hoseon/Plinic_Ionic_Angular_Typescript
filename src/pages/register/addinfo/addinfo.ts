@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+  import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
 import { AuthService } from '../../../providers/auth-service';
 import { RegisterPage} from '../../register/register';
 import {RegistercompletePage} from '../registercomplete/registercomplete';
 import { SelectSearchableComponent } from 'ionic-select-searchable';
+import { MultiPickerModule } from 'ion-multi-picker';
 
 
 /**
@@ -25,17 +26,34 @@ export class AddinfoPage {
   password: any;
   alertEvent : boolean = false;
   myImage: any;
+  simpleColumns : any;
 
   // registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
   registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', user_jwt: 'true' };
 
-
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public navParams: NavParams
-  , public viewCtrl: ViewController) {
+  , public viewCtrl: ViewController, public multiCtrl: MultiPickerModule) {
 
     this.email = navParams.get('email');
     this.password = navParams.get('password');
+    this.simpleColumns = [
+    {
+      name: 'country',
+      options: [
+        { text: '대한민국', value: '대한민국'},
+        { text: '中國, China', value: '中國, China' },
+        { text: '日本, Japan', value: '日本, Japan' },
+        { text: 'Spain', value: 'Spain' },
+        { text: 'Afghanistan', value: 'Afghanistan' },
+      ]
+    },
+  ];
+
   }
+
+toggle(){
+  console.log(this.registerCredentials.country);
+}
 
   portChange(event: {
       component: SelectSearchableComponent,

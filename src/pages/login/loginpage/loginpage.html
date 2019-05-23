@@ -1,6 +1,5 @@
 <!--
   Generated template for the LoginpagePage page.
-
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
@@ -10,58 +9,48 @@
   <!-- <p [ngClass]="{'fadeOut': !show, 'fadeIn': show}">
     I am sometimes here and sometimes there
   </p>
-
   <button ion-button (click)="toggleVisible()">Toggle it!</button>
-
   <p [@myvisibility]="visibleState">
     I am sometimes here and sometimes there
   </p>
-
   <p [@fadeInOut] *ngIf="show" (@fadeInOut.done)="animationFinished($event)" (@fadeInOut.start)="animationStarted($event)">
     My appearance is magic.
   </p>
-
   Start: {{ startTime | date:'medium' }}<br>
   End: {{ endTime | date:'medium' }}
-
   <div animates #animation="animates" text-center>
     <button ion-button (click)="animation.start({type: 'rubberBand', duration: '1000'})">Click me!</button>
   </div>
-
   <button ion-button (click)="animateElem()">Animate!</button>
   <ion-card #myElement>
     <ion-card-header>My Animation Card</ion-card-header>
     <ion-card-content>So much awesome content and animations. AMAZING!</ion-card-content>
   </ion-card> -->
 
-
-  <ion-img class="close" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
+    <ion-img class="close" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
                   assets/img/login\ic-system-close-black@3x.png" (click)="dissmiss()"></ion-img>
 
 
-  <h1 class="h1"> 로그인 </h1>
+  <h1 class="h1" > 로그인 </h1>
 
   <ion-list>
     <ion-row>
-      <ion-col>
-        <button [@myvisibility]="visibleState" ion-button class="submit-btn" (click)="naver_login()" outline>
-          <img class="naver_btn" src="assets/img/naverlogo/ic-sns-naver.png" srcset="assets/img/naverlogo/ic-sns-naver@2x.png,
+     <ion-col>
+       <button ion-button class="submit-btn" (click)="naver_login()" outline>
+         <img class="naver_btn" src="assets/img/naverlogo/ic-sns-naver.png" srcset="assets/img/naverlogo/ic-sns-naver@2x.png,
                        assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기</button>
-        <button [@myvisibility]="visibleState" ion-button class="submit-btn" (click)="kakao_login()" outline>
-          <img class="kakao_btn" src="assets/img/kakaologo/ic-sns-kakao.png" srcset="assets/img/kakaologo/ic-sns-kakao@2x.png,
+       <button ion-button class="submit-btn" (click)="kakao_login()" outline>
+         <img class="kakao_btn" src="assets/img/kakaologo/ic-sns-kakao.png" srcset="assets/img/kakaologo/ic-sns-kakao@2x.png,
                        assets/img/kakaologo/ic-sns-kakao@3x.png" /> 카카오로 시작하기</button>
-        <button [@myvisibility]="visibleState" ion-button class="submit-btn" (click)="google_login()" outline>
-          <img class="google_btn" src="assets/img/googlelogo/ic-sns-google.png" srcset="assets/img/googlelogo/ic-sns-google@2x.png,
+       <button ion-button class="submit-btn" (click)="google_login()" outline>
+         <img class="google_btn" src="assets/img/googlelogo/ic-sns-google.png" srcset="assets/img/googlelogo/ic-sns-google@2x.png,
                        assets/img/googlelogo/ic-sns-google@3x.png" /> 구글로 시작하기</button>
-        <ion-col class="Linetext">또는</ion-col>
-      </ion-col>
-    </ion-row>
+      <ion-col class="Linetext">또는</ion-col>
+     </ion-col>
+   </ion-row>
   </ion-list>
 
 
-<<<<<<< HEAD
-  <form novalidate (ngSubmit)="onSubmit()" #registerForm="ngForm" [formGroup]="signupform">
-=======
      <form novalidate (ngSubmit)="onSubmit()" #registerForm="ngForm" [formGroup]="signupform">
 
      <ion-item class="email_align" style="background:#FFF" >
@@ -95,46 +84,15 @@
         ·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.
        </div>
      </ion-item><br>
->>>>>>> bde7a2f1976dd3a8df7d8fddc03ca0bb5ee225c0
 
-    <ion-item class="email_align" style="background:#FFF">
-      <ion-input (ionFocus)="toggleVisible(); hide()" (ionBlur)="toggleVisible(); view()" #messageInput style="font-size:15px;" type="email" placeholder="이메일" [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty" formControlName="email" [(ngModel)]="registerCredentials.email" required
-        clearInput></ion-input>
-    </ion-item>
-    <ion-item no-lines *ngIf="( signupform.get('email').hasError('minlength') || signupform.get('email').hasError('pattern') ||signupform.get('email').hasError('required') ) && signupform.get('email').touched">
-      <div class="error" *ngIf="signupform.get('email').hasError('required') && signupform.get('email').touched">
-        이메일을 입력해주세요.
-      </div>
-      <div class="error" *ngIf="signupform.get('email').hasError('pattern') && signupform.get('email').touched">
-        올바른 이메일 형식이 아닙니다.
-      </div>
-    </ion-item>
+     <button ion-button type="submit" class="login-btn" name="next" outline>로그인</button>
+    </form>
 
-    <ion-item class="password_align" style="background:#FFF">
-      <!-- <ion-label class="titlelabel" stacked>비밀번호 </ion-label> -->
-      <ion-input (ionFocus)="toggleVisible(); hide()" (ionBlur)="toggleVisible(); view()" #messageInput style="font-size:15px;" placeholder="비밀번호" type="password" formControlName="password" name="password" [(ngModel)]="registerCredentials.password"
-        [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty" required clearInput></ion-input>
-    </ion-item>
-    <ion-item no-lines *ngIf="( signupform.get('password').hasError('minlength') || signupform.get('password').hasError('maxlength') ||signupform.get('password').hasError('required') ) && signupform.get('password').touched">
-      <div class="error" *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
-        비밀번호를 입력해주세요.
-      </div>
-      <div class="error" *ngIf="signupform.get('password').hasError('minlength') && signupform.get('password').touched">
-        ·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.
-      </div>
-      <div class="error" *ngIf="signupform.get('password').hasError('maxlength') && signupform.get('password').touched">
-        ·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.
-      </div>
-    </ion-item><br>
-
-    <button ion-button type="submit" class="login-btn" name="next" outline>로그인</button>
-  </form>
-
-  <br><br><br>
-  <ion-item style="text-align:center" no-lines>
+    <br><br><br>
+    <ion-item style="text-align:center" no-lines>
     <ion-col class="passwordfind" (click)="agreepage()">회원가입&nbsp;•</ion-col>
     <ion-col class="passwordfind" (click)="passwordfind()">비밀번호 찾기</ion-col>
-  </ion-item>
+    </ion-item>
 
 
 </ion-content>

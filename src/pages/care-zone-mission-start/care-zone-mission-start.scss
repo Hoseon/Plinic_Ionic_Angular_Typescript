@@ -7,6 +7,10 @@ page-care-zone-mission-start {
                 margin-bottom: 5px;
               }
 
+              .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+                height: 1px;
+                margin-bottom: 5px;
+              }
               .toolbar-title-md{
                 font-weight: bold;
                 font-size: 17px;
@@ -17,14 +21,8 @@ page-care-zone-mission-start {
                 line-height: normal;
                 letter-spacing: normal;
                 text-align: center;
-                margin-top: 4%;
-              }
-              .back-button-md{
-                margin: 0px;
-                margin-top: 1%;
-              }
-              .toolbar-md{
-                height: 62px;
+                margin-top: 2%;
+                color: #292929;
               }
               .toolbar-title-ios{
                 font-weight: bold;
@@ -36,6 +34,22 @@ page-care-zone-mission-start {
                 line-height: normal;
                 letter-spacing: normal;
                 text-align: center;
+                margin-top: 2%;
+                color: #292929;
+              }
+              .back-button-md{
+                margin: 0px;
+                margin-top: 1%;
+              }
+              .back-button-ios{
+                margin: 0px;
+                margin-top: 1%;
+              }
+              .toolbar-md{
+                height: 62px;
+              }
+              .toolbar-ios{
+                height: 62px;
               }
               .toolbar-background {
                 background-color: #FFF;
@@ -49,7 +63,14 @@ page-care-zone-mission-start {
                 width: 25px;
                 height: 25x;
             }
-
+              .ion-ios-arrow-back:before {
+                position: absolute;
+                content: "\f27d";
+                left: 13px;
+                top: 4px;
+                width: 25px;
+                height: 25x;
+            }
               .title{
                 position: absolute;
                 left: 50%;
@@ -69,7 +90,7 @@ page-care-zone-mission-start {
                 display: flex;
                 text-align: center;
                 background-color: #ffffff;
-                margin-top: 3%;
+                margin-top: 0%;
               }
 
               .button_outline{
@@ -108,7 +129,7 @@ page-care-zone-mission-start {
                line-height: normal;
                letter-spacing: normal;
                text-align: center;
-               margin-top: -1.5%;
+               margin-top: -0.5%;
              }
 
              .gridpro{
@@ -304,7 +325,7 @@ page-care-zone-mission-start {
 
               .sns_row{
                 margin-left: 22%;
-                margin-top: -3%;
+                margin-top: -2.5%;
                 margin-bottom: -4%;
               }
               .caution{
