@@ -41,10 +41,10 @@
 
   <h1 class="h1"> 로그인 </h1>
 
-  <ion-list>
+  <ion-list id="hide">
     <ion-row>
       <ion-col>
-        <button [@myvisibility]="visibleState" ion-button class="submit-btn" (click)="naver_login()" outline>
+        <button [@fadeInOut] *ngIf="show" (@fadeInOut.done)="animationFinished($event)" (@fadeInOut.start)="animationStarted($event)" ion-button class="submit-btn" (click)="naver_login()" outline>
           <img class="naver_btn" src="assets/img/naverlogo/ic-sns-naver.png" srcset="assets/img/naverlogo/ic-sns-naver@2x.png,
                        assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기</button>
         <button [@myvisibility]="visibleState" ion-button class="submit-btn" (click)="kakao_login()" outline>
@@ -59,43 +59,7 @@
   </ion-list>
 
 
-<<<<<<< HEAD
   <form novalidate (ngSubmit)="onSubmit()" #registerForm="ngForm" [formGroup]="signupform">
-=======
-     <form novalidate (ngSubmit)="onSubmit()" #registerForm="ngForm" [formGroup]="signupform">
-
-     <ion-item class="email_align" style="background:#FFF" >
-     <ion-input #messageInput mode="ios" style="font-size:15px;" type="email" placeholder="이메일"
-     [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty"
-     formControlName="email" [(ngModel)]="registerCredentials.email" required clearInput></ion-input>
-     </ion-item>
-     <ion-item no-lines *ngIf="( signupform.get('email').hasError('minlength') || signupform.get('email').hasError('pattern') ||signupform.get('email').hasError('required') ) && signupform.get('email').touched">
-     <div class="error" *ngIf="signupform.get('email').hasError('required') && signupform.get('email').touched">
-       이메일을 입력해주세요.
-     </div>
-     <div class="error" *ngIf="signupform.get('email').hasError('pattern') && signupform.get('email').touched">
-       올바른 이메일 형식이 아닙니다.
-     </div>
-     </ion-item>
-
-     <ion-item class="password_align" style="background:#FFF">
-     <!-- <ion-label class="titlelabel" stacked>비밀번호 </ion-label> -->
-     <ion-input #messageInput mode="ios" style="font-size:15px;" placeholder="비밀번호"
-     type="password" formControlName="password" name="password" [(ngModel)]="registerCredentials.password"
-     [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty" required clearInput></ion-input>
-     </ion-item>
-     <ion-item no-lines *ngIf="( signupform.get('password').hasError('minlength') || signupform.get('password').hasError('maxlength') ||signupform.get('password').hasError('required') ) && signupform.get('password').touched">
-       <div class="error" *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
-         비밀번호를 입력해주세요.
-       </div>
-       <div class="error" *ngIf="signupform.get('password').hasError('minlength') && signupform.get('password').touched">
-       ·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.
-       </div>
-       <div class="error" *ngIf="signupform.get('password').hasError('maxlength') && signupform.get('password').touched">
-        ·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.
-       </div>
-     </ion-item><br>
->>>>>>> bde7a2f1976dd3a8df7d8fddc03ca0bb5ee225c0
 
     <ion-item class="email_align" style="background:#FFF">
       <ion-input (ionFocus)="toggleVisible(); hide()" (ionBlur)="toggleVisible(); view()" #messageInput style="font-size:15px;" type="email" placeholder="이메일" [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty" formControlName="email" [(ngModel)]="registerCredentials.email" required
