@@ -14,3 +14,157 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+
+// //addinfo 국가 sheet
+// .select-searchable-page{
+//   margin-top: 50%;
+//   position: absolute;
+//   left: 0px;
+//   right: 0px;
+//   bottom: 0px;
+// }
+// .ion-md-close:before{
+//   display: none;
+// }
+//
+// .ion-md-radio-button-off:before{
+//   width: 25px;
+//   height: 25px;
+// }
+// .ion-md-checkmark-circle:before{
+//   width: 25px;
+//   height: 25px;
+// }
+//
+// .toolbar-background-md {
+//     border-color: #000;
+//     background-color: #5c59b6;
+//     border-radius: 0px;
+// }
+//
+// .toolbar-title-md{
+//   position: absolute;
+//   left: 0%;
+//   width: 100px;
+//   font-family: NotoSansCJKkr;
+//   font-size: 20px;
+//   font-weight: normal;
+//   font-style: normal;
+//   font-stretch: normal;
+//   line-height: normal;
+//   letter-spacing: normal;
+//   text-align: center;
+//   color: #FFF;
+//   background-color: #5c59b6;
+// }
+// .toolbar-md{
+//   background-color: #5c59b6;
+// }
+// .show-page{
+//   background-color: rgba(0,0,0,0.26);
+// }
+
+
+//addinfo 생년월일 확인,취소
+.picker-md .picker-button, .picker-md .picker-button.activated{
+   background-color: #5c59b6;
+   width: 100%;
+   position: absolute;
+   left: 0;
+   margin-left:auto;
+   margin-right: auto;
+   font-family: NotoSansCJKkr;
+   font-size: 15px;
+   font-weight: 500;
+   font-style: normal;
+   font-stretch: normal;
+   line-height: normal;
+   letter-spacing: normal;
+   color: #ffffff;
+   z-index: 1;
+}
+
+.item-multi-picker .label-md{
+  height: 19px;
+  font-family: NotoSansCJKkr;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin-bottom: 2.5%;
+  color: #292929;
+}
+
+.picker-wrapper{
+  margin-left: auto;
+  margin-right:auto;
+  width: 90%;
+  height: 215px;
+  bottom: 30%;
+  border-radius: 4px;
+  background-color: #FFF;
+}
+
+.picker-md .picker-col{
+  // margin-top: -20%;
+  margin-top: 4%;
+  margin-bottom: 15%;
+  padding: 0 31px;
+  line-height: 1.6;
+  height: 100%;
+}
+
+.picker-md .picker-toolbar{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.multi-picker-placeholder{
+  font-family: NotoSansCJKkr;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #c7c7c7;
+}
+.ion-backdrop{
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.picker-md .picker-prefix, .picker-md .picker-suffix, .picker-md .picker-opts{
+  top:0;
+}
+.picker-md .picker-prefix, .picker-md .picker-suffix, .picker-md .picker-opt.picker-opt-selected{
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #5C59B6;
+  border-style: solid;
+  border-width: 1.5px 0px 1.5px 0px;
+}
+  .picker-toolbar-button .picker-toolbar-multi-picker-cancel{
+    height: 0px;
+  }
+
+
+.picker-md .picker-opt{
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color:#D2D4D8;
+}
