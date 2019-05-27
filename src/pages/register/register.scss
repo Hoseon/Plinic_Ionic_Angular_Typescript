@@ -3,7 +3,12 @@ page-register {
     min-width: 100%;
     min-height: 100%;
 
-
+    .scroll-content{
+      left: 16px;
+      right: 16px;
+      top: 13px;
+      bottom: 0;
+    }
     .toolbar-background {
       background-color: #FFF;
     }
@@ -175,8 +180,8 @@ page-register {
     width: 25px;
     height: 25px;
     object-fit: contain;
-    left: -2%;
-    top: 2%;
+    left: -2.9%;
+    bottom: -90%;
    }
     .toolaralign{
     position: absolute;
@@ -185,7 +190,7 @@ page-register {
     height: 25px;
     object-fit: contain;
     right: 7%;
-    top: 12%;
+    top: -1%;
     }
 
     .toolaralign2{
@@ -195,7 +200,7 @@ page-register {
       height: 25px;
       object-fit: contain;
       right: 12%;
-      top: 31%;
+      top: 17%;
     }
     .toolaralign3{
       position: absolute;
@@ -203,7 +208,7 @@ page-register {
       width: 25px;
       height: 25px;
       object-fit: contain;
-      top: 31%;
+      top: 17%;
       right: -3.5%;
     }
 
@@ -219,7 +224,7 @@ page-register {
      letter-spacing: normal;
      text-align: center;
      color: #292929;
-     margin-top: 2%;
+     margin-top: 0%;
      margin-bottom: 3%;
   }
 
@@ -260,6 +265,6 @@ page-register {
      text-align: center;
      color: #ffffff;
      box-shadow: none;
-     margin-top: -2%
+     margin-top: 1%
    }
 }

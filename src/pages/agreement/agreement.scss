@@ -6,6 +6,15 @@ page-agreement {
 
   margin-bottom: -1%;
 }
+
+
+  .scroll-content{
+    left: 16px;
+    right: 16px;
+    top: 13px;
+    bottom: 0;
+  }
+
   .title{
     position: absolute;
     left: 50%;
@@ -32,8 +41,8 @@ page-agreement {
    width: 25px;
    height: 25px;
    object-fit: contain;
-   left: -8%;
-   bottom: -25%;
+   left: -9%;
+   bottom: 35%;
 
   }
 
@@ -43,7 +52,7 @@ page-agreement {
    width: 25px;
    height: 25px;
    object-fit: contain;
-   margin-top: -23%;
+   margin-top: -26%;
    right: -145%;
   }
 
@@ -53,17 +62,21 @@ page-agreement {
     width: 25px;
     height: 25px;
     object-fit: contain;
-    margin-top: -12%;
+    margin-top: -15%;
     right: -88%;
   }
-
+  .ion-app.md [padding] .scroll-content{
+    padding-top: 0px;
+    position: absolute;
+    top:0;
+  }
   .toolaralign3{
     position: absolute;
     background-color: #FFF;
     width: 25px;
     height: 25px;
     object-fit: contain;
-    margin-top: -12%;
+    margin-top: -15%;
     right: -20%;
   }
 
@@ -81,7 +94,7 @@ page-agreement {
       margin-left: auto;
       margin-right: auto;
       color: #292929;
-      margin-top: 2%;
+      margin-top: 1%;
    }
 
    .label{

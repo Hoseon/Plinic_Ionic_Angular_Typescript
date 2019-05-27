@@ -10,6 +10,7 @@ import { Platform, AlertController } from 'ionic-angular';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { Naver } from 'ionic-plugin-naver';
 
 export class User {
   accessToken: string;
@@ -30,8 +31,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-   apiUrl: 'http://plinic.cafe24app.com/',
-   //apiUrl: 'http://localhost:8001/',
+  apiUrl: 'http://plinic.cafe24app.com/',
+  //apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
@@ -44,7 +45,7 @@ export class AuthService {
   jwtHelper: JwtHelper = new JwtHelper();
   userData: any;
   constructor(private http: Http, public authHttp: AuthHttp, public storage: Storage,
-    public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController, private facebook: Facebook, private google: GooglePlus) {
+    public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController, private facebook: Facebook, private google: GooglePlus, public naver: Naver) {
     this.platform.ready().then(() => {
       this.checkToken();
     });
@@ -58,6 +59,46 @@ export class AuthService {
 
 
 
+  }
+
+  public naver_login() {
+
+    this.naver.login()
+      .then(res =>
+        this.userData = {
+          accessToken: res.accessToken,
+          expiresAt: res.expiresAt,
+          refreshToken: res.refreshToken,
+          tokenType: res.tokenType
+        }
+      ) // 성공
+      .catch(error => this.showAlert("네이버 로그인을 하지 못했습니다. 관리자에게 문의 하세요")); // 실패
+      //this.showAlert("접속 성공 :" + this.userData);
+      this.storage.set('userData', this.userData);
+      this.authenticationState.next(true);
+      return this.userData;
+
+
+    // if (this.userData !== '') {
+    // this.naver.requestMe()
+    // // .then(response => this.showAlert(JSON.stringify(response.response.gender)))
+    //   .then(response =>
+    //     this.userData = {
+    //     age_range: response.response.age,
+    //     birthday: response.response.birthday,
+    //     email: response.response.email,
+    //     gender: response.response.gender,
+    //     id: response.response.id,
+    //     name: response.response.name,
+    //     nickname: response.response.nickname,
+    //     thumbnail_image: response.response.profileImage
+    //   }) // 성공
+    //   .catch(error => console.error(error)); // 실패
+    //this.showAlert("접속 성공 :" + JSON.stringify(this.userData));
+
+    // } else {
+    //   this.authenticationState.next(false);
+    // }
   }
 
 
@@ -174,7 +215,7 @@ export class AuthService {
           //accessToken: data.accessToken,
           //id: data.id,
           //age_range: data.kakao_account['age_range'],
-          birthday: data.birthday ,
+          birthday: data.birthday,
           email: data.email,
           gender: data.gender,
           nickname: data.name,
@@ -197,7 +238,7 @@ export class AuthService {
     // __v: 0
     // _id: "5cc143f3eed1e1474303a58d"
     // __proto__: Object
-      }
+  }
 
   //The route to the pulbic information, not used currently
   public getPublicInformation() {

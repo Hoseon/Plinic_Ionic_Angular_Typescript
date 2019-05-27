@@ -61,6 +61,13 @@ page-addinfo {
             margin-bottom: 3%;
           }
 
+          .scroll-content{
+            left: 16px;
+            right: 16px;
+            top: 13px;
+            bottom: 0;
+          }
+
         .h1{
           height: 80px;
           font-family: NotoSansCJKkr;
@@ -72,7 +79,6 @@ page-addinfo {
           letter-spacing: normal;
           text-align: center;
           color: #292929;
-          margin-top: 2%;
           margin-bottom: -7%;
         }
         .item_align{
@@ -157,8 +163,8 @@ page-addinfo {
         width: 25px;
         height: 25px;
         object-fit: contain;
-        left: -2%;
-        top: 2%;
+        left: -2.9%;
+        top: -600%;
        }
         .toolaralign{
         position: absolute;
@@ -167,7 +173,7 @@ page-addinfo {
         height: 25px;
         object-fit: contain;
         right: 0%;
-        top: 12%;
+        top: 0%;
         }
 
         .toolaralign2{
@@ -177,7 +183,7 @@ page-addinfo {
           height: 25px;
           object-fit: contain;
           right: 12%;
-          top: 31%;
+          top: 19%;
         }
 
         .toolaralign3{
@@ -187,7 +193,7 @@ page-addinfo {
           height: 25px;
           object-fit: contain;
           right: 5%;
-          top: 31%;
+          top: 19%;
         }
         .input_name{
           height: 22.5px;
@@ -309,7 +315,7 @@ page-addinfo {
         }
 
 
-        .text{
+        .sub{
           width: 314px;
          height: 48px;
          font-family: NotoSansCJKkr;
@@ -320,8 +326,8 @@ page-addinfo {
          line-height: 1.85;
          letter-spacing: normal;
          color: #b6b6b6;
-         margin-left: 1.5%;
-         margin-top: 8%;
+         margin-left: 2.5%;
+         margin-top: 6%;
 
         }
 
@@ -348,5 +354,6 @@ page-addinfo {
           text-align: center;
           box-shadow: none;
           color: #FFF;
+          margin-top: -7%;
         }
 }

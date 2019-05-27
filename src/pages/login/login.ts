@@ -1,11 +1,11 @@
 //import { IonicPage } from 'ionic-angular';
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, ModalController, ViewController} from 'ionic-angular';
+import { NavController, AlertController, LoadingController, Loading, ModalController, ViewController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
-import { Naver} from 'ionic-plugin-naver';
-import {AgreementPage} from '../agreement/agreement';
-import {LoginpagePage} from '../login/loginpage/loginpage';
+import { Naver } from 'ionic-plugin-naver';
+import { AgreementPage } from '../agreement/agreement';
+import { LoginpagePage } from '../login/loginpage/loginpage';
 
 
 
@@ -33,32 +33,32 @@ export class LoginPage {
 
 
 
-  public loginpage(){
+  public loginpage() {
     const modal = this.modalCtrl.create(LoginpagePage);
     modal.present();
   }
 
 
 
-    public agreement(){
-      const modal = this.modalCtrl.create(AgreementPage);
-      modal.present();
-    }
-
-
-  public naver_login(){
-       this.naver.login()
-         .then(response => console.log(response))
-         .catch(error => console.error(error));
+  public agreement() {
+    const modal = this.modalCtrl.create(AgreementPage);
+    modal.present();
   }
 
-  public google_login(){
+
+  public naver_login() {
+    this.showLoading();
+    this.userData = this.auth.naver_login();
+    this.loading.dismiss();
+  }
+
+  public google_login() {
     this.showLoading()
     this.auth.google_login();
     this.loading.dismiss();
   }
 
-  public facebook_login(){
+  public facebook_login() {
     this.showLoading()
     this.auth.facebook_login();
     this.loading.dismiss();
