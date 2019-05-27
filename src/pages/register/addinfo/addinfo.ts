@@ -34,6 +34,7 @@ export class AddinfoPage {
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public navParams: NavParams
   , public viewCtrl: ViewController, public multiCtrl: MultiPickerModule) {
 
+      // this.registerCredentials.birthday = new Date().toISOString();
     this.email = navParams.get('email');
     this.password = navParams.get('password');
     this.simpleColumns = [

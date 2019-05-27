@@ -21,7 +21,8 @@ page-skin-chart {
                 line-height: normal;
                 letter-spacing: normal;
                 text-align: center;
-                margin-top: 3%;
+                margin-top: -3%;
+                color: #292929;
               }
               .toolbar-title-ios{
                 font-weight: bold;
@@ -33,21 +34,24 @@ page-skin-chart {
                 line-height: normal;
                 letter-spacing: normal;
                 text-align: center;
-                margin-top: 3%;
+                margin-top: -3%;
+                color: #292929;
               }
               .back-button-md{
                 margin: 0px;
-                margin-top: 2%;
+                margin-top: -2%;
               }
               .back-button-ios{
                 margin: 0px;
-                margin-top: 2%;
+                margin-top: -2%;
               }
               .toolbar-md{
-                min-height: 64px;
+                height: 52px;
+                margin-bottom: -0.9%;
               }
               .toolbar-ios{
-                min-height: 64px;
+                height: 52px;
+                margin-bottom: -0.9%;
               }
               .toolbar-title-ios{
                 font-weight: bold;
@@ -92,13 +96,7 @@ page-skin-chart {
                 margin-left: 3px;
              }
 
-             .roundprogressbar{
-               width: 100px;
-               height: 100px;
-               margin-left: auto;
-               margin-right: auto;
-               display: block;
-             }
+
               .label-md{
                  padding: 0px;
                  margin: 0px;
@@ -151,6 +149,13 @@ page-skin-chart {
             margin-right: auto;
             display: block;
          }
+
+          .roundprogressbar{
+            width: 75%;
+            margin-left: 6%;
+            height: auto;
+          }
+
 
           .sub{
             font-family: AppleSDGothicNeo;

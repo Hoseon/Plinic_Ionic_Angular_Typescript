@@ -20,7 +20,7 @@
     <ion-item *ngIf="imgUrl" no-lines>
       <img class="goods-img" src="{{imgUrl}}" /><br><br>
 
-      <button ion-button style="height:28px" class="button_outline" outline (click)="mission_deadline()">진행중 </button>
+      <button ion-button style="height:28px;box-shadow: none;" class="button_outline" outline (click)="mission_deadline()">진행중 </button>
       </ion-item>
       <h1 class="top_text"> {{carezoneData.missontitle}} </h1>
 
@@ -84,7 +84,7 @@
     </ion-item>
 
    <ion-item no-lines>
-    <button ion-button class="button_giveup" text-align="center" outline (click)="navpop()" >미션 포기하기</button>
+    <button ion-button style="box-shadow:none;"class="button_giveup" text-align="center" outline (click)="navpop()" >미션 포기하기</button>
     </ion-item>
   </ion-list>
 
@@ -158,7 +158,7 @@
     </ion-grid>
 </ion-item>
  <ion-item no-lines>
-   <button ion-button class="button_add" style="font-size: 14px" outline>더보기&nbsp;&nbsp;></button>
+   <button ion-button class="button_add" style="font-size: 14px; box-shadow:none;" outline>더보기&nbsp;&nbsp;></button>
  </ion-item><br>
 
  <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
@@ -177,18 +177,18 @@
    <ion-row>
      <ion-col class="container">
        <img class="imagealign" src="assets/img/home/carezone1.png" />
-       <button class="ing_btn" style="font-size: 9px" ion-button>진행 중</button>
+       <button class="ing_btn" style="font-size: 9px; box-shadow: none;" ion-button>진행 중</button>
      </ion-col>
      <ion-col class="container">
        <img class="imagealign" src="assets/img/home/carezone2.png" />
-       <button class="ing_btn" style="font-size: 9px" ion-button>진행 중</button>
+       <button class="ing_btn" style="font-size: 9px; box-shadow: none;" ion-button>진행 중</button>
      </ion-col>
    </ion-row>
 </ion-grid>
 
 
    <ion-item no-lines>
-     <button ion-button class="button_add" style="font-size: 14px" outline>미션 더보기&nbsp;&nbsp;></button>
+     <button ion-button class="button_add" style="font-size: 14px; box-shadow: none;" outline>미션 더보기&nbsp;&nbsp;></button>
    </ion-item>
 </ion-list>
 
