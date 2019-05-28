@@ -7,6 +7,7 @@ import { AuthService } from '../providers/auth-service';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { ImageLoaderConfig } from 'ionic-image-loader';
+//import { OneSignal } from '@ionic-native/onesignal'
 
 
 @Component({
@@ -16,7 +17,8 @@ export class MyApp {
   rootPage: any = LoginPage;
 
   constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
-    private screenOrientation: ScreenOrientation,public translateService: TranslateService, private imageLoaderConfig: ImageLoaderConfig) {
+    private screenOrientation: ScreenOrientation,public translateService: TranslateService, private imageLoaderConfig: ImageLoaderConfig,
+    ) {
     this.initializeApp();
   }
 
@@ -45,6 +47,14 @@ export class MyApp {
       this.imageLoaderConfig.enableFallbackAsPlaceholder(true);
       this.imageLoaderConfig.setFallbackUrl('assets/img/logo.png');
       this.imageLoaderConfig.setMaximumCacheAge(24 * 60 * 60 * 1000);
+
+  //    this.setupPush();
     });
   }
+
+  // setupPush(){
+  //   this.onesignal.startInit('4f40df0d-5111-42f9-99d8-596685b99628','adnroid');
+  //
+  //   this.onesignal.endInit();
+  // }
 }

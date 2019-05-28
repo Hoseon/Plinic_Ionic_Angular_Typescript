@@ -73,10 +73,15 @@ export class AuthService {
         }
       ) // 성공
       .catch(error => this.showAlert("네이버 로그인을 하지 못했습니다. 관리자에게 문의 하세요")); // 실패
-      //this.showAlert("접속 성공 :" + this.userData);
+    //this.showAlert("접속 성공 :" + this.userData);
+
+    if (this.userData.accessToken !== '') {
       this.storage.set('userData', this.userData);
       this.authenticationState.next(true);
       return this.userData;
+    } else {
+      this.authenticationState.next(false);
+    }
 
 
     // if (this.userData !== '') {
@@ -193,7 +198,16 @@ export class AuthService {
     this._kakaoCordovaSDK.logout().then(() => {
       this.authenticationState.next(false);
     });
+
+    this.naver.logoutAndDeleteToken()
+    .then(response => console.log(response)) // 성공
+    .catch(error => console.log(error)); // 실패
+
+    this.google.logout();
+    this.google.disconnect();
   }
+
+
 
   // Login a user with email + password and store the JWT
   public login(credentials) {

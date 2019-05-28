@@ -87,6 +87,8 @@ import { AnimationService, AnimatesDirective } from 'css-animator';
 import { SelectSearchableModule } from 'ionic-select-searchable';
 import { MultiPickerModule } from 'ion-multi-picker';
 
+//import { OneSignal } from '@ionic-native/onesignal'
+
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -210,6 +212,7 @@ export function getAuthHttp(http, storage) {
     Naver,
     BluetoothLE,
     AnimationService,
+    //OneSignal,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,

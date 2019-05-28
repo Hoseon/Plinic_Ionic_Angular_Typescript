@@ -47,9 +47,9 @@ export class LoginPage {
 
 
   public naver_login() {
-    this.showLoading();
+    //this.showLoading();
     this.userData = this.auth.naver_login();
-    this.loading.dismiss();
+    //this.loading.dismiss();
   }
 
   public google_login() {
