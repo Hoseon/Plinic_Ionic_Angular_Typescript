@@ -155,6 +155,7 @@ export class LoginpagePage {
   }
 
   public kakao_login() {
+    this.viewCtrl.dismiss();
     this.showLoading()
     this.userData = this.auth.kakao_login();
     this.loading.dismiss();
@@ -162,6 +163,7 @@ export class LoginpagePage {
 
 
   public google_login() {
+    this.viewCtrl.dismiss();
     this.showLoading()
     this.auth.google_login();
     this.loading.dismiss();
