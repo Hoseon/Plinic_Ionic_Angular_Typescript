@@ -2,57 +2,88 @@ page-care-zone-mission-complete {
 
 
 
-                  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
-                    height: 1px;
-                    margin-bottom: 5px;
-                  }
-                  .item-md.item-block .item-inner{
-                    padding-right: 12px;
-                  }
-                  .toolbar-title-md{
-                    font-weight: bold;
-                    font-size: 17px;
-                    background-color: #FFF;
-                    font-family: NotoSansCJKkr;
-                    font-style: normal;
-                    font-stretch: normal;
-                    line-height: normal;
-                    letter-spacing: normal;
-                    text-align: center;
-                  }
-                  .toolbar-title-ios{
-                    font-weight: bold;
-                    font-size: 17px;
-                    background-color: #FFF;
-                    font-family: NotoSansCJKkr;
-                    font-style: normal;
-                    font-stretch: normal;
-                    line-height: normal;
-                    letter-spacing: normal;
-                    text-align: center;
-                  }
-                  .toolbar-background {
-                    background-color: #FFF;
-                  }
+  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+    height: 1px;
+    margin-bottom: 5px;
+  }
+  .item-md.item-block .item-inner{
+    padding-right: 12px;
+  }
+  .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+    height: 1px;
+    margin-bottom: 5px;
+  }
+  .item-ios.item-block .item-inner{
+    padding-right: 12px;
+  }
+  .toolbar-title-md{
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: NotoSansCJKkr;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+  }
+  .toolbar-title-ios{
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: NotoSansCJKkr;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    margin-top: -5%;
+    color: #292929;
+  }
 
-                  .ion-md-arrow-back:before {
-                    position: absolute;
-                    content: "\f27d";
-                    left: 13px;
-                    top: 4px;
-                    width: 25px;
-                    height: 25x;
-                }
+  .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+    margin-top: -4%;
+    color: #292929;
+  }
 
-                  .title{
-                    position: absolute;
-                    left: 50%;
-                    top: 0;
-                    transform: translateX(-50%);
-                    height: 100%;
-                    width: 70%;
-                    color: #292929;
-                  }
+  .toolbar-background {
+    background-color: #FFF;
+  }
+
+  .ion-md-arrow-back:before {
+    position: absolute;
+    content: "\f27d";
+    left: 10%;
+    top: 2px;
+    width: 25px;
+    height: 25px;
+}
+
+   .toolbar-ios{
+     margin-top: 10%;
+   }
+
+  .back-button-text-ios{
+    font-size: 0px;
+  }
+  .android_title{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 70%;
+    color: #292929;
+  }
+  .ios_title{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 120%;
+    color: #292929;
+  }
 
                   .goods-img{
                     width: 120px;
