@@ -150,11 +150,17 @@ export class LoginpagePage {
 
   public naver_login() {
     this.naver.login()
-      .then(response => console.log(response))
-      .catch(error => console.error(error));
+      .then(
+        this.viewCtrl.dismiss(),
+        response => console.log(response)
+      )
+      .catch(
+        error => console.error(error)
+      );
   }
 
   public kakao_login() {
+    this.viewCtrl.dismiss();
     this.showLoading()
     this.userData = this.auth.kakao_login();
     this.loading.dismiss();
@@ -162,6 +168,7 @@ export class LoginpagePage {
 
 
   public google_login() {
+    this.viewCtrl.dismiss();
     this.showLoading()
     this.auth.google_login();
     this.loading.dismiss();
