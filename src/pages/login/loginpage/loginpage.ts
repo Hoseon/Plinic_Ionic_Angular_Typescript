@@ -151,12 +151,12 @@ export class LoginpagePage {
   public naver_login() {
     this.naver.login()
       .then(
-        this.viewCtrl.dismiss(),
         response => console.log(response)
       )
       .catch(
         error => console.error(error)
       );
+      this.viewCtrl.dismiss()
   }
 
   public kakao_login() {

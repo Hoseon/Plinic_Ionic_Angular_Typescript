@@ -6,8 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title *ngIf="carezoneData" class="title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  <ion-navbar  *ngIf="platform.is('android')">
+    <ion-title *ngIf="carezoneData" class="android_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  </ion-navbar>
+
+  <ion-navbar  *ngIf="platform.is('ios')">
+    <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -45,8 +49,7 @@
        <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
                  <ion-col class="event-col4">참여인원
-                 <ion-col><ion-img class="info-img"src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png"
-                 srcset="assets/img/ic-system-infomation@2x.png, assets/img/ic-system-infomation@3x.png"></ion-img></ion-col></ion-col>
+                 <img class="info-img" src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png"/></ion-col>
                  <ion-col class="event-col11">30명</ion-col>
              </ion-row>
         </ion-grid>
@@ -76,7 +79,7 @@
 
 
 <ion-list>
- <ion-item>
+ <ion-item no-lines>
     <ion-grid>
           <ion-row class="sns_row">
               <ion-col><ion-img class="mission-img"src="assets/img/care-zone/sns/ic-sns-kakao@3x.png"

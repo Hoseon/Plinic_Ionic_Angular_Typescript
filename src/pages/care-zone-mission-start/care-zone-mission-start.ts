@@ -23,7 +23,7 @@ export class CareZoneMissionStartPage {
   constructor(public nav: NavController, public navParams: NavParams, private images: ImagesProvider,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform,
   ) {
-    this.platform.ready().then((readySource) => {
+      this.platform.ready().then((readySource) => {
       this._id = this.navParams.get('_id');
       this.roadmission(this._id);
     });

@@ -2,68 +2,99 @@ page-care-zone-mission-ing {
 
 
 
-              .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
-                height: 1px;
-                margin-bottom: 5px;
-              }
-              .item-md.item-block .item-inner{
-                padding-right: 12px;
-              }
-              .toolbar-title-md{
-                font-weight: bold;
-                font-size: 17px;
-                background-color: #FFF;
-                font-family: NotoSansCJKkr;
-                font-style: normal;
-                font-stretch: normal;
-                line-height: normal;
-                letter-spacing: normal;
-                text-align: center;
-              }
-              .toolbar-title-ios{
-                font-weight: bold;
-                font-size: 17px;
-                background-color: #FFF;
-                font-family: NotoSansCJKkr;
-                font-style: normal;
-                font-stretch: normal;
-                line-height: normal;
-                letter-spacing: normal;
-                text-align: center;
-              }
-              .toolbar-background {
-                background-color: #FFF;
-              }
+  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+    height: 1px;
+    margin-bottom: 5px;
+  }
+  .item-md.item-block .item-inner{
+    padding-right: 12px;
+  }
+  .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+    height: 1px;
+    margin-bottom: 5px;
+  }
+  .item-ios.item-block .item-inner{
+    padding-right: 12px;
+  }
+  .toolbar-title-md{
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: NotoSansCJKkr;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+  }
+  .toolbar-title-ios{
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: NotoSansCJKkr;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    margin-top: -5%;
+    color: #292929;
+  }
 
-              .ion-md-arrow-back:before {
-                position: absolute;
-                content: "\f27d";
-                left: 13px;
-                top: 4px;
-                width: 25px;
-                height: 25x;
-            }
+  .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+    margin-top: -4%;
+    color: #292929;
+  }
 
-              .title{
-                position: absolute;
-                left: 50%;
-                top: 0;
-                transform: translateX(-50%);
-                height: 100%;
-                width: 70%;
-                color: #292929;
-              }
+  .toolbar-background {
+    background-color: #FFF;
+  }
 
+  .ion-md-arrow-back:before {
+    position: absolute;
+    content: "\f27d";
+    left: 10%;
+    top: 2px;
+    width: 25px;
+    height: 25px;
+}
+
+   .toolbar-ios{
+     margin-top: 10%;
+   }
+
+  .back-button-text-ios{
+    font-size: 0px;
+  }
+  .android_title{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 70%;
+    color: #292929;
+  }
+  .ios_title{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 120%;
+    color: #292929;
+  }
 
               .goods-img{
-                width: 120px;
-                height: 120px;
+                width: 45.5px;
+                height: 94.5px;
                 object-fit: contain;
                 margin-left: auto;
                 margin-right: auto;
                 display: flex;
                 text-align: center;
                 background-color: #ffffff;
+                margin-top: 0%;
               }
 
                 .button_outline{
@@ -83,12 +114,11 @@ page-care-zone-mission-ing {
                 letter-spacing: normal;
                 text-align: center;
                 color: #5c59b6;
+                                margin-top: -4%;
               }
 
               .top_text {
-                // padding: 0px;
                 margin: 0 auto;
-                // padding-right: 5px;
                 display: block;
                 font-family: NotoSansCJKkr;
                 font-size: 19px;
@@ -101,6 +131,7 @@ page-care-zone-mission-ing {
                line-height: normal;
                letter-spacing: normal;
                text-align: center;
+               margin-top: -1%;
              }
 
              .gridpro{
@@ -111,9 +142,10 @@ page-care-zone-mission-ing {
              }
 
               .top_count{
-                margin-bottom: -10px;
+                margin-bottom: -1%;
               }
-              .progress-outer[_ngcontent-c0]{
+
+              .progress-outer[_ngcontent-c1]{
                 margin-left: auto;
                 margin-right: auto;
                 border: 0px;
@@ -123,7 +155,7 @@ page-care-zone-mission-ing {
                 font-size: 8px;
               }
 
-              .progress-inner[_ngcontent-c0]{
+              .progress-inner[_ngcontent-c1]{
                 background-color: #5c59b6;
                 color: #FFF;
                 height: 6px;
@@ -131,12 +163,11 @@ page-care-zone-mission-ing {
                 margin-bottom: -20px;
               }
 
-
               .event-col{
                 position: absolute;
-                left: 45px;
                 width: 84px;
-                top:10px;
+                top: 36%;
+                left: 11%;
                 height: 16.5px;
                 color: #5c59b6;
                 font-family: NotoSansCJKkr;
@@ -167,8 +198,8 @@ page-care-zone-mission-ing {
 
               .event-col3{
                 position: absolute;
-                top:10px;
-                right: 33px;
+                top: 35%;
+                right: 7%;
                 width: 53px;
                 height: 19px;
                 margin-right: 25px;
@@ -204,17 +235,17 @@ page-care-zone-mission-ing {
                   line-height: normal;
                   letter-spacing: normal;
                   color: #292929;
+                  margin-left: -2%;
+                  margin-top: 1%;
 
               }
-              .mission-img{
+              .info-img{
                 position:absolute;
-                bottom: 1px;
-                left: -5px;
                 width: 25px;
                 height: 25px;
                 object-fit: contain;
                 background-color: #FFF;
-
+                margin-top: -1%;
               }
 
               .item-md{
@@ -233,6 +264,7 @@ page-care-zone-mission-ing {
                 font-weight: normal;
                 font-style: normal;
                 color: #5c59b6;
+                margin-top: 1%;
               }
 
 
@@ -252,6 +284,7 @@ page-care-zone-mission-ing {
                 letter-spacing: normal;
                 text-align: right;
                 color: #292929;
+                margin-top: 1%;
               }
 
               .event-col9{
@@ -268,6 +301,7 @@ page-care-zone-mission-ing {
                letter-spacing: normal;
                text-align: right;
                color: #5c59b6;
+               margin-top: 1%;
               }
 
               .event-col11{
@@ -299,6 +333,7 @@ page-care-zone-mission-ing {
                  letter-spacing: normal;
                  text-align: right;
                  color: #292929;
+                 margin-top: 1%;
               }
 
 
@@ -332,7 +367,7 @@ page-care-zone-mission-ing {
                 line-height: normal;
                 letter-spacing: normal;
                 text-align: center;
-                min-width: 97%;
+                min-width: 100%;
                 min-height: 50px;
                 border-radius: 4px;
               }
@@ -363,6 +398,7 @@ page-care-zone-mission-ing {
                 height: 40px;
                 padding: 0px;
                 margin: 0px;
+                margin-top: -2%;
               }
               .event-col0{
                 bottom: 20px;
@@ -424,7 +460,7 @@ page-care-zone-mission-ing {
                 font-size: 14px;
                 border: solid 0.5px #c7c7c7;
                 background-color:#FFF;
-                min-width: 97%;
+                min-width: 100%;
                 min-height: 50px;
                font-family: AppleSDGothicNeo;
                font-size: 14px;
@@ -439,7 +475,6 @@ page-care-zone-mission-ing {
               }
 
               .bottom_text{
-                padding-left: 5%;
                 font-family: NotoSansCJKkr;
                 font-size: 16px;
                 font-weight: bold;
@@ -450,6 +485,7 @@ page-care-zone-mission-ing {
                line-height: normal;
                letter-spacing: normal;
                text-align: left;
+               padding-left: 6%;
 
               }
 
