@@ -14,6 +14,9 @@ import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-missi
 import { CareZoneMissionStartPage } from '../care-zone-mission-start/care-zone-mission-start';
 import { CareZoneMissionDeadlineEndPage } from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end';
 import { ImageLoader } from 'ionic-image-loader';
+import { FCM } from '@ionic-native/fcm';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 
 
 @IonicPage()
@@ -26,7 +29,7 @@ export class HomePage {
   bannerData: any;
   jsonData = null;
   imageUrl: any = [];
-  connectedCspList:Array<string>=[null];
+  connectedCspList: Array<string> = [null];
   carezoneData: any;
   careDataOBJ: any;
   first_carezone_title: any;
@@ -38,6 +41,25 @@ export class HomePage {
   third_carezone_title: any;
   third_carezone_body: any;
   third_carezone__id: any;
+
+  beauty_data_type1: any;
+  beauty_data_title1: any;
+  beauty_data_id1: any;
+  beauty_data_url1: any;
+  beauty_data_type2: any;
+  beauty_data_title2: any;
+  beauty_data_id2: any;
+  beauty_data_url2: any;
+  beauty_data_type3: any;
+  beauty_data_title3: any;
+  beauty_data_id3: any;
+  beauty_data_url3: any;
+  beauty_data_type4: any;
+  beauty_data_title4: any;
+  beauty_data_id4: any;
+  beauty_data_url4: any;
+  beautyData : any;
+
   loading: Loading;
 
   imgUrl: any;
@@ -45,13 +67,15 @@ export class HomePage {
 
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController, public translateService: TranslateService,
-    private loadingCtrl: LoadingController, private imageLoader: ImageLoader
+    private loadingCtrl: LoadingController, private imageLoader: ImageLoader, private fcm: FCM, private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser
     //public bluetoothle: BluetoothLE
   ) {
     this.platform.ready().then((readySource) => {
+
       this.showLoading();
       this.bannerData = this.roadbanner();
       this.roadcareZone();
+      this.roadbeauty();
       this.loading.dismiss();
       //this.first_carezone = this.careDataOBJ[0];
       //this.second_carezone = this.careDataOBJ[1];
@@ -64,6 +88,75 @@ export class HomePage {
       //   this.showAlert(ble.status);
       // });
     });
+
+  }
+
+  openBrowser(url, title) {
+    // https://ionicframework.com/docs/native/themeable-browser/
+    const options: ThemeableBrowserOptions = {
+      toolbar: {
+        height: 44,
+        color: '#6562b9'
+      },
+      title: {
+        color: '#ffffffff',
+        showPageTitle: false,
+        staticText: title
+      },
+      // backButton: {
+      //   wwwImage: 'assets/img/back.png',
+      //   align: 'left',
+      //   event: 'backPressed'
+      // },
+      // forwardButton: {
+      //   wwwImage: 'assets/img/forward.png',
+      //   align: 'left',
+      //   event: 'forwardPressed'
+      // },
+      closeButton: {
+        wwwImage: 'assets/img/close.png',
+        align: 'left',
+        event: 'closePressed'
+      },
+    };
+
+    const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
+
+    browser.on('closePressed').subscribe(data => {
+      browser.close();
+    })
+  }
+
+  inapp_test() {
+
+    const options: InAppBrowserOptions = {
+      zoom: 'no'
+    }
+    const browser = this.iab.create('http://naver.com/');
+  }
+
+
+  push_noti() {
+    this.fcm.subscribeToTopic('all');
+    this.fcm.getToken().then(token => {
+      console.log("FCM Token :::::::::::::" + token);
+    })
+
+    this.fcm.onNotification().subscribe(data => {
+      this.showAlert(data.wasTapped);
+      if (data.wasTapped) {
+        console.log("Received in background");
+      } else {
+        console.log("Received in foreground");
+      };
+    });
+
+
+    this.fcm.onTokenRefresh().subscribe(token => {
+      console.log("FCM Refresh Token :::::::::::::" + token);
+
+    });
+
 
   }
 
@@ -96,11 +189,11 @@ export class HomePage {
         this.bannerData = data;
         this.jsonData = data;
 
-        for(let i = 0; i < Object.keys(this.jsonData).length; i++ ){
-            //this.imgUrl[i] = this.jsonData[i]._id;
-            this.imgUrl = 'http://plinic.cafe24app.com/images/'
-            this.connectedCspList.push('http://plinic.cafe24app.com/images/'.concat(this.jsonData[i]._id));
-            console.log(this.connectedCspList[i]);
+        for (let i = 0; i < Object.keys(this.jsonData).length; i++) {
+          //this.imgUrl[i] = this.jsonData[i]._id;
+          this.imgUrl = 'http://plinic.cafe24app.com/images/'
+          this.connectedCspList.push('http://plinic.cafe24app.com/images/'.concat(this.jsonData[i]._id));
+          console.log(this.connectedCspList[i]);
         }
       });
     } else {
@@ -143,6 +236,28 @@ export class HomePage {
       this.third_carezone_body = data[2].body;
       this.third_carezone__id = data[2]._id;
       this.carezoneData = data;
+    });
+  }
+
+  public roadbeauty() {
+    this.images.mainbeautyRoad().subscribe(data => {
+      this.beauty_data_type1 = data[0].title;
+      this.beauty_data_title1 = data[0].body;
+      this.beauty_data_id1 = data[0]._id;
+      this.beauty_data_url1 = data[0].posturl;
+      this.beauty_data_type2 = data[1].title;
+      this.beauty_data_title2 = data[1].body;
+      this.beauty_data_id2 = data[1]._id;
+      this.beauty_data_url2 = data[1].posturl;
+      this.beauty_data_type3 = data[2].title;
+      this.beauty_data_title3 = data[2].body;
+      this.beauty_data_id3 = data[2]._id;
+      this.beauty_data_url3 = data[2].posturl;
+      this.beauty_data_type4 = data[3].title;
+      this.beauty_data_title4 = data[3].body;
+      this.beauty_data_id4 = data[3]._id;
+      this.beauty_data_url4 = data[3].posturl;
+      this.beautyData = data;
     });
   }
 

@@ -6,7 +6,7 @@ import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { Naver } from 'ionic-plugin-naver';
 import { AgreementPage } from '../agreement/agreement';
 import { LoginpagePage } from '../login/loginpage/loginpage';
-
+import { FCM } from '@ionic-native/fcm';
 
 
 @Component({
@@ -20,8 +20,21 @@ export class LoginPage {
   userData: any;
   constructor(private nav: NavController, private auth: AuthService,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-    public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver, public modalCtrl: ModalController
+    public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver, public modalCtrl: ModalController, private fcm: FCM
   ) {
+
+    // this.fcm.subscribeToTopic('marketing');
+    // this.fcm.getToken().then(token => {
+    //   this.showAlert("Token :" + token)
+    // });
+    //
+    // this.fcm.onNotification().subscribe(data => {
+    //   if (data.wasTapped) {
+    //     this.showAlert("Received in background");
+    //   } else {
+    //     this.showAlert("Received in foreground");
+    //   };
+    // });
 
   }
 

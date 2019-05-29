@@ -87,7 +87,10 @@ import { AnimationService, AnimatesDirective } from 'css-animator';
 import { SelectSearchableModule } from 'ionic-select-searchable';
 import { MultiPickerModule } from 'ion-multi-picker';
 
+import { FCM } from '@ionic-native/fcm';
 //import { OneSignal } from '@ionic-native/onesignal'
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 
 
 export function getAuthHttp(http, storage) {
@@ -212,6 +215,9 @@ export function getAuthHttp(http, storage) {
     Naver,
     BluetoothLE,
     AnimationService,
+    FCM,
+    InAppBrowser,
+    ThemeableBrowser,
     //OneSignal,
     {
       provide: AuthHttp,

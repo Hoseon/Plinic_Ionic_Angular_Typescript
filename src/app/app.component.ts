@@ -8,6 +8,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { ImageLoaderConfig } from 'ionic-image-loader';
 //import { OneSignal } from '@ionic-native/onesignal'
+import { FCM } from '@ionic-native/fcm';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class MyApp {
 
   constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
     private screenOrientation: ScreenOrientation,public translateService: TranslateService, private imageLoaderConfig: ImageLoaderConfig,
+    private fcm: FCM
     ) {
     this.initializeApp();
   }
@@ -28,6 +30,21 @@ export class MyApp {
     //console.log("defaultlanguage:"+defaultlanguage)
     this.translateService.use(defaultlanguage);
     this.platform.ready().then(() => {
+      // this.fcm.subscribeToTopic('all');
+      // this.fcm.getToken().then(token => {
+      //   console.log("FCM Token :::::::::::::" + token);
+      // })
+      // this.fcm.onNotification().subscribe(data => {
+      //   if (data.wasTapped) {
+      //     console.log("Received in background");
+      //   } else {
+      //     console.log("Received in foreground");
+      //   };
+      // });
+      // this.fcm.onTokenRefresh().subscribe(token=>{
+      //   console.log("FCM Refresh Token :::::::::::::" + token);
+      // });
+
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
