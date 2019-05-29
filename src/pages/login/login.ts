@@ -1,13 +1,13 @@
 //import { IonicPage } from 'ionic-angular';
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, ModalController, ViewController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, Loading, ModalController, ViewController} from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
-import { Naver } from 'ionic-plugin-naver';
-import { AgreementPage } from '../agreement/agreement';
-import { LoginpagePage } from '../login/loginpage/loginpage';
+import { Naver} from 'ionic-plugin-naver';
+import {AgreementPage} from '../agreement/agreement';
+import {LoginpagePage} from '../login/loginpage/loginpage';
 
-
+import { FCM } from '@ionic-native/fcm';
 
 @Component({
   selector: 'page-login',
@@ -18,14 +18,29 @@ export class LoginPage {
   registerCredentials = { email: '', password: '' };
   restInfo = {};
   userData: any;
+  backend: any;
   constructor(private nav: NavController, private auth: AuthService,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-    public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver, public modalCtrl: ModalController
+    public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver, public modalCtrl: ModalController, private fcm: FCM
   ) {
 
   }
 
+  getToken(){
+  this.fcm.getToken().then(token => {
+    this.backend.registerToken(token);
+  });
+}
 
+      onNotification(){
+      this.fcm.onNotification().subscribe(data => {
+        if(data.wasTapped){
+          console.log("Received in background");
+        } else {
+          console.log("Received in foreground");
+        };
+      });
+}
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad Loginpage');
@@ -33,32 +48,32 @@ export class LoginPage {
 
 
 
-  public loginpage() {
+  public loginpage(){
     const modal = this.modalCtrl.create(LoginpagePage);
     modal.present();
   }
 
 
 
-  public agreement() {
-    const modal = this.modalCtrl.create(AgreementPage);
-    modal.present();
+    public agreement(){
+      const modal = this.modalCtrl.create(AgreementPage);
+      modal.present();
+    }
+
+
+  public naver_login(){
+       this.naver.login()
+         .then(response => console.log(response))
+         .catch(error => console.error(error));
   }
 
-
-  public naver_login() {
-    //this.showLoading();
-    this.userData = this.auth.naver_login();
-    //this.loading.dismiss();
-  }
-
-  public google_login() {
+  public google_login(){
     this.showLoading()
     this.auth.google_login();
     this.loading.dismiss();
   }
 
-  public facebook_login() {
+  public facebook_login(){
     this.showLoading()
     this.auth.facebook_login();
     this.loading.dismiss();
