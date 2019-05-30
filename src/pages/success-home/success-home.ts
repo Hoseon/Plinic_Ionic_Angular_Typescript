@@ -72,6 +72,7 @@ export class SuccessHomePage {
   // }
 
   public ionViewDidLoad() {
+    this.nav.push(SkinChartPage);
     document.getElementById("view").style.display = "none";
   }
   public moisture_help() {
