@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      플리닉 공지사항
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <user-card *ngFor="let usr of userResults | async | genderFilter:selectedFilter" [user]="usr" (click)="presentPopover($event)"></user-card>
+  </ion-list>
+</ion-content>

@@ -7,7 +7,8 @@ import { MyApp } from './app.component';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 
-
+import { GenderFilter } from './../pipes/gender-filter';
+import { UserCard } from '../components/user-card/user-card';
 
 //탭페이지 구성
 import { LoginPage } from '../pages/login/login';
@@ -41,6 +42,7 @@ import { CareZoneMissionDeadlinePage } from '../pages/care-zone-mission-deadline
 import { CareZoneMissionDeadlineEndPage} from '../pages/care-zone-mission-deadline-end/care-zone-mission-deadline-end';
 import { CareZoneMissionStartPage} from '../pages/care-zone-mission-start/care-zone-mission-start';
 import { CareZoneMissionCompletePage} from '../pages/care-zone-mission-complete/care-zone-mission-complete';
+import { NoticePage } from '../pages/myinfo/details/notice/notice';
 
 import { ProgressBarModule } from "angular-progress-bar";
 import { NgCircleProgressModule } from 'ng-circle-progress';
@@ -86,6 +88,9 @@ import { AnimationService, AnimatesDirective } from 'css-animator';
 
 import { SelectSearchableModule } from 'ionic-select-searchable';
 import { MultiPickerModule } from 'ion-multi-picker';
+
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 
 //import { OneSignal } from '@ionic-native/onesignal'
 
@@ -138,6 +143,9 @@ export function getAuthHttp(http, storage) {
     DeviceSkinStartPage,
     DeviceSkinIngPage,
     AnimatesDirective,
+    NoticePage,
+    GenderFilter,
+    UserCard,
   ],
   imports: [
     HttpModule,
@@ -196,6 +204,7 @@ export function getAuthHttp(http, storage) {
     DeviceConnectFailPage,
     DeviceSkinStartPage,
     DeviceSkinIngPage,
+    NoticePage,
   ],
   providers: [
     StatusBar,
@@ -212,6 +221,8 @@ export function getAuthHttp(http, storage) {
     Naver,
     BluetoothLE,
     AnimationService,
+    InAppBrowser,
+    ThemeableBrowser,
     //OneSignal,
     {
       provide: AuthHttp,

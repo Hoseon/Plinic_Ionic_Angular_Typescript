@@ -5,6 +5,7 @@ import { PlinicManualPage } from './details/plinic-manual/plinic-manual';
 import { QnaPage } from './details/qna/qna';
 import { TermsPage } from './details/terms/terms';
 import { ReRegisterPage } from '../re-register/re-register'
+import { NoticePage } from './details/notice/notice'
 /**
  * Generated class for the MyinfoPage page.
  *
@@ -67,6 +68,10 @@ export class MyinfoPage {
 
   public terms(){
     this.navCtrl.push(TermsPage);
+  }
+
+  public noti(){
+    this.navCtrl.push(NoticePage);
   }
 
   public loadItems(){

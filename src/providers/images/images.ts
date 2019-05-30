@@ -40,6 +40,11 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public mainbeautyRoad() {
+    return this.http.get(this.apiURL + 'beauty/main_list')
+      .map(response => response.json());
+  }
+
   getImages() {
     return this.http.get(this.apiURL + 'images').map(res => res.json());
   }
