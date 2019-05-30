@@ -3,11 +3,11 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, ModalController, ViewController} from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
-import { Naver } from 'ionic-plugin-naver';
-import { AgreementPage } from '../agreement/agreement';
-import { LoginpagePage } from '../login/loginpage/loginpage';
-import { FCM } from '@ionic-native/fcm';
+import { Naver} from 'ionic-plugin-naver';
+import {AgreementPage} from '../agreement/agreement';
+import {LoginpagePage} from '../login/loginpage/loginpage';
 
+import { FCM } from '@ionic-native/fcm';
 
 @Component({
   selector: 'page-login',
@@ -23,19 +23,6 @@ export class LoginPage {
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
     public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver, public modalCtrl: ModalController, private fcm: FCM
   ) {
-
-    // this.fcm.subscribeToTopic('marketing');
-    // this.fcm.getToken().then(token => {
-    //   this.showAlert("Token :" + token)
-    // });
-    //
-    // this.fcm.onNotification().subscribe(data => {
-    //   if (data.wasTapped) {
-    //     this.showAlert("Received in background");
-    //   } else {
-    //     this.showAlert("Received in foreground");
-    //   };
-    // });
 
   }
 
@@ -74,12 +61,11 @@ export class LoginPage {
     }
 
 
-  public naver_login(){
-       this.naver.login()
-         .then(response => console.log(response))
-         .catch(error => console.error(error));
+    public naver_login() {
+      this.showLoading();
+      this.userData = this.auth.naver_login();
+      this.loading.dismiss();
   }
-
   public google_login(){
     this.showLoading()
     this.auth.google_login();
