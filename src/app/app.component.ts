@@ -19,7 +19,7 @@ export class MyApp {
 
   constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
     private screenOrientation: ScreenOrientation,public translateService: TranslateService, private imageLoaderConfig: ImageLoaderConfig,
-    private fcm: FCM, private alertCtrl: AlertController
+    private fcm: FCM, private alertCtrl: AlertController,
     ) {
     this.initializeApp();
   }
@@ -86,7 +86,4 @@ export class MyApp {
     });
     alert.present();
   }
-
-
-
 }

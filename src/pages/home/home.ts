@@ -105,29 +105,34 @@ export class HomePage {
         showPageTitle: false,
         staticText: title
       },
-      // backButton: {
-      //   wwwImage: 'assets/img/back.png',
-      //   align: 'left',
-      //   event: 'backPressed'
-      // },
-      // forwardButton: {
-      //   wwwImage: 'assets/img/forward.png',
-      //   align: 'left',
-      //   event: 'forwardPressed'
-      // },
+      backButton: {
+        wwwImage: 'assets/img/back.png',
+        align: 'left',
+        event: 'backPressed'
+      },
+      forwardButton: {
+        wwwImage: 'assets/img/forward.png',
+        align: 'left',
+        event: 'forwardPressed'
+      },
       closeButton: {
         wwwImage: 'assets/img/close.png',
         align: 'left',
         event: 'closePressed'
       },
+      // backButtonCanClose: true
     };
 
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
-
+    browser.insertCss({
+      file: 'assets/img/close.png',
+      code: '.navbar-fixed-top {display: block !important;}'
+    });
+    browser.reload();
     browser.on('closePressed').subscribe(data => {
       browser.close();
     })
-  }
+}
 
 
   inapp_test() {

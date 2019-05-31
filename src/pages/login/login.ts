@@ -18,25 +18,11 @@ export class LoginPage {
   registerCredentials = { email: '', password: '' };
   restInfo = {};
   userData: any;
-  backend: any;
   constructor(private nav: NavController, private auth: AuthService,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
     public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver, public modalCtrl: ModalController,
     //private fcm: FCM
   ) {
-
-    // this.fcm.subscribeToTopic('marketing');
-    // this.fcm.getToken().then(token => {
-    //   this.showAlert("Token :" + token)
-    // });
-    //
-    // this.fcm.onNotification().subscribe(data => {
-    //   if (data.wasTapped) {
-    //     this.showAlert("Received in background");
-    //   } else {
-    //     this.showAlert("Received in foreground");
-    //   };
-    // });
 
   }
 

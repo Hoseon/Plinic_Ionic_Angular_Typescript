@@ -67,7 +67,64 @@
 // }
 
 
+//push alertCtrl
+
+.push_alert{
+      background-color: rgba(0, 0, 0, 0.4);
+        .alert-wrapper{
+          border-radius: 4px;
+
+            .alert-head{
+              padding-top: 10px;
+              padding-right: 24px;
+              padding-bottom: 10px;
+              padding-left: 24px;
+              border-style: solid;
+              border-width: 0px 0px 2px 0px;
+              border-color: #e5e5e5;
+
+              .alert-title{
+                background-image: url(../assets/img/ic_system_logo_symbol.png);
+                background-repeat: no-repeat;
+                background-size: 35px 35px;
+                min-height: 35px;
+                padding-top: 4%;
+                padding-left: 23%;
+                font-family: NotoSansCJKkr;
+                font-size: 16px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                color: #292929;
+              }
+            }
+
+            .alert-message {
+                color: #000;
+                font-size: 12px;
+                padding-top: 9%;
+            }
+            .button-inner{
+              justify-content:center;
+            }
+            .alert-button-group{
+               padding: 0px;
+
+            .alert-button{
+               width: 100%;
+               color: #FFF;
+               background-color: #6562b9;
+               margin: 0px;
+               }
+            }
+        }
+}
+
+
 //addinfo 생년월일 확인,취소
+
 .picker-md .picker-button, .picker-md .picker-button.activated{
    background-color: #5c59b6;
    width: 100%;
@@ -83,7 +140,22 @@
    line-height: normal;
    letter-spacing: normal;
    color: #ffffff;
-   z-index: 1;
+}
+.picker-ios .picker-button, .picker-ios .picker-button.activated{
+   background-color: #5c59b6;
+   width: 100%;
+   position: absolute;
+   left: 0;
+   margin-left:auto;
+   margin-right: auto;
+   font-family: NotoSansCJKkr;
+   font-size: 15px;
+   font-weight: 500;
+   font-style: normal;
+   font-stretch: normal;
+   line-height: normal;
+   letter-spacing: normal;
+   color: #ffffff;
 }
 
 .item-multi-picker .label-md{
@@ -99,11 +171,34 @@
   color: #292929;
 }
 
-.picker-wrapper{
+.item-multi-picker .label-ios{
+  height: 19px;
+  font-family: NotoSansCJKkr;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin-bottom: 2.5%;
+  color: #292929;
+}
+
+.picker-md .picker-wrapper{
   margin-left: auto;
   margin-right:auto;
   width: 90%;
-  height: 215px;
+  height: 34%;
+  bottom: 30%;
+  border-radius: 4px;
+  background-color: #FFF;
+}
+
+.picker-ios .picker-wrapper{
+  margin-left: auto;
+  margin-right:auto;
+  width: 90%;
+  height: 34%;
   bottom: 30%;
   border-radius: 4px;
   background-color: #FFF;
@@ -111,9 +206,16 @@
 
 .picker-md .picker-col{
   // margin-top: -20%;
-  margin-top: 4%;
-  margin-bottom: 15%;
-  padding: 0 31px;
+  margin-top: 9%;
+  padding: 0 35px;
+  line-height: 1.6;
+  height: 100%;
+}
+//
+.picker-ios .picker-col{
+  // margin-top: -20%;
+  // margin-top: 9%;
+  padding: 0 35px;
   line-height: 1.6;
   height: 100%;
 }
@@ -123,6 +225,12 @@
   bottom: 0;
   width: 100%;
 }
+.picker-ios .picker-toolbar{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .multi-picker-placeholder{
   font-family: NotoSansCJKkr;
   font-size: 15px;
@@ -139,9 +247,14 @@
 .picker-md .picker-prefix, .picker-md .picker-suffix, .picker-md .picker-opts{
   top:0;
 }
+
+// .picker-ios .picker-prefix, .picker-ios .picker-suffix, .picker-ios .picker-opts{
+//   top:0;
+// }
+
 .picker-md .picker-prefix, .picker-md .picker-suffix, .picker-md .picker-opt.picker-opt-selected{
   font-family: Roboto;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
@@ -150,7 +263,23 @@
   text-align: center;
   color: #5C59B6;
   border-style: solid;
-  border-width: 1.5px 0px 1.5px 0px;
+  border-width: 1px 0px 1px 0px;
+  border-color: #e5e5e5;
+}
+
+.picker-ios .picker-prefix, .picker-ios .picker-suffix, .picker-ios .picker-opt.picker-opt-selected{
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #5C59B6;
+  border-style: solid;
+  border-width: 1px 0px 1px 0px;
+  border-color: #e5e5e5;
 }
   .picker-toolbar-button .picker-toolbar-multi-picker-cancel{
     height: 0px;
@@ -159,7 +288,7 @@
 
 .picker-md .picker-opt{
   font-family: Roboto;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
@@ -167,4 +296,32 @@
   letter-spacing: normal;
   text-align: center;
   color:#D2D4D8;
+}
+
+.picker-ios .picker-opt{
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color:#D2D4D8;
+}
+
+
+
+.picker-ios .picker-below-highlight{
+  height: 0px;
+  border-top: 0px;
+  top:0px;
+}
+
+
+.picker-ios .picker-above-highlight{
+
+  height: 0px;
+  border-bottom: 0px;
+  top:0px;
 }

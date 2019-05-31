@@ -6,6 +6,7 @@ import { QnaPage } from './details/qna/qna';
 import { TermsPage } from './details/terms/terms';
 import { ReRegisterPage } from '../re-register/re-register'
 import { NoticePage } from './details/notice/notice'
+import { FCM } from '@ionic-native/fcm';
 /**
  * Generated class for the MyinfoPage page.
  *
@@ -29,9 +30,11 @@ export class MyinfoPage {
   nickname: string;
   profile_image: string;
   thumbnail_image: string;
+  push_check:boolean;
+  backend: any;
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, private alertCtrl: AlertController, private plt: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,
+    private alertCtrl: AlertController, private plt: Platform, private fcm: FCM) {
      this.plt.ready().then(() => {
        this.loadItems();
      });
@@ -47,7 +50,22 @@ export class MyinfoPage {
   }
 
 
+  getToken(){
+  this.fcm.getToken().then(token => {
+    this.backend.registerToken(token);
+  });
+}
 
+  public push_change(){
+    if(this.push_check){
+        this.getToken();
+        console.log("켜진 상태");
+    }
+    else{
+      console.log("꺼진 상태");
+      this.backend.registerToken('');
+    }
+ }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyinfoPage');

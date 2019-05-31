@@ -59,9 +59,9 @@ page-care-zone-mission-ing {
     height: 25px;
 }
 
-   .toolbar-ios{
-     margin-top: 10%;
-   }
+   // .toolbar-ios{
+   //   margin-top: 10%;
+   // }
 
   .back-button-text-ios{
     font-size: 0px;
@@ -107,7 +107,7 @@ page-care-zone-mission-ing {
                 border: solid 1px #5c59b6;
                 font-family: NotoSansCJKkr;
                 font-size: 12px;
-                font-weight: bold;
+                font-weight: normal;
                 font-style: normal;
                 font-stretch: normal;
                 line-height: normal;
@@ -156,6 +156,24 @@ page-care-zone-mission-ing {
               }
 
               .progress-inner[_ngcontent-c1]{
+                background-color: #5c59b6;
+                color: #FFF;
+                height: 6px;
+                border-radius: 0px;
+                margin-bottom: -20px;
+              }
+
+              .progress-outer[_ngcontent-c2]{
+                margin-left: auto;
+                margin-right: auto;
+                border: 0px;
+                width: 75%;
+                background-color: #f1f1f1;
+                padding: 0px;
+                font-size: 8px;
+              }
+
+              .progress-inner[_ngcontent-c2]{
                 background-color: #5c59b6;
                 color: #FFF;
                 height: 6px;

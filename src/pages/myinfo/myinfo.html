@@ -12,7 +12,9 @@
 
     <ion-item *ngIf="userData">
       <ion-thumbnail item-start>
-        <img class="img-radius" src="{{userData.thumbnail_image}}">
+        <ion-img class="img-radius" *ngIf="userData.thumbnail_image==''" src="assets/img/care-zone/ic-system-profile-sample@3x.png">
+          </ion-img>
+        <img class="img-radius" src="{{userData.thumbnail_image}}"/>
       </ion-thumbnail>
       <h2>{{userData.nickname}}</h2>
       <p>{{userData.email}}</p>
@@ -81,7 +83,7 @@
   <!-- <button ion-item (click)="plinic_qna()" icon-start>문의하기</button>
 
     <ion-item>
-      <ion-toggle checked="true"></ion-toggle>
+      <ion-toggle [(ngModel)]="push_check" (ionChange)="push_change()"></ion-toggle>
       <ion-label>
         추천 알림
       </ion-label>
