@@ -59,20 +59,9 @@ export class MyinfoPage {
   });
 }
 
-      onNotification(){
-      this.fcm.onNotification().subscribe(data => {
-        if(data.wasTapped){
-          console.log("Received in background");
-        } else {
-          console.log("Received in foreground");
-        };
-      });
-}
-
   public push_change(){
     if(this.push_check){
         this.getToken();
-        this.onNotification();
         console.log("켜진 상태");
     }
     else{

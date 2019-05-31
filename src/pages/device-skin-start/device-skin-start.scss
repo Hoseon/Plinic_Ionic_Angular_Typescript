@@ -40,6 +40,22 @@ page-device-skin-start {
     object-fit: contain;
   }
 
+
+  .anim-point {
+    animation-name: stylie-transform-keyframes;
+    animation-duration: 1000ms;
+    animation-delay: 0ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform-origin: 0 0;
+  }
+  @keyframes stylie-transform-keyframes {
+    0% {transform:translate(0px, 0px) scale(0.2) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+      animation-timing-function: cubic-bezier(.25,.25,.75,.75);}
+    100% {transform:translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+  }
+
   .cell {
     width: 88%;
     height: 50px;
