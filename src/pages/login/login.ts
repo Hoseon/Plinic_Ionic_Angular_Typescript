@@ -6,7 +6,7 @@ import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { Naver } from 'ionic-plugin-naver';
 import { AgreementPage } from '../agreement/agreement';
 import { LoginpagePage } from '../login/loginpage/loginpage';
-
+//import { FCM } from '@ionic-native/fcm';
 
 
 @Component({
@@ -18,14 +18,43 @@ export class LoginPage {
   registerCredentials = { email: '', password: '' };
   restInfo = {};
   userData: any;
+  backend: any;
   constructor(private nav: NavController, private auth: AuthService,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-    public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver, public modalCtrl: ModalController
+    public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver, public modalCtrl: ModalController,
+    //private fcm: FCM
   ) {
+
+    // this.fcm.subscribeToTopic('marketing');
+    // this.fcm.getToken().then(token => {
+    //   this.showAlert("Token :" + token)
+    // });
+    //
+    // this.fcm.onNotification().subscribe(data => {
+    //   if (data.wasTapped) {
+    //     this.showAlert("Received in background");
+    //   } else {
+    //     this.showAlert("Received in foreground");
+    //   };
+    // });
 
   }
 
-
+  // getToken() {
+  //   this.fcm.getToken().then(token => {
+  //     this.backend.registerToken(token);
+  //   });
+  // }
+  //
+  // onNotification() {
+  //   this.fcm.onNotification().subscribe(data => {
+  //     if (data.wasTapped) {
+  //       console.log("Received in background");
+  //     } else {
+  //       console.log("Received in foreground");
+  //     };
+  //   });
+  // }
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad Loginpage');
@@ -47,9 +76,9 @@ export class LoginPage {
 
 
   public naver_login() {
-    //this.showLoading();
-    this.userData = this.auth.naver_login();
-    //this.loading.dismiss();
+    this.naver.login()
+      .then(response => console.log(response))
+      .catch(error => console.error(error));
   }
 
   public google_login() {

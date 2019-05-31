@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
@@ -8,6 +8,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { ImageLoaderConfig } from 'ionic-image-loader';
 //import { OneSignal } from '@ionic-native/onesignal'
+import { FCM } from '@ionic-native/fcm';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class MyApp {
 
   constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
     private screenOrientation: ScreenOrientation,public translateService: TranslateService, private imageLoaderConfig: ImageLoaderConfig,
+    private fcm: FCM, private alertCtrl: AlertController
     ) {
     this.initializeApp();
   }
@@ -28,6 +30,23 @@ export class MyApp {
     //console.log("defaultlanguage:"+defaultlanguage)
     this.translateService.use(defaultlanguage);
     this.platform.ready().then(() => {
+      if (this.platform.is('cordova')) {
+        this.fcm.subscribeToTopic('marketing');
+        this.fcm.getToken().then(token => {
+          console.log("FCM Token ::::::" + token);
+        })
+        this.fcm.onNotification().subscribe(data => {
+          if (data.wasTapped) {
+            console.log("Received in background");
+          } else {
+            this.showAlert(JSON.stringify(data.aps.alert));
+            console.log("Received in foreground");
+          };
+        });
+        this.fcm.onTokenRefresh().subscribe(token=>{
+          console.log("FCM Refresh Token :::::::::::::" + token);
+        });
+      }
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
@@ -57,4 +76,17 @@ export class MyApp {
   //
   //   this.onesignal.endInit();
   // }
+
+
+  showAlert(text) {
+    let alert = this.alertCtrl.create({
+      title: '알림',
+      message: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+
+
 }

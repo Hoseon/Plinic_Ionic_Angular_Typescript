@@ -18,7 +18,6 @@ import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser'
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 
 
-
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -29,7 +28,7 @@ export class HomePage {
   bannerData: any;
   jsonData = null;
   imageUrl: any = [];
-  connectedCspList:Array<string>=[null];
+  connectedCspList: Array<string> = [null];
   carezoneData: any;
   careDataOBJ: any;
   first_carezone_title: any;
@@ -58,7 +57,7 @@ export class HomePage {
   beauty_data_title4: any;
   beauty_data_id4: any;
   beauty_data_url4: any;
-  beautyData : any;
+  beautyData: any;
 
 
   loading: Loading;
@@ -68,10 +67,13 @@ export class HomePage {
 
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController, public translateService: TranslateService,
-    private loadingCtrl: LoadingController, private imageLoader: ImageLoader, private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser,
+    private loadingCtrl: LoadingController, private imageLoader: ImageLoader,
+    //private fcm: FCM,
+    private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser
     //public bluetoothle: BluetoothLE
   ) {
     this.platform.ready().then((readySource) => {
+
       this.showLoading();
       this.bannerData = this.roadbanner();
       this.roadcareZone();
@@ -90,18 +92,6 @@ export class HomePage {
     });
 
   }
-
-  // ionViewDidEnter(){
-  //   this.translateService.get('helloWorld').subscribe(
-  //     hi => {
-  //       let alert = this.alertCtrl.create({
-  //         title: hi,
-  //         buttons: ['OK']
-  //       });
-  //       alert.present();
-  //     }
-  //   )
-  // }
 
   openBrowser(url, title) {
     // https://ionicframework.com/docs/native/themeable-browser/
@@ -139,6 +129,7 @@ export class HomePage {
     })
   }
 
+
   inapp_test() {
 
     const options: InAppBrowserOptions = {
@@ -158,17 +149,58 @@ export class HomePage {
 
 
 
+
+
+  push_noti() {
+    // this.fcm.subscribeToTopic('all');
+    // this.fcm.getToken().then(token => {
+    //   console.log("FCM Token :::::::::::::" + token);
+    // })
+    //
+    // this.fcm.onNotification().subscribe(data => {
+    //   this.showAlert(data.wasTapped);
+    //   if (data.wasTapped) {
+    //     console.log("Received in background");
+    //   } else {
+    //     console.log("Received in foreground");
+    //   };
+    // });
+    //
+    //
+    // this.fcm.onTokenRefresh().subscribe(token => {
+    //   console.log("FCM Refresh Token :::::::::::::" + token);
+    //
+    // });
+
+
+  }
+
+  // ionViewDidEnter(){
+  //   this.translateService.get('helloWorld').subscribe(
+  //     hi => {
+  //       let alert = this.alertCtrl.create({
+  //         title: hi,
+  //         buttons: ['OK']
+  //       });
+  //       alert.present();
+  //     }
+  //   )
+  // }
+
+
+
+
   public roadbanner() {
     if (!this.jsonData) {
       this.images.bannerRoad().subscribe(data => {
         this.bannerData = data;
         this.jsonData = data;
 
-        for(let i = 0; i < Object.keys(this.jsonData).length; i++ ){
-            //this.imgUrl[i] = this.jsonData[i]._id;
-            this.imgUrl = 'http://plinic.cafe24app.com/images/'
-            this.connectedCspList.push('http://plinic.cafe24app.com/images/'.concat(this.jsonData[i]._id));
-            console.log(this.connectedCspList[i]);
+        for (let i = 0; i < Object.keys(this.jsonData).length; i++) {
+          //this.imgUrl[i] = this.jsonData[i]._id;
+          this.imgUrl = 'http://plinic.cafe24app.com/images/'
+          this.connectedCspList.push('http://plinic.cafe24app.com/images/'.concat(this.jsonData[i]._id));
+          console.log(this.connectedCspList[i]);
         }
       });
     } else {

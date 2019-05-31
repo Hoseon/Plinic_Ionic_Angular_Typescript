@@ -20,10 +20,23 @@ export class NoticePage {
 
   userResults: Observable<any>;
   selectedFilter = null;
+  information: any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public popoverCtrl: PopoverController) {
+    let localData = http.get('assets/information.json').map(res => res.json().items);
+    localData.subscribe(data => {
+      this.information = data;
+    })
     // https://randomuser.me/api?results=50
     this.userResults = this.getLocalFile();
+  }
+
+  toggleSection(i) {
+    this.information[i].open = !this.information[i].open;
+  }
+
+  toggleItem(i, j) {
+    this.information[i].children[j].open = !this.information[i].children[j].open;
   }
 
   ionViewDidLoad() {
