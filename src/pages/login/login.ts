@@ -7,7 +7,6 @@ import { Naver} from 'ionic-plugin-naver';
 import {AgreementPage} from '../agreement/agreement';
 import {LoginpagePage} from '../login/loginpage/loginpage';
 
-import { FCM } from '@ionic-native/fcm';
 
 @Component({
   selector: 'page-login',
@@ -18,29 +17,13 @@ export class LoginPage {
   registerCredentials = { email: '', password: '' };
   restInfo = {};
   userData: any;
-  backend: any;
   constructor(private nav: NavController, private auth: AuthService,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-    public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver, public modalCtrl: ModalController, private fcm: FCM
+    public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver, public modalCtrl: ModalController
   ) {
 
   }
 
-  getToken(){
-  this.fcm.getToken().then(token => {
-    this.backend.registerToken(token);
-  });
-}
-
-      onNotification(){
-      this.fcm.onNotification().subscribe(data => {
-        if(data.wasTapped){
-          console.log("Received in background");
-        } else {
-          console.log("Received in foreground");
-        };
-      });
-}
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad Loginpage');

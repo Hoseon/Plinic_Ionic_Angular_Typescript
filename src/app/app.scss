@@ -67,6 +67,62 @@
 // }
 
 
+//push alertCtrl
+
+.push_alert{
+      background-color: rgba(0, 0, 0, 0.4);
+        .alert-wrapper{
+          border-radius: 4px;
+
+            .alert-head{
+              padding-top: 10px;
+              padding-right: 24px;
+              padding-bottom: 10px;
+              padding-left: 24px;
+              border-style: solid;
+              border-width: 0px 0px 2px 0px;
+              border-color: #e5e5e5;
+
+              .alert-title{
+                background-image: url(../assets/img/ic_system_logo_symbol.png);
+                background-repeat: no-repeat;
+                background-size: 35px 35px;
+                min-height: 35px;
+                padding-top: 4%;
+                padding-left: 23%;
+                font-family: NotoSansCJKkr;
+                font-size: 16px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                color: #292929;
+              }
+            }
+
+            .alert-message {
+                color: #000;
+                font-size: 12px;
+                padding-top: 9%;
+            }
+            .button-inner{
+              justify-content:center;
+            }
+            .alert-button-group{
+               padding: 0px;
+
+            .alert-button{
+               width: 100%;
+               color: #FFF;
+               background-color: #6562b9;
+               margin: 0px;
+               }
+            }
+        }
+}
+
+
 //addinfo 생년월일 확인,취소
 
 .picker-md .picker-button, .picker-md .picker-button.activated{
@@ -221,9 +277,9 @@
   letter-spacing: normal;
   text-align: center;
   color: #5C59B6;
-  // border-style: solid;
-  // border-width: 1px 0px 1px 0px;
-  // border-color: #e5e5e5;
+  border-style: solid;
+  border-width: 1px 0px 1px 0px;
+  border-color: #e5e5e5;
 }
   .picker-toolbar-button .picker-toolbar-multi-picker-cancel{
     height: 0px;
@@ -252,4 +308,20 @@
   letter-spacing: normal;
   text-align: center;
   color:#D2D4D8;
+}
+
+
+
+.picker-ios .picker-below-highlight{
+  height: 0px;
+  border-top: 0px;
+  top:0px;
+}
+
+
+.picker-ios .picker-above-highlight{
+
+  height: 0px;
+  border-bottom: 0px;
+  top:0px;
 }
