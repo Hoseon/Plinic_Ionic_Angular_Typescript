@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Academy Pizza
+      공지사항
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,38 +9,38 @@
 <ion-content>
   <ion-list class="accordion-list">
     <!-- First Level -->
-    <ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
+    <ion-list-header *ngFor="let item of noticeData; let i = index" no-lines no-padding>
       <!-- Toggle Button -->
       <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
-        <ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
-        <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
-          {{ item.name }}
+        <ion-icon item-end name="arrow-forward" *ngIf="!item.open"></ion-icon>
+        <ion-icon item-end name="arrow-down" *ngIf="item.open"></ion-icon>
+          {{ item.category }} {{item.title}}
       </button>
 
-      <ion-list *ngIf="item.children && item.open" no-lines>
+      <ion-list *ngIf="item.title && item.open" no-lines>
         <!-- Second Level -->
-        <ion-list-header *ngFor="let child of item.children; let j = index" no-padding>
+        <ion-list-header no-padding>
           <!-- Toggle Button -->
-          <button ion-item (click)="toggleItem(i, j)" *ngIf="child.children" class="child" detail-none>
-            <ion-icon item-left name="add" *ngIf="!child.open"></ion-icon>
-            <ion-icon item-left name="close" *ngIf="child.open"></ion-icon>
-            {{ child.name }}
-          </button>
+          <!-- <button ion-item (click)="toggleItem(i, j)" *ngIf="child.title" class="child" detail-none> -->
+            <!-- <ion-icon item-end name="add" *ngIf="!child.open"></ion-icon> -->
+            <!-- <ion-icon item-end name="close" *ngIf="child.open"></ion-icon> -->
+            <!-- {{ child.title }} -->
+          <!-- </button> -->
 
           <!-- Direct Add Button as Fallback -->
-          <ion-item *ngIf="!child.children" ion-item detail-none class="child-item" text-wrap>
-            <h2>{{ child.name }}</h2>
-            <p text-lowercase>{{ child.information }}</p>
-            <button ion-button outline item-end (click)="buyItem(child)">{{ child.price }}</button>
-          </ion-item>
+          <!-- <ion-item *ngIf="!child.title" ion-item detail-none class="child-item" text-wrap> -->
+            <!-- <h2>{{ child.title }}</h2> -->
+            <!-- <p text-lowercase>{{ child.body }}</p> -->
+            <!-- <button ion-button outline item-end (click)="buyItem(child)">{{ child.price }}</button> -->
+          <!-- </ion-item> -->
 
-          <ion-list *ngIf="child.children && child.open">
+          <ion-list *ngIf="item.title && item.open">
             <!-- Third Level -->
-            <ion-item *ngFor="let item of child.children; let k = index" detail-none class="child-item" text-wrap>
-              <h2>{{ item.name }}</h2>
-              <p text-lowercase>{{ item.information }}</p>
+            <ion-item detail-none class="child-item" text-wrap>
+              <!-- <h2>{{ item.title }}</h2> -->
+              <p text-lowercase>{{ item.body }}</p>
               <!-- Direct Add Button -->
-              <button ion-button outline item-end (click)="buyItem(item)">{{ item.price }}</button>
+              <!-- <button ion-button outline item-end (click)="buyItem(item)">{{ item.price }}</button> -->
             </ion-item>
           </ion-list>
 

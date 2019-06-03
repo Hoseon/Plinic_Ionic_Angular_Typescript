@@ -316,6 +316,16 @@ export class AuthService {
     });
   }
 
+  public getNotice() {
+    return this.http.get(CONFIG.apiUrl + 'notice/main_list')
+      .map(response => response.json());
+  }
+
+  public getAllNotice() {
+    return this.http.get(CONFIG.apiUrl + 'notice/list')
+      .map(response => response.json());
+  }
+
 
   showAlert(text) {
     //this.loading.dismiss();

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-an
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { AuthService } from '../../../../providers/auth-service';
 
 /**
  * Generated class for the NoticePage page.
@@ -19,24 +20,26 @@ import 'rxjs/add/operator/map';
 export class NoticePage {
 
   userResults: Observable<any>;
+  noticeData: any;
   selectedFilter = null;
   information: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public popoverCtrl: PopoverController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public popoverCtrl: PopoverController, public authService: AuthService) {
     let localData = http.get('assets/information.json').map(res => res.json().items);
     localData.subscribe(data => {
       this.information = data;
     })
+    this.noticeData = this.loadNotice();
     // https://randomuser.me/api?results=50
     this.userResults = this.getLocalFile();
   }
 
   toggleSection(i) {
-    this.information[i].open = !this.information[i].open;
+    this.noticeData[i].open = !this.noticeData[i].open;
   }
 
   toggleItem(i, j) {
-    this.information[i].children[j].open = !this.information[i].children[j].open;
+    this.noticeData[i].title[j].open = !this.noticeData[i].title[j].open;
   }
 
   ionViewDidLoad() {
@@ -55,6 +58,13 @@ export class NoticePage {
     });
     popover.onDidDismiss(data => {
       this.selectedFilter = data.filter;
+    })
+  }
+
+  loadNotice(){
+    this.authService.getAllNotice().subscribe(items =>{
+      this.noticeData = items;
+      console.log(items);
     })
   }
 

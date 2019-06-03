@@ -20,6 +20,7 @@ import { FCM } from '@ionic-native/fcm';
   templateUrl: 'myinfo.html',
 })
 export class MyinfoPage {
+  noticeData: any;
   userData: any;
   accessToken: string;
   id: string;
@@ -37,6 +38,7 @@ export class MyinfoPage {
     private alertCtrl: AlertController, private platform: Platform, private fcm: FCM) {
      this.platform.ready().then(() => {
        this.loadItems();
+       this.loadNotice();
      });
   }
 
@@ -116,6 +118,12 @@ export class MyinfoPage {
       // this.profile_image = items.profile_image
       // this.thumbnail_image =  items.thumbnail_image
     });
+  }
+
+  public loadNotice(){
+    this.authService.getNotice().subscribe(items => {
+      this.noticeData = items;
+    })
   }
 
   showAlert(text) {

@@ -12,8 +12,8 @@
 
     <ion-item *ngIf="userData">
       <ion-thumbnail item-start>
-        <ion-img class="img-radius" *ngIf="userData.thumbnail_image==''" src="assets/img/care-zone/ic-system-profile-sample@3x.png">
-          </ion-img>
+        <!-- <ion-img class="img-radius" *ngIf="userData.thumbnail_image" src="assets/img/care-zone/ic-system-profile-sample@3x.png">
+          </ion-img> -->
         <img class="img-radius" src="{{userData.thumbnail_image}}"/>
       </ion-thumbnail>
       <h2>{{userData.nickname}}</h2>
@@ -27,9 +27,9 @@
 
   <ion-list no-lines>
     <button mode="ios" no-lines ion-item icon-start (click)="noti()">공지사항</button>
-    <ion-item no-lines>[이벤트] 플리닉 친구 추천 이벤트가 진행되고 있습니다.</ion-item>
-    <ion-item no-lines>[공지] 플리닉 연동 문제 해결법</ion-item>
-    <ion-item no-lines>[공지] 서버 점검 안내(2019.08.01 12:00~)</ion-item>
+    <ion-item *ngFor="let notice of noticeData" (click)="noti()" no-lines>{{[notice.category]}} {{notice.title}}</ion-item>
+    <!-- <ion-item no-lines>[공지] 플리닉 연동 문제 해결법</ion-item>
+    <ion-item no-lines>[공지] 서버 점검 안내(2019.08.01 12:00~)</ion-item> -->
     <ion-item></ion-item>
   </ion-list>
 
