@@ -34,8 +34,8 @@ export class MyinfoPage {
   backend: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,
-    private alertCtrl: AlertController, private plt: Platform, private fcm: FCM) {
-     this.plt.ready().then(() => {
+    private alertCtrl: AlertController, private platform: Platform, private fcm: FCM) {
+     this.platform.ready().then(() => {
        this.loadItems();
      });
   }

@@ -40,6 +40,7 @@ export class AddinfoPage {
     this.simpleColumns = [
     {
       name: 'country',
+      cssClass:'ion-multi-picker',
       options: [
         { text: '대한민국', value: '대한민국'},
         { text: '中國,China', value: '中國,China' },

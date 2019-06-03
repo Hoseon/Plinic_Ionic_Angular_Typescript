@@ -4,6 +4,39 @@ page-myinfo {
   }
 }
 
+  .info_text{
+    height: 29px;
+    font-family: NotoSansCJKkr;
+    font-size: 23px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.26;
+    letter-spacing: normal;
+    color: #292929;
+  }
+
+  .info_change{
+  position: absolute;
+  right: 4%;
+  bottom: 15%;
+  width: 65px;
+  height: 35.5px !important;
+  margin-top: -5% !important;
+  background-color: #FFF;
+  border-radius: 3px;
+  border: solid 1px #dddddd;
+  font-family: NotoSansCJKkr;
+  font-size: 13px !important;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #292929;
+  box-shadow: none !important;
+  }
+
 button {
   width: 20%;
   padding-left: 50.1111%;
@@ -23,6 +56,8 @@ ion-thumbnail {
 }
 
 .img-radius {
+  width: 60px !important;
+  height: 60px !important;
   border-radius: 50% !important;
 
 }

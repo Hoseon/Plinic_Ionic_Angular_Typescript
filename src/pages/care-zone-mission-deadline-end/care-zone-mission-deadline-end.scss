@@ -40,8 +40,15 @@ page-care-zone-mission-deadline-end {
   }
 
   .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
-    margin-top: -4%;
-    color: #292929;
+    margin-left: -13%;
+    margin-top: -15%;
+    color: transparent;
+  }
+
+  .ios_nav{
+    background-color: #FFF;
+    width: 140px;
+    object-fit: contain;
   }
 
   .toolbar-background {
@@ -57,9 +64,9 @@ page-care-zone-mission-deadline-end {
     height: 25px;
 }
 
-   // .toolbar-ios{
-   //   margin-top: 10%;
-   // }
+   .toolbar-ios{
+     margin-top: 3%;
+   }
 
   .back-button-text-ios{
     font-size: 0px;
