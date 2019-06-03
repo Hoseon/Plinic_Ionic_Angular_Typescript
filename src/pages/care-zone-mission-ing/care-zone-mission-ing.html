@@ -77,15 +77,15 @@
                  <ion-col class="event-col4">미션 횟수
                  <img class="info-img"src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png"/></ion-col>
                  <ion-col class="event-col9">3
-                 <ion-col class="event-col11">/30명</ion-col></ion-col>
+                 <ion-col class="event-col11">/30</ion-col></ion-col>
              </ion-row>
         </ion-grid>
     </ion-item>
-    <ion-item style="width:97%; margin-bottom: 2%;" >
+    <ion-item style="width:97%; margin-bottom: 5%;" >
        <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
-                 <ion-col class="event-col4">미션 종료일</ion-col>
-                 <ion-col class="event-col12">{{endDate}}</ion-col>
+                 <ion-col class="event-col4">미션 일정</ion-col>
+                 <ion-col class="event-col12">startDate~{{endDate}}</ion-col>
              </ion-row>
          </ion-grid>
    </ion-item>
@@ -109,7 +109,7 @@
 
 
 <!-- 참여자만큼 반복문 -->
-<ion-item>
+<ion-item no-lines>
     <ion-grid class="eventgrid">
         <ion-row>
             <ion-col class="event-col0">{{index}}00</ion-col>
@@ -121,7 +121,7 @@
         </ion-row>
     </ion-grid>
 </ion-item>
-<ion-item>
+<ion-item no-lines>
     <ion-grid class="eventgrid">
         <ion-row>
             <ion-col class="event-col0">{{index}}00</ion-col>
@@ -133,7 +133,7 @@
         </ion-row>
     </ion-grid>
 </ion-item>
-<ion-item>
+<ion-item no-lines>
     <ion-grid class="eventgrid">
         <ion-row>
             <ion-col class="event-col0">{{index}}00</ion-col>
@@ -145,7 +145,7 @@
         </ion-row>
     </ion-grid>
 </ion-item>
-<ion-item>
+<ion-item no-lines>
     <ion-grid class="eventgrid">
         <ion-row>
             <ion-col class="event-col0">{{index}}00</ion-col>
@@ -157,7 +157,7 @@
         </ion-row>
     </ion-grid>
 </ion-item>
-<ion-item>
+<ion-item no-lines>
     <ion-grid class="eventgrid">
         <ion-row>
             <ion-col class="event-col0">{{index}}00</ion-col>

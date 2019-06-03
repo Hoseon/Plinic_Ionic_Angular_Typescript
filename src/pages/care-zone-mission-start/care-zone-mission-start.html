@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar  *ngIf="platform.is('android')">
+  <ion-navbar  *ngIf="platform.is('android') && platform.is('mobile')">
     <ion-title *ngIf="carezoneData" class="android_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
   </ion-navbar>
 
@@ -14,7 +14,7 @@
     <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
   </ion-navbar> -->
 
-  <ion-navbar *ngIf="platform.is('ios')">
+  <ion-navbar *ngIf="platform.is('ios') && platform.is('mobile')">
   	<ion-buttons left>
   		<button ion-button navPop icon-only>
   			<!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
@@ -60,15 +60,15 @@
                  <ion-col class="event-col4">참여인원
                  <img class="info-img" src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png"/></ion-col>
                  <ion-col class="event-col9">3
-                 <ion-col class="event-col11">/30명</ion-col></ion-col>
+                 <ion-col class="event-col11">/30</ion-col></ion-col>
              </ion-row>
         </ion-grid>
     </ion-item>
     <ion-item style="width:97%" >
        <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
-                 <ion-col class="event-col4">미션 종료일</ion-col>
-                 <ion-col class="event-col12">{{endDate}}</ion-col>
+                 <ion-col class="event-col4">미션 일정</ion-col>
+                 <ion-col class="event-col12">startDate~{{endDate}}</ion-col>
              </ion-row>
          </ion-grid>
    </ion-item>

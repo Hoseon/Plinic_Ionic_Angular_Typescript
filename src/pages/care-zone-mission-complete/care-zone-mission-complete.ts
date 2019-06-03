@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 
 /**
  * Generated class for the CareZoneMissionCompletePage page.
@@ -15,11 +15,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CareZoneMissionCompletePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  public loadProgress: number = 100;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CareZoneMissionCompletePage');
   }
+
+
 
 }

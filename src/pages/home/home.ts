@@ -13,10 +13,12 @@ import { TabsPage } from '../tabs/tabs';
 import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-mission-ing';
 import { CareZoneMissionStartPage } from '../care-zone-mission-start/care-zone-mission-start';
 import { CareZoneMissionDeadlineEndPage } from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end';
+import { CareZoneMissionDeadlinePage} from '../care-zone-mission-deadline/care-zone-mission-deadline';
+import { CareZoneMissionCompletePage} from '../care-zone-mission-complete/care-zone-mission-complete';
+
 import { ImageLoader } from 'ionic-image-loader';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
-
 
 @IonicPage()
 @Component({
@@ -73,7 +75,6 @@ export class HomePage {
     //public bluetoothle: BluetoothLE
   ) {
     this.platform.ready().then((readySource) => {
-
       this.showLoading();
       this.bannerData = this.roadbanner();
       this.roadcareZone();
@@ -313,6 +314,14 @@ export class HomePage {
 
   public care_zone() {
     this.nav.push(CareZonePage);
+  }
+
+  public mission_deadline(){
+    this.nav.push(CareZoneMissionDeadlinePage);
+  }
+
+  public mission_complete(){
+    this.nav.push(CareZoneMissionCompletePage);
   }
 
   public mission_ing() {

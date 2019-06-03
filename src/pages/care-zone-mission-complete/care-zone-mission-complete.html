@@ -6,22 +6,22 @@
 -->
 <ion-header>
 
-  <ion-navbar  *ngIf="platform.is('android')">
-    <ion-title class="android_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  <ion-navbar  *ngIf="platform.is('android') && platform.is('mobile')">
+    <ion-title class="android_title" text-wrap> 미션 </ion-title>
   </ion-navbar>
 
   <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
     <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
   </ion-navbar> -->
 
-  <ion-navbar *ngIf="platform.is('ios')">
+  <ion-navbar *ngIf="platform.is('ios') && platform.is('mobile')">
   	<ion-buttons left>
   		<button ion-button navPop icon-only>
   			<!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
         <img class="ios_nav"src="../assets/img/agreement/ic-system-back-black@3x.png"/>
   		</button>
   	</ion-buttons>
-    <ion-title class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+    <ion-title class="ios_title" text-wrap> 미션 </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -42,8 +42,8 @@
 
 
     <ion-item class="top_count" no-lines>
-                <ion-col class="event-col">3건
-                <ion-col class="event-col2">/&nbsp;27건 남음</ion-col></ion-col>
+                <ion-col class="event-col">30건
+                <ion-col class="event-col2">/&nbsp;0건 남음</ion-col></ion-col>
                 <ion-col class="event-col3">목표 30건</ion-col>
     </ion-item>
 
@@ -76,14 +76,14 @@
        <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
                  <ion-col class="event-col4">미션 횟수
-                 <ion-col><ion-img class="mission-img"src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png"
-                 srcset="assets/img/ic-system-infomation@2x.png, assets/img/ic-system-infomation@3x.png"></ion-img></ion-col></ion-col>
+                 <ion-col><ion-img class="info-img"src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png">
+                 </ion-img></ion-col></ion-col>
                  <ion-col class="event-col9">3
                  <ion-col class="event-col11">/30</ion-col></ion-col>
              </ion-row>
         </ion-grid>
     </ion-item>
-    <ion-item style="width:97%" >
+    <ion-item style="width:97%; margin-bottom: 5%;" >
        <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
                  <ion-col class="event-col4">미션 종료일</ion-col>
