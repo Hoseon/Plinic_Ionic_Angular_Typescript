@@ -123,24 +123,99 @@
 }
 
 
-//addinfo 생년월일 확인,취소
+//addinfo 생년월일 확인,취소 안드로이드
+  .picker-md .picker-button, .picker-md .picker-button.activated{
+     background-color: #5c59b6;
+     width: 100%;
+     position: absolute;
+     left: 0;
+     margin-left:auto;
+     margin-right: auto;
+     font-family: NotoSansCJKkr;
+     font-size: 15px;
+     font-weight: 500;
+     font-style: normal;
+     font-stretch: normal;
+     line-height: normal;
+     letter-spacing: normal;
+     color: #ffffff;
+  }
 
-.picker-md .picker-button, .picker-md .picker-button.activated{
-   background-color: #5c59b6;
-   width: 100%;
-   position: absolute;
-   left: 0;
-   margin-left:auto;
-   margin-right: auto;
-   font-family: NotoSansCJKkr;
-   font-size: 15px;
-   font-weight: 500;
-   font-style: normal;
-   font-stretch: normal;
-   line-height: normal;
-   letter-spacing: normal;
-   color: #ffffff;
-}
+  .item-multi-picker .label-md{
+    height: 19px;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-bottom: 2.5%;
+    color: #292929;
+  }
+
+
+  .picker-md .picker-wrapper{
+    margin-left: auto;
+    margin-right:auto;
+    width: 90%;
+    height: 34%;
+    bottom: 30%;
+    border-radius: 4px;
+    background-color: #FFF;
+    transform: translateY(0%) !important;
+  }
+
+  .picker-md .picker-col{
+    // margin-top: -20%;
+    margin-top: 9%;
+    padding: 0 35px;
+    line-height: 1.6;
+    height: 100%;
+  }
+
+  .picker-md .picker-toolbar{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .picker-md .picker-prefix, .picker-md .picker-suffix, .picker-md .picker-opts{
+    top:0;
+  }
+
+
+  .picker-md .picker-prefix, .picker-md .picker-suffix, .picker-md .picker-opt.picker-opt-selected{
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5C59B6;
+    border-style: solid;
+    border-width: 1px 0px 1px 0px;
+    border-color: #e5e5e5;
+  }
+
+  .picker-md .picker-opt{
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color:#D2D4D8;
+  }
+
+
+
+//addinfo 생년월일 확인,취소 아이폰
+
 .picker-ios .picker-button, .picker-ios .picker-button.activated{
    background-color: #5c59b6;
    width: 100%;
@@ -158,19 +233,6 @@
    color: #ffffff;
 }
 
-.item-multi-picker .label-md{
-  height: 19px;
-  font-family: NotoSansCJKkr;
-  font-size: 13px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  margin-bottom: 2.5%;
-  color: #292929;
-}
-
 .item-multi-picker .label-ios{
   height: 19px;
   font-family: NotoSansCJKkr;
@@ -184,15 +246,6 @@
   color: #292929;
 }
 
-.picker-md .picker-wrapper{
-  margin-left: auto;
-  margin-right:auto;
-  width: 90%;
-  height: 34%;
-  bottom: 30%;
-  border-radius: 4px;
-  background-color: #FFF;
-}
 
 .picker-ios .picker-wrapper{
   margin-left: auto;
@@ -202,15 +255,9 @@
   bottom: 30%;
   border-radius: 4px;
   background-color: #FFF;
+  transform: translateY(0%) !important;
 }
 
-.picker-md .picker-col{
-  // margin-top: -20%;
-  margin-top: 9%;
-  padding: 0 35px;
-  line-height: 1.6;
-  height: 100%;
-}
 //
 .picker-ios .picker-col{
   // margin-top: -20%;
@@ -220,11 +267,6 @@
   height: 100%;
 }
 
-.picker-md .picker-toolbar{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
 .picker-ios .picker-toolbar{
   position: absolute;
   bottom: 0;
@@ -244,28 +286,11 @@
 .ion-backdrop{
   background-color: rgba(0, 0, 0, 0.4);
 }
-.picker-md .picker-prefix, .picker-md .picker-suffix, .picker-md .picker-opts{
-  top:0;
-}
 
 // .picker-ios .picker-prefix, .picker-ios .picker-suffix, .picker-ios .picker-opts{
 //   top:0;
 // }
 
-.picker-md .picker-prefix, .picker-md .picker-suffix, .picker-md .picker-opt.picker-opt-selected{
-  font-family: Roboto;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  color: #5C59B6;
-  border-style: solid;
-  border-width: 1px 0px 1px 0px;
-  border-color: #e5e5e5;
-}
 
 .picker-ios .picker-prefix, .picker-ios .picker-suffix, .picker-ios .picker-opt.picker-opt-selected{
   font-family: Roboto;
@@ -285,18 +310,6 @@
     height: 0px;
   }
 
-
-.picker-md .picker-opt{
-  font-family: Roboto;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  color:#D2D4D8;
-}
 
 .picker-ios .picker-opt{
   font-family: Roboto;

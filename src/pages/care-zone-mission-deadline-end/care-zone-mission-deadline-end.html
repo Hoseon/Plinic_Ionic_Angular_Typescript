@@ -10,10 +10,19 @@
     <ion-title *ngIf="carezoneData" class="android_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
   </ion-navbar>
 
-  <ion-navbar  *ngIf="platform.is('ios')">
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+    <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios')">
+  	<ion-buttons left>
+  		<button ion-button navPop icon-only>
+  			<!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav"src="../assets/img/agreement/ic-system-back-black@3x.png"/>
+  		</button>
+  	</ion-buttons>
     <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
@@ -95,7 +104,7 @@
  <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
 
 
-<ion-list>
+<ion-list no-lines>
  <ion-item>
     <ion-grid>
           <ion-row class="sns_row">

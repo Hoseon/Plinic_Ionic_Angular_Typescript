@@ -1,12 +1,12 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <ion-title>내 정보</ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
-  <ion-list>
-    <ion-item no-lines>
+  <ion-list no-lines>
+    <ion-item class="info_text">
       내정보
     </ion-item>
 
@@ -18,30 +18,31 @@
       </ion-thumbnail>
       <h2>{{userData.nickname}}</h2>
       <p>{{userData.email}}</p>
-      <button ion-button (click)="Reregiter()">정보수정</button>
+      <button class="info_change" *ngIf="platform.is('ios') && platform.is('mobile')" ion-button (click)="Reregiter()">내&nbsp;정보</button>
+      <button class="info_change" *ngIf="platform.is('android') && platform.is('mobile')" style="bottom:45%;" ion-button (click)="Reregiter()">내&nbsp;정보</button>
 
     </ion-item>
 
   </ion-list>
 
-  <ion-list>
-    <button no-lines ion-item icon-start (click)="noti()">공지사항</button>
+  <ion-list no-lines>
+    <button mode="ios" no-lines ion-item icon-start (click)="noti()">공지사항</button>
     <ion-item no-lines>[이벤트] 플리닉 친구 추천 이벤트가 진행되고 있습니다.</ion-item>
     <ion-item no-lines>[공지] 플리닉 연동 문제 해결법</ion-item>
     <ion-item no-lines>[공지] 서버 점검 안내(2019.08.01 12:00~)</ion-item>
     <ion-item></ion-item>
   </ion-list>
 
-  <ion-list>
-    <ion-item no-lines>
+  <ion-list no-lines>
+    <ion-item mod="ios" no-lines>
       연동상태
       <ion-note item-end>
         연동 중
       </ion-note>
     </ion-item>
-    <button no-lines ion-item (click)="plinic_manual()" icon-start>플리닉 사용법</button>
-    <button no-lines ion-item (click)="plinic_qna()" icon-start>케어존</button>
-    <button no-lines ion-item (click)="plinic_qna()" icon-start>문의하기</button>
+    <button mode="ios" no-lines ion-item (click)="plinic_manual()" icon-start>플리닉 사용법</button>
+    <button mode="ios" no-lines ion-item (click)="plinic_qna()" icon-start>케어존</button>
+    <button mode="ios" no-lines ion-item (click)="plinic_qna()" icon-start>문의하기</button>
     <ion-item no-lines>
       <ion-toggle checked="true"></ion-toggle>
       <ion-label>추천 알림</ion-label>
@@ -49,14 +50,14 @@
     <ion-item></ion-item>
   </ion-list>
 
-  <ion-list>
-    <button no-lines ion-item (click)="terms()" icon-start>이용약관</button>
-    <button no-lines ion-item icon-start>개인정보처리방침</button>
+  <ion-list no-lines>
+    <button mode="ios" ion-item (click)="terms()" icon-start>이용약관</button>
+    <button mode="ios" ion-item icon-start>개인정보처리방침</button>
     <ion-item no-lines>
       현재 버전
       <ion-note item-end>1.0</ion-note>
     </ion-item>
-    <button no-lines ion-item (click)="logout()" icon-start>로그아웃</button>
+    <button mode="md" ion-item (click)="logout()" icon-start>로그아웃</button>
   </ion-list>
 
   <!-- <ion-item no-lines>
