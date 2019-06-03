@@ -8,6 +8,8 @@ import { ReRegisterPage } from '../re-register/re-register'
 import { NoticePage } from './details/notice/notice'
 import { FCM } from '@ionic-native/fcm';
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
+import { BluetoothConnectIngPage } from './details/bluetooth-connect-ing/bluetooth-connect-ing';
+import { BluetoothDisconnectPage } from './details/bluetooth-disconnect/bluetooth-disconnect';
 
 /**
  * Generated class for the MyinfoPage page.
@@ -71,6 +73,10 @@ export class MyinfoPage {
       this.backend.registerToken('');
     }
  }
+
+  public blue_connect(){
+    this.navCtrl.push(BluetoothConnectIngPage);
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyinfoPage');

@@ -10,6 +10,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { GenderFilter } from './../pipes/gender-filter';
 import { UserCard } from '../components/user-card/user-card';
 
+
 //탭페이지 구성
 import { LoginPage } from '../pages/login/login';
 //import { LoginplinicPage } from '../pages/loginplinic/loginplinic';
@@ -28,7 +29,8 @@ import { QnaPage } from '../pages/myinfo/details/qna/qna';
 import { TermsPage } from '../pages/myinfo/details/terms/terms';
 import { PersonalinfoPage } from '../pages/myinfo/details/personalinfo/personalinfo';
 import { MarketingPage } from '../pages/myinfo/details/marketing/marketing';
-
+import { BluetoothConnectIngPage } from '../pages/myinfo/details/bluetooth-connect-ing/bluetooth-connect-ing';
+import { BluetoothDisconnectPage } from '../pages/myinfo/details/bluetooth-disconnect/bluetooth-disconnect';
 
 import { ReRegisterPage } from '../pages/re-register/re-register';
 import { SkinChartPage } from '../pages/skin-chart/skin-chart';
@@ -89,8 +91,8 @@ import { AnimationService, AnimatesDirective } from 'css-animator';
 import { SelectSearchableModule } from 'ionic-select-searchable';
 import { MultiPickerModule } from 'ion-multi-picker';
 
+
 import { FCM } from '@ionic-native/fcm';
-//import { OneSignal } from '@ionic-native/onesignal'
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 
@@ -143,6 +145,8 @@ export function getAuthHttp(http, storage) {
     DeviceSkinStartPage,
     DeviceSkinIngPage,
     AnimatesDirective,
+    BluetoothConnectIngPage,
+    BluetoothDisconnectPage,
     NoticePage,
     GenderFilter,
     UserCard,
@@ -204,6 +208,8 @@ export function getAuthHttp(http, storage) {
     DeviceConnectFailPage,
     DeviceSkinStartPage,
     DeviceSkinIngPage,
+    BluetoothConnectIngPage,
+    BluetoothDisconnectPage,
     NoticePage,
   ],
   providers: [
@@ -224,7 +230,6 @@ export function getAuthHttp(http, storage) {
     FCM,
     InAppBrowser,
     ThemeableBrowser,
-    //OneSignal,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
