@@ -122,6 +122,60 @@
         }
 }
 
+.push_alert_cancel{
+      background-color: rgba(0, 0, 0, 0.4);
+        .alert-wrapper{
+          border-radius: 4px;
+
+            .alert-head{
+              padding-top: 10px;
+              padding-right: 24px;
+              padding-bottom: 10px;
+              padding-left: 24px;
+              border-style: solid;
+              border-width: 0px 0px 1px 0px;
+              border-color: #e5e5e5;
+
+              .alert-title{
+                // background-image: url(../assets/img/ic_system_logo_symbol.png);
+                // background-repeat: no-repeat;
+                // background-size: 35px 35px;
+                min-height: 35px;
+                padding-top: 4%;
+                padding-left: 0%;
+                font-family: NotoSansCJKkr;
+                font-size: 16px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                color: #292929;
+              }
+            }
+
+            .alert-message {
+                color: #000;
+                font-size: 12px;
+                padding-top: 9%;
+            }
+            .button-inner{
+              justify-content:center;
+            }
+            .alert-button-group{
+               padding: 0px;
+
+            .alert-button{
+               width: 50%;
+               color: #FFF;
+               background-color: #6562b9;
+               border-radius : 0px;
+               margin: 0px;
+               }
+            }
+        }
+}
+
 
 //addinfo 생년월일 확인,취소 안드로이드
   .picker-md .picker-button, .picker-md .picker-button.activated{

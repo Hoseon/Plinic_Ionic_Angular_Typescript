@@ -5,57 +5,65 @@
 </ion-header> -->
 
 <ion-content>
-  <ion-list no-lines>
+
+  <ion-list class="top_list" no-lines>
     <ion-item class="info_text">
       내정보
     </ion-item>
-
     <ion-item *ngIf="userData">
       <ion-thumbnail item-start>
         <!-- <ion-img class="img-radius" *ngIf="userData.thumbnail_image" src="assets/img/care-zone/ic-system-profile-sample@3x.png">
           </ion-img> -->
         <img class="img-radius" src="{{userData.thumbnail_image}}"/>
       </ion-thumbnail>
-      <h2>{{userData.nickname}}</h2>
-      <p>{{userData.email}}</p>
+      <h2 class="nickname"> 이정우{{userData.nickname}}</h2>
+      <p class="email"> wjddn0313@naver.com{{userData.email}}</p>
       <button class="info_change" *ngIf="platform.is('ios') && platform.is('mobile')" ion-button (click)="Reregiter()">내&nbsp;정보</button>
-      <button class="info_change" *ngIf="platform.is('android') && platform.is('mobile')" style="bottom:45%;" ion-button (click)="Reregiter()">내&nbsp;정보</button>
+      <button class="info_change" *ngIf="platform.is('android') && platform.is('mobile')" style="bottom:35%;" ion-button (click)="Reregiter()">내&nbsp;정보</button>
 
     </ion-item>
 
+  <div *ngIf="platform.is('ios')" style="margin-top: 6%; height:1px; width:100%; background-color:#f1f1f1"></div>
+  <div *ngIf="platform.is('android')" style="position:absolute; margin-top: -1%; height:1px; width:100%; background-color:#f1f1f1"></div>
+
   </ion-list>
 
-  <ion-list no-lines>
-    <button mode="ios" no-lines ion-item icon-start (click)="noti()">공지사항</button>
-    <ion-item *ngFor="let notice of noticeData" (click)="noti()" no-lines>{{[notice.category]}} {{notice.title}}</ion-item>
-    <!-- <ion-item no-lines>[공지] 플리닉 연동 문제 해결법</ion-item>
-    <ion-item no-lines>[공지] 서버 점검 안내(2019.08.01 12:00~)</ion-item> -->
+  <ion-list  no-lines>
+    <button mode="ios" style="font-weight:bold" no-lines ion-item icon-start (click)="noti()">공지사항</button>
+    <ion-item class="noti_text"*ngFor="let notice of noticeData" (click)="noti()" no-lines>
+      {{[notice.category]}} {{notice.title}}</ion-item>
     <ion-item></ion-item>
   </ion-list>
 
+  <div *ngIf="platform.is('ios')" style="position: absolute; height: 1px;width: 100%; margin-top: -16%; background-color: #f1f1f1;"></div>
+  <div *ngIf="platform.is('android')" style="position: absolute; height: 1px;width: 100%; margin-top: -12%; background-color: #f1f1f1;"></div>
+
+
   <ion-list no-lines>
-    <ion-item class="text" mode="ios" no-lines>연동상태
+    <ion-item class="connect_status" mode="ios" no-lines>연동상태
       <button mode="ios" class="blue_status" no-lines *ngIf="ble" ion-item (click)="blue_connect()">연동 중</button>
       <button mode="ios" class="blue_status" no-lines *ngIf="ble===false" ion-item (click)="blue_connect()">연동 해제</button>
     </ion-item>
-    <button mode="ios" no-lines ion-item (click)="plinic_manual()" icon-start>플리닉 사용법</button>
-    <button class="text" mode="ios" no-lines ion-item (click)="plinic_qna()" icon-start>케어존</button>
-    <button class="text" mode="ios" no-lines ion-item (click)="plinic_qna()" icon-start>문의하기</button>
+    <button class="plinic_use" mode="ios" no-lines ion-item (click)="plinic_manual()" icon-start>플리닉 사용법</button>
+    <button class="care_zone" mode="ios" no-lines ion-item (click)="plinic_qna()" icon-start>케어존</button>
+    <button class="inquiry" mode="ios" no-lines ion-item (click)="plinic_qna()" icon-start>문의하기</button>
     <ion-item no-lines>
-      <ion-toggle checked="true"></ion-toggle>
+      <ion-toggle mode="md" [(ngModel)]="push_check" (ionChange)="push_change()"></ion-toggle>
       <ion-label class="text">추천 알림</ion-label>
     </ion-item>
-    <ion-item></ion-item>
   </ion-list>
 
+
+  <div *ngIf="platform.is('ios')" style="position:absolute; height:1px; width:100%; margin-top:-4%; background-color:#f1f1f1"></div>
+  <div *ngIf="platform.is('android')" style="position:absolute; height:1px; width:100%; margin-top:-1%; background-color:#f1f1f1"></div>
+
+
   <ion-list no-lines>
-    <button class="text" mode="ios" ion-item (click)="terms()" icon-start>이용약관</button>
+    <button class="terms" mode="ios" ion-item (click)="terms()" icon-start>이용약관</button>
     <button class="text" mode="ios" ion-item icon-start>개인정보처리방침</button>
-    <ion-item no-lines>
-      현재 버전
-      <ion-note item-end>1.0</ion-note>
+    <ion-item class="current_version" no-lines>현재 버전 <ion-note item-end>1.0</ion-note>
     </ion-item>
-    <button class="text" style="color:#b6b6b6;" mode="md" ion-item (click)="logout()" icon-start>로그아웃</button>
+    <button class="logout"  mode="md" ion-item (click)="logout()" icon-start>로그아웃</button>
   </ion-list>
 
   <!-- <ion-item no-lines>

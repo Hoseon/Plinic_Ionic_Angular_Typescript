@@ -37,6 +37,7 @@ export class MyinfoPage {
   thumbnail_image: string;
   push_check:boolean;
   backend: any;
+  registerToken: any;
   ble: any= 'true';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,
@@ -70,6 +71,27 @@ export class MyinfoPage {
     }
     else{
       console.log("꺼진 상태");
+      let alert = this.alertCtrl.create({
+          cssClass:'push_alert_cancel',
+           title: "추천 알림",
+           message: "알림을 해제하시면 플리닉 이벤트 및 주요 정보를 받아 보실 수 없습니다. <br> 알림을 해제하시겠습니까?",
+           buttons: [
+          {
+            text: '취소',
+            role: 'cancel',
+            handler: () => {
+              console.log('취소'),
+              this.push_check = true;
+            }
+          },
+           {
+            text : '확인',
+            handler: () => {
+              console.log('확인');
+            }
+         }]
+      });
+      alert.present();
       this.backend.registerToken('');
     }
  }
