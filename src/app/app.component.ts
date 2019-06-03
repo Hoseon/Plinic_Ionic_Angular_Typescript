@@ -18,9 +18,9 @@ export class MyApp {
   rootPage: any = LoginPage;
 
   constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
-    private screenOrientation: ScreenOrientation,public translateService: TranslateService, private imageLoaderConfig: ImageLoaderConfig,
+    private screenOrientation: ScreenOrientation, public translateService: TranslateService, private imageLoaderConfig: ImageLoaderConfig,
     private fcm: FCM, private alertCtrl: AlertController,
-    ) {
+  ) {
     this.initializeApp();
   }
 
@@ -35,15 +35,27 @@ export class MyApp {
         this.fcm.getToken().then(token => {
           console.log("FCM Token ::::::" + token);
         })
-        this.fcm.onNotification().subscribe(data => {
-          if (data.wasTapped) {
-            console.log("Received in background");
-          } else {
-            this.showAlert(JSON.stringify(data.aps.alert));
-            console.log("Received in foreground");
-          };
-        });
-        this.fcm.onTokenRefresh().subscribe(token=>{
+        if (this.platform.is('ios')) {
+          this.fcm.onNotification().subscribe(data => {
+            if (data.wasTapped) {
+              console.log("Received in background - iOS");
+            } else {
+              this.showAlert(JSON.stringify(data.aps.alert));
+              console.log("Received in foreground - iOS");
+            };
+          });
+        } else{
+          this.fcm.onNotification().subscribe(data => {
+            if (data.wasTapped) {
+              console.log("Received in background - android");
+            } else {
+              this.showAlert(JSON.stringify(data.aps.alert));
+              console.log("Received in foreground - android");
+            };
+          });
+        }
+
+        this.fcm.onTokenRefresh().subscribe(token => {
           console.log("FCM Refresh Token :::::::::::::" + token);
         });
       }
@@ -67,7 +79,7 @@ export class MyApp {
       this.imageLoaderConfig.setFallbackUrl('assets/img/logo.png');
       this.imageLoaderConfig.setMaximumCacheAge(24 * 60 * 60 * 1000);
 
-  //    this.setupPush();
+      //    this.setupPush();
     });
   }
 
