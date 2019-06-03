@@ -7,6 +7,8 @@ import { TermsPage } from './details/terms/terms';
 import { ReRegisterPage } from '../re-register/re-register'
 import { NoticePage } from './details/notice/notice'
 import { FCM } from '@ionic-native/fcm';
+import { BluetoothLE } from '@ionic-native/bluetooth-le';
+
 /**
  * Generated class for the MyinfoPage page.
  *
@@ -33,6 +35,7 @@ export class MyinfoPage {
   thumbnail_image: string;
   push_check:boolean;
   backend: any;
+  ble: any= 'true';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,
     private alertCtrl: AlertController, private platform: Platform, private fcm: FCM) {

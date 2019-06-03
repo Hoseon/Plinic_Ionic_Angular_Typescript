@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar  *ngIf="platform.is('android')">
-    <ion-title class="android_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+    <ion-title class="android_title" text-wrap> 미션 </ion-title>
   </ion-navbar>
 
   <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
@@ -21,10 +21,9 @@
         <img class="ios_nav"src="../assets/img/agreement/ic-system-back-black@3x.png"/>
   		</button>
   	</ion-buttons>
-    <ion-title class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+    <ion-title  class="ios_title" text-wrap> 미션 </ion-title>
   </ion-navbar>
 </ion-header>
-
 
 
 <ion-content>
@@ -32,13 +31,11 @@
 <br>
   <ion-list>
     <ion-item no-lines>
-      <ion-img class="goods-img" src="assets/img/care-zone/goods/ic-system-goods.png" srcset="assets/img/ic-system-profile-sample@2x.png,
-             assets/img/ic-system-profile-sample@3x.png"></ion-img><br><br>
+      <img class="goods-img" src="../assets/img/care-zone/goods/ic-system-goods.png" /><br><br>
 
-      <button ion-button style="height:28px;box-shadow: none;" class="button_outline" outline (click)="mission_deadline_end()">종료 </button>
+      <button ion-button style="height:28px;box-shadow: none;" class="button_outline" outline (click)="mission_deadline()">종료</button>
       </ion-item>
-      <h1 class="top_text"> 할수 있다! 물광미인 </h1>
-
+      <h1 class="top_text"> 할수있다! 물광미인 </h1>
 
 
 
@@ -47,7 +44,6 @@
                 <ion-col class="event-col2">/&nbsp;27건 남음</ion-col></ion-col>
                 <ion-col class="event-col3">목표 30건</ion-col>
     </ion-item>
-
 
 
 <!-- 프로그레스바 -->
@@ -77,18 +73,17 @@
        <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
                  <ion-col class="event-col4">미션 횟수
-                 <ion-col><ion-img class="mission-img"src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png"
-                 srcset="assets/img/ic-system-infomation@2x.png, assets/img/ic-system-infomation@3x.png"></ion-img></ion-col></ion-col>
+                 <img class="info-img"src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png"/></ion-col>
                  <ion-col class="event-col9">3
                  <ion-col class="event-col11">/30</ion-col></ion-col>
              </ion-row>
         </ion-grid>
     </ion-item>
-    <ion-item style="width:97%" >
+    <ion-item style="width:97%; margin-bottom: 4%;" >
        <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
-                 <ion-col class="event-col4">미션 종료일</ion-col>
-                 <ion-col class="event-col12">2019.08.30</ion-col>
+                 <ion-col class="event-col4">미션 일정</ion-col>
+                 <ion-col class="event-col12">startDate~endDate</ion-col>
              </ion-row>
          </ion-grid>
    </ion-item>
@@ -97,21 +92,18 @@
        ※진단 결과는 환경에 따라 상이할 수 있습니다.
      </ion-col>
     </ion-item>
-<!--
-   <ion-item no-lines>
-    <button ion-button class="button_giveup" text-align="center" outline (click)="mission_deadline()">미션 포기하기</button>
-    </ion-item> -->
   </ion-list>
 
- <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
-
 <ion-list>
+
+   <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
+
 
    <h3 class="bottom_text"> 참여자 </h3>
 
 
 <!-- 참여자만큼 반복문 -->
-<ion-item>
+<ion-item no-lines>
     <ion-grid class="eventgrid">
         <ion-row>
             <ion-col class="event-col0">{{index}}00</ion-col>
@@ -123,7 +115,7 @@
         </ion-row>
     </ion-grid>
 </ion-item>
-<ion-item>
+<ion-item no-lines>
     <ion-grid class="eventgrid">
         <ion-row>
             <ion-col class="event-col0">{{index}}00</ion-col>
@@ -135,7 +127,7 @@
         </ion-row>
     </ion-grid>
 </ion-item>
-<ion-item>
+<ion-item no-lines>
     <ion-grid class="eventgrid">
         <ion-row>
             <ion-col class="event-col0">{{index}}00</ion-col>
@@ -147,7 +139,7 @@
         </ion-row>
     </ion-grid>
 </ion-item>
-<ion-item>
+<ion-item no-lines>
     <ion-grid class="eventgrid">
         <ion-row>
             <ion-col class="event-col0">{{index}}00</ion-col>
@@ -159,7 +151,7 @@
         </ion-row>
     </ion-grid>
 </ion-item>
-<ion-item>
+<ion-item no-lines>
     <ion-grid class="eventgrid">
         <ion-row>
             <ion-col class="event-col0">{{index}}00</ion-col>
@@ -172,11 +164,15 @@
     </ion-grid>
 </ion-item>
  <ion-item no-lines>
-   <button ion-button class="button_add" style="font-size: 14px;box-shadow: none;" outline>더보기&nbsp;&nbsp;></button>
- </ion-item>
-</ion-list>
+   <button ion-button class="button_add" style="font-size: 14px; box-shadow:none;" outline>더보기&nbsp;&nbsp;></button>
+ </ion-item><br>
 
  <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
+
+
+
+</ion-list>
+
 
 
 <ion-list>
@@ -187,18 +183,18 @@
    <ion-row>
      <ion-col class="container">
        <img class="imagealign" src="assets/img/home/carezone1.png" />
-       <button class="ing_btn" style="font-size: 9px;box-shadow: none;" ion-button>진행 중</button>
+       <button class="ing_btn" style="font-size: 9px; box-shadow: none;" ion-button>진행 중</button>
      </ion-col>
      <ion-col class="container">
        <img class="imagealign" src="assets/img/home/carezone2.png" />
-       <button class="ing_btn" style="font-size: 9px;box-shadow: none;" ion-button>진행 중</button>
+       <button class="ing_btn" style="font-size: 9px; box-shadow: none;" ion-button>진행 중</button>
      </ion-col>
    </ion-row>
 </ion-grid>
 
 
    <ion-item no-lines>
-     <button ion-button class="button_add" style="font-size: 14px;box-shadow: none;" outline>미션 더보기&nbsp;&nbsp;></button>
+     <button ion-button class="button_add" style="font-size: 14px; box-shadow: none;" outline>미션 더보기&nbsp;&nbsp;></button>
    </ion-item>
 </ion-list>
 
