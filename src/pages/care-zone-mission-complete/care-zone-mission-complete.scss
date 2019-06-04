@@ -43,14 +43,15 @@ page-care-zone-mission-complete {
     }
 
     .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
-      margin-left: -13%;
+      margin-left: -15%;
       margin-top: -15%;
       color: transparent;
     }
 
     .ios_nav{
       background-color: #FFF;
-      width: 140px;
+      width: 140px !important;
+      height: 25px !important;
       object-fit: contain;
     }
 
