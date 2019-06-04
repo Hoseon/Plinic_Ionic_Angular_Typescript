@@ -93,7 +93,11 @@
 
       <p class="sub" >·정확한 이메일 주소를 입력해주세요.<br>·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.</p><br>
 
-      <button type="submit" style="opacity:1" ion-button class="login_btn" name="next" [disabled]="signupform.invalid">다음</button>
+      <button type="submit" *ngIf="(signupform.invalid)" style="opacity:1"
+      ion-button class="login_btn_invalid" name="next" [disabled]="signupform.invalid">다음</button>
+
+      <button type="submit" *ngIf="(!signupform.invalid)" style="opacity:1"
+      ion-button class="login_btn2_valid" name="next" [disabled]="signupform.invalid">다음</button>
 
         </form>
       </ion-list>

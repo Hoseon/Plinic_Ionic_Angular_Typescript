@@ -184,11 +184,28 @@ page-agreement {
           font-size: 15px;
       }
 
-      .button_sign{
+      .button_sign_invalid{
         margin-left: auto;
         margin-right: auto;
         display: block;
-        border: solid 0.5px #c7c7c7;
+        border: solid 0.5px #d2d4d8;
+        background-color:#d2d4d8;
+        color: #FFF;
+        font-size: 15px;
+        font-weight:normal;
+        width: 97%;
+        min-height: 50px;
+        text-align: center;
+        border-radius: 4px;
+        box-shadow: none;
+      }
+
+
+      .button_sign_valid{
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        border: solid 0.5px #5c59b6;
         background-color:#5c59b6;
         color: #FFF;
         font-size: 15px;
@@ -198,7 +215,7 @@ page-agreement {
         text-align: center;
         border-radius: 4px;
         box-shadow: none;
-
       }
+
 
 }

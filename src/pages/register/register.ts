@@ -66,6 +66,8 @@ export class RegisterPage {
         return this.myImage3 = "assets/img/register/ic-system-clear-red@3x.png"
       }
   }
+
+
   ngOnInit() {
      let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
      this.signupform = new FormGroup({

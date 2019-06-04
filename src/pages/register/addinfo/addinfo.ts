@@ -1,5 +1,5 @@
   import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController, Platform } from 'ionic-angular';
 import { AuthService } from '../../../providers/auth-service';
 import { RegisterPage} from '../../register/register';
 import {RegistercompletePage} from '../registercomplete/registercomplete';
@@ -32,7 +32,7 @@ export class AddinfoPage {
   registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', user_jwt: 'true' };
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public navParams: NavParams
-  , public viewCtrl: ViewController, public multiCtrl: MultiPickerModule) {
+  , public viewCtrl: ViewController, public multiCtrl: MultiPickerModule, public platform: Platform,) {
 
       // this.registerCredentials.birthday = new Date().toISOString();
     this.email = navParams.get('email');
@@ -118,6 +118,7 @@ toggle(){
     this.registerCredentials.password = this.password;
 
     this.auth.register(this.registerCredentials).subscribe(success => {
+      console.log("success================" + success)
       if (success !== '') {
         this.createSuccess = true;
         this.nav.push(RegistercompletePage);
@@ -128,8 +129,10 @@ toggle(){
     },
     error => {
       this.showPopup("Error", error._body);
+      this.showPopup("Error", error.body);
     });
   }
+
 
   showPopup(title, text) {
     let alert = this.alertCtrl.create({

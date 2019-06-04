@@ -61,7 +61,8 @@
        </ion-row><br>
 
        <ion-item no-lines>
-         <button ion-button class="button_sign" outline (click)="registerpage()">다음</button>
+         <button *ngIf="(!agree || !agree1)" ion-button class="button_sign_invalid" outline (click)="registerpage()">다음</button>
+         <button *ngIf="(agree && agree1)" ion-button class="button_sign_valid" outline (click)="registerpage()">다음</button>
        </ion-item>
 
 </ion-list>

@@ -71,15 +71,16 @@
 
   <ion-item class="item_align" style="margin-bottom:4%;">
      <ion-label  class="countrylabel" stacked>국가</ion-label>
-     <ion-multi-picker (ionChange)="toggle()" item-content class="multi-picker" [multiPickerColumns]="simpleColumns" doneText="확인" placeholder="국가를 선택해 주세요."
-                         [(ngModel)]="registerCredentials.country" required [ngModelOptions]="{standalone: true}"></ion-multi-picker>
+     <ion-multi-picker (ionChange)="toggle()" item-content class="multi-picker" name="country"
+     [multiPickerColumns]="simpleColumns" doneText="확인" placeholder="국가를 선택해 주세요."
+                         [(ngModel)]="registerCredentials.country" required></ion-multi-picker>
  </ion-item><br>
 
   <ion-item class="item_align" no-lines>
   <ion-label class="titlelabel" stacked>성별</ion-label>
   </ion-item>
 
-  <ion-list class="gender_list" radio-group [(ngModel)]="registerCredentials.gender" required [ngModelOptions]="{standalone: true}">
+  <ion-list class="gender_list" name="gender_list" radio-group [(ngModel)]="registerCredentials.gender" required>
     <ion-row class="row_align">
     <ion-col><ion-item no-lines>
       <ion-label class="radiolabel" name="gender" for="여성" checked>여성
@@ -97,32 +98,44 @@
 <ion-label class="titlelabel" stacked>피부타입</ion-label>
 </ion-item>
 
-<ion-list class="skincomplaint_list" radio-group [(ngModel)]="registerCredentials.skincomplaint" required [ngModelOptions]="{standalone: true}">
+<ion-list class="skincomplaint_list" name="skincomplaint_list" radio-group [(ngModel)]="registerCredentials.skincomplaint" required>
 
   <ion-row class="row_align"><ion-col><ion-item no-lines>
-    <ion-label class="radiolabel" for="건성" checked>건성
-    <ion-radio class="radiobutton" id="건성" value="건성" checked></ion-radio></ion-label>
+    <ion-label *ngIf="platform.is('android')" class="radiolabel" name="A" for="건성" checked>건성
+    <ion-radio class="radiobutton" name="A" id="건성" value="건성" checked></ion-radio></ion-label>
+    <ion-label *ngIf="platform.is('ios')" style="margin-bottom:1%;" class="radiolabel" name="A" for="건성" checked>건성
+    <ion-radio class="radiobutton" name="A" id="건성" value="건성" checked></ion-radio></ion-label>
   </ion-item></ion-col>
   <ion-col><ion-item no-lines>
-    <ion-label class="radiolabel" for="지성">지성
-    <ion-radio class="radiobutton" id="지성" value="지성"></ion-radio></ion-label>
+    <ion-label *ngIf="platform.is('android')" class="radiolabel" name="B" for="지성">지성
+    <ion-radio class="radiobutton" name="B" id="지성" value="지성"></ion-radio></ion-label>
+    <ion-label *ngIf="platform.is('ios')" style="margin-bottom:1%;" class="radiolabel" name="B" for="지성">지성
+    <ion-radio class="radiobutton" name="B" id="지성" value="지성"></ion-radio></ion-label>
   </ion-item></ion-col>
   <ion-col><ion-item no-lines>
-    <ion-label class="radiolabel" for="중성">중성
-    <ion-radio class="radiobutton" id="중성" value="중성"></ion-radio></ion-label>
+    <ion-label *ngIf="platform.is('android')" class="radiolabel" name="C" for="중성">중성
+    <ion-radio class="radiobutton" name="C" id="중성" value="중성"></ion-radio></ion-label>
+    <ion-label *ngIf="platform.is('ios')" style="margin-bottom:1%;" class="radiolabel" name="C" for="중성">중성
+    <ion-radio class="radiobutton" name="C" id="중성" value="중성"></ion-radio></ion-label>
   </ion-item></ion-col></ion-row>
 
   <ion-row class="row_align2"><ion-col><ion-item no-lines>
-    <ion-label class="radiolabel" for="복합성">복합성
-    <ion-radio class="radiobutton" id="복합성" value="복합성"></ion-radio></ion-label>
+    <ion-label *ngIf="platform.is('android')" class="radiolabel" name="D" for="복합성">복합성
+    <ion-radio class="radiobutton" name="D" id="복합성" value="복합성"></ion-radio></ion-label>
+    <ion-label *ngIf="platform.is('ios')" style="margin-bottom:1%;" class="radiolabel" name="D" for="복합성">복합성
+    <ion-radio class="radiobutton" name="D" id="복합성" value="복합성"></ion-radio></ion-label>
   </ion-item></ion-col>
   <ion-col><ion-item no-lines>
-    <ion-label class="radiolabel" for="민감성">민감성
-    <ion-radio class="radiobutton" id="민감성" value="민감성"></ion-radio></ion-label>
+    <ion-label *ngIf="platform.is('android')" class="radiolabel" name="E" for="민감성">민감성
+    <ion-radio class="radiobutton" name="E" id="민감성" value="민감성"></ion-radio></ion-label>
+    <ion-label *ngIf="platform.is('ios')" style="margin-bottom:1%;" class="radiolabel" name="E" for="민감성">민감성
+    <ion-radio class="radiobutton" name="E" id="민감성" value="민감성"></ion-radio></ion-label>
   </ion-item></ion-col>
   <ion-col><ion-item no-lines>
-    <ion-label class="radiolabel" for="모름">모름
-    <ion-radio class="radiobutton" id="모름" value="모름"></ion-radio></ion-label>
+    <ion-label *ngIf="platform.is('android')" class="radiolabel" name="F" for="모름">모름
+    <ion-radio class="radiobutton" name="F" id="모름" value="모름"></ion-radio></ion-label>
+    <ion-label *ngIf="platform.is('ios')" style="margin-bottom:1%;" class="radiolabel" name="F" for="모름">모름
+    <ion-radio class="radiobutton" name="F" id="모름" value="모름"></ion-radio></ion-label>
   </ion-item></ion-col></ion-row>
 </ion-list>
 
@@ -135,7 +148,8 @@
     <ion-input type="hidden" name="user_jwt" value="true" [(ngModel)]="registerCredentials.user_jwt" required hidden>true</ion-input>
   </ion-item>
 
-  <button ion-button class="complete-btn" name="register" type="submit" [disabled]="!registerForm.form.valid">완료</button>
+  <button ion-button *ngIf="(!registerForm.form.valid)" class="complete_btn_invalid" name="register_invalid" type="submit" [disabled]="!registerForm.form.valid">완료</button>
+  <button ion-button *ngIf="(registerForm.form.valid)"  class="complete_btn_valid" name="register_valid" type="submit" [disabled]="!registerForm.form.valid">완료</button>
 
   </form>
 </ion-content>

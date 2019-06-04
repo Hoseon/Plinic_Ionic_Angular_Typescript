@@ -101,26 +101,27 @@ page-loginpage {
                     text-align: center;
                     width: 25px;
                     height: 25px;
-                    object-fit: contain;
-                    padding-right: 5px;
+                    margin-right: 5px;
                     box-shadow: none;
+                    object-fit: contain;
                   }
+
+                  .google_btn {
+                    width: 25px;
+                    height: 25px;
+                    text-align: center;
+                    margin-right: 5px;
+                    box-shadow: none;
+                    object-fit: contain;
+                  }
+
                   .naver_btn{
-                    text-align: center;
                     width: 25px;
                     height: 25px;
-                    object-fit: contain;
-                    padding-right: 5px;
-                    box-shadow: none;
-                  }
-                  .google_btn{
                     text-align: center;
-                    width: 25px;
-                    height: 25px;
-                    object-fit: contain;
-                    color: #292929;
-                    padding-right: 5px;
+                    margin-right: 5px;
                     box-shadow: none;
+                    object-fit: contain;
                   }
 
                   .Linetext{
