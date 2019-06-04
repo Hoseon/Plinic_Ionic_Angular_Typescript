@@ -27,6 +27,10 @@ page-bluetooth-disconnect {
       letter-spacing: normal;
       text-align: center;
     }
+    * {
+      box-sizing: content-box !important;
+    }
+
     .toolbar-title-ios{
       font-weight: bold;
       font-size: 17px;
@@ -37,19 +41,20 @@ page-bluetooth-disconnect {
       line-height: normal;
       letter-spacing: normal;
       text-align: center;
-      margin-top: -5%;
+      margin-top: 0%;
       color: #292929;
     }
 
     .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
-      margin-left: -13%;
+      margin-left: -15%;
       margin-top: -15%;
       color: transparent;
     }
 
     .ios_nav{
       background-color: #FFF;
-      width: 140px;
+      width: 140px !important;
+      height: 25px !important;
       object-fit: contain;
     }
 

@@ -1,31 +1,192 @@
 page-notice {
-  .accordion-list {
-       // background: color($colors, light);
-       height: 100%;
-   }
-   .section {
-       background: #fff;
-       color: #000;
-       margin-bottom: 4px;
-   }
-   .section-active {
-       background: #fff;
-       color: #000;
+
+  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+    height: 0px;
+    margin-bottom: 5px;
+  }
+  .item-md.item-block .item-inner{
+    padding-right: 12px;
+  }
+  .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+    height: 0px;
+    margin-bottom: 5px;
+  }
+  .item-ios.item-block .item-inner{
+    padding-right: 12px;
+  }
+
+  .toolbar-title-md{
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: NotoSansCJKkr;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+  }
+
+  .toolbar-title-ios{
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: NotoSansCJKkr;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    margin-top: -5%;
+    color: #292929;
+  }
+
+  .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+    margin-left: -15%;
+    margin-top: -15%;
+    color: transparent;
+  }
+
+  .ios_nav{
+    background-color: #FFF;
+    width: 140px !important;
+    height: 25px !important;
+    object-fit: contain;
+  }
+
+  .toolbar-background {
+    background-color: #FFF;
+  }
+
+  .ion-md-arrow-back:before {
+    position: absolute;
+    content: "\f27d";
+    left: 10%;
+    top: 2px;
+    width: 25px;
+    height: 25px;
+}
+
+   .toolbar-ios{
+     margin-top: 3%;
    }
 
-   .child {
-       background: #fafafa;
-       color: #000;
-       margin-bottom: 4px;
-   }
-   .child-item {
-       background: #fafafa;
-       padding: 20px;
-   }
-   .label {
-       margin: 0px;
-   }
-   .list {
-       margin-bottom: 4px;
-   }
+  .back-button-text-ios{
+    font-size: 0px;
+  }
+  .android_title{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 70%;
+    color: #292929;
+  }
+  .ios_title{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 120%;
+    color: #292929;
+  }
+
+  .label-md{
+    margin: 0px;
+  }
+
+  .label-ios{
+    margin: 0px;
+  }
+  .item-md.item-block .item-inner{
+    padding: 0px;
+  }
+  .item-ios.item-block .item-inner{
+    padding: 0px;
+  }
+  .item-md{
+    padding-left: 0px;
+  }
+  .item-ios{
+    padding-left: 0px;
+  }
+  .list-header-md{
+   border-top: 0px;
+   border-bottom: 0px;
+   margin:0px;
+  }
+  .list-header-ios{
+   border-top: 0px;
+   border-bottom: 0px;
+   margin:0px;
+  }
+  .list-md{
+    margin: 0px;
+  }
+  .list-ios{
+    margin: 0px;
+  }
+
+  .item-md ion-icon[item-left], .item-md ion-icon[item-right], .item-md ion-icon[item-start], .item-md ion-icon[item-end]{
+    color: transparent;
+  }
+  .item-ios ion-icon[item-left], .item-ios ion-icon[item-right], .item-ios ion-icon[item-start], .item-ios ion-icon[item-end]{
+    color: transparent;
+  }
+  .arrow-forward{
+    background-image: url(../assets/img/myinfo/ic-system-arrowdown-grey@3x.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 2%;
+    top: 12%;
+  }
+
+  .arrow-down{
+    background-image: url(../assets/img/myinfo/ic-system-arrowup-grey@3x.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 2%;
+    top: 12%;
+  }
+
+
+  .notice_title{
+    background-color: #ffffff;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    padding-right: 5.5%;
+    padding-left: 5.5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+
+  .notice_sub{
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    margin: 0px;
+    padding-right: 5.5%;
+    padding-left: 5.5%;
+    padding-top: 7%;
+    padding-bottom: 7%;
+  }
 }

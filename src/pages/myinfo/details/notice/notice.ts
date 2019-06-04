@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, Platform } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -24,7 +24,9 @@ export class NoticePage {
   selectedFilter = null;
   information: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public popoverCtrl: PopoverController, public authService: AuthService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public popoverCtrl: PopoverController,
+     public authService: AuthService, public platform: Platform) {
+
     let localData = http.get('assets/information.json').map(res => res.json().items);
     localData.subscribe(data => {
       this.information = data;
