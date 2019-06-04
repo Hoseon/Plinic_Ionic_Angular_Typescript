@@ -49,7 +49,7 @@ export class AddinfoPage {
         { text: 'Afghanistan', value: 'Afghanistan' },
         { text: 'Albania', value: 'Albania' },
         { text: 'Algeria', value: 'Algeria' },
-        { text: 'American Samoa', value: 'American Samoa' },
+        { text: 'AmericanSamoa', value: 'AmericanSamoa' },
         { text: 'Andorra', value: 'Andorra' },
         { text: 'Angola', value: 'Angola' },
         { text: 'Antigua', value: 'Antigua' },

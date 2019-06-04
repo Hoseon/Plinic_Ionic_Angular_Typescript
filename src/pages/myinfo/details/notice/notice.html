@@ -1,52 +1,42 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      공지사항
-    </ion-title>
+
+<ion-header no-lines>
+
+  <ion-navbar  *ngIf="platform.is('android')" no-lines>
+    <ion-title class="android_title" text-wrap > 공지사항 </ion-title>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+  	<ion-buttons left no-lines>
+  		<button ion-button navPop icon-only>
+        <img no-lines class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
+  		</button>
+  	</ion-buttons>
+    <ion-title class="ios_title" text-wrap> 공지사항</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+
+<ion-content no-lines>
   <ion-list class="accordion-list">
     <!-- First Level -->
     <ion-list-header *ngFor="let item of noticeData; let i = index" no-lines no-padding>
       <!-- Toggle Button -->
-      <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
-        <ion-icon item-end name="arrow-forward" *ngIf="!item.open"></ion-icon>
-        <ion-icon item-end name="arrow-down" *ngIf="item.open"></ion-icon>
+      <button no-lines class="notice_title" ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
+        <ion-icon no-lines class="arrow-forward" item-end name="ios-arrow-forward" *ngIf="!item.open"></ion-icon>
+        <ion-icon no-lines class="arrow-down" item-end name="ios-arrow-down" *ngIf="item.open"></ion-icon>
           {{ item.category }} {{item.title}}
       </button>
 
       <ion-list *ngIf="item.title && item.open" no-lines>
-        <!-- Second Level -->
-        <ion-list-header no-padding>
-          <!-- Toggle Button -->
-          <!-- <button ion-item (click)="toggleItem(i, j)" *ngIf="child.title" class="child" detail-none> -->
-            <!-- <ion-icon item-end name="add" *ngIf="!child.open"></ion-icon> -->
-            <!-- <ion-icon item-end name="close" *ngIf="child.open"></ion-icon> -->
-            <!-- {{ child.title }} -->
-          <!-- </button> -->
-
-          <!-- Direct Add Button as Fallback -->
-          <!-- <ion-item *ngIf="!child.title" ion-item detail-none class="child-item" text-wrap> -->
-            <!-- <h2>{{ child.title }}</h2> -->
-            <!-- <p text-lowercase>{{ child.body }}</p> -->
-            <!-- <button ion-button outline item-end (click)="buyItem(child)">{{ child.price }}</button> -->
-          <!-- </ion-item> -->
-
-          <ion-list *ngIf="item.title && item.open">
-            <!-- Third Level -->
-            <ion-item detail-none class="child-item" text-wrap>
-              <!-- <h2>{{ item.title }}</h2> -->
-              <p text-lowercase>{{ item.body }}</p>
-              <!-- Direct Add Button -->
-              <!-- <button ion-button outline item-end (click)="buyItem(item)">{{ item.price }}</button> -->
+        <ion-list-header no-padding no-lines>
+          <ion-list *ngIf="item.title && item.open" no-lines>
+            <ion-item style="background-color:#fafafa; height:auto;" detail-none text-wrap no-lines>
+              <p class="notice_sub" text-lowercase>{{ item.body }}</p>
             </ion-item>
           </ion-list>
-
         </ion-list-header>
       </ion-list>
-
+      <div style="height:1px; width:100%; background-color:#f5f5f5"></div>
     </ion-list-header>
   </ion-list>
 </ion-content>

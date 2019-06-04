@@ -59,12 +59,19 @@ public dissmiss(){
  public registerpage() {
 
   if(this.agree===true && this.agree1===true){
-      this.viewCtrl.dismiss();
+      // this.viewCtrl.dismiss();
        this.nav.push(RegisterPage);
-       // this.viewCtrl.dismiss();
   }
   else{
-    this.showPopup("이용약관 ", "필수조건에 만족하지 못합니다.");
+    let alert = this.alertCtrl.create({
+      cssClass:'push_alert',
+         title: "이용약관",
+         message: "필수조건에 만족하지 못합니다.",
+         buttons: [{
+          text:'확인'
+         }]
+    });
+    alert.present();
   }
 }
 
