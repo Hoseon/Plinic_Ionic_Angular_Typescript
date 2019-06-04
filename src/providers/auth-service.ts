@@ -269,7 +269,8 @@ export class AuthService {
   // Store the token and current user information local
   public setCurrentUser(token) {
     this.userToken = token;
-    //this.currentUser = new User(this.jwtHelper.decodeToken(this.userToken).email);
+    this.currentUser = new User(this.jwtHelper.decodeToken(this.userToken).name);
+    console.log(this.currentUser);
     return this.storage.set('userData', token);
   }
 

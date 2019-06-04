@@ -106,16 +106,16 @@ export class HomePage {
         showPageTitle: false,
         staticText: title
       },
-      backButton: {
-        wwwImage: 'assets/img/back.png',
-        align: 'left',
-        event: 'backPressed'
-      },
-      forwardButton: {
-        wwwImage: 'assets/img/forward.png',
-        align: 'left',
-        event: 'forwardPressed'
-      },
+      // backButton: {
+      //   wwwImage: 'assets/img/back.png',
+      //   align: 'left',
+      //   event: 'backPressed'
+      // },
+      // forwardButton: {
+      //   wwwImage: 'assets/img/forward.png',
+      //   align: 'left',
+      //   event: 'forwardPressed'
+      // },
       closeButton: {
         wwwImage: 'assets/img/close.png',
         align: 'left',
