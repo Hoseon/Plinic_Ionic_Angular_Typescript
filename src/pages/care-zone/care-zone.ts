@@ -6,6 +6,7 @@ import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-missi
 import { CareZoneMissionStartPage } from '../care-zone-mission-start/care-zone-mission-start'
 import { CareZoneMissionDeadlineEndPage } from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end'
 import { AuthService } from '../../providers/auth-service';
+import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 
 
 /**
@@ -24,6 +25,9 @@ export class CareZonePage {
   carezoneData: any;
   loading: Loading;
   userData: any;
+  nickname: string;
+  jwtHelper: JwtHelper = new JwtHelper();
+
   constructor(public platform: Platform, public nav: NavController,
     public navParams: NavParams, private images: ImagesProvider,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public authService: AuthService,) {
@@ -39,19 +43,20 @@ export class CareZonePage {
 
   public loadItems(){
     this.authService.getUserStorage().then(items => {
-      this.userData = items;
-      console.log(this.userData);
-      // this.userData = {
-      //   accessToken: items.accessToken,
-      //   id: items.id,
-      //   age_range: items.age_range,
-      //   birthday: items.birthday,
-      //   email: items.email,
-      //   gender: items.gender,
-      //   nickname: items.nickname,
-      //   profile_image: items.profile_image,
-      //   thumbnail_image: items.thumbnail_image,
-      // };
+
+      //this.userData = items;
+
+      this.userData = {
+        accessToken: items.accessToken,
+        id: items.id,
+        age_range: items.age_range,
+        birthday: items.birthday,
+        email: this.jwtHelper.decodeToken(items).email,
+        gender: items.gender,
+        nickname: this.jwtHelper.decodeToken(items).name,
+        profile_image: items.profile_image,
+        thumbnail_image: items.thumbnail_image,
+      };
       // this.accessToken = items.accessToken
       // this.id = items.id
       // this.age_range = items.age_range

@@ -32,8 +32,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  //apiUrl: 'http://plinic.cafe24app.com/',
-  apiUrl: 'http://localhost:8001/',
+  apiUrl: 'http://plinic.cafe24app.com/',
+  //apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
@@ -241,7 +241,7 @@ export class AuthService {
           // thumbnail_image: data.properties['thumbnail_image'],
           // use_email: data.kakao_account['has_email'],
         };
-        this.setCurrentUser(this.userData);
+        this.setCurrentUser(data.token);
         this.authenticationState.next(true);
         return this.userData;
       });

@@ -20,6 +20,7 @@ export class CareZoneMissionStartPage {
   loading: Loading;
   carezoneData: any;
   endDate: any;
+  startDate: any;
   constructor(public nav: NavController, public navParams: NavParams, private images: ImagesProvider,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform,
   ) {
@@ -47,6 +48,7 @@ export class CareZoneMissionStartPage {
     this.images.missionRoad(id).subscribe(data => {
       if (data !== '') {
         this.carezoneData = data;
+        this.startDate = data.startmission.substr(0, 10);
         this.endDate = data.endmission.substr(0, 10);
         //console.log(JSON.stringify(data));
         this.loading.dismiss();

@@ -14,10 +14,10 @@
 <ion-content padding>
 
   <ion-list no-lines>
-    <ion-item>
+    <ion-item >
       <ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample.png" srcset="assets/img/ic-system-profile-sample@2x.png 2x,
              assets/img/ic-system-profile-sample@3x.png 3x"></ion-img></ion-item>
-      <div style="text-align:center"><p class="top-text">이성균</p><p class="top-text2">님 피부관리를 위한<br> 미션을 선택해주세요.</p></div><br>
+      <div *ngIf="userData" style="text-align:center"><p class="top-text">{{ userData.nickname }}</p><p class="top-text2">님 피부관리를 위한<br> 미션을 선택해주세요.</p></div><br>
       <button ion-button style="font-size: 14px" class="button_outline" outline (click)="carezone_ing()">케어존이란?&nbsp;&nbsp;></button>
   </ion-list>
 

@@ -50,7 +50,7 @@
          <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
                  <ion-col class="event-col4">미션목표</ion-col>
-                 <ion-col class="event-col5">플리닉 30일 이용 시</ion-col>
+                 <ion-col class="event-col5">{{ carezoneData.missonsubtitle }}</ion-col>
              </ion-row>
          </ion-grid>
     </ion-item>
@@ -60,7 +60,7 @@
                  <ion-col class="event-col4">참여인원
                  <img class="info-img" src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png"/></ion-col>
                  <ion-col class="event-col9">3
-                 <ion-col class="event-col11">/30</ion-col></ion-col>
+                 <ion-col class="event-col11">/ {{ carezoneData.maxmember}}</ion-col></ion-col>
              </ion-row>
         </ion-grid>
     </ion-item>
@@ -68,7 +68,7 @@
        <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
                  <ion-col class="event-col4">미션 일정</ion-col>
-                 <ion-col class="event-col12">startDate~{{endDate}}</ion-col>
+                 <ion-col class="event-col12">{{startDate}} ~ {{endDate}}</ion-col>
              </ion-row>
          </ion-grid>
    </ion-item>
