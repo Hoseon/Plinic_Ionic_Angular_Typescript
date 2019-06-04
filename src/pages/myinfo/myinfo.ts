@@ -10,6 +10,7 @@ import { FCM } from '@ionic-native/fcm';
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { BluetoothConnectIngPage } from './details/bluetooth-connect-ing/bluetooth-connect-ing';
 import { BluetoothDisconnectPage } from './details/bluetooth-disconnect/bluetooth-disconnect';
+import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 
 /**
  * Generated class for the MyinfoPage page.
@@ -23,6 +24,7 @@ import { BluetoothDisconnectPage } from './details/bluetooth-disconnect/bluetoot
   selector: 'page-myinfo',
   templateUrl: 'myinfo.html',
 })
+
 export class MyinfoPage {
   noticeData: any;
   userData: any;
@@ -39,6 +41,7 @@ export class MyinfoPage {
   backend: any;
   registerToken: any;
   ble: any= 'true';
+  jwtHelper: JwtHelper = new JwtHelper();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,
     private alertCtrl: AlertController, private platform: Platform, private fcm: FCM) {
@@ -127,18 +130,20 @@ export class MyinfoPage {
 
   public loadItems(){
     this.authService.getUserStorage().then(items => {
+
       this.userData = items;
-      // this.userData = {
-      //   accessToken: items.accessToken,
-      //   id: items.id,
-      //   age_range: items.age_range,
-      //   birthday: items.birthday,
-      //   email: items.email,
-      //   gender: items.gender,
-      //   nickname: items.nickname,
-      //   profile_image: items.profile_image,
-      //   thumbnail_image: items.thumbnail_image,
-      // };
+
+      this.userData = {
+        accessToken: items.accessToken,
+        id: items.id,
+        age_range: items.age_range,
+        birthday: items.birthday,
+        email: this.jwtHelper.decodeToken(items).email,
+        gender: items.gender,
+        nickname: this.jwtHelper.decodeToken(items).name,
+        profile_image: items.profile_image,
+        thumbnail_image: items.thumbnail_image,
+      };
       // this.accessToken = items.accessToken
       // this.id = items.id
       // this.age_range = items.age_range
@@ -148,6 +153,7 @@ export class MyinfoPage {
       // this.nickname = items.nickname
       // this.profile_image = items.profile_image
       // this.thumbnail_image =  items.thumbnail_image
+      console.log(this.userData);
     });
   }
 

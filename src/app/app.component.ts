@@ -53,7 +53,7 @@ export class MyApp {
         });
       }
 
-      if (this.platform.is('android'))  {
+      if (this.platform.is('cordova'))  {
         this.fcm.subscribeToTopic('all');
 
         this.fcm.getToken().then(token => {

@@ -16,8 +16,8 @@
           </ion-img> -->
         <img class="img-radius" src="{{userData.thumbnail_image}}"/>
       </ion-thumbnail>
-      <h2 class="nickname"> 이정우{{userData.nickname}}</h2>
-      <p class="email"> wjddn0313@naver.com{{userData.email}}</p>
+      <h2 class="nickname"> {{userData.nickname}}</h2>
+      <p class="email"> {{userData.email}}</p>
       <button class="info_change" *ngIf="platform.is('ios') && platform.is('mobile')" ion-button (click)="Reregiter()">내&nbsp;정보</button>
       <button class="info_change" *ngIf="platform.is('android') && platform.is('mobile')" style="bottom:35%;" ion-button (click)="Reregiter()">내&nbsp;정보</button>
 

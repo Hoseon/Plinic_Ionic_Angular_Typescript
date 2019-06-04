@@ -20,10 +20,11 @@ export class User {
   email: string;
   gender: string;
   nickname: string;
+  name: string;
   profile_image: string;
   thumbnail_image: string;
 
-  constructor(email: string) {
+  constructor(email: string, name: string) {
     this.email = email;
     this.nickname = name;
   }
@@ -31,8 +32,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  apiUrl: 'http://plinic.cafe24app.com/',
-  //apiUrl: 'http://localhost:8001/',
+  //apiUrl: 'http://plinic.cafe24app.com/',
+  apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
@@ -191,20 +192,23 @@ export class AuthService {
   }
 
   public kakao_authlogout() {
-    this.authenticationState.next(false);
-    this.currentUser = null;
     this.deleteToken();
     this.deleteUser();
-    this._kakaoCordovaSDK.logout().then(() => {
-      this.authenticationState.next(false);
-    });
+    this.currentUser = null;
+    this.authenticationState.next(false);
 
-    this.naver.logoutAndDeleteToken()
-    .then(response => console.log(response)) // 성공
-    .catch(error => console.log(error)); // 실패
-
-    this.google.logout();
-    this.google.disconnect();
+    // if(this.platform.is('cordova')){
+    //   this._kakaoCordovaSDK.logout().then(() => {
+    //     this.authenticationState.next(false);
+    //   });
+    //
+    //   this.naver.logoutAndDeleteToken()
+    //     .then(response => console.log(response)) // 성공
+    //     .catch(error => console.log(error)); // 실패
+    //
+    //   this.google.logout();
+    //   this.google.disconnect();
+    // }
   }
 
 
@@ -269,7 +273,7 @@ export class AuthService {
   // Store the token and current user information local
   public setCurrentUser(token) {
     this.userToken = token;
-    this.currentUser = new User(this.jwtHelper.decodeToken(this.userToken).name);
+    this.currentUser = new User(this.jwtHelper.decodeToken(this.userToken).email, this.jwtHelper.decodeToken(this.userToken).name);
     console.log(this.currentUser);
     return this.storage.set('userData', token);
   }
