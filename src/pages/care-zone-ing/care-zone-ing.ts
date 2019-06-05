@@ -28,7 +28,7 @@ export class CareZoneIngPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CareZoneIngPage');
+    //console.log('ionViewDidLoad CareZoneIngPage');
   }
 
 

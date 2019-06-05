@@ -153,7 +153,7 @@ export class MyinfoPage {
       // this.nickname = items.nickname
       // this.profile_image = items.profile_image
       // this.thumbnail_image =  items.thumbnail_image
-      console.log(this.userData);
+      // console.log(this.userData);
     });
   }
 

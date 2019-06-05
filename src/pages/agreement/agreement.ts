@@ -29,7 +29,7 @@ agree2: boolean;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AgreementPage');
+    //console.log('ionViewDidLoad AgreementPage');
   }
 
 
