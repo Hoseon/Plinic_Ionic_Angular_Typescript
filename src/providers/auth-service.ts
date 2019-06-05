@@ -23,6 +23,7 @@ export class User {
   name: string;
   profile_image: string;
   thumbnail_image: string;
+  from: string;
 
   constructor(email: string, name: string) {
     this.email = email;
@@ -70,7 +71,8 @@ export class AuthService {
           accessToken: res.accessToken,
           expiresAt: res.expiresAt,
           refreshToken: res.refreshToken,
-          tokenType: res.tokenType
+          tokenType: res.tokenType,
+          from: 'naver'
         }
       ) // 성공
       .catch(error => this.showAlert("네이버 로그인을 하지 못했습니다. 관리자에게 문의 하세요")); // 실패
@@ -143,6 +145,7 @@ export class AuthService {
           //profile_image: res['profile_image'],
           thumbnail_image: res['imageUrl'],
           //use_email: res['has_email'],
+          from: 'google'
         };
         this.storage.set('userData', this.userData);
         this.authenticationState.next(true);
@@ -158,7 +161,7 @@ export class AuthService {
   public facebook_login() {
     this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
       this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)', []).then(profile => {
-        this.userData = { email: profile['email'], first_name: profile['first_name'], thumbnail_image: profile['picture_large']['data']['url'], nickname: profile['name'], accessToken: response.authResponse.accessToken }
+        this.userData = { email: profile['email'], first_name: profile['first_name'], thumbnail_image: profile['picture_large']['data']['url'], nickname: profile['name'], accessToken: response.authResponse.accessToken, from: 'facebook'}
         this.storage.set('userData', this.userData);
         this.authenticationState.next(true);
         return this.userData;
@@ -180,6 +183,7 @@ export class AuthService {
         profile_image: res.properties['profile_image'],
         thumbnail_image: res.properties['thumbnail_image'],
         use_email: res.kakao_account['has_email'],
+        from: 'kakao'
       };
       this.currentUser = res.properties['nickname'];
       this.storage.set('userData', this.userData);
@@ -240,6 +244,7 @@ export class AuthService {
           // profile_image: data.properties['profile_image'],
           // thumbnail_image: data.properties['thumbnail_image'],
           // use_email: data.kakao_account['has_email'],
+          from: 'plinic'
         };
         this.setCurrentUser(data.token);
         this.authenticationState.next(true);

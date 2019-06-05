@@ -30,11 +30,11 @@ export class DeviceConnectIngPage {
         if (this.platform.is('cordova')) {
           this.bluetoothle.initialize().then(ble => {
             //console.log('ble', ble.status) // logs 'enabled'
-            if (ble.status === "enabled") {
+            // if (ble.status === "enabled") {
               this.navCtrl.push(DeviceConnectCompletePage);
-            } else {
-              this.navCtrl.push(DeviceConnectFailPage);
-            }
+            // } else {
+            // this.navCtrl.push(DeviceConnectFailPage);
+            // }
           });
         } else {  // 웹 개발 시에는 무조건 성공페이지로 넘어가 데이터를 강제적으로 보여준다
           this.navCtrl.push(DeviceConnectCompletePage);
