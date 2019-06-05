@@ -17,8 +17,8 @@
     <ion-item no-lines>
       <ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample.png" srcset="assets/img/ic-system-profile-sample@2x.png 2x,
              assets/img/ic-system-profile-sample@3x.png 3x"></ion-img><br>
-      <div style="text-align:center">
-        <p class="top-text">이성균&nbsp;</p>
+      <div *ngIf="userData" style="text-align:center">
+        <p class="top-text">{{ userData.nickname }} &nbsp;</p>
         <p class="top-text2">님 진행 중인<br> 미션이 있습니다.</p>
       </div><br>
     </ion-item>

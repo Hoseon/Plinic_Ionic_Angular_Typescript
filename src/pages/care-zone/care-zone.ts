@@ -27,6 +27,7 @@ export class CareZonePage {
   userData: any;
   nickname: string;
   jwtHelper: JwtHelper = new JwtHelper();
+  today: any = new Date().toISOString();;
 
   constructor(public platform: Platform, public nav: NavController,
     public navParams: NavParams, private images: ImagesProvider,
@@ -94,10 +95,18 @@ export class CareZonePage {
     this.images.carezoneRoad().subscribe(data => {
       if(data !==''){
       this.carezoneData = data;
-      //console.log(JSON.stringify(data));
+      console.log(JSON.stringify(data));
       this.loading.dismiss();
+
     } else{
       this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
+    }
+    console.log(data[0].startmission);
+    console.log(data[0].endmission);
+    console.log(this.today);
+
+    if(data[0].endmission >= this.today){
+      console.log("날짜로직");
     }
     });
 
