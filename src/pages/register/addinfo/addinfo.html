@@ -35,8 +35,8 @@
 
   <ion-item class="item_align" style="background:#FFF">
   <ion-label class="titlelabel" stacked>닉네임</ion-label>
-  <ion-input class="input_name" (ionChange)="changeImage()" mode="ios" type="text" name="name" placeholder="닉네임 입력해주세요." [(ngModel)]="registerCredentials.name" required></ion-input>
-  <ion-img class="email_img" src="assets/img/register/ic-system-clear-grey@3x.png" item-right (click)="name_delete()"></ion-img>
+  <ion-input class="input_name" (ionChange)="changeImage()" mode="ios" type="text" name="name" placeholder="닉네임 입력해주세요." [(ngModel)]="registerCredentials.name" clearInput required></ion-input>
+  <!-- <ion-img class="email_img" src="assets/img/register/ic-system-clear-grey@3x.png" item-right (click)="name_delete()"></ion-img> -->
 
   </ion-item><br>
 
