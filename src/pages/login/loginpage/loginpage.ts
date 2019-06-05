@@ -35,20 +35,21 @@ import { AnimationService, AnimationBuilder } from 'css-animator';
       transition(':enter', [ // "void => *"
         style({ opacity: 0 }),
         group([
-          animate('0.6s ease-in', keyframes([
+          animate('0s ease-in', keyframes([
             style({ opacity: 0, transform: 'translate3d(-100%, 0 ,0)', offset: 0 }),
-            style({ opacity: 0.5, transform: 'translate3d(20%, 0 ,0)', offset: 0.5 }),
+            // style({ opacity: 0.5, transform: 'translate3d(20%, 0 ,0)', offset: 0.5 }),
             style({ opacity: 1, transform: 'translate3d(0, 0 ,0)', offset: 1 })
           ])),
           animate('1s .5s ease', style({
             color: '#ff0000'
-          }))
+          })
+        )
         ])
       ]),
       transition(':leave', [ // "* => void"
-        animate('0.6s ease-out', keyframes([
+        animate('0s ease-out', keyframes([
           style({ opacity: 1, transform: 'translate3d(0, 0 ,0)', offset: 0 }),
-          style({ opacity: 0.5, transform: 'translate3d(-20%, 0 ,0)', offset: 0.7 }),
+          // style({ opacity: 0.5, transform: 'translate3d(-20%, 0 ,0)', offset: 0.7 }),
           style({ opacity: 0, transform: 'translate3d(100%, 0 ,0)', offset: 1 })
         ]))
       ])
@@ -56,7 +57,6 @@ import { AnimationService, AnimationBuilder } from 'css-animator';
   ]
 })
 export class LoginpagePage {
-
   @ViewChild("messageInput") public messageInput: ElementRef;
   private animator: AnimationBuilder;
   loading: Loading;
@@ -87,7 +87,7 @@ export class LoginpagePage {
     this.signupform = new FormGroup({
       password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]),
       passwordconfirm: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]),
-      email: new FormControl('', [Validators.required, Validators.pattern(EMAILPATTERN)])
+      email: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(EMAILPATTERN)])
     });
   }
 
@@ -100,10 +100,13 @@ export class LoginpagePage {
       console.log('password_delete');
     return this.registerCredentials.password="";
   }
+
   changeImage(image){
       if(image){
+        console.log('image1================' + image);
         return this.myImage = "assets/img/register/ic-system-clear-grey@3x.png"
       } else{
+        console.log('image2============' + image);
         return this.myImage = "assets/img/register/ic-system-clear-red@3x.png"
       }
   }
@@ -115,24 +118,20 @@ export class LoginpagePage {
         return this.myImage2 = "assets/img/register/ic-system-clear-red@3x.png"
       }
   }
+
   public setInputFocus() {
     var elem: any = this.messageInput;
     elem._native.nativeElement.focus(); // Keep the focus on input field.
-
   }
 
     public hide(){
-      setTimeout(()=>{
         console.log('hide');
         document.getElementById("hide").style.display = "none";
-      },100)
   }
 
     public view(){
-      setTimeout(()=>{
         console.log('visible');
       document.getElementById("hide").style.display = "";
-      },100)
   }
 
 

@@ -34,7 +34,10 @@
       <ion-item class="email_align">
         <ion-label class="email_label" stacked>이메일</ion-label>
         <ion-input (ionChange)="changeImage(signupform.controls.email.valid && signupform.controls.email.dirty)" mode="ios" type="email" class="email_input" [(ngModel)]="userData.email" formControlName="email" placeholder="이메일을 입력해주세요."
-                 [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty" required> </ion-input>
+        [class.error1]="(!signupform.controls.email.valid && signupform.controls.email.dirty) ||
+                           (signupform.get('email').hasError('required') && signupform.get('email').touched)"
+        [class.error2]="signupform.controls.email.valid"
+                 required> </ion-input>
         <ion-img class="email_img" src="{{myImage}}" item-right (click)="email_delete()"></ion-img>
       </ion-item>
 
@@ -52,7 +55,10 @@
       <ion-item class="password_align" >
           <ion-label class="password_label" stacked>비밀번호 </ion-label>
         <ion-input (ionChange)="changeImage2(signupform.controls.password.valid && signupform.controls.password.dirty)" mode="ios" type="password" class="password_input" [(ngModel)]="userData.password" formControlName="password" name="password" placeholder="비밀번호를 입력해주세요."
-         [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty" required></ion-input>
+        [class.error1]="(!signupform.controls.password.valid && signupform.controls.password.dirty) ||
+                           (signupform.get('password').hasError('required') && signupform.get('password').touched)"
+        [class.error2]="signupform.controls.password.valid"
+         required></ion-input>
           <ion-img class="email_img" src="{{myImage2}}" item-right (click)="password_delete()"></ion-img>
         </ion-item>
 
@@ -73,7 +79,10 @@
           <ion-label class="password_label" stacked>비밀번호 확인 </ion-label>
         <ion-input (ionChange)="changeImage3(signupform.controls.passwordconfirm.valid && signupform.controls.passwordconfirm.dirty)"
         mode="ios" type="password" [(ngModel)]="userData.passwordconfirm" formControlName="passwordconfirm" name="passwordconfirm" placeholder="비밀번호를 입력해주세요."
-         [class.error1]="!signupform.controls.passwordconfirm.valid && signupform.controls.passwordconfirm.dirty" required></ion-input>
+        [class.error1]="(!signupform.controls.passwordconfirm.valid && signupform.controls.passwordconfirm.dirty) ||
+                           (signupform.get('passwordconfirm').hasError('required') && signupform.get('passwordconfirm').touched)"
+        [class.error2]="signupform.controls.passwordconfirm.valid"
+         required></ion-input>
            <ion-img class="email_img" src="{{myImage3}}" item-right (click)="passwordconfirm_delete()"></ion-img>
       </ion-item>
 
