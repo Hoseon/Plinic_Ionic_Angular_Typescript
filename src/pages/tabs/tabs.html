@@ -1,7 +1,7 @@
 <ion-tabs>
   <ion-tab [root]="tab1Root" tabTitle="홈" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="케어존" tabIcon="bulb"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="쇼핑" tabIcon="cafe"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="쇼핑" tabIcon="cafe" (ionSelect)="openBrowser('https://m.smartstore.naver.com/plinic','플리닉몰')"> </ion-tab>
   <!-- <ion-tab [root]="tab4Root" tabTitle="Commerce" tabIcon="cart"></ion-tab> -->
   <ion-tab [root]="tab5Root" tabTitle="내 정보" tabIcon="menu"></ion-tab>
 </ion-tabs>
