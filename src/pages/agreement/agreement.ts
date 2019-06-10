@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController, Platform } from 'ionic-angular';
 import {RegisterPage} from '../register/register';
 import { TermsPage } from '../myinfo/details/terms/terms';
 import { PersonalinfoPage } from '../myinfo/details/personalinfo/personalinfo';
@@ -24,7 +24,7 @@ agree: boolean;
 agree1: boolean;
 agree2: boolean;
 
-  constructor(public nav: NavController, public navParams: NavParams, private alertCtrl: AlertController
+  constructor(public nav: NavController, public navParams: NavParams, private alertCtrl: AlertController, public platform: Platform
   , public viewCtrl: ViewController) {
   }
 

@@ -69,7 +69,7 @@ page-care-zone-mission-ing {
 }
 
    .toolbar-ios{
-     margin-top: 3%;
+     margin-top: 8%;
    }
 
   .back-button-text-ios{
@@ -133,14 +133,14 @@ page-care-zone-mission-ing {
                 font-size: 19px;
                 font-weight: bold;
                 color: #292929;
-                width: 175px;
+                width: 320px;
                 height: 28px;
                font-style: normal;
                font-stretch: normal;
                line-height: normal;
                letter-spacing: normal;
                text-align: center;
-               margin-top: -1%;
+               margin-top: 0%;
              }
 
              .gridpro{
@@ -152,6 +152,24 @@ page-care-zone-mission-ing {
 
               .top_count{
                 margin-bottom: -1%;
+              }
+
+              .progress-outer[_ngcontent-c0]{
+                margin-left: auto;
+                margin-right: auto;
+                border: 0px;
+                width: 75%;
+                background-color: #f1f1f1;
+                padding: 0px;
+                font-size: 8px;
+              }
+
+              .progress-inner[_ngcontent-c0]{
+                background-color: #5c59b6;
+                color: #FFF;
+                height: 9px;
+                border-radius: 0px;
+                margin-bottom: -20px;
               }
 
               .progress-outer[_ngcontent-c1]{
@@ -167,7 +185,7 @@ page-care-zone-mission-ing {
               .progress-inner[_ngcontent-c1]{
                 background-color: #5c59b6;
                 color: #FFF;
-                height: 6px;
+                height: 9px;
                 border-radius: 0px;
                 margin-bottom: -20px;
               }
@@ -185,7 +203,7 @@ page-care-zone-mission-ing {
               .progress-inner[_ngcontent-c2]{
                 background-color: #5c59b6;
                 color: #FFF;
-                height: 6px;
+                height: 9px;
                 border-radius: 0px;
                 margin-bottom: -20px;
               }
@@ -537,7 +555,7 @@ page-care-zone-mission-ing {
               transform: translate(-50%, -50%);
               -ms-transform: translate(-50%, -50%);
               color: white;
-              padding: 12px 24px;
+              padding: 0% 3% 0% 3%;
               border: none;
               cursor: pointer;
               border-radius: 2.5px;

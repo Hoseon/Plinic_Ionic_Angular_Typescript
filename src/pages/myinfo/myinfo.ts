@@ -132,7 +132,7 @@ export class MyinfoPage {
     this.authService.getUserStorage().then(items => {
 
       this.userData = items;
-      // this.showAlert(JSON.stringify(this.userData));
+
       this.userData = {
         accessToken: items.accessToken,
         id: items.id,
@@ -144,8 +144,6 @@ export class MyinfoPage {
         profile_image: items.profile_image,
         thumbnail_image: items.thumbnail_image,
       };
-
-
       // this.accessToken = items.accessToken
       // this.id = items.id
       // this.age_range = items.age_range

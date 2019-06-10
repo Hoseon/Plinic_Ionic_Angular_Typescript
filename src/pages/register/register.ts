@@ -1,6 +1,6 @@
 import { IonicPage } from 'ionic-angular';
 import { Component} from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, Platform } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import {AgreementPage } from '../agreement/agreement';
 import {AddinfoPage} from '../register/addinfo/addinfo';
@@ -22,7 +22,8 @@ export class RegisterPage {
   myImage3: any;
   userData = { "password": "", "passwordconfirm": "", "email": ""};
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) {}
+  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController,
+  public platform: Platform) {}
 
 
   ionViewDidLoad() {
@@ -90,10 +91,19 @@ export class RegisterPage {
       });
     }
     else{
+        let alert = this.alertCtrl.create({
+          cssClass: 'push_alert',
+          title: "비밀번호 불일치",
+          message: "패스워드를 확인해주세요.",
+          buttons: [{
+            text: '확인'
+          }]
+        });
+        alert.present();
        console.log("비밀번호 불일치");
-       this.showPopup("오류","패스워드를 확인해주세요.");
-    }
+  }
 }
+
 
 
   public navpop(){

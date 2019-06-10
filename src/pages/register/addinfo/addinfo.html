@@ -8,7 +8,7 @@
 <ion-content no-padding>
 
 
-  <ion-item  no-lines>
+  <ion-item *ngIf="platform.is('android')" no-lines>
      <ion-grid style="height: 46px;">
       <ion-row>
       <ion-col><ion-img class="close" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
@@ -22,8 +22,26 @@
 
       <ion-img class="toolaralign3" src="assets/img/agreement/ic-system-step-on.png" srcset="assets/img/agreement/ic-system-step-02@2x.png,
                       assets/img/agreement/ic-system-step-02@3x.png"></ion-img>
-
         </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item  class="ios_row" *ngIf="platform.is('ios')" no-lines>
+       <ion-grid style="height: 46px;">
+        <ion-row>
+        <ion-col><ion-img class="close" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
+                      assets/img/agreement/ic-system-back-black@3x.png" (click)="navpop()"></ion-img></ion-col>
+
+        <ion-img  class="toolaralign2" src="assets/img/agreement/ic-system-step-on.png" srcset="assets/img/agreement/ic-system-step-on@2x.png,
+                        assets/img/agreement/ic-system-step-on@3x.png"></ion-img>
+
+        <ion-img class="toolaralign" src="assets/img/agreement/ic-system-step-03@3x.png" srcset="assets/img/agreement/ic-system-step-02@2x.png,
+                        assets/img/agreement/ic-system-step-02@3x.png"></ion-img>
+
+        <ion-img class="toolaralign3" src="assets/img/agreement/ic-system-step-on.png" srcset="assets/img/agreement/ic-system-step-02@2x.png,
+                        assets/img/agreement/ic-system-step-02@3x.png"></ion-img>
+
+          </ion-row>
      </ion-grid>
   </ion-item>
 
@@ -43,8 +61,8 @@
   <ion-item class="item_align" style="margin-bottom:3%;">
     <ion-label class="birthdaylabel"  stacked> 생년월일</ion-label>
     <ion-datetime type="text" style="font-size:15px" placeholder="생년월일을 선택해주세요." name="birthday"
-    doneText="확인" cancelText="취소" pickerFormat="YYYY년 MM월 DD일" displayFormat="YYYY년 MM월 DD일" min="1940-01-01" max="1988-12-31"
-           [(ngModel)]="registerCredentials.birthday" required></ion-datetime>
+    doneText="확인" cancelText="취소" pickerFormat="YYYY년 MM월 DD일" displayFormat="YYYY년 MM월 DD일" min="1950" max="2000"
+           [(ngModel)]="registerCredentials.birthday" (ionChange)="birthday();" required></ion-datetime>
   </ion-item><br>
 
   <!-- <ion-item class="item_align">
@@ -76,7 +94,7 @@
                          [(ngModel)]="registerCredentials.country" required></ion-multi-picker>
  </ion-item><br>
 
-  <ion-item class="item_align" no-lines>
+  <ion-item class="item_align" style="margin-bottom:3%;" no-lines>
   <ion-label class="titlelabel" stacked>성별</ion-label>
   </ion-item>
 
@@ -94,7 +112,7 @@
   </ion-list><br>
 
 
-<ion-item class="item_align" style="margin-top:-2%;" no-lines >
+<ion-item class="item_align" style="margin-bottom:3%;" no-lines >
 <ion-label class="titlelabel" stacked>피부타입</ion-label>
 </ion-item>
 
@@ -139,14 +157,13 @@
   </ion-item></ion-col></ion-row>
 </ion-list>
 
+<ion-input type="hidden" name="user_jwt" value="true" [(ngModel)]="registerCredentials.user_jwt" required hidden>true</ion-input>
 
 <p class="sub" text-wrap>
-      · 정확한 이메일 주소를 입력해주세요.<br>
-      · 비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.</p>
+      · 자신에게 맞는 피부타입을 정확하게 선택해주세요. <br>
+      · 선택시 해당 국가가 없으면 문의주시기 바랍니다. </p>
 
-  <ion-item class="item_align" no-lines>
-    <ion-input type="hidden" name="user_jwt" value="true" [(ngModel)]="registerCredentials.user_jwt" required hidden>true</ion-input>
-  </ion-item>
+
 
   <button ion-button *ngIf="(!registerForm.form.valid)" class="complete_btn_invalid" name="register_invalid" type="submit" [disabled]="!registerForm.form.valid">완료</button>
   <button ion-button *ngIf="(registerForm.form.valid)"  class="complete_btn_valid" name="register_valid" type="submit" [disabled]="!registerForm.form.valid">완료</button>

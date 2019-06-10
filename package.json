@@ -19,6 +19,7 @@
     "@angular/platform-browser": "5.0.0",
     "@angular/platform-browser-dynamic": "5.0.0",
     "@ionic-native/bluetooth-le": "^4.20.0",
+    "@ionic-native/call-number": "^4.20.0",
     "@ionic-native/camera": "^4.20.0",
     "@ionic-native/core": "4.3.2",
     "@ionic-native/facebook": "^4.20.0",
@@ -37,6 +38,7 @@
     "angular-progress-bar": "^1.0.9",
     "angular2-jwt": "^0.2.3",
     "angularfire2": "^5.0.0-rc.4",
+    "call-number": "1.0.1",
     "chart.js": "^2.8.0",
     "chartjs-plugin-labels": "^1.1.0",
     "cordova-ios": "4.5.5",
@@ -116,7 +118,8 @@
       "cordova-plugin-bluetoothle": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-themeablebrowser": {},
-      "cordova-plugin-fcm-with-dependecy-updated": {}
+      "cordova-plugin-fcm-with-dependecy-updated": {},
+      "mx.ferreyra.callnumber": {}
     },
     "platforms": [
       "ios"

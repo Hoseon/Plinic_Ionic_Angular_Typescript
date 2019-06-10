@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController , NavParams } from 'ionic-angular';
+import { IonicPage, NavController , NavParams, Platform } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { format } from 'date-fns';
 import 'chartjs-plugin-labels';
@@ -43,7 +43,7 @@ skinbtnMonth = format(this.today, 'MM');
 extoday = format(this.today, 'YYYY/MM/DD');
 exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD');
 
-  constructor(public navCtrl: NavController , public navParams: NavParams  ) {
+  constructor(public navCtrl: NavController , public navParams: NavParams, public platform: Platform  ) {
   }
 
   ionViewDidLoad() {

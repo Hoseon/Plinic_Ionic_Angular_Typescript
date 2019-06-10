@@ -39,7 +39,7 @@ export class CareZoneMissionIngPage {
   ngOnInit() {
     // 프로그레스바 로직
     setInterval(() => {
-      if (this.loadProgress < 100)
+      if (this.loadProgress < 50)
         this.loadProgress += 1;
       else
         clearInterval(this.loadProgress);

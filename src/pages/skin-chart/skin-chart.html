@@ -1,10 +1,21 @@
+
 <ion-header>
-  <ion-navbar>
-    <ion-title class="title" >스킨 차트</ion-title>
+
+  <ion-navbar  *ngIf="platform.is('android')">
+    <ion-title class="android_title" text-wrap> 스킨 차트 </ion-title>
+  </ion-navbar>
+
+
+
+  <ion-navbar *ngIf="platform.is('ios')">
+  	<ion-buttons left>
+  		<button ion-button navPop icon-only>
+        <img class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
+  		</button>
+  	</ion-buttons>
+    <ion-title class="ios_title" text-wrap> 스킨 차트 </ion-title>
   </ion-navbar>
 </ion-header>
-
-
 
 
 <ion-content padding>
@@ -43,7 +54,7 @@
            ></circle-progress></ion-col>
 
              <ion-col><circle-progress class="roundprogressbar"
-             [percent]="90"
+             [percent]="50"
              [radius]="120"
              [outerStrokeWidth]="15"
              [innerStrokeWidth]="15"
@@ -76,7 +87,7 @@
 
 
 
-    <ion-item style="margin:0 auto; width:97%">
+    <ion-item style="margin:0 auto; width:97%" no-lines>
       <ion-grid>
         <ion-row class="gridstatus">
           <ion-col class="secondstatus">보통</ion-col>
@@ -86,7 +97,7 @@
     </ion-item>
 
 
-    <ion-item style="margin:0 auto; width:97%">
+    <ion-item style="margin:0 auto; width:97%" no-lines>
       <ion-grid class="griddata">
          <ion-row>
           <ion-col class="data1">60.5%</ion-col>
@@ -96,7 +107,7 @@
       </ion-grid>
     </ion-item>
 
-    <ion-item style="margin:0 auto; width:97%">
+    <ion-item style="margin:0 auto; width:97%" no-lines>
       <ion-grid class="griddata">
         <ion-row>
           <ion-col class="data1">32.5%</ion-col>

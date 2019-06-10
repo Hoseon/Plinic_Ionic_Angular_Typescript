@@ -27,14 +27,15 @@ export class AddinfoPage {
   alertEvent : boolean = false;
   myImage: any;
   simpleColumns : any;
-
+  //myDate: String;
   // registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
-  registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', user_jwt: 'true' };
+  registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday:'', skincomplaint: '', user_jwt: 'true' };
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public navParams: NavParams
-  , public viewCtrl: ViewController, public multiCtrl: MultiPickerModule, public platform: Platform,) {
+  , public viewCtrl: ViewController, public multiCtrl: MultiPickerModule, public platform: Platform) {
 
-      // this.registerCredentials.birthday = new Date().toISOString();
+
+    // this.registerCredentials.birthday = '1970-06-15';
     this.email = navParams.get('email');
     this.password = navParams.get('password');
     this.simpleColumns = [
@@ -42,30 +43,51 @@ export class AddinfoPage {
       name: 'country',
       cssClass:'ion-multi-picker',
       options: [
-        { text: '대한민국', value: '대한민국'},
+        { text: 'South_korea', value: 'South_korea'},
+        { text: 'United_States', value: 'United_States'},
         { text: '中國,China', value: '中國,China' },
         { text: '日本,Japan', value: '日本,Japan' },
         { text: 'Spain', value: 'Spain' },
-        { text: 'Afghanistan', value: 'Afghanistan' },
-        { text: 'Albania', value: 'Albania' },
-        { text: 'Algeria', value: 'Algeria' },
-        { text: 'AmericanSamoa', value: 'AmericanSamoa' },
-        { text: 'Andorra', value: 'Andorra' },
-        { text: 'Angola', value: 'Angola' },
-        { text: 'Antigua', value: 'Antigua' },
-        { text: 'Argentina', value: 'Argentina' },
-        { text: 'Armenia', value: 'Armenia' },
-        { text: 'Aruba', value: 'Aruba' },
         { text: 'Australia', value: 'Australia' },
         { text: 'Austria', value: 'Austria' },
-        { text: 'Azerbaijan', value: 'Azerbaijan' },
-        { text: 'Bahrain', value: 'Bahrain' },
-
+        { text: 'Belgium', value: 'Belgium' },
+        { text: 'Canada', value: 'Canada' },
+        { text: 'Czech_Republic', value: 'Czech_Republic' },
+        { text: 'Denmark', value: 'Denmark' },
+        { text: 'European_Communities', value: 'European_Communities' },
+        { text: 'Finland', value: 'Finland' },
+        { text: 'France', value: 'France' },
+        { text: 'Germany', value: 'Germany' },
+        { text: 'Greece', value: 'Greece' },
+        { text: 'Hungary', value: 'Hungary' },
+        { text: 'Iceland', value: 'Iceland' },
+        { text: 'Ireland', value: 'Ireland' },
+        { text: 'Italy', value: 'Italy' },
+        { text: 'Luxembourg', value: 'Luxembourg' },
+        { text: 'Mexico', value: 'Mexico' },
+        { text: 'Netherlands', value: 'Netherlands' },
+        { text: 'New Zealand', value: 'New Zealand' },
+        { text: 'Norway', value: 'Norway' },
+        { text: 'Poland', value: 'Poland' },
+        { text: 'Portugal', value: 'Portugal' },
+        { text: 'Slovak_Republic', value: 'Slovak_Republic' },
+        { text: 'Sweden', value: 'Sweden' },
+        { text: 'Switzerland', value: 'Switzerland' },
+        { text: 'Turkey', value: 'Turkey' },
+        { text: 'United_Kingdom', value: 'United_Kingdom' },
+        { text: 'Vietnam', value: 'Vietnam'},
+        { text: 'Thailand', value: 'Thailand'},
+        { text: 'Singapore', value: 'Singapore'},
       ]
     },
   ];
 
   }
+
+
+birthday(){
+  console.log(this.registerCredentials.birthday);
+}
 
 toggle(){
   console.log(this.registerCredentials.country);
@@ -104,7 +126,6 @@ toggle(){
   public navpop(){
     this.nav.popTo(RegisterPage);
   }
-
 
   public onChange(value){
     this.country = JSON.parse(value);

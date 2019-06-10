@@ -97,6 +97,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 
 
+//콜센터 연결
+import { CallNumber } from '@ionic-native/call-number';
+
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
     headerPrefix: '',
@@ -230,6 +233,7 @@ export function getAuthHttp(http, storage) {
     FCM,
     InAppBrowser,
     ThemeableBrowser,
+    CallNumber,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
