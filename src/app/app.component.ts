@@ -8,12 +8,15 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { ImageLoaderConfig } from 'ionic-image-loader';
 import { FCM } from '@ionic-native/fcm';
+import { timer } from 'rxjs/observable/timer';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage: any = LoginPage;
+
+  showSplash = true;
 
   constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
     private screenOrientation: ScreenOrientation, public translateService: TranslateService, private imageLoaderConfig: ImageLoaderConfig,
@@ -53,7 +56,7 @@ export class MyApp {
         });
       }
 
-      if (this.platform.is('cordova'))  {
+      if (this.platform.is('cordova')) {
         this.fcm.subscribeToTopic('all');
 
         this.fcm.getToken().then(token => {
@@ -96,6 +99,7 @@ export class MyApp {
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       }
       this.splashScreen.hide();
+      timer(8000).subscribe(() => this.showSplash = false)
 
       this.imageLoaderConfig.enableDebugMode();
       this.imageLoaderConfig.enableFallbackAsPlaceholder(true);

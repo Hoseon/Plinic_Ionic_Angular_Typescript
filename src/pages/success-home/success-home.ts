@@ -65,11 +65,11 @@ export class SuccessHomePage {
     private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader
     , @Inject(DOCUMENT) document) {
     this.platform.ready().then((readySource) => {
-      this.showLoading();
+      // this.showLoading();
       this.bannerData = this.roadbanner();
       this.roadcareZone();
       this.roadbeauty();
-      this.loading.dismiss();
+      // this.loading.dismiss();
       //this.first_carezone = this.careDataOBJ[0];
       //this.second_carezone = this.careDataOBJ[1];
       //this.third_carezone = this.careDataOBJ[2];

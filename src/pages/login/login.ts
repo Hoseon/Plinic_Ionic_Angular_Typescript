@@ -50,21 +50,23 @@ export class LoginPage {
   }
 
   public google_login() {
-    this.showLoading()
+    //this.showLoading()
     this.auth.google_login();
-    this.loading.dismiss();
+    //this.loading.dismiss();
   }
 
   public facebook_login() {
-    this.showLoading()
+    //this.showLoading()
     this.auth.facebook_login();
-    this.loading.dismiss();
+    //this.loading.dismiss();
   }
 
   public kakao_login() {
-    this.showLoading()
+    //스플래시 이미지 변경을 위해서 로딩 컴포넌트 빼 버림
+    //this.showLoading()
     this.userData = this.auth.kakao_login();
-    this.loading.dismiss();
+    //스플래시 이미지 변경을 위해서 로딩 컴포넌트 빼 버림
+    //this.loading.dismiss();
   }
 
   public kakao_logout() {
