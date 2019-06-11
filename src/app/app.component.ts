@@ -39,7 +39,7 @@ export class MyApp {
         this.fcm.subscribeToTopic('all');
 
         this.fcm.getToken().then(token => {
-          console.log("FCM Token :::::::::::::" + token);
+          console.log("FCM iOS Token :::::::::::::" + token);
         })
 
         this.fcm.onNotification().subscribe(data => {
@@ -52,11 +52,12 @@ export class MyApp {
         });
 
         this.fcm.onTokenRefresh().subscribe(token => {
-          console.log("FCM Refresh Token :::::::::::::" + token);
+          console.log("FCM iOS Refresh Token :::::::::::::" + token);
         });
       }
 
-      if (this.platform.is('cordova')) {
+      if (this.platform.is('android')) {
+        console.log("android platform");
         this.fcm.subscribeToTopic('all');
 
         this.fcm.getToken().then(token => {
@@ -111,6 +112,7 @@ export class MyApp {
 
   showAlert(text) {
     let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
       title: '알림',
       message: text,
       buttons: ['OK']

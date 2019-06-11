@@ -8,7 +8,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 
 import { GenderFilter } from './../pipes/gender-filter';
-import { UserCard } from '../components/user-card/user-card';
+//import { UserCard } from '../components/user-card/user-card';
 
 
 //탭페이지 구성
@@ -154,7 +154,7 @@ export function getAuthHttp(http, storage) {
     BluetoothDisconnectPage,
     NoticePage,
     GenderFilter,
-    UserCard,
+    //UserCard,
   ],
   imports: [
     HttpModule,
