@@ -85,10 +85,16 @@ export class HomePage {
   imgUrl: any;
 
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
-    private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController, public translateService: TranslateService, //public bluetoothle: BluetoothLE,
+    private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController,
+     public translateService: TranslateService, public bluetoothle: BluetoothLE,
     private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, public app: App, private callNumber: CallNumber
     , @Inject(DOCUMENT) document) {
     this.platform.ready().then((readySource) => {
+
+
+       if(this.auth.bluetooth_connect()==true){
+         this.nav.push(SkinChartPage);
+       }
 
       this.platform.registerBackButtonAction(() => {
         let nav = app._appRoot._getActivePortal() || app.getActiveNav();
@@ -128,11 +134,11 @@ export class HomePage {
       }
     });
 
-      //this.showLoading();
+      this.showLoading();
       this.bannerData = this.roadbanner();
       this.roadcareZone();
       this.roadbeauty();
-      //this.loading.dismiss();
+      this.loading.dismiss();
       //this.first_carezone = this.careDataOBJ[0];
       //this.second_carezone = this.careDataOBJ[1];
       //this.third_carezone = this.careDataOBJ[2];
@@ -211,7 +217,6 @@ export class HomePage {
   // }
 
   public ionViewDidLoad() {
-    this.nav.push(SkinChartPage);
     document.getElementById("view").style.display = "none";
   }
 

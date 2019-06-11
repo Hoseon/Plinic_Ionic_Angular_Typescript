@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { SkinMeasureStartPage } from '../../../skin-measure-start/skin-measure-start';
 
 /**
  * Generated class for the BluetoothConnectIngPage page.
@@ -15,11 +16,15 @@ import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 })
 export class BluetoothConnectIngPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform) {
+  constructor(public nav: NavController, public navParams: NavParams, public platform: Platform) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BluetoothConnectIngPage');
   }
 
+
+  public connect_start(){
+      this.nav.push(SkinMeasureStartPage);
+  }
 }

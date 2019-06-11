@@ -12,6 +12,8 @@ import { BluetoothConnectIngPage } from './details/bluetooth-connect-ing/bluetoo
 import { BluetoothDisconnectPage } from './details/bluetooth-disconnect/bluetooth-disconnect';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 
+
+
 /**
  * Generated class for the MyinfoPage page.
  *
@@ -40,16 +42,22 @@ export class MyinfoPage {
   push_check:boolean;
   backend: any;
   registerToken: any;
-  ble: any= 'true';
   jwtHelper: JwtHelper = new JwtHelper();
+  blu_connect : boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,
-    private alertCtrl: AlertController, private platform: Platform, private fcm: FCM) {
+    private alertCtrl: AlertController, private platform: Platform, private fcm: FCM, public bluetoothle: BluetoothLE) {
+
+
      this.platform.ready().then(() => {
        this.loadItems();
        this.loadNotice();
-     });
+       this.blu_connect = this.authService.bluetooth_connect();
+       console.log('blu_connect=====================' + this.authService.bluetooth_connect());
+
+    });
   }
+
 
   public Reregiter(){
     this.navCtrl.push(ReRegisterPage, {
@@ -77,7 +85,7 @@ export class MyinfoPage {
       let alert = this.alertCtrl.create({
           cssClass:'push_alert_cancel',
            title: "추천 알림",
-           message: "알림을 해제하시면 플리닉 이벤트 및 주요 정보를 받아 보실 수 없습니다. <br> 알림을 해제하시겠습니까?",
+           message: "알림을 해제하시면 플리닉 이벤트 및 <br> 주요 정보를 받아 보실 수 없습니다. <br> 알림을 해제하시겠습니까?",
            buttons: [
           {
             text: '취소',
@@ -99,8 +107,12 @@ export class MyinfoPage {
     }
  }
 
-  public blue_connect(){
+  public blue_disconnect(){
     this.navCtrl.push(BluetoothConnectIngPage);
+  }
+
+  public blue_connect(){
+    this.navCtrl.push(BluetoothDisconnectPage);
   }
 
   ionViewDidLoad() {
