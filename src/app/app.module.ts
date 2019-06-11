@@ -100,7 +100,7 @@ import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 //콜센터 연결
 import { CallNumber } from '@ionic-native/call-number';
 
-//import { BrowserTab } from '@ionic-native/browser-tab';
+
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -236,7 +236,6 @@ export function getAuthHttp(http, storage) {
     InAppBrowser,
     ThemeableBrowser,
     CallNumber,
-    BrowserTab,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
