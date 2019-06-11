@@ -99,7 +99,7 @@ export class MyApp {
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       }
       this.splashScreen.hide();
-      timer(8000).subscribe(() => this.showSplash = false)
+      timer(5000).subscribe(() => this.showSplash = false)
 
       this.imageLoaderConfig.enableDebugMode();
       this.imageLoaderConfig.enableFallbackAsPlaceholder(true);
