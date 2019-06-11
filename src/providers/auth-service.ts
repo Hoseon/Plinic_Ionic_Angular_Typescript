@@ -6,7 +6,7 @@ import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
 import { Platform, AlertController } from 'ionic-angular';
-
+import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
@@ -34,7 +34,7 @@ export class User {
 const TOKEN_KEY = 'userData';
 const CONFIG = {
   apiUrl: 'http://plinic.cafe24app.com/',
-  //apiUrl: 'http://localhost:8001/',
+  // apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
@@ -46,10 +46,14 @@ export class AuthService {
   userToken = null;
   jwtHelper: JwtHelper = new JwtHelper();
   userData: any;
+  blu_connect : boolean = false;
+
   constructor(private http: Http, public authHttp: AuthHttp, public storage: Storage,
-    public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController, private facebook: Facebook, private google: GooglePlus, public naver: Naver) {
+    public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController, private facebook: Facebook, private google: GooglePlus,
+    public bluetoothle: BluetoothLE, public naver: Naver) {
     this.platform.ready().then(() => {
       this.checkToken();
+      this.bluetooth_connect();
     });
 
     let loginOptions = {};
@@ -58,10 +62,23 @@ export class AuthService {
       AuthTypes.AuthTypeStory,
       AuthTypes.AuthTypeAccount
     ];
-
-
-
   }
+
+   public bluetooth_connect(){
+    this.bluetoothle.initialize().then(ble => {
+     console.log('ble', ble.status) // logs 'enabled'
+     if(ble.status==="enabled"){
+       this.blu_connect = true;
+       console.log('enabled====================' , this.blu_connect);
+     }
+     else{
+       this.blu_connect = false;
+       console.log('disenabled====================' , this.blu_connect);
+     }
+   });
+   return this.blu_connect;
+  }
+
 
   public naver_login() {
 

@@ -27,9 +27,6 @@ page-bluetooth-disconnect {
       letter-spacing: normal;
       text-align: center;
     }
-    * {
-      box-sizing: content-box !important;
-    }
 
     .toolbar-title-ios{
       font-weight: bold;
@@ -123,13 +120,12 @@ page-bluetooth-disconnect {
        margin-left: auto;
        margin-right: auto;
        display: block;
-       font-size: 14px;
-       border: solid 0.5px #c7c7c7;
+       font-size: 14px !important;
+       border: solid 0.5px #e9513c;
        background-color:#e9513c;
        min-width: 100%;
        min-height: 50px;
       font-family: AppleSDGothicNeo;
-      font-size: 14px;
       font-weight: normal;
       font-style: normal;
       font-stretch: normal;

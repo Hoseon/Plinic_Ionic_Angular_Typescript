@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController, Platform } from 'ionic-angular';
 import { DeviceSkinStartPage } from '../device-skin-start/device-skin-start';
 import { DeviceSkinIngPage } from '../device-skin-ing/device-skin-ing';
-import { SuccessHomePage } from '../success-home/success-home';
+// import { SuccessHomePage } from '../success-home/success-home';
 /**
  * Generated class for the DeviceConnectCompletePage page.
  *

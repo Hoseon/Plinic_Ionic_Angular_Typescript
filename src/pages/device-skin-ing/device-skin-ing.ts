@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ModalController } from 'ionic-angular';
-import { SuccessHomePage } from '../success-home/success-home';
+// import { SuccessHomePage } from '../success-home/success-home';
 
 /**
  * Generated class for the DeviceSkinIngPage page.
@@ -18,13 +18,14 @@ export class DeviceSkinIngPage {
 
   spintime: any = 0;
   home: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public modalCtrl: ModalController,) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public modalCtrl: ModalController) {
 
     this.platform.ready().then((readySource)=>{
       setTimeout(()=>{
         this.spintime = 1;
         let myModal = this.modalCtrl.create('TabsPage',{
-          home : 'successHome'
+          // home : 'SuccessHome'
+          home : 'Home'
         });
         myModal.present();
       }, 3500);
