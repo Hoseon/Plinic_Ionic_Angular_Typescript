@@ -187,6 +187,7 @@ export class AuthService {
       };
       this.currentUser = res.properties['nickname'];
       this.storage.set('userData', this.userData);
+      console.log(JSON.stringify(this.userData))
       this.authenticationState.next(true);
       return this.userData;
 

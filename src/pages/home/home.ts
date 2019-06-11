@@ -211,7 +211,7 @@ export class HomePage {
   // }
 
   public ionViewDidLoad() {
-    this.nav.push(SkinChartPage);
+    //this.nav.push(SkinChartPage);
     document.getElementById("view").style.display = "none";
   }
 
