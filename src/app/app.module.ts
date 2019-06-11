@@ -17,7 +17,7 @@ import { LoginPage } from '../pages/login/login';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
-import {SuccessHomePage} from '../pages/success-home/success-home';
+//import {SuccessHomePage} from '../pages/success-home/success-home';
 import { MyinfoPage } from '../pages/myinfo/myinfo';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AgreementPage } from '../pages/agreement/agreement';
@@ -100,7 +100,7 @@ import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 //콜센터 연결
 import { CallNumber } from '@ionic-native/call-number';
 
-import { BrowserTab } from '@ionic-native/browser-tab';
+//import { BrowserTab } from '@ionic-native/browser-tab';
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -125,7 +125,7 @@ export function getAuthHttp(http, storage) {
     MyinfoPage,
     // TabsPage,
     HomePage,
-    SuccessHomePage,
+    //SuccessHomePage,
     SkinChartPage,
     CareZonePage,
     CareZoneIngPage,
@@ -189,7 +189,7 @@ export function getAuthHttp(http, storage) {
     MyinfoPage,
     //    TabsPage,
     HomePage,
-    SuccessHomePage,
+    //SuccessHomePage,
     SkinChartPage,
     CareZonePage,
     CareZoneIngPage,
