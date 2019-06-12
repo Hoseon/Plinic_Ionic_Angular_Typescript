@@ -6,7 +6,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { ImageLoader } from 'ionic-image-loader';
-import { BrowserTab } from '@ionic-native/browser-tab';
 
 
 @Component({
@@ -21,7 +20,7 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController, private imagesProvider: ImagesProvider, private camera: Camera, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController,
     private alertCtrl: AlertController, public _DomSanitizer: DomSanitizer,
-    private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, private browserTab: BrowserTab,
+    private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader,
   ) {
     this.reloadImages();
     //this.openBrowser("","플리닉");

@@ -529,7 +529,7 @@ page-home {
       letter-spacing: normal;
       text-align: center;
       z-index : 1;
-      color: #ff0000;
+      color: #ffffff;
     }
 
 
@@ -573,6 +573,35 @@ page-home {
       text-align: center;
       z-index : 1;
       color: #ffffff;
+      -webkit-animation: button_twinkle 7s ease-in-out infinite;
+   -moz-animation: button_twinkle 1s ease-in-out infinite;
+     -o-animation: button_twinkle 1s ease-in-out infinite;
+        animation: button_twinkle 1s ease-in-out infinite;
+    }
+
+    @-webkit-keyframes button_twinkle {
+      0%   { opacity: 1; }
+      30%  { opacity: 0; }
+      40%  { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @-moz-keyframes button_twinkle {
+      0%   { opacity: 1; }
+      30%  { opacity: 0; }
+      40%  { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @-o-keyframes button_twinkle {
+      0%   { opacity: 1; }
+      30%  { opacity: 0; }
+      40%  { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes button_twinkle {
+      0%   { opacity: 1; }
+      30%  { opacity: 0; }
+      40%  { opacity: 0; }
+      100% { opacity: 1; }
     }
 
     .carezon_btn2_1 {
@@ -681,6 +710,10 @@ page-home {
         text-align: center;
         z-index : 1;
         color: #ffffff;
+        -webkit-animation: button_twinkle 7s ease-in-out infinite;
+     -moz-animation: button_twinkle 1s ease-in-out infinite;
+       -o-animation: button_twinkle 1s ease-in-out infinite;
+          animation: button_twinkle 1s ease-in-out infinite;
       }
 
 
@@ -790,6 +823,10 @@ page-home {
         text-align: center;
         z-index : 1;
         color: #ffffff;
+        -webkit-animation: button_twinkle 7s ease-in-out infinite;
+     -moz-animation: button_twinkle 1s ease-in-out infinite;
+       -o-animation: button_twinkle 1s ease-in-out infinite;
+          animation: button_twinkle 1s ease-in-out infinite;
       }
 
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController, Platform } from 'ionic-angular';
 import { CareZoneMissionDeadlinePage } from '../care-zone-mission-deadline/care-zone-mission-deadline';
+import { CareZonePage } from '../care-zone/care-zone';
 import { ImagesProvider } from '../../providers/images/images';
 
 /**
@@ -90,9 +91,41 @@ export class CareZoneMissionIngPage {
     this.nav.push(CareZoneMissionDeadlinePage);
   }
 
-  navpop(){
-    this.nav.pop();
+  mission_giveup(){
+    let alert = this.alertCtrl.create({
+        cssClass:'push_alert_cancel',
+         title: "미션 포기",
+         message: "미션을 정말 포기 하시겠습니까? <br> 기간내에 재참여는 가능합니다.",
+         buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+            console.log('취소');
+          }
+        },
+         {
+          text : '확인',
+          handler: () => {
+            console.log('확인'),
+            this.nav.push(CareZonePage);
+          }
+       }]
+    });
+    alert.present();
   }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

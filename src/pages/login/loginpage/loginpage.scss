@@ -269,16 +269,14 @@ page-loginpage {
                     color: #b6b6b6;
                   }
 
-                  .login-btn{
+                  .login_btn_invalid{
                     margin-left: auto;
                     margin-right: auto;
                     display: block;
-                    border: solid 0.5px #c7c7c7;
-                    border-radius: 4px;
+                    border: solid 0.5px #d2d4d8;
                     background-color:#d2d4d8;
                     min-width: 97%;
                     min-height: 50px;
-                    border-radius: 4px;
                     font-family: NotoSansCJKkr;
                     font-size: 14px;
                     font-weight: normal;
@@ -290,6 +288,29 @@ page-loginpage {
                     color: #ffffff;
                     box-shadow: none;
                     margin-top: 3%;
+                     border-radius: 4px;
+                  }
+
+                  .login_btn2_valid{
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: block;
+                    border: solid 0.5px #5c59b6;
+                    background-color:#5c59b6;
+                    min-width: 97%;
+                    min-height: 50px;
+                    font-family: NotoSansCJKkr;
+                    font-size: 14px;
+                    font-weight: normal;
+                    font-style: normal;
+                    font-stretch: normal;
+                    line-height: normal;
+                    letter-spacing: normal;
+                    text-align: center;
+                    color: #ffffff;
+                    box-shadow: none;
+                    margin-top: 3%;
+                     border-radius: 4px;
                   }
 
                   .passwordfind{

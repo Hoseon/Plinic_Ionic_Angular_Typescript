@@ -74,12 +74,9 @@
   width: 100%;
   height: 100%;
   z-index: 999;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
-  // background: #ff7400;
-  // background: url(assets/img/pliniclogo/ic-system-logo-symbol@3x.png);
   background: url(../assets/img/splash/Default@2x~universal~anyany.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -239,6 +236,7 @@
                background-color: #6562b9;
                border-radius : 0px;
                margin: 0px;
+               transform: translate(0.1%) !important;
                }
             }
         }

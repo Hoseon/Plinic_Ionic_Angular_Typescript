@@ -95,7 +95,8 @@
        </div>
      </ion-item><br>
 
-     <button ion-button type="submit" class="login-btn" name="next" outline>로그인</button>
+     <button ion-button *ngIf="!signupform.controls.email.valid || signupform.get('password').hasError('minlength')" type="submit" class="login_btn_invalid" name="next" outline>로그인</button>
+     <button ion-button *ngIf="signupform.controls.email.valid && !signupform.get('password').hasError('minlength')" type="submit" class="login_btn2_valid" name="next" outline>로그인</button>
     </form>
 
     <br><br><br>
