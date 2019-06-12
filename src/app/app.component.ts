@@ -103,7 +103,12 @@ export class MyApp {
       }
       if (this.platform.is('cordova')) {
         this.splashScreen.hide();
+        if(this.platform.is('ios)')){
         timer(5000).subscribe(() => this.showSplash = false)
+        }
+        else{
+          timer(10000).subscribe(() => this.showSplash = false)
+        }
       } else {
         this.showSplash = false
       }
