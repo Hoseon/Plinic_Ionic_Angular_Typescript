@@ -467,21 +467,15 @@ page-home {
       color: #939393;
     }
 
-    .carezon_btn1 {
+    .carezon_btn1_1 {
       position: absolute;
       top: 10px;
       left: 9%;
       width: 53px;
       height: 25px;
-      opacity: 0.9;
       border-radius: 2.5px;
       background-color: #5c59b6;
       box-shadow: none !important;
-    }
-
-    .carezon_btn_font {
-      width: 33px;
-      height: 16.5px;
       font-family: NotoSansCJKkr;
       font-size: 11px;
       font-weight: normal;
@@ -490,12 +484,20 @@ page-home {
       line-height: normal;
       letter-spacing: normal;
       text-align: center;
+      z-index : 1;
       color: #ffffff;
     }
 
-    .carezon_btn_font2 {
-      width: 20.5px;
-      height: 16.5px;
+    .carezon_btn1_2 {
+      position: absolute;
+      top: 10px;
+      left: 9%;
+      width: 53px;
+      height: 25px;
+      border-radius: 2.5px;
+      background-color: #d2d4d8;
+      color: #000;
+      box-shadow: none !important;
       font-family: NotoSansCJKkr;
       font-size: 11px;
       font-weight: normal;
@@ -504,8 +506,402 @@ page-home {
       line-height: normal;
       letter-spacing: normal;
       text-align: center;
+      z-index : 1;
       color: #ffffff;
     }
+
+
+    .carezon_status1_1{
+      position: absolute;
+      top: 10px;
+      left: 25%;
+      width: 53px;
+      height: 25px;
+      border-radius: 2.5px;
+      background-color: #FFFF36;
+      box-shadow: none !important;
+      font-family: NotoSansCJKkr;
+      font-size: 11px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      z-index : 1;
+      color: #ffffff;
+    }
+
+
+    .carezon_status1_2{
+      position: absolute;
+      top: 10px;
+      left: 25%;
+      width: 53px;
+      height: 25px;
+      border-radius: 2.5px;
+      background-color: #1DDB16;
+      box-shadow: none !important;
+      font-family: NotoSansCJKkr;
+      font-size: 11px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      z-index : 1;
+      color: #ffffff;
+    }
+
+    .carezon_status1_3{
+      position: absolute;
+      top: 10px;
+      left: 25%;
+      width: 53px;
+      height: 25px;
+      border-radius: 2.5px;
+      background-color: #e9513c;
+      box-shadow: none !important;
+      font-family: NotoSansCJKkr;
+      font-size: 11px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      z-index : 1;
+      color: #ffffff;
+    }
+
+    .carezon_btn1_1 {
+      position: absolute;
+      top: 10px;
+      left: 9%;
+      width: 53px;
+      height: 25px;
+      border-radius: 2.5px;
+      background-color: #5c59b6;
+      box-shadow: none !important;
+      font-family: NotoSansCJKkr;
+      font-size: 11px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      z-index : 1;
+      color: #ffffff;
+    }
+
+    .carezon_btn1_2 {
+      position: absolute;
+      top: 10px;
+      left: 9%;
+      width: 53px;
+      height: 25px;
+      border-radius: 2.5px;
+      background-color: #d2d4d8;
+      color: #000;
+      box-shadow: none !important;
+      font-family: NotoSansCJKkr;
+      font-size: 11px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      z-index : 1;
+      color: #ffffff;
+    }
+
+
+    .carezon_status1_1{
+      position: absolute;
+      top: 10px;
+      left: 25%;
+      width: 53px;
+      height: 25px;
+      border-radius: 2.5px;
+      background-color: #FFFF36;
+      box-shadow: none !important;
+      font-family: NotoSansCJKkr;
+      font-size: 11px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      z-index : 1;
+      color: #ffffff;
+    }
+
+
+    .carezon_status1_2{
+      position: absolute;
+      top: 10px;
+      left: 25%;
+      width: 53px;
+      height: 25px;
+      border-radius: 2.5px;
+      background-color: #1DDB16;
+      box-shadow: none !important;
+      font-family: NotoSansCJKkr;
+      font-size: 11px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      z-index : 1;
+      color: #ffffff;
+    }
+
+    .carezon_status1_3{
+      position: absolute;
+      top: 10px;
+      left: 25%;
+      width: 53px;
+      height: 25px;
+      border-radius: 2.5px;
+      background-color: #e9513c;
+      box-shadow: none !important;
+      font-family: NotoSansCJKkr;
+      font-size: 11px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      z-index : 1;
+      color: #ffffff;
+    }
+
+
+    .carezon_btn2_1 {
+        position: absolute;
+        top: 10px;
+        left: 9%;
+        width: 53px;
+        height: 25px;
+        border-radius: 2.5px;
+        background-color: #5c59b6;
+        box-shadow: none !important;
+        font-family: NotoSansCJKkr;
+        font-size: 11px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        z-index : 1;
+        color: #ffffff;
+      }
+
+      .carezon_btn2_2 {
+        position: absolute;
+        top: 10px;
+        left: 9%;
+        width: 53px;
+        height: 25px;
+        border-radius: 2.5px;
+        background-color: #d2d4d8;
+        color: #000;
+        box-shadow: none !important;
+        font-family: NotoSansCJKkr;
+        font-size: 11px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        z-index : 1;
+        color: #ffffff;
+      }
+
+
+      .carezon_status2_1{
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        width: 53px;
+        height: 25px;
+        border-radius: 2.5px;
+        background-color: #FFFF36;
+        box-shadow: none !important;
+        font-family: NotoSansCJKkr;
+        font-size: 11px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        z-index : 1;
+        color: #ffffff;
+      }
+
+
+      .carezon_status2_2{
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        width: 53px;
+        height: 25px;
+        border-radius: 2.5px;
+        background-color: #1DDB16;
+        box-shadow: none !important;
+        font-family: NotoSansCJKkr;
+        font-size: 11px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        z-index : 1;
+        color: #ffffff;
+      }
+
+      .carezon_status2_3{
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        width: 53px;
+        height: 25px;
+        border-radius: 2.5px;
+        background-color: #e9513c;
+        box-shadow: none !important;
+        font-family: NotoSansCJKkr;
+        font-size: 11px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        z-index : 1;
+        color: #ffffff;
+      }
+
+
+      .carezon_btn3_1 {
+        position: absolute;
+        top: 10px;
+        left: 9%;
+        width: 53px;
+        height: 25px;
+        border-radius: 2.5px;
+        background-color: #5c59b6;
+        box-shadow: none !important;
+        font-family: NotoSansCJKkr;
+        font-size: 11px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        z-index : 1;
+        color: #ffffff;
+      }
+
+      .carezon_btn3_2 {
+        position: absolute;
+        top: 10px;
+        left: 9%;
+        width: 53px;
+        height: 25px;
+        border-radius: 2.5px;
+        background-color: #d2d4d8;
+        color: #000;
+        box-shadow: none !important;
+        font-family: NotoSansCJKkr;
+        font-size: 11px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        z-index : 1;
+        color: #ffffff;
+      }
+
+
+      .carezon_status3_1{
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        width: 53px;
+        height: 25px;
+        border-radius: 2.5px;
+        background-color: #FFFF36;
+        box-shadow: none !important;
+        font-family: NotoSansCJKkr;
+        font-size: 11px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        z-index : 1;
+        color: #ffffff;
+      }
+
+
+      .carezon_status3_2{
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        width: 53px;
+        height: 25px;
+        border-radius: 2.5px;
+        background-color: #1DDB16;
+        box-shadow: none !important;
+        font-family: NotoSansCJKkr;
+        font-size: 11px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        z-index : 1;
+        color: #ffffff;
+      }
+
+      .carezon_status3_3{
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        width: 53px;
+        height: 25px;
+        border-radius: 2.5px;
+        background-color: #e9513c;
+        box-shadow: none !important;
+        font-family: NotoSansCJKkr;
+        font-size: 11px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        z-index : 1;
+        color: #ffffff;
+      }
+
+
 
     .img_carezone_background2 {
       position: absolute;
