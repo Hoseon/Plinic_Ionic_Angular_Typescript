@@ -328,7 +328,7 @@ export class HomePage {
         this.mdchuchun = true;
         this.approaching = false;
         this.endrecruit = false;
-      } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -3) {
+      } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -3 || this.diffdate(this.currentDate, this.first_carezone_startDate) < 0) {
         console.log("D-3 :");
         this.new = false;
         this.recruiting = true;
@@ -351,6 +351,8 @@ export class HomePage {
         this.endrecruit = false;
       }
 
+      console.log("aaaaaaaaaa :" + this.diffdate(this.currentDate, this.second_carezone_startDate));
+
       if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -10) {
         console.log("D-10 :");
         this.second_new = true;
@@ -365,7 +367,7 @@ export class HomePage {
         this.second_mdchuchun = true;
         this.second_approaching = false;
         this.second_endrecruit = false;
-      } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -3) {
+      } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -3 || this.diffdate(this.currentDate, this.second_carezone_startDate) < 0) {
         console.log("D-3 :");
         this.second_new = false;
         this.second_recruiting = true;
@@ -402,7 +404,7 @@ export class HomePage {
         this.third_mdchuchun = true;
         this.third_approaching = false;
         this.third_endrecruit = false;
-      } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -3) {
+      } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -3 || this.diffdate(this.currentDate, this.third_carezone_startDate) < 0) {
         console.log("D-3 :");
         this.third_new = false;
         this.third_recruiting = true;
