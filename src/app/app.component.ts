@@ -87,7 +87,9 @@ export class MyApp {
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
+      if (this.platform.is('cordova')) {  //화면 가로모드 방지 하기 위하여 추가 20190508 추호선
+        this.statusBar.styleDefault();
+      }
       this.auth.authenticationState.subscribe(state => {
         if (state) {
           this.rootPage = 'TabsPage';
@@ -99,9 +101,12 @@ export class MyApp {
       if (this.platform.is('cordova')) {  //화면 가로모드 방지 하기 위하여 추가 20190508 추호선
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       }
-      this.splashScreen.hide();
-      timer(5000).subscribe(() => this.showSplash = false)
-
+      if (this.platform.is('cordova')) {
+        this.splashScreen.hide();
+        timer(5000).subscribe(() => this.showSplash = false)
+      } else {
+        this.showSplash = false
+      }
       this.imageLoaderConfig.enableDebugMode();
       this.imageLoaderConfig.enableFallbackAsPlaceholder(true);
       this.imageLoaderConfig.setFallbackUrl('assets/img/logo.png');

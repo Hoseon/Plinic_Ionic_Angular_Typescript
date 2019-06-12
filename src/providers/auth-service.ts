@@ -46,7 +46,7 @@ export class AuthService {
   userToken = null;
   jwtHelper: JwtHelper = new JwtHelper();
   userData: any;
-  blu_connect : boolean = false;
+  blu_connect: boolean = false;
 
   constructor(private http: Http, public authHttp: AuthHttp, public storage: Storage,
     public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController, private facebook: Facebook, private google: GooglePlus,
@@ -64,19 +64,21 @@ export class AuthService {
     ];
   }
 
-   public bluetooth_connect(){
-    this.bluetoothle.initialize().then(ble => {
-     console.log('ble', ble.status) // logs 'enabled'
-     if(ble.status==="enabled"){
-       this.blu_connect = true;
-       console.log('enabled====================' , this.blu_connect);
-     }
-     else{
-       this.blu_connect = false;
-       console.log('disenabled====================' , this.blu_connect);
-     }
-   });
-   return this.blu_connect;
+  public bluetooth_connect() {
+    if (this.platform.is('cordova')) {
+      this.bluetoothle.initialize().then(ble => {
+        console.log('ble', ble.status) // logs 'enabled'
+        if (ble.status === "enabled") {
+          this.blu_connect = true;
+          console.log('enabled====================', this.blu_connect);
+        }
+        else {
+          this.blu_connect = false;
+          console.log('disenabled====================', this.blu_connect);
+        }
+      });
+      return this.blu_connect;
+    }
   }
 
 
@@ -178,7 +180,7 @@ export class AuthService {
   public facebook_login() {
     this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
       this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)', []).then(profile => {
-        this.userData = { email: profile['email'], first_name: profile['first_name'], thumbnail_image: profile['picture_large']['data']['url'], nickname: profile['name'], accessToken: response.authResponse.accessToken, from: 'facebook'}
+        this.userData = { email: profile['email'], first_name: profile['first_name'], thumbnail_image: profile['picture_large']['data']['url'], nickname: profile['name'], accessToken: response.authResponse.accessToken, from: 'facebook' }
         this.storage.set('userData', this.userData);
         this.authenticationState.next(true);
         return this.userData;
