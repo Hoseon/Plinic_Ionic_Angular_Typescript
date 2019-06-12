@@ -56,12 +56,15 @@ export class HomePage {
   first_carezone_title: any;
   first_carezone_body: any;
   first_carezone__id: any;
+  first_carezone_startDate: Date;
   second_carezone_title: any;
   second_carezone_body: any;
   second_carezone__id: any;
+  second_carezone_startDate: Date;
   third_carezone_title: any;
   third_carezone_body: any;
   third_carezone__id: any;
+  third_carezone_startDate: Date;
   loading: Loading;
 
   beauty_data_type1: any;
@@ -84,55 +87,76 @@ export class HomePage {
 
   imgUrl: any;
 
+  currentDate: Date = new Date();
+
+  new: any;
+  recruiting: any;
+  mdchuchun: any;
+  approaching: any;
+  endrecruit: any;
+
+  second_new: any;
+  second_recruiting: any;
+  second_mdchuchun: any;
+  second_approaching: any;
+  second_endrecruit: any;
+
+  third_new: any;
+  third_recruiting: any;
+  third_mdchuchun: any;
+  third_approaching: any;
+  third_endrecruit: any;
+
+
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController,
-     public translateService: TranslateService, public bluetoothle: BluetoothLE,
+    public translateService: TranslateService, public bluetoothle: BluetoothLE,
     private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, public app: App, private callNumber: CallNumber
     , @Inject(DOCUMENT) document) {
     this.platform.ready().then((readySource) => {
+      // this.currentDate = new Date().toISOString();
 
-
-       if(this.auth.bluetooth_connect()==true){
-         // this.nav.push(SkinChartPage);
-       }
+      if (this.auth.bluetooth_connect() == true) {
+        // this.nav.push(SkinChartPage);
+      }
 
       this.platform.registerBackButtonAction(() => {
         let nav = app._appRoot._getActivePortal() || app.getActiveNav();
         let activeView = nav.getActive();
 
-      if (activeView != null) {
-        if (this.nav.canGoBack()) { // CHECK IF THE USER IS IN THE ROOT PAGE.
-          this.nav.pop(); // IF IT'S NOT THE ROOT, POP A PAGE.
+        if (activeView != null) {
+          if (this.nav.canGoBack()) { // CHECK IF THE USER IS IN THE ROOT PAGE.
+            this.nav.pop(); // IF IT'S NOT THE ROOT, POP A PAGE.
+          }
+          else if (activeView.isOverlay) {
+            activeView.dismiss();
+          }
+          else {
+            // backgroundMode.moveToBackground();
+            let alert = this.alertCtrl.create({
+              cssClass: 'push_alert_cancel',
+              title: "plinic",
+              message: "앱을 종료하시겠습니까?",
+              buttons: [
+                {
+                  text: '취소',
+                  role: 'cancel',
+                  handler: () => {
+                    console.log('취소');
+                  }
+                },
+                {
+                  text: '확인',
+                  handler: () => {
+                    console.log('확인'),
+                      this.platform.exitApp(); // IF IT'S THE ROOT, EXIT THE APP.
+                  }
+                }]
+            });
+            alert.present();
+          }
         }
-        else if(activeView.isOverlay){
-         activeView.dismiss();
-        }
-        else {
-          // backgroundMode.moveToBackground();
-          let alert = this.alertCtrl.create({
-              cssClass:'push_alert_cancel',
-               title: "plinic",
-               message: "앱을 종료하시겠습니까?",
-               buttons: [
-              {
-                text: '취소',
-                role: 'cancel',
-                handler: () => {
-                  console.log('취소');
-                }
-              },
-               {
-                text : '확인',
-                handler: () => {
-                  console.log('확인'),
-                  this.platform.exitApp(); // IF IT'S THE ROOT, EXIT THE APP.
-                }
-             }]
-          });
-          alert.present();
-        }
-      }
-    });
+      });
 
       //this.showLoading();
       this.bannerData = this.roadbanner();
@@ -196,10 +220,10 @@ export class HomePage {
 
   inapp_test() {
 
-  const options: InAppBrowserOptions = {
-    zoom: 'no'
-  }
-  const browser = this.iab.create('http://naver.com/');
+    const options: InAppBrowserOptions = {
+      zoom: 'no'
+    }
+    const browser = this.iab.create('http://naver.com/');
   }
 
 
@@ -222,7 +246,7 @@ export class HomePage {
   }
 
 
-  public customer_service(){
+  public customer_service() {
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
       title: "고객센터",
@@ -231,8 +255,8 @@ export class HomePage {
         text: '연결하기',
         handler: () => {
           console.log('연결하기'),
-          //02.2038.4876
-          this.callNumber.callNumber("0220384876", true)
+            //02.2038.4876
+            this.callNumber.callNumber("0220384876", true)
         }
       }]
     });
@@ -267,17 +291,149 @@ export class HomePage {
     });
   }
 
+  public diffdate(date1: Date = new Date(), date2: Date = new Date()) {
+    return (date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24)
+  }
+
   public roadcareZone() {
     this.images.maincarezoneRoad().subscribe(data => {
+      console.log(data);
       this.first_carezone_title = data[0].title;
       this.first_carezone_body = data[0].body;
       this.first_carezone__id = data[0]._id;
+      this.first_carezone_startDate = new Date(data[0].startmission);
       this.second_carezone_title = data[1].title;
       this.second_carezone_body = data[1].body;
       this.second_carezone__id = data[1]._id;
+      this.second_carezone_startDate = new Date(data[1].startmission);
       this.third_carezone_title = data[2].title;
       this.third_carezone_body = data[2].body;
       this.third_carezone__id = data[2]._id;
+      this.third_carezone_startDate = new Date(data[2].startmission);
+      // this.currentDate = new Date();
+      // this.currentDate.setDate( this.currentDate.getDate() + 2 );
+      console.log("aaa: " + (this.currentDate.getTime() - this.third_carezone_startDate.getTime()) / (1000 * 60 * 60 * 24));
+
+      if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -10) {
+        console.log("D-10 :");
+        this.new = true;
+        this.recruiting = true;
+        this.mdchuchun = false;
+        this.approaching = false;
+        this.endrecruit = false;
+      } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -7) {
+        console.log("D-7 :");
+        this.new = false;
+        this.recruiting = true;
+        this.mdchuchun = true;
+        this.approaching = false;
+        this.endrecruit = false;
+      } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -3) {
+        console.log("D-3 :");
+        this.new = false;
+        this.recruiting = true;
+        this.mdchuchun = false;
+        this.approaching = true;
+        this.endrecruit = false;
+      } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) >= 0) {
+        console.log("모집마감 :");
+        this.new = false;
+        this.recruiting = false;
+        this.mdchuchun = false;
+        this.approaching = false;
+        this.endrecruit = true;
+      } else {
+        console.log("111111");
+        this.new = false;
+        this.recruiting = true;
+        this.mdchuchun = false;
+        this.approaching = false;
+        this.endrecruit = false;
+      }
+
+      if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -10) {
+        console.log("D-10 :");
+        this.second_new = true;
+        this.second_recruiting = true;
+        this.second_mdchuchun = false;
+        this.second_approaching = false;
+        this.second_endrecruit = false;
+      } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -7) {
+        console.log("D-7 :");
+        this.second_new = false;
+        this.second_recruiting = true;
+        this.second_mdchuchun = true;
+        this.second_approaching = false;
+        this.second_endrecruit = false;
+      } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -3) {
+        console.log("D-3 :");
+        this.second_new = false;
+        this.second_recruiting = true;
+        this.second_mdchuchun = false;
+        this.second_approaching = true;
+        this.second_endrecruit = false;
+      } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) >= 0) {
+        console.log("모집마감 :");
+        this.second_new = false;
+        this.second_recruiting = false;
+        this.second_mdchuchun = false;
+        this.second_approaching = false;
+        this.second_endrecruit = true;
+      } else {
+        console.log("111111");
+        this.second_new = false;
+        this.second_recruiting = true;
+        this.second_mdchuchun = false;
+        this.second_approaching = false;
+        this.second_endrecruit = false;
+      }
+
+      if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -10) {
+        console.log("D-10 :");
+        this.third_new = true;
+        this.third_recruiting = true;
+        this.third_mdchuchun = false;
+        this.third_approaching = false;
+        this.third_endrecruit = false;
+      } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -7) {
+        console.log("D-7 :");
+        this.third_new = false;
+        this.third_recruiting = true;
+        this.third_mdchuchun = true;
+        this.third_approaching = false;
+        this.third_endrecruit = false;
+      } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -3) {
+        console.log("D-3 :");
+        this.third_new = false;
+        this.third_recruiting = true;
+        this.third_mdchuchun = false;
+        this.third_approaching = true;
+        this.third_endrecruit = false;
+      } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) >= 0) {
+        console.log("모집마감 :");
+        this.third_new = false;
+        this.third_recruiting = false;
+        this.third_mdchuchun = false;
+        this.third_approaching = false;
+        this.third_endrecruit = true;
+      } else {
+        console.log("111111");
+        this.third_new = false;
+        this.third_recruiting = true;
+        this.third_mdchuchun = false;
+        this.third_approaching = false;
+        this.third_endrecruit = false;
+      }
+
+
+
+      // if(this.third_carezone_startDate <= this.currentDate){
+      // } else{
+      // }
+
+
+
+
       this.carezoneData = data;
     });
   }
