@@ -23,6 +23,7 @@ export class AboutPage {
     private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader,
   ) {
     this.reloadImages();
+    //this.openBrowser("","플리닉");
 
   }
 

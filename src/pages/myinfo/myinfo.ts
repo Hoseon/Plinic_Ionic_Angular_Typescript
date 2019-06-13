@@ -4,8 +4,9 @@ import { AuthService } from '../../providers/auth-service';
 import { PlinicManualPage } from './details/plinic-manual/plinic-manual';
 import { QnaPage } from './details/qna/qna';
 import { TermsPage } from './details/terms/terms';
-import { ReRegisterPage } from '../re-register/re-register'
-import { NoticePage } from './details/notice/notice'
+import { ReRegisterPage } from '../re-register/re-register';
+import { NoticePage } from './details/notice/notice';
+import { PersonalinfoPage } from './details/personalinfo/personalinfo';
 import { FCM } from '@ionic-native/fcm';
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { BluetoothConnectIngPage } from './details/bluetooth-connect-ing/bluetooth-connect-ing';
@@ -59,7 +60,7 @@ export class MyinfoPage {
     this.blu_connect = this.authService.bluetooth_connect();
     console.log('blu_connect=====================' + this.authService.bluetooth_connect());
   }
-    
+
   public Reregiter(){
     this.navCtrl.push(ReRegisterPage, {
       birthday : this.userData.birthday,
@@ -137,6 +138,9 @@ export class MyinfoPage {
     this.navCtrl.push(TermsPage);
   }
 
+  public personalinfo(){
+    this.navCtrl.push(PersonalinfoPage);
+  }
   public noti(){
     this.navCtrl.push(NoticePage);
   }
