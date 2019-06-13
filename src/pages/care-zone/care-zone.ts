@@ -120,7 +120,7 @@ export class CareZonePage {
             this.approaching[i] = false;
             this.endrecruit[i] = false;
             //this.new.splice(i, 0, true);
-          } else if (this.diffdate(this.currentDate, data[i].startmission) < -7){
+          } else if (this.diffdate(this.currentDate, data[i].startmission) < -7 ){
             console.log("D-7 :");
             this.new[i] = false;
             this.recruiting[i] = true;

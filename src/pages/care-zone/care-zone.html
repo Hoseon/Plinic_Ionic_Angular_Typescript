@@ -27,14 +27,13 @@
     <ion-row class="row">
       <ion-col class="container" (click)="mission_start(carezone._id)">
         <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}'  />
-        <!-- <button class="ing_btn" style="box-shadow: none;" ion-button>진행 중</button> -->
-        <!-- 모집중, 모집마감 -->
-        <button *ngIf="recruiting[i]" class="carezon_btn1_1" ion-button>모집 중</button>
-        <button *ngIf="endrecruit[i]" class="carezon_btn1_2" ion-button>모집 마감</button>
-         <!-- -10일 new , -7일 Md추천, -3일 마감임박 -->
-        <button *ngIf="new[i]" class="carezon_status1_1" ion-button>NEW</button>
-        <button *ngIf="mdchuchun[i]" class="carezon_status1_2" ion-button>Md 추천</button>
-        <button *ngIf="approaching[i]" class="carezon_status1_3" ion-button>마감 임박</button>
+
+        <button *ngIf="recruiting[i]" class="carezon_btn1_1" style="box-shadow: none;" ion-button>모집 중</button>
+        <button *ngIf="endrecruit[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #d2d4d8;" ion-button>모집마감</button>
+        <button *ngIf="new[i]" class="carezon_status1_1" style="box-shadow: none; background-color: #47C83E;" ion-button>NEW</button>
+        <button *ngIf="mdchuchun[i]" class="carezon_status1_1" style="box-shadow: none; background-color: #FF00DD;" ion-button>MD추천</button>
+        <button *ngIf="approaching[i]" class="carezon_status1_2" style="box-shadow: none;" ion-button>마감임박</button>
+
       </ion-col>
     </ion-row>
     <ion-row>
