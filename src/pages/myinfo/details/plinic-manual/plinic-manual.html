@@ -6,10 +6,19 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>plinic_manual</ion-title>
+  <ion-navbar  *ngIf="platform.is('android')">
+    <ion-title class="android_title" text-wrap>플리닉&nbsp;사용법</ion-title>
   </ion-navbar>
 
+  <ion-navbar *ngIf="platform.is('ios')">
+  	<ion-buttons left>
+  		<button ion-button navPop icon-only>
+  			<!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
+  		</button>
+  	</ion-buttons>
+    <ion-title class="ios_title" text-wrap>플리닉&nbsp;사용법</ion-title>
+  </ion-navbar>
 </ion-header>
 
 

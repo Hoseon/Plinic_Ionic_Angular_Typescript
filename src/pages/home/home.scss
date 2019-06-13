@@ -5,7 +5,7 @@ page-home {
       //height: 4715px;
       align-items: center;
       align-self: center;
-      background-color: #f1f1f1;
+      background-color: #fff;
     }
 
     .img-banner_top_19000501 {
@@ -298,9 +298,6 @@ page-home {
     // }
 
     .font_carezone {
-      position: absolute;
-      top: 3%;
-      left: 20px;
       width: 100px;
       height: 22.5px;
       font-family: NotoSansCJKkr;
@@ -311,16 +308,15 @@ page-home {
       line-height: normal;
       letter-spacing: normal;
       color: #292929;
+      margin-bottom: 7%;
+      margin-top: 5%;
     }
-
-
 
     .carezone {
       position: relative;
       width: auto;
-      height: 976px;
+      height: 164%;
       background-color: #ffffff;
-      margin-bottom: -9px;
     }
 
     .beauty_tip {
@@ -329,6 +325,7 @@ page-home {
       height: 700px;
       background-color: #ffffff;
       margin-bottom: 8px;
+      margin-top: 0%;
     }
 
     .bottom-tip {
@@ -379,7 +376,8 @@ page-home {
       letter-spacing: normal;
       text-align: center;
       color: #ffffff;
-      margin-bottom: 7px;
+      margin-bottom: 2%;
+      margin-top: -1%;
       box-shadow: none !important;
     }
 
@@ -411,19 +409,14 @@ page-home {
 
     .img_carezone {
       width: 91%;
-      height: 180px;
+      height: auto;
       border-radius: 5px;
       background-color: #e2e1e6;
     }
 
-    .img_carezone_background {
-      position: absolute;
-      top: 7%;
-    }
+
 
     .font_carezone2 {
-      position: absolute;
-      top: 27%;
       width: 200.5px;
       height: 22.5px;
       font-family: NotoSansCJKkr;
@@ -434,11 +427,10 @@ page-home {
       line-height: normal;
       letter-spacing: normal;
       color: #292929;
+      margin-top: -1%;
     }
 
     .font_carezone2_page {
-      position: absolute;
-      top: 27%;
       width: 40.5px;
       height: 15px;
       font-family: Roboto;
@@ -450,11 +442,10 @@ page-home {
       letter-spacing: normal;
       text-align: right;
       color: #939393;
+      margin-top: -0.5%;
     }
 
     .font_carezone2_sub {
-      position: absolute;
-      top: 29.5%;
       width: 85%;
       height: 19px;
       font-family: NotoSansCJKkr;
@@ -465,14 +456,16 @@ page-home {
       line-height: normal;
       letter-spacing: normal;
       color: #939393;
+      margin-top: 1%;
+      margin-bottom: 14%;
     }
 
     .carezon_btn1_1 {
       position: absolute;
-      top: 10px;
-      left: 9%;
-      width: 53px;
-      height: 25px;
+      top: 5%;
+      left: 8%;
+      width: 15%;
+      height: 13%;
       border-radius: 2.5px;
       background-color: #5c59b6;
       box-shadow: none !important;
@@ -490,10 +483,10 @@ page-home {
 
     .carezon_btn1_2 {
       position: absolute;
-      top: 10px;
-      left: 9%;
-      width: 53px;
-      height: 25px;
+      top: 5%;
+      left: 8%;
+      width: 15%;
+      height: 13%;
       border-radius: 2.5px;
       background-color: #d2d4d8;
       color: #000;
@@ -508,15 +501,16 @@ page-home {
       text-align: center;
       z-index : 1;
       color: #ffffff;
+      box-shadow: none;
     }
 
 
     .carezon_status1_1{
       position: absolute;
-      top: 10px;
-      left: 25%;
-      width: 53px;
-      height: 25px;
+      top: 5%;
+      left: 26%;
+      width: 15%;
+      height: 13%;
       border-radius: 2.5px;
       background-color: #47C83E;
       box-shadow: none !important;
@@ -530,17 +524,18 @@ page-home {
       text-align: center;
       z-index : 1;
       color: #ffffff;
+      box-shadow: none;
     }
 
 
     .carezon_status1_2{
       position: absolute;
-      top: 10px;
-      left: 25%;
-      width: 53px;
-      height: 25px;
+      top: 5%;
+      left: 26%;
+      width: 15%;
+      height: 13%;
       border-radius: 2.5px;
-      background-color: #D3C64A;
+      background-color: #FF00DD;
       box-shadow: none !important;
       font-family: NotoSansCJKkr;
       font-size: 11px;
@@ -552,14 +547,15 @@ page-home {
       text-align: center;
       z-index : 1;
       color: #ffffff;
+      box-shadow: none;
     }
 
     .carezon_status1_3{
       position: absolute;
-      top: 10px;
-      left: 25%;
-      width: 53px;
-      height: 25px;
+      top: 5%;
+      left: 26%;
+      width: 15%;
+      height: 13%;
       border-radius: 2.5px;
       background-color: #FF0000;
       box-shadow: none !important;
@@ -573,6 +569,7 @@ page-home {
       text-align: center;
       z-index : 1;
       color: #ffffff;
+      box-shadow: none;
       -webkit-animation: button_twinkle 7s ease-in-out infinite;
    -moz-animation: button_twinkle 1s ease-in-out infinite;
      -o-animation: button_twinkle 1s ease-in-out infinite;
@@ -604,249 +601,17 @@ page-home {
       100% { opacity: 1; }
     }
 
-    .carezon_btn2_1 {
-        position: absolute;
-        top: 10px;
-        left: 9%;
-        width: 53px;
-        height: 25px;
-        border-radius: 2.5px;
-        background-color: #5c59b6;
-        box-shadow: none !important;
-        font-family: NotoSansCJKkr;
-        font-size: 11px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        z-index : 1;
-        color: #ffffff;
-      }
 
-      .carezon_btn2_2 {
-        position: absolute;
-        top: 10px;
-        left: 9%;
-        width: 53px;
-        height: 25px;
-        border-radius: 2.5px;
-        background-color: #d2d4d8;
-        color: #000;
-        box-shadow: none !important;
-        font-family: NotoSansCJKkr;
-        font-size: 11px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        z-index : 1;
-        color: #ffffff;
-      }
-
-
-      .carezon_status2_1{
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        width: 53px;
-        height: 25px;
-        border-radius: 2.5px;
-        background-color: #47C83E;
-        box-shadow: none !important;
-        font-family: NotoSansCJKkr;
-        font-size: 11px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        z-index : 1;
-        color: #ffffff;
-      }
-
-
-      .carezon_status2_2{
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        width: 53px;
-        height: 25px;
-        border-radius: 2.5px;
-        background-color: #D3C64A;
-        box-shadow: none !important;
-        font-family: NotoSansCJKkr;
-        font-size: 11px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        z-index : 1;
-        color: #ffffff;
-      }
-
-      .carezon_status2_3{
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        width: 53px;
-        height: 25px;
-        border-radius: 2.5px;
-        background-color: #FF0000;
-        box-shadow: none !important;
-        font-family: NotoSansCJKkr;
-        font-size: 11px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        z-index : 1;
-        color: #ffffff;
-        -webkit-animation: button_twinkle 7s ease-in-out infinite;
-     -moz-animation: button_twinkle 1s ease-in-out infinite;
-       -o-animation: button_twinkle 1s ease-in-out infinite;
-          animation: button_twinkle 1s ease-in-out infinite;
-      }
-
-
-      .carezon_btn3_1 {
-        position: absolute;
-        top: 10px;
-        left: 9%;
-        width: 53px;
-        height: 25px;
-        border-radius: 2.5px;
-        background-color: #5c59b6;
-        box-shadow: none !important;
-        font-family: NotoSansCJKkr;
-        font-size: 11px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        z-index : 1;
-        color: #ffffff;
-      }
-
-      .carezon_btn3_2 {
-        position: absolute;
-        top: 10px;
-        left: 9%;
-        width: 53px;
-        height: 25px;
-        border-radius: 2.5px;
-        background-color: #d2d4d8;
-        color: #000;
-        box-shadow: none !important;
-        font-family: NotoSansCJKkr;
-        font-size: 11px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        z-index : 1;
-        color: #ffffff;
-      }
-
-
-      .carezon_status3_1{
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        width: 53px;
-        height: 25px;
-        border-radius: 2.5px;
-        background-color: #47C83E;
-        box-shadow: none !important;
-        font-family: NotoSansCJKkr;
-        font-size: 11px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        z-index : 1;
-        color: #ffffff;
-      }
-
-
-      .carezon_status3_2{
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        width: 53px;
-        height: 25px;
-        border-radius: 2.5px;
-        background-color: #D3C64A;
-        box-shadow: none !important;
-        font-family: NotoSansCJKkr;
-        font-size: 11px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        z-index : 1;
-        color: #ffffff;
-      }
-
-      .carezon_status3_3{
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        width: 53px;
-        height: 25px;
-        border-radius: 2.5px;
-        background-color: #FF0000;
-        box-shadow: none !important;
-        font-family: NotoSansCJKkr;
-        font-size: 11px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        z-index : 1;
-        color: #ffffff;
-        -webkit-animation: button_twinkle 7s ease-in-out infinite;
-     -moz-animation: button_twinkle 1s ease-in-out infinite;
-       -o-animation: button_twinkle 1s ease-in-out infinite;
-          animation: button_twinkle 1s ease-in-out infinite;
-      }
-
-
-
-    .img_carezone_background2 {
-      position: absolute;
-      top: 35%;
-    }
 
     .img_carezone2 {
       position: relative;
       width: 91%;
-      height: 180px;
+      height: auto;
       border-radius: 5px;
       background-color: #e2e1e6;
     }
 
     .font_carezone3 {
-      position: absolute;
-      top: 55%;
       width: 200.5px;
       height: 22.5px;
       font-family: NotoSansCJKkr;
@@ -857,11 +622,10 @@ page-home {
       line-height: normal;
       letter-spacing: normal;
       color: #292929;
+      margin-top: -1%;
     }
 
     .carezon_btn2 {
-      position: absolute;
-      top: 10px;
       left: 9%;
       width: 53px;
       height: 25px;
@@ -873,9 +637,6 @@ page-home {
     }
 
     .font_carezone3_page {
-      position: absolute;
-      top: 55%;
-      left: 85.5%;
       width: 40.5px;
       height: 15px;
       font-family: Roboto;
@@ -887,11 +648,10 @@ page-home {
       letter-spacing: normal;
       text-align: right;
       color: #939393;
+      margin-top: -0.5%;
     }
 
     .font_carezone3_sub {
-      position: absolute;
-      top: 57.5%;
       width: 85%;
       height: 19px;
       font-family: NotoSansCJKkr;
@@ -902,25 +662,20 @@ page-home {
       line-height: normal;
       letter-spacing: normal;
       color: #939393;
+      margin-top: 1%;
+      margin-bottom: 14%;
     }
 
-    .img_carezone_background3 {
-      position: absolute;
-      top: 64%;
-    }
 
     .img_carezone3 {
       position: relative;
       width: 91%;
-      height: 180px;
+      height: auto;
       border-radius: 5px;
       background-color: #e2e1e6;
     }
 
     .carezon_btn3 {
-      position: absolute;
-      top: 10px;
-      left: 9%;
       width: 40.5px;
       height: 25px;
       opacity: 0.3;
@@ -931,8 +686,6 @@ page-home {
     }
 
     .font_carezone4 {
-      position: absolute;
-      top: 84.5%;
       width: 200.5px;
       height: 22.5px;
       font-family: NotoSansCJKkr;
@@ -943,11 +696,10 @@ page-home {
       line-height: normal;
       letter-spacing: normal;
       color: #292929;
+      margin-top: -1%;
     }
 
     .font_carezone4_sub {
-      position: absolute;
-      top: 87%;
       width: 85%;
       height: 19px;
       font-family: NotoSansCJKkr;
@@ -958,11 +710,10 @@ page-home {
       line-height: normal;
       letter-spacing: normal;
       color: #939393;
+      margin-bottom: 7%;
     }
 
     .font_carezone4_page {
-      position: absolute;
-      top: 84.5%;
       width: 40.5px;
       height: 15px;
       font-family: Roboto;
@@ -974,10 +725,10 @@ page-home {
       letter-spacing: normal;
       text-align: right;
       color: #939393;
+      margin-top: -0.5%;
     }
 
     .mission_btn {
-      top: 1535%;
       width: 91%;
       height: 50px;
       border: solid 0.5px #c7c7c7;
@@ -1139,7 +890,7 @@ page-home {
     }
 
     .left-margin {
-      left: 5%;
+      left: 4%;
     }
 
     .right-margin {

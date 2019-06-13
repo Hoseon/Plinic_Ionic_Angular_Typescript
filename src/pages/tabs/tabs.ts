@@ -22,7 +22,7 @@ export class TabsPage {
   tab1Root;
   tab2Root = CareZonePage;
   tab3Root = AboutPage;
-  // tab4Root = ContactPage;
+  tab4Root = ContactPage;
   tab5Root = MyinfoPage;
 
   constructor(public navParams: NavParams, private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader) {

@@ -21,12 +21,16 @@ export class CareZoneMissionStartPage {
   carezoneData: any;
   endDate: any;
   startDate: any;
+  currentDate: Date = new Date();
+  dday: any;
+  getday: any;
   constructor(public nav: NavController, public navParams: NavParams, private images: ImagesProvider,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform,
   ) {
-      this.platform.ready().then((readySource) => {
+    this.platform.ready().then((readySource) => {
       this._id = this.navParams.get('_id');
       this.roadmission(this._id);
+      this.getDday();
     });
 
 
@@ -55,6 +59,11 @@ export class CareZoneMissionStartPage {
       } else {
         this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
       }
+
+      this.getday = new Date(this.carezoneData.startmission);
+      this.dday = this.diffdate(this.getday, this.currentDate);
+      this.dday = parseInt(this.dday)
+      //console.log("D-Day :" + this.dday);
     });
 
   }
@@ -82,10 +91,10 @@ export class CareZoneMissionStartPage {
   satrtMission(id) {
     //console.log(id);
     let alert = this.alertCtrl.create({
-        cssClass:'push_alert_cancel',
-         title: "미션 참여",
-         message: "미션을 정말 참여하시겠습니까? <br> 미션은 1개만 참여가 가능합니다.",
-         buttons: [
+      cssClass: 'push_alert_cancel',
+      title: "미션 참여",
+      message: "미션을 정말 참여하시겠습니까? <br> 미션은 1개만 참여가 가능합니다.",
+      buttons: [
         {
           text: '취소',
           role: 'cancel',
@@ -93,15 +102,26 @@ export class CareZoneMissionStartPage {
             console.log('취소');
           }
         },
-         {
-          text : '확인',
+        {
+          text: '확인',
           handler: () => {
             console.log('확인'),
-            this.nav.push(CareZoneMissionIngPage, { _id: id });
+              this.nav.push(CareZoneMissionIngPage, { _id: id });
           }
-       }]
+        }]
     });
     alert.present();
+  }
+
+  public diffdate(date1: Date = new Date(), date2: Date = new Date()) {
+    return (date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24)
+  }
+
+  public getDday(){
+    console.log(this.carezoneData);
+    //this.getday = new Date(this.carezoneData.startmission)
+    //this.dday = this.diffdate(this.getday, this.currentDate)
+    //console.log("D-Day :" + this.dday);
   }
 
 }

@@ -117,7 +117,7 @@ export class HomePage {
       // this.currentDate = new Date().toISOString();
 
       if (this.auth.bluetooth_connect() == true) {
-        // this.nav.push(SkinChartPage);
+        this.nav.push(SkinChartPage);
       }
 
       this.platform.registerBackButtonAction(() => {
@@ -176,6 +176,7 @@ export class HomePage {
     });
 
   }
+
 
   openBrowser(url, title) {
     // https://ionicframework.com/docs/native/themeable-browser/
