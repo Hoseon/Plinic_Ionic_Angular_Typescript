@@ -194,6 +194,11 @@ page-care-zone {
       .back-button.show-back-button{
         display: none;
       }
+
+      .list-ios{
+        margin: -1px 0 16px !important;
+
+      }
       // .title{
       //   position: absolute;
       //   left: 50%;
@@ -328,7 +333,7 @@ page-care-zone {
   .container .carezon_status1_1{
 position: absolute;
 top: 12%;
-left: 30%;
+left: 31%;
 transform: translate(-50%, -50%);
 -ms-transform: translate(-50%, -50%);
 color: white;
@@ -355,7 +360,7 @@ text-align: center;
 .container .carezon_status1_2{
 position: absolute;
 top: 12%;
-left: 30%;
+left: 31%;
 transform: translate(-50%, -50%);
 -ms-transform: translate(-50%, -50%);
 color: white;
@@ -421,7 +426,6 @@ background-color: #FF0000;
   line-height: normal;
   letter-spacing: normal;
   color: #292929;
-  margin-top: 1%;
   }
 
    .right_align{
