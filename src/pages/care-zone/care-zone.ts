@@ -55,7 +55,7 @@ export class CareZonePage {
     this.authService.getUserStorage().then(items => {
 
       //this.userData = items;
-
+      console.log("from----------------------------------- :" + items.from)
       this.userData = {
         accessToken: items.accessToken,
         id: items.id,

@@ -116,9 +116,9 @@ export class HomePage {
     this.platform.ready().then((readySource) => {
       // this.currentDate = new Date().toISOString();
 
-      if (this.auth.bluetooth_connect() == true) {
-        this.nav.push(SkinChartPage);
-      }
+      // if (this.auth.bluetooth_connect() == true) {
+      //   this.nav.push(SkinChartPage);
+      // }
 
       this.platform.registerBackButtonAction(() => {
         let nav = app._appRoot._getActivePortal() || app.getActiveNav();
