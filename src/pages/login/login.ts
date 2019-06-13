@@ -1,12 +1,12 @@
 //import { IonicPage } from 'ionic-angular';
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, ModalController, ViewController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, Loading, ModalController, ViewController, Platform } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { Naver } from 'ionic-plugin-naver';
 import { AgreementPage } from '../agreement/agreement';
 import { LoginpagePage } from '../login/loginpage/loginpage';
-
+import { IonicPage, App } from 'ionic-angular';
 
 @Component({
   selector: 'page-login',
@@ -19,13 +19,52 @@ export class LoginPage {
   userData: any;
   constructor(private nav: NavController, private auth: AuthService,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-    public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver, public modalCtrl: ModalController,
+    public _kakaoCordovaSDK: KakaoCordovaSDK, public naver: Naver, public modalCtrl: ModalController,  public app: App, public platform: Platform
   ) {
+    this.platform.ready().then((readySource) => {
 
-  }
+      this.platform.registerBackButtonAction(() => {
+        let nav = app._appRoot._getActivePortal() || app.getActiveNav();
+        let activeView = nav.getActive();
+
+        if (activeView != null) {
+          if (this.nav.canGoBack()) { // CHECK IF THE USER IS IN THE ROOT PAGE.
+            this.nav.pop(); // IF IT'S NOT THE ROOT, POP A PAGE.
+          }
+          else if (activeView.isOverlay) {
+            activeView.dismiss();
+          }
+          else {
+            // backgroundMode.moveToBackground();
+            let alert = this.alertCtrl.create({
+              cssClass: 'push_alert_cancel',
+              title: "plinic",
+              message: "앱을 종료하시겠습니까?",
+              buttons: [
+                {
+                  text: '취소',
+                  role: 'cancel',
+                  handler: () => {
+                    console.log('취소');
+                  }
+                },
+                {
+                  text: '확인',
+                  handler: () => {
+                    console.log('확인'),
+                      this.platform.exitApp(); // IF IT'S THE ROOT, EXIT THE APP.
+                  }
+                }]
+            });
+            alert.present();
+          }
+        }
+      });
+  });
+}
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad Loginpage');
+    console.log('ionViewDidLoad Loginpage');
   }
 
 

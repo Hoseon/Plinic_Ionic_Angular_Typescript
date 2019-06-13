@@ -52,13 +52,14 @@ export class MyinfoPage {
      this.platform.ready().then(() => {
        this.loadItems();
        this.loadNotice();
-       this.blu_connect = this.authService.bluetooth_connect();
-       console.log('blu_connect=====================' + this.authService.bluetooth_connect());
-
     });
   }
 
-
+  ionViewDidEnter(){
+    this.blu_connect = this.authService.bluetooth_connect();
+    console.log('blu_connect=====================' + this.authService.bluetooth_connect());
+  }
+    
   public Reregiter(){
     this.navCtrl.push(ReRegisterPage, {
       birthday : this.userData.birthday,

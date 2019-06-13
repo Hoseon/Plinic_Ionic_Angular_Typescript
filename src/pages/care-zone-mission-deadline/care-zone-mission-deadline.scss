@@ -303,7 +303,7 @@ page-care-zone-mission-deadline {
                   position:absolute;
                   right: 1%;
                   text-align: right;
-                  width: 50%;
+                  width: 70%;
                   height: 20.5px;
                   background-color: #ffffff;
                   font-family: NotoSansCJKkr;
@@ -320,7 +320,7 @@ page-care-zone-mission-deadline {
                   position:absolute;
                   right: 1%;
                   background-color: #ffffff;
-                  width: 50%;
+                  width: 70%;
                   height: 20.5px;
                   font-family: Roboto;
                   font-size: 14px;
@@ -370,7 +370,7 @@ page-care-zone-mission-deadline {
                 .event-col12{
                    position:absolute;
                    right: 1%;
-                  width: 50%;
+                   width: 60%;
                    height: 16.5px;
                    font-family: Roboto;
                    font-size: 14px;
@@ -551,25 +551,26 @@ page-care-zone-mission-deadline {
                 }
 
                 .container .ing_btn{
-                position: absolute;
-                top: 17%;
-                left: 19%;
-                transform: translate(-50%, -50%);
-                -ms-transform: translate(-50%, -50%);
-                color: white;
-                padding: 12px 24px;
-                border: none;
-                cursor: pointer;
-                border-radius: 2.5px;
-                font-family: NotoSansCJKkr;
-                font-size: 9px;
-                font-weight: normal;
-                font-style: normal;
-                font-stretch: normal;
-                line-height: normal;
-                letter-spacing: normal;
-                text-align: center;
-                background-color: #5c59b6;
+                  position: absolute;
+                  top: 16%;
+                  left: 16%;
+                  transform: translate(-50%, -50%);
+                  -ms-transform: translate(-50%, -50%);
+                  color: #fff;
+                  padding: 5px 5px 5px 5px;
+                  border: none;
+                  cursor: pointer;
+                  border-radius: 2.5px;
+                  font-family: NotoSansCJKkr;
+                  font-size: 9px;
+                  font-weight: normal;
+                  font-style: normal;
+                  font-stretch: normal;
+                  line-height: normal;
+                  letter-spacing: normal;
+                  text-align: center;
+                  background-color: #5c59b6;
+                  height: 2.8em;
               }
 
               .container .ing_btn:hover{

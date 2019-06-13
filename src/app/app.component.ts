@@ -16,7 +16,8 @@ import { timer } from 'rxjs/observable/timer';
 export class MyApp {
   rootPage: any = LoginPage;
 
-  showSplash = true;
+   showSplash = true;
+
 
   constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
     private screenOrientation: ScreenOrientation, public translateService: TranslateService, private imageLoaderConfig: ImageLoaderConfig,

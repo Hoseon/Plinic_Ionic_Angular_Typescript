@@ -301,7 +301,7 @@ page-care-zone-mission-ing {
                 position:absolute;
                 right: 1%;
                 text-align: right;
-                width: 50%;
+                width: 70%;
                 height: 20.5px;
                 background-color: #ffffff;
                 font-family: NotoSansCJKkr;
@@ -318,7 +318,7 @@ page-care-zone-mission-ing {
                 position:absolute;
                 right: 1%;
                 background-color: #ffffff;
-                width: 50%;
+                width: 70%;
                 height: 20.5px;
                 font-family: Roboto;
                 font-size: 14px;
@@ -368,7 +368,7 @@ page-care-zone-mission-ing {
               .event-col12{
                  position:absolute;
                  right: 1%;
-                width: 50%;
+                width: 60%;
                  height: 16.5px;
                  font-family: Roboto;
                  font-size: 14px;
@@ -551,11 +551,11 @@ page-care-zone-mission-ing {
               .container .ing_btn{
               position: absolute;
               top: 16%;
-              left: 18%;
+              left: 16%;
               transform: translate(-50%, -50%);
               -ms-transform: translate(-50%, -50%);
-              color: white;
-              padding: 0% 3% 0% 3%;
+              color: #fff;
+              padding: 5px 5px 5px 5px;
               border: none;
               cursor: pointer;
               border-radius: 2.5px;
@@ -568,6 +568,7 @@ page-care-zone-mission-ing {
               letter-spacing: normal;
               text-align: center;
               background-color: #5c59b6;
+              height: 2.8em;
             }
 
             .container .ing_btn:hover{

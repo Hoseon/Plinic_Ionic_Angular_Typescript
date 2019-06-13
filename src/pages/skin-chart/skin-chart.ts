@@ -81,7 +81,7 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD');
                        pointHoverBorderWidth: 2, //데이터 호버크기
                        pointRadius: 3,  //데이터 포인트크기
                        pointHitRadius: 100,
-                       data: [0, 59, 80, 81],
+                       data: [30, 35, 50, 60],
                        spanGaps: false,
                      },
                      {
@@ -104,7 +104,7 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD');
                       pointHoverBorderWidth: 2,
                       pointRadius: 3,
                       pointHitRadius: 10,
-                      data: [15, 11, 22, 32],
+                      data: [30, 30, 35, 50],
                       spanGaps: false,
                     },
                     {
@@ -129,7 +129,7 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD');
                      pointHoverBorderWidth: 2,
                      pointRadius: 3,
                      pointHitRadius: 10,
-                     data: [52, 41, 53, 12],
+                     data: [10, 15, 10, 15],
                      spanGaps: false,
                    },
                    {
@@ -152,7 +152,7 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD');
                     pointHoverBorderWidth: 2,
                     pointRadius: 3,
                     pointHitRadius: 10,
-                    data: [53, 21, 43, 31],
+                    data: [15, 20, 20, 15],
                     spanGaps: false,
                   }],
                 },
@@ -198,97 +198,40 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY/MM/DD');
 
 monthdate: any[] = [
   {
-    "day": "1일"
+    "day": "2019년1월"
   },
   {
-    "day": "2일"
+    "day": "2019년2월"
   },
   {
-    "day": "3일"
+    "day": "2019년3월"
   },
   {
-    "day": "4일"
+    "day": "2019년4월"
   },
   {
-    "day": "5일"
+    "day": "2019년5월"
   },
   {
-    "day": "6일"
+    "day": "2019년6월"
   },
   {
-    "day": "7일"
+    "day": "2019년7월"
   },
   {
-    "day": "8일"
+    "day": "2019년8월"
   },
   {
-    "day": "9일"
+    "day": "2019년9월"
   },
   {
-    "day": "10일"
+    "day": "2019년10월"
   },
   {
-    "day": "11일"
+    "day": "2019년11월"
   },
   {
-    "day": "12일"
-  },
-  {
-    "day": "13일"
-  },
-  {
-    "day": "14일"
-  },
-  {
-    "day": "15일"
-  },
-  {
-    "day": "16일"
-  },
-  {
-    "day": "17일"
-  },
-  {
-    "day": "18일"
-  },
-  {
-    "day": "19일"
-  },
-  {
-    "day": "20일"
-  },
-  {
-    "day": "21일"
-  },
-  {
-    "day": "22일"
-  },
-  {
-    "day": "23일"
-  },
-  {
-    "day": "24일"
-  },
-  {
-    "day": "25일"
-  },
-  {
-    "day": "26일"
-  },
-  {
-    "day": "27일"
-  },
-  {
-    "day": "28일"
-  },
-  {
-    "day": "29일"
-  },
-  {
-    "day": "30일"
-  },
-  {
-    "day": "31일"
+    "day": "2019년12월"
   }
 ];
 

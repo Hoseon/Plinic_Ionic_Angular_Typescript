@@ -159,62 +159,11 @@ page-care-zone {
       height: auto;
     }
 
-      .container .in_btn{
-    position: absolute;
-    top: 13%;
-    left: 13%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    color: #FFF;
-    padding: 12px 0px;
-    height: 14%;
-    width: 16%;
-    cursor: pointer;
-    border-radius: 2.5px;
-    font-family: NotoSansCJKkr;
-    font-size: 11px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    background-color: #00af66;
-  }
 
-  .container .in_btn:hover{
-    background-color: black;
-  }
-    .container .closing_btn{
-  position: absolute;
-  top: 13%;
-  left: 13%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  color: #FFF;
-  padding: 12px 0px;
-  height: 10%;
-  width: 15%;
-  cursor: pointer;
-  border-radius: 2.5px;
-  font-family: NotoSansCJKkr;
-  font-size: 11px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  background-color: #FF2424;
-  }
-
-  .container .closing_btn:hover{
-  background-color: black;
-  }
-      .container .ing_btn{
+      .container .carezon_btn1_1{
     position: absolute;
-    top: 14%;
-    left: 14%;
+    top: 12%;
+    left: 12%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     color: white;
@@ -234,39 +183,95 @@ page-care-zone {
     background-color: #5c59b6;
   }
 
-  .container .ing_btn:hover{
-    background-color: black;
-  }
+  // .container .carezon_btn1_1:hover{
+  //   background-color: 5c59b6;
+  // }
 
 
-    .container .deadline_btn{
-  position: absolute;
-  top: 13%;
-  left: 13%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  color: white;
-  font-size: 11px;
-  padding: 12px 24px;
-  height: 10%;
-  width: 15%;
-  border: none;
-  cursor: pointer;
-  border-radius: 2.5px;
-  font-family: NotoSansCJKkr;
-  font-size: 11px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  background-color: #000000 ;
-  }
+  .container .carezon_status1_1{
+position: absolute;
+top: 12%;
+left: 30%;
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+color: white;
+padding: 12px 0px;
+height: 5%;
+width: 16%;
+cursor: pointer;
+border-radius: 2.5px;
+font-family: NotoSansCJKkr;
+font-size: 11px;
+font-weight: normal;
+font-style: normal;
+font-stretch: normal;
+line-height: normal;
+letter-spacing: normal;
+text-align: center;
+}
 
-  .container .deadline_btn:hover{
-  background-color: black;
-  }
+// .container .carezon_status1_1:hover{
+// background-color: 5c59b6;
+// }
+
+
+.container .carezon_status1_2{
+position: absolute;
+top: 12%;
+left: 30%;
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+color: white;
+padding: 12px 0px;
+height: 5%;
+width: 16%;
+cursor: pointer;
+border-radius: 2.5px;
+font-family: NotoSansCJKkr;
+font-size: 11px;
+font-weight: normal;
+font-style: normal;
+font-stretch: normal;
+line-height: normal;
+letter-spacing: normal;
+text-align: center;
+background-color: #FF0000;
+-webkit-animation: button_twinkle 7s ease-in-out infinite;
+-moz-animation: button_twinkle 1s ease-in-out infinite;
+-o-animation: button_twinkle 1s ease-in-out infinite;
+  animation: button_twinkle 1s ease-in-out infinite;
+}
+
+.container .carezon_status1_2:hover{
+background-color: #FF0000;
+}
+
+@-webkit-keyframes button_twinkle {
+  0%   { opacity: 1; }
+  30%  { opacity: 0; }
+  40%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes button_twinkle {
+  0%   { opacity: 1; }
+  30%  { opacity: 0; }
+  40%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes button_twinkle {
+  0%   { opacity: 1; }
+  30%  { opacity: 0; }
+  40%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes button_twinkle {
+  0%   { opacity: 1; }
+  30%  { opacity: 0; }
+  40%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
 
   .imagetitle{
   width: 122.5px;
@@ -294,7 +299,7 @@ page-care-zone {
     letter-spacing: normal;
     text-align: right;
     color: #939393;
-    margin-top: 2%;
+    margin-top: 1%;
 
 
    }
