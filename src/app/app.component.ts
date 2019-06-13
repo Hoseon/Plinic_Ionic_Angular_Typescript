@@ -35,55 +35,55 @@ export class MyApp {
     this.translateService.use(defaultlanguage);
     this.platform.ready().then(() => {
 
-      if (this.platform.is('ios')) {
-        this.fcm.subscribeToTopic('all');
-
-        this.fcm.getToken().then(token => {
-          console.log("FCM iOS Token :::::::::::::" + token);
-        })
-
-        this.fcm.onNotification().subscribe(data => {
-          if (data.wasTapped) {
-            console.log("Received in background - iOS");
-          } else {
-            this.showAlert(JSON.stringify(data.aps.alert));
-            console.log("Received in foreground - iOS");
-          };
-        });
-
-        this.fcm.onTokenRefresh().subscribe(token => {
-          console.log("FCM iOS Refresh Token :::::::::::::" + token);
-        });
-      }
-
-      if (this.platform.is('android')) {
-        console.log("android platform");
-        this.fcm.subscribeToTopic('all');
-
-        this.fcm.getToken().then(token => {
-          console.log("FCM Token :::::::::::::" + token);
-        })
-
-        this.fcm.onNotification().subscribe(data => {
-          console.log("FCM data ::::::::::::::" + JSON.stringify(data));
-          let alert = this.alertCtrl.create({
-            cssClass: 'push_alert',
-            title: data.title,
-            subTitle: data.message_name,
-            message: data.body,
-            buttons: [{
-              text: '확인'
-            }]
-          });
-          alert.present();
-          if (data.wasTapped) {
-          }
-        });
-
-        this.fcm.onTokenRefresh().subscribe(token => {
-          console.log("FCM Refresh Token :::::::::::::" + token);
-        });
-      }
+      // if (this.platform.is('ios')) {
+      //   this.fcm.subscribeToTopic('all');
+      //
+      //   this.fcm.getToken().then(token => {
+      //     console.log("FCM iOS Token :::::::::::::" + token);
+      //   })
+      //
+      //   this.fcm.onNotification().subscribe(data => {
+      //     if (data.wasTapped) {
+      //       console.log("Received in background - iOS");
+      //     } else {
+      //       this.showAlert(JSON.stringify(data.aps.alert));
+      //       console.log("Received in foreground - iOS");
+      //     };
+      //   });
+      //
+      //   this.fcm.onTokenRefresh().subscribe(token => {
+      //     console.log("FCM iOS Refresh Token :::::::::::::" + token);
+      //   });
+      // }
+      //
+      // if (this.platform.is('android')) {
+      //   console.log("android platform");
+      //   this.fcm.subscribeToTopic('all');
+      //
+      //   this.fcm.getToken().then(token => {
+      //     console.log("FCM Token :::::::::::::" + token);
+      //   })
+      //
+      //   this.fcm.onNotification().subscribe(data => {
+      //     console.log("FCM data ::::::::::::::" + JSON.stringify(data));
+      //     let alert = this.alertCtrl.create({
+      //       cssClass: 'push_alert',
+      //       title: data.title,
+      //       subTitle: data.message_name,
+      //       message: data.body,
+      //       buttons: [{
+      //         text: '확인'
+      //       }]
+      //     });
+      //     alert.present();
+      //     if (data.wasTapped) {
+      //     }
+      //   });
+      //
+      //   this.fcm.onTokenRefresh().subscribe(token => {
+      //     console.log("FCM Refresh Token :::::::::::::" + token);
+      //   });
+      // }
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -104,10 +104,10 @@ export class MyApp {
       if (this.platform.is('cordova')) {
         this.splashScreen.hide();
         if(this.platform.is('ios)')){
-        timer(5000).subscribe(() => this.showSplash = false)
+        timer(3000).subscribe(() => this.showSplash = false)
         }
         else{
-          timer(10000).subscribe(() => this.showSplash = false)
+          timer(3000).subscribe(() => this.showSplash = false)
         }
       } else {
         this.showSplash = false

@@ -27,14 +27,23 @@ export class CareZonePage {
   userData: any;
   nickname: string;
   jwtHelper: JwtHelper = new JwtHelper();
-  today: any = new Date().toISOString();;
+  currentDate: Date = new Date();
+  today: any = new Date().toISOString();
+  new: Array<boolean> = new Array<boolean>();
+  //kuliners: Array<any> = null;
+  recruiting: Array<boolean> = new Array<boolean>();
+  mdchuchun: Array<boolean> = new Array<boolean>();
+  approaching: Array<boolean> = new Array<boolean>();
+  endrecruit: Array<boolean> = new Array<boolean>();
+
 
   constructor(public platform: Platform, public nav: NavController,
     public navParams: NavParams, private images: ImagesProvider,
-    private loadingCtrl: LoadingController, private alertCtrl: AlertController, public authService: AuthService,) {
+    private loadingCtrl: LoadingController, private alertCtrl: AlertController, public authService: AuthService, ) {
     this.platform.ready().then((readySource) => {
       this.carezoneData = this.roadcareZone();
       this.loadItems();
+      //this.new = new Array<boolean>();
     });
   }
 
@@ -42,7 +51,7 @@ export class CareZonePage {
     console.log('ionViewDidLoad CareZonePage');
   }
 
-  public loadItems(){
+  public loadItems() {
     this.authService.getUserStorage().then(items => {
 
       //this.userData = items;
@@ -88,26 +97,65 @@ export class CareZonePage {
   }
 
 
-
+  public diffdate(date1: Date = new Date(), date2: Date = new Date()) {
+    return (date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24)
+  }
 
   public roadcareZone() {
     this.showLoading();
     this.images.carezoneRoad().subscribe(data => {
-      if(data !==''){
-      this.carezoneData = data;
-      console.log(JSON.stringify(data));
-      this.loading.dismiss();
-
-    } else{
-      this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
-    }
-    console.log(data[0].startmission);
-    console.log(data[0].endmission);
-    console.log(this.today);
-
-    if(data[0].endmission >= this.today){
-      console.log("날짜로직");
-    }
+      if (data !== '') {
+        for (let i = 0; i < data.length; i++) {
+          data[i].startmission = new Date(data[i].startmission);
+          this.new[i] = false;
+          this.recruiting[i] = false;
+          this.mdchuchun[i] = false;
+          this.approaching[i] = false;
+          this.endrecruit[i] = false;
+          if(this.diffdate(this.currentDate, data[i].startmission) < -10){
+            console.log("D-10 :");
+            this.new[i] = true;
+            this.recruiting[i] = true;
+            this.mdchuchun[i] = false;
+            this.approaching[i] = false;
+            this.endrecruit[i] = false;
+            //this.new.splice(i, 0, true);
+          } else if (this.diffdate(this.currentDate, data[i].startmission) < -7){
+            console.log("D-7 :");
+            this.new[i] = false;
+            this.recruiting[i] = true;
+            this.mdchuchun[i] = true;
+            this.approaching[i] = false;
+            this.endrecruit[i] = false;
+          } else if (this.diffdate(this.currentDate, data[i].startmission) < -3 || this.diffdate(this.currentDate, data[i].startmission) < 0){
+            console.log("D-3 :");
+            this.new[i] = false;
+            this.recruiting[i] = true;
+            this.mdchuchun[i] = false;
+            this.approaching[i] = true;
+            this.endrecruit[i] = false;
+          } else if (this.diffdate(this.currentDate, data[i].startmission) >= 0){
+            console.log("모집마감 :");
+            this.new[i] = false;
+            this.recruiting[i] = false;
+            this.mdchuchun[i] = false;
+            this.approaching[i] = false;
+            this.endrecruit[i] = true;
+          } else {
+            console.log("11111");
+            this.new[i] = false;
+            this.recruiting[i] = true;
+            this.mdchuchun[i] = false;
+            this.approaching[i] = false;
+            this.endrecruit[i] = false;
+          }
+        }
+        this.carezoneData = data;
+        //console.log(JSON.stringify(data));
+        this.loading.dismiss();
+      } else {
+        this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
+      }
     });
 
   }

@@ -1,5 +1,142 @@
 page-care-zone {
 
+  .carezon_btn1_1 {
+    position: absolute;
+    top: 10px;
+    left: 5%;
+    width: 53px;
+    height: 25px;
+    border-radius: 2.5px;
+    background-color: #5c59b6;
+    box-shadow: none !important;
+    font-family: NotoSansCJKkr;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    z-index : 1;
+    color: #ffffff;
+  }
+
+  .carezon_btn1_2 {
+    position: absolute;
+    top: 10px;
+    left: 5%;
+    width: 53px;
+    height: 25px;
+    border-radius: 2.5px;
+    background-color: #d2d4d8;
+    color: #000;
+    box-shadow: none !important;
+    font-family: NotoSansCJKkr;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    z-index : 1;
+    color: #ffffff;
+  }
+
+
+  .carezon_status1_1{
+    position: absolute;
+    top: 10px;
+    left: 22.5%;
+    width: 53px;
+    height: 25px;
+    border-radius: 2.5px;
+    background-color: #47C83E;
+    box-shadow: none !important;
+    font-family: NotoSansCJKkr;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    z-index : 1;
+    color: #ffffff;
+  }
+
+
+  .carezon_status1_2{
+    position: absolute;
+    top: 10px;
+    left: 22.5%;
+    width: 53px;
+    height: 25px;
+    border-radius: 2.5px;
+    background-color: #D3C64A;
+    box-shadow: none !important;
+    font-family: NotoSansCJKkr;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    z-index : 1;
+    color: #ffffff;
+  }
+
+  .carezon_status1_3{
+    position: absolute;
+    top: 10px;
+    left: 22.5%;
+    width: 53px;
+    height: 25px;
+    border-radius: 2.5px;
+    background-color: #FF0000;
+    box-shadow: none !important;
+    font-family: NotoSansCJKkr;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    z-index : 1;
+    color: #ffffff;
+    -webkit-animation: button_twinkle 7s ease-in-out infinite;
+ -moz-animation: button_twinkle 1s ease-in-out infinite;
+   -o-animation: button_twinkle 1s ease-in-out infinite;
+      animation: button_twinkle 1s ease-in-out infinite;
+  }
+
+  @-webkit-keyframes button_twinkle {
+    0%   { opacity: 1; }
+    30%  { opacity: 0; }
+    40%  { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @-moz-keyframes button_twinkle {
+    0%   { opacity: 1; }
+    30%  { opacity: 0; }
+    40%  { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @-o-keyframes button_twinkle {
+    0%   { opacity: 1; }
+    30%  { opacity: 0; }
+    40%  { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes button_twinkle {
+    0%   { opacity: 1; }
+    30%  { opacity: 0; }
+    40%  { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
 
       .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
         margin-bottom: -0.5%;
