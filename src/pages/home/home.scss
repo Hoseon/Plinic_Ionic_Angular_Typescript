@@ -313,9 +313,8 @@ page-home {
     }
 
     .carezone {
-      position: relative;
       width: auto;
-      height: 164%;
+      // height: 155%;
       background-color: #ffffff;
     }
 
@@ -324,7 +323,7 @@ page-home {
       width: auto;
       height: 700px;
       background-color: #ffffff;
-      margin-bottom: 8px;
+      // margin-bottom: 8px;
       margin-top: 0%;
     }
 
@@ -417,7 +416,7 @@ page-home {
 
 
     .font_carezone2 {
-      width: 200.5px;
+      position: absolute;
       height: 22.5px;
       font-family: NotoSansCJKkr;
       font-size: 15px;
@@ -431,7 +430,6 @@ page-home {
     }
 
     .font_carezone2_page {
-      width: 40.5px;
       height: 15px;
       font-family: Roboto;
       font-size: 13px;
@@ -442,7 +440,7 @@ page-home {
       letter-spacing: normal;
       text-align: right;
       color: #939393;
-      margin-top: -0.5%;
+      margin-top: 0%;
     }
 
     .font_carezone2_sub {
@@ -456,10 +454,18 @@ page-home {
       line-height: normal;
       letter-spacing: normal;
       color: #939393;
-      margin-top: 1%;
+      margin-top: 2%;
       margin-bottom: 14%;
     }
 
+
+    .list-md{
+      margin: 0px;
+    }
+
+    .list-ios{
+      margin: 0px;
+    }
     .carezon_btn1_1 {
       position: absolute;
       top: 5%;
@@ -469,7 +475,7 @@ page-home {
       border-radius: 2.5px;
       background-color: #5c59b6;
       box-shadow: none !important;
-      font-family: NotoSansCJKkr;
+      font-family: Helvetica;
       font-size: 11px;
       font-weight: normal;
       font-style: normal;
@@ -491,7 +497,7 @@ page-home {
       background-color: #d2d4d8;
       color: #000;
       box-shadow: none !important;
-      font-family: NotoSansCJKkr;
+      font-family: Helvetica;
       font-size: 11px;
       font-weight: normal;
       font-style: normal;
@@ -512,9 +518,9 @@ page-home {
       width: 15%;
       height: 25px;
       border-radius: 2.5px;
-      background-color: #47C83E;
+      background-color: #3AACC2;
       box-shadow: none !important;
-      font-family: NotoSansCJKkr;
+      font-family: Helvetica;
       font-size: 11px;
       font-weight: normal;
       font-style: normal;
@@ -535,9 +541,9 @@ page-home {
       width: 15%;
       height: 25px;
       border-radius: 2.5px;
-      background-color: #FF00DD;
+      background-color: #4693C2;
       box-shadow: none !important;
-      font-family: NotoSansCJKkr;
+      font-family: Helvetica;
       font-size: 11px;
       font-weight: normal;
       font-style: normal;
@@ -557,9 +563,9 @@ page-home {
       width: 15%;
       height: 25px;
       border-radius: 2.5px;
-      background-color: #FF0000;
+      background-color: #D90000;
       box-shadow: none !important;
-      font-family: NotoSansCJKkr;
+      font-family: Helvetica;
       font-size: 11px;
       font-weight: normal;
       font-style: normal;
@@ -612,7 +618,7 @@ page-home {
     }
 
     .font_carezone3 {
-      width: 200.5px;
+      position: absolute;
       height: 22.5px;
       font-family: NotoSansCJKkr;
       font-size: 15px;
@@ -648,7 +654,7 @@ page-home {
       letter-spacing: normal;
       text-align: right;
       color: #939393;
-      margin-top: -0.5%;
+      margin-top: 0%;
     }
 
     .font_carezone3_sub {
@@ -662,7 +668,7 @@ page-home {
       line-height: normal;
       letter-spacing: normal;
       color: #939393;
-      margin-top: 1%;
+      margin-top: 2%;
       margin-bottom: 14%;
     }
 
@@ -686,7 +692,7 @@ page-home {
     }
 
     .font_carezone4 {
-      width: 200.5px;
+      position: absolute;
       height: 22.5px;
       font-family: NotoSansCJKkr;
       font-size: 15px;
@@ -710,11 +716,11 @@ page-home {
       line-height: normal;
       letter-spacing: normal;
       color: #939393;
+      margin-top: 2%;
       margin-bottom: 7%;
     }
 
     .font_carezone4_page {
-      width: 40.5px;
       height: 15px;
       font-family: Roboto;
       font-size: 13px;
@@ -725,7 +731,7 @@ page-home {
       letter-spacing: normal;
       text-align: right;
       color: #939393;
-      margin-top: -0.5%;
+      margin-top: 0%;
     }
 
     .mission_btn {

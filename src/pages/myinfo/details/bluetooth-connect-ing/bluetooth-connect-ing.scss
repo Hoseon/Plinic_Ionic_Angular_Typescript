@@ -2,14 +2,12 @@ page-bluetooth-connect-ing {
 
   .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
     height: 0px;
-    margin-bottom: 5px;
   }
   .item-md.item-block .item-inner{
     padding-right: 12px;
   }
   .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
     height: 0px;
-    margin-bottom: 5px;
   }
   .item-ios.item-block .item-inner{
     padding-right: 12px;
@@ -66,11 +64,29 @@ page-bluetooth-connect-ing {
 }
 
    .toolbar-ios{
-     margin-top: 3%;
+     margin-top: 8%;
    }
 
   .back-button-text-ios{
     font-size: 0px;
+  }
+  .android_title{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 70%;
+    color: #292929;
+  }
+  .ios_title{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 120%;
+    color: #292929;
   }
 
 

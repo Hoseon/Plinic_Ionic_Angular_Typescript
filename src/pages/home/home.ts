@@ -116,9 +116,9 @@ export class HomePage {
     this.platform.ready().then((readySource) => {
       // this.currentDate = new Date().toISOString();
 
-      // if (this.auth.bluetooth_connect() == true) {
-      //   this.nav.push(SkinChartPage);
-      // }
+      if (this.auth.bluetooth_connect() == true) {
+        //this.nav.push(SkinChartPage);
+      }
 
       this.platform.registerBackButtonAction(() => {
         let nav = app._appRoot._getActivePortal() || app.getActiveNav();
@@ -298,7 +298,7 @@ export class HomePage {
 
   public roadcareZone() {
     this.images.maincarezoneRoad().subscribe(data => {
-      console.log(data);
+      //console.log(data);
       this.first_carezone_title = data[0].title;
       this.first_carezone_body = data[0].body;
       this.first_carezone__id = data[0]._id;
@@ -313,38 +313,32 @@ export class HomePage {
       this.third_carezone_startDate = new Date(data[2].startmission);
       // this.currentDate = new Date();
       // this.currentDate.setDate( this.currentDate.getDate() + 2 );
-      console.log("aaa: " + (this.currentDate.getTime() - this.third_carezone_startDate.getTime()) / (1000 * 60 * 60 * 24));
 
       if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -10) {
-        console.log("D-10 :");
         this.new = true;
         this.recruiting = true;
         this.mdchuchun = false;
         this.approaching = false;
         this.endrecruit = false;
       } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -7) {
-        console.log("D-7 :");
         this.new = false;
         this.recruiting = true;
         this.mdchuchun = true;
         this.approaching = false;
         this.endrecruit = false;
       } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -3 || this.diffdate(this.currentDate, this.first_carezone_startDate) < 0) {
-        console.log("D-3 :");
         this.new = false;
         this.recruiting = true;
         this.mdchuchun = false;
         this.approaching = true;
         this.endrecruit = false;
       } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) >= 0) {
-        console.log("모집마감 :");
         this.new = false;
         this.recruiting = false;
         this.mdchuchun = false;
         this.approaching = false;
         this.endrecruit = true;
       } else {
-        console.log("111111");
         this.new = false;
         this.recruiting = true;
         this.mdchuchun = false;
@@ -352,38 +346,32 @@ export class HomePage {
         this.endrecruit = false;
       }
 
-      console.log("aaaaaaaaaa :" + this.diffdate(this.currentDate, this.second_carezone_startDate));
 
       if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -10) {
-        console.log("D-10 :");
         this.second_new = true;
         this.second_recruiting = true;
         this.second_mdchuchun = false;
         this.second_approaching = false;
         this.second_endrecruit = false;
       } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -7) {
-        console.log("D-7 :");
         this.second_new = false;
         this.second_recruiting = true;
         this.second_mdchuchun = true;
         this.second_approaching = false;
         this.second_endrecruit = false;
       } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -3 || this.diffdate(this.currentDate, this.second_carezone_startDate) < 0) {
-        console.log("D-3 :");
         this.second_new = false;
         this.second_recruiting = true;
         this.second_mdchuchun = false;
         this.second_approaching = true;
         this.second_endrecruit = false;
       } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) >= 0) {
-        console.log("모집마감 :");
         this.second_new = false;
         this.second_recruiting = false;
         this.second_mdchuchun = false;
         this.second_approaching = false;
         this.second_endrecruit = true;
       } else {
-        console.log("111111");
         this.second_new = false;
         this.second_recruiting = true;
         this.second_mdchuchun = false;
@@ -392,35 +380,30 @@ export class HomePage {
       }
 
       if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -10) {
-        console.log("D-10 :");
         this.third_new = true;
         this.third_recruiting = true;
         this.third_mdchuchun = false;
         this.third_approaching = false;
         this.third_endrecruit = false;
       } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -7) {
-        console.log("D-7 :");
         this.third_new = false;
         this.third_recruiting = true;
         this.third_mdchuchun = true;
         this.third_approaching = false;
         this.third_endrecruit = false;
       } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -3 || this.diffdate(this.currentDate, this.third_carezone_startDate) < 0) {
-        console.log("D-3 :");
         this.third_new = false;
         this.third_recruiting = true;
         this.third_mdchuchun = false;
         this.third_approaching = true;
         this.third_endrecruit = false;
       } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) >= 0) {
-        console.log("모집마감 :");
         this.third_new = false;
         this.third_recruiting = false;
         this.third_mdchuchun = false;
         this.third_approaching = false;
         this.third_endrecruit = true;
       } else {
-        console.log("111111");
         this.third_new = false;
         this.third_recruiting = true;
         this.third_mdchuchun = false;
@@ -509,7 +492,7 @@ export class HomePage {
     this.nav.push(CareZoneMissionIngPage);
   }
   public mission_start(_id) {
-    console.log(_id);
+    //console.log(_id);
     this.nav.push(CareZoneMissionStartPage, { _id: _id });
   }
   public mission_deadline_end(id) {
