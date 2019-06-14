@@ -129,6 +129,74 @@
   }
 }
 
+
+.blu_toast_android{
+
+  position: absolute;
+  top: 43% !important;
+  border-radius: 30px;
+  border: 2px solid #292929;
+  padding: 0px;
+  background-color: #5c59b6;
+  width: 173px;
+  height: 100px;
+  left: 26%;
+  opacity: 0.9;
+
+
+    .toast-message{
+      background-color: #5c59b6;
+      font-family: NotoSansCJKkr;
+      font-size: 13px;
+      font-weight: 100;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: #fff;
+      padding: 3rem !important;
+      transform: translate(0%) !important;
+
+    }
+}
+
+
+.blu_toast_ios{
+
+  position: absolute;
+  top: 43% !important;
+  border-radius: 30px;
+  border: 2px solid #292929;
+  padding: 0px;
+  background-color: #5c59b6;
+  width: 173px;
+  height: 100px;
+  left: 26%;
+  opacity: 0.9;
+
+
+    .toast-message{
+      background-color: #5c59b6;
+      font-family: NotoSansCJKkr;
+      font-size: 13px;
+      font-weight: 100;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: #fff;
+      padding: 2rem !important;
+      transform: translate(0%) !important;
+    }
+}
+
+
+
+
+
+
 .push_alert{
       background-color: rgba(0, 0, 0, 0.4);
         .alert-wrapper{

@@ -6,10 +6,10 @@ page-device-skin-start {
   }
   .font_title {
     width: 153.5px;
-    height: 34px;
+    height: 37x;
     font-family: NotoSansCJKkr;
     font-size: 23px;
-    font-weight: 500;
+    font-weight: bold;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -17,6 +17,8 @@ page-device-skin-start {
     text-align: center;
     color: #292929;
     margin: 0 auto;
+    margin-top: 4%;
+    margin-bottom: 2%;
   }
 
   .font_sub {
@@ -34,35 +36,54 @@ page-device-skin-start {
     margin: 0 auto;
   }
 
-  .ic_system_skin_face_cheek {
+
+
+  .container {
+    position: relative;
+    width: 100%;
+  }
+
+  .container .ic_system_skin_face_cheek {
     width: 50%;
-    height: 50%;
+    height: auto;
     object-fit: contain;
+    margin: 0 auto;
+    display: block;
+    background-color: transparent;
+    margin-bottom: 12%;
   }
 
+  .container .anim-point{
+  position: absolute;
+  top: 39%;
+  right: 36%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  cursor: pointer;
+  animation-name: stylie-transform-keyframes;
+  animation-duration: 1000ms;
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transform-origin: 0 0;
+  width: 20px;
+  height: 20px;
+}
 
-  .anim-point {
-    animation-name: stylie-transform-keyframes;
-    animation-duration: 1000ms;
-    animation-delay: 0ms;
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    transform-origin: 0 0;
-  }
-  @keyframes stylie-transform-keyframes {
-    0% {transform:translate(0px, 0px) scale(0.2) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
-      animation-timing-function: cubic-bezier(.25,.25,.75,.75);}
-    100% {transform:translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
-  }
+@keyframes stylie-transform-keyframes {
+  0% {transform:translate(0px, 0px) scale(0.2) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+    animation-timing-function: cubic-bezier(.25,.25,.75,.75);}
+  100% {transform:translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+}
 
-  .cell {
-    width: 88%;
-    height: 50px;
-    border-radius: 4px;
-    background-color: #5c59b6;
-    box-shadow: none !important; 
-  }
+
+
+
+
+
+
+
 
   .center {
     text-align: center;
@@ -72,37 +93,38 @@ page-device-skin-start {
     // padding-bottom: 10%;
   }
 
-  .img {
-    margin: auto;
-    display: block;
-    height: 100%;
-    margin-top: 8%;
-  }
 
-  .ic-system-back-black {
+  .ic-system-close-black {
     width: 25px;
-    height: 25px;
+    height: 35px;
     object-fit: contain;
+    margin-left: 3%;
+    margin-top: 3%;
+    background-color: transparent;
   }
 
-  .font_button {
-    width: 28px;
-    height: 22.5px;
+
+  .cell {
+    width: 90%;
+    height: 50px;
+    border-radius: 4px;
+    box-shadow: none !important;
     font-family: NotoSansCJKkr;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: normal;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
     color: #ffffff;
+    background-color: #5c59b6;
     margin: 0 auto;
   }
 
   .cancel_button {
-    width: 55.5px;
-    height: 22.5px;
+    width: 90%;
+    height: 50px;
     font-family: NotoSansCJKkr;
     font-size: 15px;
     font-weight: normal;
@@ -113,13 +135,9 @@ page-device-skin-start {
     text-align: center;
     color: #939393;
     margin: 0 auto;
+    margin-top: 5px;
   }
 
-  .ic-system-close-black {
-    width: 25px;
-    height: 25px;
-    object-fit: contain;
-  }
 
   .header{
     left: -4%;
@@ -133,12 +151,9 @@ page-device-skin-start {
     top: -4%;
   }
 
-  .face_img{
-    top: -4%;
-  }
 
   .footer{
-    bottom: -1.5%;
+    bottom: 20px;
   }
 
 }

@@ -32,8 +32,8 @@
 
 
 
-        <ion-label id="view" class="moisture_help">
-        <img class="close" id="view"src="assets/img/login/ic-system-close-black@3x.png" (click)="close()" />
+        <ion-label id="view" style="display:none;" class="moisture_help">
+        <img class="close" src="assets/img/login/ic-system-close-black@3x.png" (click)="close()"/>
         <p class="help_title">수분 보충</p>
         <p text-wrap class="help_sub">물체 중에 함유되는 물. 대기 중의 수분은 습도 또는 수증기압으로 나타낸다.
           모든 식품은 조금이라도 수분을 함유하고 이론적으로 무수물은 존재하지 않는다. </p></ion-label>
@@ -227,7 +227,7 @@
     <!-- <div class="tip_title left-margin">유용한 정보</div> -->
     <ion-row>
       <ion-col style="text-align: center">
-        <button class="bound" ion-item icon-start>
+        <button mode="md" class="bound" ion-item icon-start>
           <div class="font_tip_btn">사용법</div>
         </button>
       </ion-col>
@@ -235,15 +235,15 @@
 
     <ion-row>
       <ion-col>
-        <button class="bound2" ion-item icon-start>
-          <div class="font_tip_btn">뷰티 꿀팁</div>
+        <button mode="md" class="bound2" ion-item icon-start>
+          <div class="font_tip_btn">&nbsp;뷰티 팁</div>
         </button>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <button class="bound3" ion-item icon-start (click)="customer_service();">
+        <button mode="md" class="bound3" ion-item icon-start (click)="customer_service();">
           <div class="font_tip_btn">고객센터</div>
         </button>
       </ion-col>

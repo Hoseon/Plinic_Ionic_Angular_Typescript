@@ -4,20 +4,14 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-item class="header" start no-lines>
-    <ion-buttons >
-      <br />
-      <button ion-button clear (click)="dismiss()">
-        <img class="ic-system-close-black" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" />
-      </button>
-    </ion-buttons>
-  </ion-item>
-</ion-header>
 
 
 <ion-content no-bounce no-padding>
+
+  <ion-img *ngIf="platform.is('android')" class="ic-system-close-black" (click)="dismiss()" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png"></ion-img>
+  <ion-img *ngIf="platform.is('ios')" style="margin-top: 8%;" class="ic-system-close-black" (click)="dismiss()" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png"></ion-img>
+
+
   <!-- <ion-item no-lines>
     <div class="font_title"></div>
   </ion-item> -->
@@ -26,16 +20,15 @@
   </ion-item>
 
 
-  <ion-item class="face_img" no-lines>
-    <img class="img ic_system_skin_face_cheek" src="assets/img/ic-system-skin-face-cheek/ic-system-skin-face-cheek@3x.png"  />
-    <img src="assets/img/testpoint.png"
-    style="width:20px;height:20px;top:47%;left:58%;position: absolute;" class="anim-point">
-  </ion-item>
+  <div class="container">
+  <img class="img ic_system_skin_face_cheek" src="assets/img/ic-system-skin-face-cheek/ic-system-skin-face-cheek@3x.png"/>
+  <img src="assets/img/testpoint.png" class="anim-point"/>
+  </div>
 
 
   <ion-item class="subtitle" no-lines><div class="font_sub">
-    플리닉 디바이스를 볼에 3초간 접촉해주세요.<br />
-    다른 부위 및 접촉이 약할 경우<br />
+    플리닉 디바이스를 볼에 3초간 접촉해주세요.<br>
+    다른 부위 및 접촉이 약할 경우<br>
     측정에 오차가 발생 할 수 있습니다.
   </div></ion-item>
 
@@ -48,9 +41,9 @@
       </button>
     </div>
 
-  		<div class="center" style="padding-bottom: 10%;">
-        <button clear ion-button (click)="dismiss()">
-          <div class="cancel_button">취소하기</div>
+  		<div class="center">
+        <button  class="cancel_button" clear ion-button (click)="dismiss()">
+          <div>취소하기</div>
         </button>
       </div>
 

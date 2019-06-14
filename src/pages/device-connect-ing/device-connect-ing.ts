@@ -41,8 +41,6 @@ export class DeviceConnectIngPage {
         }
       }, 3500);
     });
-
-
   }
 
   ionViewDidLoad() {

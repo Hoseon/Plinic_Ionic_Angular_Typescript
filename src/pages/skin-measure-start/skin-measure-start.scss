@@ -1,21 +1,20 @@
 page-skin-measure-start {
 
-  position: relative;
 
-  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
-    height: 0px;
-  }
 
-  ion-header{
-    left: -7%;
-  }
+  .close{
+  background-color: #FFF;
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  margin-top: 4%;
+  margin-left: 4%;
+ }
 
   .font_title {
-    width: 153.5px;
-    height: 34px;
     font-family: NotoSansCJKkr;
     font-size: 23px;
-    font-weight: 500;
+    font-weight: bold;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -23,11 +22,10 @@ page-skin-measure-start {
     text-align: center;
     color: #292929;
     margin: 0 auto;
+    margin-top: 2%;
   }
 
   .font-sub {
-    width: 207px;
-    height: 42px;
     font-family: NotoSansCJKkr;
     font-size: 15px;
     font-weight: normal;
@@ -38,12 +36,17 @@ page-skin-measure-start {
     text-align: center;
     color: #939393;
     margin: 0 auto;
+    margin-top: -4%;
   }
 
   .ic_system_skin_face {
     width: 50%;
-    height: 50%;
+    height: auto;
     object-fit: contain;
+    margin-top: 8%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
   }
 
   .ic-system-close-black {
@@ -60,7 +63,17 @@ page-skin-measure-start {
     // padding-bottom: 10%;
   }
 
-  .cell {
+  .font_button {
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 39%;
     width: 87%;
     height: 50px;
     border-radius: 4px;
@@ -68,26 +81,10 @@ page-skin-measure-start {
     margin-left: auto;
     margin-right: auto;
     box-shadow: none !important;
-  }
-
-  .font_button {
-    width: 55.5px;
-    height: 22.5px;
-    font-family: NotoSansCJKkr;
-    font-size: 15px;
-    font-weight: 500;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: #ffffff;
-    margin: 0 auto;
+    display: block;
   }
 
   .cancel_button {
-    width: 55.5px;
-    height: 22.5px;
     font-family: NotoSansCJKkr;
     font-size: 15px;
     font-weight: normal;
@@ -98,28 +95,22 @@ page-skin-measure-start {
     text-align: center;
     color: #939393;
     margin: 0 auto;
-  }
-
-  .img {
-    margin: auto;
+    width: 87%;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #FFF;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: none !important;
     display: block;
-    //height: 100%;
-    margin-top: 8%;
+    margin-bottom: 20px;
   }
 
-  .title{
-    top: -3%;
-  }
 
-  .subtitle{
-    top: -7%;
-  }
+    .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+      height:  0px !important;
 
-  .face_img{
-    top: -10%;
-  }
+    }
 
-  .footer{
-    bottom: -1.5%;
-  }
+
 }

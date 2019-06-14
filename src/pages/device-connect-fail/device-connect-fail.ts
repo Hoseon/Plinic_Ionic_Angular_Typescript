@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing';
 
@@ -17,7 +17,7 @@ import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing';
 })
 export class DeviceConnectFailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform) {
   }
 
   ionViewDidLoad() {

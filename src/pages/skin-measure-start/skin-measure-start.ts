@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Platform } from 'ionic-angular';
 import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing';
 
 /**
@@ -16,7 +16,7 @@ import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing';
 })
 export class SkinMeasureStartPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public platform: Platform) {
   }
 
   ionViewDidLoad() {

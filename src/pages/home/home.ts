@@ -229,21 +229,21 @@ export class HomePage {
 
 
 
-  // ionViewDidEnter(){
-  //   this.translateService.get('helloWorld').subscribe(
-  //     hi => {
-  //       let alert = this.alertCtrl.create({
-  //         title: hi,
-  //         buttons: ['OK']
-  //       });
-  //       alert.present();
-  //     }
-  //   )
-  // }
+  ionViewDidEnter(){
+    // this.translateService.get('helloWorld').subscribe(
+    //   hi => {
+    //     let alert = this.alertCtrl.create({
+    //       title: hi,
+    //       buttons: ['OK']
+    //     });
+    //     alert.present();
+    //   }
+    // )
+
+  }
 
   public ionViewDidLoad() {
     //this.nav.push(SkinChartPage);
-    document.getElementById("view").style.display = "none";
   }
 
 
@@ -267,7 +267,8 @@ export class HomePage {
   public moisture_help() {
     console.log('view');
     document.getElementById("view").style.display = "block";
-  }
+}
+
 
   public close() {
     console.log('close');

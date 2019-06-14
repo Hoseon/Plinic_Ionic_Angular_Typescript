@@ -3,24 +3,14 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-item class="header" start no-lines>
-    <ion-buttons >
-      <br />
-      <!-- <button ion-button clear (click)="measureBack()"> -->
-      <button ion-button clear>
-        <img class="ic-system-back-black" src="assets/img/ic-system-back-black/ic-system-back-black@3x.png" />
-      </button>
-    </ion-buttons>
-  </ion-item>
-</ion-header>
 
 
 <ion-content no-bounce no-padding>
-  <!-- <ion-item no-lines>
-    <div class="font_title"></div>
-  </ion-item> -->
+
+  <ion-img *ngIf="platform.is('android')" class="ic-system-back-black" (click)="measureBack()" src="assets/img/ic-system-back-black/ic-system-back-black@3x.png"></ion-img>
+  <ion-img *ngIf="platform.is('ios')" style="margin-top: 8%;" class="ic-system-back-black" (click)="measureBack()" src="assets/img/ic-system-back-black/ic-system-back-black@3x.png"></ion-img>
+
+
   <ion-item class="title" no-lines>
     <div class="font_title">플리닉 연동 중...</div>
   </ion-item>
@@ -31,9 +21,8 @@
   </div></ion-item>
 
 
-  <ion-item class="face_img" no-lines>
     <img class="img ic_system_sync_on" src="assets/img/ic-system-sync-on/ic-system-sync-on@3x.png"  />
-  </ion-item>
+
 
   <ion-footer class="footer" no-shadow>
   	<!-- <ion-toolbar position="bottom"> -->
@@ -41,14 +30,15 @@
       <!-- <button class="cell" ion-button (click)="deviceComplete();">
         <div class="font_button">시작하기</div> -->
         <button #myButton class="cell" ion-button>
-        <ion-spinner name="crescent" *ngIf="spintime == 0"></ion-spinner>
+        <ion-spinner class="ing_spinner" name="crescent" *ngIf="spintime == 0"></ion-spinner>
       <div class="font_button" (click)="successpage()">연동 중</div>
       </button>
     </div>
 
-  		<div class="center" style="padding-bottom: 10%;">
-        <button clear ion-button (click)="deviceFail()">
-          <div class="cancel_button">취소하기</div>
+
+  		<div class="center">
+        <button class="cancel_button" clear ion-button (click)="deviceFail()">
+          <div >취소하기</div>
         </button>
       </div>
 

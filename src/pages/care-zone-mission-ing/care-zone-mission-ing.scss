@@ -536,49 +536,5 @@ page-care-zone-mission-ing {
                margin-top: 0.5%;
               }
 
-              .container {
-                position: relative;
-                width: 50%;
-              }
-
-              .container .imagealign {
-                min-width: 150px;
-                min-height: 150px;
-                border-radius: 5px;
-                height: auto;
-              }
-
-              .container .ing_btn{
-              position: absolute;
-              top: 16%;
-              left: 16%;
-              transform: translate(-50%, -50%);
-              -ms-transform: translate(-50%, -50%);
-              color: #fff;
-              padding: 5px 5px 5px 5px;
-              border: none;
-              cursor: pointer;
-              border-radius: 2.5px;
-              font-family: NotoSansCJKkr;
-              font-size: 9px;
-              font-weight: normal;
-              font-style: normal;
-              font-stretch: normal;
-              line-height: normal;
-              letter-spacing: normal;
-              text-align: center;
-              background-color: #5c59b6;
-              height: 2.8em;
-            }
-
-            .container .ing_btn:hover{
-              background-color: black;
-            }
-
-            .gridimage{
-              height: 10%;
-
-            }
-
 
 }

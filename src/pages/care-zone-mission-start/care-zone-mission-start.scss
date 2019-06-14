@@ -421,5 +421,67 @@ page-care-zone-mission-start {
                 margin-bottom: -2%;
               }
 
+              .container {
+                position: relative;
+                width: 50%;
+              }
 
+              .container .imagealign {
+                min-width: 150px;
+                min-height: 150px;
+                border-radius: 5px;
+                height: auto;
+              }
+
+              .container .ing_btn{
+              position: absolute;
+              top: 16%;
+              left: 16%;
+              transform: translate(-50%, -50%);
+              -ms-transform: translate(-50%, -50%);
+              color: #fff;
+              padding: 5px 5px 5px 5px;
+              border: none;
+              cursor: pointer;
+              border-radius: 2.5px;
+              font-family: NotoSansCJKkr;
+              font-size: 9px;
+              font-weight: normal;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              text-align: center;
+              background-color: #5c59b6;
+              height: 2.8em;
+            }
+
+            .container .ing_btn:hover{
+              background-color: black;
+            }
+
+            .gridimage{
+              height: 10%;
+
+            }
+            .button_add{
+              margin-left: auto;
+              margin-right: auto;
+              display: block;
+              font-size: 14px;
+              border: solid 0.5px #c7c7c7;
+              background-color:#FFF;
+              min-width: 100%;
+              min-height: 50px;
+             font-family: AppleSDGothicNeo;
+             font-size: 14px;
+             font-weight: normal;
+             font-style: normal;
+             font-stretch: normal;
+             line-height: normal;
+             letter-spacing: normal;
+             text-align: center;
+             color: #292929;
+             border-radius: 4px;
+            }
 }
