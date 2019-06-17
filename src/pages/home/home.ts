@@ -178,9 +178,9 @@ export class HomePage {
   }
 
 
-  openBrowser(url, title) {
+  openBrowser_ios(url, title) {
     // https://ionicframework.com/docs/native/themeable-browser/
-    if (this.platform.is('ios')) {
+
     const options: ThemeableBrowserOptions = {
       toolbar: {
         height: 55,
@@ -193,26 +193,11 @@ export class HomePage {
       },
       closeButton: {
         wwwImage: 'assets/img/close.png',
-        width: 25,
-        height: 25,
         align: 'left',
         event: 'closePressed'
       },
     };
-    }
-    else{
-      const options: ThemeableBrowserOptions = {
-        toolbar: {
-          height: 55,
-          color: '#6562b9'
-        },
-        title: {
-          color: '#ffffffff',
-          showPageTitle: false,
-          staticText: title
-        },
-      };
-    }
+
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
     browser.insertCss({
       file: 'assets/img/close.png',
@@ -224,7 +209,31 @@ export class HomePage {
     })
   }
 
+  openBrowser_android(url, title) {
+    // https://ionicframework.com/docs/native/themeable-browser/
 
+    const options: ThemeableBrowserOptions = {
+      toolbar: {
+        height: 55,
+        color: '#6562b9'
+      },
+      title: {
+        color: '#ffffffff',
+        showPageTitle: false,
+        staticText: title
+      },
+    };
+
+    const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
+    browser.insertCss({
+      file: 'assets/img/close.png',
+      code: '.navbar-fixed-top {display: block !important;}'
+    });
+    browser.reload();
+    browser.on('closePressed').subscribe(data => {
+      browser.close();
+    })
+  }
 
 
   inapp_test() {

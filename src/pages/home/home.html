@@ -177,31 +177,31 @@
    <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
 
 
-  <ion-grid class="beauty_tip">
+  <ion-grid *ngIf="platform.is('android')" class="beauty_tip">
     <ion-row>
       <ion-col class="beauty_tip_title left-margin">
         뷰티 팁
       </ion-col>
     </ion-row>
     <ion-row class="beauty_grid_width">
-      <ion-col class=beauty_grid1 col-6 (click)="openBrowser(beauty_data_url1, beauty_data_title1)" >
+      <ion-col class=beauty_grid1 col-6 (click)="openBrowser_android(beauty_data_url1, beauty_data_title1)" >
         <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"  />
         <div class="beauty_title">{{beauty_data_type1}}</div>
         <div class="beauty_desc">{{beauty_data_title1}}</div>
       </ion-col>
-      <ion-col class=beauty_grid2 col-6 (click)="openBrowser(beauty_data_url2, beauty_data_title2)" >
+      <ion-col class=beauty_grid2 col-6 (click)="openBrowser_android(beauty_data_url2, beauty_data_title2)" >
         <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id2}}" />
         <div class="beauty_title">{{beauty_data_type2}}</div>
         <div class="beauty_desc">{{beauty_data_title2}}</div>
       </ion-col>
     </ion-row>
     <ion-row class="beauty_grid_width">
-      <ion-col class="beauty_grid3" col-6 (click)="openBrowser(beauty_data_url3, beauty_data_title3)">
+      <ion-col class="beauty_grid3" col-6 (click)="openBrowser_android(beauty_data_url3, beauty_data_title3)">
         <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id3}}" />
         <div class="beauty_title">{{beauty_data_type3}}</div>
         <div class="beauty_desc">{{beauty_data_title3}}</div>
       </ion-col>
-      <ion-col class="beauty_grid4" col-6 (click)="openBrowser(beauty_data_url4, beauty_data_title4)">
+      <ion-col class="beauty_grid4" col-6 (click)="openBrowser_android(beauty_data_url4, beauty_data_title4)">
         <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id4}}" />
         <div class="beauty_title">{{beauty_data_type4}}</div>
         <div class="beauty_desc">{{beauty_data_title4}}</div>
@@ -213,6 +213,44 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-grid *ngIf="platform.is('ios')" class="beauty_tip">
+    <ion-row>
+      <ion-col class="beauty_tip_title left-margin">
+        뷰티 팁
+      </ion-col>
+    </ion-row>
+    <ion-row class="beauty_grid_width">
+      <ion-col class=beauty_grid1 col-6 (click)="openBrowser_ios(beauty_data_url1, beauty_data_title1)" >
+        <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"  />
+        <div class="beauty_title">{{beauty_data_type1}}</div>
+        <div class="beauty_desc">{{beauty_data_title1}}</div>
+      </ion-col>
+      <ion-col class=beauty_grid2 col-6 (click)="openBrowser_ios(beauty_data_url2, beauty_data_title2)" >
+        <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id2}}" />
+        <div class="beauty_title">{{beauty_data_type2}}</div>
+        <div class="beauty_desc">{{beauty_data_title2}}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="beauty_grid_width">
+      <ion-col class="beauty_grid3" col-6 (click)="openBrowser_ios(beauty_data_url3, beauty_data_title3)">
+        <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id3}}" />
+        <div class="beauty_title">{{beauty_data_type3}}</div>
+        <div class="beauty_desc">{{beauty_data_title3}}</div>
+      </ion-col>
+      <ion-col class="beauty_grid4" col-6 (click)="openBrowser_ios(beauty_data_url4, beauty_data_title4)">
+        <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id4}}" />
+        <div class="beauty_title">{{beauty_data_type4}}</div>
+        <div class="beauty_desc">{{beauty_data_title4}}</div>
+      </ion-col>
+    </ion-row><br>
+    <ion-row>
+      <ion-col style="text-align: center">
+        <button ion-button outline class="beauty_btn">뷰티 팁 더보기</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
 
    <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
