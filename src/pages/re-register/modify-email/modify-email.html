@@ -1,0 +1,25 @@
+
+
+<ion-content padding>
+
+
+  <ion-img *ngIf="platform.is('android')" class="close" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
+                assets/img/agreement/ic-system-back-black@3x.png" (click)="navpop()"></ion-img>
+
+
+  <ion-img *ngIf="platform.is('ios')" class="close" style="margin-top: 5%;" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
+                assets/img/agreement/ic-system-back-black@3x.png" (click)="navpop()"></ion-img>
+
+
+  <h1 class="h1" >이메일 수정</h1>
+
+  <ion-item class="item_align" style="background:#FFF">
+  <ion-input class="input_name" mode="ios" type="text" name="name" placeholder="이메일을 입력해주세요."
+  clearInput required></ion-input>
+  </ion-item>
+
+
+
+
+
+</ion-content>

@@ -49,6 +49,13 @@
       <ion-list class="register_list">
         <form novalidate (ngSubmit)="anddinfo()" [formGroup]="signupform">
 
+          <div class="container">
+          <img class="register_profile" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
+                          assets/img\register/ic-system-profile-default@3x.png"/>
+          <ion-img class="register_camera" src="assets/img/register/ic-system-camera@3x.png" srcset="assets/img/register/ic-system-camera@2x.png,
+                                          assets/img/register/ic-system-camera@3x.png" (click)="camera()"></ion-img></div>
+
+
       <ion-item class="email_align">
         <ion-label class="email_label" stacked>이메일</ion-label>
         <ion-input (ionChange)="changeImage(signupform.controls.email.valid && signupform.controls.email.dirty)" mode="ios" type="email" class="email_input"

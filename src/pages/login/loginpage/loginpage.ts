@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, Inject, ElementRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController, Loading, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, Loading, ViewController, Platform } from 'ionic-angular';
 import { AuthService } from '../../../providers/auth-service';
 import { AgreementPage } from '../../agreement/agreement';
 import { PasswordfindPage } from '../passwordfind/passwordfind';
@@ -72,7 +72,7 @@ export class LoginpagePage {
 
   @ViewChild('myElement') myElem;
   constructor(public nav: NavController, public navParams: NavParams, animationService: AnimationService,
-    private alertCtrl: AlertController, private loadingCtrl: LoadingController, public naver: Naver,
+    private alertCtrl: AlertController, private loadingCtrl: LoadingController, public naver: Naver, public platform: Platform,
     private auth: AuthService, public viewCtrl: ViewController, @Inject(DOCUMENT) document) {
       this.animator = animationService.builder();
   }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Platform , ModalController} from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { PlinicManualPage } from './details/plinic-manual/plinic-manual';
 import { QnaPage } from './details/qna/qna';
@@ -47,7 +47,7 @@ export class MyinfoPage {
   blu_connect : boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,
-    private alertCtrl: AlertController, private platform: Platform, private fcm: FCM, public bluetoothle: BluetoothLE) {
+    private alertCtrl: AlertController, private platform: Platform, private fcm: FCM, public bluetoothle: BluetoothLE, public modalCtrl: ModalController) {
 
 
      this.platform.ready().then(() => {
@@ -62,12 +62,14 @@ export class MyinfoPage {
   }
 
   public Reregiter(){
-    this.navCtrl.push(ReRegisterPage, {
-      birthday : this.userData.birthday,
-        email : this.userData.email,
-        gender : this.userData.gender,
-        nickname : this.userData.nickname
-    });
+    // this.navCtrl.push(ReRegisterPage, {
+    //   birthday : this.userData.birthday,
+    //     email : this.userData.email,
+    //     gender : this.userData.gender,
+    //     nickname : this.userData.nickname
+    // });
+    let myModal = this.modalCtrl.create(ReRegisterPage);
+    myModal.present();
   }
 
 

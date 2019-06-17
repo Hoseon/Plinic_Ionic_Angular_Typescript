@@ -180,9 +180,10 @@ export class HomePage {
 
   openBrowser(url, title) {
     // https://ionicframework.com/docs/native/themeable-browser/
+    if (this.platform.is('ios')) {
     const options: ThemeableBrowserOptions = {
       toolbar: {
-        height: 44,
+        height: 55,
         color: '#6562b9'
       },
       title: {
@@ -190,24 +191,28 @@ export class HomePage {
         showPageTitle: false,
         staticText: title
       },
-      // backButton: {
-      //   wwwImage: 'assets/img/back.png',
-      //   align: 'left',
-      //   event: 'backPressed'
-      // },
-      // forwardButton: {
-      //   wwwImage: 'assets/img/forward.png',
-      //   align: 'left',
-      //   event: 'forwardPressed'
-      // },
       closeButton: {
         wwwImage: 'assets/img/close.png',
+        width: 25,
+        height: 25,
         align: 'left',
         event: 'closePressed'
       },
-      // backButtonCanClose: true
     };
-
+    }
+    else{
+      const options: ThemeableBrowserOptions = {
+        toolbar: {
+          height: 55,
+          color: '#6562b9'
+        },
+        title: {
+          color: '#ffffffff',
+          showPageTitle: false,
+          staticText: title
+        },
+      };
+    }
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
     browser.insertCss({
       file: 'assets/img/close.png',
@@ -218,6 +223,9 @@ export class HomePage {
       browser.close();
     })
   }
+
+
+
 
   inapp_test() {
 

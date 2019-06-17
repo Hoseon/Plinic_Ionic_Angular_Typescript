@@ -203,6 +203,8 @@ page-addinfo {
         .input-ios .text-input-clear-icon{
             background-image: url(../assets/img/register/ic-system-clear-grey@3x.png);
             background-size: 25px;
+            position:absolute;
+            right: -1%;
           }
 
         .input_name{
@@ -217,6 +219,7 @@ page-addinfo {
           color: #292929;
           padding-bottom: 2%;
         }
+
         .email_img{
           position: relative;
           background-color: #FFF;

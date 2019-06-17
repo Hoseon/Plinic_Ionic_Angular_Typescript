@@ -164,6 +164,35 @@ page-register {
       padding: 0px;
     }
 
+    .container {
+      position: relative;
+      width: 100%;
+    }
+
+    .container .register_profile {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto;
+      display: block;
+      background-color: transparent;
+      margin-bottom: 7%;
+    }
+
+    .container .register_camera{
+    position: absolute;
+    top: 80%;
+    right: 31%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    object-fit: contain;
+  }
 
 
     .email_align{
@@ -177,7 +206,7 @@ page-register {
     .password_align{
       padding-left: 2%;
       padding-right: 2%;
-      margin-top: 3%;
+      margin-top: 5%;
     }
 
 
