@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController, Platform } from 'ionic-angular';
 import { CareZoneMissionCompletePage } from '../care-zone-mission-complete/care-zone-mission-complete';
 import { ImagesProvider } from '../../providers/images/images';
-import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-mission-ing'
+import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-mission-ing';
+import { AuthService } from '../../providers/auth-service';
+import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+
 /**
  * Generated class for the CareZoneMissionStartPage page.
  *
@@ -24,10 +27,16 @@ export class CareZoneMissionStartPage {
   currentDate: Date = new Date();
   dday: any;
   getday: any;
+  userData: any;
+  nickname: string;
+  jwtHelper: JwtHelper = new JwtHelper();
+  thumb_image: any;
+
   constructor(public nav: NavController, public navParams: NavParams, private images: ImagesProvider,
-    private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform,
+    private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform, private auth: AuthService,
   ) {
     this.platform.ready().then((readySource) => {
+      this.loadItems();
       this._id = this.navParams.get('_id');
       this.roadmission(this._id);
       this.getDday();
@@ -40,6 +49,46 @@ export class CareZoneMissionStartPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CareZoneMissionStartPage');
+  }
+
+  public loadItems() {
+    this.auth.getUserStorage().then(items => {
+
+      if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
+        console.log("SNS 로그인");
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: items.email,
+          gender: items.gender,
+          nickname: items.nickname,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+        };
+        if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
+          this.thumb_image = false;
+        } else {
+          this.thumb_image = true;
+        }
+
+      } else {
+        console.log("일반 유저 로그인");
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: this.jwtHelper.decodeToken(items).email,
+          gender: items.gender,
+          nickname: this.jwtHelper.decodeToken(items).name,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+        };
+        console.log(this.userData);
+      }
+    });
   }
 
 
@@ -80,14 +129,17 @@ export class CareZoneMissionStartPage {
     this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
-      title: 'Fail',
+      cssClass: 'push_alert',
+      title: 'Plinic',
       message: text,
-      buttons: ['OK']
+      buttons: [{
+       text:'확인'
+      }]
     });
     alert.present();
   }
 
-
+  //20190614 미션 시작 질의 후 Mission 테이블에 데이터 저장
   satrtMission(id) {
     //console.log(id);
     let alert = this.alertCtrl.create({
@@ -106,18 +158,31 @@ export class CareZoneMissionStartPage {
           text: '확인',
           handler: () => {
             console.log('확인'),
-              this.nav.push(CareZoneMissionIngPage, { _id: id });
+            console.log(this.carezoneData.startmission)
+            console.log(this.carezoneData.endmission)
+              this.auth.missionSave(id, this.userData.email, this.carezoneData.startmission, this.carezoneData.endmission).subscribe(data =>{
+                console.log("미션 시작 :" + data);
+                this.nav.push(CareZoneMissionIngPage, { _id: id });
+              }, error => {
+                this.showError(JSON.parse(error._body).msg);
+              });
+
           }
         }]
     });
     alert.present();
+
   }
+
+
+
+
 
   public diffdate(date1: Date = new Date(), date2: Date = new Date()) {
     return (date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24)
   }
 
-  public getDday(){
+  public getDday() {
     console.log(this.carezoneData);
     //this.getday = new Date(this.carezoneData.startmission)
     //this.dday = this.diffdate(this.getday, this.currentDate)

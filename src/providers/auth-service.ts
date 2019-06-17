@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Http, HttpModule } from '@angular/http';
+import { Http, HttpModule, Headers} from '@angular/http';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
@@ -33,8 +33,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  apiUrl: 'http://plinic.cafe24app.com/',
-  // apiUrl: 'http://localhost:8001/',
+  //apiUrl: 'http://plinic.cafe24app.com/',
+  apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
@@ -248,6 +248,24 @@ export class AuthService {
       });
   }
 
+  public missionSave(id, email, start, end) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      missionID: id,
+      email : email,
+      startmission: start,
+      endmission: end
+    };
+    return this.http.post(CONFIG.apiUrl + 'api/missionsave', JSON.stringify(body), {headers : headers})
+    .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
   // Register a new user at our API
   public register(credentials) {
     return this.http.post(CONFIG.apiUrl + 'api/register', credentials)
@@ -355,6 +373,9 @@ export class AuthService {
     return this.http.get(CONFIG.apiUrl + 'notice/list')
       .map(response => response.json());
   }
+
+  //20190614 미션 시작시 mission 테이블에 post 정보를 날려 저장
+
 
 
   showAlert(text) {
