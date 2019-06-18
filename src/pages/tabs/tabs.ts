@@ -7,7 +7,7 @@ import { HomePage } from '../home/home';
 import { SuccessHomePage } from '../success-home/success-home'
 import { MyinfoPage } from '../myinfo/myinfo';
 import { CareZonePage } from '../care-zone/care-zone';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
@@ -25,7 +25,7 @@ export class TabsPage {
   tab4Root = ContactPage;
   tab5Root = MyinfoPage;
 
-  constructor(public nav: NavController, public navParams: NavParams, private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader) {
+  constructor(public navParams: NavParams, private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, public platform: Platform) {
     if (this.navParams.get('home') === 'successHome') {
       this.tab1Root = SuccessHomePage;
     } else {
@@ -34,22 +34,12 @@ export class TabsPage {
 
   }
 
-  // ionViewDidLeave(){
-  //  this.nav.setRoot(TabsPage);
-  // }
-
-  setRootHome() : void{
-    console.log("Root");
-    //this.nav.setRoot(TabsPage);
-    //this.navController.setRoot(/*your tab page*/);
-    this.nav.setRoot(this.nav.getActive().component);
-  }
-
-  openBrowser(url, title) {
+  openBrowser_ios(url, title) {
     // https://ionicframework.com/docs/native/themeable-browser/
+
     const options: ThemeableBrowserOptions = {
       toolbar: {
-        height: 44,
+        height: 55,
         color: '#6562b9'
       },
       title: {
@@ -57,22 +47,11 @@ export class TabsPage {
         showPageTitle: false,
         staticText: title
       },
-      // backButton: {
-      //   wwwImage: 'assets/img/back.png',
-      //   align: 'left',
-      //   event: 'backPressed'
-      // },
-      // forwardButton: {
-      //   wwwImage: 'assets/img/forward.png',
-      //   align: 'left',
-      //   event: 'forwardPressed'
-      // },
       closeButton: {
         wwwImage: 'assets/img/close.png',
         align: 'left',
         event: 'closePressed'
       },
-      // backButtonCanClose: true
     };
 
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
@@ -85,5 +64,32 @@ export class TabsPage {
       browser.close();
     })
   }
+
+  openBrowser_android(url, title) {
+    // https://ionicframework.com/docs/native/themeable-browser/
+
+    const options: ThemeableBrowserOptions = {
+      toolbar: {
+        height: 55,
+        color: '#6562b9'
+      },
+      title: {
+        color: '#ffffffff',
+        showPageTitle: false,
+        staticText: title
+      },
+    };
+
+    const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
+    browser.insertCss({
+      file: 'assets/img/close.png',
+      code: '.navbar-fixed-top {display: block !important;}'
+    });
+    browser.reload();
+    browser.on('closePressed').subscribe(data => {
+      browser.close();
+    })
+  }
+
 
 }

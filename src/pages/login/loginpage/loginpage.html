@@ -27,9 +27,12 @@
     <ion-card-content>So much awesome content and animations. AMAZING!</ion-card-content>
   </ion-card> -->
 
-    <ion-img class="close" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
+    <ion-img  *ngIf="platform.is('android')" class="close" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
                   assets/img/login\ic-system-close-black@3x.png" (click)="dissmiss()"></ion-img>
 
+
+    <ion-img *ngIf="platform.is('ios')" class="close" style="margin-top:5%;" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
+                          assets/img/login\ic-system-close-black@3x.png" (click)="dissmiss()"></ion-img>
 
   <h1 class="h1" > 로그인 </h1>
 
@@ -38,13 +41,13 @@
      <ion-col>
        <button  ion-button class="submit-btn" (click)="naver_login()" outline>
          <img class="naver_btn" src="assets/img/naverlogo/ic-sns-naver.png" srcset="assets/img/naverlogo/ic-sns-naver@2x.png,
-                       assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기</button>
+                       assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 로그인</button>
        <button ion-button class="submit-btn" (click)="kakao_login()" outline>
          <img class="kakao_btn" src="assets/img/kakaologo/ic-sns-kakao.png" srcset="assets/img/kakaologo/ic-sns-kakao@2x.png,
-                       assets/img/kakaologo/ic-sns-kakao@3x.png" /> 카카오로 시작하기</button>
+                       assets/img/kakaologo/ic-sns-kakao@3x.png" /> 카카오로 로그인</button>
        <button ion-button class="submit-btn" (click)="google_login()" outline>
          <img class="google_btn" src="assets/img/googlelogo/ic-sns-google.png" srcset="assets/img/googlelogo/ic-sns-google@2x.png,
-                       assets/img/googlelogo/ic-sns-google@3x.png" /> 구글로 시작하기</button>
+                       assets/img/googlelogo/ic-sns-google@3x.png" /> 구글로 로그인</button>
       <ion-col class="Linetext">또는</ion-col>
      </ion-col>
    </ion-row>

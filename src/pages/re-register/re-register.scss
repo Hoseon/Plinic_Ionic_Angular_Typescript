@@ -1,36 +1,87 @@
-page-register {
-  .login-content {
+page-re-register {
 
-    .login-box {
-      padding: 20px 20px 0px 20px;
-      margin-top: 30px;
-    }
 
-     ion-item {
-         border-radius: 30px !important;
-         padding-left: 30px !important;
-         font-size: 0.9em;
-         margin-bottom: 10px;
-         border: 1px solid color($colors, light);
-         border-bottom: 0px !important;
-         box-shadow: none !important;
-                  background: color($colors, light);
+        .h1{
+           height: 80px;
+           font-family: NotoSansCJKkr;
+           font-size: 23px;
+           font-weight: bold;
+           font-style: normal;
+           font-stretch: normal;
+           line-height: normal;
+           letter-spacing: normal;
+           text-align: center;
+           color: #292929;
+           margin-bottom: -5%;
+        }
 
-     }
 
-     .signup-col {
-       margin: 0px 16px 0px 16px;
-       padding-bottom: 20px;
-     }
+        .close{
+        background-color: #FFF;
+        min-width: 25px;
+        min-height: 25px;
+        object-fit: contain;
+        margin-top: -1%;
+        margin-left: -0.5%;
+       }
 
-     .item-inner {
-       border-bottom-color: color($colors, light) !important;
-       box-shadow: none !important;
-     }
+       .container {
+         position: relative;
+         width: 100%;
+       }
 
-     .submit-btn {
-       border-radius: 30px !important;
-       border: 1px solid color($colors, light);
-     }
-  }
+       .container .register_profile {
+         width: 90px;
+         height: 90px;
+         object-fit: contain;
+         height: auto;
+         object-fit: contain;
+         margin: 0 auto;
+         display: block;
+         background-color: transparent;
+         margin-bottom: 13%;
+       }
+
+       .container .register_camera{
+       position: absolute;
+       top: 80%;
+       right: 31%;
+       transform: translate(-50%, -50%);
+       -ms-transform: translate(-50%, -50%);
+       cursor: pointer;
+       width: 30px;
+       height: 30px;
+       background-color: transparent;
+       object-fit: contain;
+      }
+
+
+      .profile_modify{
+        font-family: NotoSansCJKkr;
+        font-size: 15px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #292929;
+        padding-bottom: 4%;
+        padding-left: 2%;
+      }
+
+
+      .profile_text{
+        position: absolute;
+        right:10%;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: #292929;
+
+      }
 }

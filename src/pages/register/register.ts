@@ -83,6 +83,18 @@ export class RegisterPage {
     console.log(value)
 }
 
+  public camera(){
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: "카메라 모듈 준비중",
+      message: "카메라 적용중입니다.",
+      buttons: [{
+        text: '확인'
+      }]
+    });
+    alert.present();
+  }
+
     public anddinfo(){
       if(this.userData.password===this.userData.passwordconfirm){
       this.nav.push(AddinfoPage,{

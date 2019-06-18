@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Platform, ViewController} from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-
+import { ModifyEmailPage} from './modify-email/modify-email';
+import { ModifyNumberPage} from './modify-number/modify-number';
+import { ModifyPasswordPage} from './modify-password/modify-password';
 
 /**
  * Generated class for the ReRegisterPage page.
@@ -31,8 +33,9 @@ export class ReRegisterPage {
   registerCredentials = {email: '' , password: '', name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
 
 
-  constructor(public nav: NavController, public navParams: NavParams, public auth: AuthService, private alertCtrl: AlertController, private plt: Platform) {
-  this.plt.ready().then(() => {
+  constructor(public nav: NavController, public navParams: NavParams, public auth: AuthService, private alertCtrl: AlertController,
+            private platform: Platform, public viewCtrl: ViewController) {
+  this.platform.ready().then(() => {
      this.loadItems();
    });
 }
@@ -40,14 +43,41 @@ export class ReRegisterPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReRegisterPage');
-    this.showPopup("myinfo userData", this.userData.birthday + this.birthday);
-    this.showPopup("myinfo userData", this.userData.email + this.email);
-    this.showPopup("myinfo userData", this.userData.gender + this.gender);
-    this.showPopup("myinfo userData", this.userData.nickname + this.nickname);
-
   }
 
 
+  public dissmiss() {
+    this.viewCtrl.dismiss();
+  }
+
+
+
+  public modify_email(){
+
+      this.nav.push(ModifyEmailPage);
+  }
+
+  public modify_number(){
+
+    this.nav.push(ModifyNumberPage);
+  }
+
+  public modify_password(){
+
+    this.nav.push(ModifyPasswordPage);
+  }
+
+  public camera(){
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: "카메라 모듈 준비중",
+      message: "카메라 적용중입니다.",
+      buttons: [{
+        text: '확인'
+      }]
+    });
+    alert.present();
+  }
 
   public register() {
     this.auth.register(this.registerCredentials).subscribe(success => {
