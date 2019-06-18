@@ -35,6 +35,26 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public missionCount(id) {
+    return this.http.get(this.apiURL + 'carezone/missioncount/' + id)
+      .map(response => response.json());
+  }
+
+  public getMissionMember(id) {
+    return this.http.get(this.apiURL + 'carezone/getmissionmember/' + id)
+      .map(response => response.json());
+  }
+
+  public giveupMission(email) {
+    return this.http.get(this.apiURL + 'carezone/giveupmission/' + email)
+      .map(response => response.json());
+  }
+
+  public chkMission(email) {
+    return this.http.get(this.apiURL + 'carezone/chkmission/' + email)
+      .map(response => response.json());
+  }
+
   public maincarezoneRoad() {
     return this.http.get(this.apiURL + 'carezone/main_list')
       .map(response => response.json());

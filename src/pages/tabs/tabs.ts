@@ -25,13 +25,24 @@ export class TabsPage {
   tab4Root = ContactPage;
   tab5Root = MyinfoPage;
 
-  constructor(public navParams: NavParams, private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader) {
+  constructor(public nav: NavController, public navParams: NavParams, private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader) {
     if (this.navParams.get('home') === 'successHome') {
       this.tab1Root = SuccessHomePage;
     } else {
       this.tab1Root = HomePage;
     }
 
+  }
+
+  // ionViewDidLeave(){
+  //  this.nav.setRoot(TabsPage);
+  // }
+
+  setRootHome() : void{
+    console.log("Root");
+    //this.nav.setRoot(TabsPage);
+    //this.navController.setRoot(/*your tab page*/);
+    this.nav.setRoot(this.nav.getActive().component);
   }
 
   openBrowser(url, title) {

@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertC
 import { CareZoneMissionDeadlinePage } from '../care-zone-mission-deadline/care-zone-mission-deadline';
 import { CareZonePage } from '../care-zone/care-zone';
 import { ImagesProvider } from '../../providers/images/images';
+import { AuthService } from '../../providers/auth-service';
+
+import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+
 
 /**
  * Generated class for the CareZoneMissionIngPage page.
@@ -24,17 +28,68 @@ export class CareZoneMissionIngPage {
   loading: Loading;
   carezoneData: any;
   endDate: any;
+  startDate: any;
   imgUrl: any;
+  userData: any;
+  thumb_image: any;
+  jwtHelper: JwtHelper = new JwtHelper();
+  missionCounter : any;
+  missionmember : any;
+  dday: any;
+  getday: any;
+  currentDate: Date = new Date();
+
   constructor(public nav: NavController, public navParams: NavParams,
     private images: ImagesProvider,
-    private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform, ) {
+    private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform, private auth: AuthService, ) {
+    this.loadItems();
     this._id = this.navParams.get('_id');
-    console.log("ing : " + this._id);
     this.roadmission(this._id);
+    this.missionCount(this._id);
+    this.missionMember(this._id);
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CareZoneMissionIngPage');
+  }
+
+  public loadItems() {
+    this.auth.getUserStorage().then(items => {
+
+      if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: items.email,
+          gender: items.gender,
+          nickname: items.nickname,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+        };
+        if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
+          this.thumb_image = false;
+        } else {
+          this.thumb_image = true;
+        }
+        //this.chkmission(this.userData.email);
+      } else {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: this.jwtHelper.decodeToken(items).email,
+          gender: items.gender,
+          nickname: this.jwtHelper.decodeToken(items).name,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+        };
+        // console.log(this.userData);
+        //this.chkmission(this.userData.email);
+      }
+    });
   }
 
   ngOnInit() {
@@ -52,6 +107,7 @@ export class CareZoneMissionIngPage {
     this.images.missionRoad(id).subscribe(data => {
       if (data !== '') {
         this.carezoneData = data;
+        this.startDate = data.startmission.substr(0, 10);
         this.endDate = data.endmission.substr(0, 10);
         this.imgUrl = "http://plinic.cafe24app.com/carezone_prodimages/".concat(data._id);
         //this.imgUrl.includes(data._id);
@@ -60,8 +116,29 @@ export class CareZoneMissionIngPage {
       } else {
         this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
       }
+
+      this.getday = new Date(this.carezoneData.startmission);
+      this.dday = this.diffdate(this.getday, this.currentDate);
+      this.dday = parseInt(this.dday);
+
     });
 
+  }
+
+  //20190617 미션 참여자 인원 count
+  public missionCount(id) {
+    // this.showLoading();
+    this.images.missionCount(id).subscribe(data => {
+       this.missionCounter = data;
+    });
+  }
+
+  //20190617 미션 참여자 인원 count
+  public missionMember(id) {
+    // this.showLoading();
+    this.images.getMissionMember(id).subscribe(data => {
+       this.missionmember = data;
+    });
   }
 
 
@@ -91,28 +168,35 @@ export class CareZoneMissionIngPage {
     this.nav.push(CareZoneMissionDeadlinePage);
   }
 
-  mission_giveup(){
+  mission_giveup() {
     let alert = this.alertCtrl.create({
-        cssClass:'push_alert_cancel',
-         title: "미션 포기",
-         message: "미션을 정말 포기 하시겠습니까? <br> 기간내에 재참여는 가능합니다.",
-         buttons: [
+      cssClass: 'push_alert_cancel',
+      title: "미션 포기",
+      message: "미션을 정말 포기 하시겠습니까? <br> 기간내에 재참여는 가능합니다.",
+      buttons: [
         {
           text: '취소',
           role: 'cancel',
           handler: () => {
-            console.log('취소');
           }
         },
-         {
-          text : '확인',
+        {
+          text: '확인',
           handler: () => {
-            console.log('확인'),
-            this.nav.push(CareZonePage);
+              this.images.giveupMission(this.userData.email).subscribe(data => {
+                this.nav.parent.select(1);
+                //this.nav.push(CareZonePage);
+              }, error => {
+                this.showError(JSON.parse(error._body).msg);
+              });
           }
-       }]
+        }]
     });
     alert.present();
+  }
+
+  public diffdate(date1: Date = new Date(), date2: Date = new Date()) {
+    return (date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24)
   }
 
 

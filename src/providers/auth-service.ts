@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Http, HttpModule, Headers} from '@angular/http';
+import { Http, HttpModule, Headers } from '@angular/http';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
@@ -33,8 +33,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  //apiUrl: 'http://plinic.cafe24app.com/',
-  apiUrl: 'http://localhost:8001/',
+  apiUrl: 'http://plinic.cafe24app.com/',
+  //apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
@@ -248,18 +248,19 @@ export class AuthService {
       });
   }
 
-  public missionSave(id, email, start, end) {
+  public missionSave(id, email, image, start, end) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
 
     let body = {
       missionID: id,
-      email : email,
+      email: email,
+      image_url: image,
       startmission: start,
-      endmission: end
+      endmission: end,
     };
-    return this.http.post(CONFIG.apiUrl + 'api/missionsave', JSON.stringify(body), {headers : headers})
-    .map(res => res.json())
+    return this.http.post(CONFIG.apiUrl + 'api/missionsave', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
       .map(data => {
         console.log(data);
         return data;

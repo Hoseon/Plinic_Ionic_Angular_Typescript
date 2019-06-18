@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar  *ngIf="platform.is('android')">
+  <ion-navbar *ngIf="platform.is('android')">
     <ion-title *ngIf="carezoneData" class="android_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
   </ion-navbar>
 
@@ -15,12 +15,12 @@
   </ion-navbar> -->
 
   <ion-navbar *ngIf="platform.is('ios')">
-  	<ion-buttons left>
-  		<button ion-button navPop icon-only>
-  			<!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
-        <img class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
-  		</button>
-  	</ion-buttons>
+    <ion-buttons left>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
     <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
   </ion-navbar>
 </ion-header>
@@ -28,140 +28,151 @@
 
 <ion-content>
 
-<br>
+  <br>
   <ion-list *ngIf="carezoneData">
     <ion-item no-lines>
       <img class="goods-img" src="http://plinic.cafe24app.com/carezone_prodimages/{{carezoneData._id}}" /><br><br>
 
-      <button ion-button style="height:28px;box-shadow: none;" class="button_outline" outline (click)="mission_complete()">미션</button>
-      </ion-item>
-      <h1 class="top_text"> {{carezoneData.missontitle}} </h1><br>
+      <button *ngIf="!chkBtn2" ion-button style="height:28px;box-shadow: none;" class="button_outline" outline (click)="mission_complete()">미션</button>
+      <button *ngIf="chkBtn2" ion-button style="height:28px;box-shadow: none;" class="button_outline_end" outline (click)="mission_complete()">모집 마감</button>
+    </ion-item>
+    <h1 class="top_text"> {{carezoneData.missontitle}} </h1><br>
 
 
-      <ion-item style="width:97%" >
-         <ion-grid class="gridtext">
-               <ion-row style="width:89.7%">
-                   <ion-col class="event-col4">보상 상품</ion-col>
-                   <ion-col class="event-col7">{{carezoneData.product}}</ion-col>
-              </ion-row>
-         </ion-grid>
-      </ion-item>
-     <ion-item style="width:97%;"  >
-         <ion-grid class="gridtext">
-             <ion-row style="width:89.7%">
-                 <ion-col class="event-col4">미션목표</ion-col>
-                 <ion-col class="event-col5">{{ carezoneData.missonsubtitle }}</ion-col>
-             </ion-row>
-         </ion-grid>
-    </ion-item>
-    <ion-item style="width:97%" >
-       <ion-grid class="gridtext">
-             <ion-row style="width:89.7%">
-                 <ion-col class="event-col4">참여인원
-                 <img class="info-img" src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png"/></ion-col>
-                 <ion-col class="event-col9">3
-                 <ion-col class="event-col11">/ {{ carezoneData.maxmember}}</ion-col></ion-col>
-             </ion-row>
-        </ion-grid>
-    </ion-item>
-    <ion-item style="width:97%" >
-       <ion-grid class="gridtext">
-             <ion-row style="width:89.7%">
-                 <ion-col class="event-col4">미션 시작</ion-col>
-                 <ion-col class="event-col13">D-{{dday}}</ion-col>
-                 <ion-col class="event-col12">{{startDate}}</ion-col>
-             </ion-row>
-         </ion-grid>
-   </ion-item>
-   <ion-item style="width:97%" >
+    <ion-item style="width:97%">
       <ion-grid class="gridtext">
-            <ion-row style="width:89.7%">
-                <ion-col class="event-col4">미션 마감</ion-col>
-                <ion-col class="event-col12">{{endDate}}</ion-col>
-            </ion-row>
-        </ion-grid>
-  </ion-item>
-   <ion-item no-lines>
-     <ion-col class="sub" text-wrap>
-       ※&nbsp;유의사항과 일정 등을 반드시 확인하고 참여해주세요.
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col4">보상 상품</ion-col>
+          <ion-col class="event-col7">{{carezoneData.product}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%;">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col4">미션목표</ion-col>
+          <ion-col class="event-col5">{{ carezoneData.missonsubtitle }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col4">참여인원
+            <img class="info-img" src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png" /></ion-col>
+          <ion-col class="event-col9">{{missionCounter}}
+            <ion-col class="event-col11">/ {{ carezoneData.maxmember}}</ion-col>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col4">미션 시작</ion-col>
+          <ion-col class="event-col13">D-{{dday}}</ion-col>
+          <ion-col class="event-col12">{{startDate}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col4">미션 마감</ion-col>
+          <ion-col class="event-col12">{{endDate}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-col class="sub" text-wrap>
+        ※&nbsp;유의사항과 일정 등을 반드시 확인하고 참여해주세요.
 
-     </ion-col>
+      </ion-col>
     </ion-item>
 
     <ion-item no-lines>
-      <button ion-button class="button_start" style="font-size: 14px;box-shadow: none;"
-      outline (click)="satrtMission(carezoneData._id)" >미션 참여&nbsp;&nbsp;></button>
-      <button ion-button class="button_detail" style="font-size: 14px;box-shadow: none;" outline outline >제품 상세정보&nbsp;&nbsp;></button>
+      <div *ngIf="!maxBtn">
+        <div *ngIf="!chkBtn2">
+          <button *ngIf="chkBtn" ion-button class="button_start" style="font-size: 14px;box-shadow: none;" outline (click)="satrtMission(carezoneData._id)">미션 참여&nbsp;&nbsp;></button>
+          <button *ngIf="!chkBtn" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionError()">참여 불가(다른 미션 참여 중)</button>
+        </div>
+      </div>
+      <button *ngIf="chkBtn2" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionEndError()">모집 마감(미션 진행중)</button>
+      <button *ngIf="maxBtn" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionMaxEndError()">참여 불가(모집 인원 초과)</button>
+      <button ion-button class="button_detail" style="font-size: 14px;box-shadow: none;" outline outline>제품 상세정보&nbsp;&nbsp;></button>
     </ion-item>
   </ion-list>
 
 
- <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
+  <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
 
 
-<ion-list>
- <ion-item no-lines>
-    <ion-grid>
-          <ion-row class="sns_row">
-              <ion-col><ion-img class="mission-img"src="assets/img/care-zone/sns/ic-sns-kakao@3x.png"
-              srcset="assets/img/sns/ic-sns-kakao@2x.png, assets/img/sns/ic-sns-kakao@3x.png"></ion-img>
-              <ion-col><ion-img class="mission-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png"
-              srcset="assets/img/sns/ic-sns-fb@2x.png, assets/img/sns/ic-sns-fb@3x.png"></ion-img>
-              <ion-col><ion-img class="mission-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png"
-              srcset="assets/img/sns/ic-sns-fb@2x.png, assets/img/sns/ic-sns-fb@3x.png"></ion-img></ion-col></ion-col></ion-col>
-          </ion-row>
-     </ion-grid>
- </ion-item>
-
-</ion-list>
-
-
-
- <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
-
-
-<ion-list>
-   <h3 class="bottom_text"> 유의사항 </h3>
-
-   <ion-item no-lines text-wrap>
-     <ion-col class="caution">
-      • 참여할 수 있는 미션은 1개입니다. <br>
-      • 모든 미션은 선착순으로 모집합니다.<br>
-      • 미션이 시작이 되면, 미션에 참여하실 수 없습니다.<br>
-      • 미션 종료 후에는 참여기록이 모두 없어집니다.<br>
-      • 마감기간을 반드시 확인해주세요.<br>
-      • 미션이 연장되거나 조기 마감될 수도 있습니다.<br>
-      • 미션을 중간에 포기하셔도 불이익이 없습니다.<br>
-      • 미션 포기 후 다른 미션에 참여하실 수 있습니다.<br>
-      • 미션 성공 후 배송정보를 정확하게 입력해주세요.<br>
-      • 무분별한 욕설 및 광고 등은 제재 조치를 할 수 있습니다.
-
-     </ion-col>
+  <ion-list>
+    <ion-item no-lines>
+      <ion-grid>
+        <ion-row class="sns_row">
+          <ion-col>
+            <ion-img class="mission-img" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" srcset="assets/img/sns/ic-sns-kakao@2x.png, assets/img/sns/ic-sns-kakao@3x.png"></ion-img>
+            <ion-col>
+              <ion-img class="mission-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" srcset="assets/img/sns/ic-sns-fb@2x.png, assets/img/sns/ic-sns-fb@3x.png"></ion-img>
+              <ion-col>
+                <ion-img class="mission-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" srcset="assets/img/sns/ic-sns-fb@2x.png, assets/img/sns/ic-sns-fb@3x.png"></ion-img>
+              </ion-col>
+            </ion-col>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
-</ion-list>
 
- <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
- <ion-list>
+  </ion-list>
+
+
+
+  <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
+
+
+  <ion-list>
+    <h3 class="bottom_text"> 유의사항 </h3>
+
+    <ion-item no-lines text-wrap>
+      <ion-col class="caution">
+        • 참여할 수 있는 미션은 1개입니다. <br>
+        • 모든 미션은 선착순으로 모집합니다.<br>
+        • 미션이 시작이 되면, 미션에 참여하실 수 없습니다.<br>
+        • 미션 종료 후에는 참여기록이 모두 없어집니다.<br>
+        • 마감기간을 반드시 확인해주세요.<br>
+        • 미션이 연장되거나 조기 마감될 수도 있습니다.<br>
+        • 미션을 중간에 포기하셔도 불이익이 없습니다.<br>
+        • 미션 포기 후 다른 미션에 참여하실 수 있습니다.<br>
+        • 미션 성공 후 배송정보를 정확하게 입력해주세요.<br>
+        • 무분별한 욕설 및 광고 등은 제재 조치를 할 수 있습니다.
+
+      </ion-col>
+    </ion-item>
+  </ion-list>
+
+  <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
+  <ion-list>
     <h3 class="bottom_text">참여가능 미션</h3>
 
 
-  <ion-grid class="gridimage">
-    <ion-row>
-      <ion-col class="container">
-        <img class="imagealign" src="assets/img/home/carezone1.png" />
-        <button class="ing_btn" style="font-size: 9px; box-shadow: none;" ion-button>모집 중</button>
-      </ion-col>
-      <ion-col class="container">
-        <img class="imagealign" src="assets/img/home/carezone2.png" />
-        <button class="ing_btn" style="font-size: 9px; box-shadow: none;" ion-button>모집 중</button>
-      </ion-col>
-    </ion-row>
- </ion-grid>
+    <ion-grid class="gridimage">
+      <ion-row>
+        <ion-col class="container">
+          <img class="imagealign" src="assets/img/home/carezone1.png" />
+          <button class="ing_btn" style="font-size: 9px; box-shadow: none;" ion-button>모집 중</button>
+        </ion-col>
+        <ion-col class="container">
+          <img class="imagealign" src="assets/img/home/carezone2.png" />
+          <button class="ing_btn" style="font-size: 9px; box-shadow: none;" ion-button>모집 중</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
 
     <ion-item no-lines>
       <button ion-button class="button_add" style="font-size: 14px; box-shadow: none;" outline>미션 더보기&nbsp;&nbsp;></button>
     </ion-item>
- </ion-list>
+  </ion-list>
 
 </ion-content>

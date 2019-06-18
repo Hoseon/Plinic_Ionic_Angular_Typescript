@@ -31,15 +31,21 @@ export class CareZoneMissionStartPage {
   nickname: string;
   jwtHelper: JwtHelper = new JwtHelper();
   thumb_image: any;
+  chkBtn: any = false;
+  chkBtn2: any = false;
+  chkDay: any;
+  missionCounter: any;
+  maxBtn: any = false;
+
 
   constructor(public nav: NavController, public navParams: NavParams, private images: ImagesProvider,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform, private auth: AuthService,
   ) {
     this.platform.ready().then((readySource) => {
-      this.loadItems();
-      this._id = this.navParams.get('_id');
-      this.roadmission(this._id);
-      this.getDday();
+      // this.loadItems();
+      // this._id = this.navParams.get('_id');
+      // this.roadmission(this._id);
+      // this.getDday();
     });
 
 
@@ -47,15 +53,25 @@ export class CareZoneMissionStartPage {
     //this.carezoneData = this.roadmission(this._id);
   }
 
+
+  ionViewWillEnter() {
+    // console.log("Enter Mission Start");
+    // this.showLoading();
+    this.loadItems();
+    this._id = this.navParams.get('_id');
+    this.roadmission(this._id);
+    this.missionCount(this._id);
+    this.getDday();
+    //this.loading.dismiss();
+    // console.log("End Mission Start");
+  }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CareZoneMissionStartPage');
   }
 
   public loadItems() {
     this.auth.getUserStorage().then(items => {
 
       if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
-        console.log("SNS 로그인");
         this.userData = {
           accessToken: items.accessToken,
           id: items.id,
@@ -72,9 +88,8 @@ export class CareZoneMissionStartPage {
         } else {
           this.thumb_image = true;
         }
-
+        this.chkmission(this.userData.email);
       } else {
-        console.log("일반 유저 로그인");
         this.userData = {
           accessToken: items.accessToken,
           id: items.id,
@@ -86,7 +101,8 @@ export class CareZoneMissionStartPage {
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
         };
-        console.log(this.userData);
+        // console.log(this.userData);
+        this.chkmission(this.userData.email);
       }
     });
   }
@@ -94,6 +110,38 @@ export class CareZoneMissionStartPage {
 
   public mission_complete() {
     this.nav.push(CareZoneMissionCompletePage);
+  }
+
+  //20190617 미션 참여중인지 체크 하기
+  public chkmission(email) {
+    // this.showLoading();
+    console.log("chkBtn" + this.chkBtn);
+    this.images.chkMission(email).subscribe(data => {
+      if (data === '' || data === null || data === undefined) {
+        this.chkBtn = true;
+        //this.carezoneData = data;
+        //this.endDate = data.endmission.substr(0, 10);
+        //console.log(JSON.stringify(data));
+        // this.loading.dismiss();
+      } else if (data !== '' || data !== null || data !== undefined) {
+        this.chkBtn = false;
+      } else {
+        this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
+      }
+    });
+  }
+
+  //20190617 미션 참여자 인원 count
+  public missionCount(id) {
+    // this.showLoading();
+    this.images.missionCount(id).subscribe(data => {
+      this.missionCounter = data;
+      if (parseInt(this.missionCounter) === parseInt(this.carezoneData.maxmember)) {
+        this.maxBtn = true;
+      } else {
+        this.maxBtn = false;
+      }
+    });
   }
 
   public roadmission(id) {
@@ -111,8 +159,14 @@ export class CareZoneMissionStartPage {
 
       this.getday = new Date(this.carezoneData.startmission);
       this.dday = this.diffdate(this.getday, this.currentDate);
+      this.chkDay = this.dday
       this.dday = parseInt(this.dday)
-      //console.log("D-Day :" + this.dday);
+      if (this.chkDay < 0) {
+        //this.chkBtn = null;
+        this.chkBtn2 = true;
+      } else {
+        this.chkBtn2 = false;
+      }
     });
 
   }
@@ -125,6 +179,47 @@ export class CareZoneMissionStartPage {
     this.loading.present();
   }
 
+  showMissionError() {
+    this.loading.dismiss();
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: 'Plinic',
+      message: '플리닉은 1개 미션만 참가 할 수 있습니다. <br /> 다른 미션에 참가 하려면 <br /> 등록한 미션을 포기 해주세요.',
+      buttons: [{
+        text: '확인'
+      }]
+    });
+    alert.present();
+  }
+
+  showMissionEndError() {
+    this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: 'Plinic',
+      message: '해당 이벤트가 시작되었습니다. <br /> 이벤트가 시작하면 참여 할 수 없습니다. <br/> 미션 시작일 : ' + this.startDate,
+      buttons: [{
+        text: '확인'
+      }]
+    });
+    alert.present();
+  }
+
+  showMissionMaxEndError() {
+    this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: 'Plinic',
+      message: '해당 이벤트의 모집인원이 초과 되었습니다. <br /> 다음 기회에 참여해 주세요.',
+      buttons: [{
+        text: '확인'
+      }]
+    });
+    alert.present();
+  }
+
   showError(text) {
     this.loading.dismiss();
 
@@ -133,7 +228,7 @@ export class CareZoneMissionStartPage {
       title: 'Plinic',
       message: text,
       buttons: [{
-       text:'확인'
+        text: '확인'
       }]
     });
     alert.present();
@@ -151,21 +246,16 @@ export class CareZoneMissionStartPage {
           text: '취소',
           role: 'cancel',
           handler: () => {
-            console.log('취소');
           }
         },
         {
           text: '확인',
           handler: () => {
-            console.log('확인'),
-            console.log(this.carezoneData.startmission)
-            console.log(this.carezoneData.endmission)
-              this.auth.missionSave(id, this.userData.email, this.carezoneData.startmission, this.carezoneData.endmission).subscribe(data =>{
-                console.log("미션 시작 :" + data);
-                this.nav.push(CareZoneMissionIngPage, { _id: id });
-              }, error => {
-                this.showError(JSON.parse(error._body).msg);
-              });
+            this.auth.missionSave(id, this.userData.email, this.userData.thumbnail_image, this.carezoneData.startmission, this.carezoneData.endmission, ).subscribe(data => {
+              this.nav.push(CareZoneMissionIngPage, { _id: id });
+            }, error => {
+              this.showError(JSON.parse(error._body).msg);
+            });
 
           }
         }]

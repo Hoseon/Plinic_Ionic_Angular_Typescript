@@ -79,7 +79,6 @@ export class LoginpagePage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginpagePage');
   }
 
   ngOnInit() {

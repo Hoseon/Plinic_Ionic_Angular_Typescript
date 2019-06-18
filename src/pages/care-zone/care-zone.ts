@@ -23,6 +23,7 @@ import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 })
 export class CareZonePage {
   carezoneData: any;
+  missionData: any;
   loading: Loading;
   userData: any;
   nickname: string;
@@ -34,21 +35,35 @@ export class CareZonePage {
   mdchuchun: Array<boolean> = new Array<boolean>();
   approaching: Array<boolean> = new Array<boolean>();
   endrecruit: Array<boolean> = new Array<boolean>();
+  missionCounter: Array<any> = new Array<any>();
 
   thumb_image: any;
-
+  ingBtn : any = false;
 
   constructor(public platform: Platform, public nav: NavController,
     public navParams: NavParams, private images: ImagesProvider,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public authService: AuthService, ) {
     this.platform.ready().then((readySource) => {
-      this.carezoneData = this.roadcareZone();
-      this.loadItems();
+      // this.carezoneData = this.roadcareZone();
+      // this.loadItems();
     });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CareZonePage');
+  }
+
+  ionViewWillEnter() {
+    // console.log("Enter Home");
+    // this.showLoading();
+    // this.loadItems();
+    // this.bannerData = this.roadbanner();
+    // this.roadcareZone();
+    // this.roadbeauty();
+    this.carezoneData = this.roadcareZone();
+    this.loadItems();
+
+    //this.loading.dismiss();
+    // console.log("End Home");
   }
 
   public loadItems() {
@@ -71,6 +86,9 @@ export class CareZonePage {
         } else {
           this.thumb_image = true;
         }
+        this.chkmission(this.userData.email);
+        this.chkIngmission(this.userData.email);
+
 
       } else {
         this.userData = {
@@ -84,6 +102,9 @@ export class CareZonePage {
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
         };
+        this.chkmission(this.userData.email);
+        this.chkIngmission(this.userData.email);
+
       }
     });
   }
@@ -93,13 +114,25 @@ export class CareZonePage {
   public carezone_ing() {
     this.nav.push(CareZoneIngPage);
   }
-  public mission_ing() {
-    this.nav.push(CareZoneMissionIngPage);
+  public mission_ing(id) {
+    //this.nav.push(CareZoneMissionIngPage);
+    this.nav.push(CareZoneMissionIngPage, { _id: id });
   }
   public mission_start(id) {
-    console.log(id);
-    this.nav.push(CareZoneMissionStartPage, { _id: id });
+    //console.log(id);
+    //console.log("missiondata" + this.missionData.missionID);
+
+    if (this.missionData === null || this.missionData === undefined) {
+      //this.nav.push(CareZoneMissionIngPage);
+      this.nav.push(CareZoneMissionStartPage, { _id: id });
+    } else if (id === this.missionData.missionID) {
+      this.nav.push(CareZoneMissionIngPage, { _id: id });
+
+    } else {
+      this.nav.push(CareZoneMissionStartPage, { _id: id });
+    }
   }
+
   public mission_deadline_end() {
     this.nav.push(CareZoneMissionDeadlineEndPage);
   }
@@ -109,11 +142,25 @@ export class CareZonePage {
     return (date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24)
   }
 
+  //20190617 미션 참여자 인원 count
+  public missionCount(id) {
+    // this.showLoading();
+    this.images.missionCount(id).subscribe(data => {
+       return data;
+    });
+  }
+
+
+
   public roadcareZone() {
     this.showLoading();
     this.images.carezoneRoad().subscribe(data => {
+
       if (data !== '') {
         for (let i = 0; i < data.length; i++) {
+          this.images.missionCount(data[i]._id).subscribe(data2 => {
+             this.missionCounter[i] = data2;
+          });
           data[i].startmission = new Date(data[i].startmission);
           this.new[i] = false;
           this.recruiting[i] = false;
@@ -160,6 +207,50 @@ export class CareZonePage {
       }
     });
 
+  }
+
+  //20190617 미션 참여중인지 체크 하기
+  public chkmission(email) {
+    // this.showLoading();
+    //console.log("chkBtn" + this.chkBtn);
+    this.images.chkMission(email).subscribe(data => {
+
+      if (data !== '' || data !== null) {
+        //this.chkBtn = true;
+        this.missionData = data;
+        //this.endDate = data.endmission.substr(0, 10);
+        //console.log(JSON.stringify(data));
+        // this.loading.dismiss();
+      } else if (data === '' || data === null || data === undefined) {
+        //this.chkBtn = false;
+      } else {
+        this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
+      }
+    });
+
+  }
+
+  //20190618 진행 중인 미션 체크 하기
+  public chkIngmission(email) {
+    // this.showLoading();
+    //console.log("chkBtn" + this.chkBtn);
+    this.images.chkMission(email).subscribe(data => {
+
+      if (data !== null) {
+        //this.chkBtn = true;
+        this.missionData = data;
+        this.ingBtn = true;
+        //this.endDate = data.endmission.substr(0, 10);
+        //console.log(JSON.stringify(data));
+        // this.loading.dismiss();
+      } else if (data === '' || data === null || data === undefined) {
+        this.ingBtn = false;
+        //this.chkBtn = false;
+      } else {
+        this.ingBtn = false;
+        this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
+      }
+    });
   }
 
   showLoading() {

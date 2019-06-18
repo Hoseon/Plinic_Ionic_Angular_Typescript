@@ -59,7 +59,7 @@
          <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
                  <ion-col class="event-col4">미션명</ion-col>
-                 <ion-col class="event-col5">할수있다! 물광미인</ion-col>
+                 <ion-col class="event-col5">{{carezoneData.missontitle}}</ion-col>
              </ion-row>
          </ion-grid>
     </ion-item>
@@ -76,19 +76,28 @@
              <ion-row style="width:89.7%">
                  <ion-col class="event-col4">미션 횟수
                  <img class="info-img"src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png"/></ion-col>
-                 <ion-col class="event-col9">3
-                 <ion-col class="event-col11">/30</ion-col></ion-col>
+                 <ion-col class="event-col9">{{missionCounter}}
+                 <ion-col class="event-col11">/{{carezoneData.maxmember}}</ion-col></ion-col>
              </ion-row>
         </ion-grid>
     </ion-item>
-    <ion-item style="width:97%; margin-bottom: 5%;" >
+    <ion-item style="width:97%" >
        <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
-                 <ion-col class="event-col4">미션 일정</ion-col>
-                 <ion-col class="event-col12">startDate~{{endDate}}</ion-col>
+                 <ion-col class="event-col4">미션 시작</ion-col>
+                 <ion-col class="event-col13">D-{{dday}}</ion-col>
+                 <ion-col class="event-col12">{{startDate}}</ion-col>
              </ion-row>
          </ion-grid>
    </ion-item>
+   <ion-item style="width:97%" >
+      <ion-grid class="gridtext">
+            <ion-row style="width:89.7%">
+                <ion-col class="event-col4">미션 마감</ion-col>
+                <ion-col class="event-col12">{{endDate}}</ion-col>
+            </ion-row>
+        </ion-grid>
+  </ion-item>
    <ion-item no-lines>
      <ion-col class="sub" text-wrap>
        ※&nbsp;유의사항과 일정 등을 반드시 확인하고 참여해주세요.
@@ -109,7 +118,18 @@
 
 
 <!-- 참여자만큼 반복문 -->
-<ion-item no-lines>
+<ion-item *ngFor="let mission of missionmember" no-lines>
+    <ion-grid  class="eventgrid">
+        <ion-row>
+            <ion-col class="event-col0">{{index}}00</ion-col>
+            <ion-col *ngIf="!mission.image_url"><img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample@3x.png" /></ion-col>
+            <ion-col *ngIf="mission.image_url"><img class="profile-img" src="{{mission.image_url}}" /></ion-col>
+            <ion-col class="event-col8">{{id}} {{mission.email}}</ion-col>
+            <ion-col class="event-col6">{{count}}01회</ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-item>
+<!-- <ion-item no-lines>
     <ion-grid class="eventgrid">
         <ion-row>
             <ion-col class="event-col0">{{index}}00</ion-col>
@@ -156,19 +176,7 @@
             <ion-col class="event-col6">{{count}}20회</ion-col>
         </ion-row>
     </ion-grid>
-</ion-item>
-<ion-item no-lines>
-    <ion-grid class="eventgrid">
-        <ion-row>
-            <ion-col class="event-col0">{{index}}00</ion-col>
-            <ion-col><ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample@3x.png"
-              srcset="assets/img/ic-system-profile-sample@2x.png,
-                   assets/img/ic-system-profile-sample@3x.png"></ion-img></ion-col>
-            <ion-col class="event-col8">{{id}} 아이디</ion-col>
-            <ion-col class="event-col6">{{count}}20회</ion-col>
-        </ion-row>
-    </ion-grid>
-</ion-item>
+</ion-item> -->
  <ion-item no-lines>
    <button ion-button class="button_add" style="font-size: 14px; box-shadow:none;" outline>더보기&nbsp;&nbsp;></button>
  </ion-item><br>

@@ -41,6 +41,8 @@ import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser'
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { ImageLoader } from 'ionic-image-loader';
 import { CallNumber } from '@ionic-native/call-number';
+import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+
 
 @IonicPage()
 @Component({
@@ -52,20 +54,29 @@ export class HomePage {
   bannerData: any;
   imageUrl: any;
   carezoneData: any;
+  missionData: any;
+  jwtHelper: JwtHelper = new JwtHelper();
   careDataOBJ: any;
   first_carezone_title: any;
   first_carezone_body: any;
   first_carezone__id: any;
+  first_carezone_missioncount: any;
+  first_carezone_maxmember: any;
   first_carezone_startDate: Date;
   second_carezone_title: any;
   second_carezone_body: any;
   second_carezone__id: any;
+  second_carezone_missioncount: any;
+  second_carezone_maxmember: any;
   second_carezone_startDate: Date;
   third_carezone_title: any;
   third_carezone_body: any;
   third_carezone__id: any;
+  third_carezone_missioncount: any;
+  third_carezone_maxmember: any;
   third_carezone_startDate: Date;
   loading: Loading;
+  missionCounter: any;
 
   beauty_data_type1: any;
   beauty_data_title1: any;
@@ -158,11 +169,8 @@ export class HomePage {
         }
       });
 
-      //this.showLoading();
-      this.bannerData = this.roadbanner();
-      this.roadcareZone();
-      this.roadbeauty();
-      //this.loading.dismiss();
+
+
       //this.first_carezone = this.careDataOBJ[0];
       //this.second_carezone = this.careDataOBJ[1];
       //this.third_carezone = this.careDataOBJ[2];
@@ -175,6 +183,47 @@ export class HomePage {
       // });
     });
 
+  }
+
+  public loadItems() {
+    this.auth.getUserStorage().then(items => {
+
+      if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: items.email,
+          gender: items.gender,
+          nickname: items.nickname,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+        };
+        if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
+          // this.thumb_image = false;
+        } else {
+          // this.thumb_image = true;
+        }
+        this.chkmission(this.userData.email);
+
+
+      } else {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: this.jwtHelper.decodeToken(items).email,
+          gender: items.gender,
+          nickname: this.jwtHelper.decodeToken(items).name,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+        };
+        this.chkmission(this.userData.email);
+
+      }
+    });
   }
 
 
@@ -227,9 +276,20 @@ export class HomePage {
     const browser = this.iab.create('http://naver.com/');
   }
 
+  ionViewWillEnter() {
+    // console.log("Enter Home");
+    //this.nav.parent.select(0);
+    this.loadItems();
+    // this.showLoading();
+    this.bannerData = this.roadbanner();
+    this.roadcareZone();
+    this.roadbeauty();
+    //this.loading.dismiss();
+    //this.nav.setRoot(TabsPage);
+    // console.log("End Home");
+  }
 
-
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     // this.translateService.get('helloWorld').subscribe(
     //   hi => {
     //     let alert = this.alertCtrl.create({
@@ -267,7 +327,7 @@ export class HomePage {
   public moisture_help() {
     console.log('view');
     document.getElementById("view").style.display = "block";
-}
+  }
 
 
   public close() {
@@ -297,20 +357,50 @@ export class HomePage {
     return (date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24)
   }
 
+  //20190617 미션 참여자 인원 count
+  public first_missionCount(id) {
+    // this.showLoading();
+    this.images.missionCount(id).subscribe(data => {
+      this.first_carezone_missioncount = data;
+    });
+  }
+
+  //20190617 미션 참여자 인원 count
+  public second_missionCount(id) {
+    // this.showLoading();
+    this.images.missionCount(id).subscribe(data => {
+      this.second_carezone_missioncount = data;
+    });
+  }
+
+  //20190617 미션 참여자 인원 count
+  public third_missionCount(id) {
+    // this.showLoading();
+    this.images.missionCount(id).subscribe(data => {
+      this.third_carezone_missioncount = data;
+    });
+  }
+
   public roadcareZone() {
     this.images.maincarezoneRoad().subscribe(data => {
       //console.log(data);
       this.first_carezone_title = data[0].title;
       this.first_carezone_body = data[0].body;
       this.first_carezone__id = data[0]._id;
+      this.first_missionCount(data[0]._id);
+      this.first_carezone_maxmember = (data[0].maxmember);
       this.first_carezone_startDate = new Date(data[0].startmission);
       this.second_carezone_title = data[1].title;
       this.second_carezone_body = data[1].body;
       this.second_carezone__id = data[1]._id;
+      this.second_missionCount(data[1]._id);
+      this.second_carezone_maxmember = (data[1].maxmember);
       this.second_carezone_startDate = new Date(data[1].startmission);
       this.third_carezone_title = data[2].title;
       this.third_carezone_body = data[2].body;
       this.third_carezone__id = data[2]._id;
+      this.third_missionCount(data[2]._id);
+      this.third_carezone_maxmember = (data[1].maxmember);
       this.third_carezone_startDate = new Date(data[2].startmission);
       // this.currentDate = new Date();
       // this.currentDate.setDate( this.currentDate.getDate() + 2 );
@@ -494,7 +584,14 @@ export class HomePage {
   }
   public mission_start(_id) {
     //console.log(_id);
-    this.nav.push(CareZoneMissionStartPage, { _id: _id });
+
+    if (this.missionData === null || this.missionData === undefined) {
+      this.nav.push(CareZoneMissionStartPage, { _id: _id });
+    } else if (_id === this.missionData.missionID) {
+      this.nav.push(CareZoneMissionIngPage, { _id: _id });
+    } else {
+      this.nav.push(CareZoneMissionStartPage, { _id: _id });
+    }
   }
   public mission_deadline_end(id) {
     this.nav.push(CareZoneMissionDeadlineEndPage, { _id: id });
@@ -516,6 +613,28 @@ export class HomePage {
     // The second tab is the one with the index = 1
     //this.nav.push(TabsPage, { selectedTab: 1 });
     this.nav.parent.select(1);
+  }
+
+
+  //20190617 미션 참여중인지 체크 하기
+  public chkmission(email) {
+    // this.showLoading();
+    //console.log("chkBtn" + this.chkBtn);
+    this.images.chkMission(email).subscribe(data => {
+
+      if (data !== '' || data !== null || data !== undefined) {
+        //this.chkBtn = true;
+        this.missionData = data;
+        //this.endDate = data.endmission.substr(0, 10);
+        //console.log(JSON.stringify(data));
+        // this.loading.dismiss();
+      } else if (data === '' || data === null || data === undefined) {
+        //this.chkBtn = false;
+      } else {
+        this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
+      }
+    });
+
   }
 
   showLoading() {
