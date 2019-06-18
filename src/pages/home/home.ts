@@ -127,6 +127,11 @@ export class HomePage {
     this.platform.ready().then((readySource) => {
       // this.currentDate = new Date().toISOString();
 
+      this.loadItems();
+      this.bannerData = this.roadbanner();
+      this.roadcareZone();
+      this.roadbeauty();
+
       if (this.auth.bluetooth_connect() == true) {
         //this.nav.push(SkinChartPage);
       }
@@ -296,11 +301,11 @@ export class HomePage {
   ionViewWillEnter() {
     // console.log("Enter Home");
     //this.nav.parent.select(0);
-    this.loadItems();
-    // this.showLoading();
-    this.bannerData = this.roadbanner();
-    this.roadcareZone();
-    this.roadbeauty();
+    // this.loadItems();
+    // // this.showLoading();
+    // this.bannerData = this.roadbanner();
+    // this.roadcareZone();
+    // this.roadbeauty();
     //this.loading.dismiss();
     //this.nav.setRoot(TabsPage);
     // console.log("End Home");

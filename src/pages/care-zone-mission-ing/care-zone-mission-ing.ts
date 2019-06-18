@@ -188,7 +188,7 @@ export class CareZoneMissionIngPage {
                 //this.nav.push(CareZonePage);
               }, error => {
                 this.showError(JSON.parse(error._body).msg);
-              });
+              }); 
           }
         }]
     });

@@ -5,6 +5,9 @@ import { AuthService } from '../../providers/auth-service';
 import {AgreementPage } from '../agreement/agreement';
 import {AddinfoPage} from '../register/addinfo/addinfo';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { ImageLoader } from 'ionic-image-loader';
+
 
 
 @IonicPage()
@@ -21,6 +24,11 @@ export class RegisterPage {
   myImage2: any;
   myImage3: any;
   userData = { "password": "", "passwordconfirm": "", "email": ""};
+
+  images: any = [];
+  photoSrc: any;
+  cameraPhoto: any;
+  imagePath: any;
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController,
   public platform: Platform) {}
