@@ -102,10 +102,8 @@ export class LoginpagePage {
 
   changeImage(image){
       if(image){
-        console.log('image1================' + image);
         return this.myImage = "assets/img/register/ic-system-clear-grey@3x.png"
       } else{
-        console.log('image2============' + image);
         return this.myImage = "assets/img/register/ic-system-clear-red@3x.png"
       }
   }
