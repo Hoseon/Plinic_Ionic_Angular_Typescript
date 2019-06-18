@@ -25,13 +25,21 @@
 
 <ion-content no-lines no-padding>
 
+    <ion-item no-lines>
+    <ion-select class="qna_select" mode="ios" placeholder="문의사항을 선택하세요." [(ngModel)]="qna_select">
+      <ion-option value="배송문의">배송문의</ion-option>
+      <ion-option value="결제문의">결제문의</ion-option>
+    </ion-select>
+    </ion-item>
 
-  <div class="no_list" >문의하신 게시글이 없습니다.</div>
-
+    <ion-item no-lines>
+    <ion-textarea class="qna_input" [(ngModel)]="qna_input" placeholder="문의사항을 입력하세요."></ion-textarea>
+    </ion-item>
 
 </ion-content>
 
 
 <ion-footer no-lines>
-<button  class="qna_btn" ion-button (click)="qna_write();"> 문의하기</button>
+<button  *ngIf="qna_input!=='' && qna_select !==''"  class="qna_btn" ion-button (click)="qna_submit();"> 문의하기</button>
+<button  *ngIf="qna_input==='' || qna_select ===''" class="qna_btn2" ion-button (click)="qna_submit();"> 문의하기</button>
 </ion-footer>
