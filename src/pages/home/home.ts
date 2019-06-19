@@ -42,6 +42,10 @@ import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } fro
 import { ImageLoader } from 'ionic-image-loader';
 import { CallNumber } from '@ionic-native/call-number';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { BeautyTipAddPage } from '../beauty-tip-add/beauty-tip-add';
+import { PlinicManualPage } from '../myinfo/details/plinic-manual/plinic-manual';
+
+
 
 
 @IonicPage()
@@ -187,7 +191,15 @@ export class HomePage {
       //   this.showAlert(ble.status);
       // });
     });
+  }
 
+
+  public beauty_add(){
+    this.nav.push(BeautyTipAddPage);
+  }
+
+  public plinic_manual(){
+    this.nav.push(PlinicManualPage);
   }
 
   public loadItems() {
@@ -301,11 +313,11 @@ export class HomePage {
   ionViewWillEnter() {
     // console.log("Enter Home");
     //this.nav.parent.select(0);
-    // this.loadItems();
-    // // this.showLoading();
-    // this.bannerData = this.roadbanner();
-    // this.roadcareZone();
-    // this.roadbeauty();
+    //this.loadItems();
+    // this.showLoading();
+    //this.bannerData = this.roadbanner();
+    //this.roadcareZone();
+    //this.roadbeauty();
     //this.loading.dismiss();
     //this.nav.setRoot(TabsPage);
     // console.log("End Home");
@@ -345,6 +357,7 @@ export class HomePage {
     });
     alert.present();
   }
+
 
   public moisture_help() {
     console.log('view');

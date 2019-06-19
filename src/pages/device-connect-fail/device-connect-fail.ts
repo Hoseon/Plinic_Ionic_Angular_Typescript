@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the DeviceConnectFailPage page.
@@ -29,7 +30,8 @@ export class DeviceConnectFailPage {
   }
 
   public measureBack(){
-    this.navCtrl.setRoot(HomePage);
+    // this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(TabsPage);
   }
 
 }

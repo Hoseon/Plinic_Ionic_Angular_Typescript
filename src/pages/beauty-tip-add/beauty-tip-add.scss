@@ -1,19 +1,21 @@
-page-plinic-manual {
+page-beauty-tip-add {
+
 
   .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
-    height: 1px;
+    height: 0px;
     margin-bottom: 5px;
   }
   .item-md.item-block .item-inner{
     padding-right: 12px;
   }
   .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
-    height: 1px;
+    height: 0px;
     margin-bottom: 5px;
   }
   .item-ios.item-block .item-inner{
     padding-right: 12px;
   }
+
   .toolbar-title-md{
     font-weight: bold;
     font-size: 17px;
@@ -25,6 +27,7 @@ page-plinic-manual {
     letter-spacing: normal;
     text-align: center;
   }
+
   .toolbar-title-ios{
     font-weight: bold;
     font-size: 17px;
@@ -46,7 +49,7 @@ page-plinic-manual {
   }
 
   .ios_nav{
-    background-color: #FFF;
+    background-color: transparent;
     width: 140px !important;
     height: 25px !important;
     object-fit: contain;
@@ -90,6 +93,7 @@ page-plinic-manual {
     width: 120%;
     color: #292929;
   }
+
 
 
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { QnaWritePage } from './qna-write/qna-write';
 
 /**
  * Generated class for the QnaPage page.
@@ -15,11 +16,21 @@ import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 })
 export class QnaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform ) {
+  seeTabs;
+  qna_select: any ='';
+  qna_input: any ='';
+
+
+  constructor(public nav: NavController, public navParams: NavParams, public platform: Platform ) {
   }
 
   ionViewDidLoad() {
+    this.seeTabs = false;
     console.log('ionViewDidLoad QnaPage');
   }
 
+
+ public qna_write(){
+   this.nav.push(QnaWritePage);
+ }
 }

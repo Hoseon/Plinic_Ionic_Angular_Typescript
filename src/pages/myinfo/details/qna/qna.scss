@@ -91,4 +91,45 @@ page-qna {
     color: #292929;
   }
 
+  .no_list{
+    position: absolute;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #858585;
+    left: 25%;
+    top: 45%;
+  }
+
+
+.button-ios{
+  margin: 0px;
+  padding: 0px;
+}
+
+.button-md{
+  margin: 0px;
+  padding: 0px;
+}
+
+  .qna_btn{
+    min-width: 100%;
+    min-height: 50px;
+    background-color: #5c59b6;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+  }
+
 }

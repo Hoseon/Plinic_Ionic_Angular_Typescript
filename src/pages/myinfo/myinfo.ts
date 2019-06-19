@@ -12,7 +12,7 @@ import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { BluetoothConnectIngPage } from './details/bluetooth-connect-ing/bluetooth-connect-ing';
 import { BluetoothDisconnectPage } from './details/bluetooth-disconnect/bluetooth-disconnect';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
-
+import { CareZonePage } from '../care-zone/care-zone';
 
 
 /**
@@ -140,6 +140,10 @@ export class MyinfoPage {
   public logout(){
     //this.authService.logout();
     this.authService.kakao_authlogout();
+  }
+
+  public plinic_carezone(){
+    this.navCtrl.push(CareZonePage);
   }
 
   public plinic_manual(){

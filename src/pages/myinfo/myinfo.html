@@ -46,7 +46,7 @@
       <button mode="ios" *ngIf="!blu_connect" class="blue_status" no-lines ion-item (click)="blue_disconnect()">연동 해제</button>
     </ion-item>
     <button class="plinic_use" mode="ios" no-lines ion-item (click)="plinic_manual()" icon-start>플리닉 사용법</button>
-    <button class="care_zone" mode="ios" no-lines ion-item (click)="plinic_qna()" icon-start>케어존</button>
+    <button class="care_zone" mode="ios" no-lines ion-item (click)="plinic_carezone()" icon-start>케어존</button>
     <button class="inquiry" mode="ios" no-lines ion-item (click)="plinic_qna()" icon-start>문의하기</button>
     <ion-item no-lines>
       <ion-toggle mode="md" [(ngModel)]="push_check" (ionChange)="push_change()"></ion-toggle>
