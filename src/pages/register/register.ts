@@ -223,9 +223,13 @@ export class RegisterPage {
 
     // Get the data of an image
     this._camera.getPicture(options).then((imagePath) => {
-      this.imagePath = imagePath;
-      this.imagePath = normalizeURL(this.imagePath);
-      this.imagePath2 = normalizeURL(this.imagePath);
+      if(this.platform.is('ios')){
+        this.imagePath = imagePath;
+        this.imagePath = normalizeURL(this.imagePath);
+        this.imagePath2 = normalizeURL(this.imagePath);
+      }else {
+        this.imagePath2 = "data:image/jpeg;base64," + imagePath;
+      }
       //this.photoSrc = 'data:image/jpg;base64,' + imagePath;
       //this.cameraPhoto = this._DomSanitizer.bypassSecurityTrustUrl(this.photoSrc)
       // let modal = this.modalCtrl.create('UploadModalPage', { data: this.imagePath });

@@ -80,10 +80,14 @@ export class MyinfoPage {
     //20190619 내정보 변경 작업
     //SNS계정 로그인일 경우 회원 정보가 수정되지 않게 하며
 
+    if(this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver'){
+      this.showAlert("SNS계정 회원은 정보를 수정 할 수 없습니다.");
+    } else {
+      let myModal = this.modalCtrl.create(ReRegisterPage);
+      //this.modalCtrl.create('PreviewModalPage', { img: img });
+      myModal.present();
+    }
 
-    let myModal = this.modalCtrl.create(ReRegisterPage);
-    //this.modalCtrl.create('PreviewModalPage', { img: img });
-    myModal.present();
   }
 
 
@@ -101,7 +105,7 @@ export class MyinfoPage {
     else{
       console.log("꺼진 상태");
       let alert = this.alertCtrl.create({
-          cssClass:'push_alert_cancel',
+           cssClass:'push_alert_cancel',
            title: "추천 알림",
            message: "알림을 해제하시면 플리닉 이벤트 및 <br> 주요 정보를 받아 보실 수 없습니다. <br> 알림을 해제하시겠습니까?",
            buttons: [
@@ -179,6 +183,7 @@ export class MyinfoPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: items.from,
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           // this.thumb_image = false;
@@ -219,7 +224,8 @@ export class MyinfoPage {
     //this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
-      title: 'Fail',
+      cssClass:'push_alert',
+      title: 'Plinic',
       message: text,
       buttons: ['OK']
     });

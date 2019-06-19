@@ -29,16 +29,16 @@
   </div>
 
 
-  <button mode="ios" class="profile_modify" ion-item (click)="modify_email()">
-    <div class="profile_text">wjddn0313@naver.com</div>이메일
+  <button *ngIf="userData" mode="ios" class="profile_modify" ion-item (click)="modify_email()">
+    <div class="profile_text">{{userData.email}}</div>이메일
   </button>
 
   <button mode="ios" class="profile_modify" ion-item (click)="modify_number()">
     <div class="profile_text">01012341234</div>연락처
   </button>
 
-  <button mode="ios" class="profile_modify" ion-item (click)="modify_password()">
-    <div class="profile_text">*********</div>비밀번호
+  <button *ngIf="userData" mode="ios" class="profile_modify" ion-item (click)="modify_password()">
+    <div class="profile_text">**********</div>비밀번호
   </button>
 
 

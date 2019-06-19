@@ -115,7 +115,7 @@ import { BeautyTipAddPage } from '../pages/beauty-tip-add/beauty-tip-add';
 import { CommunityPage } from '../pages/community/community';
 import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
 import { CommunityWritePage } from '../pages/community/community-write/community-write';
-import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+// import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
 
 export function getAuthHttp(http, storage) {
@@ -266,7 +266,7 @@ export function getAuthHttp(http, storage) {
     InAppBrowser,
     ThemeableBrowser,
     CallNumber,
-    AdMobFree,
+    // AdMobFree,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,

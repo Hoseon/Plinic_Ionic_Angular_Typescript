@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Content, ModalController } from 'ionic-angular';
 import { CommunityModifyPage } from './community-modify/community-modify';
 import { CommunityWritePage } from './community-write/community-write';
-import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+// import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
 /**
  * Generated class for the CommunityPage page.
@@ -20,12 +20,14 @@ export class CommunityPage {
 
   @ViewChild(Content) content: Content;
 
-  constructor(public nav: NavController, public navParams: NavParams, private alertCtrl: AlertController, public modalCtrl: ModalController, private admobFree: AdMobFree) {
+  constructor(public nav: NavController, public navParams: NavParams, private alertCtrl: AlertController, public modalCtrl: ModalController,
+    // private admobFree: AdMobFree
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommunityPage');
-    this.admobFree.banner.hide();
+    // this.admobFree.banner.hide();
   }
 
 
