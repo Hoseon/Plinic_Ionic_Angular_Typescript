@@ -15,7 +15,6 @@ import { GenderFilter } from './../pipes/gender-filter';
 import { LoginPage } from '../pages/login/login';
 //import { LoginplinicPage } from '../pages/loginplinic/loginplinic';
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 //import {SuccessHomePage} from '../pages/success-home/success-home';
 import { MyinfoPage } from '../pages/myinfo/myinfo';
@@ -32,7 +31,14 @@ import { MarketingPage } from '../pages/myinfo/details/marketing/marketing';
 import { BluetoothConnectIngPage } from '../pages/myinfo/details/bluetooth-connect-ing/bluetooth-connect-ing';
 import { BluetoothDisconnectPage } from '../pages/myinfo/details/bluetooth-disconnect/bluetooth-disconnect';
 
+//수정페이지
 import { ReRegisterPage } from '../pages/re-register/re-register';
+import { ModifyEmailPage } from '../pages/re-register/modify-email/modify-email';
+import { ModifyNumberPage } from '../pages/re-register/modify-number/modify-number';
+import { ModifyPasswordPage } from '../pages/re-register/modify-password/modify-password';
+import { QnaWritePage } from '../pages/myinfo/details/qna/qna-write/qna-write';
+
+
 import { SkinChartPage } from '../pages/skin-chart/skin-chart';
 import { RegisterPage } from '../pages/register/register';
 import { RegistercompletePage} from '../pages/register/registercomplete/registercomplete';
@@ -101,6 +107,16 @@ import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 import { CallNumber } from '@ionic-native/call-number';
 
 
+//뷰티팁
+import { BeautyTipAddPage } from '../pages/beauty-tip-add/beauty-tip-add';
+
+
+//커뮤니티
+import { CommunityPage } from '../pages/community/community';
+import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
+import { CommunityWritePage } from '../pages/community/community-write/community-write';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -121,7 +137,6 @@ export function getAuthHttp(http, storage) {
     AddinfoPage,
     //    LoginplinicPage,
     AboutPage,
-    ContactPage,
     MyinfoPage,
     // TabsPage,
     HomePage,
@@ -139,6 +154,9 @@ export function getAuthHttp(http, storage) {
     TermsPage,
     RegisterPage,
     ReRegisterPage,
+    ModifyEmailPage,
+    ModifyNumberPage,
+    ModifyPasswordPage,
     RegistercompletePage,
     AgreementPage,
     PersonalinfoPage,
@@ -154,6 +172,11 @@ export function getAuthHttp(http, storage) {
     BluetoothDisconnectPage,
     NoticePage,
     GenderFilter,
+    BeautyTipAddPage,
+    QnaWritePage,
+    CommunityPage,
+    CommunityModifyPage,
+    CommunityWritePage,
     //UserCard,
   ],
   imports: [
@@ -185,7 +208,6 @@ export function getAuthHttp(http, storage) {
     PasswordfindPage,
     AddinfoPage,
     AboutPage,
-    ContactPage,
     MyinfoPage,
     //    TabsPage,
     HomePage,
@@ -203,6 +225,9 @@ export function getAuthHttp(http, storage) {
     TermsPage,
     RegisterPage,
     ReRegisterPage,
+    ModifyEmailPage,
+    ModifyNumberPage,
+    ModifyPasswordPage,
     RegistercompletePage,
     AgreementPage,
     PersonalinfoPage,
@@ -216,6 +241,11 @@ export function getAuthHttp(http, storage) {
     BluetoothConnectIngPage,
     BluetoothDisconnectPage,
     NoticePage,
+    BeautyTipAddPage,
+    QnaWritePage,
+    CommunityPage,
+    CommunityModifyPage,
+    CommunityWritePage,
   ],
   providers: [
     StatusBar,
@@ -236,6 +266,7 @@ export function getAuthHttp(http, storage) {
     InAppBrowser,
     ThemeableBrowser,
     CallNumber,
+    AdMobFree,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
 import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import { CommunityPage } from '../community/community';
 import { HomePage } from '../home/home';
 import { SuccessHomePage } from '../success-home/success-home'
 import { MyinfoPage } from '../myinfo/myinfo';
@@ -22,7 +22,7 @@ export class TabsPage {
   tab1Root;
   tab2Root = CareZonePage;
   tab3Root = AboutPage;
-  tab4Root = ContactPage;
+  tab4Root = CommunityPage;
   tab5Root = MyinfoPage;
 
   constructor(public navParams: NavParams, private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, public platform: Platform) {
