@@ -3,6 +3,20 @@ page-register {
     min-width: 100%;
     min-height: 100%;
 
+    .img-radius {
+      width: 90px !important;
+      height: 90px !important;
+      border-radius: 50% !important;
+      object-fit: contain;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto;
+      display: block;
+      background-color: transparent;
+      margin-bottom: 7%;
+    }
+
+
     .scroll-content{
       left: 16px;
       right: 16px;

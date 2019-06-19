@@ -5,6 +5,8 @@ import { RegisterPage} from '../../register/register';
 import {RegistercompletePage} from '../registercomplete/registercomplete';
 import { SelectSearchableComponent } from 'ionic-select-searchable';
 import { MultiPickerModule } from 'ion-multi-picker';
+import { ImagesProvider } from '../../../providers/images/images';
+
 
 
 /**
@@ -24,18 +26,20 @@ export class AddinfoPage {
   public country: any;
   email: any;
   password: any;
+  imagePath2: any;
   alertEvent : boolean = false;
   myImage: any;
   simpleColumns : any;
   //myDate: String;
   // registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
-  registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday:'', skincomplaint: '', user_jwt: 'true' };
+  registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday:'', skincomplaint: '', imagePath: '', user_jwt: 'true' };
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public navParams: NavParams
-  , public viewCtrl: ViewController, public multiCtrl: MultiPickerModule, public platform: Platform) {
+  , public viewCtrl: ViewController, public multiCtrl: MultiPickerModule, public platform: Platform, private imagesProvider: ImagesProvider) {
 
 
     // this.registerCredentials.birthday = '1970-06-15';
+    this.imagePath2 = navParams.get('imagePath');
     this.email = navParams.get('email');
     this.password = navParams.get('password');
     this.simpleColumns = [
@@ -135,8 +139,17 @@ toggle(){
 
   // Register a new user at our API
   public register() {
+    this.registerCredentials.imagePath = this.imagePath2;
     this.registerCredentials.email = this.email;
     this.registerCredentials.password = this.password;
+
+    this.imagesProvider.user_uploadImage(this.registerCredentials.imagePath, this.registerCredentials.email).then(res => {
+      this.viewCtrl.dismiss({reload: true});
+      // this.loading.dismiss();
+    }, err => {
+      // this.dismiss();
+      this.showPopup("이미지 업로드", "이미지 업로드에 실패 하였습니다.");
+    });
 
     this.auth.register(this.registerCredentials).subscribe(success => {
       console.log("success================" + success)

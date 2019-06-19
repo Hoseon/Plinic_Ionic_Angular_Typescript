@@ -1,38 +1,49 @@
-
-
-
-
 <ion-content padding>
 
-  <ion-img  *ngIf="platform.is('android')" class="close" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
+  <ion-img *ngIf="platform.is('android')" class="close" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
                 assets/img/login\ic-system-close-black@3x.png" (click)="dissmiss()"></ion-img>
 
 
   <ion-img *ngIf="platform.is('ios')" class="close" style="margin-top:5%;" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
                         assets/img/login\ic-system-close-black@3x.png" (click)="dissmiss()"></ion-img>
 
-    <h1 class="h1" > 회원정보를 수정해주세요. </h1>
+  <h1 class="h1"> 회원정보를 수정해주세요. </h1>
 
 
-    <!-- <form (ngSubmit)="register()" #registerForm="ngForm"> -->
+  <!-- <form (ngSubmit)="register()" #registerForm="ngForm"> -->
 
 
-    <div class="container">
-    <img class="register_profile" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
-                    assets/img\register/ic-system-profile-default@3x.png"/>
+  <div class="container">
+
+    <div *ngIf="!imagePath2">
+      <div *ngIf="userData"><img *ngIf="!thumb_image" class="register_profile" src="http://plinic.cafe24app.com/userimages/{{userData.email}}" /></div>
+      <img *ngIf="thumb_image" class="register_profile" src="{{userData.thumbnail_image}}" />
+      <img *ngIf="!thumb_image && !userData" class="register_profile" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
+                    assets/img\register/ic-system-profile-default@3x.png" />
+    </div>
+    <div *ngIf="imagePath2">
+      <img *ngIf="!thumb_image" class="register_profile" [src]="imagePath2" />
+    </div>
     <ion-img class="register_camera" src="assets/img/register/ic-system-camera@3x.png" srcset="assets/img/register/ic-system-camera@2x.png,
-                                    assets/img/register/ic-system-camera@3x.png" (click)="camera()"></ion-img></div>
+                                    assets/img/register/ic-system-camera@3x.png" (click)="camera()"></ion-img>
+  </div>
 
 
-    <button mode="ios" class="profile_modify" ion-item (click)="modify_email()"><div class="profile_text" >wjddn0313@naver.com</div>이메일</button>
+  <button mode="ios" class="profile_modify" ion-item (click)="modify_email()">
+    <div class="profile_text">wjddn0313@naver.com</div>이메일
+  </button>
 
-    <button mode="ios" class="profile_modify" ion-item (click)="modify_number()"><div class="profile_text" >01012341234</div>연락처</button>
+  <button mode="ios" class="profile_modify" ion-item (click)="modify_number()">
+    <div class="profile_text">01012341234</div>연락처
+  </button>
 
-    <button mode="ios" class="profile_modify" ion-item (click)="modify_password()"><div class="profile_text" >*********</div>비밀번호</button>
+  <button mode="ios" class="profile_modify" ion-item (click)="modify_password()">
+    <div class="profile_text">*********</div>비밀번호
+  </button>
 
 
 
 
-            <!-- <button ion-button class="submit-btn" color="primary" full type="submit" [disabled]="!registerForm.form.valid">수정하기</button> -->
-      <!-- </form> -->
+  <!-- <button ion-button class="submit-btn" color="primary" full type="submit" [disabled]="!registerForm.form.valid">수정하기</button> -->
+  <!-- </form> -->
 </ion-content>

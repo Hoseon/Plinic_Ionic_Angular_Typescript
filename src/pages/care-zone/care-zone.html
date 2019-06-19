@@ -15,7 +15,9 @@
 
   <ion-list no-lines>
     <ion-item >
-      <img *ngIf="!thumb_image" class="profile-img" src="assets/img/care-zone/ic-system-profile-sample.png" />
+      <div *ngIf="userData">
+      <img *ngIf="!thumb_image" class="profile-img" src="{{profileimg_url}}" />
+      </div>
       <img *ngIf="thumb_image" class="profile-img" src="{{userData.thumbnail_image}}" />
     </ion-item>
       <div *ngIf="userData" style="text-align:center"><p class="top-text">{{ userData.nickname }}</p><p class="top-text2">님 피부관리를 위한<br> 미션을 선택해주세요.</p></div><br>

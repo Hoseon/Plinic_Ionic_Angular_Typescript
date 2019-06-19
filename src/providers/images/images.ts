@@ -94,6 +94,60 @@ export class ImagesProvider {
     return fileTransfer.upload(targetPath, url, options);
   }
 
+  user_uploadImage(img, desc) {
+
+    // Destination URL
+    let url = this.apiURL + 'userimages';
+
+    // File for Upload
+    var targetPath = img;
+
+    var options: FileUploadOptions = {
+      fileKey: 'image',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: { 'desc': desc }
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+
+    // Use the FileTransfer to upload the image
+    return fileTransfer.upload(targetPath, url, options);
+  }
+
+
+
+  user_udateImage(img, desc) {
+    console.log("------1234987123498712398471298341239871234982347" + desc.id)
+    console.log("-------1234987123498712398471298341239871234982347" + desc.email)
+
+    // Destination URL
+    let url = this.apiURL + 'userupdateimages';
+
+    // File for Upload
+    var targetPath = img;
+
+    var options: FileUploadOptions = {
+      fileKey: 'image',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: { 'id': desc.id, 'email': desc.email }
+    };
+
+    console.log("1234987123498712398471298341239871234982347" + desc.id)
+    console.log("1234987123498712398471298341239871234982347" + desc.email)
+
+    const fileTransfer: TransferObject = this.transfer.create();
+
+    // Use the FileTransfer to upload the image
+    return fileTransfer.upload(targetPath, url, options);
+  }
+
+  public getuser_updateImage(id) {
+    return this.http.get(this.apiURL + 'userupdateimages/' + id)
+      .map(response => response.json());
+  }
+
   showAlert(text) {
     let alert = this.alertCtrl.create({
       title: 'Fail',

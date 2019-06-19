@@ -40,25 +40,33 @@ export class MyinfoPage {
   nickname: string;
   profile_image: string;
   thumbnail_image: string;
+  jwtHelper: JwtHelper = new JwtHelper();
   push_check:boolean;
   backend: any;
   registerToken: any;
-  jwtHelper: JwtHelper = new JwtHelper();
   blu_connect : boolean;
+  profileimg_url: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,
     private alertCtrl: AlertController, private platform: Platform, private fcm: FCM, public bluetoothle: BluetoothLE, public modalCtrl: ModalController) {
 
 
      this.platform.ready().then(() => {
-       this.loadItems();
-       this.loadNotice();
+
     });
+  }
+
+  ionViewWillEnter() {
+    this.loadItems();
+    this.loadNotice();
+    console.log("1234");
   }
 
   ionViewDidEnter(){
     this.blu_connect = this.authService.bluetooth_connect();
     console.log('blu_connect=====================' + this.authService.bluetooth_connect());
+    // this.loadItems();
+    // this.loadNotice();
   }
 
   public Reregiter(){
@@ -68,7 +76,13 @@ export class MyinfoPage {
     //     gender : this.userData.gender,
     //     nickname : this.userData.nickname
     // });
+
+    //20190619 내정보 변경 작업
+    //SNS계정 로그인일 경우 회원 정보가 수정되지 않게 하며
+
+
     let myModal = this.modalCtrl.create(ReRegisterPage);
+    //this.modalCtrl.create('PreviewModalPage', { img: img });
     myModal.present();
   }
 
@@ -147,34 +161,49 @@ export class MyinfoPage {
     this.navCtrl.push(NoticePage);
   }
 
-  public loadItems(){
+  public loadItems() {
     this.authService.getUserStorage().then(items => {
 
-      this.userData = items;
+      if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: items.email,
+          gender: items.gender,
+          nickname: items.nickname,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+        };
+        if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
+          // this.thumb_image = false;
+        } else {
+          // this.thumb_image = true;
+        }
 
-      this.userData = {
-        accessToken: items.accessToken,
-        id: items.id,
-        age_range: items.age_range,
-        birthday: items.birthday,
-        email: this.jwtHelper.decodeToken(items).email,
-        gender: items.gender,
-        nickname: this.jwtHelper.decodeToken(items).name,
-        profile_image: items.profile_image,
-        thumbnail_image: items.thumbnail_image,
-      };
-      // this.accessToken = items.accessToken
-      // this.id = items.id
-      // this.age_range = items.age_range
-      // this.birthday = items.birthday
-      // this.email = items.email
-      // this.gender = items.gender
-      // this.nickname = items.nickname
-      // this.profile_image = items.profile_image
-      // this.thumbnail_image =  items.thumbnail_image
-      console.log(this.userData);
+
+      } else {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: this.jwtHelper.decodeToken(items).email,
+          gender: items.gender,
+          nickname: this.jwtHelper.decodeToken(items).name,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+        };
+
+      }
+
+      this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
+      this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
     });
   }
+
+
 
   public loadNotice(){
     this.authService.getNotice().subscribe(items => {

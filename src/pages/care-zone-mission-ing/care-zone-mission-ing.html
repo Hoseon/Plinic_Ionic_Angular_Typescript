@@ -122,7 +122,7 @@
     <ion-grid  class="eventgrid">
         <ion-row>
             <ion-col class="event-col0">{{index}}00</ion-col>
-            <ion-col *ngIf="!mission.image_url"><img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample@3x.png" /></ion-col>
+            <ion-col *ngIf="!mission.image_url"><img class="profile-img" src="http://plinic.cafe24app.com/userimages/{{mission.email}}" /></ion-col>
             <ion-col *ngIf="mission.image_url"><img class="profile-img" src="{{mission.image_url}}" /></ion-col>
             <ion-col class="event-col8">{{id}} {{mission.email}}</ion-col>
             <ion-col class="event-col6">{{count}}01회</ion-col>

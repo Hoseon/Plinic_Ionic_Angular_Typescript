@@ -14,7 +14,8 @@
       <ion-thumbnail item-start>
         <!-- <ion-img class="img-radius" *ngIf="userData.thumbnail_image" src="assets/img/care-zone/ic-system-profile-sample@3x.png">
           </ion-img> -->
-        <img class="img-radius" src="{{userData.thumbnail_image}}"/>
+        <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image" />
+        <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url" />
       </ion-thumbnail>
       <h2 class="nickname"> {{userData.nickname}}</h2>
       <p class="email"> {{userData.email}}</p>
@@ -23,14 +24,14 @@
 
     </ion-item>
 
-  <div *ngIf="platform.is('ios')" style="margin-top: 6%; height:1px; width:100%; background-color:#f1f1f1"></div>
-  <div *ngIf="platform.is('android')" style="position:absolute; margin-top: -1%; height:1px; width:100%; background-color:#f1f1f1"></div>
+    <div *ngIf="platform.is('ios')" style="margin-top: 6%; height:1px; width:100%; background-color:#f1f1f1"></div>
+    <div *ngIf="platform.is('android')" style="position:absolute; margin-top: -1%; height:1px; width:100%; background-color:#f1f1f1"></div>
 
   </ion-list>
 
-  <ion-list  no-lines>
+  <ion-list no-lines>
     <button mode="ios" style="font-weight:bold" no-lines ion-item icon-start (click)="noti()">공지사항</button>
-    <ion-item class="noti_text"*ngFor="let notice of noticeData" (click)="noti()" no-lines>
+    <ion-item class="noti_text" *ngFor="let notice of noticeData" (click)="noti()" no-lines>
       {{[notice.category]}} {{notice.title}}</ion-item>
     <ion-item></ion-item>
   </ion-list>
@@ -63,7 +64,7 @@
     <button class="text" mode="ios" ion-item (click)="personalinfo()" icon-start>개인정보처리방침</button>
     <ion-item class="current_version" no-lines>현재 버전 <ion-note item-end>1.0</ion-note>
     </ion-item>
-    <button class="logout"  mode="md" ion-item (click)="logout()" icon-start>로그아웃</button>
+    <button class="logout" mode="md" ion-item (click)="logout()" icon-start>로그아웃</button>
   </ion-list>
 
   <!-- <ion-item no-lines>
@@ -106,9 +107,9 @@
   <!-- <button ion-item icon-start>자주하는 질문</button> -->
 
   <!-- <ion-item> -->
-    <!-- <ion-note> -->
-      <!-- <p>플리닉을 탈퇴하려면 <button ion-button small clear (click)="leave()"><u>여기를</u></button> 눌러주세요.<p> -->
-      <!-- <p>플리닉을 탈퇴하려면 <u>여기를</u> 눌러주세요.<p> -->
-    <!-- </ion-note>
+  <!-- <ion-note> -->
+  <!-- <p>플리닉을 탈퇴하려면 <button ion-button small clear (click)="leave()"><u>여기를</u></button> 눌러주세요.<p> -->
+  <!-- <p>플리닉을 탈퇴하려면 <u>여기를</u> 눌러주세요.<p> -->
+  <!-- </ion-note>
   </ion-item> -->
 </ion-content>

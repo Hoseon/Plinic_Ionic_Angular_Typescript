@@ -39,6 +39,7 @@ export class CareZonePage {
 
   thumb_image: any;
   ingBtn : any = false;
+  profileimg_url: any;
 
   constructor(public platform: Platform, public nav: NavController,
     public navParams: NavParams, private images: ImagesProvider,
@@ -61,6 +62,8 @@ export class CareZonePage {
     // this.roadbeauty();
     this.carezoneData = this.roadcareZone();
     this.loadItems();
+
+
 
     //this.loading.dismiss();
     // console.log("End Home");
@@ -106,6 +109,8 @@ export class CareZonePage {
         this.chkIngmission(this.userData.email);
 
       }
+      this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
+      this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
     });
   }
 
