@@ -67,9 +67,18 @@ export class MyinfoPage {
     console.log('blu_connect=====================' + this.authService.bluetooth_connect());
     // this.loadItems();
     // this.loadNotice();
+    let tabs = document.querySelectorAll('.tabbar');
+    if ( tabs !== null ) {
+      Object.keys(tabs).map((key) => {
+        // tabs[ key ].style.transform = 'translateY(0)';
+            tabs[ key ].style.display = 'block';
+            tabs[ key ].style.display = '';
+      });
+    } // end if
   }
 
   public Reregiter(){
+    
     // this.navCtrl.push(ReRegisterPage, {
     //   birthday : this.userData.birthday,
     //     email : this.userData.email,
@@ -87,7 +96,6 @@ export class MyinfoPage {
       //this.modalCtrl.create('PreviewModalPage', { img: img });
       myModal.present();
     }
-
   }
 
 
@@ -186,9 +194,9 @@ export class MyinfoPage {
           from: items.from,
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
-          // this.thumb_image = false;
+           //this.thumb_image = false;
         } else {
-          // this.thumb_image = true;
+           //this.thumb_image = true;
         }
 
 

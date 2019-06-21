@@ -33,7 +33,8 @@ export class QnaPage {
       let tabs = document.querySelectorAll('.tabbar');
       if ( tabs !== null ) {
         Object.keys(tabs).map((key) => {
-          tabs[ key ].style.transform = 'translateY(56px)';
+          // tabs[ key ].style.transform = 'translateY(56px)';
+          tabs[ key ].style.display = 'none';
         });
       } // end if
     }
