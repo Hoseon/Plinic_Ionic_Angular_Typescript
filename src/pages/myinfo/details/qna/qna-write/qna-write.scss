@@ -10,6 +10,13 @@ page-qna-write {
     height: 1px;
     margin-bottom: 5px;
   }
+  .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+    height: 0px;
+  }
+  .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+    height: 0px;
+  }
+
   .item-ios.item-block .item-inner{
     padding-right: 12px;
   }
@@ -159,7 +166,7 @@ page-qna-write {
 
  .text-input{
 
-   height: 500px;
+   height: 350px;
  }
 
  .qna_input{
@@ -195,8 +202,10 @@ page-qna-write {
 }
 
   .qna_btn{
+    position: fixed;
+    bottom: 0;
     min-width: 100%;
-    min-height: 50px;
+    min-height: 55px;
     background-color: #5c59b6;
     font-family: NotoSansCJKkr;
     font-size: 15px;
@@ -210,8 +219,10 @@ page-qna-write {
   }
 
   .qna_btn2{
+    position: fixed;
+    bottom: 0;
     min-width: 100%;
-    min-height: 50px;
+    min-height: 55px;
     background-color: #d2d4d6;
     font-family: NotoSansCJKkr;
     font-size: 15px;

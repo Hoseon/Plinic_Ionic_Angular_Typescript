@@ -22,4 +22,13 @@ export class QnaWritePage {
     console.log('ionViewDidLoad QnaWritePage');
   }
 
+  ionViewWillEnter() {
+      let tabs = document.querySelectorAll('.tabbar');
+      if ( tabs !== null ) {
+        Object.keys(tabs).map((key) => {
+          tabs[ key ].style.transform = 'translateY(56px)';
+        });
+      } // end if
+    }
+
 }

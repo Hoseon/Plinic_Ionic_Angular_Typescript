@@ -29,6 +29,15 @@ export class QnaPage {
     console.log('ionViewDidLoad QnaPage');
   }
 
+  ionViewWillEnter() {
+      let tabs = document.querySelectorAll('.tabbar');
+      if ( tabs !== null ) {
+        Object.keys(tabs).map((key) => {
+          tabs[ key ].style.transform = 'translateY(56px)';
+        });
+      } // end if
+    }
+
 
  public qna_write(){
    this.nav.push(QnaWritePage);
