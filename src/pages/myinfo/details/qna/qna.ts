@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { QnaWritePage } from './qna-write/qna-write';
+import { QnaReadPage } from './qna-read/qna-read';
 
 /**
  * Generated class for the QnaPage page.
@@ -39,6 +40,9 @@ export class QnaPage {
       } // end if
     }
 
+ public qna_read(){
+   this.nav.push(QnaReadPage);
+ }
 
  public qna_write(){
    this.nav.push(QnaWritePage);

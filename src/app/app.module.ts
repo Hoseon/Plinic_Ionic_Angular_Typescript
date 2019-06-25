@@ -37,6 +37,7 @@ import { ModifyEmailPage } from '../pages/re-register/modify-email/modify-email'
 import { ModifyNumberPage } from '../pages/re-register/modify-number/modify-number';
 import { ModifyPasswordPage } from '../pages/re-register/modify-password/modify-password';
 import { QnaWritePage } from '../pages/myinfo/details/qna/qna-write/qna-write';
+import { QnaReadPage } from '../pages/myinfo/details/qna/qna-read/qna-read';
 
 
 import { SkinChartPage } from '../pages/skin-chart/skin-chart';
@@ -187,6 +188,7 @@ export function getAuthHttp(http, storage) {
     CommunityWritePage,
     MissionStartPage,
     MissionVideoPage,
+    QnaReadPage,
   ],
   imports: [
     HttpModule,
@@ -257,6 +259,7 @@ export function getAuthHttp(http, storage) {
     CommunityWritePage,
     MissionStartPage,
     MissionVideoPage,
+    QnaReadPage,
   ],
   providers: [
     StatusBar,

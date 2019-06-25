@@ -1,0 +1,54 @@
+<!--
+  Generated template for the QnaReadPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar  *ngIf="platform.is('android')" >
+    <ion-title class="android_title" text-wrap>문의하기</ion-title>
+  </ion-navbar>
+
+
+  <ion-navbar *ngIf="platform.is('ios')">
+  	<ion-buttons left>
+  		<button ion-button navPop icon-only>
+  			<!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
+  		</button>
+  	</ion-buttons>
+    <ion-title class="ios_title" text-wrap>문의하기</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+<ion-item no-lines>
+ <ion-col style="width:100%;">
+   <button  *ngIf="dddd"   class="qna_btn_wait" ion-button > 답변 대기중</button>
+   <button  class="qna_btn_wait" style="background-color: #5c59b6;" ion-button >답변 대기중</button>
+   <button  class="qna_btn_complete" ion-button > 답변 완료</button>
+   <button  *ngIf="dddd"   class="qna_btn_complete" style="background-color: #5c59b6;" ion-button >답변 완료</button>
+
+   <button  class="qna_btn_edit" ion-button (click)="qna_write()" >수정</button>
+ </ion-col>
+</ion-item>
+
+  <ion-item no-lines>
+  <ion-input class="qna_title" readonly disabled value="제목" ></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+  <ion-input class="qna_date" readonly disabled value="2019.06.25" ></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+  <ion-textarea class="qna_input" readonly disabled value="문의 내용"></ion-textarea>
+  </ion-item>
+
+
+
+
+</ion-content>
