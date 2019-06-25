@@ -1,4 +1,7 @@
 page-care-zone-mission-start {
+
+  .scroll-content { overflow-y: scroll !important; }
+
   .header-md::after,
   .tabs-md[tabsPlacement="top"] > .tabbar::after,
   .footer-md::before,

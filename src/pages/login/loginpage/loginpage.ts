@@ -182,7 +182,8 @@ export class LoginpagePage {
       }
     },
       error => {
-        this.showError(error._body);
+        this.showError(JSON.parse(error._body).msg);
+        // this.showError(error._body);
       });
   }
 
@@ -198,7 +199,8 @@ export class LoginpagePage {
     this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
-      title: 'Fail',
+      cssClass: 'push_alert',
+      title: 'Plinic',
       message: text,
       buttons: ['OK']
     });

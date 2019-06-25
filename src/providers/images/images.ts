@@ -118,8 +118,6 @@ export class ImagesProvider {
 
 
   user_udateImage(img, desc) {
-    console.log("------1234987123498712398471298341239871234982347" + desc.id)
-    console.log("-------1234987123498712398471298341239871234982347" + desc.email)
 
     // Destination URL
     let url = this.apiURL + 'userupdateimages';
@@ -133,9 +131,6 @@ export class ImagesProvider {
       mimeType: 'multipart/form-data',
       params: { 'id': desc.id, 'email': desc.email }
     };
-
-    console.log("1234987123498712398471298341239871234982347" + desc.id)
-    console.log("1234987123498712398471298341239871234982347" + desc.email)
 
     const fileTransfer: TransferObject = this.transfer.create();
 

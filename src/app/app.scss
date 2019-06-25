@@ -69,6 +69,12 @@
 
 //push alertCtrl
 
+scroll-content {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  height:100%;
+}
+
 .splash {
   position: relative;
   width: 100%;

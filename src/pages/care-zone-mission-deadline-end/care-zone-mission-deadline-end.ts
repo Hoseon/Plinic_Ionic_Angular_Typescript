@@ -22,7 +22,7 @@ export class CareZoneMissionDeadlineEndPage {
   endDate: any;
 
   constructor(public nav: NavController, public navParams: NavParams,
-    private images: ImagesProvider,private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform,
+    private images: ImagesProvider, private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform,
   ) {
 
     this.platform.ready().then((readySource) => {
@@ -71,14 +71,11 @@ export class CareZoneMissionDeadlineEndPage {
     this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
-      title: 'Fail',
+      cssClass: 'push_alert',
+      title: 'Plinic',
       message: text,
       buttons: ['OK']
     });
     alert.present();
   }
-
-
-
-
 }

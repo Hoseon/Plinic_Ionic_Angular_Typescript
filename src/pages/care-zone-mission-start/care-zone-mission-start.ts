@@ -60,7 +60,6 @@ export class CareZoneMissionStartPage {
     this.loadItems();
     this._id = this.navParams.get('_id');
     this.roadmission(this._id);
-    this.missionCount(this._id);
     this.getDday();
     //this.loading.dismiss();
     // console.log("End Mission Start");
@@ -145,17 +144,19 @@ export class CareZoneMissionStartPage {
   }
 
   public roadmission(id) {
-    this.showLoading();
+    // this.showLoading();
     this.images.missionRoad(id).subscribe(data => {
       if (data !== '') {
         this.carezoneData = data;
         this.startDate = data.startmission.substr(0, 10);
         this.endDate = data.endmission.substr(0, 10);
         //console.log(JSON.stringify(data));
-        this.loading.dismiss();
+        // this.loading.dismiss();
       } else {
         this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
       }
+
+      this.missionCount(this._id);
 
       this.getday = new Date(this.carezoneData.startmission);
       this.dday = this.diffdate(this.getday, this.currentDate);
@@ -180,7 +181,7 @@ export class CareZoneMissionStartPage {
   }
 
   showMissionError() {
-    this.loading.dismiss();
+    //this.loading.dismiss();
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
       title: 'Plinic',
@@ -193,7 +194,7 @@ export class CareZoneMissionStartPage {
   }
 
   showMissionEndError() {
-    this.loading.dismiss();
+    //this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
@@ -207,21 +208,25 @@ export class CareZoneMissionStartPage {
   }
 
   showMissionMaxEndError() {
-    this.loading.dismiss();
+    //this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
       title: 'Plinic',
       message: '해당 이벤트의 모집인원이 초과 되었습니다. <br /> 다음 기회에 참여해 주세요.',
       buttons: [{
-        text: '확인'
-      }]
+        text: '확인',
+        handler: () => {
+          console.log("aaaaaaaaaa");
+        }
+      }],
+
     });
     alert.present();
   }
 
   showError(text) {
-    this.loading.dismiss();
+    //this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',

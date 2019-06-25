@@ -70,7 +70,9 @@ export class LoginplinicPage {
       }
     },
       error => {
-        this.showError(error._body);
+        //this.showError(error._body);
+        this.showError(JSON.parse(error._body).msg);
+
       });
   }
 
@@ -85,7 +87,8 @@ export class LoginplinicPage {
     this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
-      title: 'Fail',
+      cssClass: 'push_alert',
+      title: 'Plinic',
       message: text,
       buttons: ['OK']
     });

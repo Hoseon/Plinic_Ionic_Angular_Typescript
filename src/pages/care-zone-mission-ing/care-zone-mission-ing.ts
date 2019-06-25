@@ -150,10 +150,11 @@ export class CareZoneMissionIngPage {
   }
 
   showError(text) {
-    this.loading.dismiss();
+    // this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
-      title: 'Fail',
+      cssClass: 'push_alert',
+      title: 'Plinic',
       message: text,
       buttons: ['OK']
     });
@@ -188,7 +189,7 @@ export class CareZoneMissionIngPage {
                 //this.nav.push(CareZonePage);
               }, error => {
                 this.showError(JSON.parse(error._body).msg);
-              }); 
+              });
           }
         }]
     });

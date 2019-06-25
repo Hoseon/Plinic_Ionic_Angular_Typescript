@@ -300,7 +300,8 @@ inapp_test() {
     this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
-      title: 'Fail',
+      cssClass: 'push_alert',
+      title: 'Plinic',
       message: text,
       buttons: ['OK']
     });
