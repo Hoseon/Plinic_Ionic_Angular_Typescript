@@ -96,7 +96,7 @@ export class MyinfoPage {
       //this.modalCtrl.create('PreviewModalPage', { img: img });
       myModal.present();
     }
-
+}
 
   getToken(){
   this.fcm.getToken().then(token => {
