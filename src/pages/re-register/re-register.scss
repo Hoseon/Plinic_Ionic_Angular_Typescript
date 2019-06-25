@@ -1,15 +1,18 @@
 page-re-register {
 
 
-
-
         .item-ios.activated{
           background-color: transparent;
         }
 
-
-
-
+        .close{
+        background-color: #FFF;
+        width: 25px;
+        height: 25px;
+        object-fit: contain;
+        margin-top: -1%;
+        margin-left: -0.5%;
+       }
 
         .h1{
            height: 80px;

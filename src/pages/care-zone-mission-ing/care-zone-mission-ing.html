@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar  *ngIf="platform.is('android')">
-    <ion-title *ngIf="carezoneData" class="android_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+    <ion-title *ngIf="carezoneData" class="android_title" text-wrap> 미션</ion-title>
   </ion-navbar>
 
   <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
@@ -21,7 +21,7 @@
         <img class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
   		</button>
   	</ion-buttons>
-    <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+    <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> 미션 </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -105,6 +105,7 @@
     </ion-item>
 
    <ion-item no-lines>
+     <button ion-button style="box-shadow:none;"class="button_start" text-align="center" outline (click)="mission_start()" >미션 시작하기</button>
     <button ion-button style="box-shadow:none;"class="button_giveup" text-align="center" outline (click)="mission_giveup()" >미션 포기하기</button>
     </ion-item>
   </ion-list>

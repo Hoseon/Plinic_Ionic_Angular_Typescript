@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar *ngIf="platform.is('android')">
-    <ion-title *ngIf="carezoneData" class="android_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+    <ion-title *ngIf="carezoneData" class="android_title" text-wrap> 미션</ion-title>
   </ion-navbar>
 
   <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
@@ -21,7 +21,7 @@
         <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
       </button>
     </ion-buttons>
-    <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+    <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> 미션 </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -93,7 +93,7 @@
     <ion-item no-lines>
       <div *ngIf="!maxBtn">
         <div *ngIf="!chkBtn2">
-          <button *ngIf="chkBtn" ion-button class="button_start" style="font-size: 14px;box-shadow: none;" outline (click)="satrtMission(carezoneData._id)">미션 참여&nbsp;&nbsp;></button>
+          <button *ngIf="chkBtn" ion-button class="button_start" style="font-size: 14px;box-shadow: none;" outline (click)="satrtMission(carezoneData._id)">미션 참여하기&nbsp;&nbsp;></button>
           <button *ngIf="!chkBtn" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionError()">참여 불가(다른 미션 참여 중)</button>
         </div>
       </div>
@@ -153,7 +153,7 @@
 
   <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
   <ion-list>
-    <h3 class="bottom_text">참여가능 미션</h3>
+    <h3 class="bottom_text">다른미션 보기</h3>
 
 
     <ion-grid class="gridimage">

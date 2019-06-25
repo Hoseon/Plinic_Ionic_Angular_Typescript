@@ -4,9 +4,8 @@ import { CareZoneMissionDeadlinePage } from '../care-zone-mission-deadline/care-
 import { CareZonePage } from '../care-zone/care-zone';
 import { ImagesProvider } from '../../providers/images/images';
 import { AuthService } from '../../providers/auth-service';
-
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
-
+import { MissionStartPage } from './mission-start/mission-start';
 
 /**
  * Generated class for the CareZoneMissionIngPage page.
@@ -102,6 +101,10 @@ export class CareZoneMissionIngPage {
     }, 50);
   }
 
+  public mission_start(){
+     this.nav.push(MissionStartPage);
+  }
+
   public roadmission(id) {
     this.showLoading();
     this.images.missionRoad(id).subscribe(data => {
@@ -188,7 +191,7 @@ export class CareZoneMissionIngPage {
                 //this.nav.push(CareZonePage);
               }, error => {
                 this.showError(JSON.parse(error._body).msg);
-              }); 
+              });
           }
         }]
     });

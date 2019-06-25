@@ -115,7 +115,15 @@ import { BeautyTipAddPage } from '../pages/beauty-tip-add/beauty-tip-add';
 import { CommunityPage } from '../pages/community/community';
 import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
 import { CommunityWritePage } from '../pages/community/community-write/community-write';
-// import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+//import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+
+
+//미션 시작하기
+
+import { MissionStartPage } from '../pages/care-zone-mission-ing/mission-start/mission-start';
+import { MissionVideoPage } from '../pages/care-zone-mission-ing/mission-video/mission-video';
+
+
 
 
 export function getAuthHttp(http, storage) {
@@ -177,7 +185,8 @@ export function getAuthHttp(http, storage) {
     CommunityPage,
     CommunityModifyPage,
     CommunityWritePage,
-    //UserCard,
+    MissionStartPage,
+    MissionVideoPage,
   ],
   imports: [
     HttpModule,
@@ -246,6 +255,8 @@ export function getAuthHttp(http, storage) {
     CommunityPage,
     CommunityModifyPage,
     CommunityWritePage,
+    MissionStartPage,
+    MissionVideoPage,
   ],
   providers: [
     StatusBar,
@@ -266,7 +277,7 @@ export function getAuthHttp(http, storage) {
     InAppBrowser,
     ThemeableBrowser,
     CallNumber,
-    // AdMobFree,
+  //  AdMobFree,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,

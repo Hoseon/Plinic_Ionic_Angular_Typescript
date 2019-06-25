@@ -103,6 +103,11 @@ page-skin-chart {
                  padding: 0px;
                  margin: 0px;
               }
+              .label-ios{
+                padding: 0px;
+                margin: 0px;
+              }
+
               .gridstatus{
                 margin-bottom: 30px;
               }
@@ -254,6 +259,32 @@ page-skin-chart {
            {
             margin-top: 11px;
            }
+
+          .chartWrapper {
+              position: relative;
+          }
+
+          .chartWrapper > canvas {
+              position: absolute;
+              left: 0;
+              top: 0;
+              pointer-events:none;
+          }
+
+          .chart_js{
+            // width:1500px;
+            // height: 500px;
+          }
+
+          .chartAreaWrapper {
+              width: 700px;
+          }
+
+
+          .segment_scroll{
+            // width: 100%;   //스크롤 크기
+            height: 400px !important;
+          }
 
           .linechart_btn{
             position: absolute;

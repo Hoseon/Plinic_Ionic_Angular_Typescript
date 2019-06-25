@@ -23,7 +23,7 @@
 </ion-header>
 
 
-<ion-content no-lines no-padding>
+<ion-content no-lines no-bounce no-padding>
 
     <ion-item no-lines>
     <ion-select class="qna_select" mode="ios" placeholder="문의사항을 선택하세요." [(ngModel)]="qna_select">
@@ -39,7 +39,7 @@
 </ion-content>
 
 
-<ion-footer no-lines>
+<ion-footer mode="ios" keyboard-attach no-bounce no-lines>
 <button  *ngIf="qna_input!=='' && qna_select !==''"  class="qna_btn" ion-button (click)="qna_submit();"> 문의하기</button>
 <button  *ngIf="qna_input==='' || qna_select ===''" class="qna_btn2" ion-button (click)="qna_submit();"> 문의하기</button>
 </ion-footer>

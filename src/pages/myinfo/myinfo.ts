@@ -78,7 +78,6 @@ export class MyinfoPage {
   }
 
   public Reregiter(){
-    
     // this.navCtrl.push(ReRegisterPage, {
     //   birthday : this.userData.birthday,
     //     email : this.userData.email,
@@ -89,6 +88,7 @@ export class MyinfoPage {
     //20190619 내정보 변경 작업
     //SNS계정 로그인일 경우 회원 정보가 수정되지 않게 하며
 
+
     if(this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver'){
       this.showAlert("SNS계정 회원은 정보를 수정 할 수 없습니다.");
     } else {
@@ -96,7 +96,6 @@ export class MyinfoPage {
       //this.modalCtrl.create('PreviewModalPage', { img: img });
       myModal.present();
     }
-  }
 
 
   getToken(){

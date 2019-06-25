@@ -177,22 +177,21 @@ export class HomePage {
           }
         }
       });
-
-
-
-      //this.first_carezone = this.careDataOBJ[0];
-      //this.second_carezone = this.careDataOBJ[1];
-      //this.third_carezone = this.careDataOBJ[2];
-      //console.log('Platform ready from', readySource);
-      //this.showAlert(readySource);
-
-      // this.bluetoothle.initialize().then(ble => {
-      //   //console.log('ble', ble.status) // logs 'enabled'
-      //   this.showAlert(ble.status);
-      // });
     });
   }
 
+
+  public skin_measure(){
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: "plinic",
+      message: "준비중입니다.",
+      buttons: [{
+        text: '확인'
+      }]
+    });
+    alert.present();
+  }
 
   public beauty_add(){
     this.nav.push(BeautyTipAddPage);

@@ -94,6 +94,117 @@ page-beauty-tip-add {
     color: #292929;
   }
 
+  .swiper-slide {
+      overflow-y: scroll;
+      display: block;
+  }
+
+  .beauty_tip {
+    position: relative;
+    width: auto;
+    background-color: #ffffff;
+    margin-top: 5%;
+    min-height: 100%;
+  }
+
+  .beauty_grid_width {
+    position: relative;
+    top: 11%;
+    width: 91%;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    left: 0;
+    right: 0;
+    // margin-bottom: 5%;
+  }
+
+  .beauty_grid1 {
+    position: absolute;
+    top: 0;
+    width: 95%;
+    height: 95%;
+    left: 25%;
+    transform: translateX(-50%);
+  }
+
+  .beauty_grid2 {
+    position: absolute;
+    top: 0;
+    width: 95%;
+    height: 95%;
+    left: 75%;
+    transform: translateX(-50%);
+  }
+
+  .beauty_grid3 {
+    position: absolute;
+    top: 61%;
+    width: 95%;
+    height: 95%;
+    left: 25%;
+    transform: translateX(-50%);
+  }
+
+  .beauty_grid4 {
+    position: absolute;
+    top: 61%;
+    width: 95%;
+    height: 95%;
+    left: 75%;
+    transform: translateX(-50%);
+  }
+
+
+
+  .beauty_img {
+    // width: 100%;
+    min-width: 100%;
+    min-height: 110%;
+    border-radius: 5px;
+  }
+
+  .beauty_title {
+    padding-top: 8%;
+    width: 90px;
+    height: 19px;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #5c59b6;
+    text-align: left;
+  }
+
+  .beauty_desc {
+    padding-top: 8%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150.5px;
+    height: 30.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    text-align: left;
+    z-index: 5;
+  }
+
+
+
+
+
+
+
 
 
 }
