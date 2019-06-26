@@ -101,7 +101,9 @@ export class MyinfoPage {
       this.showAlert("SNS계정 회원은 정보를 수정 할 수 없습니다.");
     } else {
       let myModal = this.modalCtrl.create(ReRegisterPage);
-      //this.modalCtrl.create('PreviewModalPage', { img: img });
+      myModal.onDidDismiss(data => {
+      this.imagePath = data.imagePath;
+      });
       myModal.present();
     }
 }

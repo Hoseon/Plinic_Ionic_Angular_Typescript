@@ -144,8 +144,8 @@ toggle(){
     this.registerCredentials.email = this.email;
     this.registerCredentials.password = this.password;
 
-    this.showPopup("this.registerCredentials.imagePath" , this.registerCredentials.imagePath);
-    this.showPopup("imagePath2" , this.imagePath2);
+    // this.showPopup("this.registerCredentials.imagePath" , this.registerCredentials.imagePath);
+    // this.showPopup("imagePath2" , this.imagePath2);
 
     this.auth.setUserStorageimagePath(this.imagePath2);
 
