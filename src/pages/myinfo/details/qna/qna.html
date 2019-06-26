@@ -26,7 +26,7 @@
 <ion-content no-lines no-padding>
 
 <div *ngFor="let qna of qnaData">
-  <button class="qna_list" mode="ios" no-lines ion-item icon-start>[{{qna.select}}] {{qna.qna}}</button>
+  <button class="qna_list" mode="ios" no-lines ion-item icon-start (click)="qna_read(qna._id)">[{{qna.select}}] {{qna.qna}}</button>
 </div>
 <!-- <button class="qna_list" mode="ios" no-lines ion-item icon-start>문의하기</button>
 <button class="qna_list" mode="ios" no-lines ion-item icon-start>문의하기</button> -->

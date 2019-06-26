@@ -19,21 +19,33 @@ import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 })
 export class QnaWritePage {
 
+  id: any;
   loading: Loading;
-  registerQna = { qna_select: '', qna_input : ''};
+  registerQna = { qna_select: '', qna_input: '', id: '' };
   qna_input: any;
   userData: any;
   jwtHelper: JwtHelper = new JwtHelper();
+  qnaDetailData: any;
+  mode: any;
+  // fruits = [
+  //   {'배송문의' },
+  //   {'결제문의' },
+  //   {'기타문의' },
+  // ];
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public alertCtrl: AlertController, private auth: AuthService ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public alertCtrl: AlertController, private auth: AuthService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad QnaWritePage');
+    // console.log('ionViewDidLoad QnaWritePage');
   }
 
   ionViewWillEnter() {
+    if (this.navParams.get('id') === '' || this.navParams.get('id') !== undefined) {
+      this.id = this.navParams.get('id');
+      // console.log("write Id : " + this.id);
+      this.loadQna(this.id, 'edit');
+    }
     this.loadItems();
     let tabs = document.querySelectorAll('.tabbar');
     if (tabs !== null) {
@@ -59,7 +71,7 @@ export class QnaWritePage {
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
         };
-              } else {
+      } else {
         this.userData = {
           accessToken: items.accessToken,
           id: items.id,
@@ -91,36 +103,60 @@ export class QnaWritePage {
         {
           text: '확인',
           handler: () => {
-            this.auth.qnaSave(this.userData.email, this.registerQna).subscribe(data => {
-              if(data !== ""){
-                let alert2 = this.alertCtrl.create({
-                  cssClass: 'push_alert',
-                  title: '문의하기',
-                  message: "문의하기가 정상적으로 등록 되었습니다. <br>관리자에게 답변을 받을 수 있습니다.",
-                  buttons: [
-                    {
-                      text: '확인',
-                      handler: () => {
-                        this.navCtrl.pop();
+            if (this.mode === true) {
+              this.registerQna.id = this.id;
+              // console.log("update Id :" + this.id);
+              this.auth.qnaUpdate(this.userData.email, this.registerQna).subscribe(data => {
+                if (data !== "") {
+                  let alert2 = this.alertCtrl.create({
+                    cssClass: 'push_alert',
+                    title: '문의하기',
+                    message: "문의하기가 정상적으로 수정 되었습니다. <br>관리자에게 답변을 받을 수 있습니다.",
+                    buttons: [
+                      {
+                        text: '확인',
+                        handler: () => {
+                          this.navCtrl.pop();
+                        }
                       }
-                    }
-                  ]
-                });
-                alert2.present();
-              }
-              // this.nav.push(CareZoneMissionIngPage, { _id: id });
-            }, error => {
-              this.showError(JSON.parse(error._body).msg);
-            });
+                    ]
+                  });
+                  alert2.present();
+                }
+                // this.nav.push(CareZoneMissionIngPage, { _id: id });
+              }, error => {
+                this.showError(JSON.parse(error._body).msg);
+              });
+
+            } else {
+              this.auth.qnaSave(this.userData.email, this.registerQna).subscribe(data => {
+                if (data !== "") {
+                  let alert2 = this.alertCtrl.create({
+                    cssClass: 'push_alert',
+                    title: '문의하기',
+                    message: "문의하기가 정상적으로 등록 되었습니다. <br>관리자에게 답변을 받을 수 있습니다.",
+                    buttons: [
+                      {
+                        text: '확인',
+                        handler: () => {
+                          this.navCtrl.pop();
+                        }
+                      }
+                    ]
+                  });
+                  alert2.present();
+                }
+                // this.nav.push(CareZoneMissionIngPage, { _id: id });
+              }, error => {
+                this.showError(JSON.parse(error._body).msg);
+              });
+            }
           }
         }]
     });
     alert.present();
 
-    console.log(this.userData.email);
-    console.log(this.userData.email);
-    console.log(this.registerQna.qna_input);
-    console.log(this.registerQna.qna_select);
+
   }
 
 
@@ -139,5 +175,43 @@ export class QnaWritePage {
     });
     alert.present();
   }
+
+
+  public loadQna(id, mode) {
+    this.auth.getQna(id).subscribe(data => {
+      if (mode === 'edit') {
+        this.mode = true;
+      } else { this.mode = false }
+      this.registerQna.qna_input = data[0].qna;
+      switch (data[0].select) {
+        case '배송문의': {
+          this.registerQna.qna_select = '배송문의';
+          break;
+        }
+        case '결제문의': {
+          this.registerQna.qna_select = '결제문의';
+          break;
+        }
+        case '기타문의': {
+          this.registerQna.qna_select = '기타문의';
+          break;
+        }
+        default: {
+          //statements;
+          break;
+        }
+      }
+      // this.commentData = data[0].comments;
+      // if(data[0].comments.length > 0){
+      //   this.button = true;
+      // } else {
+      //   this.button = false;
+      // }
+      // console.log("qnaData : " + JSON.stringify(data));
+      // this.temp = JSON.stringify(qnaitems);
+    })
+  }
+
+
 
 }

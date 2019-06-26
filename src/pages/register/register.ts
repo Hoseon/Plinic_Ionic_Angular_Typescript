@@ -8,7 +8,7 @@ import {AddinfoPage} from '../register/addinfo/addinfo';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImageLoader } from 'ionic-image-loader';
-
+// import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 
 @IonicPage()
@@ -33,8 +33,7 @@ export class RegisterPage {
   imagePath2 : any;
 
   constructor(private _camera: Camera, private imagesProvider: ImagesProvider, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController,
-    private nav: NavController, private auth: AuthService, private alertCtrl: AlertController,
-  public platform: Platform) {}
+    private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public platform: Platform) {}
 
 
   ionViewDidLoad() {
@@ -210,13 +209,14 @@ export class RegisterPage {
   public takePicture(sourceType) {
     // Create options for the Camera Dialog
     var options = {
-      quality: 20,
+      quality: 50,
+      // destinationType: this._camera.DestinationType.FILE_URI,
       destinationType: this._camera.DestinationType.FILE_URI,
       sourceType: sourceType,
-      saveToPhotoAlbum: false,
-      encodingType: this._camera.EncodingType.JPEG,
-      mediaType: this._camera.MediaType.PICTURE,
-      allowEdit: true,
+      saveToPhotoAlbum: true,
+      // encodingType: this._camera.EncodingType.JPEG,
+      // mediaType: this._camera.MediaType.PICTURE,
+      // allowEdit: true,
       correctOrientation: true,
 
     };
@@ -227,22 +227,36 @@ export class RegisterPage {
         this.imagePath = imagePath;
         this.imagePath = normalizeURL(this.imagePath);
         this.imagePath2 = normalizeURL(this.imagePath);
-      }else {
-        this.imagePath2 = "data:image/jpeg;base64," + imagePath;
       }
-      //this.photoSrc = 'data:image/jpg;base64,' + imagePath;
-      //this.cameraPhoto = this._DomSanitizer.bypassSecurityTrustUrl(this.photoSrc)
-      // let modal = this.modalCtrl.create('UploadModalPage', { data: this.imagePath });
-      // modal.present();
-      // modal.onDidDismiss(data => {
-      //   if (data && data.reload) {
-      //     this.reloadImages();
-      //   }
-      // });
+      else{
+        if (imagePath == null) {
+              alert("선택된 사진이 없습니다.");
+              return false;
+          }
+
+          // 안드로이드는 파일이름 뒤에 ?123234234 형식의 내용이 붙어 오는 경우가 있으므로,
+          // 이 경우 ? 이하 내용을 잘라버린다.
+          var p = imagePath.toLowerCase().lastIndexOf('?');
+          if (p > -1) {
+              imagePath = imagePath.substring(0, p);
+          }
+
+          // 안드로이드는 확장자가 없는 경우가 있으므로, 이 경우 확장자를 강제로 추가한다.
+          if (imagePath.toLowerCase().lastIndexOf('.') < 0) {
+              imagePath += '.jpg';
+          }
+
+
+      this.imagePath = imagePath;
+      this.imagePath = normalizeURL(this.imagePath);
+      this.imagePath2 = normalizeURL(this.imagePath);
+    }
     }, (err) => {
       console.log('Error: ', err);
     });
 
-  }
 
+
+
+  }
 }

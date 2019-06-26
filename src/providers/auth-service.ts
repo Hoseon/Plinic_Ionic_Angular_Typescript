@@ -33,8 +33,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  //apiUrl: 'http://plinic.cafe24app.com/',
-  apiUrl: 'http://localhost:8001/',
+  apiUrl: 'http://plinic.cafe24app.com/',
+  //apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
@@ -268,6 +268,27 @@ export class AuthService {
       });
   }
 
+  public qnaUpdate(email, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      id : content.id,
+      email: email,
+      select: content.qna_select,
+      qna: content.qna_input,
+    };
+
+    console.log("qna : "+ JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/qnaupdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
   public missionSave(id, email, image, start, end) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -397,6 +418,11 @@ export class AuthService {
 
   public getAllQna(email) {
     return this.http.get(CONFIG.apiUrl + 'qna/list/' + email)
+      .map(response => response.json());
+  }
+
+  public getQna(id) {
+    return this.http.get(CONFIG.apiUrl + 'qna/qna/' + id)
       .map(response => response.json());
   }
 

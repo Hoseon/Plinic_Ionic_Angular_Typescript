@@ -8,7 +8,6 @@ import { MultiPickerModule } from 'ion-multi-picker';
 import { ImagesProvider } from '../../../providers/images/images';
 
 
-
 /**
  * Generated class for the AddinfoPage page.
  *
@@ -30,7 +29,7 @@ export class AddinfoPage {
   alertEvent : boolean = false;
   myImage: any;
   simpleColumns : any;
-  //myDate: String;
+
   // registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
   registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday:'', skincomplaint: '', imagePath: '', user_jwt: 'true' };
 
@@ -139,9 +138,14 @@ toggle(){
 
   // Register a new user at our API
   public register() {
-    this.registerCredentials.imagePath = this.imagePath2;
+    let win: any = window;
+    // this.registerCredentials.imagePath =  win.Ionic.WebView.convertFileSrc(this.imagePath2);
+    this.registerCredentials.imagePath =  this.imagePath2;
     this.registerCredentials.email = this.email;
     this.registerCredentials.password = this.password;
+
+
+    this.showPopup("this.registerCredentials.imagePath" , this.registerCredentials.imagePath);
 
     this.imagesProvider.user_uploadImage(this.registerCredentials.imagePath, this.registerCredentials.email).then(res => {
       this.viewCtrl.dismiss({reload: true});

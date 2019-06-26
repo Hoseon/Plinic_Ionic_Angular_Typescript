@@ -37,6 +37,7 @@ import { ModifyEmailPage } from '../pages/re-register/modify-email/modify-email'
 import { ModifyNumberPage } from '../pages/re-register/modify-number/modify-number';
 import { ModifyPasswordPage } from '../pages/re-register/modify-password/modify-password';
 import { QnaWritePage } from '../pages/myinfo/details/qna/qna-write/qna-write';
+import { QnaReadPage } from '../pages/myinfo/details/qna/qna-read/qna-read';
 
 
 import { SkinChartPage } from '../pages/skin-chart/skin-chart';
@@ -115,7 +116,15 @@ import { BeautyTipAddPage } from '../pages/beauty-tip-add/beauty-tip-add';
 import { CommunityPage } from '../pages/community/community';
 import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
 import { CommunityWritePage } from '../pages/community/community-write/community-write';
-// import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+//import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+
+
+//미션 시작하기
+
+import { MissionStartPage } from '../pages/care-zone-mission-ing/mission-start/mission-start';
+import { MissionVideoPage } from '../pages/care-zone-mission-ing/mission-video/mission-video';
+
+
 
 
 export function getAuthHttp(http, storage) {
@@ -177,7 +186,9 @@ export function getAuthHttp(http, storage) {
     CommunityPage,
     CommunityModifyPage,
     CommunityWritePage,
-    //UserCard,
+    MissionStartPage,
+    MissionVideoPage,
+    QnaReadPage,
   ],
   imports: [
     HttpModule,
@@ -246,6 +257,9 @@ export function getAuthHttp(http, storage) {
     CommunityPage,
     CommunityModifyPage,
     CommunityWritePage,
+    MissionStartPage,
+    MissionVideoPage,
+    QnaReadPage,
   ],
   providers: [
     StatusBar,
@@ -266,7 +280,7 @@ export function getAuthHttp(http, storage) {
     InAppBrowser,
     ThemeableBrowser,
     CallNumber,
-    // AdMobFree,
+  //  AdMobFree,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,

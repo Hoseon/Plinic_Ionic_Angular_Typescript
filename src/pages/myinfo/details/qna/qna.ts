@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { QnaWritePage } from './qna-write/qna-write';
 import { AuthService } from '../../../../providers/auth-service';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
-
+import { QnaReadPage } from './qna-read/qna-read';
 
 
 /**
@@ -32,7 +32,7 @@ export class QnaPage {
 
   ionViewDidLoad() {
     this.seeTabs = false;
-    console.log('ionViewDidLoad QnaPage');
+    // console.log('ionViewDidLoad QnaPage');
   }
 
   ionViewWillEnter() {
@@ -49,6 +49,11 @@ export class QnaPage {
 
   }
 
+  public qna_read(id) {
+    // console.log("qna_ID : " + id)
+    this.nav.push(QnaReadPage, { id: id });
+    //this.nav.push(QnaReadPage);
+  }
 
   public qna_write() {
     this.nav.push(QnaWritePage);
@@ -57,7 +62,7 @@ export class QnaPage {
   loadQna(email) {
     this.auth.getAllQna(email).subscribe(items => {
       this.qnaData = items;
-      console.log(items);
+      // console.log(items);
     })
   }
 
@@ -76,7 +81,7 @@ export class QnaPage {
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
         };
-        console.log(this.userData);
+        // console.log(this.userData);
         this.loadQna(this.userData.email);
       } else {
         this.userData = {
@@ -90,11 +95,9 @@ export class QnaPage {
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
         };
-        console.log(this.userData);
+        // console.log(this.userData);
         this.loadQna(this.userData.email);
       }
     });
   }
-
-
 }

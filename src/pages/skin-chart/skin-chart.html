@@ -127,14 +127,32 @@
   <ion-list>
       <ion-row class="skinrow">
       <ion-col>
-      <h2 class="skinscore">기간별 피부 변화</h2></ion-col>
-      <ion-col><ion-select placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover" [(ngModel)]="valueday.day"
+      <h2 class="skinscore" style="margin-left:-4%">기간별 피부 변화</h2></ion-col>
+      <ion-col><ion-select (ionChange)="yearmonthselect($event)" placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover" [(ngModel)]="valueday.day"
                             multiple="false" class="linechart_btn">
       <ion-option *ngFor="let days of monthdate" >{{days.day}}</ion-option></ion-select></ion-col>
       </ion-row>
   </ion-list><br>
-<canvas #lineCanvas height="300" style="margin-top:-7%"></canvas>
+  <!-- Default Segment -->
+<ion-segment class="segment" mode="ios" [(ngModel)]="segment_moisture" (ionChange)="segmentChanged($event)">
+  <ion-segment-button value="수분">
+    <ion-label>수분</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="유분">
+    <ion-label>유분</ion-label>
+  </ion-segment-button>
+</ion-segment>
 
+<ion-scroll class="segment_scroll" scrollX="true" scrollY="true">
+<div class="chartWrapper">
+    <div class="chartAreaWrapper">
+<canvas class="chart_js" id="moisture" #lineCanvas ></canvas>
+<canvas class="chart_js" id="oil" #lineCanvas2 ></canvas>
+</div>
+</div>
+</ion-scroll>
+
+<br>
   <ion-list no-lines>
   <ion-item text-wrap>
     <p class="data">※&nbsp;{{exthreeDaysAgo}} ~ {{extoday}}까지 데이터 분석입니다.</p><br>
