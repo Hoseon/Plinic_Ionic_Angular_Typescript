@@ -13,7 +13,7 @@
   <!-- <form (ngSubmit)="register()" #registerForm="ngForm"> -->
 
 
-  <div class="container">
+  <div *ngIf="platform.is('ios')" class="container">
 
     <div *ngIf="!imagePath2">
       <div *ngIf="userData"><img *ngIf="!thumb_image" class="register_profile" src="http://plinic.cafe24app.com/userimages/{{userData.email}}" /></div>
@@ -23,6 +23,21 @@
     </div>
     <div *ngIf="imagePath2">
       <img *ngIf="!thumb_image" class="register_profile" [src]="imagePath2" />
+    </div>
+    <ion-img class="register_camera" src="assets/img/register/ic-system-camera@3x.png" srcset="assets/img/register/ic-system-camera@2x.png,
+                                    assets/img/register/ic-system-camera@3x.png" (click)="camera()"></ion-img>
+  </div>
+
+  <div *ngIf="platform.is('android')" class="container">
+
+    <div *ngIf="!imagePath2">
+      <div *ngIf="userData"><img *ngIf="!thumb_image" class="register_profile" src="http://plinic.cafe24app.com/userimages/{{userData.email}}" /></div>
+      <img *ngIf="imagePath2"class="register_profile" [src]="imagePath2" />
+      <img *ngIf="!imagePath2 && !userData" class="register_profile" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
+                    assets/img\register/ic-system-profile-default@3x.png" />
+    </div>
+    <div *ngIf="imagePath2">
+      <img class="register_profile" [src]="imagePath2" />
     </div>
     <ion-img class="register_camera" src="assets/img/register/ic-system-camera@3x.png" srcset="assets/img/register/ic-system-camera@2x.png,
                                     assets/img/register/ic-system-camera@3x.png" (click)="camera()"></ion-img>

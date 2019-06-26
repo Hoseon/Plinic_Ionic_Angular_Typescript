@@ -11,15 +11,20 @@
       내정보
     </ion-item>
     <ion-item *ngIf="userData">
-      <ion-thumbnail item-start>
-        <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image" />
-        <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url" />
+      <ion-thumbnail  *ngIf="platform.is('ios')" item-start>
+        <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image"/>
+        <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url"/>
       </ion-thumbnail>
-<!-- 
-      <ion-thumbnail *ngIf="platform.is('android')" item-start>
-        <ion-img *ngIf="userData.thumbnail_image" class="img-radius" src="userData.thumbnail_image" ></ion-img>
-        <ion-img *ngIf="!userData.thumbnail_image" class="img-radius" src="profileimg_url"  ></ion-img>
-      </ion-thumbnail> -->
+
+      <ion-thumbnail *ngIf="platform.is('android') && userData.from ==='plinic'" item-start>
+        <img *ngIf="imagePath" class="img-radius" [src]="imagePath" />
+        <img *ngIf="!imagePath" class="img-radius" [src]="profileimg_url"/>
+      </ion-thumbnail>
+
+      <ion-thumbnail *ngIf="platform.is('android') && userData.from !=='plinic'" item-start>
+        <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image"/>
+        <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url"/>
+      </ion-thumbnail>
 
       <h2 class="nickname"> {{userData.nickname}}</h2>
       <p class="email"> {{userData.email}}</p>

@@ -210,15 +210,15 @@ export class RegisterPage {
     // Create options for the Camera Dialog
     var options = {
       quality: 50,
-      // destinationType: this._camera.DestinationType.FILE_URI,
       destinationType: this._camera.DestinationType.FILE_URI,
       sourceType: sourceType,
       saveToPhotoAlbum: true,
-      // encodingType: this._camera.EncodingType.JPEG,
-      // mediaType: this._camera.MediaType.PICTURE,
-      // allowEdit: true,
+      encodingType: this._camera.EncodingType.JPEG,
+      mediaType: this._camera.MediaType.PICTURE,
+      allowEdit: true,
       correctOrientation: true,
-
+      targetWidth: 300,
+      targetHeight: 300
     };
 
     // Get the data of an image
@@ -233,30 +233,22 @@ export class RegisterPage {
               alert("선택된 사진이 없습니다.");
               return false;
           }
-
           // 안드로이드는 파일이름 뒤에 ?123234234 형식의 내용이 붙어 오는 경우가 있으므로,
           // 이 경우 ? 이하 내용을 잘라버린다.
           var p = imagePath.toLowerCase().lastIndexOf('?');
           if (p > -1) {
               imagePath = imagePath.substring(0, p);
           }
-
           // 안드로이드는 확장자가 없는 경우가 있으므로, 이 경우 확장자를 강제로 추가한다.
           if (imagePath.toLowerCase().lastIndexOf('.') < 0) {
               imagePath += '.jpg';
           }
-
-
       this.imagePath = imagePath;
-      this.imagePath = normalizeURL(this.imagePath);
-      this.imagePath2 = normalizeURL(this.imagePath);
+      this.imagePath = this.imagePath;
+      this.imagePath2 =this.imagePath;
     }
     }, (err) => {
       console.log('Error: ', err);
     });
-
-
-
-
   }
 }

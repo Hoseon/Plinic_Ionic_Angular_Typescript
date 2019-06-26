@@ -23,6 +23,7 @@ export class User {
   name: string;
   profile_image: string;
   thumbnail_image: string;
+  imagePath: any;
   from: string;
 
   constructor(email: string, name: string) {
@@ -54,6 +55,7 @@ export class AuthService {
     this.platform.ready().then(() => {
       this.checkToken();
       this.bluetooth_connect();
+
     });
 
     let loginOptions = {};
@@ -62,6 +64,14 @@ export class AuthService {
       AuthTypes.AuthTypeStory,
       AuthTypes.AuthTypeAccount
     ];
+  }
+
+  public setUserStorageimagePath(imagePath) {
+   this.storage.set('imagePath', imagePath);
+  }
+
+  public getUserStorageimagePath() {
+    return this.storage.get('imagePath');
   }
 
   public bluetooth_connect() {

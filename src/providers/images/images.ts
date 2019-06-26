@@ -84,7 +84,7 @@ export class ImagesProvider {
     var options: FileUploadOptions = {
       fileKey: 'image',
       chunkedMode: false,
-      mimeType: 'multipart/form-data',
+      mimeType: 'image/jpeg',
       params: { 'desc': desc }
     };
 
@@ -105,7 +105,7 @@ export class ImagesProvider {
     var options: FileUploadOptions = {
       fileKey: 'image',
       chunkedMode: false,
-      mimeType: 'multipart/form-data',
+      mimeType: 'image/jpeg',
       params: { 'desc': desc }
     };
 
@@ -130,7 +130,7 @@ export class ImagesProvider {
     var options: FileUploadOptions = {
       fileKey: 'image',
       chunkedMode: false,
-      mimeType: 'multipart/form-data',
+      mimeType: 'image/jpeg',
       params: { 'id': desc.id, 'email': desc.email }
     };
 

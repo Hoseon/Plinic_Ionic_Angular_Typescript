@@ -13,7 +13,7 @@ import { BluetoothConnectIngPage } from './details/bluetooth-connect-ing/bluetoo
 import { BluetoothDisconnectPage } from './details/bluetooth-disconnect/bluetooth-disconnect';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { CareZonePage } from '../care-zone/care-zone';
-
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the MyinfoPage page.
@@ -46,21 +46,29 @@ export class MyinfoPage {
   registerToken: any;
   blu_connect : boolean;
   profileimg_url: any;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,
+  imagePath: any;
+  from: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public storage: Storage,
     private alertCtrl: AlertController, private platform: Platform, private fcm: FCM, public bluetoothle: BluetoothLE, public modalCtrl: ModalController) {
 
 
      this.platform.ready().then(() => {
-
     });
   }
 
   ionViewWillEnter() {
+    this.loadimagePath();
     this.loadItems();
     this.loadNotice();
     console.log("1234");
+
   }
+
+  public loadimagePath() {
+    this.authService.getUserStorageimagePath().then(items => {
+        this.imagePath = items;
+});
+}
 
   ionViewDidEnter(){
     this.blu_connect = this.authService.bluetooth_connect();
@@ -197,8 +205,6 @@ export class MyinfoPage {
         } else {
            //this.thumb_image = true;
         }
-
-
       } else {
         this.userData = {
           accessToken: items.accessToken,
@@ -210,8 +216,8 @@ export class MyinfoPage {
           nickname: this.jwtHelper.decodeToken(items).name,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: 'plinic',
         };
-
       }
 
       this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
