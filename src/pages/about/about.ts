@@ -18,7 +18,7 @@ export class AboutPage {
   cameraPhoto: any;
   imagePath: any;
 
-  constructor(public navCtrl: NavController, private imagesProvider: ImagesProvider, private camera: Camera, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController,
+  constructor(public navCtrl: NavController, private imagesProvider: ImagesProvider, private _camera: Camera, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController,
     private alertCtrl: AlertController, public _DomSanitizer: DomSanitizer, public auth: AuthService,
     private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader,
   ) {
@@ -105,13 +105,13 @@ export class AboutPage {
         {
           text: 'Load from Library',
           handler: () => {
-            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+            this.takePicture(this._camera.PictureSourceType.PHOTOLIBRARY);
           }
         },
         {
           text: 'Use Camera',
           handler: () => {
-            this.takePicture(this.camera.PictureSourceType.CAMERA);
+            this.takePicture(this._camera.PictureSourceType.CAMERA);
           }
         },
         {
@@ -139,7 +139,7 @@ export class AboutPage {
     };
 
     // Get the data of an image
-    this.camera.getPicture(options).then((imagePath) => {
+    this._camera.getPicture(options).then((imagePath) => {
       this.imagePath = imagePath;
       this.imagePath = normalizeURL(this.imagePath);
       //this.photoSrc = 'data:image/jpg;base64,' + imagePath;
