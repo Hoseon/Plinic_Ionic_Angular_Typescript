@@ -6,7 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { ImageLoader } from 'ionic-image-loader';
-
+import { AuthService } from '../../providers/auth-service';
 
 @Component({
   selector: 'page-about',
@@ -18,8 +18,8 @@ export class AboutPage {
   cameraPhoto: any;
   imagePath: any;
 
-  constructor(public navCtrl: NavController, private imagesProvider: ImagesProvider, private camera: Camera, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController,
-    private alertCtrl: AlertController, public _DomSanitizer: DomSanitizer,
+  constructor(public navCtrl: NavController, private imagesProvider: ImagesProvider, private _camera: Camera, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController,
+    private alertCtrl: AlertController, public _DomSanitizer: DomSanitizer, public auth: AuthService,
     private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader,
   ) {
     this.reloadImages();
@@ -105,13 +105,13 @@ export class AboutPage {
         {
           text: 'Load from Library',
           handler: () => {
-            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+            this.takePicture(this._camera.PictureSourceType.PHOTOLIBRARY);
           }
         },
         {
           text: 'Use Camera',
           handler: () => {
-            this.takePicture(this.camera.PictureSourceType.CAMERA);
+            this.takePicture(this._camera.PictureSourceType.CAMERA);
           }
         },
         {
@@ -126,19 +126,25 @@ export class AboutPage {
   public takePicture(sourceType) {
     // Create options for the Camera Dialog
     var options = {
-      quality: 20,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      quality: 50,
+      destinationType: this._camera.DestinationType.FILE_URI,
       sourceType: sourceType,
-      saveToPhotoAlbum: false,
-      correctOrientation: true
+      saveToPhotoAlbum: true,
+      encodingType: this._camera.EncodingType.JPEG,
+      mediaType: this._camera.MediaType.PICTURE,
+      allowEdit: true,
+      correctOrientation: true,
+      targetWidth: 500,
+      targetHeight: 500
     };
 
     // Get the data of an image
-    this.camera.getPicture(options).then((imagePath) => {
+    this._camera.getPicture(options).then((imagePath) => {
       this.imagePath = imagePath;
       this.imagePath = normalizeURL(this.imagePath);
       //this.photoSrc = 'data:image/jpg;base64,' + imagePath;
       //this.cameraPhoto = this._DomSanitizer.bypassSecurityTrustUrl(this.photoSrc)
+      this.auth.setUserStorageimagePath(this.imagePath);
       let modal = this.modalCtrl.create('UploadModalPage', { data: this.imagePath });
       modal.present();
       modal.onDidDismiss(data => {

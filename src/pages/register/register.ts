@@ -93,41 +93,6 @@ export class RegisterPage {
     console.log(value)
 }
 
-  public camera(){
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Select Image Source',
-      buttons: [
-        {
-          text: 'Load from Library',
-          handler: () => {
-            this.takePicture(this._camera.PictureSourceType.PHOTOLIBRARY);
-          }
-        },
-        {
-          text: 'Use Camera',
-          handler: () => {
-            this.takePicture(this._camera.PictureSourceType.CAMERA);
-          }
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        }
-      ]
-    });
-    actionSheet.present();
-    //
-    // let alert = this.alertCtrl.create({
-    //   cssClass: 'push_alert',
-    //   title: "카메라 모듈 준비중",
-    //   message: "카메라 적용중입니다.",
-    //   buttons: [{
-    //     text: '확인'
-    //   }]
-    // });
-    // alert.present();
-  }
-
     public anddinfo(){
       if(this.userData.password===this.userData.passwordconfirm){
       this.nav.push(AddinfoPage,{
@@ -175,24 +140,25 @@ export class RegisterPage {
     alert.present();
   }
 
-  presentActionSheet() {
+
+  public camera(){
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Select Image Source',
+      title: '이미지 선택방법',
       buttons: [
         {
-          text: 'Load from Library',
+          text: '앨범에서 가져오기',
           handler: () => {
             this.takePicture(this._camera.PictureSourceType.PHOTOLIBRARY);
           }
         },
         {
-          text: 'Use Camera',
+          text: '카메라 촬영하기',
           handler: () => {
             this.takePicture(this._camera.PictureSourceType.CAMERA);
           }
         },
         {
-          text: 'Cancel',
+          text: '취소',
           role: 'cancel'
         }
       ]
@@ -210,15 +176,15 @@ export class RegisterPage {
     // Create options for the Camera Dialog
     var options = {
       quality: 50,
-      // destinationType: this._camera.DestinationType.FILE_URI,
       destinationType: this._camera.DestinationType.FILE_URI,
       sourceType: sourceType,
       saveToPhotoAlbum: true,
-      // encodingType: this._camera.EncodingType.JPEG,
-      // mediaType: this._camera.MediaType.PICTURE,
-      // allowEdit: true,
+      encodingType: this._camera.EncodingType.JPEG,
+      mediaType: this._camera.MediaType.PICTURE,
+      allowEdit: true,
       correctOrientation: true,
-
+      targetWidth: 500,
+      targetHeight: 500
     };
 
     // Get the data of an image
@@ -229,34 +195,27 @@ export class RegisterPage {
         this.imagePath2 = normalizeURL(this.imagePath);
       }
       else{
-        if (imagePath == null) {
-              alert("선택된 사진이 없습니다.");
-              return false;
-          }
-
-          // 안드로이드는 파일이름 뒤에 ?123234234 형식의 내용이 붙어 오는 경우가 있으므로,
-          // 이 경우 ? 이하 내용을 잘라버린다.
-          var p = imagePath.toLowerCase().lastIndexOf('?');
-          if (p > -1) {
-              imagePath = imagePath.substring(0, p);
-          }
-
-          // 안드로이드는 확장자가 없는 경우가 있으므로, 이 경우 확장자를 강제로 추가한다.
-          if (imagePath.toLowerCase().lastIndexOf('.') < 0) {
-              imagePath += '.jpg';
-          }
-
-
+        // if (imagePath == null) {
+        //       alert("선택된 사진이 없습니다.");
+        //       return false;
+        //   }
+        //   // 안드로이드는 파일이름 뒤에 ?123234234 형식의 내용이 붙어 오는 경우가 있으므로,
+        //   // 이 경우 ? 이하 내용을 잘라버린다.
+        //   var p = imagePath.toLowerCase().lastIndexOf('?');
+        //   if (p > -1) {
+        //       imagePath = imagePath.substring(0, p);
+        //   }
+        //   // 안드로이드는 확장자가 없는 경우가 있으므로, 이 경우 확장자를 강제로 추가한다.
+        //   if (imagePath.toLowerCase().lastIndexOf('.') < 0) {
+        //       imagePath += '.jpg';
+        //   }
       this.imagePath = imagePath;
-      this.imagePath = normalizeURL(this.imagePath);
-      this.imagePath2 = normalizeURL(this.imagePath);
+      this.imagePath = this.imagePath;
+      this.imagePath2 =this.imagePath;
+      this.auth.setUserStorageimagePath(this.imagePath2);
     }
     }, (err) => {
       console.log('Error: ', err);
     });
-
-
-
-
   }
 }

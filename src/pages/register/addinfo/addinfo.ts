@@ -1,5 +1,5 @@
   import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ViewController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController, Platform} from 'ionic-angular';
 import { AuthService } from '../../../providers/auth-service';
 import { RegisterPage} from '../../register/register';
 import {RegistercompletePage} from '../registercomplete/registercomplete';
@@ -29,7 +29,6 @@ export class AddinfoPage {
   alertEvent : boolean = false;
   myImage: any;
   simpleColumns : any;
-
   // registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
   registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday:'', skincomplaint: '', imagePath: '', user_jwt: 'true' };
 
@@ -38,7 +37,9 @@ export class AddinfoPage {
 
 
     // this.registerCredentials.birthday = '1970-06-15';
+
     this.imagePath2 = navParams.get('imagePath');
+    // this.imagePath2 = this.imagePath2.replace(/^file:\/\//, '');
     this.email = navParams.get('email');
     this.password = navParams.get('password');
     this.simpleColumns = [
@@ -138,14 +139,15 @@ toggle(){
 
   // Register a new user at our API
   public register() {
-    let win: any = window;
-    // this.registerCredentials.imagePath =  win.Ionic.WebView.convertFileSrc(this.imagePath2);
-    this.registerCredentials.imagePath =  this.imagePath2;
+
+    this.registerCredentials.imagePath = this.imagePath2;
     this.registerCredentials.email = this.email;
     this.registerCredentials.password = this.password;
 
+    // this.showPopup("this.registerCredentials.imagePath" , this.registerCredentials.imagePath);
+    // this.showPopup("imagePath2" , this.imagePath2);
 
-    this.showPopup("this.registerCredentials.imagePath" , this.registerCredentials.imagePath);
+    this.auth.setUserStorageimagePath(this.imagePath2);
 
     this.imagesProvider.user_uploadImage(this.registerCredentials.imagePath, this.registerCredentials.email).then(res => {
       this.viewCtrl.dismiss({reload: true});
