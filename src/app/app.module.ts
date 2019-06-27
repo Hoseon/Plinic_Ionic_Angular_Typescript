@@ -66,6 +66,7 @@ import { Storage } from '@ionic/storage';
 import { KakaoCordovaSDK } from 'kakao-sdk';
 import { Naver } from 'ionic-plugin-naver';
 import { AuthService } from '../providers/auth-service';
+// import { KeyboardAttachDirective } from '../providers/keyboard-attach.directive';
 
 import { Http, HttpModule } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -189,6 +190,7 @@ export function getAuthHttp(http, storage) {
     MissionStartPage,
     MissionVideoPage,
     QnaReadPage,
+    // KeyboardAttachDirective,
   ],
   imports: [
     HttpModule,

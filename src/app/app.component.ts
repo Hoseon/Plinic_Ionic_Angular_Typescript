@@ -9,9 +9,11 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { ImageLoaderConfig } from 'ionic-image-loader';
 import { FCM } from '@ionic-native/fcm';
 import { timer } from 'rxjs/observable/timer';
+// import { Keyboard } from '@ionic-native/keyboard';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  // providers: [Keyboard],
 })
 export class MyApp {
   rootPage: any = LoginPage;

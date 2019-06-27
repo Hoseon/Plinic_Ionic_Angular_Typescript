@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, AlertController, Loading } from 'ionic-angular';
 import { AuthService } from '../../../../../providers/auth-service';
+// import { KeyboardAttachDirective } from '../../../../../providers/keyboard-attach.directive'
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+// import { Keyboard } from '@ionic-native/keyboard';
+
 
 
 
@@ -16,6 +19,7 @@ import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 @Component({
   selector: 'page-qna-write',
   templateUrl: 'qna-write.html',
+  // providers: [Keyboard]
 })
 export class QnaWritePage {
 
@@ -33,11 +37,14 @@ export class QnaWritePage {
   //   {'기타문의' },
   // ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public alertCtrl: AlertController, private auth: AuthService) {
+  constructor(
+    // public keyboard: Keyboard,
+    public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public alertCtrl: AlertController, private auth: AuthService) {
   }
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad QnaWritePage');
+    // this.keyboard.disableScroll(true);
   }
 
   ionViewWillEnter() {

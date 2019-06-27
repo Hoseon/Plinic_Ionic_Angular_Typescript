@@ -12,7 +12,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="KeyboardResize" value="true" />
-    <preference name="KeyboardResizeMode" value="ionic" />
+    <preference name="KeyboardResizeMode" value="native" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
@@ -93,5 +93,6 @@
     <plugin name="cordova-plugin-fcm-with-dependecy-updated" spec="^2.4.0" />
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
     <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
+    <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <engine name="ios" spec="4.5.5" />
 </widget>

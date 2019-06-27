@@ -124,7 +124,8 @@
       "cordova-plugin-themeablebrowser": {},
       "cordova-plugin-fcm-with-dependecy-updated": {},
       "mx.ferreyra.callnumber": {},
-      "cordova-plugin-browsertab": {}
+      "cordova-plugin-browsertab": {},
+      "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
       "ios"
