@@ -33,7 +33,7 @@
     <div *ngIf="!imagePath2">
       <!-- <div *ngIf="userData"><img *ngIf="!thumb_image" class="register_profile" src="http://plinic.cafe24app.com/userimages/{{userData.email}}" /></div> -->
       <img *ngIf="imagePath2"class="register_profile" [src]="imagePath2" />
-      <img *ngIf="!imagePath2 && !userData" class="register_profile" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
+      <img *ngIf="!imagePath2" class="register_profile" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
                     assets/img\register/ic-system-profile-default@3x.png" />
     </div>
     <div *ngIf="imagePath2">

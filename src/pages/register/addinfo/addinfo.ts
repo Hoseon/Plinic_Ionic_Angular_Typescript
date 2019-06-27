@@ -8,6 +8,7 @@ import { MultiPickerModule } from 'ion-multi-picker';
 import { ImagesProvider } from '../../../providers/images/images';
 
 
+
 /**
  * Generated class for the AddinfoPage page.
  *
@@ -39,7 +40,6 @@ export class AddinfoPage {
     // this.registerCredentials.birthday = '1970-06-15';
 
     this.imagePath2 = navParams.get('imagePath');
-    // this.imagePath2 = this.imagePath2.replace(/^file:\/\//, '');
     this.email = navParams.get('email');
     this.password = navParams.get('password');
     this.simpleColumns = [
@@ -140,18 +140,20 @@ toggle(){
   // Register a new user at our API
   public register() {
 
+    // this.registerCredentials.imagePath = "http://localhost:3000"+this.imagePath2.replace(/^file:\/\//, '');
     this.registerCredentials.imagePath = this.imagePath2;
+    // this.imagePath2 = this.imagePath2.replace(/^file:\/\//, '');
     this.registerCredentials.email = this.email;
     this.registerCredentials.password = this.password;
 
-    // this.showPopup("this.registerCredentials.imagePath" , this.registerCredentials.imagePath);
-    // this.showPopup("imagePath2" , this.imagePath2);
+    this.showPopup("this.registerCredentials.imagePath" , this.registerCredentials.imagePath);
+    this.showPopup("imagePath2" , this.imagePath2);
 
     this.auth.setUserStorageimagePath(this.imagePath2);
-
     this.imagesProvider.user_uploadImage(this.registerCredentials.imagePath, this.registerCredentials.email).then(res => {
-      this.viewCtrl.dismiss({reload: true});
+      // this.viewCtrl.dismiss({reload: true});
       // this.loading.dismiss();
+      this.showPopup("이미지 업로드", "이미지 업로드에 성공 하였습니다.");
     }, err => {
       // this.dismiss();
       this.showPopup("이미지 업로드", "이미지 업로드에 실패 하였습니다.");

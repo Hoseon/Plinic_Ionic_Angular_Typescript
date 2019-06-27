@@ -14,12 +14,29 @@
 <ion-content padding>
 
   <ion-list no-lines>
-    <ion-item >
+
+    <ion-item  *ngIf="platform.is('ios')" no-lines>
       <div *ngIf="userData">
       <img *ngIf="!thumb_image" class="profile-img" src="{{profileimg_url}}" />
       </div>
       <img *ngIf="thumb_image" class="profile-img" src="{{userData.thumbnail_image}}" />
     </ion-item>
+
+    <ion-item  *ngIf="platform.is('android') && from !=='plinic'" no-lines>
+      <div *ngIf="userData">
+      <img *ngIf="!thumb_image" class="profile-img" src="{{profileimg_url}}" />
+      </div>
+      <img *ngIf="thumb_image" class="profile-img" src="{{userData.thumbnail_image}}" />
+    </ion-item>
+
+    <ion-item  *ngIf="platform.is('android') && from ==='plinic'" no-lines>
+      <div *ngIf="userData">
+      <img *ngIf="imagePath" class="profile-img" [src]="imagePath" />
+      </div>
+      <img *ngIf="!imagePath" class="profile-img" src="assets/img/register/ic-system-profile-default@3x.png" />
+    </ion-item>
+
+
       <div *ngIf="userData" style="text-align:center"><p class="top-text">{{ userData.nickname }}</p><p class="top-text2">님 피부관리를 위한<br> 미션을 선택해주세요.</p></div><br>
       <button *ngIf="!ingBtn" ion-button style="font-size: 14px" class="button_outline" outline (click)="carezone_ing()">케어존이란?&nbsp;&nbsp;></button>
       <button *ngIf="ingBtn" ion-button class="button_outline" outline style="font-size: 14px" (click)="mission_ing(missionData.missionID)">진행중인 미션
