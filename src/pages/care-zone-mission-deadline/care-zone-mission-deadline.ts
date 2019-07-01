@@ -8,7 +8,7 @@ import{ CareZoneMissionDeadlineEndPage } from '../care-zone-mission-deadline-end
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-care-zone-mission-deadline',
   templateUrl: 'care-zone-mission-deadline.html',
@@ -26,7 +26,6 @@ export class CareZoneMissionDeadlinePage {
 
 
   ngOnInit() {
-    // 프로그레스바 로직
     setInterval(() => {
       if (this.loadProgress < 100)
         this.loadProgress += 1;

@@ -13,7 +13,7 @@ import { DOCUMENT } from '@angular/common';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-skin-chart',
   templateUrl: 'skin-chart.html',

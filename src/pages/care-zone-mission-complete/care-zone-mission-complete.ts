@@ -8,7 +8,7 @@ import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-care-zone-mission-complete',
   templateUrl: 'care-zone-mission-complete.html',

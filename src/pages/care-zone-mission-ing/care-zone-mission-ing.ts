@@ -14,7 +14,7 @@ import { MissionStartPage } from './mission-start/mission-start';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-care-zone-mission-ing',
   templateUrl: 'care-zone-mission-ing.html',
@@ -92,7 +92,6 @@ export class CareZoneMissionIngPage {
   }
 
   ngOnInit() {
-    // 프로그레스바 로직
     setInterval(() => {
       if (this.loadProgress < 50)
         this.loadProgress += 1;

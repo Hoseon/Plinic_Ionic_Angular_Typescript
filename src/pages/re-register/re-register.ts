@@ -46,7 +46,7 @@ export class ReRegisterPage {
   photoSrc: any;
   cameraPhoto: any;
   imagePath: any;
-  imagePath2 : any;
+  imagePath2: any;
   userimg_id: any;
 
 
@@ -61,13 +61,19 @@ export class ReRegisterPage {
   }
 
   ionViewWillEnter() {
-    this.loadimagePath();
-    this.loadItems();
+    if(this.platform.is('ios')){
+      this.loadItems();
+    }
+    if(this.platform.is('android')){
+      this.loadimagePath();
+      this.loadItems();
+    }
+
   }
 
-   ionViewDidEnter () {
-    this.loadimagePath();
-   }
+  ionViewDidEnter() {
+    // this.loadimagePath();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReRegisterPage');
@@ -76,17 +82,17 @@ export class ReRegisterPage {
 
   public loadimagePath() {
     this.auth.getUserStorageimagePath().then(items => {
-    this.imagePath2 = items;
+      this.imagePath2 = items;
 
-    // this.showPopup("this.imagePath3================" , items);
-});
-}
+      // this.showPopup("this.imagePath3================" , items);
+    });
+  }
 
   public dissmiss() {
     this.viewCtrl.dismiss({
       imagePath: this.imagePath2
     }
-  );
+    );
   }
 
 
@@ -130,8 +136,8 @@ export class ReRegisterPage {
         console.log("imageupload Data :  " + data._id);
         this.userimg_id = data._id;
         this.userImgData = {
-          id : data._id,
-          email : data.email,
+          id: data._id,
+          email: data.email,
         }
         console.log(this.userImgData);
       })
@@ -196,12 +202,19 @@ export class ReRegisterPage {
 
     // Get the data of an image
     this._camera.getPicture(options).then((imagePath) => {
-      if(this.platform.is('ios')){
+      if (this.platform.is('ios')) {
         this.imagePath = imagePath;
         this.imagePath = normalizeURL(this.imagePath);
         this.imagePath2 = normalizeURL(this.imagePath);
-      }
-      else{
+
+        this.imagesProvider.user_udateImage(this.imagePath, this.userImgData).then(res => {
+          this.viewCtrl.dismiss({ reload: true });
+          // this.loading.dismiss();
+        }, err => {
+          // this.dismiss();
+          this.showPopup("이미지 업로드", "이미지 업로드에 실패 하였습니다.");
+        });
+      } else {
         // if (imagePath == null) {
         //       alert("선택된 사진이 없습니다.");
         //       return false;
@@ -216,11 +229,11 @@ export class ReRegisterPage {
         //   if (imagePath.toLowerCase().lastIndexOf('.') < 0) {
         //       imagePath += '.jpg';
         //   }
-      this.imagePath = imagePath;
-      this.imagePath = this.imagePath;
-      this.imagePath2 = this.imagePath;
-      this.auth.setUserStorageimagePath(this.imagePath2);
-    }
+        this.imagePath = imagePath;
+        this.imagePath = this.imagePath;
+        this.imagePath2 = this.imagePath;
+        this.auth.setUserStorageimagePath(this.imagePath2);
+      }
     }, (err) => {
       console.log('Error: ', err);
     });

@@ -7,7 +7,7 @@ import { PasswordfindPage } from '../passwordfind/passwordfind';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Naver } from 'ionic-plugin-naver';
 import { trigger, state, style, transition, animate, keyframes, group } from '@angular/animations';
-import { AnimationService, AnimationBuilder } from 'css-animator';
+// import { AnimationService, AnimationBuilder } from 'css-animator';
 
 
 /**
@@ -58,7 +58,7 @@ import { AnimationService, AnimationBuilder } from 'css-animator';
 })
 export class LoginpagePage {
   @ViewChild("messageInput") public messageInput: ElementRef;
-  private animator: AnimationBuilder;
+  // private animator: AnimationBuilder;
   loading: Loading;
   registerCredentials = { email: '', password: '' };
   userData: any;
@@ -71,10 +71,11 @@ export class LoginpagePage {
   myImage2 : any;
 
   @ViewChild('myElement') myElem;
-  constructor(public nav: NavController, public navParams: NavParams, animationService: AnimationService,
+  constructor(public nav: NavController, public navParams: NavParams,
+    // animationService: AnimationService,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController, public naver: Naver, public platform: Platform,
     private auth: AuthService, public viewCtrl: ViewController, @Inject(DOCUMENT) document) {
-      this.animator = animationService.builder();
+      // this.animator = animationService.builder();
   }
 
 
@@ -217,7 +218,7 @@ export class LoginpagePage {
   }
 
   animateElem() {
-    this.animator.setType('flipInX').show(this.myElem.nativeElement);
+    // this.animator.setType('flipInX').show(this.myElem.nativeElement);
   }
 
   toggleVisible() {

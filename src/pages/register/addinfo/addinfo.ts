@@ -1030,7 +1030,7 @@ toggle(){
 		},
 		{
 			"country_code": "RE",
-			"country_name": "Réunion",
+			"country_name": "Reunion",
 			"dialling_code": "+262"
 		},
 		{
@@ -1050,7 +1050,7 @@ toggle(){
 		},
 		{
 			"country_code": "BL",
-			"country_name": "Saint Barthélemy",
+			"country_name": "Saint Barthelemy",
 			"dialling_code": "+590"
 		},
 		{
@@ -1090,7 +1090,7 @@ toggle(){
 		},
 		{
 			"country_code": "ST",
-			"country_name": "São Tomé and Príncipe",
+			"country_name": "São Tome and Príncipe",
 			"dialling_code": "+239"
 		},
 		{
