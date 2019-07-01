@@ -199,6 +199,18 @@ export class QnaWritePage {
           this.registerQna.qna_select = '결제문의';
           break;
         }
+        case '제품문의': {
+          this.registerQna.qna_select = '제품문의';
+          break;
+        }
+        case '피부문의': {
+          this.registerQna.qna_select = '피부문의';
+          break;
+        }
+        case '플리닉문의': {
+          this.registerQna.qna_select = '플리닉문의';
+          break;
+        }
         case '기타문의': {
           this.registerQna.qna_select = '기타문의';
           break;

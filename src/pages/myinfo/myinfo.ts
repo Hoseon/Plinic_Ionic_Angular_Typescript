@@ -163,9 +163,10 @@ export class MyinfoPage {
     this.authService.kakao_authlogout();
   }
 
-  public plinic_carezone(){
-    this.navCtrl.push(CareZonePage);
-  }
+  
+  // public plinic_carezone(){
+  //   this.navCtrl.push(CareZonePage);
+  // }
 
   public plinic_manual(){
     this.navCtrl.push(PlinicManualPage);
@@ -245,6 +246,12 @@ export class MyinfoPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  public openCareZoneTab(): void {
+    // The second tab is the one with the index = 1
+    //this.nav.push(TabsPage, { selectedTab: 1 });
+    this.navCtrl.parent.select(1);
   }
 
 }
