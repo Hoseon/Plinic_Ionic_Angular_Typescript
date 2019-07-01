@@ -189,7 +189,7 @@ export class ReRegisterPage {
     // Create options for the Camera Dialog
     var options = {
       quality: 50,
-      destinationType: this._camera.DestinationType.FILE_URI,
+      destinationType: this._camera.DestinationType.DATA_URL,
       sourceType: sourceType,
       saveToPhotoAlbum: true,
       encodingType: this._camera.EncodingType.JPEG,
@@ -229,11 +229,11 @@ export class ReRegisterPage {
         //   if (imagePath.toLowerCase().lastIndexOf('.') < 0) {
         //       imagePath += '.jpg';
         //   }
-        this.imagePath = imagePath;
-        this.imagePath = this.imagePath;
-        this.imagePath2 = this.imagePath;
-        this.auth.setUserStorageimagePath(this.imagePath2);
-      }
+      this.imagePath = imagePath;
+      this.imagePath = "data:image/jpeg;base64," + this.imagePath;
+      this.imagePath2 = this.imagePath;
+      this.auth.setUserStorageimagePath(this.imagePath2);
+    }
     }, (err) => {
       console.log('Error: ', err);
     });

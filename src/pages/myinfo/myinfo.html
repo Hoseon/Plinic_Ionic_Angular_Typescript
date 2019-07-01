@@ -18,12 +18,14 @@
 
       <ion-thumbnail *ngIf="platform.is('android') && userData.from ==='plinic'" item-start>
         <img *ngIf="imagePath" class="img-radius" [src]="imagePath" />
-        <img *ngIf="!imagePath" class="img-radius" [src]="profileimg_url"/>
+        <img *ngIf="!imagePath" class="img-radius" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
+                      assets/img\register/ic-system-profile-default@3x.png" />
       </ion-thumbnail>
 
       <ion-thumbnail *ngIf="platform.is('android') && userData.from !=='plinic'" item-start>
         <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image"/>
-        <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url"/>
+        <img *ngIf="!userData.thumbnail_image" class="img-radius" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
+                      assets/img\register/ic-system-profile-default@3x.png" />
       </ion-thumbnail>
 
       <h2 class="nickname"> {{userData.nickname}}</h2>

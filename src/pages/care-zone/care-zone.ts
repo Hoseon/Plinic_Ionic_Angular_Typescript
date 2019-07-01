@@ -40,10 +40,11 @@ export class CareZonePage {
   thumb_image: any;
   ingBtn : any = false;
   profileimg_url: any;
-
+  imagePath: any;
+  from: any;
   constructor(public platform: Platform, public nav: NavController,
     public navParams: NavParams, private images: ImagesProvider,
-    private loadingCtrl: LoadingController, private alertCtrl: AlertController, public authService: AuthService, ) {
+    private loadingCtrl: LoadingController, private alertCtrl: AlertController, public authService: AuthService) {
     this.platform.ready().then((readySource) => {
       // this.carezoneData = this.roadcareZone();
       // this.loadItems();
@@ -54,20 +55,19 @@ export class CareZonePage {
   }
 
   ionViewWillEnter() {
-    // console.log("Enter Home");
-    // this.showLoading();
-    // this.loadItems();
-    // this.bannerData = this.roadbanner();
-    // this.roadcareZone();
-    // this.roadbeauty();
     this.carezoneData = this.roadcareZone();
     this.loadItems();
-
-
-
-    //this.loading.dismiss();
-    // console.log("End Home");
+    this.loadimagePath();
   }
+
+
+  public loadimagePath() {
+    this.authService.getUserStorageimagePath().then(items => {
+        this.imagePath = items;
+});
+}
+
+
 
   public loadItems() {
     this.authService.getUserStorage().then(items => {
@@ -83,6 +83,7 @@ export class CareZonePage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: items.from,
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           this.thumb_image = false;
@@ -91,8 +92,6 @@ export class CareZonePage {
         }
         this.chkmission(this.userData.email);
         this.chkIngmission(this.userData.email);
-
-
       } else {
         this.userData = {
           accessToken: items.accessToken,
@@ -104,10 +103,11 @@ export class CareZonePage {
           nickname: this.jwtHelper.decodeToken(items).name,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: 'plinic',
         };
         this.chkmission(this.userData.email);
         this.chkIngmission(this.userData.email);
-
+        this.from= 'plinic';
       }
       this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
       this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
@@ -265,6 +265,17 @@ export class CareZonePage {
     this.loading.present();
   }
 
+  showAlert(text) {
+    //this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      cssClass:'push_alert',
+      title: 'Plinic',
+      message: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
   showError(text) {
     this.loading.dismiss();
 

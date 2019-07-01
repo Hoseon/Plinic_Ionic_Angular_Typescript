@@ -14,9 +14,29 @@
 <ion-content padding>
 
   <ion-list>
+
+      <ion-item  *ngIf="platform.is('ios')" no-lines>
+        <div *ngIf="userData">
+        <img *ngIf="!thumb_image" class="profile-img" src="{{profileimg_url}}" />
+        </div>
+        <img *ngIf="thumb_image" class="profile-img" src="{{userData.thumbnail_image}}" />
+      </ion-item>
+
+      <ion-item  *ngIf="platform.is('android') && from !=='plinic'" no-lines>
+        <div *ngIf="userData">
+        <img *ngIf="!thumb_image" class="profile-img" src="{{profileimg_url}}" />
+        </div>
+        <img *ngIf="thumb_image" class="profile-img" src="{{userData.thumbnail_image}}" />
+      </ion-item>
+
+      <ion-item  *ngIf="platform.is('android') && from ==='plinic'" no-lines>
+        <div *ngIf="userData">
+        <img *ngIf="imagePath" class="profile-img" [src]="imagePath" />
+        </div>
+        <img *ngIf="!imagePath" class="profile-img" src="assets/img/register/ic-system-profile-default@3x.png" />
+      </ion-item><br>
+
     <ion-item no-lines>
-      <ion-img class="profile-img" src="assets/img/care-zone/ic-system-profile-sample.png" srcset="assets/img/ic-system-profile-sample@2x.png 2x,
-             assets/img/ic-system-profile-sample@3x.png 3x"></ion-img><br>
       <div *ngIf="userData" style="text-align:center">
         <p class="top-text">{{ userData.nickname }} &nbsp;</p>
         <p class="top-text2">님 진행 중인<br> 미션이 있습니다.</p>

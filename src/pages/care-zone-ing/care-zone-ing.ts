@@ -25,11 +25,13 @@ export class CareZoneIngPage {
   loading: Loading;
   userData: any;
   jwtHelper: JwtHelper = new JwtHelper();
+  thumb_image: any;
+  imagePath: any;
+  from: any;
+  profileimg_url : any;
   constructor(public platform: Platform, public nav: NavController, public navParams: NavParams,
     private images: ImagesProvider, private loadingCtrl: LoadingController, private alertCtrl: AlertController, public authService: AuthService,) {
     this.platform.ready().then((readySource) => {
-      this.carezoneData = this.roadcareZone();
-      this.loadItems();
     });
   }
 
@@ -37,11 +39,44 @@ export class CareZoneIngPage {
     //console.log('ionViewDidLoad CareZoneIngPage');
   }
 
-  public loadItems(){
-    this.authService.getUserStorage().then(items => {
+  ionViewWillEnter() {
 
-      //this.userData = items;
+    this.carezoneData = this.roadcareZone();
+    this.loadItems();
+    this.loadimagePath();
+  }
 
+
+  public loadimagePath() {
+    this.authService.getUserStorageimagePath().then(items => {
+        this.imagePath = items;
+});
+}
+
+
+public loadItems() {
+  this.authService.getUserStorage().then(items => {
+
+    if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
+      this.userData = {
+        accessToken: items.accessToken,
+        id: items.id,
+        age_range: items.age_range,
+        birthday: items.birthday,
+        email: items.email,
+        gender: items.gender,
+        nickname: items.nickname,
+        profile_image: items.profile_image,
+        thumbnail_image: items.thumbnail_image,
+        from: items.from,
+      };
+      if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
+        this.thumb_image = false;
+      } else {
+        this.thumb_image = true;
+      }
+
+    } else {
       this.userData = {
         accessToken: items.accessToken,
         id: items.id,
@@ -52,18 +87,15 @@ export class CareZoneIngPage {
         nickname: this.jwtHelper.decodeToken(items).name,
         profile_image: items.profile_image,
         thumbnail_image: items.thumbnail_image,
+        from: 'plinic',
       };
-      // this.accessToken = items.accessToken
-      // this.id = items.id
-      // this.age_range = items.age_range
-      // this.birthday = items.birthday
-      // this.email = items.email
-      // this.gender = items.gender
-      // this.nickname = items.nickname
-      // this.profile_image = items.profile_image
-      // this.thumbnail_image =  items.thumbnail_image
-    });
-  }
+
+      this.from= 'plinic';
+    }
+    this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
+    this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
+  });
+}
 
 
 
@@ -99,6 +131,18 @@ export class CareZoneIngPage {
       content: 'Please wait...'
     });
     this.loading.present();
+  }
+
+  showAlert(text) {
+    //this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      cssClass:'push_alert',
+      title: 'Plinic',
+      message: text,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   showError(text) {
