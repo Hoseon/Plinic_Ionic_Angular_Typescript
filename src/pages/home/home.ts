@@ -344,7 +344,7 @@ export class HomePage {
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
       title: "고객센터",
-      message: "언제나 친절히 모시겠습니다. <br> 오전10시 ~ 오후 7시 <br>( 점심시간 12시~1시 )",
+      message: "언제나 친절히 모시겠습니다. <br> 오전10시 ~ 오후 5시 <br>( 점심시간 12시~1시 )",
       buttons: [{
         text: '연결하기',
         handler: () => {
