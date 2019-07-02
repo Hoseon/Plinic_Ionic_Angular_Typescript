@@ -192,7 +192,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 //문진표
-import { SkinDiagnosePageModule } from '../pages/skin-diagnose/skin-diagnose.module';
+import { SkinDiagnoseMoisturePageModule } from '../pages/skin-diagnose-moisture/skin-diagnose-moisture.module';
+import { SkinDiagnoseOilPageModule } from '../pages/skin-diagnose-oil/skin-diagnose-oil.module';
 
 
 export function getAuthHttp(http, storage) {
@@ -306,7 +307,8 @@ export function getAuthHttp(http, storage) {
     MissionStartPageModule,
     MissionVideoPageModule,
     BrowserAnimationsModule,
-    SkinDiagnosePageModule,
+    SkinDiagnoseMoisturePageModule,
+    SkinDiagnoseOilPageModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     ProgressBarModule,

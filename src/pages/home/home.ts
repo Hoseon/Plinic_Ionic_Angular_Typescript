@@ -44,7 +44,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { BeautyTipAddPage } from '../beauty-tip-add/beauty-tip-add';
 import { PlinicManualPage } from '../myinfo/details/plinic-manual/plinic-manual';
-import { SkinDiagnosePage } from '../skin-diagnose/skin-diagnose';
+import { SkinDiagnoseMoisturePage } from '../skin-diagnose-moisture/skin-diagnose-moisture';
 
 
 
@@ -192,7 +192,7 @@ export class HomePage {
     //   }]
     // });
     // alert.present();
-    let myModal = this.modalCtrl.create(SkinDiagnosePage);
+    let myModal = this.modalCtrl.create(SkinDiagnoseMoisturePage);
     myModal.present();
   }
 
