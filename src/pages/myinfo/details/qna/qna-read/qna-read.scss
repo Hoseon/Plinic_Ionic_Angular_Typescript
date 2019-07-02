@@ -127,9 +127,20 @@ page-qna-read {
  .scroll-content{
    padding: 0px !important;
  }
-
+ .text-input-md{
+   margin: 0px;
+ }
+ .text-input-ios{
+   margin: 0px;
+ }
  .text-input{
    height: 100%;
+ }
+
+ .label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input{
+  margin-left: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
  }
 
   .label-md{
@@ -227,6 +238,7 @@ page-qna-read {
       line-height: normal;
       letter-spacing: normal;
       color: #c7c7c7;
+      margin-top: -10%;
     }
 
     .qna_input1{
@@ -238,28 +250,37 @@ page-qna-read {
      font-stretch: normal;
      line-height: normal;
      letter-spacing: normal;
-     color: #292929;
-     margin-top: 10px;
-     margin-bottom: 5%;
+     color: #000000;
+     margin-top: 0%;
+     // margin-bottom: 5%;
     }
 
 
     .qna_input2{
      width: 97%;
-     height: 200px;
      font-family: NotoSansCJKkr;
-     font-size: 15px;
+     font-size: 14px;
      font-weight: normal;
      font-style: normal;
      font-stretch: normal;
      line-height: normal;
      letter-spacing: normal;
-     color: #292929;
-     margin-top: 10px;
+     color: #000000;
     }
 
 
-
+    .qna_input3{
+     width: 97%;
+     height: 300px;
+     font-family: NotoSansCJKkr;
+     font-size: 14px;
+     font-weight: normal;
+     font-style: normal;
+     font-stretch: normal;
+     line-height: normal;
+     letter-spacing: normal;
+     color: #000000;
+    }
 
 
 }

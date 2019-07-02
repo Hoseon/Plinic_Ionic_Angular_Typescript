@@ -6,6 +6,7 @@ import 'chartjs-plugin-labels';
 import ko from 'date-fns/locale/ko';
 import { DOCUMENT } from '@angular/common';
 
+
 /**
  * Generated class for the SkinChartPage page.
  *
@@ -13,7 +14,7 @@ import { DOCUMENT } from '@angular/common';
  * Ionic pages and navigation.
  */
 
-// @IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-skin-chart',
   templateUrl: 'skin-chart.html',
@@ -41,26 +42,6 @@ sixDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*6);
 sevenDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*7);
 aightDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*8);
 nineDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*9);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*10);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*12);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*13);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*14);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*15);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*16);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*17);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*18);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*19);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*20);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*21);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*22);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*23);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*24);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*25);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*26);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*27);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*28);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*29);
-// threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*30);
 lastDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*31);
 
 
@@ -75,10 +56,9 @@ skinbtnMonth = format(this.today, 'MM');
 segment_status:any;
 segment_moisture : any;
 
-
-
 extoday =  format(this.today, 'YYYY.MM.DD');
 exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
+
 
   constructor(public navCtrl: NavController , public navParams: NavParams, public platform: Platform, @Inject(DOCUMENT) document  ) {
     this.segment_moisture="수분"
@@ -111,11 +91,11 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
     document.getElementById("oil").style.display = "none";
 
 
-    this.today = format(this.today, 'YYYY.MM.DD');
-    this.yesterday = format(this.yesterday, 'YYYY.MM.DD');
-    this.twoDaysAgo = format(this.twoDaysAgo, 'YYYY.MM.DD');
-    this.threeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
-    this.lastDaysAgo = format(this.lastDaysAgo, 'YYYY.MM.DD');
+    this.today = format(this.today, 'DD');
+    this.yesterday = format(this.yesterday, 'DD');
+    this.twoDaysAgo = format(this.twoDaysAgo, 'DD');
+    this.threeDaysAgo = format(this.threeDaysAgo, 'DD');
+    this.lastDaysAgo = format(this.lastDaysAgo, '.DD');
 
 
     this.lineCanvas = new Chart(this.lineCanvas.nativeElement, {
@@ -124,37 +104,7 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
         type: 'line',
         data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
         labels: [
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today
+          "01","03","04","05","11","14","15","16","17","18","27","29","30","31"
         ],
         datasets: [{
                       // label: format(this.today, 'MM/DD', '유분'),
@@ -230,7 +180,7 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
                   },
                   responsive: true,
                   legend: {
-                    display: true     //라벨표시
+                    display: false,     //라벨표시
                   },
                     scales: {
                         xAxes: [{
@@ -269,37 +219,7 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
         type: 'line',
         data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
         labels: [
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today,
-          this.today
+                  "01","03","04","05","11","14","15","16","17","18","27","29","30","31"
  ],
         datasets: [{
                       // 수분은 하늘이랑 파랑
@@ -308,18 +228,18 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
                     label: '내 유분 점수',
                     fill: false,
                      lineTension: 0.1,
-                     backgroundColor: "#EDA900",
-                     borderColor: "#EDA900",
+                     backgroundColor: "#368AFF",
+                     borderColor: "#368AFF",
                      borderCapStyle: 'butt',
                      borderDash: [],
                      borderDashOffset: 0.0,
                      borderJoinStyle: 'miter',
-                     pointBorderColor: "#EDA900",
+                     pointBorderColor: "#368AFF",
                      pointBackgroundColor: "#fff",
                      pointBorderWidth: 1,
                      pointHoverRadius: 5,
-                     pointHoverBackgroundColor: "#EDA900",
-                     pointHoverBorderColor: "#EDA900",
+                     pointHoverBackgroundColor: "#368AFF",
+                     pointHoverBorderColor: "#368AFF",
                      pointHoverBorderWidth: 2,
                      pointRadius: 3,
                      pointHitRadius: 10,
@@ -340,18 +260,18 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
                    label: '20대 평균 유분 점수',
                    fill: false,
                     lineTension: 0.1,
-                    backgroundColor: "#FFF136",
-                    borderColor: "#FFF136",
+                    backgroundColor: "#00C6ED",
+                    borderColor: "#00C6ED",
                     borderCapStyle: 'butt',
                     borderDash: [],
                     borderDashOffset: 0.0,
                     borderJoinStyle: 'miter',
-                    pointBorderColor: "#FFF136",
+                    pointBorderColor: "#00C6ED",
                     pointBackgroundColor: "#fff",
                     pointBorderWidth: 1,
                     pointHoverRadius: 5,
-                    pointHoverBackgroundColor: "#FFF136",
-                    pointHoverBorderColor: "#FFF136",
+                    pointHoverBackgroundColor: "#00C6ED",
+                    pointHoverBorderColor: "#00C6ED",
                     pointHoverBorderWidth: 2,
                     pointRadius: 3,
                     pointHitRadius: 10,
@@ -373,7 +293,7 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
                   },
                   responsive: true,
                   legend: {
-                    display: true     //라벨표시
+                    display: false,     //라벨표시
                   },
                     scales: {
                         xAxes: [{

@@ -106,23 +106,30 @@ page-mission-start {
     color: #292929;
   }
 
+ .swiper-slide img{
+   width: 125%;
+   margin-left: 0px;
+   margin-right: 0px;
+   height: 90%;
+ }
  .mission_start_img{
-   position: absolute;
-   top: 5%;
-   left: 5%;
+   margin-top: 5%;
    padding: 0px  !important;
-   width: 200% !important;
-   height: 300px !important;
+   width: 90% !important;
+   height: 85% !important;
  }
 
+  .slide-zoom{
+    height: 100%;
+  }
 .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
   bottom : 25%;
 }
 
 .skin_btn {
   position: absolute;
-  bottom: 5%;
-  left: -1%;
+  bottom: 2%;
+  left: -0.1%;
   border-radius: 5px !important;
   width: 99%;
   height: 50px;
@@ -148,7 +155,7 @@ page-mission-start {
 
 .swiper-pagination-bullet{
   background: transparent;
-  border: solid 6px #5c59b6!important;
+  border: solid 5px #5c59b6!important;
 }
 
 

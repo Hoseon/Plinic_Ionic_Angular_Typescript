@@ -175,7 +175,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicImageLoader } from 'ionic-image-loader';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { AnimationService, AnimatesDirective } from 'css-animator';
+//import { AnimationService, AnimatesDirective } from 'css-animator';
 
 import { SelectSearchableModule } from 'ionic-select-searchable';
 import { MultiPickerModule } from 'ion-multi-picker';
@@ -188,9 +188,11 @@ import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 
 //콜센터 연결
 import { CallNumber } from '@ionic-native/call-number';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
-
+//문진표
+import { SkinDiagnosePageModule } from '../pages/skin-diagnose/skin-diagnose.module';
 
 
 export function getAuthHttp(http, storage) {
@@ -304,6 +306,7 @@ export function getAuthHttp(http, storage) {
     MissionStartPageModule,
     MissionVideoPageModule,
     BrowserAnimationsModule,
+    SkinDiagnosePageModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     ProgressBarModule,
@@ -386,11 +389,12 @@ export function getAuthHttp(http, storage) {
     Camera,
     Naver,
     BluetoothLE,
-    // AnimationService,
+    //AnimationService,
     FCM,
     InAppBrowser,
     ThemeableBrowser,
     CallNumber,
+    LocalNotifications,
     //  AdMobFree,
     {
       provide: AuthHttp,

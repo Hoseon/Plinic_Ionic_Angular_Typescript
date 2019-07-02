@@ -28,40 +28,29 @@
 
   <ion-item no-lines>
     <ion-col style="width:100%;">
-      <!-- <div *ngFor="let comment of qnaDetailData">
-     {{comment.comments.body}}
-       <!-- <div ng-repeat="office in qnaDetailData.comments"> -->
-      <!-- </div> -->
-      <!-- </div> -->
-      <button *ngIf="!button" class="qna_btn_wait" ion-button> 답변 대기중</button>
-      <!-- <button  class="qna_btn_wait" style="background-color: #5c59b6;" ion-button >답변 대기중</button> -->
-      <!-- <button  class="qna_btn_complete" ion-button > 답변 완료</button> -->
+      <button *ngIf="button" class="qna_btn_wait" ion-button> 답변 대기중</button>
+      <button *ngIf="!button" class="qna_btn_wait" style="background-color: #5c59b6;" ion-button> 답변 대기중</button>
       <button *ngIf="button" class="qna_btn_complete" style="background-color: #5c59b6;" ion-button>답변 완료</button>
-      <div *ngIf="!button"><button *ngFor="let qna of qnaDetailData" class="qna_btn_edit" ion-button (click)="qna_write(qna._id)">수정</button></div>
+      <button *ngIf="!button" class="qna_btn_complete" ion-button>답변 완료</button>
+      <div *ngIf="!button" style="height:0px;"><button *ngFor="let qna of qnaDetailData" class="qna_btn_edit" ion-button (click)="qna_write(qna._id)">수정</button></div>
     </ion-col>
   </ion-item>
 
   <ion-item no-lines>
-    <ion-textarea *ngFor="let qna of qnaDetailData" class="qna_input1" readonly disabled value="[{{qna.select}}] {{qna.qna}} ">
-    </ion-textarea>
+    <ion-textarea *ngFor="let qna of qnaDetailData" class="qna_input1" readonly value="[{{qna.select}}] {{qna.qna}} "></ion-textarea>
   </ion-item>
-
-  <!-- <div *ngFor="let qna of qnaDetailData">
-    {{qnaD}}
-  </div> -->
 
   <ion-item no-lines>
-    <ion-input *ngFor="let qna of qnaDetailData" class="qna_date" readonly disabled value="{{qna.createdAt}}"></ion-input>
+    <ion-input *ngFor="let qna of qnaDetailData" class="qna_date" disabled value="{{qnaDetailData.createdAt}}"></ion-input>
   </ion-item>
 
-  <ion-item *ngIf="!button" no-lines>
-    <ion-textarea class="qna_input2" readonly disabled value="관리자가 빠른 시간내로 답변을 드리겠습니다.">
-
+  <ion-item *ngIf="!button" style="height:0px;" no-lines>
+    <ion-textarea (ionChange)="qna_answer($event)" class="qna_input2" readonly value="관리자가 빠른 시간내로 답변을 드리겠습니다.">
     </ion-textarea>
   </ion-item>
 
   <ion-item *ngIf="button" no-lines>
-    <ion-textarea *ngFor="let comment of commentData" class="qna_input2" readonly disabled value="{{comment.body}}">
+    <ion-textarea *ngFor="let comment of commentData" class="qna_input3" readonly value="{{comment.body}}">
 
     </ion-textarea>
   </ion-item>

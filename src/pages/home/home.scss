@@ -1,5 +1,11 @@
 page-home {
 
+    .swiper-pagination-bullet-active{
+      background: #5c59b6;
+    }
+    .button-md.activated{
+      background-color: #FFF;
+    }
     .page_home {
       // position: relative;
       //height: 4715px;
@@ -372,7 +378,7 @@ page-home {
       letter-spacing: normal;
       text-align: center;
       color: #ffffff;
-      margin-bottom: 3%;
+      margin-bottom: 5%;
       margin-top: -1%;
       box-shadow: none !important;
     }
@@ -393,7 +399,7 @@ page-home {
       letter-spacing: normal;
       text-align: center;
       color: #292929;
-      margin-bottom: 5%;
+      margin-bottom: 3%;
       margin-top: -1%;
       box-shadow: none !important;
     }
