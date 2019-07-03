@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { QnaWritePage } from '../qna-write/qna-write';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { AuthService } from '../../../../../providers/auth-service';
-
-
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { format } from 'date-fns';
 
 
 /**
@@ -29,14 +29,15 @@ export class QnaReadPage {
   temp: any;
   commentData: any;
   button: any;
+  createdAt: any;
 
-
-  constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, public auth: AuthService) {
+  constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, public auth: AuthService,  public alertCtrl: AlertController,
+    private localNotifications: LocalNotifications ) {
     this.platform.ready().then((readySource) => {
 
     });
+}
 
-  }
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad QnaReadPage');
@@ -48,6 +49,16 @@ export class QnaReadPage {
     this.loadQna(this.id);
   }
 
+
+  public qna_answer(answer){
+    if(answer){
+       console.log("answer=============="+ answer);
+       this.auth.get_qna_answer();
+    }
+    else{
+      console.log("answer=============="+ answer);
+    }
+  }
 
   public qna_write(id) {
     // console.log("ididididid " + id);
@@ -88,6 +99,8 @@ export class QnaReadPage {
  public loadQna(id){
     this.auth.getQna(id).subscribe(data => {
       this.qnaDetailData = data;
+      this.qnaDetailData.createdAt = format(data[0].createdAt, 'YYYY.MM.DD');
+      console.log("dddddddddd"+ this.qnaDetailData.createdAt);
       this.commentData = data[0].comments;
       if(data[0].comments.length > 0){
         this.button = true;

@@ -15,6 +15,8 @@ $app-direction: ltr;
 @import "ionic.globals";
 
 
+
+
 // Shared Variables
 // --------------------------------------------------
 // To customize the look and feel of this app, you can override
@@ -42,6 +44,14 @@ $colors: (
   dark:       #222
 );
 
+
+
+$range-ios-knob-background-color : transparent;
+
+$range-ios-knob-height:   0px !default;
+$range-ios-knob-width:    0px !default;
+$range-ios-knob-box-shadow:	none;
+$range-ios-padding-horizontal: 0px;
 
 // App iOS Variables
 // --------------------------------------------------

@@ -274,6 +274,7 @@ page-skin-chart {
           .chart_js{
             // width:1500px;
             // height: 500px;
+            width: 130%;
           }
 
           .chartAreaWrapper {
@@ -284,7 +285,38 @@ page-skin-chart {
           .segment_scroll{
             // width: 100%;   //스크롤 크기
             height: 400px !important;
+            margin-left: -7%;
           }
+
+          .square_col{
+            margin-left:23%;
+            display:flex;
+          }
+          .square{
+            background: #368AFF;
+            width: 20px;
+            height: 20px;
+          }
+
+          .square2 {
+            background: #00C6ED;
+            width: 20px;
+            height: 20px;
+          }
+
+          .square_text{
+            padding-left: 2%;
+            padding-right: 5%;
+            font-family: NotoSansCJKkr;
+            font-size: 12px;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            font-weight: normal;
+            color: #292929;
+          }
+
 
           .linechart_btn{
             position: absolute;
