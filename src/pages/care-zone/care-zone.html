@@ -44,17 +44,52 @@
   </ion-list>
 
 
+  <!-- <ion-list *ngIf="missionData">
+    <ion-row class="row">
+      <ion-col class="container" (click)="mission_start(missionData.missionID)">
+        <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{missionData.missionID}}'  />
+
+        <button *ngIf="recruiting[i]" class="carezon_btn1_1" style="box-shadow: none;" ion-button>모집 중</button>
+        <button class="carezon_btn1_1" style="box-shadow: none; background-color: #656200;" ion-button>진행 중</button>
+        <button *ngIf="d3[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #d2d4d8;" ion-button>D-3</button>
+        <button *ngIf="d2[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #47C83E;" ion-button>D-2</button>
+        <button *ngIf="d1[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #FF00DD;" ion-button>D-1</button>
+        <button *ngIf="approaching[i]" class="carezon_btn1_1" style="box-shadow: none;" ion-button>진행중</button>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-9 class="imagetitle">
+        {{missionData.title}}
+      </ion-col>
+      <ion-col class="right_align">
+        {{ingmissionCounter}}/{{missionData.maxmember}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="sub">
+      {{missionData.body}}
+      </ion-col>
+    </ion-row><br><br>
+  </ion-list> -->
 
   <ion-list *ngFor="let carezone of carezoneData; let i = index">
+    <ng-container *ngIf="endmission[i] > currentDate">
     <ion-row class="row">
       <ion-col class="container" (click)="mission_start(carezone._id)">
         <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}'  />
 
         <button *ngIf="recruiting[i]" class="carezon_btn1_1" style="box-shadow: none;" ion-button>모집 중</button>
-        <button *ngIf="endrecruit[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #d2d4d8;" ion-button>모집마감</button>
-        <button *ngIf="new[i]" class="carezon_status1_1" style="box-shadow: none; background-color: #47C83E;" ion-button>NEW</button>
-        <button *ngIf="mdchuchun[i]" class="carezon_status1_1" style="box-shadow: none; background-color: #FF00DD;" ion-button>MD추천</button>
-        <button *ngIf="approaching[i]" class="carezon_status1_2" style="box-shadow: none;" ion-button>마감임박</button>
+        <button *ngIf="endrecruit[i]" class="carezon_status1_1" style="box-shadow: none; background-color: #d2d4d8;" ion-button>모집마감</button>
+        <button *ngIf="ingmdchuchun[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>MD추천</button>
+        <button *ngIf="ingapproaching[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #87B5FF;" ion-button>마감임박</button>
+
+        <button *ngIf="d5[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #94A3FF;" ion-button>모집 D-3</button>
+        <button *ngIf="d4[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #CFEBD7;" ion-button>모집 D-2</button>
+        <button *ngIf="d3[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #C4E2FF;" ion-button>모집 D-1</button>
+        <button *ngIf="d2[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #FFC3C3;" ion-button>모집중</button>
+        <button *ngIf="d1[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #FFC3C3;" ion-button>모집중</button>
+        <button *ngIf="approaching[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #B7C9AF;" ion-button>진행중</button>
 
       </ion-col>
     </ion-row>
@@ -71,6 +106,38 @@
       {{carezone.body}}
       </ion-col>
     </ion-row><br><br>
+    </ng-container>
+  </ion-list>
+
+  <ion-list *ngFor="let carezone of carezoneData; let i = index">
+    <ng-container *ngIf="endmission[i] < currentDate">
+    <ion-row class="row">
+      <ion-col class="container" (click)="mission_start(carezone._id)">
+        <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}'  />
+
+        <!-- <button *ngIf="recruiting[i]" class="carezon_btn1_1" style="box-shadow: none;" ion-button>모집 중</button> -->
+        <button class="carezon_btn1_1" style="box-shadow: none; background-color: #e9d4e8;" ion-button>미션마감</button>
+        <!-- <button *ngIf="d3[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #d2d4d8;" ion-button>D-3</button> -->
+        <!-- <button *ngIf="new[i]" class="carezon_status1_1" style="box-shadow: none; background-color: #47C83E;" ion-button>NEW</button> -->
+        <!-- <button *ngIf="mdchuchun[i]" class="carezon_status1_1" style="box-shadow: none; background-color: #FF00DD;" ion-button>MD추천</button> -->
+        <!-- <button *ngIf="approaching[i]" class="carezon_status1_2" style="box-shadow: none;" ion-button>마감임박</button> -->
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-9 class="imagetitle">
+        {{carezone.title}}
+      </ion-col>
+      <ion-col class="right_align">
+        {{missionCounter[i]}}/{{carezone.maxmember}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="sub">
+      {{carezone.body}}
+      </ion-col>
+    </ion-row><br><br>
+    </ng-container>
   </ion-list>
 
 

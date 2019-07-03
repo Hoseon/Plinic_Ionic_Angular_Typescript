@@ -572,6 +572,10 @@ page-home {
       z-index : 1;
       color: #ffffff;
       box-shadow: none;
+      -webkit-animation: button_twinkle 7s ease-in-out infinite;
+      -moz-animation: button_twinkle 1s ease-in-out infinite;
+      -o-animation: button_twinkle 1s ease-in-out infinite;
+        animation: button_twinkle 1s ease-in-out infinite;
     }
 
     .carezon_status1_3{

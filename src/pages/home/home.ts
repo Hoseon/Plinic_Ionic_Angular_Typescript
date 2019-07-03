@@ -70,7 +70,8 @@ export class HomePage {
   second_carezone_title: any;
   second_carezone_body: any;
   second_carezone__id: any;
-  second_carezone_missioncount: any;
+  // second_carezone_missioncount: any;
+  second_carezone_missioncount: Array<any> = new Array<any>();
   second_carezone_maxmember: any;
   second_carezone_startDate: Date;
   third_carezone_title: any;
@@ -122,6 +123,30 @@ export class HomePage {
   third_approaching: any;
   third_endrecruit: any;
 
+  firstCarezoneData: any;
+  secondCarezoneData: any;
+  thirdCarezoneData: any;
+
+  secondCount: any = 0;
+
+  getday: any;
+  dday: any;
+  chkDay: any;
+
+  d5: Array<any> = new Array<any>();
+  d4: Array<any> = new Array<any>();
+  d3: Array<any> = new Array<any>();
+  d2: Array<any> = new Array<any>();
+  d1: Array<any> = new Array<any>();
+  ingmdchuchun: Array<boolean> = new Array<boolean>();
+  ingapproaching: Array<boolean> = new Array<boolean>();
+  missionCounter2: Array<any> = new Array<any>();
+  percent: Array<any> = new Array<any>();
+  getthirdday: Array<any> = new Array<any>();
+
+
+
+
 
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController,
@@ -134,6 +159,9 @@ export class HomePage {
       this.loadItems();
       this.bannerData = this.roadbanner();
       this.roadcareZone();
+      this.firstCarezoneData = this.firstLoadCareZone();
+      this.secondCarezoneData = this.secondLoadCareZone();
+      this.thirdCarezoneData = this.thirdLoadCareZone();
       this.roadbeauty();
 
       if (this.auth.bluetooth_connect() == true) {
@@ -181,7 +209,7 @@ export class HomePage {
   }
 
 
-  public skin_measure(){
+  public skin_measure() {
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
       title: "plinic",
@@ -193,11 +221,11 @@ export class HomePage {
     alert.present();
   }
 
-  public beauty_add(){
+  public beauty_add() {
     this.nav.push(BeautyTipAddPage);
   }
 
-  public plinic_manual(){
+  public plinic_manual() {
     this.nav.push(PlinicManualPage);
   }
 
@@ -403,7 +431,11 @@ export class HomePage {
   public second_missionCount(id) {
     // this.showLoading();
     this.images.missionCount(id).subscribe(data => {
-      this.second_carezone_missioncount = data;
+      // this.secondCount = 0;
+      this.second_carezone_missioncount[this.secondCount] = data;
+      // console.log("진행중 카운트" + this.second_carezone_missioncount[this.secondCount])
+      // console.log("진행중 순번" + this.secondCount)
+      this.secondCount++;
     });
   }
 
@@ -415,138 +447,247 @@ export class HomePage {
     });
   }
 
-  public roadcareZone() {
-    this.images.maincarezoneRoad().subscribe(data => {
-      //console.log(data);
-      this.first_carezone_title = data[0].title;
-      this.first_carezone_body = data[0].body;
-      this.first_carezone__id = data[0]._id;
+  public firstLoadCareZone() {
+    this.images.first_carezoneRoad().subscribe(data => {
+      this.firstCarezoneData = data;
       this.first_missionCount(data[0]._id);
-      this.first_carezone_maxmember = (data[0].maxmember);
-      this.first_carezone_startDate = new Date(data[0].startmission);
-      this.second_carezone_title = data[1].title;
-      this.second_carezone_body = data[1].body;
-      this.second_carezone__id = data[1]._id;
-      this.second_missionCount(data[1]._id);
-      this.second_carezone_maxmember = (data[1].maxmember);
-      this.second_carezone_startDate = new Date(data[1].startmission);
-      this.third_carezone_title = data[2].title;
-      this.third_carezone_body = data[2].body;
-      this.third_carezone__id = data[2]._id;
-      this.third_missionCount(data[2]._id);
-      this.third_carezone_maxmember = (data[1].maxmember);
-      this.third_carezone_startDate = new Date(data[2].startmission);
-      // this.currentDate = new Date();
-      // this.currentDate.setDate( this.currentDate.getDate() + 2 );
-
-      if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -10) {
-        this.new = true;
-        this.recruiting = true;
-        this.mdchuchun = false;
-        this.approaching = false;
-        this.endrecruit = false;
-      } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -7) {
-        this.new = false;
-        this.recruiting = true;
-        this.mdchuchun = true;
-        this.approaching = false;
-        this.endrecruit = false;
-      } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -3 || this.diffdate(this.currentDate, this.first_carezone_startDate) < 0) {
-        this.new = false;
-        this.recruiting = true;
-        this.mdchuchun = false;
-        this.approaching = true;
-        this.endrecruit = false;
-      } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) >= 0) {
-        this.new = false;
-        this.recruiting = false;
-        this.mdchuchun = false;
-        this.approaching = false;
-        this.endrecruit = true;
-      } else {
-        this.new = false;
-        this.recruiting = true;
-        this.mdchuchun = false;
-        this.approaching = false;
-        this.endrecruit = false;
-      }
-
-
-      if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -10) {
-        this.second_new = true;
-        this.second_recruiting = true;
-        this.second_mdchuchun = false;
-        this.second_approaching = false;
-        this.second_endrecruit = false;
-      } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -7) {
-        this.second_new = false;
-        this.second_recruiting = true;
-        this.second_mdchuchun = true;
-        this.second_approaching = false;
-        this.second_endrecruit = false;
-      } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -3 || this.diffdate(this.currentDate, this.second_carezone_startDate) < 0) {
-        this.second_new = false;
-        this.second_recruiting = true;
-        this.second_mdchuchun = false;
-        this.second_approaching = true;
-        this.second_endrecruit = false;
-      } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) >= 0) {
-        this.second_new = false;
-        this.second_recruiting = false;
-        this.second_mdchuchun = false;
-        this.second_approaching = false;
-        this.second_endrecruit = true;
-      } else {
-        this.second_new = false;
-        this.second_recruiting = true;
-        this.second_mdchuchun = false;
-        this.second_approaching = false;
-        this.second_endrecruit = false;
-      }
-
-      if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -10) {
-        this.third_new = true;
-        this.third_recruiting = true;
-        this.third_mdchuchun = false;
-        this.third_approaching = false;
-        this.third_endrecruit = false;
-      } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -7) {
-        this.third_new = false;
-        this.third_recruiting = true;
-        this.third_mdchuchun = true;
-        this.third_approaching = false;
-        this.third_endrecruit = false;
-      } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -3 || this.diffdate(this.currentDate, this.third_carezone_startDate) < 0) {
-        this.third_new = false;
-        this.third_recruiting = true;
-        this.third_mdchuchun = false;
-        this.third_approaching = true;
-        this.third_endrecruit = false;
-      } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) >= 0) {
-        this.third_new = false;
-        this.third_recruiting = false;
-        this.third_mdchuchun = false;
-        this.third_approaching = false;
-        this.third_endrecruit = true;
-      } else {
-        this.third_new = false;
-        this.third_recruiting = true;
-        this.third_mdchuchun = false;
-        this.third_approaching = false;
-        this.third_endrecruit = false;
-      }
-
-
-
-      // if(this.third_carezone_startDate <= this.currentDate){
-      // } else{
-      // }
-
-
-
-
-      this.carezoneData = data;
     });
+  }
+
+  public secondLoadCareZone() {
+    this.images.second_carezoneRoad().subscribe(data => {
+      this.secondCarezoneData = data;
+      for (let i = 0; i < data.length; i++) {
+        this.second_missionCount(data[i]._id);
+        this.getthirdday[i] = new Date(data[i].startmission)
+        if (this.diffdate(this.currentDate, this.getthirdday[i]) > -3 && this.diffdate(this.currentDate, this.getthirdday[i]) < -2) {
+          this.images.missionCount(data[i]._id).subscribe(data2 => {
+            this.missionCounter2[i] = data2;
+            this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
+
+            if(this.percent[i] <= 50){
+              this.ingmdchuchun[i] = true;
+              this.ingapproaching[i] = false;
+            }
+            if(this.percent[i] > 50){
+              this.ingmdchuchun[i] = false;
+              this.ingapproaching[i] = true;
+            }
+          });
+        } else if (this.diffdate(this.currentDate, this.getthirdday[i]) > -2 && this.diffdate(this.currentDate, this.getthirdday[i]) < -1) {
+          // console.log("D-111111111111");
+          this.images.missionCount(data[i]._id).subscribe(data2 => {
+            this.missionCounter2[i] = data2;
+            //console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
+            //console.log("참여인원 백분율 구하기 : " + parseInt(this.missionCounter[i]));
+            this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
+            //console.log(this.percent[i])
+
+            if(this.percent[i] <= 50){
+              //console.log("MD추천");
+              this.ingmdchuchun[i] = true;
+              this.ingapproaching[i] = false;
+            }
+            if(this.percent[i] > 50){
+              //console.log("마감임박");
+              this.ingmdchuchun[i] = false;
+              this.ingapproaching[i] = true;
+            }
+          });
+        } else if (this.diffdate(this.currentDate, this.getthirdday[i]) > -3 && this.diffdate(this.currentDate, this.getthirdday[i]) <= 0) {
+          // console.log("모집중 ");
+          this.images.missionCount(data[i]._id).subscribe(data2 => {
+            this.missionCounter2[i] = data2;
+            // console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
+            // console.log("참여인원 백분율 구하기 : " + parseInt(this.missionCounter[i]));
+            this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
+            // console.log(this.percent[i])
+
+            if(this.percent[i] <= 50){
+              // console.log("MD추천");
+              this.ingmdchuchun[i] = true;
+              this.ingapproaching[i] = false;
+            }
+            if(this.percent[i] > 50){
+              // console.log("마감임박");
+              this.ingmdchuchun[i] = false;
+              this.ingapproaching[i] = true;
+            }
+          });
+
+        } else {
+          // this.new[i] = false;
+          // this.recruiting[i] = true;
+          // this.mdchuchun[i] = false;
+          // this.approaching[i] = false;
+          // this.endrecruit[i] = false;
+        }
+      }
+
+      // this.first_missionCount(data[0]._id);
+    });
+  }
+
+  public thirdLoadCareZone() {
+    this.images.third_carezoneRoad().subscribe(data => {
+      this.thirdCarezoneData = data;
+      if(data[0]._id ==="" || data[0]._id !== undefined || data[0].id !== null){
+        this.third_missionCount(data[0]._id);
+        this.getday = new Date(data[0].startmission);
+        this.dday = this.diffdate(this.getday, this.currentDate);
+        // this.chkDay = this.dday
+        this.dday = (parseInt(this.dday)-2)
+      }
+
+    });
+  }
+
+  public roadcareZone() {
+
+
+    //this.images.maincarezoneRoad().subscribe(data => {
+    // this.images.carezoneRoad().subscribe(data => {
+    //   // for (let i = 0; i < data.length; i++) {
+    //   //   console.log("미션 시작일" + data[i].startmission);
+    //   //   console.log("미션 종료일" + data[i].endmission);
+    //   //   console.log("시작일 차이" + this.diffdate(this.currentDate, new Date(data[i].startmission)));
+    //   //   console.log("종료일 차이" + this.diffdate(this.currentDate, new Date(data[i].endmission)));
+    //   //   if (this.diffdate(this.currentDate, new Date(data[i].endmission)) > 0) {
+    //   //     console.log("종료일 조건 성립");
+    //   //     break;
+    //   //   }
+    //   //   console.log(i);
+    //   // }
+    //   //console.log(data);
+    //   this.first_carezone_title = data[0].title;
+    //   this.first_carezone_body = data[0].body;
+    //   this.first_carezone__id = data[0]._id;
+    //   // this.first_missionCount(data[0]._id);
+    //   this.first_carezone_maxmember = (data[0].maxmember);
+    //   this.first_carezone_startDate = new Date(data[0].startmission);
+    //   this.second_carezone_title = data[1].title;
+    //   this.second_carezone_body = data[1].body;
+    //   this.second_carezone__id = data[1]._id;
+    //   this.second_missionCount(data[1]._id);
+    //   this.second_carezone_maxmember = (data[1].maxmember);
+    //   this.second_carezone_startDate = new Date(data[1].startmission);
+    //   this.third_carezone_title = data[2].title;
+    //   this.third_carezone_body = data[2].body;
+    //   this.third_carezone__id = data[2]._id;
+    //   this.third_missionCount(data[2]._id);
+    //   this.third_carezone_maxmember = (data[1].maxmember);
+    //   this.third_carezone_startDate = new Date(data[2].startmission);
+    //   // this.currentDate = new Date();
+    //   // this.currentDate.setDate( this.currentDate.getDate() + 2 );
+    //
+    //   if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -10) {
+    //     this.new = true;
+    //     this.recruiting = true;
+    //     this.mdchuchun = false;
+    //     this.approaching = false;
+    //     this.endrecruit = false;
+    //   } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -7) {
+    //     this.new = false;
+    //     this.recruiting = true;
+    //     this.mdchuchun = true;
+    //     this.approaching = false;
+    //     this.endrecruit = false;
+    //   } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) < -3 || this.diffdate(this.currentDate, this.first_carezone_startDate) < 0) {
+    //     this.new = false;
+    //     this.recruiting = true;
+    //     this.mdchuchun = false;
+    //     this.approaching = true;
+    //     this.endrecruit = false;
+    //   } else if (this.diffdate(this.currentDate, this.first_carezone_startDate) >= 0) {
+    //     this.new = false;
+    //     this.recruiting = false;
+    //     this.mdchuchun = false;
+    //     this.approaching = false;
+    //     this.endrecruit = true;
+    //   } else {
+    //     this.new = false;
+    //     this.recruiting = true;
+    //     this.mdchuchun = false;
+    //     this.approaching = false;
+    //     this.endrecruit = false;
+    //   }
+    //
+    //
+    //   if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -10) {
+    //     this.second_new = true;
+    //     this.second_recruiting = true;
+    //     this.second_mdchuchun = false;
+    //     this.second_approaching = false;
+    //     this.second_endrecruit = false;
+    //   } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -7) {
+    //     this.second_new = false;
+    //     this.second_recruiting = true;
+    //     this.second_mdchuchun = true;
+    //     this.second_approaching = false;
+    //     this.second_endrecruit = false;
+    //   } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) < -3 || this.diffdate(this.currentDate, this.second_carezone_startDate) < 0) {
+    //     this.second_new = false;
+    //     this.second_recruiting = true;
+    //     this.second_mdchuchun = false;
+    //     this.second_approaching = true;
+    //     this.second_endrecruit = false;
+    //   } else if (this.diffdate(this.currentDate, this.second_carezone_startDate) >= 0) {
+    //     this.second_new = false;
+    //     this.second_recruiting = false;
+    //     this.second_mdchuchun = false;
+    //     this.second_approaching = false;
+    //     this.second_endrecruit = true;
+    //   } else {
+    //     this.second_new = false;
+    //     this.second_recruiting = true;
+    //     this.second_mdchuchun = false;
+    //     this.second_approaching = false;
+    //     this.second_endrecruit = false;
+    //   }
+    //
+    //   if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -10) {
+    //     this.third_new = true;
+    //     this.third_recruiting = true;
+    //     this.third_mdchuchun = false;
+    //     this.third_approaching = false;
+    //     this.third_endrecruit = false;
+    //   } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -7) {
+    //     this.third_new = false;
+    //     this.third_recruiting = true;
+    //     this.third_mdchuchun = true;
+    //     this.third_approaching = false;
+    //     this.third_endrecruit = false;
+    //   } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) < -3 || this.diffdate(this.currentDate, this.third_carezone_startDate) < 0) {
+    //     this.third_new = false;
+    //     this.third_recruiting = true;
+    //     this.third_mdchuchun = false;
+    //     this.third_approaching = true;
+    //     this.third_endrecruit = false;
+    //   } else if (this.diffdate(this.currentDate, this.third_carezone_startDate) >= 0) {
+    //     this.third_new = false;
+    //     this.third_recruiting = false;
+    //     this.third_mdchuchun = false;
+    //     this.third_approaching = false;
+    //     this.third_endrecruit = true;
+    //   } else {
+    //     this.third_new = false;
+    //     this.third_recruiting = true;
+    //     this.third_mdchuchun = false;
+    //     this.third_approaching = false;
+    //     this.third_endrecruit = false;
+    //   }
+    //
+    //
+    //
+    //   // if(this.third_carezone_startDate <= this.currentDate){
+    //   // } else{
+    //   // }
+    //
+    //
+    //
+    //
+    //   this.carezoneData = data;
+    // });
   }
 
   public roadbeauty() {
@@ -617,7 +758,6 @@ export class HomePage {
     this.nav.push(CareZoneMissionIngPage);
   }
   public mission_start(_id) {
-    //console.log(_id);
 
     if (this.missionData === null || this.missionData === undefined) {
       this.nav.push(CareZoneMissionStartPage, { _id: _id });

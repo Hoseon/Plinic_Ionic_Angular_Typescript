@@ -36,6 +36,11 @@ export class CareZoneMissionStartPage {
   chkDay: any;
   missionCounter: any;
   maxBtn: any = false;
+  endchkBtn: any = false;
+  getendday: any;
+  endday: any;
+  chkendDay: any;
+  readybtn: any = false;
 
 
   constructor(public nav: NavController, public navParams: NavParams, private images: ImagesProvider,
@@ -114,7 +119,7 @@ export class CareZoneMissionStartPage {
   //20190617 미션 참여중인지 체크 하기
   public chkmission(email) {
     // this.showLoading();
-    console.log("chkBtn" + this.chkBtn);
+    // console.log("chkBtn" + this.chkBtn);
     this.images.chkMission(email).subscribe(data => {
       if (data === '' || data === null || data === undefined) {
         this.chkBtn = true;
@@ -168,6 +173,33 @@ export class CareZoneMissionStartPage {
       } else {
         this.chkBtn2 = false;
       }
+
+      if(this.chkDay > 2.9){
+        // console.log("참여불가" + this.chkDay);
+        this.readybtn = false;
+      } else{
+        // console.log("참여안불가" + this.chkDay);
+        this.readybtn = true;
+
+      }
+
+      this.getendday = new Date(this.carezoneData.endmission);
+      this.endday = this.diffdate(this.currentDate, this.getendday);
+      this.chkendDay = this.endday
+      // console.log("chkendDay" + this.chkendDay);
+      // this.dday = parseInt(this.dday)
+      if (this.chkendDay > 0) {
+        //this.chkBtn = null;
+        // console.log("미션 날짜 지남");
+        this.endchkBtn = true;
+        // this.chkBtn2 = true;
+      } else {
+        // console.log("미션 날짜 안지남");
+        this.endchkBtn = false;
+        // this.chkBtn2 = false;
+      }
+
+
     });
 
   }
@@ -217,7 +249,7 @@ export class CareZoneMissionStartPage {
       buttons: [{
         text: '확인',
         handler: () => {
-          console.log("aaaaaaaaaa");
+          // console.log("aaaaaaaaaa");
         }
       }],
 
@@ -256,7 +288,10 @@ export class CareZoneMissionStartPage {
         {
           text: '확인',
           handler: () => {
-            this.auth.missionSave(id, this.userData.email, this.userData.thumbnail_image, this.carezoneData.startmission, this.carezoneData.endmission, ).subscribe(data => {
+            // console.log("맥스멤버: "+ this.carezoneData.maxmember)
+            this.auth.missionSave(id, this.userData.email, this.userData.thumbnail_image,
+              this.carezoneData.startmission, this.carezoneData.endmission, this.carezoneData.title,
+              this.carezoneData.body, this.carezoneData.maxmember ).subscribe(data => {
               this.nav.push(CareZoneMissionIngPage, { _id: id });
             }, error => {
               this.showError(JSON.parse(error._body).msg);
@@ -278,7 +313,7 @@ export class CareZoneMissionStartPage {
   }
 
   public getDday() {
-    console.log(this.carezoneData);
+    // console.log(this.carezoneData);
     //this.getday = new Date(this.carezoneData.startmission)
     //this.dday = this.diffdate(this.getday, this.currentDate)
     //console.log("D-Day :" + this.dday);

@@ -33,15 +33,44 @@ export class CareZonePage {
   new: Array<boolean> = new Array<boolean>();
   recruiting: Array<boolean> = new Array<boolean>();
   mdchuchun: Array<boolean> = new Array<boolean>();
+  ingmdchuchun: Array<boolean> = new Array<boolean>();
+  ingapproaching: Array<boolean> = new Array<boolean>();
   approaching: Array<boolean> = new Array<boolean>();
   endrecruit: Array<boolean> = new Array<boolean>();
   missionCounter: Array<any> = new Array<any>();
+  missionCounter2: Array<any> = new Array<any>();
+  endcarezoneData: Array<any> = new Array<any>();
+  d5: Array<any> = new Array<any>();
+  d4: Array<any> = new Array<any>();
+  d3: Array<any> = new Array<any>();
+  d2: Array<any> = new Array<any>();
+  d1: Array<any> = new Array<any>();
+  endmission: Array<any> = new Array<any>();
+  ingmissionCounter: any;
 
   thumb_image: any;
-  ingBtn : any = false;
+  ingBtn: any = false;
   profileimg_url: any;
   imagePath: any;
   from: any;
+  dday: any;
+
+  percent: Array<any> = new Array<any>();
+
+
+  //mission 정보
+  carezone_id: Array<any> = new Array<any>();
+  title: Array<any> = new Array<any>();
+  maxmember: Array<any> = new Array<any>();
+  body: Array<any> = new Array<any>();
+
+  endcarezone_id: Array<any> = new Array<any>();
+  endtitle: Array<any> = new Array<any>();
+  endmaxmember: Array<any> = new Array<any>();
+  endbody: Array<any> = new Array<any>();
+
+
+
   constructor(public platform: Platform, public nav: NavController,
     public navParams: NavParams, private images: ImagesProvider,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public authService: AuthService) {
@@ -63,9 +92,9 @@ export class CareZonePage {
 
   public loadimagePath() {
     this.authService.getUserStorageimagePath().then(items => {
-        this.imagePath = items;
-});
-}
+      this.imagePath = items;
+    });
+  }
 
 
 
@@ -107,7 +136,7 @@ export class CareZonePage {
         };
         this.chkmission(this.userData.email);
         this.chkIngmission(this.userData.email);
-        this.from= 'plinic';
+        this.from = 'plinic';
       }
       this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
       this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
@@ -151,7 +180,7 @@ export class CareZonePage {
   public missionCount(id) {
     // this.showLoading();
     this.images.missionCount(id).subscribe(data => {
-       return data;
+      return data;
     });
   }
 
@@ -160,18 +189,95 @@ export class CareZonePage {
   public roadcareZone() {
     this.showLoading();
     this.images.carezoneRoad().subscribe(data => {
-
+      // D-3, D-2, D-1, 모집중, 모집마감 로직 변경으로 주석 처리
+      // if (data !== '') {
+      //   for (let i = 0; i < data.length; i++) {
+      //     this.images.missionCount(data[i]._id).subscribe(data2 => {
+      //        this.missionCounter[i] = data2;
+      //     });
+      //     data[i].startmission = new Date(data[i].startmission);
+      //     this.new[i] = false;
+      //     this.recruiting[i] = false;
+      //     this.mdchuchun[i] = false;
+      //     this.approaching[i] = false;
+      //     this.endrecruit[i] = false;
+      //     this.dday = this.diffdate(this.currentDate, data[i].startmission);
+      //     this.dday = parseFloat(this.dday);
+      //     console.log(this.dday);
+      //     if (this.diffdate(this.currentDate, data[i].startmission) < -10) {
+      //       this.new[i] = true;
+      //       this.recruiting[i] = true;
+      //       this.mdchuchun[i] = false;
+      //       this.approaching[i] = false;
+      //       this.endrecruit[i] = false;
+      //       //this.new.splice(i, 0, true);
+      //     } else if (this.diffdate(this.currentDate, data[i].startmission) < -7) {
+      //       this.new[i] = false;
+      //       this.recruiting[i] = true;
+      //       this.mdchuchun[i] = true;
+      //       this.approaching[i] = false;
+      //       this.endrecruit[i] = false;
+      //     } else if (this.diffdate(this.currentDate, data[i].startmission) < -3 || this.diffdate(this.currentDate, data[i].startmission) < 0) {
+      //       this.new[i] = false;
+      //       this.recruiting[i] = true;
+      //       this.mdchuchun[i] = false;
+      //       this.approaching[i] = true;
+      //       this.endrecruit[i] = false;
+      //     } else if (this.diffdate(this.currentDate, data[i].startmission) >= 0) {
+      //       this.new[i] = false;
+      //       this.recruiting[i] = false;
+      //       this.mdchuchun[i] = false;
+      //       this.approaching[i] = false;
+      //       this.endrecruit[i] = true;
+      //     } else {
+      //       this.new[i] = false;
+      //       this.recruiting[i] = true;
+      //       this.mdchuchun[i] = false;
+      //       this.approaching[i] = false;
+      //       this.endrecruit[i] = false;
+      //     }
+      //   }
+      //   this.carezoneData = data;
+      //   this.loading.dismiss();
+      // } else {
+      //   this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
+      // }
+      //
+      //
       if (data !== '') {
         for (let i = 0; i < data.length; i++) {
+
+          // if (new Date(data[i].endmission) > this.currentDate) {
+          // console.log("날짜 계산 하자");
+
+          this.endcarezone_id[i] = data[i]._id;
+          this.title[i] = data[i].title;
+          this.maxmember[i] = data[i].maxmember;
+          this.body[i] = data[i].body;
+
+
+
           this.images.missionCount(data[i]._id).subscribe(data2 => {
-             this.missionCounter[i] = data2;
+            this.missionCounter[i] = data2;
           });
           data[i].startmission = new Date(data[i].startmission);
+          this.endmission[i] = new Date(data[i].endmission);
+          // console.log("end Date : " + data[i].endmission);
           this.new[i] = false;
           this.recruiting[i] = false;
           this.mdchuchun[i] = false;
           this.approaching[i] = false;
           this.endrecruit[i] = false;
+          this.d5[i] = false;
+          this.d4[i] = false;
+          this.d3[i] = false;
+          this.d2[i] = false;
+          this.d1[i] = false;
+
+          // this.endmission[i] = false;
+          this.dday = this.diffdate(this.currentDate, data[i].startmission);
+          this.dday = parseFloat(this.dday);
+          //console.log(this.dday);
           if (this.diffdate(this.currentDate, data[i].startmission) < -10) {
             this.new[i] = true;
             this.recruiting[i] = true;
@@ -185,17 +291,114 @@ export class CareZonePage {
             this.mdchuchun[i] = true;
             this.approaching[i] = false;
             this.endrecruit[i] = false;
-          } else if (this.diffdate(this.currentDate, data[i].startmission) < -3 || this.diffdate(this.currentDate, data[i].startmission) < 0) {
-            this.new[i] = false;
-            this.recruiting[i] = true;
-            this.mdchuchun[i] = false;
-            this.approaching[i] = true;
-            this.endrecruit[i] = false;
-          } else if (this.diffdate(this.currentDate, data[i].startmission) >= 0) {
+          } else if (this.diffdate(this.currentDate, data[i].startmission) > -6 && this.diffdate(this.currentDate, data[i].startmission) < -5) {
             this.new[i] = false;
             this.recruiting[i] = false;
             this.mdchuchun[i] = false;
             this.approaching[i] = false;
+            this.endrecruit[i] = false;
+            this.d5[i] = true;
+            this.d4[i] = false;
+            this.d3[i] = false;
+            this.d2[i] = false;
+            this.d1[i] = false;
+          } else if (this.diffdate(this.currentDate, data[i].startmission) > -5 && this.diffdate(this.currentDate, data[i].startmission) < -4) {
+            this.new[i] = false;
+            this.recruiting[i] = false;
+            this.mdchuchun[i] = false;
+            this.approaching[i] = false;
+            this.endrecruit[i] = false;
+            this.d4[i] = true;
+            this.d3[i] = false;
+            this.d2[i] = false;
+            this.d1[i] = false;
+          } else if (this.diffdate(this.currentDate, data[i].startmission) > -4 && this.diffdate(this.currentDate, data[i].startmission) < -3) {
+            this.new[i] = false;
+            this.recruiting[i] = false;
+            this.mdchuchun[i] = false;
+            this.approaching[i] = false;
+            this.endrecruit[i] = false;
+            this.d3[i] = true;
+            this.d2[i] = false;
+            this.d1[i] = false;
+          } else if (this.diffdate(this.currentDate, data[i].startmission) > -3 && this.diffdate(this.currentDate, data[i].startmission) < -2) {
+            this.new[i] = false;
+            this.recruiting[i] = false;
+            this.mdchuchun[i] = false;
+            this.approaching[i] = false;
+            this.endrecruit[i] = false;
+            this.d3[i] = false;
+            this.d2[i] = true;
+            this.d1[i] = false;
+            this.images.missionCount(data[i]._id).subscribe(data2 => {
+              this.missionCounter2[i] = data2;
+              this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
+              //console.log(this.percent[i])
+
+              if(this.percent[i] <= 50){
+                this.ingmdchuchun[i] = true;
+                this.ingapproaching[i] = false;
+              }
+              if(this.percent[i] > 50){
+                this.ingmdchuchun[i] = false;
+                this.ingapproaching[i] = true;
+              }
+            });
+          } else if (this.diffdate(this.currentDate, data[i].startmission) > -2 && this.diffdate(this.currentDate, data[i].startmission) < -1) {
+            //console.log("D-111111111");
+            this.new[i] = false;
+            this.recruiting[i] = false;
+            this.mdchuchun[i] = false;
+            this.approaching[i] = false;
+            this.endrecruit[i] = false;
+            this.d3[i] = false;
+            this.d2[i] = false;
+            this.d1[i] = true;
+            this.images.missionCount(data[i]._id).subscribe(data2 => {
+              this.missionCounter2[i] = data2;
+              //console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
+              //console.log("참여인원 백분율 구하기 : " + parseInt(this.missionCounter[i]));
+              this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
+              //console.log(this.percent[i])
+
+              if(this.percent[i] <= 50){
+                //console.log("MD추천");
+                this.ingmdchuchun[i] = true;
+                this.ingapproaching[i] = false;
+              }
+              if(this.percent[i] > 50){
+                //console.log("마감임박");
+                this.ingmdchuchun[i] = false;
+                this.ingapproaching[i] = true;
+              }
+            });
+          } else if (this.diffdate(this.currentDate, data[i].startmission) > -3 && this.diffdate(this.currentDate, data[i].startmission) <= 0) {
+            // console.log("모집중 ");
+            this.images.missionCount(data[i]._id).subscribe(data2 => {
+              this.missionCounter2[i] = data2;
+              // console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
+              // console.log("참여인원 백분율 구하기 : " + parseInt(this.missionCounter[i]));
+              this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
+              // console.log(this.percent[i])
+
+              if(this.percent[i] <= 50){
+                // console.log("MD추천");
+                this.ingmdchuchun[i] = true;
+                this.ingapproaching[i] = false;
+              }
+              if(this.percent[i] > 50){
+                // console.log("마감임박");
+                this.ingmdchuchun[i] = false;
+                this.ingapproaching[i] = true;
+              }
+            });
+
+          } else if (this.diffdate(this.currentDate, data[i].startmission) >= 0) {
+            // console.log("진행중 + 모집마감 ");
+            this.new[i] = false;
+            this.recruiting[i] = false;
+            this.mdchuchun[i] = false;
+            this.approaching[i] = true;
             this.endrecruit[i] = true;
           } else {
             this.new[i] = false;
@@ -204,6 +407,11 @@ export class CareZonePage {
             this.approaching[i] = false;
             this.endrecruit[i] = false;
           }
+
+          this.endcarezoneData = data[i];
+          // }
+
+
         }
         this.carezoneData = data;
         this.loading.dismiss();
@@ -239,11 +447,20 @@ export class CareZonePage {
   public chkIngmission(email) {
     // this.showLoading();
     //console.log("chkBtn" + this.chkBtn);
+
+
+
+
     this.images.chkMission(email).subscribe(data => {
 
       if (data !== null) {
         //this.chkBtn = true;
         this.missionData = data;
+        // console.log("미션데이터 : " + JSON.stringify(this.missionData));
+        console.log("미션데이터 : " + this.missionData.missionID);
+        // this.images.missionCount(this.missionData.missionID).subscribe(data2 => {
+        //   this.ingmissionCounter = data2;
+        // });
         this.ingBtn = true;
         //this.endDate = data.endmission.substr(0, 10);
         //console.log(JSON.stringify(data));
@@ -269,7 +486,7 @@ export class CareZonePage {
     //this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
-      cssClass:'push_alert',
+      cssClass: 'push_alert',
       title: 'Plinic',
       message: text,
       buttons: ['OK']

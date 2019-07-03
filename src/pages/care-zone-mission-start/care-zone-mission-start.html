@@ -30,11 +30,14 @@
   <ion-list *ngIf="carezoneData">
     <ion-item no-lines>
       <img class="goods-img" src="http://plinic.cafe24app.com/carezone_prodimages/{{carezoneData._id}}" /><br><br>
+      <ng-container *ngIf="!endchkBtn">
+        <button *ngIf="!chkBtn2" ion-button style="height:28px;box-shadow: none;" class="button_outline" outline (click)="mission_complete()">미션</button>
+        <button *ngIf="chkBtn2" ion-button style="height:28px;box-shadow: none;" class="button_outline_end" outline (click)="mission_complete()">모집 마감</button>
+      </ng-container>
+      <button *ngIf="endchkBtn" ion-button style="height:28px;box-shadow: none;" class="button_outline_end" outline (click)="mission_complete()">미션 종료</button>
 
-      <button *ngIf="!chkBtn2" ion-button style="height:28px;box-shadow: none;" class="button_outline" outline (click)="mission_complete()">미션</button>
-      <button *ngIf="chkBtn2" ion-button style="height:28px;box-shadow: none;" class="button_outline_end" outline (click)="mission_complete()">모집 마감</button>
     </ion-item>
-    <h1 class="top_text"> {{carezoneData.missontitle}} </h1><br>
+    <h1 class="top_text"> {{carezoneData.title}} </h1><br>
 
 
     <ion-item style="width:97%">
@@ -49,7 +52,7 @@
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
           <ion-col class="event-col4">미션목표</ion-col>
-          <ion-col class="event-col5">{{ carezoneData.missonsubtitle }}</ion-col>
+          <ion-col class="event-col5">{{ carezoneData.body }}</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -68,7 +71,9 @@
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
           <ion-col class="event-col4">미션 시작</ion-col>
-          <ion-col class="event-col13">D-{{dday}}</ion-col>
+          <ng-container *ngIf="!endchkBtn">
+            <ion-col class="event-col13">D-{{dday}}</ion-col>
+          </ng-container>
           <ion-col class="event-col12">{{startDate}}</ion-col>
         </ion-row>
       </ion-grid>
@@ -91,12 +96,20 @@
     <ion-item no-lines>
       <div *ngIf="!maxBtn">
         <div *ngIf="!chkBtn2">
-          <button *ngIf="chkBtn" ion-button class="button_start" style="font-size: 14px;box-shadow: none;" outline (click)="satrtMission(carezoneData._id)">미션 참여하기&nbsp;&nbsp;></button>
-          <button *ngIf="!chkBtn" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionError()">참여 불가(다른 미션 참여 중)</button>
+          <div *ngIf=readybtn>
+            <button *ngIf="chkBtn" ion-button class="button_start" style="font-size: 14px;box-shadow: none;" outline (click)="satrtMission(carezoneData._id)">미션 참여하기&nbsp;&nbsp;></button>
+            <button *ngIf="!chkBtn" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionError()">참여 불가(다른 미션 참여 중)</button>
+          </div>
+          <button *ngIf="!readybtn" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionError()">미션 준비 중(모집중 참가가능)</button>
+
         </div>
       </div>
-      <button *ngIf="chkBtn2" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionEndError()">모집 마감(미션 진행중)</button>
-      <button *ngIf="maxBtn" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionMaxEndError()">참여 불가(모집 인원 초과)</button>
+      <ng-container *ngIf="!endchkBtn">
+        <button *ngIf="chkBtn2" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionEndError()">모집 마감(미션 진행중)</button>
+        <button *ngIf="maxBtn" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionMaxEndError()">참여 불가(모집 인원 초과)</button>
+      </ng-container>
+      <button *ngIf="endchkBtn" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline>미션 종료</button>
+
       <button ion-button class="button_detail" style="font-size: 14px;box-shadow: none;" outline outline>제품 상세정보&nbsp;&nbsp;></button>
     </ion-item>
   </ion-list>

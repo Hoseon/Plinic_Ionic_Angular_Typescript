@@ -30,12 +30,13 @@ export class MyApp {
   }
 
   initializeApp() {
-    let browserLanguage = this.translateService.getBrowserLang();
-    let defaultlanguage = browserLanguage.substring(0, 2).toLowerCase();
+    // let browserLanguage = this.translateService.getBrowserLang();
+    // let defaultlanguage = browserLanguage.substring(0, 2).toLowerCase();
     //console.log("defaultlanguage:"+defaultlanguage)
 
 
-    this.translateService.use(defaultlanguage);
+    // this.translateService.use(defaultlanguage);
+
     this.platform.ready().then(() => {
 
       // if (this.platform.is('ios')) {

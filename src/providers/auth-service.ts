@@ -34,8 +34,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  //apiUrl: 'http://plinic.cafe24app.com/',
-  apiUrl: 'http://localhost:8001/',
+  apiUrl: 'http://plinic.cafe24app.com/',
+  //apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
@@ -299,7 +299,7 @@ export class AuthService {
       });
   }
 
-  public missionSave(id, email, image, start, end) {
+  public missionSave(id, email, image, start, end, title, sub, maxmember) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
 
@@ -309,6 +309,9 @@ export class AuthService {
       image_url: image,
       startmission: start,
       endmission: end,
+      title: title,
+      body: sub,
+      maxmember: maxmember
     };
     return this.http.post(CONFIG.apiUrl + 'api/missionsave', JSON.stringify(body), { headers: headers })
       .map(res => res.json())

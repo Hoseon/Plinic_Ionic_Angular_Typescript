@@ -35,7 +35,7 @@
 
       <button ion-button style="height:28px;box-shadow: none;" class="button_outline" outline (click)="mission_deadline()">진행중 </button>
       </ion-item>
-      <h1 class="top_text"> {{carezoneData.missontitle}} </h1>
+      <h1 class="top_text"> {{carezoneData.title}} </h1>
 
 
 
@@ -58,10 +58,18 @@
          <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
                  <ion-col class="event-col4">미션명</ion-col>
-                 <ion-col class="event-col5">{{carezoneData.missontitle}}</ion-col>
+                 <ion-col class="event-col7">{{carezoneData.title}}</ion-col>
              </ion-row>
          </ion-grid>
     </ion-item>
+    <ion-item style="width:97%;"  >
+        <ion-grid class="gridtext">
+            <ion-row style="width:89.7%">
+                <ion-col class="event-col4">미션 목표</ion-col>
+                <ion-col class="event-col5">{{carezoneData.body}}</ion-col>
+            </ion-row>
+        </ion-grid>
+   </ion-item>
     <ion-item style="width:97%" >
        <ion-grid class="gridtext">
              <ion-row style="width:89.7%">
