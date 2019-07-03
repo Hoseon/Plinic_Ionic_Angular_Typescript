@@ -210,9 +210,6 @@ export class HomePage {
   }
 
 
-<<<<<<< HEAD
-  public skin_measure() {
-=======
   public skin_measure(){
     // let alert = this.alertCtrl.create({
     //   cssClass: 'push_alert',
@@ -229,7 +226,6 @@ export class HomePage {
 
   public beauty_add(){
     // this.nav.push(BeautyTipAddPage);
->>>>>>> 0a32045caf7349cdcdddece7c758a2e444e4ab77
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
       title: "plinic",
@@ -241,15 +237,7 @@ export class HomePage {
     alert.present();
   }
 
-<<<<<<< HEAD
-  public beauty_add() {
-    this.nav.push(BeautyTipAddPage);
-  }
-
-  public plinic_manual() {
-=======
   public plinic_manual(){
->>>>>>> 0a32045caf7349cdcdddece7c758a2e444e4ab77
     this.nav.push(PlinicManualPage);
   }
 
