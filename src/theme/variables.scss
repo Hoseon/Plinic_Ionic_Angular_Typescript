@@ -14,7 +14,9 @@ $app-direction: ltr;
 
 @import "ionic.globals";
 
-
+ion-app.platform-ios12 ion-content {
+  pointer-events: auto; /*fix scroll lock on ios12.2*/
+}
 
 
 // Shared Variables

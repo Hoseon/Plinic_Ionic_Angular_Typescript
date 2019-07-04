@@ -1092,7 +1092,7 @@ toggle(){
 		},
 		{
 			"country_code": "ST",
-			"country_name": "São Tome and Príncipe",
+			"country_name": "Sao Tome and Príncipe",
 			"dialling_code": "+239"
 		},
 		{

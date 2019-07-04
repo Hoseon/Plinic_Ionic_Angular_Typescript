@@ -22,6 +22,8 @@ export class CareZoneMissionStartPage {
   _id: any;
   loading: Loading;
   carezoneData: any;
+  moreIngData: any;
+  moreDDayData: any;
   endDate: any;
   startDate: any;
   currentDate: Date = new Date();
@@ -42,6 +44,28 @@ export class CareZoneMissionStartPage {
   chkendDay: any;
   readybtn: any = false;
 
+  dday_title: any;
+  dday_body: any;
+  dday_id: any;
+  dday_startmission: any;
+  dday_endmission: any;
+  dday_maxmember: any;
+
+  dday_title2: any;
+  dday_body2: any;
+  dday_id2: any;
+  dday_startmission2: any;
+  dday_endmission2: any;
+  dday_maxmember2: any;
+
+
+  getday2: any;
+  dday2: any;
+  chkDay2: any;
+
+  getday3: any;
+  dday3: any;
+  chkDay3: any;
 
   constructor(public nav: NavController, public navParams: NavParams, private images: ImagesProvider,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform, private auth: AuthService,
@@ -66,6 +90,8 @@ export class CareZoneMissionStartPage {
     this._id = this.navParams.get('_id');
     this.roadmission(this._id);
     this.getDday();
+    this.roadingmission();
+    this.roadddaymission();
     //this.loading.dismiss();
     // console.log("End Mission Start");
   }
@@ -174,10 +200,10 @@ export class CareZoneMissionStartPage {
         this.chkBtn2 = false;
       }
 
-      if(this.chkDay > 2.9){
+      if (this.chkDay > 2.9) {
         // console.log("참여불가" + this.chkDay);
         this.readybtn = false;
-      } else{
+      } else {
         // console.log("참여안불가" + this.chkDay);
         this.readybtn = true;
 
@@ -198,6 +224,90 @@ export class CareZoneMissionStartPage {
         this.endchkBtn = false;
         // this.chkBtn2 = false;
       }
+
+
+    });
+
+  }
+
+  public roadingmission() {
+    // this.showLoading();
+    this.images.moresecond_carezoneRoad().subscribe(data => {
+      if (data !== '') {
+        this.moreIngData = data;
+        // this.startDate = data.startmission.substr(0, 10);
+        // this.endDate = data.endmission.substr(0, 10);
+        //console.log(JSON.stringify(data));
+        // this.loading.dismiss();
+      }
+
+      // else {
+      //   this.showError("미션 더 보기 데이터를 불러 오지 못했습니다. 관리자에게 문의하세요.");
+      // }
+
+      this.missionCount(data[0]._id);
+
+
+    });
+
+  }
+
+  public roadddaymission() {
+    // this.showLoading();
+    this.images.morethird_carezoneRoad().subscribe(data => {
+      if (data !== '') {
+        console.log(data.length);
+        if (data.length === 2) {
+          console.log("데이터 2개");
+          this.dday_title = data[0].title;
+          this.dday_body = data[0].body;
+          this.dday_id = data[0]._id;
+          this.dday_startmission = data[0].startmission;
+          this.dday_endmission = data[0].endmission;
+          this.dday_maxmember = data[0].maxmebmer;
+
+          this.getday2 = new Date(this.dday_startmission);
+          this.dday2 = this.diffdate(this.getday2, this.currentDate);
+          this.chkDay2 = this.dday2
+          this.dday2 = (parseInt(this.dday2)-2)
+
+          this.dday_title2 = data[1].title;
+          this.dday_body2 = data[1].body;
+          this.dday_id2 = data[1]._id;
+          this.dday_startmission2 = data[1].startmission;
+          this.dday_endmission2 = data[1].endmission;
+          this.dday_maxmember2 = data[1].maxmebmer;
+
+          this.getday3 = new Date(this.dday_startmission2);
+          this.dday3 = this.diffdate(this.getday3, this.currentDate);
+          this.chkDay3 = this.dday3
+          this.dday3 = (parseInt(this.dday3)-2)
+
+        } else if (data.length === 1) {
+          console.log("데이터 1개");
+          this.dday_title = data[0].title;
+          this.dday_body = data[0].body;
+          this.dday_id = data[0]._id;
+          this.dday_startmission = data[0].startmission;
+          this.dday_endmission = data[0].endmission;
+          this.dday_maxmember = data[0].maxmebmer;
+
+          this.getday2 = new Date(this.dday_startmission);
+          this.dday2 = this.diffdate(this.getday2, this.currentDate);
+          this.chkDay2 = this.dday2
+          this.dday2 = (parseInt(this.dday2)-2)
+        } else{
+
+        }
+        //console.log(JSON.stringify(data));
+        // this.loading.dismiss();
+      }
+
+      // else {
+      //   this.showError("미션 더 보기 데이터를 불러 오지 못했습니다. 관리자에게 문의하세요.");
+      // }
+      this.missionCount(data[0]._id);
+
 
 
     });
@@ -291,11 +401,11 @@ export class CareZoneMissionStartPage {
             // console.log("맥스멤버: "+ this.carezoneData.maxmember)
             this.auth.missionSave(id, this.userData.email, this.userData.thumbnail_image,
               this.carezoneData.startmission, this.carezoneData.endmission, this.carezoneData.title,
-              this.carezoneData.body, this.carezoneData.maxmember ).subscribe(data => {
-              this.nav.push(CareZoneMissionIngPage, { _id: id });
-            }, error => {
-              this.showError(JSON.parse(error._body).msg);
-            });
+              this.carezoneData.body, this.carezoneData.maxmember).subscribe(data => {
+                this.nav.push(CareZoneMissionIngPage, { _id: id });
+              }, error => {
+                this.showError(JSON.parse(error._body).msg);
+              });
 
           }
         }]
@@ -317,6 +427,27 @@ export class CareZoneMissionStartPage {
     //this.getday = new Date(this.carezoneData.startmission)
     //this.dday = this.diffdate(this.getday, this.currentDate)
     //console.log("D-Day :" + this.dday);
+  }
+
+  public openCareZoneTab(): void {
+    // The second tab is the one with the index = 1
+    //this.nav.push(TabsPage, { selectedTab: 1 });
+    this.nav.parent.select(1);
+  }
+
+  public mission_start(id) {
+    //console.log(id);
+    //console.log("missiondata" + this.missionData.missionID);
+
+    // if (this.missionData === null || this.missionData === undefined) {
+    //   //this.nav.push(CareZoneMissionIngPage);
+    //   this.nav.push(CareZoneMissionStartPage, { _id: id });
+    // } else if (id === this.missionData.missionID) {
+    //   this.nav.push(CareZoneMissionIngPage, { _id: id });
+    //
+    // } else {
+    this.nav.push(CareZoneMissionStartPage, { _id: id });
+    // }
   }
 
 }

@@ -373,7 +373,8 @@ export class CareZonePage {
               }
             });
           } else if (this.diffdate(this.currentDate, data[i].startmission) > -3 && this.diffdate(this.currentDate, data[i].startmission) <= 0) {
-            // console.log("모집중 ");
+           // console.log("모집중 ");
+           this.d1[i] = true;
             this.images.missionCount(data[i]._id).subscribe(data2 => {
               this.missionCounter2[i] = data2;
               // console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));

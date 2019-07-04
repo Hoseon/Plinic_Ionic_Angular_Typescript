@@ -53,7 +53,7 @@ export class QnaReadPage {
   public qna_answer(answer){
     if(answer){
        console.log("answer=============="+ answer);
-       this.auth.get_qna_answer();
+       // this.auth.get_qna_answer();
     }
     else{
       console.log("answer=============="+ answer);

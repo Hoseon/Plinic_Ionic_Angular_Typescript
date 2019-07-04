@@ -45,6 +45,16 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public moresecond_carezoneRoad() {
+    return this.http.get(this.apiURL + 'carezone/moresecondlist')
+      .map(response => response.json());
+  }
+
+  public morethird_carezoneRoad() {
+    return this.http.get(this.apiURL + 'carezone/morethirdlist')
+      .map(response => response.json());
+  }
+
   public missionRoad(id) {
     return this.http.get(this.apiURL + 'carezone/mission/' + id)
       .map(response => response.json());
@@ -99,7 +109,8 @@ export class ImagesProvider {
     var options: FileUploadOptions = {
       fileKey: 'image',
       chunkedMode: false,
-      mimeType: 'image/jpeg',
+      // mimeType: 'image/jpeg',
+      mimeType: 'multipart/form-data',
       params: { 'desc': desc }
     };
 
@@ -120,7 +131,8 @@ export class ImagesProvider {
     var options: FileUploadOptions = {
       fileKey: 'image',
       chunkedMode: false,
-      mimeType: 'image/jpeg',
+      // mimeType: 'image/jpeg',
+      mimeType: 'multipart/form-data',
       params: { 'desc': desc }
     };
 
@@ -143,7 +155,8 @@ export class ImagesProvider {
     var options: FileUploadOptions = {
       fileKey: 'image',
       chunkedMode: false,
-      mimeType: 'image/jpeg',
+      // mimeType: 'image/jpeg',
+      mimeType: 'multipart/form-data',
       params: { 'id': desc.id, 'email': desc.email }
     };
 

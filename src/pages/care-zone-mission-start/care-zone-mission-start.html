@@ -166,23 +166,53 @@
   <ion-list>
     <h3 class="bottom_text">다른미션 보기</h3>
 
-
+    <ng-container *ngIf="moreIngData">
     <ion-grid class="gridimage">
+      <!-- {{moreIng.title}} -->
       <ion-row>
-        <ion-col class="container">
-          <img class="imagealign" src="assets/img/home/carezone1.png" />
-          <button class="ing_btn" style="font-size: 9px; box-shadow: none;" ion-button>모집 중</button>
+        <ng-container *ngFor="let moreIng of moreIngData">
+        <ion-col (click)="mission_start(moreIng._id)" class="container">
+          <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{moreIng._id}}'  />
+          <!-- <img class="imagealign" src="assets/img/home/carezone1.png" /> -->
+          <button class="ing_btn" style="box-shadow: none; background-color: #FFC3C3;" ion-button>모집 중</button>
         </ion-col>
-        <ion-col class="container">
-          <img class="imagealign" src="assets/img/home/carezone2.png" />
-          <button class="ing_btn" style="font-size: 9px; box-shadow: none;" ion-button>모집 중</button>
+        </ng-container>
+        <ng-container *ngIf="dday_id">
+        <ion-col (click)="mission_start(dday_id)" class="container">
+          <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{dday_id}}'  />
+          <!-- <img class="imagealign" src="assets/img/home/carezone2.png" /> -->
+          <button class="ing_btn" style="box-shadow: none; background-color: #C4E2FF;" ion-button>D-{{dday2}}</button>
         </ion-col>
+        </ng-container>
       </ion-row>
     </ion-grid>
+    </ng-container>
+
+    <ng-container *ngIf="!moreIngData">
+    <ion-grid class="gridimage">
+      <!-- {{moreIng.title}} -->
+      <ion-row>
+        <ng-container *ngIf="dday_id">
+        <ion-col (click)="mission_start(dday_id)" class="container">
+          <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{dday_id}}'  />
+          <!-- <img class="imagealign" src="assets/img/home/carezone2.png" /> -->
+          <button class="ing_btn" style="box-shadow: none; background-color: #C4E2FF;" ion-button>D-{{dday2}}</button>
+        </ion-col>
+        </ng-container>
+        <ng-container *ngIf="dday_id2">
+        <ion-col (click)="mission_start(dday_id2)" class="container">
+          <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{dday_id2}}'  />
+          <!-- <img class="imagealign" src="assets/img/home/carezone2.png" /> -->
+          <button class="ing_btn" style="box-shadow: none; background-color: #94A3FF;" ion-button>D-{{dday3}}</button>
+        </ion-col>
+        </ng-container>
+      </ion-row>
+    </ion-grid>
+    </ng-container>
 
 
     <ion-item no-lines>
-      <button ion-button class="button_add" style="font-size: 14px; box-shadow: none;" outline>미션 더보기&nbsp;&nbsp;></button>
+      <button ion-button class="button_add" style="font-size: 14px; box-shadow: none;" (click)="openCareZoneTab()" outline>미션 더보기&nbsp;&nbsp;></button>
     </ion-item>
   </ion-list>
 
