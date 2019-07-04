@@ -116,7 +116,7 @@ export class SkinDiagnoseFirstOilPage {
 
     public next_page(){
       //this.showAlert(this.all_score);
-      this.auth.setUserStoragediagnose_oil(this.all_oil_score*20);
+      this.auth.setUserStoragediagnose_first_oil(this.all_oil_score*20);
       this.auth.setUserStoragediagnose_first_check(true);
       if(this.platform.is('android')){
        const toast = this.toastCtrl.create({

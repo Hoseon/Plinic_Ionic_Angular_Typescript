@@ -159,7 +159,7 @@ export class HomePage {
 
       this.loadItems();
       this.bannerData = this.roadbanner();
-      this.roadcareZone();
+      //this.roadcareZone();
       this.firstCarezoneData = this.firstLoadCareZone();
       this.secondCarezoneData = this.secondLoadCareZone();
       this.thirdCarezoneData = this.thirdLoadCareZone();

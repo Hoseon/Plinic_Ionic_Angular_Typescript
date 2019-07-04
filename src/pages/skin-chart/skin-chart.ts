@@ -74,7 +74,7 @@ skin_diagnose_first_check: boolean;
     this.auth.getUserStoragediagnose_first_check().then(items => {
         this.skin_diagnose_first_check = items;
         console.log("skin_diagnose_first_check" + this.skin_diagnose_first_check);
-        console.log("items" + items);
+        //console.log("items" + items);
   });
 }
 
@@ -82,7 +82,7 @@ skin_diagnose_first_check: boolean;
     this.auth.getUserStoragediagnose_moisture().then(items => {
         this.all_moisture_score = items;
         console.log("all_moisture_score" + this.all_moisture_score);
-        console.log("items" + items);
+        //console.log("items" + items);
   });
 }
 
@@ -90,7 +90,7 @@ skin_diagnose_first_check: boolean;
     this.auth.getUserStoragediagnose_oil().then(items => {
         this.all_oil_score = items;
         console.log("all_oil_score" + this.all_oil_score);
-        console.log("items" + items);
+        //console.log("items" + items);
   });
 }
 
@@ -98,7 +98,7 @@ public skin_first_moisture_score() {
   this.auth.getUserStoragediagnose_first_moisture().then(items => {
       this.all_first_moisture_score = items;
       console.log("all_first_moisture_score" + this.all_first_moisture_score);
-      console.log("items" + items);
+      //console.log("items" + items);
 });
 }
 
@@ -106,7 +106,7 @@ public skin_first_oil_score() {
   this.auth.getUserStoragediagnose_first_oil().then(items => {
       this.all_first_oil_score = items;
       console.log("all_first_oil_score" + this.all_first_oil_score);
-      console.log("items" + items);
+      //console.log("items" + items);
 });
 }
 
@@ -131,11 +131,10 @@ segmentChanged(ev: any) {
 
 
 ionViewDidLoad() {
-  this.skin_moisture_score();
-  this.skin_oil_score();
   this.skin_first_check();
   this.skin_first_moisture_score();
   this.skin_first_oil_score();
+  this.skin_oil_score();
 }
 
 
@@ -144,8 +143,8 @@ public selectclick(){
      this.lineChart.update();
 }
 
-
   ionViewDidEnter() {
+    this.skin_moisture_score();
     console.log('ionViewDidLoad SkinChartPage');
     console.log('all_moisture_score=====================' + this.all_moisture_score);
     document.getElementById("moisture").style.display = "block";
