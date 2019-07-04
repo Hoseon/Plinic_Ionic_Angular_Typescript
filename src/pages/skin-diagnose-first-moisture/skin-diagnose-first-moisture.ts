@@ -127,6 +127,9 @@ export class SkinDiagnoseFirstMoisturePage {
             {
               text: '확인',
               handler: () => {
+                    if(this.all_score<0){
+                      this.all_score = 0;
+                    }
                     this.auth.setUserStoragediagnose_first_moisture(this.all_score*20);
                     this.nav.push(SkinDiagnoseFirstOilPage);
                   }

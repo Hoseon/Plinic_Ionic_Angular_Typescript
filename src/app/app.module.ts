@@ -194,7 +194,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 //문진표
 import { SkinDiagnoseMoisturePageModule } from '../pages/skin-diagnose-moisture/skin-diagnose-moisture.module';
 import { SkinDiagnoseOilPageModule } from '../pages/skin-diagnose-oil/skin-diagnose-oil.module';
-
+import { SkinDiagnoseFirstMoisturePageModule } from '../pages/skin-diagnose-first-moisture/skin-diagnose-first-moisture.module';
+import { SkinDiagnoseFirstOilPageModule } from '../pages/skin-diagnose-first-oil/skin-diagnose-first-oil.module';
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -309,14 +310,16 @@ export function getAuthHttp(http, storage) {
     BrowserAnimationsModule,
     SkinDiagnoseMoisturePageModule,
     SkinDiagnoseOilPageModule,
+    SkinDiagnoseFirstMoisturePageModule,
+    SkinDiagnoseFirstOilPageModule,
     BrowserModule,
+    MultiPickerModule,
     IonicModule.forRoot(MyApp),
     ProgressBarModule,
     IonicStorageModule.forRoot(),
     HttpClientModule,
     IonicImageLoader.forRoot(),
     SelectSearchableModule,
-    MultiPickerModule,
     NgCircleProgressModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,

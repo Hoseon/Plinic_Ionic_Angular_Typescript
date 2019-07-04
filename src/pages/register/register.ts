@@ -176,7 +176,7 @@ export class RegisterPage {
     // Create options for the Camera Dialog
     var options = {
       quality: 50,
-      destinationType: this._camera.DestinationType.DATA_URL,
+      destinationType: this._camera.DestinationType.FILE_URL,
       sourceType: sourceType,
       saveToPhotoAlbum: true,
       encodingType: this._camera.EncodingType.JPEG,
@@ -210,7 +210,8 @@ export class RegisterPage {
         //       imagePath += '.jpg';
         //   }
       this.imagePath = imagePath;
-      this.imagePath = "data:image/jpeg;base64," + this.imagePath;
+      // this.imagePath = "data:image/jpeg;base64," + this.imagePath;
+      this.imagePath = this.imagePath;
       this.imagePath2 =this.imagePath;
       this.auth.setUserStorageimagePath(this.imagePath2);
     }
