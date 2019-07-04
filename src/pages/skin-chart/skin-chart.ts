@@ -1,11 +1,11 @@
 import { Component, ViewChild, Inject} from '@angular/core';
-import { IonicPage, NavController , NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController , NavParams, Platform} from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { format } from 'date-fns';
 import 'chartjs-plugin-labels';
 import ko from 'date-fns/locale/ko';
 import { DOCUMENT } from '@angular/common';
-
+import { AuthService } from '../../providers/auth-service';
 
 /**
  * Generated class for the SkinChartPage page.
@@ -45,9 +45,6 @@ nineDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*9);
 lastDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*31);
 
 
-
-
-
 //date count
 
 skinbtnYear = format(this.today, 'YYYY');
@@ -60,33 +57,96 @@ extoday =  format(this.today, 'YYYY.MM.DD');
 exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
 
 
-  constructor(public navCtrl: NavController , public navParams: NavParams, public platform: Platform, @Inject(DOCUMENT) document  ) {
+//문진표
+all_moisture_score: number = 0;
+all_oil_score: number = 0;
+all_first_moisture_score: number = 0;
+all_first_oil_score: number = 0;
+skin_diagnose_first_check: boolean;
+
+  constructor(public navCtrl: NavController , public navParams: NavParams, public platform: Platform, @Inject(DOCUMENT) document, public auth: AuthService) {
     this.segment_moisture="수분"
 
    console.log ("ddddddddddddddddddddddd", this.threeDaysAgo)
   }
 
-  yearmonthselect(e){
-    console.log("yearmonthselect===============" + e);
-  }
-
-  segmentChanged(ev: any) {
-    if(ev.value==='수분'){
-    console.log('Segment changed111111111==============', ev.value);
-    this.segment_status==true;
-    document.getElementById("moisture").style.display = "block";
-    document.getElementById("oil").style.display = "none";
-  }
-   else{
-     console.log('Segment changed2222222222==============', ev.value);
-    this.segment_status==false;
-    document.getElementById("oil").style.display = "block";
-    document.getElementById("moisture").style.display = "none";
-   }
+  public skin_first_check() {
+    this.auth.getUserStoragediagnose_first_check().then(items => {
+        this.skin_diagnose_first_check = items;
+        console.log("skin_diagnose_first_check" + this.skin_diagnose_first_check);
+        //console.log("items" + items);
+  });
 }
 
-  ionViewDidLoad() {
+  public skin_moisture_score() {
+    this.auth.getUserStoragediagnose_moisture().then(items => {
+        this.all_moisture_score = items;
+        console.log("all_moisture_score" + this.all_moisture_score);
+        //console.log("items" + items);
+  });
+}
+
+  public skin_oil_score() {
+    this.auth.getUserStoragediagnose_oil().then(items => {
+        this.all_oil_score = items;
+        console.log("all_oil_score" + this.all_oil_score);
+        //console.log("items" + items);
+  });
+}
+
+public skin_first_moisture_score() {
+  this.auth.getUserStoragediagnose_first_moisture().then(items => {
+      this.all_first_moisture_score = items;
+      console.log("all_first_moisture_score" + this.all_first_moisture_score);
+      //console.log("items" + items);
+});
+}
+
+public skin_first_oil_score() {
+  this.auth.getUserStoragediagnose_first_oil().then(items => {
+      this.all_first_oil_score = items;
+      console.log("all_first_oil_score" + this.all_first_oil_score);
+      //console.log("items" + items);
+});
+}
+
+yearmonthselect(e){
+  console.log("yearmonthselect===============" + e);
+}
+
+segmentChanged(ev: any) {
+  if(ev.value==='수분'){
+  console.log('Segment changed111111111==============', ev.value);
+  this.segment_status==true;
+  document.getElementById("moisture").style.display = "block";
+  document.getElementById("oil").style.display = "none";
+}
+ else{
+   console.log('Segment changed2222222222==============', ev.value);
+  this.segment_status==false;
+  document.getElementById("oil").style.display = "block";
+  document.getElementById("moisture").style.display = "none";
+ }
+}
+
+
+ionViewDidLoad() {
+  this.skin_first_check();
+  this.skin_first_moisture_score();
+  this.skin_first_oil_score();
+  this.skin_oil_score();
+}
+
+
+public selectclick(){
+     console.log('ionViewDidLoad selectclick');
+     this.lineChart.update();
+}
+
+  ionViewDidEnter() {
+    this.skin_moisture_score();
     console.log('ionViewDidLoad SkinChartPage');
+    console.log('all_moisture_score=====================' + this.all_moisture_score);
     document.getElementById("moisture").style.display = "block";
     document.getElementById("oil").style.display = "none";
 
@@ -96,7 +156,6 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
     this.twoDaysAgo = format(this.twoDaysAgo, 'DD');
     this.threeDaysAgo = format(this.threeDaysAgo, 'DD');
     this.lastDaysAgo = format(this.lastDaysAgo, '.DD');
-
 
     this.lineCanvas = new Chart(this.lineCanvas.nativeElement, {
 
@@ -127,13 +186,17 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
                        pointRadius: 3,  //데이터 포인트크기
                        pointHitRadius: 100,
                        // data: [this.data1, this.data2, this.data3, this.data4],
-                       data: [40, 35, 45, 40,
+                       data: [
+                         this.all_moisture_score='' ?  this.all_moisture_score : this.all_first_moisture_score,
+                         this.all_moisture_score='' ?  this.all_moisture_score : this.all_first_moisture_score,
+                              45, 40,
                               40, 45, 40, 40,
                               40, 25, 30, 45,
                               40, 35, 40, 40,
                               40, 25, 30, 35,
                               30, 25, 35, 35,
                               30, 25, 45, 40, 45 ,50, 50
+
 
                 ],
                        spanGaps: false,
@@ -244,7 +307,9 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
                      pointRadius: 3,
                      pointHitRadius: 10,
                      data: [
-                       20, 25, 15, 25,
+                       this.all_moisture_score='' ?  this.all_oil_score : this.all_first_oil_score,
+                       this.all_moisture_score='' ?  this.all_oil_score : this.all_first_oil_score,
+                      15, 25,
                        15, 23, 34, 33,
                        23, 32, 25, 32,
                        34, 15, 23, 33,
@@ -325,12 +390,6 @@ exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
                     //   }
                 }
             });
-}
-
-
-  public selectclick(){
-       console.log('ionViewDidLoad selectclick');
-       this.lineChart.update();
   }
 
 

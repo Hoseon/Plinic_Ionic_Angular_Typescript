@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Http, HttpModule, Headers } from '@angular/http';
+import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
@@ -11,6 +11,8 @@ import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Naver } from 'ionic-plugin-naver';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { FCM } from '@ionic-native/fcm';
 
 export class User {
   accessToken: string;
@@ -48,14 +50,19 @@ export class AuthService {
   jwtHelper: JwtHelper = new JwtHelper();
   userData: any;
   blu_connect: boolean = false;
+  push_token: any;
 
   constructor(private http: Http, public authHttp: AuthHttp, public storage: Storage,
     public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController, private facebook: Facebook, private google: GooglePlus,
-    public bluetoothle: BluetoothLE, public naver: Naver) {
+    public bluetoothle: BluetoothLE, public naver: Naver, private localNotifications: LocalNotifications, private fcm: FCM) {
+
     this.platform.ready().then(() => {
       this.checkToken();
       this.bluetooth_connect();
-
+      this.fcm.getToken().then(token => {
+        this.push_token = token;
+        console.log("push_token================="+ token);
+      })
     });
 
     let loginOptions = {};
@@ -66,6 +73,52 @@ export class AuthService {
     ];
   }
 
+
+  //최초 실행검사인지 체크
+  public setUserStoragediagnose_first_check(check) {
+   this.storage.set('check', check);
+  }
+
+  public getUserStoragediagnose_first_check(){
+    return this.storage.get('check');
+  }
+
+  //최초 데이터
+  public setUserStoragediagnose_first_moisture(moisture) {
+   this.storage.set('moisture', moisture);
+  }
+
+  public getUserStoragediagnose_first_moisture(){
+    return this.storage.get('moisture');
+  }
+
+  public setUserStoragediagnose_first_oil(oil) {
+   this.storage.set('oil', oil);
+  }
+
+  public getUserStoragediagnose_first_oil() {
+    return this.storage.get('oil');
+  }
+
+
+  //두번째이상 데이터
+  public setUserStoragediagnose_moisture(moisture) {
+   this.storage.set('moisture', moisture);
+  }
+
+  public getUserStoragediagnose_moisture(){
+    return this.storage.get('moisture');
+  }
+
+  public setUserStoragediagnose_oil(oil) {
+   this.storage.set('oil', oil);
+  }
+
+  public getUserStoragediagnose_oil() {
+    return this.storage.get('oil');
+  }
+
+  // 썸네일 이미지 저장.. 추후 서버로 변경
   public setUserStorageimagePath(imagePath) {
    this.storage.set('imagePath', imagePath);
   }
@@ -73,6 +126,46 @@ export class AuthService {
   public getUserStorageimagePath() {
     return this.storage.get('imagePath');
   }
+
+
+  public get_qna_answer(){
+    this.localNotifications.schedule({
+       title: "plinic",
+       text: '문의하신 질문에 답글이 작성되었습니다.',
+       trigger: {at: new Date(new Date().getTime())},
+       led: 'FF0000',
+       sound: null
+    });
+
+   this.sendnotification("plinic", "문의하신 질문에 답글이 작성되었습니다.");
+  }
+
+  //backend coding
+  sendnotification(sname, msg) {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Authorization',
+      'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
+      let option = new RequestOptions({ headers: headers });
+      let payload  = {
+        "notification": {
+          "title": sname,
+          "body": msg,
+          "badge": 1,
+          "sound": "default",
+          "click_action": "FCM_PLUGIN_ACTIVITY"
+        },
+        "priority": "high",
+        "to": this.push_token,
+        //토큰
+      }
+      this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
+        .map(res => res.json())
+        .subscribe(data => {
+          console.log("dddddddddddddddddddddd================="+ data);
+        });
+    }
+
 
   public bluetooth_connect() {
     if (this.platform.is('cordova')) {

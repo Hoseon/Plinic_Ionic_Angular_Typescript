@@ -13,7 +13,7 @@
 
   <div class="text_Q">Q</div>
   <ion-item no-lines>
-    <ion-label class="diagnose_Q" text-wrap>기초를 충분히 해도 메이크업이 쉽게 들떠버린다. 들뜬 각질이 늘 보인다.</ion-label>
+    <ion-label class="diagnose_Q" text-wrap>주 1~2회 보습팩, 영양팩을 사용하고 있나요?</ion-label>
       <ion-range (ionChange)="range_change($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score"></ion-range>
   </ion-item>
 
@@ -24,13 +24,10 @@
   </ion-row>
 
 
-
-
-
   <div class="text_Q">Q</div>
   <ion-item no-lines>
-    <ion-label class="diagnose_Q" text-wrap>기초를 충분히 해도 메이크업이 쉽게 들떠버린다. 들뜬 각질이 늘 보인다.</ion-label>
-      <ion-range (ionChange)="range_change($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score2"></ion-range>
+    <ion-label class="diagnose_Q" text-wrap>보습 전용 화장품을 사용하고 있나요? </ion-label>
+      <ion-range (ionChange)="range_change2($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score2"></ion-range>
   </ion-item>
 
   <ion-row class="dianose_row">
@@ -40,14 +37,10 @@
   </ion-row>
 
 
-
-
-
-
   <div class="text_Q">Q</div>
   <ion-item no-lines>
-    <ion-label class="diagnose_Q" text-wrap>기초를 충분히 해도 메이크업이 쉽게 들떠버린다. 들뜬 각질이 늘 보인다.</ion-label>
-      <ion-range (ionChange)="range_change($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score3"></ion-range>
+    <ion-label class="diagnose_Q" text-wrap>실내 습도를 적절하게 유지하여 수분증발을 억제하고 있나요? </ion-label>
+      <ion-range (ionChange)="range_change3($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score3"></ion-range>
   </ion-item>
 
   <ion-row class="dianose_row">
@@ -55,6 +48,103 @@
     <ion-col class="diagnose_center" >보통이다</ion-col>
     <ion-col class="diagnose_right" >그렇다</ion-col>
   </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>카페인 등을 멀리하고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change4($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score4"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>잦은 사우나는 삼가하고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change5($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score5"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>전신 바디크림을 잘 바르고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change6($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score6"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>하루 2L이상의 물을 섭취하고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change7($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score7"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>알코올은 멀리하고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change8($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score8"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>흡연을 멀리하고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change9($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score9"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>외출 시 자외선 차단제를 바르고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change10($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score10"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>규칙적인 수면(밤10~1시)습관을 실천하고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change11($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score11"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
 
 
 
