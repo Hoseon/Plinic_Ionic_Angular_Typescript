@@ -1,18 +1,160 @@
-<!--
-  Generated template for the SkinDiagnoseOilPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>skin_diagnose_oil</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
 
 <ion-content padding>
 
+
+    <ion-img  *ngIf="platform.is('android')" class="close" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
+                  assets/img/agreement/ic-system-back-black@3x.png" (click)="dissmiss()"></ion-img>
+
+
+    <ion-img *ngIf="platform.is('ios')" class="close" style="margin-top:5%;" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
+                          assets/img/agreement/ic-system-back-black@3x.png" (click)="dissmiss()"></ion-img>
+
+    <h1 class="h1" > 최초 문진표를 작성해주세요. </h1>
+
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>주 2회정도 각질제거를 하나요?</ion-label>
+      <ion-range (ionChange)="range_change($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>수렴 화장수와 지성피부용 화장품을 사용하나요?</ion-label>
+      <ion-range (ionChange)="range_change2($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score2"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>모공수축, 진정작용이 있는 팩을 주 1~2회 정도 하고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change3($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score3"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>여드름이 생겼을때 스스로 압출을 시도하지 않고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change4($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score4"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>블랙헤드 제거시 과도하게 짜거나 뽑지 않고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change5($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score5"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>피부 문제를 전문가와 상담/관리하고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change6($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score6"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>알코올은 멀리하고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change7($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score7"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>흡연을 멀리하고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change8($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score8"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>외출 시 자외선 차단제를 바르고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change9($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score9"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>규칙적인 수면(밤10~1시)습관을 실천하고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change10($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score10"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+  <div class="text_Q">Q</div>
+  <ion-item no-lines>
+    <ion-label class="diagnose_Q" text-wrap>주기적으로 수분을 보충하고 있나요?</ion-label>
+      <ion-range (ionChange)="range_change11($event)" min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score11"></ion-range>
+  </ion-item>
+
+  <ion-row class="dianose_row">
+    <ion-col class="diagnose_left" >그렇지 않다</ion-col>
+    <ion-col class="diagnose_center" >보통이다</ion-col>
+    <ion-col class="diagnose_right" >그렇다</ion-col>
+  </ion-row>
+
+
+   <button ion-button outline class="next_btn" (click)="next_page();">다음</button>
+
 </ion-content>
+
+
+
+<!--
+<ion-footer>
+    <button ion-button outline class="next_btn" (click)="next_page();">다음</button>
+
+</ion-footer> -->

@@ -10,6 +10,21 @@ page-skin-diagnose-moisture {
         margin: 0px;
       }
 
+      //range-스크롤시 데이터계산
+      input[type=range] {
+        pointer-events: auto;
+      }
+
+      input[type=range]::-webkit-slider-thumb {
+        pointer-events:auto;
+      }
+      .range-slider {
+        pointer-events: auto;
+      }
+
+      .range-knob-handle {
+        pointer-events:auto;
+      }
 
       .close{
       background-color: #FFF;
@@ -144,5 +159,5 @@ page-skin-diagnose-moisture {
       display: block;
     }
 
-    
+
 }

@@ -35,9 +35,45 @@
 
    <ion-item no-lines >
      <ion-grid style="margin:0 auto;">
-         <ion-row>
+         <ion-row *ngIf="(!skin_diagnose_first_check) || (skin_diagnose_first_check && all_oil_score==='') ">
              <ion-col><circle-progress class="roundprogressbar"
-             [percent]="32.5"
+             [percent]="all_first_oil_score"
+             [radius]="120"
+             [outerStrokeWidth]="15"
+             [innerStrokeWidth]="15"
+             [outerStrokeColor]="'#00af66'"
+             [innerStrokeColor]="'#d8d8d8'"
+             [animation]="true"
+             [animationDuration]="500"
+             [titleFontSize]="40"
+             [unitsFontSize]="40"
+             [subtitleFontSize]="25"
+             [toFixed] = "1"
+             [space] = "-13"
+             subtitle= "유분"
+           ></circle-progress></ion-col>
+             <ion-col><circle-progress class="roundprogressbar"
+             [percent]="all_first_moisture_score"
+             [radius]="120"
+             [outerStrokeWidth]="15"
+             [innerStrokeWidth]="15"
+             [outerStrokeColor]="'#ffa000'"
+             [innerStrokeColor]="'#d8d8d8'"
+             [animation]="true"
+             [animationDuration]="500"
+             [titleFontSize]="40"
+             [unitsFontSize]="40"
+             [subtitleFontSize]="25"
+             [toFixed] = "1"
+             [space] = "-13"
+             subtitle="수분"
+           ></circle-progress></ion-col>
+         </ion-row>
+
+         
+         <ion-row *ngIf="skin_diagnose_first_check">
+             <ion-col><circle-progress class="roundprogressbar"
+             [percent]="all_oil_score"
              [radius]="120"
              [outerStrokeWidth]="15"
              [innerStrokeWidth]="15"
@@ -54,7 +90,7 @@
            ></circle-progress></ion-col>
 
              <ion-col><circle-progress class="roundprogressbar"
-             [percent]="60.5"
+             [percent]="all_moisture_score"
              [radius]="120"
              [outerStrokeWidth]="15"
              [innerStrokeWidth]="15"

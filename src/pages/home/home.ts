@@ -45,6 +45,7 @@ import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { BeautyTipAddPage } from '../beauty-tip-add/beauty-tip-add';
 import { PlinicManualPage } from '../myinfo/details/plinic-manual/plinic-manual';
 import { SkinDiagnoseMoisturePage } from '../skin-diagnose-moisture/skin-diagnose-moisture';
+import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture';
 
 
 
@@ -145,8 +146,7 @@ export class HomePage {
   percent: Array<any> = new Array<any>();
   getthirdday: Array<any> = new Array<any>();
 
-
-
+  skin_diagnose_first_check = false;
 
 
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
@@ -164,11 +164,15 @@ export class HomePage {
       this.secondCarezoneData = this.secondLoadCareZone();
       this.thirdCarezoneData = this.thirdLoadCareZone();
       this.roadbeauty();
+      this.skin_first_check();
 
+      if(this.skin_diagnose_first_check===null || false){
+      this.auth.setUserStoragediagnose_first_check(this.skin_diagnose_first_check);
+      console.log("===================="+this.skin_diagnose_first_check);
+      }
       if (this.auth.bluetooth_connect() == true) {
         //this.nav.push(SkinChartPage);
       }
-
       this.platform.registerBackButtonAction(() => {
         let nav = app._appRoot._getActivePortal() || app.getActiveNav();
         let activeView = nav.getActive();
@@ -210,6 +214,14 @@ export class HomePage {
   }
 
 
+  public skin_first_check() {
+    this.auth.getUserStoragediagnose_first_check().then(items => {
+        this.skin_diagnose_first_check = items;
+        console.log("skin_diagnose_first_check=============" + this.skin_diagnose_first_check);
+        console.log("items=============" + items);
+  });
+}
+
   public skin_measure(){
     // let alert = this.alertCtrl.create({
     //   cssClass: 'push_alert',
@@ -220,8 +232,14 @@ export class HomePage {
     //   }]
     // });
     // alert.present();
+    if(this.skin_diagnose_first_check){
     let myModal = this.modalCtrl.create(SkinDiagnoseMoisturePage);
     myModal.present();
+    }
+    else{
+    let myModal = this.modalCtrl.create(SkinDiagnoseFirstMoisturePage);
+    myModal.present();
+    }
   }
 
   public beauty_add(){
@@ -443,11 +461,7 @@ export class HomePage {
   public second_missionCount(id) {
     // this.showLoading();
     this.images.missionCount(id).subscribe(data => {
-      // this.secondCount = 0;
-      this.second_carezone_missioncount[this.secondCount] = data;
-      // console.log("진행중 카운트" + this.second_carezone_missioncount[this.secondCount])
-      // console.log("진행중 순번" + this.secondCount)
-      this.secondCount++;
+      this.second_carezone_missioncount = data;
     });
   }
 
@@ -554,27 +568,14 @@ export class HomePage {
     });
   }
 
+
   public roadcareZone() {
-
-
-    //this.images.maincarezoneRoad().subscribe(data => {
-    // this.images.carezoneRoad().subscribe(data => {
-    //   // for (let i = 0; i < data.length; i++) {
-    //   //   console.log("미션 시작일" + data[i].startmission);
-    //   //   console.log("미션 종료일" + data[i].endmission);
-    //   //   console.log("시작일 차이" + this.diffdate(this.currentDate, new Date(data[i].startmission)));
-    //   //   console.log("종료일 차이" + this.diffdate(this.currentDate, new Date(data[i].endmission)));
-    //   //   if (this.diffdate(this.currentDate, new Date(data[i].endmission)) > 0) {
-    //   //     console.log("종료일 조건 성립");
-    //   //     break;
-    //   //   }
-    //   //   console.log(i);
-    //   // }
+    // this.images.maincarezoneRoad().subscribe(data => {
     //   //console.log(data);
     //   this.first_carezone_title = data[0].title;
     //   this.first_carezone_body = data[0].body;
     //   this.first_carezone__id = data[0]._id;
-    //   // this.first_missionCount(data[0]._id);
+    //   this.first_missionCount(data[0]._id);
     //   this.first_carezone_maxmember = (data[0].maxmember);
     //   this.first_carezone_startDate = new Date(data[0].startmission);
     //   this.second_carezone_title = data[1].title;
@@ -770,6 +771,7 @@ export class HomePage {
     this.nav.push(CareZoneMissionIngPage);
   }
   public mission_start(_id) {
+    //console.log(_id);
 
     if (this.missionData === null || this.missionData === undefined) {
       this.nav.push(CareZoneMissionStartPage, { _id: _id });
