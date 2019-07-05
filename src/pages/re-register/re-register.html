@@ -45,14 +45,15 @@
   </div>
 
 
-  <button *ngIf="userData" mode="ios" class="profile_modify" ion-item (click)="modify_email()">
+  <!-- <button *ngIf="userData" mode="ios" class="profile_modify" ion-item (click)="modify_email()" name="email" [(ngModel)]="email">
     <div class="profile_text">{{userData.email}}</div>이메일
+  </button> -->
+  <button type="text" *ngIf="userData" mode="ios" class="profile_modify" ion-item (click)="modify_nickname()" name="nickname" [(ngModel)]="nickname">
+    <div class="profile_text">{{nickname}}</div>닉네임
   </button>
-  <button *ngIf="userData" mode="ios" class="profile_modify" ion-item (click)="modify_password()">
-    <div class="profile_text">{{userData.password}}</div>비밀번호
-  </button>
-  <button *ngIf="userData" mode="ios" class="profile_modify" ion-item (click)="modify_nickname()">
-    <div class="profile_text">{{userData.name}}</div>닉네임
+  <button type="password" *ngIf="userData" mode="ios" class="profile_modify" ion-item (click)="modify_password()" name="password" [(ngModel)]="password">
+    <div class="profile_text" type="password">{{password}}</div>비밀번호
+    <!-- <ion-input  class="profile_text" type="password" disabled> {{password}} </ion-input>비밀번호 -->
   </button>
   <!-- <button mode="ios" class="profile_modify" ion-item (click)="modify_number()">
     <div class="profile_text">01012341234</div>연락처
@@ -63,7 +64,7 @@
   <ion-label class="titlelabel" stacked>피부타입</ion-label>
   </ion-item>
 
-  <ion-list *ngIf="userData" class="skincomplaint_list" name="skincomplaint_list" radio-group [(ngModel)]="registerCredentials.skincomplaint" required >
+  <ion-list *ngIf="userData" class="skincomplaint_list" name="skincomplaint_list" radio-group [(ngModel)]="skincomplaint" required >
 
     <ion-row class="row_align"><ion-col><ion-item no-lines>
       <ion-label *ngIf="platform.is('android')" class="radiolabel" name="A" for="건성" checked>건성
@@ -103,6 +104,11 @@
       <ion-radio class="radiobutton" name="F" id="모름" value="모름"></ion-radio></ion-label>
     </ion-item></ion-col></ion-row>
   </ion-list>
+
+
+
+  <button class="confirm_button2" ion-button > 수정하기</button>
+
 
 
 </ion-content>

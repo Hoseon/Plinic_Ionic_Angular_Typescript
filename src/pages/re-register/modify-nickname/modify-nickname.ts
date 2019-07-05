@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, Events   } from 'ionic-angular';
 import { ReRegisterPage} from '../../re-register/re-register';
 
 /**
@@ -16,17 +16,24 @@ import { ReRegisterPage} from '../../re-register/re-register';
 })
 export class ModifyNicknamePage {
 
-  constructor(public nav: NavController, public navParams: NavParams, public platform: Platform) {
-  }
+    nickname: string;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ModifyNicknamePage');
-  }
+    constructor(public nav: NavController, public navParams: NavParams, public platform: Platform,  private events: Events) {
+    }
 
-
-  public navpop(){
-    this.nav.popTo(ReRegisterPage);
-  }
+    ionViewDidLoad() {
+      console.log('ionViewDidLoad ModifyNicknamePage');
+    }
 
 
+    public navpop(){
+      this.nav.popTo(ReRegisterPage);
+    }
+
+    public nickname_valid(){
+      this.nav.pop().then(() => {
+      // Trigger custom event and pass data to be send back
+      this.events.publish('custom-user-events', this.nickname);
+      });
+    }
 }

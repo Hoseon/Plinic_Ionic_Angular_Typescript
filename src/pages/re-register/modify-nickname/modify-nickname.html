@@ -14,12 +14,13 @@
   <h1 class="h1" >닉네임 수정</h1>
 
   <ion-item class="item_align" style="background:#FFF">
-  <ion-input class="input_name" mode="ios" type="text" name="name" placeholder="닉네임을 입력해주세요."
+  <ion-input class="input_name" mode="ios" type="text" name="name" placeholder="닉네임을 입력해주세요." [(ngModel)]="nickname"
   clearInput required></ion-input>
   </ion-item>
 
 
 
+  <button class="confirm_button2" ion-button (click)="nickname_valid()"> 확인</button>
 
 
 </ion-content>

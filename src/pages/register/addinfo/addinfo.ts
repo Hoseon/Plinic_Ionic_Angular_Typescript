@@ -1,4 +1,4 @@
-  import { Component } from '@angular/core';
+  import { Component,  forwardRef  } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ViewController, Platform} from 'ionic-angular';
 import { AuthService } from '../../../providers/auth-service';
 import { RegisterPage} from '../../register/register';
@@ -6,7 +6,7 @@ import {RegistercompletePage} from '../registercomplete/registercomplete';
 import { SelectSearchableComponent } from 'ionic-select-searchable';
 import { MultiPickerModule } from 'ion-multi-picker';
 import { ImagesProvider } from '../../../providers/images/images';
-
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 
 /**
@@ -20,8 +20,15 @@ import { ImagesProvider } from '../../../providers/images/images';
 @Component({
   selector: 'page-addinfo',
   templateUrl: 'addinfo.html',
+  providers: [
+  {
+    provide: NG_VALUE_ACCESSOR,
+    multi: true,
+    useExisting: forwardRef(() => MultiPickerModule),
+  }
+]
 })
-export class AddinfoPage {
+export class AddinfoPage{
   createSuccess = false;
   public country: any;
   email: any;
@@ -146,8 +153,8 @@ toggle(){
     this.registerCredentials.email = this.email;
     this.registerCredentials.password = this.password;
 
-    this.showPopup("this.registerCredentials.imagePath" , this.registerCredentials.imagePath);
-    this.showPopup("imagePath2" , this.imagePath2);
+    //this.showPopup("this.registerCredentials.imagePath" , this.registerCredentials.imagePath);
+    //this.showPopup("imagePath2" , this.imagePath2);
 
     this.auth.setUserStorageimagePath(this.imagePath2);
     this.imagesProvider.user_uploadImage(this.registerCredentials.imagePath, this.registerCredentials.email).then(res => {
