@@ -8,7 +8,7 @@ import { AgreementPage } from '../agreement/agreement';
 import { LoginpagePage } from '../login/loginpage/loginpage';
 import { IonicPage, App } from 'ionic-angular';
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'

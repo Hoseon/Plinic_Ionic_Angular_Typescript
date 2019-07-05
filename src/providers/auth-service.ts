@@ -54,15 +54,17 @@ export class AuthService {
 
   constructor(private http: Http, public authHttp: AuthHttp, public storage: Storage,
     public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController, private facebook: Facebook, private google: GooglePlus,
-    public bluetoothle: BluetoothLE, public naver: Naver, private localNotifications: LocalNotifications, private fcm: FCM) {
+    public bluetoothle: BluetoothLE, public naver: Naver, private localNotifications: LocalNotifications,
+    // private fcm: FCM
+  ) {
 
     this.platform.ready().then(() => {
       this.checkToken();
       this.bluetooth_connect();
-      this.fcm.getToken().then(token => {
-        this.push_token = token;
-        console.log("push_token================="+ token);
-      })
+      // this.fcm.getToken().then(token => {
+      //   this.push_token = token;
+      //   console.log("push_token================="+ token);
+      // })
     });
 
     let loginOptions = {};
@@ -493,6 +495,8 @@ export class AuthService {
     this.currentUser = null;
     this.deleteToken();
     this.authenticationState.next(false);
+    // this.nav.setRoot(LoginPage);
+    // this.nav.popToRoot();
     //this.currentUser = null;
     //this.deleteToken();
     //this.authenticationState.next(false);

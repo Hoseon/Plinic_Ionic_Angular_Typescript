@@ -183,8 +183,8 @@ export class LoginpagePage {
       }
     },
       error => {
-        //this.showError(JSON.parse(error._body).msg);
-        this.showError(error._body);
+        this.showError(JSON.parse(error._body).msg);
+        // this.showError(error._body);
       });
   }
 
