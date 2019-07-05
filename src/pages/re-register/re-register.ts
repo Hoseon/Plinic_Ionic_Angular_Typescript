@@ -4,6 +4,7 @@ import { AuthService } from '../../providers/auth-service';
 import { ModifyEmailPage } from './modify-email/modify-email';
 import { ModifyNumberPage } from './modify-number/modify-number';
 import { ModifyPasswordPage } from './modify-password/modify-password';
+import { ModifyNicknamePage } from './modify-nickname/modify-nickname';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImageLoader } from 'ionic-image-loader';
@@ -159,6 +160,13 @@ export class ReRegisterPage {
 
     this.nav.push(ModifyPasswordPage);
   }
+
+  public modify_nickname() {
+
+    this.nav.push(ModifyNicknamePage);
+  }
+
+
   //20190619 회원정보 수정 카메라 모듈 추가
   public camera() {
     let actionSheet = this.actionSheetCtrl.create({
@@ -230,7 +238,7 @@ export class ReRegisterPage {
         //       imagePath += '.jpg';
         //   }
       this.imagePath = imagePath;
-      this.imagePath = "data:image/jpeg;base64," + this.imagePath;
+      // this.imagePath = "data:image/jpeg;base64," + this.imagePath;
       this.imagePath2 = this.imagePath;
       this.auth.setUserStorageimagePath(this.imagePath2);
     }
