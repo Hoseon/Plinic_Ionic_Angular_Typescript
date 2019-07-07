@@ -4,7 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 
-import { Facebook } from '@ionic-native/facebook';
+// import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 
 import { GenderFilter } from './../pipes/gender-filter';
@@ -151,7 +151,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Storage } from '@ionic/storage';
 
 import { KakaoCordovaSDK } from 'kakao-sdk';
-import { Naver } from 'ionic-plugin-naver';
+// import { Naver } from 'ionic-plugin-naver';
 import { AuthService } from '../providers/auth-service';
 // import { KeyboardAttachDirective } from '../providers/keyboard-attach.directive';
 
@@ -196,6 +196,9 @@ import { SkinDiagnoseMoisturePageModule } from '../pages/skin-diagnose-moisture/
 import { SkinDiagnoseOilPageModule } from '../pages/skin-diagnose-oil/skin-diagnose-oil.module';
 import { SkinDiagnoseFirstMoisturePageModule } from '../pages/skin-diagnose-first-moisture/skin-diagnose-first-moisture.module';
 import { SkinDiagnoseFirstOilPageModule } from '../pages/skin-diagnose-first-oil/skin-diagnose-first-oil.module';
+
+
+import { NaverCordovaSDK } from 'naver-sdk';
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -387,12 +390,13 @@ export function getAuthHttp(http, storage) {
     KakaoCordovaSDK,
     AuthService,
     IonicErrorHandler,
-    Facebook,
+    // Facebook,
     GooglePlus,
     ImagesProvider,
     Transfer,
     Camera,
-    Naver,
+    // Naver,
+    NaverCordovaSDK,
     BluetoothLE,
     //AnimationService,
     FCM,

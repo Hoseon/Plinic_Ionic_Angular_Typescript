@@ -8,9 +8,10 @@ import { BehaviorSubject } from 'rxjs';
 import { Platform, AlertController } from 'ionic-angular';
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+// import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
-import { Naver } from 'ionic-plugin-naver';
+// import { Naver } from 'ionic-plugin-naver';
+import { NaverCordovaSDK } from 'naver-sdk';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { FCM } from '@ionic-native/fcm';
 
@@ -53,8 +54,10 @@ export class AuthService {
   push_token: any;
 
   constructor(private http: Http, public authHttp: AuthHttp, public storage: Storage,
-    public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController, private facebook: Facebook, private google: GooglePlus,
-    public bluetoothle: BluetoothLE, public naver: Naver, private localNotifications: LocalNotifications,
+    public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController,
+    // private facebook: Facebook,
+    private google: GooglePlus,
+    public bluetoothle: BluetoothLE, public _naverCordovaSDK: NaverCordovaSDK, private localNotifications: LocalNotifications,
     // private fcm: FCM
   ) {
 
@@ -78,24 +81,24 @@ export class AuthService {
 
   //최초 실행검사인지 체크
   public setUserStoragediagnose_first_check(check) {
-   this.storage.set('check', check);
+    this.storage.set('check', check);
   }
 
-  public getUserStoragediagnose_first_check(){
+  public getUserStoragediagnose_first_check() {
     return this.storage.get('check');
   }
 
   //최초 데이터
   public setUserStoragediagnose_first_moisture(moisture) {
-   this.storage.set('moisture', moisture);
+    this.storage.set('moisture', moisture);
   }
 
-  public getUserStoragediagnose_first_moisture(){
+  public getUserStoragediagnose_first_moisture() {
     return this.storage.get('moisture');
   }
 
   public setUserStoragediagnose_first_oil(oil) {
-   this.storage.set('oil', oil);
+    this.storage.set('oil', oil);
   }
 
   public getUserStoragediagnose_first_oil() {
@@ -105,15 +108,15 @@ export class AuthService {
 
   //두번째이상 데이터
   public setUserStoragediagnose_moisture(moisture) {
-   this.storage.set('moisture', moisture);
+    this.storage.set('moisture', moisture);
   }
 
-  public getUserStoragediagnose_moisture(){
+  public getUserStoragediagnose_moisture() {
     return this.storage.get('moisture');
   }
 
   public setUserStoragediagnose_oil(oil) {
-   this.storage.set('oil', oil);
+    this.storage.set('oil', oil);
   }
 
   public getUserStoragediagnose_oil() {
@@ -122,7 +125,7 @@ export class AuthService {
 
   // 썸네일 이미지 저장.. 추후 서버로 변경
   public setUserStorageimagePath(imagePath) {
-   this.storage.set('imagePath', imagePath);
+    this.storage.set('imagePath', imagePath);
   }
 
   public getUserStorageimagePath() {
@@ -130,43 +133,43 @@ export class AuthService {
   }
 
 
-  public get_qna_answer(){
+  public get_qna_answer() {
     this.localNotifications.schedule({
-       title: "plinic",
-       text: '문의하신 질문에 답글이 작성되었습니다.',
-       trigger: {at: new Date(new Date().getTime())},
-       led: 'FF0000',
-       sound: null
+      title: "plinic",
+      text: '문의하신 질문에 답글이 작성되었습니다.',
+      trigger: { at: new Date(new Date().getTime()) },
+      led: 'FF0000',
+      sound: null
     });
 
-   this.sendnotification("plinic", "문의하신 질문에 답글이 작성되었습니다.");
+    this.sendnotification("plinic", "문의하신 질문에 답글이 작성되었습니다.");
   }
 
   //backend coding
   sendnotification(sname, msg) {
-      let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      headers.append('Authorization',
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization',
       'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
-      let option = new RequestOptions({ headers: headers });
-      let payload  = {
-        "notification": {
-          "title": sname,
-          "body": msg,
-          "badge": 1,
-          "sound": "default",
-          "click_action": "FCM_PLUGIN_ACTIVITY"
-        },
-        "priority": "high",
-        "to": this.push_token,
-        //토큰
-      }
-      this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
-        .map(res => res.json())
-        .subscribe(data => {
-          console.log("dddddddddddddddddddddd================="+ data);
-        });
+    let option = new RequestOptions({ headers: headers });
+    let payload = {
+      "notification": {
+        "title": sname,
+        "body": msg,
+        "badge": 1,
+        "sound": "default",
+        "click_action": "FCM_PLUGIN_ACTIVITY"
+      },
+      "priority": "high",
+      "to": this.push_token,
+      //토큰
     }
+    this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
+      .map(res => res.json())
+      .subscribe(data => {
+        console.log("dddddddddddddddddddddd=================" + data);
+      });
+  }
 
 
   public bluetooth_connect() {
@@ -188,49 +191,42 @@ export class AuthService {
 
 
   public naver_login() {
+    console.log("네이버 로그인 시작 ----------------------------------------------------------");
 
-    this.naver.login()
-      .then(res =>
-        this.userData = {
-          accessToken: res.accessToken,
-          expiresAt: res.expiresAt,
-          refreshToken: res.refreshToken,
-          tokenType: res.tokenType,
-          from: 'naver'
-        }
-      ) // 성공
-      .catch(error => this.showAlert("네이버 로그인을 하지 못했습니다. 관리자에게 문의 하세요")); // 실패
-    //this.showAlert("접속 성공 :" + this.userData);
-
-    if (this.userData.accessToken !== '') {
+    this._naverCordovaSDK.login().then((res) => {
+      console.log("로그인 성공 데이터 :" + JSON.stringify(res));
+      this.userData = {
+        email: res['email'],
+        id: res['id'],
+        nickname: res['name'],
+        accessToken: res['accessToken'],
+        from: 'naver'
+      }
       this.storage.set('userData', this.userData);
       this.authenticationState.next(true);
       return this.userData;
-    } else {
+    }
+    ).catch(error => this.showAlert("네이버 로그인에 실패하였습니다."));
+
+  }
+
+  public naver_logout() {
+    this._naverCordovaSDK.logout().then(() => {
+      this.deleteToken();
+      this.deleteUser();
+      this.currentUser = null;
       this.authenticationState.next(false);
     }
+    );
 
-
-    // if (this.userData !== '') {
-    // this.naver.requestMe()
-    // // .then(response => this.showAlert(JSON.stringify(response.response.gender)))
-    //   .then(response =>
-    //     this.userData = {
-    //     age_range: response.response.age,
-    //     birthday: response.response.birthday,
-    //     email: response.response.email,
-    //     gender: response.response.gender,
-    //     id: response.response.id,
-    //     name: response.response.name,
-    //     nickname: response.response.nickname,
-    //     thumbnail_image: response.response.profileImage
-    //   }) // 성공
-    //   .catch(error => console.error(error)); // 실패
-    //this.showAlert("접속 성공 :" + JSON.stringify(this.userData));
-
-    // } else {
-    //   this.authenticationState.next(false);
+    // this._naverCordovaSDK.unlinkApp().then(() => {
+    //   //do your unregister proccess for your app
+      // this.deleteToken();
+      // this.deleteUser();
+      // this.currentUser = null;
+      // this.authenticationState.next(false);
     // }
+    // );
   }
 
 
@@ -276,23 +272,23 @@ export class AuthService {
         return this.userData;
       })
       .catch(err => {
-        this.showAlert("Google에 로그인하지 못했습니다. 관리자에게 문의하세요.")
+        this.showAlert("Google에 로그인하지 못했습니다. 관리자에게 문의하세요." + err)
         // console.error(err)
       });
   }
 
   //페이스북 로그인 추가 2018-04-23 추호선
-  public facebook_login() {
-    this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
-      this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)', []).then(profile => {
-        this.userData = { email: profile['email'], first_name: profile['first_name'], thumbnail_image: profile['picture_large']['data']['url'], nickname: profile['name'], accessToken: response.authResponse.accessToken, from: 'facebook' }
-        this.storage.set('userData', this.userData);
-        this.authenticationState.next(true);
-        return this.userData;
-      });
-    });
-
-  }
+  // public facebook_login() {
+  //   this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
+  //     this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)', []).then(profile => {
+  //       this.userData = { email: profile['email'], first_name: profile['first_name'], thumbnail_image: profile['picture_large']['data']['url'], nickname: profile['name'], accessToken: response.authResponse.accessToken, from: 'facebook' }
+  //       this.storage.set('userData', this.userData);
+  //       this.authenticationState.next(true);
+  //       return this.userData;
+  //     });
+  //   });
+  //
+  // }
 
   public kakao_login() {
     this._kakaoCordovaSDK.login(AuthTypes.AuthTypeTalk).then((res) => {
@@ -363,7 +359,7 @@ export class AuthService {
       qna: content.qna_input,
     };
 
-    console.log("qna : "+ JSON.stringify(body));
+    console.log("qna : " + JSON.stringify(body));
 
     return this.http.post(CONFIG.apiUrl + 'api/qnasave', JSON.stringify(body), { headers: headers })
       .map(res => res.json())
@@ -378,13 +374,13 @@ export class AuthService {
     headers.append("Content-Type", "application/json");
 
     let body = {
-      id : content.id,
+      id: content.id,
       email: email,
       select: content.qna_select,
       qna: content.qna_input,
     };
 
-    console.log("qna : "+ JSON.stringify(body));
+    console.log("qna : " + JSON.stringify(body));
 
     return this.http.post(CONFIG.apiUrl + 'api/qnaupdate', JSON.stringify(body), { headers: headers })
       .map(res => res.json())

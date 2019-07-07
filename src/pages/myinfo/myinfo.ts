@@ -180,7 +180,9 @@ export class MyinfoPage {
               this.authService.logout();
               this.navCtrl.setRoot(LoginPage);
               this.navCtrl.popToRoot();
-            } else if (this.userData.from === 'naver' || this.userData.from === 'google' || this.userData.from === 'kakao') {
+            } else if (this.userData.from === 'naver') {
+              this.authService.naver_logout();
+            } else if (this.userData.from === 'google' || this.userData.from === 'kakao') {
               this.authService.kakao_authlogout();
             } else {
               this.authService.logout();
