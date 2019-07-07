@@ -101,6 +101,7 @@ import { ReRegisterPageModule } from '../pages/re-register/re-register.module';
 import { ModifyEmailPageModule } from '../pages/re-register/modify-email/modify-email.module';
 import { ModifyNumberPageModule } from '../pages/re-register/modify-number/modify-number.module';
 import { ModifyPasswordPageModule } from '../pages/re-register/modify-password/modify-password.module';
+import { ModifyNicknamePageModule } from '../pages/re-register/modify-nickname/modify-nickname.module';
 import { QnaWritePageModule } from '../pages/myinfo/details/qna/qna-write/qna-write.module';
 import { QnaReadPageModule } from '../pages/myinfo/details/qna/qna-read/qna-read.module';
 //
@@ -285,6 +286,7 @@ export function getAuthHttp(http, storage) {
     ModifyEmailPageModule,
     ModifyNumberPageModule,
     ModifyPasswordPageModule,
+    ModifyNicknamePageModule,
     QnaWritePageModule,
     QnaReadPageModule,
     // SkinChartPageModule,

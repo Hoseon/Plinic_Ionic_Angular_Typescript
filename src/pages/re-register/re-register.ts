@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Platform, ViewController, ActionSheetController, normalizeURL } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Platform, ViewController, ActionSheetController, normalizeURL, Events  } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ModifyEmailPage } from './modify-email/modify-email';
 import { ModifyNumberPage } from './modify-number/modify-number';
 import { ModifyPasswordPage } from './modify-password/modify-password';
+import { ModifyNicknamePage } from './modify-nickname/modify-nickname';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImageLoader } from 'ionic-image-loader';
@@ -35,6 +36,7 @@ export class ReRegisterPage {
   age_range: string;
   birthday: string;
   email: string;
+  password: any;
   gender: string;
   nickname: string;
   profile_image: string;
@@ -54,7 +56,7 @@ export class ReRegisterPage {
 
 
   constructor(private imagesProvider: ImagesProvider, private actionSheetCtrl: ActionSheetController, private _camera: Camera, public nav: NavController, public navParams: NavParams, public auth: AuthService, private alertCtrl: AlertController,
-    private platform: Platform, public viewCtrl: ViewController) {
+    private platform: Platform, public viewCtrl: ViewController , private events: Events) {
     this.platform.ready().then(() => {
       //this.loadItems();
     });
@@ -156,9 +158,26 @@ export class ReRegisterPage {
   }
 
   public modify_password() {
-
+    this.events.subscribe('custom-user-events', (paramsVar) => {
+        // Do stuff with "paramsVar"
+        this.events.unsubscribe('custom-user-events'); // unsubscribe this event
+        this.password = paramsVar;
+        console.log("password=============="+ this.password);
+    })
     this.nav.push(ModifyPasswordPage);
   }
+
+  public modify_nickname() {
+    this.events.subscribe('custom-user-events', (paramsVar) => {
+        // Do stuff with "paramsVar"
+        this.events.unsubscribe('custom-user-events'); // unsubscribe this event
+        this.nickname = paramsVar;
+        console.log("nickname=============="+ this.nickname);
+    })
+    this.nav.push(ModifyNicknamePage);
+  }
+
+
   //20190619 회원정보 수정 카메라 모듈 추가
   public camera() {
     let actionSheet = this.actionSheetCtrl.create({
@@ -230,7 +249,7 @@ export class ReRegisterPage {
         //       imagePath += '.jpg';
         //   }
       this.imagePath = imagePath;
-      this.imagePath = "data:image/jpeg;base64," + this.imagePath;
+      // this.imagePath = "data:image/jpeg;base64," + this.imagePath;
       this.imagePath2 = this.imagePath;
       this.auth.setUserStorageimagePath(this.imagePath2);
     }
