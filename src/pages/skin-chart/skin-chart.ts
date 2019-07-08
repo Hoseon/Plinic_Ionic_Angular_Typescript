@@ -189,13 +189,7 @@ public selectclick(){
                        data: [
                          this.all_moisture_score='' ?  this.all_moisture_score : this.all_first_moisture_score,
                          this.all_moisture_score='' ?  this.all_moisture_score : this.all_first_moisture_score,
-                              45, 40,
-                              40, 45, 40, 40,
-                              40, 25, 30, 45,
-                              40, 35, 40, 40,
-                              40, 25, 30, 35,
-                              30, 25, 35, 35,
-                              30, 25, 45, 40, 45 ,50, 50
+                          //DB데이터 출력
 
 
                 ],
@@ -222,13 +216,9 @@ public selectclick(){
                       pointRadius: 3,
                       pointHitRadius: 20,
                       data: [
-                        30, 35, 20, 30,
-                        30, 25, 30, 30,
-                        23, 35, 34, 34,
-                        34, 22, 31, 33,
-                        32, 33, 33, 23,
-                        33, 34, 34, 30,
-                        25, 35, 40, 45, 40, 40, 40
+                        this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
+                        this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
+                        //DB데이터 출력
 
                       ],
                       spanGaps: false,
@@ -283,7 +273,7 @@ public selectclick(){
         data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
         labels: [
                   "01","03","04","05","11","14","15","16","17","18","27","29","30","31"
- ],
+                ],
         datasets: [{
                       // 수분은 하늘이랑 파랑
                       // 유분은 노랑이랑 주황!!
@@ -309,14 +299,6 @@ public selectclick(){
                      data: [
                        this.all_moisture_score='' ?  this.all_oil_score : this.all_first_oil_score,
                        this.all_moisture_score='' ?  this.all_oil_score : this.all_first_oil_score,
-                      15, 25,
-                       15, 23, 34, 33,
-                       23, 32, 25, 32,
-                       34, 15, 23, 33,
-                       14, 24, 24, 22,
-                       30, 25, 35, 30,
-                       35, 35, 30, 25, 30, 30, 35
-
                      ],
                      spanGaps: false,
                    },
@@ -341,13 +323,8 @@ public selectclick(){
                     pointRadius: 3,
                     pointHitRadius: 10,
                     data: [
-                    25, 30, 20, 25,
-                    30, 22, 34, 23,
-                    32, 34, 34, 32,
-                    21, 32, 23, 22,
-                    23, 34, 34, 23,
-                    20, 25, 23, 22,
-                    20, 25, 23, 25, 27, 25, 23
+                       this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
+                       this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
                   ],
                     spanGaps: false,
                   }],

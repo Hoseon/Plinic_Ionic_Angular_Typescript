@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController, Events, ViewController } from 'ionic-angular';
 import { ReRegisterPage} from '../../re-register/re-register';
 /**
  * Generated class for the ModifyPasswordPage page.
@@ -19,7 +19,7 @@ export class ModifyPasswordPage {
   new_password:any;
   new_passwordconfirm:any;
 
-  constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, private alertCtrl: AlertController, private events: Events) {
+  constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, private alertCtrl: AlertController, private events: Events, public viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
@@ -36,6 +36,7 @@ export class ModifyPasswordPage {
     if(this.new_password===this.new_passwordconfirm){
       this.nav.pop().then(() => {
       // Trigger custom event and pass data to be send back
+    //  this.viewCtrl.dismiss();
       this.events.publish('custom-user-events', this.new_passwordconfirm);
     });
   }
