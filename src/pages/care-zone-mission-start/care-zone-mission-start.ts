@@ -256,9 +256,7 @@ export class CareZoneMissionStartPage {
     // this.showLoading();
     this.images.morethird_carezoneRoad().subscribe(data => {
       if (data !== '') {
-        console.log(data.length);
         if (data.length === 2) {
-          console.log("데이터 2개");
           this.dday_title = data[0].title;
           this.dday_body = data[0].body;
           this.dday_id = data[0]._id;
@@ -284,7 +282,6 @@ export class CareZoneMissionStartPage {
           this.dday3 = (parseInt(this.dday3)-2)
 
         } else if (data.length === 1) {
-          console.log("데이터 1개");
           this.dday_title = data[0].title;
           this.dday_body = data[0].body;
           this.dday_id = data[0]._id;

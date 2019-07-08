@@ -152,7 +152,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Storage } from '@ionic/storage';
 
 import { KakaoCordovaSDK } from 'kakao-sdk';
-// import { Naver } from 'ionic-plugin-naver';
+import { Naver } from 'ionic-plugin-naver';
 import { AuthService } from '../providers/auth-service';
 // import { KeyboardAttachDirective } from '../providers/keyboard-attach.directive';
 
@@ -199,7 +199,6 @@ import { SkinDiagnoseFirstMoisturePageModule } from '../pages/skin-diagnose-firs
 import { SkinDiagnoseFirstOilPageModule } from '../pages/skin-diagnose-first-oil/skin-diagnose-first-oil.module';
 
 
-import { NaverCordovaSDK } from 'naver-sdk';
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -397,8 +396,7 @@ export function getAuthHttp(http, storage) {
     ImagesProvider,
     Transfer,
     Camera,
-    // Naver,
-    NaverCordovaSDK,
+    Naver,
     BluetoothLE,
     //AnimationService,
     FCM,

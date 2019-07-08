@@ -94,11 +94,10 @@
     <plugin name="cordova-plugin-googleplus" spec="^5.2.1">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.937070120101-rtaljkjdb19oiolebm1edfd5vugc778q" />
     </plugin>
-    <plugin name="cordova-plugin-naver-sdk" spec="^1.0.1">
+    <plugin name="cordova-plugin-naver" spec="^1.0.3">
         <variable name="OAUTH_CLIENT_ID" value="cIUVxjnNe7iTuqbTQZvu" />
         <variable name="OAUTH_CLIENT_SECRET" value="joXW3wHq8s" />
         <variable name="OAUTH_CLIENT_NAME" value="Plinic" />
-        <variable name="OAUTH_CLIENT_APP_SCHEME" value="navercIUVxjnNe7iTuqbTQZvu" />
     </plugin>
     <engine name="ios" spec="5.0.0" />
 </widget>

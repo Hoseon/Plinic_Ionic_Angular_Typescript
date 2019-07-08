@@ -10,8 +10,7 @@ import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 // import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
-// import { Naver } from 'ionic-plugin-naver';
-import { NaverCordovaSDK } from 'naver-sdk';
+import { Naver } from 'ionic-plugin-naver';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { FCM } from '@ionic-native/fcm';
 
@@ -57,7 +56,7 @@ export class AuthService {
     public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController,
     // private facebook: Facebook,
     private google: GooglePlus,
-    public bluetoothle: BluetoothLE, public _naverCordovaSDK: NaverCordovaSDK, private localNotifications: LocalNotifications,
+    public bluetoothle: BluetoothLE, public naver: Naver, private localNotifications: LocalNotifications,
     // private fcm: FCM
   ) {
 
@@ -192,39 +191,62 @@ export class AuthService {
 
   public naver_login() {
     console.log("네이버 로그인 시작 ----------------------------------------------------------");
-
-    this._naverCordovaSDK.login().then((res) => {
-      console.log("로그인 성공 데이터 :" + JSON.stringify(res));
-      this.userData = {
-        email: res['email'],
-        id: res['id'],
-        nickname: res['name'],
-        accessToken: res['accessToken'],
-        from: 'naver'
+    this.naver.login()
+      .then(response => {
+        this.userData = {
+          accessToken: response['accessToken'],
+          from: 'naver'
+        }
+        this.naver.requestMe()
+          .then(response => {
+            this.userData.email = response.response.email;
+            this.userData.nickname = response.response.name;
+            this.userData.id = response.response.id;
+            console.log("userdata ::: " + JSON.stringify(this.userData))
+            if (this.userData !== '') {
+              this.storage.set('userData', this.userData);
+              this.authenticationState.next(true);
+              return this.userData;
+            }
+          }) // 성공
+          .catch(error => console.error(error)); // 실패
       }
+      )
+      .catch(error => console.error(error)); // 실패
+
+    if (this.userData !== '') {
       this.storage.set('userData', this.userData);
       this.authenticationState.next(true);
       return this.userData;
     }
-    ).catch(error => this.showAlert("네이버 로그인에 실패하였습니다."));
-
   }
 
   public naver_logout() {
-    this._naverCordovaSDK.logout().then(() => {
-      this.deleteToken();
-      this.deleteUser();
-      this.currentUser = null;
-      this.authenticationState.next(false);
-    }
-    );
+    console.log("로그아웃 준비 -------------------------: ");
+    // this.naver.logoutAndDeleteToken()
+    //   .then(response => {
+        // console.log("로그아웃 성공 ---------------------------" + response)
+        this.deleteToken();
+        this.deleteUser();
+        this.currentUser = null;
+        this.authenticationState.next(false);
+        console.log("로그아웃 성공 ---------------------------")
+      // }) // 성공
+      // .catch(error => console.error(error)); // 실패
+    // this.naver.logout().then(() => {
+    //   this.deleteToken();
+    //   this.deleteUser();
+    //   this.currentUser = null;
+    //   this.authenticationState.next(false);
+    // }
+    // );
 
     // this._naverCordovaSDK.unlinkApp().then(() => {
     //   //do your unregister proccess for your app
-      // this.deleteToken();
-      // this.deleteUser();
-      // this.currentUser = null;
-      // this.authenticationState.next(false);
+    // this.deleteToken();
+    // this.deleteUser();
+    // this.currentUser = null;
+    // this.authenticationState.next(false);
     // }
     // );
   }

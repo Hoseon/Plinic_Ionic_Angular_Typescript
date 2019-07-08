@@ -53,7 +53,9 @@ export class CareZonePage {
   profileimg_url: any;
   imagePath: any;
   from: any;
-  dday: any;
+  origindday: any;
+  dday: Array<any> = new Array<any>();
+
 
   percent: Array<any> = new Array<any>();
 
@@ -275,34 +277,39 @@ export class CareZonePage {
           this.d1[i] = false;
 
           // this.endmission[i] = false;
-          this.dday = this.diffdate(this.currentDate, data[i].startmission);
-          this.dday = parseFloat(this.dday);
+          // this.dday = this.diffdate(this.currentDate, data[i].startmission);
+          // this.dday = parseFloat(this.dday);
           //console.log(this.dday);
           if (this.diffdate(this.currentDate, data[i].startmission) < -10) {
+            this.origindday = this.diffdate(this.currentDate, data[i].startmission);
+            this.dday[i] = (parseInt(this.origindday)+2);
             this.new[i] = true;
             this.recruiting[i] = true;
             this.mdchuchun[i] = false;
             this.approaching[i] = false;
             this.endrecruit[i] = false;
-            //this.new.splice(i, 0, true);
+            this.d5[i] = true;
           } else if (this.diffdate(this.currentDate, data[i].startmission) < -7) {
+            this.origindday = this.diffdate(this.currentDate, data[i].startmission);
+            this.dday[i] = (parseInt(this.origindday)+2);
             this.new[i] = false;
             this.recruiting[i] = true;
             this.mdchuchun[i] = true;
             this.approaching[i] = false;
             this.endrecruit[i] = false;
+            this.d5[i] = true;
           } else if (this.diffdate(this.currentDate, data[i].startmission) > -6 && this.diffdate(this.currentDate, data[i].startmission) < -5) {
+            this.origindday = this.diffdate(this.currentDate, data[i].startmission);
+            this.dday[i] = (parseInt(this.origindday)+2);
             this.new[i] = false;
             this.recruiting[i] = false;
             this.mdchuchun[i] = false;
             this.approaching[i] = false;
             this.endrecruit[i] = false;
             this.d5[i] = true;
-            this.d4[i] = false;
-            this.d3[i] = false;
-            this.d2[i] = false;
-            this.d1[i] = false;
           } else if (this.diffdate(this.currentDate, data[i].startmission) > -5 && this.diffdate(this.currentDate, data[i].startmission) < -4) {
+            this.origindday = this.diffdate(this.currentDate, data[i].startmission);
+            this.dday[i] = (parseInt(this.origindday)+2);
             this.new[i] = false;
             this.recruiting[i] = false;
             this.mdchuchun[i] = false;
@@ -313,6 +320,8 @@ export class CareZonePage {
             this.d2[i] = false;
             this.d1[i] = false;
           } else if (this.diffdate(this.currentDate, data[i].startmission) > -4 && this.diffdate(this.currentDate, data[i].startmission) < -3) {
+            this.origindday = this.diffdate(this.currentDate, data[i].startmission);
+            this.dday[i] = (parseInt(this.origindday)+2);
             this.new[i] = false;
             this.recruiting[i] = false;
             this.mdchuchun[i] = false;
@@ -322,6 +331,8 @@ export class CareZonePage {
             this.d2[i] = false;
             this.d1[i] = false;
           } else if (this.diffdate(this.currentDate, data[i].startmission) > -3 && this.diffdate(this.currentDate, data[i].startmission) < -2) {
+            // this.origindday = this.diffdate(this.currentDate, data[i].startmission);
+            // this.dday[i] = parseFloat(this.origindday);
             this.new[i] = false;
             this.recruiting[i] = false;
             this.mdchuchun[i] = false;

@@ -6,7 +6,8 @@ import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { AgreementPage } from '../agreement/agreement';
 import { LoginpagePage } from '../login/loginpage/loginpage';
 import { IonicPage, App } from 'ionic-angular';
-import { NaverCordovaSDK } from 'naver-sdk';
+import { Naver } from 'ionic-plugin-naver';
+
 
 
 // @IonicPage()
@@ -21,7 +22,8 @@ export class LoginPage {
   userData: any;
   constructor(private nav: NavController, private auth: AuthService,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-    public _kakaoCordovaSDK: KakaoCordovaSDK, public _naverCordovaSDK: NaverCordovaSDK,
+    public _kakaoCordovaSDK: KakaoCordovaSDK,
+    public naver: Naver,
     public modalCtrl: ModalController,  public app: App, public platform: Platform
   ) {
     this.platform.ready().then((readySource) => {

@@ -461,7 +461,9 @@ export class HomePage {
   public second_missionCount(id) {
     // this.showLoading();
     this.images.missionCount(id).subscribe(data => {
-      this.second_carezone_missioncount = data;
+      this.second_carezone_missioncount[this.secondCount] = data;
+      this.secondCount++;
+      
     });
   }
 

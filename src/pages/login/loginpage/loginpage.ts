@@ -5,8 +5,7 @@ import { AuthService } from '../../../providers/auth-service';
 import { AgreementPage } from '../../agreement/agreement';
 import { PasswordfindPage } from '../passwordfind/passwordfind';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-// import { Naver } from 'ionic-plugin-naver';
-import { NaverCordovaSDK } from 'naver-sdk';
+import { Naver } from 'ionic-plugin-naver';
 
 import { trigger, state, style, transition, animate, keyframes, group } from '@angular/animations';
 // import { AnimationService, AnimationBuilder } from 'css-animator';
@@ -75,7 +74,7 @@ export class LoginpagePage {
   @ViewChild('myElement') myElem;
   constructor(public nav: NavController, public navParams: NavParams,
     // animationService: AnimationService,
-    private alertCtrl: AlertController, private loadingCtrl: LoadingController, public _naverCordovaSDK: NaverCordovaSDK,public platform: Platform,
+    private alertCtrl: AlertController, private loadingCtrl: LoadingController, public naver: Naver ,public platform: Platform,
     private auth: AuthService, public viewCtrl: ViewController, @Inject(DOCUMENT) document) {
       // this.animator = animationService.builder();
   }
