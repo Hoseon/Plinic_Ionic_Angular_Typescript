@@ -21,7 +21,7 @@ import { AboutPage } from '../pages/about/about';
 // import { TabsPage } from '../pages/tabs/tabs';
 // import { AgreementPage } from '../pages/agreement/agreement';
 // import { LoginpagePage } from '../pages/login/loginpage/loginpage';
-// import { AddinfoPage } from '../pages/register/addinfo/addinfo';
+import { AddinfoPage } from '../pages/register/addinfo/addinfo';
 // import { PasswordfindPage } from '../pages/login/passwordfind/passwordfind';
 // import { PlinicManualPage } from '../pages/myinfo/details/plinic-manual/plinic-manual';
 // import { QnaPage } from '../pages/myinfo/details/qna/qna';
@@ -86,7 +86,7 @@ import { TabsPageModule } from '../pages/tabs/tabs.module';
 import { AgreementPageModule } from '../pages/agreement/agreement.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { LoginpagePageModule } from '../pages/login/loginpage/loginpage.module';
-import { AddinfoPageModule } from '../pages/register/addinfo/addinfo.module';
+// import { AddinfoPageModule } from '../pages/register/addinfo/addinfo.module';
 import { PasswordfindPageModule } from '../pages/login/passwordfind/passwordfind.module';
 import { PlinicManualPageModule } from '../pages/myinfo/details/plinic-manual/plinic-manual.module';
 import { QnaPageModule } from '../pages/myinfo/details/qna/qna.module';
@@ -216,7 +216,7 @@ export function getAuthHttp(http, storage) {
     // LoginPage,
     // LoginpagePage,
     // PasswordfindPage,
-    // AddinfoPage,
+    AddinfoPage,
     //    LoginplinicPage,
     AboutPage,
     // MyinfoPage,
@@ -272,7 +272,7 @@ export function getAuthHttp(http, storage) {
     AgreementPageModule,
     LoginpagePageModule,
     LoginPageModule,
-    AddinfoPageModule,
+    // AddinfoPageModule,
     PasswordfindPageModule,
     PlinicManualPageModule,
     QnaPageModule,
@@ -340,7 +340,7 @@ export function getAuthHttp(http, storage) {
     // LoginPage,
     // LoginpagePage,
     // PasswordfindPage,
-    // AddinfoPage,
+    AddinfoPage,
     // AboutPage,
     // MyinfoPage,
     //    TabsPage,

@@ -4,10 +4,7 @@ import { AuthService } from '../../../providers/auth-service';
 import { RegisterPage} from '../../register/register';
 import {RegistercompletePage} from '../registercomplete/registercomplete';
 import { SelectSearchableComponent } from 'ionic-select-searchable';
-import { MultiPickerModule } from 'ion-multi-picker';
 import { ImagesProvider } from '../../../providers/images/images';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-
 
 /**
  * Generated class for the AddinfoPage page.
@@ -20,13 +17,6 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 @Component({
   selector: 'page-addinfo',
   templateUrl: 'addinfo.html',
-  providers: [
-  {
-    provide: NG_VALUE_ACCESSOR,
-    multi: true,
-    useExisting: forwardRef(() => MultiPickerModule),
-  }
-]
 })
 export class AddinfoPage{
   createSuccess = false;
@@ -41,7 +31,7 @@ export class AddinfoPage{
   registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday:'', skincomplaint: '', imagePath: '', user_jwt: 'true' };
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public navParams: NavParams
-  , public viewCtrl: ViewController, public multiCtrl: MultiPickerModule, public platform: Platform, private imagesProvider: ImagesProvider) {
+  , public viewCtrl: ViewController, public platform: Platform, private imagesProvider: ImagesProvider) {
 
 
     // this.registerCredentials.birthday = '1970-06-15';

@@ -286,6 +286,7 @@
     <ion-item *ngIf="skin_diagnose_first_check" style="margin:0 auto; width:97%" no-lines>
       <ion-grid>
         <ion-row class="gridstatus">
+
           <!-- 유분데이터 상태표시-->
           <ion-col *ngIf="all_oil_score>76" class="secondstatus_good">좋음</ion-col>
           <ion-col *ngIf="all_oil_score>51 && all_oil_score<75" class="secondstatus_normal">보통</ion-col>

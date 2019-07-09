@@ -7,7 +7,7 @@
 <ion-header no-lines>
 
   <ion-navbar  *ngIf="platform.is('android')" no-lines>
-    <ion-title class="android_title" text-wrap >뷰티 팁</ion-title>
+    <ion-title class="android_title" text-wrap >커뮤니티</ion-title>
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios')" no-lines>
@@ -16,7 +16,7 @@
         <img no-lines class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
   		</button>
   	</ion-buttons>
-    <ion-title class="ios_title" text-wrap> 뷰티 팁</ion-title>
+    <ion-title class="ios_title" text-wrap>커뮤니티</ion-title>
   </ion-navbar>
 
   <ion-segment mode="md" [(ngModel)]="page" color="#5c59b6">
@@ -68,7 +68,12 @@
 
     </ion-slide>
     <ion-slide>
-      <h1>Slide 2</h1>
+
+        <button  ion-button (click)="community_write()"> 글쓰기</button>
+
+        <button  ion-button (click)="community_modify();"> 글수정</button>
+
+
     </ion-slide>
     <ion-slide>
       <h1>Slide 3</h1>

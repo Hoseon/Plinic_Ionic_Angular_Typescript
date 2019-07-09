@@ -52,7 +52,6 @@ skin_diagnose_first_check: boolean;
   constructor(public navCtrl: NavController , public navParams: NavParams, public platform: Platform, @Inject(DOCUMENT) document, public auth: AuthService) {
     this.segment_moisture="수분"
 
-   console.log ("ddddddddddddddddddddddd", this.threeDaysAgo)
   }
 
   public skin_first_check() {

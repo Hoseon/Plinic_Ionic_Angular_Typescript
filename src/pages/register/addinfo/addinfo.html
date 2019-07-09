@@ -88,12 +88,12 @@
       </select-searchable>
   </ion-item><br> -->
 
-  <!-- <ion-item *ngIf="!platform.is('ios')" class="item_align" style="margin-bottom:4%;">
+  <ion-item *ngIf="!platform.is('ios')" class="item_align" style="margin-bottom:4%;">
      <ion-label  class="countrylabel" stacked>국가</ion-label>
-     <ion-multi-picker (ionChange)="toggle()" item-content class="multi-picker" name="picker-country"
-     multiPickerColumns="simpleColumns" doneText="확인" placeholder="국가를 선택해 주세요."
+     <ion-multi-picker (ionChange)="toggle()" item-content class="multi-picker" name="country"
+     [multiPickerColumns]="simpleColumns" doneText="확인" placeholder="국가를 선택해 주세요."
                          [(ngModel)]="registerCredentials.country" required ngDefaultControl ></ion-multi-picker>
- </ion-item><br> -->
+ </ion-item><br>
 
 
   <ion-item *ngIf="!platform.is('ios')" class="item_align" style="margin-bottom:3%;" no-lines>

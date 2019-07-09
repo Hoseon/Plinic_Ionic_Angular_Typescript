@@ -1,19 +1,95 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title style="font-size: 17px"class="title" text-wrap>커뮤니티</ion-title>
+<!--
+  Generated template for the BeautyTipAddPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-lines>
+
+  <ion-navbar  *ngIf="platform.is('android')" no-lines>
+    <ion-title class="android_title" text-wrap >커뮤니티</ion-title>
   </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+  	<ion-buttons left no-lines>
+  		<button ion-button navPop icon-only>
+        <img no-lines class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
+  		</button>
+  	</ion-buttons>
+    <ion-title class="ios_title" text-wrap>커뮤니티</ion-title>
+  </ion-navbar>
+
+  <ion-segment mode="md" [(ngModel)]="page" color="#5c59b6">
+     <ion-segment-button value="0" (click)="selectedTab(0)">
+      홈
+     </ion-segment-button>
+     <ion-segment-button value="1" (click)="selectedTab(1)">
+       뷰티 꿀팁
+     </ion-segment-button>
+     <ion-segment-button value="2" (click)="selectedTab(2)">
+       뷰티 노트
+     </ion-segment-button>
+     <ion-segment-button value="3" (click)="selectedTab(2)">
+       피부 고민
+     </ion-segment-button>
+     <ion-segment-button value="4" (click)="selectedTab(2)">
+      기획전
+     </ion-segment-button>
+   </ion-segment>
 </ion-header>
 
-<ion-content>
 
 
+<ion-content  no-padding>
+  <ion-slides mode="ios" #Slides (ionSlideWillChange)="slideChanged($event)">
+    <ion-slide >
+      <ion-grid class="beauty_tip">
+        <ion-row class="beauty_grid_width">
+          <ion-col class=beauty_grid1 col-6 (click)="openBrowser_android(beauty_data_url1, beauty_data_title1)" >
+            <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"  />
+            <div class="beauty_title">{{beauty_data_type1}}</div>
+            <div class="beauty_desc">{{beauty_data_title1}}</div>
+          </ion-col>
+          <ion-col class=beauty_grid2 col-6 (click)="openBrowser_android(beauty_data_url2, beauty_data_title2)" >
+            <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id2}}" />
+            <div class="beauty_title">{{beauty_data_type2}}</div>
+            <div class="beauty_desc">{{beauty_data_title2}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="beauty_grid_width">
+          <ion-col class="beauty_grid3" col-6 (click)="openBrowser_android(beauty_data_url3, beauty_data_title3)">
+            <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id3}}" />
+            <div class="beauty_title">{{beauty_data_type3}}</div>
+            <div class="beauty_desc">{{beauty_data_title3}}</div>
+          </ion-col>
+          <ion-col class="beauty_grid4" col-6 (click)="openBrowser_android(beauty_data_url4, beauty_data_title4)">
+            <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id4}}" />
+            <div class="beauty_title">{{beauty_data_type4}}</div>
+            <div class="beauty_desc">{{beauty_data_title4}}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-  <button  ion-button (click)="community_write()"> 글쓰기</button>
 
-  <button  ion-button (click)="community_modify();"> 글수정</button>
+    </ion-slide>
+    <ion-slide>
+
+        <button  ion-button (click)="community_write()"> 글쓰기</button>
+
+        <button  ion-button (click)="community_modify();"> 글수정</button>
 
 
-
+    </ion-slide>
+    <ion-slide>
+      <h1>뷰티 노트</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>피부 고민</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>기획전</h1>
+    </ion-slide>
+  </ion-slides>
 
 
 </ion-content>
