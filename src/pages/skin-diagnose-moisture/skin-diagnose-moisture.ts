@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ViewController, AlertController } from 'ionic-angular';
 import { SkinDiagnoseOilPage } from '../skin-diagnose-oil/skin-diagnose-oil';
 import { AuthService } from '../../providers/auth-service';
+import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+
 
 /**
  * Generated class for the SkinDiagnoseMoisturePage page.
@@ -30,12 +32,61 @@ export class SkinDiagnoseMoisturePage {
   diagnose_score11: number = 2;
   all_score: number=0;
 
+  userData: any;
+  jwtHelper: JwtHelper = new JwtHelper();
+
+  scoreData : any;
+  currentDate: Date = new Date();
+
+
+
   constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, private alertCtrl: AlertController,
    public auth: AuthService  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SkinDiagnoseMoisturePage');
+    this.loadItems();
+  }
+
+  public loadItems() {
+    this.auth.getUserStorage().then(items => {
+
+      if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: items.email,
+          gender: items.gender,
+          nickname: items.nickname,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+          from: items.from,
+        };
+        if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
+          //this.thumb_image = false;
+        } else {
+          //this.thumb_image = true;
+        }
+      } else {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: this.jwtHelper.decodeToken(items).email,
+          gender: items.gender,
+          nickname: this.jwtHelper.decodeToken(items).name,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+          from: 'plinic',
+        };
+      }
+      // this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
+      // this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
+    });
   }
 
   public range_change(range){
@@ -225,8 +276,22 @@ export class SkinDiagnoseMoisturePage {
                   if(this.all_score<0){
                     this.all_score = 0;
                   }
-                  this.auth.setUserStoragediagnose_moisture(this.all_score*9);
-                  this.nav.push(SkinDiagnoseOilPage);
+                  // this.auth.setUserStoragediagnose_moisture(this.all_score*9);
+                  // this.nav.push(SkinDiagnoseOilPage);
+
+                  this.scoreData = {
+                    moisture : (this.all_score*9),
+                    saveDate : this.currentDate,
+                  }
+                  this.auth.skinChartSave(this.userData.email, this.scoreData).subscribe(data => {
+                    if(data !==''){
+                      console.log("데이터 등록 성공");
+                    } else {
+                      console.log("데이터 등록 실패");
+                    }
+                  })
+                  // this.auth.skinChartSave(this.userData.email, this.scoreData);
+                  this.nav.push(SkinDiagnoseOilPage, { score : this.scoreData });
                 }
             }]
       });

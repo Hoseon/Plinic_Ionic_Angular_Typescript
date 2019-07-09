@@ -28,6 +28,7 @@ export class User {
   imagePath: any;
   from: string;
 
+
   constructor(email: string, name: string) {
     this.email = email;
     this.nickname = name;
@@ -36,8 +37,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  apiUrl: 'http://plinic.cafe24app.com/',
-  //apiUrl: 'http://localhost:8001/',
+  //apiUrl: 'http://plinic.cafe24app.com/',
+  apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
@@ -51,6 +52,8 @@ export class AuthService {
   userData: any;
   blu_connect: boolean = false;
   push_token: any;
+  currentDate: Date = new Date();
+
 
   constructor(private http: Http, public authHttp: AuthHttp, public storage: Storage,
     public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController,
@@ -405,6 +408,49 @@ export class AuthService {
     console.log("qna : " + JSON.stringify(body));
 
     return this.http.post(CONFIG.apiUrl + 'api/qnaupdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  //문진표 Save 20190709 추호선 ------------------------------------------
+  public skinChartSave(email, score) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      score: score,
+      saveDate: this.currentDate,
+    };
+
+    console.log("skinChartSave Data : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/skinchartsave', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  //문진표 Save & Update 20190709 추호선  ------------------------------------------
+  public skinChartUpdate(email, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      id: content.id,
+      email: email,
+      select: content.qna_select,
+      qna: content.qna_input,
+    };
+
+    console.log("qna : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/skinchartupdate', JSON.stringify(body), { headers: headers })
       .map(res => res.json())
       .map(data => {
         console.log(data);
