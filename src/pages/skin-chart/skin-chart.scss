@@ -39,6 +39,10 @@ page-skin-chart {
     color: #292929;
   }
 
+  tspan{
+    font-size: 0px;
+  }
+
   .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
     margin-left: -15%;
     margin-top: -15%;
@@ -111,7 +115,7 @@ page-skin-chart {
               .gridstatus{
                 margin-bottom: 30px;
               }
-              .secondstatus{
+              .secondstatus_good{
               font-family: AppleSDGothicNeo;
               font-size: 16px;
               font-weight: normal;
@@ -120,10 +124,74 @@ page-skin-chart {
               line-height: normal;
               letter-spacing: normal;
               text-align: center;
-              color: #00af66;
+              color: #3b8efd;
               padding: 0px;
              }
-             .status{
+             .secondstatus_normal{
+             font-family: AppleSDGothicNeo;
+             font-size: 16px;
+             font-weight: normal;
+             font-style: normal;
+             font-stretch: normal;
+             line-height: normal;
+             letter-spacing: normal;
+             text-align: center;
+             color: #15b673;
+             padding: 0px;
+            }
+            .secondstatus_soso{
+            font-family: AppleSDGothicNeo;
+            font-size: 16px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #ffa000;
+            padding: 0px;
+           }
+           .secondstatus_bad{
+           font-family: AppleSDGothicNeo;
+           font-size: 16px;
+           font-weight: normal;
+           font-style: normal;
+           font-stretch: normal;
+           line-height: normal;
+           letter-spacing: normal;
+           text-align: center;
+           color: #e9513c;
+           padding: 0px;
+          }
+
+
+             .status_good{
+               font-family: AppleSDGothicNeo;
+               font-size: 16px;
+               font-weight: normal;
+               font-style: normal;
+               font-stretch: normal;
+               line-height: normal;
+               letter-spacing: normal;
+               text-align: center;
+               color: #3b8efd;
+              padding: 0px;
+             }
+
+             .status_normal{
+               font-family: AppleSDGothicNeo;
+               font-size: 16px;
+               font-weight: normal;
+               font-style: normal;
+               font-stretch: normal;
+               line-height: normal;
+               letter-spacing: normal;
+               text-align: center;
+               color: #15b673;
+              padding: 0px;
+             }
+
+             .status_soso{
                font-family: AppleSDGothicNeo;
                font-size: 16px;
                font-weight: normal;
@@ -135,6 +203,21 @@ page-skin-chart {
                color: #ffa000;
               padding: 0px;
              }
+
+             .status_bad{
+               font-family: AppleSDGothicNeo;
+               font-size: 16px;
+               font-weight: normal;
+               font-style: normal;
+               font-stretch: normal;
+               line-height: normal;
+               letter-spacing: normal;
+               text-align: center;
+               color: #e9513c;
+              padding: 0px;
+             }
+
+
 
           .item-md.item-block .item-inner{
             padding: 0px;
@@ -157,10 +240,57 @@ page-skin-chart {
             display: block;
          }
 
+
+         .container {
+           position: relative;
+           width: 50%;
+         }
+
+
+         .container .containe_oil_score {
+           position: absolute;
+           top: 35%;
+           left: 50%;
+           -webkit-transform: translate(-50%, -50%);
+           transform: translate(-50%, -50%);
+           -ms-transform: translate(-50%, -50%);
+           font-family: AppleSDGothicNeo;
+           font-size: 15px;
+           font-weight: normal;
+           font-style: normal;
+           font-stretch: normal;
+           line-height: normal;
+           letter-spacing: normal;
+           text-align: center;
+           color: #939393;
+         }
+
+         .container .containe_oil_score2 {
+           position: absolute;
+           top: 55%;
+           left: 50%;
+           -webkit-transform: translate(-50%, -50%);
+           transform: translate(-50%, -50%);
+           -ms-transform: translate(-50%, -50%);
+           font-family: Roboto;
+           font-size: 19px;
+           font-weight: normal;
+           font-style: normal;
+           font-stretch: normal;
+           line-height: normal;
+           letter-spacing: normal;
+           text-align: center;
+           color: #292929;
+         }
+
+
+
+
           .roundprogressbar{
             width: 75%;
             margin-left: 6%;
             height: auto;
+            outerStrokeColor: 00af66;
           }
 
 
@@ -304,6 +434,32 @@ page-skin-chart {
             height: 20px;
           }
 
+          .square_col_stats{
+            margin-left: 15%;
+            display:flex;
+          }
+          .square_good{
+            background: #3b8efd;
+            width: 20px;
+            height: 20px;
+          }
+
+          .square_normal{
+            background: #15b673;
+            width: 20px;
+            height: 20px;
+          }
+          .square_soso{
+            background: #ffa000;
+            width: 20px;
+            height: 20px;
+          }
+          .square_bad{
+            background: #e9513c;
+            width: 20px;
+            height: 20px;
+          }
+
           .square_text{
             padding-left: 2%;
             padding-right: 5%;
@@ -355,7 +511,6 @@ page-skin-chart {
 
           .ex{
             width: 320px;
-            height: 170px;
             margin-left: auto;
             margin-right: auto;
             font-family: Roboto;
@@ -366,7 +521,6 @@ page-skin-chart {
             line-height: 1.79;
             letter-spacing: normal;
             color: #292929;
-            margin-bottom: -4%;
           }
 
           .item-ios h2:last-child, .item-ios h3:last-child, .item-ios h4:last-child, .item-ios h5:last-child, .item-ios h6:last-child, .item-ios p:last-child{
@@ -391,6 +545,7 @@ page-skin-chart {
             letter-spacing: normal;
             text-align: center;
             color: #5c59b6;
+            margin-top: 5%;
           }
 
           .button_outlinetext{

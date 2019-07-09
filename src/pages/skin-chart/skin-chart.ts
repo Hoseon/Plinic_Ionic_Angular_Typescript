@@ -33,28 +33,13 @@ valueday = { "day": "1"}
 
 
 today: any = new Date();
-yesterday: any = new Date((new Date()).valueOf() - 1000*60*60*24);
-twoDaysAgo:any = new Date((new Date()).valueOf() - 1000*60*60*24*2);
-threeDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*3);
-fourDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*4);
-fiveDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*5);
-sixDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*6);
-sevenDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*7);
-aightDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*8);
-nineDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*9);
-lastDaysAgo: any = new Date((new Date()).valueOf() - 1000*60*60*24*31);
 
-
-//date count
 
 skinbtnYear = format(this.today, 'YYYY');
 skinbtnMonth = format(this.today, 'MM');
 
 segment_status:any;
 segment_moisture : any;
-
-extoday =  format(this.today, 'YYYY.MM.DD');
-exthreeDaysAgo = format(this.threeDaysAgo, 'YYYY.MM.DD');
 
 
 //문진표
@@ -152,10 +137,6 @@ public selectclick(){
 
 
     this.today = format(this.today, 'DD');
-    this.yesterday = format(this.yesterday, 'DD');
-    this.twoDaysAgo = format(this.twoDaysAgo, 'DD');
-    this.threeDaysAgo = format(this.threeDaysAgo, 'DD');
-    this.lastDaysAgo = format(this.lastDaysAgo, '.DD');
 
     this.lineCanvas = new Chart(this.lineCanvas.nativeElement, {
 
@@ -216,8 +197,8 @@ public selectclick(){
                       pointRadius: 3,
                       pointHitRadius: 20,
                       data: [
-                        this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
-                        this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
+                        // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
+                        // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
                         //DB데이터 출력
 
                       ],
@@ -323,8 +304,8 @@ public selectclick(){
                     pointRadius: 3,
                     pointHitRadius: 10,
                     data: [
-                       this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
-                       this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
+                       // this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
+                       // this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
                   ],
                     spanGaps: false,
                   }],
