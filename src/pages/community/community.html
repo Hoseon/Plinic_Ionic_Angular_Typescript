@@ -29,10 +29,10 @@
      <ion-segment-button value="2" (click)="selectedTab(2)">
        뷰티 노트
      </ion-segment-button>
-     <ion-segment-button value="3" (click)="selectedTab(2)">
+     <ion-segment-button value="3" (click)="selectedTab(3)">
        피부 고민
      </ion-segment-button>
-     <ion-segment-button value="4" (click)="selectedTab(2)">
+     <ion-segment-button value="4" (click)="selectedTab(4)">
       기획전
      </ion-segment-button>
    </ion-segment>
@@ -42,6 +42,10 @@
 
 <ion-content no-padding>
   <ion-slides mode="ios" #Slides (ionSlideWillChange)="slideChanged($event)">
+
+
+    <!-- 뷰티 홈 -->
+
     <ion-slide >
       <h2 class="beauty_ggul_tip">뷰티 꿀팁</h2>
       <ion-grid class="beauty_tip">
@@ -85,15 +89,17 @@
 
       <button ion-button class="beauty_top_add" > 더보기 > </button>
 
+
+      <!-- 광고 -->
         <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
-        <img class="beauty_ad_img" src="../assets/img/beauty/beauty_ad.jpg" />
+        <img class="beauty_ad_img" src="./assets/img/beauty/beauty_ad.JPG" />
         <div style="height:8px; width:100%; margin-top:-1.5%; background-color:#f1f1f1"></div>
 
 
       <h2 class="beauty_note_tip">뷰티 노트</h2>
 
 
-      <!-- 뷰트노트 이미지가 있을 때  -->
+      <!-- 뷰티노트 이미지가 있을 때  -->
 
       <ion-col class="container">
       <ion-row class="beauty_row">
@@ -111,7 +117,7 @@
       <img class="beauty_note_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"/></ion-col><br><br>
       <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
 
-      <!-- 뷰트노트 이미지가 없을 때  -->
+      <!-- 뷰티노트 이미지가 없을 때  -->
       <ion-col class="container">
       <ion-row class="beauty_row">
       <ion-col col-7 class="beauty_note_title"><span class="beauty_note_tag">리뷰 </span>화장품을 발라야 하는 첫 번째 이유, ‘보습’</ion-col></ion-row>
@@ -157,13 +163,13 @@
       <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
 
 
-      <h2 class="beauty_note_tip">피부 고민</h2>
+      <h2 class="beauty_worry_tip">피부 고민</h2>
 
 
       <!-- 피부 고민 이미지가 있을 때  -->
       <ion-col class="container">
       <ion-row class="beauty_row">
-      <ion-col col-7 class="beauty_note_title_img"><span class="beauty_note_Q">Q </span>플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</ion-col></ion-row>
+      <ion-col class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</ion-col></ion-row>
       <ion-col class="beauty_note_like">좋아요 32 ∙
       <ion-col class="beauty_note_answer">답변수 3</ion-col></ion-col>
       <img class="beauty_note_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"/></ion-col><br><br>
@@ -171,7 +177,7 @@
 
       <ion-col class="container">
       <ion-row class="beauty_row">
-      <ion-col col-7 class="beauty_note_title_img"><span class="beauty_note_Q">Q </span>플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</ion-col></ion-row>
+      <ion-col class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</ion-col></ion-row>
       <ion-col class="beauty_note_like">좋아요 32 ∙
       <ion-col class="beauty_note_answer">답변수 3</ion-col></ion-col>
       <img class="beauty_note_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"/></ion-col><br><br>
@@ -180,7 +186,7 @@
       <!-- 피부 고민 이미지가 없을 때  -->
       <ion-col class="container">
       <ion-row class="beauty_row">
-      <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q </span>얼굴 피부에 색소침착 때문에 고민입니다.어떻게 하면 깨끗하게 지울수 있을까요?</ion-col></ion-row>
+      <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>얼굴 피부에 색소침착 때문에 고민입니다.어떻게 하면 깨끗하게 지울수 있을까요?</ion-col></ion-row>
       <ion-col class="beauty_note_like">좋아요 32 ∙
       <ion-col class="beauty_note_answer">답변수 3</ion-col></ion-col></ion-col><br><br>
       <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
@@ -188,7 +194,7 @@
 
       <ion-col class="container">
       <ion-row class="beauty_row">
-      <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q </span>얼굴 피부에 색소침착 때문에 고민입니다.어떻게 하면 깨끗하게 지울수 있을까요?</ion-col></ion-row>
+      <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>얼굴 피부에 색소침착 때문에 고민입니다.어떻게 하면 깨끗하게 지울수 있을까요?</ion-col></ion-row>
       <ion-col class="beauty_note_like">좋아요 32 ∙
       <ion-col class="beauty_note_answer">답변수 3</ion-col></ion-col></ion-col><br><br>
       <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
@@ -199,23 +205,239 @@
 
 
     </ion-slide>
+
+
+    <!-- 뷰티 꿀팁 -->
+
     <ion-slide>
 
-        <button  ion-button (click)="community_write()"> 글쓰기</button>
+      <h2 class="beauty_ggul_tip">에디터 추천</h2>
+      <ion-grid class="beauty_tip">
+        <ion-row >
+          <ion-col col-6 (click)="openBrowser_android(beauty_data_url1, beauty_data_title1)" >
+            <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"  />
+            <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
+            <div class="beauty_desc">{{beauty_data_title1}}</div>
+            <div class="beauty_count"> 좋아요 1,234</div>
+          </ion-col>
+          <ion-col col-6 (click)="openBrowser_android(beauty_data_url2, beauty_data_title2)" >
+            <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id2}}" />
+            <!-- <div class="beauty_title">{{beauty_data_type2}}</div> -->
+            <div class="beauty_desc">{{beauty_data_title2}}</div>
+            <div class="beauty_count"> 좋아요 1,234</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div style="height:1px; width:97%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+      <!-- 뷰트꿀팁 이미지가 있을 때  -->
 
-        <button  ion-button (click)="community_modify();"> 글수정</button>
+      <ion-col class="container">
+      <ion-row class="beauty_row">
+      <ion-col col-7 class="beauty_note_title_img"><span class="beauty_note_tag">관리 노하우 </span>화장품을 발라야 하는 첫 번째 이유, ‘보습’</ion-col></ion-row>
+      <ion-col class="beauty_note_like">좋아요 32 ∙
+      <ion-col class="beauty_note_count">조회수 67</ion-col></ion-col>
+      <img class="beauty_note_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"/></ion-col><br><br>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+      <ion-col class="container">
+      <ion-row class="beauty_row">
+      <ion-col col-7 class="beauty_note_title_img"><span class="beauty_note_tag">피부 고민 </span>화장품을 발라야 하는 첫 번째 이유, ‘보습’</ion-col></ion-row>
+      <ion-col class="beauty_note_like">좋아요 32 ∙
+      <ion-col class="beauty_note_count">조회수 67</ion-col></ion-col>
+      <img class="beauty_note_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"/></ion-col><br><br>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+      <!-- 뷰트노트 이미지가 없을 때  -->
+      <ion-col class="container">
+      <ion-row class="beauty_row">
+      <ion-col col-7 class="beauty_note_title"><span class="beauty_note_tag">리뷰 </span>화장품을 발라야 하는 첫 번째 이유, ‘보습’</ion-col></ion-row>
+      <ion-col class="beauty_note_like">좋아요 32 ∙
+      <ion-col class="beauty_note_count">조회수 67</ion-col></ion-col></ion-col><br><br>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+      <ion-col class="container">
+      <ion-row class="beauty_row">
+      <ion-col col-7 class="beauty_note_title"><span class="beauty_note_tag">피부 고민 </span>화장품을 발라야 하는 첫 번째 이유, ‘보습’</ion-col></ion-row>
+      <ion-col class="beauty_note_like">좋아요 32 ∙
+      <ion-col class="beauty_note_count">조회수 67</ion-col></ion-col></ion-col><br><br>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+      <button ion-button class="beauty_top_add" > 더보기 > </button>
+
+      <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
+
+    </ion-slide>
+
+
+    <!-- 뷰티 노트 -->
+    <ion-slide>
+              <h2 class="beauty_ggul_tip">인기노트</h2>
+              <ion-grid class="beauty_tip">
+                <ion-row >
+                  <ion-col col-6 (click)="openBrowser_android(beauty_data_url1, beauty_data_title1)" >
+                    <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"  />
+                    <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
+                    <div class="beauty_desc">{{beauty_data_title1}}</div>
+                    <div class="beauty_count"> 좋아요 1,234</div>
+                  </ion-col>
+                  <ion-col col-6 (click)="openBrowser_android(beauty_data_url2, beauty_data_title2)" >
+                    <img class="beauty_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id2}}" />
+                    <!-- <div class="beauty_title">{{beauty_data_type2}}</div> -->
+                    <div class="beauty_desc">{{beauty_data_title2}}</div>
+                    <div class="beauty_count"> 좋아요 1,234</div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <div style="height:1px; width:97%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+              <!-- 뷰트꿀팁 이미지가 있을 때  -->
+
+              <ion-col class="container">
+              <ion-row class="beauty_row">
+              <ion-col col-7 class="beauty_note_title_img"><span class="beauty_note_tag">관리 노하우 </span>화장품을 발라야 하는 첫 번째 이유, ‘보습’</ion-col></ion-row>
+              <ion-col class="beauty_note_like">좋아요 32 ∙
+              <ion-col class="beauty_note_count">조회수 67</ion-col></ion-col>
+              <img class="beauty_note_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"/></ion-col><br><br>
+              <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+              <ion-col class="container">
+              <ion-row class="beauty_row">
+              <ion-col col-7 class="beauty_note_title_img"><span class="beauty_note_tag">피부 고민 </span>화장품을 발라야 하는 첫 번째 이유, ‘보습’</ion-col></ion-row>
+              <ion-col class="beauty_note_like">좋아요 32 ∙
+              <ion-col class="beauty_note_count">조회수 67</ion-col></ion-col>
+              <img class="beauty_note_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"/></ion-col><br><br>
+              <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+              <!-- 뷰트노트 이미지가 없을 때  -->
+              <ion-col class="container">
+              <ion-row class="beauty_row">
+              <ion-col col-7 class="beauty_note_title"><span class="beauty_note_tag">리뷰 </span>화장품을 발라야 하는 첫 번째 이유, ‘보습’</ion-col></ion-row>
+              <ion-col class="beauty_note_like">좋아요 32 ∙
+              <ion-col class="beauty_note_count">조회수 67</ion-col></ion-col></ion-col><br><br>
+              <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+              <ion-col class="container">
+              <ion-row class="beauty_row">
+              <ion-col col-7 class="beauty_note_title"><span class="beauty_note_tag">피부 고민 </span>화장품을 발라야 하는 첫 번째 이유, ‘보습’</ion-col></ion-row>
+              <ion-col class="beauty_note_like">좋아요 32 ∙
+              <ion-col class="beauty_note_count">조회수 67</ion-col></ion-col></ion-col><br><br>
+              <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+              <button ion-button class="beauty_top_add" > 더보기 > </button>
+
+              <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
+
+    </ion-slide>
+
+
+    <!-- 피부 고민 -->
+    <ion-slide>
+    <h2 class="beauty_best_tip">베스트 고민해결</h2>
+
+    <ion-slides mode="ios" style="background-color: #f5f5f5; margin-top: 0px;" pager>
+      <ion-slide>
+       <ion-card>
+        <div class="card-title"><span class="beauty_note_Q">Q </span> 플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</div><br>
+        <div class="card-subtitle"><span class="beauty_note_Q">A </span>플리닉은 아침 저녁 하루 2회를 권장하고있습니다.</div>
+      </ion-card>
+      </ion-slide>
+      <ion-slide>
+       <ion-card>
+        <div class="card-title"><span class="beauty_note_Q">Q </span> 플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</div><br>
+        <div class="card-subtitle"><span class="beauty_note_Q">A </span>플리닉은 아침 저녁 하루 2회를 권장하고있습니다. </div>
+      </ion-card>
+      </ion-slide>
+      <ion-slide>
+       <ion-card>
+        <div class="card-title"><span class="beauty_note_Q">Q </span> 플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</div><br>
+        <div class="card-subtitle"><span class="beauty_note_Q">A </span>  플리닉은 아침 저녁 하루 2회를 권장하고있습니다.</div>
+      </ion-card>
+      </ion-slide>
+
+    </ion-slides>
+
+
+    <!-- 피부 고민 이미지가 있을 때  -->
+    <ion-col class="container">
+    <ion-row class="beauty_row">
+    <ion-col col-7 class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</ion-col></ion-row>
+    <ion-col class="beauty_note_like">공감순 32 ∙
+    <ion-col class="beauty_note_answer">답변수 3</ion-col></ion-col>
+    <img class="beauty_note_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"/></ion-col><br><br>
+    <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+    <ion-col class="container">
+    <ion-row class="beauty_row">
+    <ion-col col-7 class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>얼굴 피부에 색소침착 때문에 고민입니다.어떻게 하면 깨끗하게 지울수 있을까요?</ion-col></ion-row>
+    <ion-col class="beauty_note_like">공감순 32 ∙
+    <ion-col class="beauty_note_answer">답변수 3</ion-col></ion-col>
+    <img class="beauty_note_img" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}"/></ion-col><br><br>
+    <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+    <!-- 피부 고민 이미지가 없을 때  -->
+    <ion-col class="container">
+    <ion-row class="beauty_row">
+    <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>얼굴 피부에 색소침착 때문에 고민입니다.어떻게 하면 깨끗하게 지울수 있을까요?</ion-col></ion-row>
+    <ion-col class="beauty_note_like">공감순 32 ∙
+    <ion-col class="beauty_note_answer">답변수 3</ion-col></ion-col></ion-col><br><br>
+    <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+
+    <button ion-button class="beauty_top_add" > 더보기 > </button>
+
+    <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
+    </ion-slide>
+
+
+
+
+
+    <!-- 기획전 -->
+    <ion-slide>
+      <!-- <h2 class="beauty_ggul_tip">기획전</h2> -->
+      <img class="imagealign_first" src='./assets/img/home/carezone1.png'  />
+      <ion-row>
+        <ion-col class="beauty_plan_title">할수 있다! 물광미인</ion-col>
+      </ion-row>
+      <ion-row>
+      <ion-col class="beauty_plan_subtitle">디스크립션</ion-col>
+      </ion-row>
+      <br>
+      <div style="height:1px; width:97%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+      <img class="imagealign" src='./assets/img/home/carezone2.png'  />
+      <ion-row>
+        <ion-col class="beauty_plan_title">할수 있다! 물광미인</ion-col>
+      </ion-row>
+      <ion-row>
+      <ion-col class="beauty_plan_subtitle">디스크립션</ion-col>
+      </ion-row>
+      <br>
+      <div style="height:1px; width:97%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+
+      <img class="imagealign" src='./assets/img/home/carezone3.png'  />
+      <ion-row>
+        <ion-col class="beauty_plan_title">할수 있다! 물광미인</ion-col>
+      </ion-row>
+      <ion-row>
+      <ion-col class="beauty_plan_subtitle">디스크립션</ion-col>
+      </ion-row>
+      <br>
+      <div style="height:1px; width:97%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+
+      <img class="imagealign" src='./assets/img/home/carezone4.png'  />
+      <ion-row>
+        <ion-col class="beauty_plan_title">할수 있다! 물광미인</ion-col>
+      </ion-row>
+      <ion-row>
+      <ion-col class="beauty_plan_subtitle">디스크립션</ion-col>
+      </ion-row>
+      <br>
+      <div style="height:1px; width:97%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
 
 
     </ion-slide>
-    <ion-slide>
-      <h1>뷰티 노트</h1>
-    </ion-slide>
-    <ion-slide>
-      <h1>피부 고민</h1>
-    </ion-slide>
-    <ion-slide>
-      <h1>기획전</h1>
-    </ion-slide>
+
   </ion-slides>
 
 
