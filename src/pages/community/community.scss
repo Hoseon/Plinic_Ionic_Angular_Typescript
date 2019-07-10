@@ -94,6 +94,68 @@ page-community {
       color: #292929;
     }
 
+    .segment-md .segment-button.activated, .segment-md .segment-button.segment-activated{
+      height: 3rem;
+      border-color: #6562b9;
+      border-bottom-width: 3px;
+      opacity: 1;
+      font-family: NotoSansCJKkr;
+      font-size: 15px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #5c59b6;
+      margin-top: 5%;
+    }
+
+
+    .segment-ios .segment-button.activated, .segment-ios .segment-button.segment-activated{
+      height: 3rem;
+      border-color: #6562b9;
+      border-bottom-width: 3px;
+      opacity: 1;
+      font-family: NotoSansCJKkr;
+      font-size: 15px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #5c59b6;
+      margin-top: 5%;
+    }
+
+    .segment-md .segment-button{
+      height: 3rem;
+      font-family: NotoSansCJKkr;
+      font-size: 15px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #b6b6b6;
+      margin-top: 5%;
+      border-width: 0px;
+    }
+
+    .segment-ios .segment-button{
+      height: 3rem;
+      font-family: NotoSansCJKkr;
+      font-size: 15px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #b6b6b6;
+      margin-top: 5%;
+      border-width: 0px;
+    }
+
+
     .swiper-slide {
         overflow-y: scroll;
         display: block;
@@ -195,6 +257,7 @@ page-community {
       .beauty_ggul_tip{
       padding-left: 5%;
       margin-top: 10% !important;
+      margin-bottom: 0%;
       text-align: left;
       font-family: NotoSansCJKkr;
       font-size: 16px;
@@ -207,6 +270,21 @@ page-community {
       }
 
       .beauty_note_tip{
+        font-family: NotoSansCJKkr;
+        font-size: 16px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #292929;
+        padding-left: 5%;
+        margin-top: 8% !important;
+        margin-bottom: 0%;
+        text-align: left;
+      }
+
+      .beauty_worry_tip{
         font-family: NotoSansCJKkr;
         font-size: 16px;
         font-weight: bold;
@@ -236,6 +314,22 @@ page-community {
         text-align: left;
       }
 
+      .beauty_best_tip{
+      padding-left: 5%;
+      padding-top: 10% !important;
+      text-align: left;
+      font-family: NotoSansCJKkr;
+      font-size: 16px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #292929;
+      background-color: #f5f5f5;
+      margin: 0px;
+      }
+
       .beauty_note_tag{
         font-family: NotoSansCJKkr;
         font-size: 15px;
@@ -248,6 +342,7 @@ page-community {
       }
 
       .beauty_note_title_img{
+        max-width: 65%;
         font-family: NotoSansCJKkr;
         font-size: 15px;
         font-weight: bold;
@@ -310,17 +405,6 @@ page-community {
         color: #5c59b6;
       }
 
-      .beauty_note_Q{
-        font-family: AppleSDGothicNeo;
-        font-size: 15px;
-        font-weight: bold;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.4;
-        letter-spacing: normal;
-        color: #5c59b6;
-      }
-
         .container {
           position: relative;
           width: 100%;
@@ -363,5 +447,140 @@ page-community {
           color: #292929;
           box-shadow: none;
         }
+
+
+        .card-title{
+          font-family: NotoSansCJKkr;
+          font-size: 15px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.4;
+          letter-spacing: normal;
+          color: #292929;
+        }
+
+
+        .card-subtitle{
+          font-family: NotoSansCJKkr;
+          font-size: 13px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.62;
+          letter-spacing: normal;
+          color: #939393;
+        }
+
+        .beauty_note_Q{
+          font-family: AppleSDGothicNeo;
+          font-size: 15px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.4;
+          letter-spacing: normal;
+          color: #5c59b6;
+        }
+
+        .card-ios {
+            width: 90%;
+            height: 45%;
+            border-radius: 5px;
+            background-color: #ffffff;
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
+            display: block;
+            margin-top: 5%;
+            padding: 10%;
+            text-align: left;
+            margin-bottom: 20%;
+        }
+
+        .card-md {
+            width: 90%;
+            height: 45%;
+            border-radius: 5px;
+            background-color: #ffffff;
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
+            display: block;
+            margin-top: 5%;
+            padding: 10%;
+            text-align: left;
+            margin-bottom: 20%;
+        }
+
+        .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+          bottom: 10%;
+        }
+
+        .swiper-pagination-bullet-active{
+          background-color: #5c59b6 !important;
+        }
+
+        .swiper-pagination-bullet{
+          background: transparent;
+          border: solid 5px #5c59b6!important;
+        }
+
+        .slide-zoom{
+          height: auto;
+          overflow:auto;
+        }
+
+        .imagealign_first{
+          width: 91%;
+          height: auto;
+          margin: 0 auto;
+          display: block;
+          border-radius: 5px;
+          background-color: #FFF;
+          margin-top: 10%;
+        }
+
+        .imagealign{
+          width: 91%;
+          height: auto;
+          margin: 0 auto;
+          display: block;
+          border-radius: 5px;
+          background-color: #FFF;
+          margin-top: 5%;
+        }
+
+        .beauty_plan_title{
+          font-family: NotoSansCJKkr;
+          font-size: 15px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #292929;
+          text-align: left;
+          padding-left: 4%;
+        }
+
+        .beauty_plan_subtitle{
+          font-family: NotoSansCJKkr;
+          font-size: 13px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #939393;
+          text-align: left;
+          padding-left: 4%;
+        }
+
+
+
+
+
+
 
 }

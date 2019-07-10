@@ -67,7 +67,31 @@
 // }
 
 
-//push alertCtrl
+  //탭바 제플린 스타일
+  .tabs-md[tabsLayout=icon-top] .has-icon .tab-button-text{
+    font-family: NotoSansCJKkr;
+    font-size: 10px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #2f3640;
+  }
+
+  .tabs-ios[tabsLayout=icon-top] .has-icon .tab-button-text{
+    font-family: NotoSansCJKkr;
+    font-size: 10px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #2f3640;
+  }
+
 
 scroll-content {
   overflow-y: scroll;
