@@ -156,6 +156,26 @@ export class HomePage {
   all_first_total_score: any = 0;
   all_total_score: any = 0;
 
+  skinScoreChk = false;
+  skinScoreData: any;
+  circle_moisture: any = 0;
+  circle_oil: any = 0;
+  circle_date: any;
+
+  pre_circle_moisture: any = 0;
+  pre_circle_oil: any = 0;
+  pre_circle_date: any;
+
+  chartDateData = [];
+  chartOilData = [];
+  chartMoistureData = [];
+  array1 = [];
+  chartDateData2: Array<any>;
+
+  total_score : any = 0;
+  pre_total_score : any = 0;
+
+
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController,
     public translateService: TranslateService, public bluetoothle: BluetoothLE,
@@ -356,6 +376,41 @@ public skin_first_oil_score() {
         this.chkmission(this.userData.email);
 
       }
+      this.auth.getSkinScore(this.userData.email).subscribe(items => {
+        this.skinScoreData = items;
+
+        if (items !== '') {
+          this.skinScoreChk = true;
+          var i = (parseInt(this.skinScoreData.score.length) - 1);
+          // console.log("ii" + i);
+          var k = (parseInt(this.skinScoreData.score.length) - 2);
+          // console.log("kk" + i);
+
+          if (i >= 0) {
+
+            this.circle_moisture = this.skinScoreData.score[i].moisture;
+            this.circle_oil = this.skinScoreData.score[i].oil;
+            this.circle_date = this.skinScoreData.score[i].saveDate.substr(0,10);
+
+            this.total_score = (parseInt(this.circle_moisture) + parseInt(this.circle_oil))/2;
+            console.log("total :" + this.total_score);
+
+          }
+          if (k >= 0) {
+            this.pre_circle_moisture = this.skinScoreData.score[k].moisture;
+            this.pre_circle_oil = this.skinScoreData.score[k].oil;
+            this.pre_circle_date = this.skinScoreData.score[k].saveDate.substr(0,10);
+
+            this.pre_total_score = (parseInt(this.pre_circle_moisture) + parseInt(this.pre_circle_oil))/2;
+            console.log("pre_total :" + this.pre_total_score);
+
+          }
+          console.log("this.circle_moisture" + this.circle_moisture);
+
+          console.log("moisture:::::::" + this.skinScoreData.score[i].moisture);
+          console.log("oil:::::::" + this.skinScoreData.score[i].oil);
+        }
+      });
     });
   }
 

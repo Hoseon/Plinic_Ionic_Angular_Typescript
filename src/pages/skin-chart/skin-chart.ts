@@ -116,10 +116,17 @@ export class SkinChartPage {
   }
 
   yearmonthselect(e) {
-    this.lineCanvas.reset();
-    this.lineCanvas.update();
-    this.lineCanvas2.update();
-    this.lineCanvas2.update();
+    var year = e.substr(0,4);
+    var month = e.substr(5,2);
+    var date = year + "-" + month;
+
+    this.auth.getSkinScoreMonth(this.userData.email, date).subscribe(items => {
+      console.log(items);
+    });
+    // this.lineCanvas.reset();
+    // this.lineCanvas.update();
+    // this.lineCanvas2.update();
+    // this.lineCanvas2.update();
     console.log("yearmonthselect===============" + e);
   }
 
@@ -450,31 +457,31 @@ export class SkinChartPage {
 
   monthdate: any[] = [
     {
-      "day": "2019년1월"
+      "day": "2019년01월"
     },
     {
-      "day": "2019년2월"
+      "day": "2019년02월"
     },
     {
-      "day": "2019년3월"
+      "day": "2019년03월"
     },
     {
-      "day": "2019년4월"
+      "day": "2019년04월"
     },
     {
-      "day": "2019년5월"
+      "day": "2019년05월"
     },
     {
-      "day": "2019년6월"
+      "day": "2019년06월"
     },
     {
-      "day": "2019년7월"
+      "day": "2019년07월"
     },
     {
-      "day": "2019년8월"
+      "day": "2019년08월"
     },
     {
-      "day": "2019년9월"
+      "day": "2019년09월"
     },
     {
       "day": "2019년10월"

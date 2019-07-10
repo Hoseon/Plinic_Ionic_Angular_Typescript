@@ -605,6 +605,11 @@ export class AuthService {
       .map(response => response.json());
   }
 
+  public getSkinScoreMonth(email, date) {
+    return this.http.get(CONFIG.apiUrl + 'userskinchart/' + email + '/' + date)
+      .map(response => response.json());
+  }
+
   //20190614 미션 시작시 mission 테이블에 post 정보를 날려 저장
 
 
