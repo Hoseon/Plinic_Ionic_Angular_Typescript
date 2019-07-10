@@ -37,6 +37,8 @@ export class SkinDiagnoseMoisturePage {
 
   scoreData : any;
   currentDate: Date = new Date();
+  notimeDate: Date = new Date();
+
 
 
 
@@ -278,18 +280,22 @@ export class SkinDiagnoseMoisturePage {
                   }
                   // this.auth.setUserStoragediagnose_moisture(this.all_score*9);
                   // this.nav.push(SkinDiagnoseOilPage);
+                  var today = this.currentDate.getFullYear() + "-" + this.get2digits(this.currentDate.getMonth() + 1) + "-" + this.get2digits(this.currentDate.getDate());
+                  // console.log("오늘오늘오늘오늘오늘" + today);
+
+                   this.notimeDate = new Date(today);
 
                   this.scoreData = {
                     moisture : (this.all_score*9),
-                    saveDate : this.currentDate,
+                    saveDate : this.notimeDate,
                   }
-                  this.auth.skinChartSave(this.userData.email, this.scoreData).subscribe(data => {
-                    if(data !==''){
-                      console.log("데이터 등록 성공");
-                    } else {
-                      console.log("데이터 등록 실패");
-                    }
-                  })
+                  // this.auth.skinChartSave(this.userData.email, this.scoreData).subscribe(data => {
+                  //   if(data !==''){
+                  //     console.log("데이터 등록 성공");
+                  //   } else {
+                  //     console.log("데이터 등록 실패");
+                  //   }
+                  // })
                   // this.auth.skinChartSave(this.userData.email, this.scoreData);
                   this.nav.push(SkinDiagnoseOilPage, { score : this.scoreData });
                 }
@@ -311,6 +317,10 @@ export class SkinDiagnoseMoisturePage {
 
   public dissmiss() {
     this.viewCtrl.dismiss();
+  }
+
+  public get2digits(num) {
+    return ("0" + num).slice(-2);
   }
 
 }

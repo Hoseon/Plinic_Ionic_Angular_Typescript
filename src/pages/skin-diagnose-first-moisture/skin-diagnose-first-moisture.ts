@@ -31,9 +31,9 @@ export class SkinDiagnoseFirstMoisturePage {
   userData: any;
   jwtHelper: JwtHelper = new JwtHelper();
 
-  scoreData : any;
+  scoreData: any;
   currentDate: Date = new Date();
-
+  notimeDate: Date = new Date();
 
 
 
@@ -186,22 +186,26 @@ export class SkinDiagnoseFirstMoisturePage {
               this.all_score = 0;
             }
 
+            this.notimeDate = this.currentDate
+            var today = this.currentDate.getFullYear() + "-" + this.get2digits(this.currentDate.getMonth() + 1) + "-" + this.get2digits(this.currentDate.getDate());
+            console.log("오늘오늘오늘오늘오늘" + today);
             this.scoreData = {
-              moisture : (this.all_score * 20),
-              saveDate : this.currentDate,
+              moisture: (this.all_score * 20),
+              saveDate: this.currentDate,
 
             }
             // this.auth.setUserStoragediagnose_first_moisture(this.all_score*20);
-            this.auth.skinChartSave(this.userData.email, this.scoreData).subscribe(data => {
-              if(data !==''){
-                console.log("데이터 등록 성공");
-                this.nav.push(SkinDiagnoseFirstOilPage, { score : this.scoreData });
-              } else {
-                console.log("데이터 등록 실패");
-                this.nav.pop();
-              }
-            })
-            this.nav.push(SkinDiagnoseFirstOilPage);
+            // this.auth.skinChartSave(this.userData.email, this.scoreData).subscribe(data => {
+            //   if(data !==''){
+            //     console.log("데이터 등록 성공");
+            //     this.nav.push(SkinDiagnoseFirstOilPage, { score : this.scoreData });
+            //   } else {
+            //     console.log("데이터 등록 실패");
+            //     this.nav.pop();
+            //   }
+            // })
+            this.nav.push(SkinDiagnoseFirstOilPage, { score: this.scoreData });
+            // this.nav.push(SkinDiagnoseFirstOilPage);
           }
         }]
     });
@@ -221,6 +225,10 @@ export class SkinDiagnoseFirstMoisturePage {
 
   public dissmiss() {
     this.viewCtrl.dismiss();
+  }
+
+  public get2digits(num) {
+    return ("0" + num).slice(-2);
   }
 
 }

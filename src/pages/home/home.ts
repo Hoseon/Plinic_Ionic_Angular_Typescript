@@ -146,8 +146,15 @@ export class HomePage {
   percent: Array<any> = new Array<any>();
   getthirdday: Array<any> = new Array<any>();
 
-  skin_diagnose_first_check = false;
 
+  skin_diagnose_first_check = false;
+  all_moisture_score: any = 0;
+  all_oil_score: any = 0;
+  all_first_moisture_score: any = 0;
+  all_first_oil_score: any = 0;
+
+  all_first_total_score: any = 0;
+  all_total_score: any = 0;
 
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController,
@@ -164,7 +171,7 @@ export class HomePage {
       this.secondCarezoneData = this.secondLoadCareZone();
       this.thirdCarezoneData = this.thirdLoadCareZone();
       this.roadbeauty();
-      this.skin_first_check();
+
 
       if(this.skin_diagnose_first_check===null || false){
       this.auth.setUserStoragediagnose_first_check(this.skin_diagnose_first_check);
@@ -214,13 +221,65 @@ export class HomePage {
   }
 
 
+  ionViewDidLoad() {
+    this.skin_first_check();
+    this.skin_first_moisture_score();
+    this.skin_first_oil_score();
+    this.skin_oil_score();
+    this.skin_moisture_score();
+  }
+
+
+
   public skin_first_check() {
     this.auth.getUserStoragediagnose_first_check().then(items => {
         this.skin_diagnose_first_check = items;
-        console.log("skin_diagnose_first_check=============" + this.skin_diagnose_first_check);
-        console.log("items=============" + items);
+        console.log("skin_diagnose_first_check========" + this.skin_diagnose_first_check);
+        //console.log("items" + items);
   });
 }
+
+  public skin_moisture_score() {
+    this.auth.getUserStoragediagnose_moisture().then(items => {
+        this.all_moisture_score = items;
+        this.all_total_score += this.all_moisture_score/2;
+        console.log("all_moisture_score==========" + this.all_moisture_score);
+        console.log("all_total_score=========" + this.all_total_score);
+        //console.log("items" + items);
+  });
+}
+
+  public skin_oil_score() {
+    this.auth.getUserStoragediagnose_oil().then(items => {
+        this.all_oil_score = items;
+        this.all_total_score += this.all_oil_score/2;
+        console.log("all_oil_score=========" + this.all_oil_score);
+        console.log("all_total_score=========" + this.all_total_score);
+        //console.log("items" + items);
+  });
+}
+
+public skin_first_moisture_score() {
+  this.auth.getUserStoragediagnose_first_moisture().then(items => {
+      this.all_first_moisture_score = items;
+      this.all_first_total_score += this.all_first_moisture_score/2;
+      console.log("all_first_moisture_score==========" + this.all_first_moisture_score);
+      console.log("all_first_total_score==========" + this.all_first_total_score);
+      //console.log("items" + items);
+});
+}
+
+public skin_first_oil_score() {
+  this.auth.getUserStoragediagnose_first_oil().then(items => {
+      this.all_first_oil_score = items;
+      this.all_first_total_score += this.all_first_oil_score/2;
+      console.log("all_first_oil_score=======" + this.all_first_oil_score);
+      console.log("all_first_total_score=======" + this.all_first_total_score);
+      //console.log("items" + items);
+});
+}
+
+
 
   public skin_measure(){
     // let alert = this.alertCtrl.create({
@@ -393,10 +452,6 @@ export class HomePage {
 
   }
 
-  public ionViewDidLoad() {
-    //this.nav.push(SkinChartPage);
-  }
-
 
   public customer_service() {
     let alert = this.alertCtrl.create({
@@ -463,7 +518,7 @@ export class HomePage {
     this.images.missionCount(id).subscribe(data => {
       this.second_carezone_missioncount[this.secondCount] = data;
       this.secondCount++;
-      
+
     });
   }
 

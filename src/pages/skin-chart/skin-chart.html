@@ -35,11 +35,11 @@
 
    <ion-item no-lines >
      <ion-grid style="margin:0 auto;">
-         <ion-row *ngIf="(!skin_diagnose_first_check) || (skin_diagnose_first_check && all_oil_score==='') ">
+         <ion-row *ngIf="circle_oil || circle_moisture">
 
              <!-- 첫 문진표 유분차트 -->
-             <ion-col *ngIf="all_first_oil_score>76" class="container" ><circle-progress class="roundprogressbar"
-             [percent]="all_first_oil_score"
+             <ion-col *ngIf="circle_oil>76" class="container" ><circle-progress class="roundprogressbar"
+             [percent]="circle_oil"
              [radius]="120"
              [outerStrokeWidth]="15"
              [innerStrokeWidth]="15"
@@ -49,11 +49,11 @@
              [animationDuration]="500"
              [toFixed] = "1"
              [space] = "-13"
-           ></circle-progress><div class="containe_oil_score">유분</div><div class="containe_oil_score2">{{all_first_oil_score}}점</div></ion-col>
+           ></circle-progress><div class="containe_oil_score">유분</div><div class="containe_oil_score2">{{circle_oil}}점</div></ion-col>
 
 
-             <ion-col *ngIf="all_first_oil_score>51 && all_first_oil_score<75" class="container" ><circle-progress class="roundprogressbar"
-             [percent]="all_first_oil_score"
+             <ion-col *ngIf="circle_oil>51 && circle_oil<75" class="container" ><circle-progress class="roundprogressbar"
+             [percent]="circle_oil"
              [radius]="120"
              [outerStrokeWidth]="15"
              [innerStrokeWidth]="15"
@@ -63,10 +63,10 @@
              [animationDuration]="500"
              [toFixed] = "1"
              [space] = "-13"
-           ></circle-progress><div class="containe_oil_score">유분</div><div class="containe_oil_score2">{{all_first_oil_score}}점</div></ion-col>
+           ></circle-progress><div class="containe_oil_score">유분</div><div class="containe_oil_score2">{{circle_oil}}점</div></ion-col>
 
-             <ion-col *ngIf="all_first_oil_score>26 && all_first_oil_score<50" class="container" ><circle-progress class="roundprogressbar"
-             [percent]="all_first_oil_score"
+             <ion-col *ngIf="circle_oil>26 && circle_oil<50" class="container" ><circle-progress class="roundprogressbar"
+             [percent]="circle_oil"
              [radius]="120"
              [outerStrokeWidth]="15"
              [innerStrokeWidth]="15"
@@ -76,10 +76,10 @@
              [animationDuration]="500"
              [toFixed] = "1"
              [space] = "-13"
-           ></circle-progress><div class="containe_oil_score">유분</div><div class="containe_oil_score2">{{all_first_oil_score}}점</div></ion-col>
+           ></circle-progress><div class="containe_oil_score">유분</div><div class="containe_oil_score2">{{circle_oil}}점</div></ion-col>
 
-             <ion-col *ngIf="all_first_oil_score<25" class="container" ><circle-progress class="roundprogressbar"
-             [percent]="all_first_oil_score"
+             <ion-col *ngIf="circle_oil<25" class="container" ><circle-progress class="roundprogressbar"
+             [percent]="circle_oil"
              [radius]="120"
              [outerStrokeWidth]="15"
              [innerStrokeWidth]="15"
@@ -89,13 +89,13 @@
              [animationDuration]="500"
              [toFixed] = "1"
              [space] = "-13"
-           ></circle-progress><div class="containe_oil_score">유분</div><div class="containe_oil_score2">{{all_first_oil_score}}점</div></ion-col>
+           ></circle-progress><div class="containe_oil_score">유분</div><div class="containe_oil_score2">{{circle_oil}}점</div></ion-col>
 
 
 
            <!-- 첫 문진표 수분차트 -->
-             <ion-col *ngIf="all_first_moisture_score>76" class="container"><circle-progress class="roundprogressbar"
-             [percent]="all_first_moisture_score"
+             <ion-col *ngIf="circle_moisture>76" class="container"><circle-progress class="roundprogressbar"
+             [percent]="circle_moisture"
              [radius]="120"
              [outerStrokeWidth]="15"
              [innerStrokeWidth]="15"
@@ -105,10 +105,10 @@
              [animationDuration]="500"
              [toFixed] = "1"
              [space] = "-13"
-           ></circle-progress><div class="containe_oil_score">수분</div><div class="containe_oil_score2">{{all_first_moisture_score}}점</div></ion-col>
+           ></circle-progress><div class="containe_oil_score">수분</div><div class="containe_oil_score2">{{circle_moisture}}점</div></ion-col>
 
-             <ion-col *ngIf="all_first_moisture_score>51 && all_first_moisture_score<75" class="container"><circle-progress class="roundprogressbar"
-             [percent]="all_first_moisture_score"
+             <ion-col *ngIf="circle_moisture>51 && circle_moisture<75" class="container"><circle-progress class="roundprogressbar"
+             [percent]="circle_moisture"
              [radius]="120"
              [outerStrokeWidth]="15"
              [innerStrokeWidth]="15"
@@ -118,10 +118,10 @@
              [animationDuration]="500"
              [toFixed] = "1"
              [space] = "-13"
-           ></circle-progress><div class="containe_oil_score">수분</div><div class="containe_oil_score2">{{all_first_moisture_score}}점</div></ion-col>
+           ></circle-progress><div class="containe_oil_score">수분</div><div class="containe_oil_score2">{{circle_moisture}}점</div></ion-col>
 
-             <ion-col *ngIf="all_first_moisture_score>26 && all_first_moisture_score<50" class="container"><circle-progress class="roundprogressbar"
-             [percent]="all_first_moisture_score"
+             <ion-col *ngIf="circle_moisture>26 && circle_moisture<50" class="container"><circle-progress class="roundprogressbar"
+             [percent]="circle_moisture"
              [radius]="120"
              [outerStrokeWidth]="15"
              [innerStrokeWidth]="15"
@@ -130,10 +130,10 @@
              [animation]="true"
              [toFixed] = "1"
              [space] = "-13"
-           ></circle-progress><div class="containe_oil_score">수분</div><div class="containe_oil_score2">{{all_first_moisture_score}}점</div></ion-col>
+           ></circle-progress><div class="containe_oil_score">수분</div><div class="containe_oil_score2">{{circle_moisture}}점</div></ion-col>
 
-             <ion-col *ngIf="all_first_moisture_score<25" class="container"><circle-progress class="roundprogressbar"
-             [percent]="all_first_moisture_score"
+             <ion-col *ngIf="circle_moisture<25" class="container"><circle-progress class="roundprogressbar"
+             [percent]="circle_moisture"
              [radius]="120"
              [outerStrokeWidth]="15"
              [innerStrokeWidth]="15"
@@ -143,12 +143,12 @@
              [animationDuration]="500"
              [toFixed] = "1"
              [space] = "-13"
-           ></circle-progress><div class="containe_oil_score">수분</div><div class="containe_oil_score2">{{all_first_moisture_score}}점</div></ion-col>
+           ></circle-progress><div class="containe_oil_score">수분</div><div class="containe_oil_score2">{{circle_moisture}}점</div></ion-col>
      </ion-row>
 
 
 
-         <ion-row *ngIf="skin_diagnose_first_check">
+         <ion-row *ngIf="!circle_oil || !circle_moisture">
 
               <!-- 유분차트 -->
              <ion-col *ngIf="all_first_oil_score>76" class="container"><circle-progress class="roundprogressbar"
@@ -268,17 +268,17 @@
       <ion-grid>
         <ion-row class="gridstatus">
           <!-- 첫 문진표 유분데이터 상태표시-->
-          <ion-col *ngIf="all_first_oil_score>76" class="secondstatus_good">좋음</ion-col>
-          <ion-col *ngIf="all_first_oil_score>51 && all_first_oil_score<75" class="secondstatus_normal">보통</ion-col>
-          <ion-col *ngIf="all_first_oil_score>26 && all_first_oil_score<50 " class="secondstatus_soso">흐림</ion-col>
-          <ion-col *ngIf="all_first_oil_score<25" class="secondstatus_bad">나쁨</ion-col>
+          <ion-col *ngIf="circle_oil>76" class="secondstatus_good">좋음</ion-col>
+          <ion-col *ngIf="circle_oil>51 && circle_oil<75" class="secondstatus_normal">보통</ion-col>
+          <ion-col *ngIf="circle_oil>26 && circle_oil<50 " class="secondstatus_soso">흐림</ion-col>
+          <ion-col *ngIf="circle_oil<25" class="secondstatus_bad">나쁨</ion-col>
           <div>{{all_first_oil_score}}</div>
 
           <!-- 첫 문진표 수분데이터 상태표시-->
-          <ion-col *ngIf="all_first_moisture_score>76" class="status_good">좋음</ion-col>
-          <ion-col *ngIf="all_first_moisture_score>51 && all_first_moisture_score<75" class="status_normal">보통</ion-col>
-          <ion-col *ngIf="all_first_moisture_score>26 && all_first_moisture_score<50" class="status_soso">흐림</ion-col>
-          <ion-col *ngIf="all_first_moisture_score<25" class="status_bad">나쁨</ion-col>
+          <ion-col *ngIf="circle_moisture>76" class="status_good">좋음</ion-col>
+          <ion-col *ngIf="circle_moisture>51 && circle_moisture<75" class="status_normal">보통</ion-col>
+          <ion-col *ngIf="circle_moisture>26 && circle_moisture<50" class="status_soso">흐림</ion-col>
+          <ion-col *ngIf="circle_moisture<25" class="status_bad">나쁨</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -286,17 +286,18 @@
     <ion-item *ngIf="skin_diagnose_first_check" style="margin:0 auto; width:97%" no-lines>
       <ion-grid>
         <ion-row class="gridstatus">
+
           <!-- 유분데이터 상태표시-->
-          <ion-col *ngIf="all_oil_score>76" class="secondstatus_good">좋음</ion-col>
-          <ion-col *ngIf="all_oil_score>51 && all_oil_score<75" class="secondstatus_normal">보통</ion-col>
-          <ion-col *ngIf="all_oil_score>26 && all_oil_score<50" class="secondstatus_soso">흐림</ion-col>
-          <ion-col *ngIf="all_oil_score<25" class="secondstatus_bad">나쁨</ion-col>
+          <ion-col *ngIf="circle_oil>76" class="secondstatus_good">좋음</ion-col>
+          <ion-col *ngIf="circle_oil>51 && circle_oil<75" class="secondstatus_normal">보통</ion-col>
+          <ion-col *ngIf="circle_oil>26 && circle_oil<50" class="secondstatus_soso">흐림</ion-col>
+          <ion-col *ngIf="circle_oil<25" class="secondstatus_bad">나쁨</ion-col>
 
           <!-- 수분데이터 상태표시-->
-          <ion-col *ngIf="all_moisture_score>76" class="status_good">좋음</ion-col>
-          <ion-col *ngIf="all_moisture_score>51 && all_moisture_score<75" class="status_normal">보통</ion-col>
-          <ion-col *ngIf="all_moisture_score>26 && all_moisture_score<50" class="status_soso">흐림</ion-col>
-          <ion-col *ngIf="all_moisture_score<25" class="status_bad">나쁨</ion-col>
+          <ion-col *ngIf="circle_moisture>76" class="status_good">좋음</ion-col>
+          <ion-col *ngIf="circle_moisture>51 && circle_moisture<75" class="status_normal">보통</ion-col>
+          <ion-col *ngIf="circle_moisture>26 && circle_moisture<50" class="status_soso">흐림</ion-col>
+          <ion-col *ngIf="circle_moisture<25" class="status_bad">나쁨</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -304,14 +305,14 @@
     <ion-item *ngIf="(!skin_diagnose_first_check) || (skin_diagnose_first_check && all_oil_score==='')" style="margin:0 auto; width:97%" no-lines>
       <ion-grid class="griddata">
          <ion-row>
-          <ion-col class="data1">{{all_first_oil_score}}점</ion-col>
+          <ion-col class="data1">{{circle_oil}}점</ion-col>
           <ion-col class="data2">유분</ion-col>
-          <ion-col class="data3">{{all_first_oil_score}}점</ion-col>
+          <ion-col class="data3">{{circle_oil}}점</ion-col>
         </ion-row>
         <ion-row *ngIf="skin_diagnose_first_check">
-         <ion-col class="data1">{{all_first_moisture_score}}점</ion-col>
+         <ion-col class="data1">{{circle_moisture}}점</ion-col>
          <ion-col class="data2">수분</ion-col>
-         <ion-col class="data3">{{all_first_moisture_score}}점</ion-col>
+         <ion-col class="data3">{{circle_moisture}}점</ion-col>
        </ion-row>
       </ion-grid>
     </ion-item>
@@ -319,21 +320,21 @@
     <ion-item *ngIf="skin_diagnose_first_check" style="margin:0 auto; width:97%" no-lines>
       <ion-grid class="griddata">
         <ion-row >
-          <ion-col class="data1">{{all_oil_score}}점</ion-col>
+          <ion-col class="data1">{{pre_circle_oil}}점</ion-col>
           <ion-col class="data2">유분</ion-col>
-          <ion-col class="data3">{{all_oil_score}}점</ion-col>
+          <ion-col class="data3">{{circle_oil}}점</ion-col>
         </ion-row>
         <ion-row *ngIf="skin_diagnose_first_check">
-          <ion-col class="data1">{{all_moisture_score}}점</ion-col>
+          <ion-col class="data1">{{pre_circle_moisture}}점</ion-col>
           <ion-col class="data2">수분</ion-col>
-          <ion-col class="data3">{{all_moisture_score}}점</ion-col>
+          <ion-col class="data3">{{circle_moisture}}점</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item><br>
 
     <ion-col class="square_col_stats">
-    <div class="square_good"></div><div class="square_text">맑음</div><div class="square_normal"></div><div class="square_text">흐름</div>
-    <div class="square_soso"></div><div class="square_text">보통</div><div class="square_bad"></div><div class="square_text">나쁨</div></ion-col><br>
+    <div class="square_good"></div><div class="square_text">맑음</div><div class="square_normal"></div><div class="square_text">보통</div>
+    <div class="square_soso"></div><div class="square_text">흐림</div><div class="square_bad"></div><div class="square_text">나쁨</div></ion-col><br>
 
   <ion-item no-lines>
     <p class="sub"> ※진단 결과는 환경에 따라 상이할 수 있습니다.</p>

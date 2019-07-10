@@ -600,6 +600,11 @@ export class AuthService {
       .map(response => response.json());
   }
 
+  public getSkinScore(email) {
+    return this.http.get(CONFIG.apiUrl + 'userskinscore/' + email)
+      .map(response => response.json());
+  }
+
   //20190614 미션 시작시 mission 테이블에 post 정보를 날려 저장
 
 

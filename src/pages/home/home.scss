@@ -166,6 +166,75 @@ page-home {
      display: block;
    }
 
+   .status_good{
+     width: 55px;
+     height: 22.5px;
+     font-family: NotoSansCJKkr;
+     font-size: 15px;
+     font-weight: bold;
+     font-style: normal;
+     font-stretch: normal;
+     line-height: normal;
+     letter-spacing: normal;
+     text-align: center;
+     color: #3b8efd;
+     margin-left: auto;
+     margin-right: auto;
+     display: block;
+   }
+
+   .status_normal{
+     width: 55px;
+     height: 22.5px;
+     font-family: NotoSansCJKkr;
+     font-size: 15px;
+     font-weight: bold;
+     font-style: normal;
+     font-stretch: normal;
+     line-height: normal;
+     letter-spacing: normal;
+     text-align: center;
+     color: #15b673;
+     margin-left: auto;
+     margin-right: auto;
+     display: block;
+   }
+
+   .status_soso{
+     width: 55px;
+     height: 22.5px;
+     font-family: NotoSansCJKkr;
+     font-size: 15px;
+     font-weight: bold;
+     font-style: normal;
+     font-stretch: normal;
+     line-height: normal;
+     letter-spacing: normal;
+     text-align: center;
+     color: #ffa000;
+     margin-left: auto;
+     margin-right: auto;
+     display: block;
+   }
+
+   .status_bad{
+     width: 55px;
+     height: 22.5px;
+     font-family: NotoSansCJKkr;
+     font-size: 15px;
+     font-weight: bold;
+     font-style: normal;
+     font-stretch: normal;
+     line-height: normal;
+     letter-spacing: normal;
+     text-align: center;
+     color: #e9513c;
+     margin-left: auto;
+     margin-right: auto;
+     display: block;
+   }
+
+
    .img-status{
      width: 60px;
       height: 60px;
@@ -203,6 +272,7 @@ page-home {
      margin-right: auto;
      display: block;
      box-shadow: none;
+     margin-top: -3%;
   }
 
 
@@ -259,6 +329,8 @@ page-home {
      letter-spacing: normal;
      text-align: center;
      color: #858585;
+     margin-bottom: 5%;
+
     }
    .data3{
      position: absolute;
@@ -270,7 +342,7 @@ page-home {
      font-stretch: normal;
      line-height: normal;
      letter-spacing: normal;
-     color: #292929;
+     color: #858585;
    }
     .font_skin_chart {
       width: 59px;
@@ -285,20 +357,19 @@ page-home {
       color: #292929;
     }
 
-    // .font_skin_chart2 {
-    //   top: 60px;
-    //   width: 236px;
-    //   height: 40px;
-    //   font-family: AppleSDGothicNeo;
-    //   font-size: 14px;
-    //   font-weight: normal;
-    //   font-style: normal;
-    //   font-stretch: normal;
-    //   line-height: 1.43;
-    //   letter-spacing: normal;
-    //   text-align: center;
-    //   color: #939393;
-    // }
+    .font_skin_chart2 {
+      top: 80px;
+      height: 200px;
+      font-family: AppleSDGothicNeo;
+      font-size: 14px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.43;
+      letter-spacing: normal;
+      text-align: center;
+      color: #939393;
+    }
 
     .font_carezone {
       width: 100px;

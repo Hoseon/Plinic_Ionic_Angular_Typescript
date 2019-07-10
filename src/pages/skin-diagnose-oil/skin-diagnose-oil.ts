@@ -39,6 +39,8 @@ export class SkinDiagnoseOilPage {
   score: any;
   moisture: any;
   currentDate: Date = new Date();
+  notimeDate: Date = new Date();
+
 
   userData: any;
   jwtHelper: JwtHelper = new JwtHelper();
@@ -269,10 +271,17 @@ export class SkinDiagnoseOilPage {
       this.all_oil_score = 0;
     }
 
+    var today = this.currentDate.getFullYear() + "-" + this.get2digits(this.currentDate.getMonth() + 1) + "-" + this.get2digits(this.currentDate.getDate());
+    // console.log("오일오일오일오일오늘오늘오늘오늘오늘" + today);
+
+     this.notimeDate = new Date(today);
+    // console.log("노타임 노타임 : " + this.notimeDate)
+
+
     this.score = {
       oil: (this.all_oil_score * 9),
       moisture: this.moisture,
-      saveDate: this.currentDate,
+      saveDate: this.notimeDate,
     }
     this.auth.skinChartSave(this.userData.email, this.score).subscribe(data => {
       if (data !== '') {
@@ -321,6 +330,10 @@ export class SkinDiagnoseOilPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  public get2digits(num) {
+    return ("0" + num).slice(-2);
   }
 
 
