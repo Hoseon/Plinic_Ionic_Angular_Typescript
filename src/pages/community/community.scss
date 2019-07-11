@@ -1,20 +1,31 @@
 page-community {
 
 
-    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
-      height: 0px;
-      margin-bottom: 5px;
-    }
-    .item-md.item-block .item-inner{
-      padding-right: 12px;
-    }
-    .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
-      height: 0px;
-      margin-bottom: 5px;
-    }
-    .item-ios.item-block .item-inner{
-      padding-right: 12px;
-    }
+  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+    height: 0px;
+    margin-bottom: 5px;
+  }
+  .item-md.item-block .item-inner{
+    padding-right: 12px;
+  }
+  .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+    height: 1px;
+    margin-bottom: 5px;
+  }
+
+  .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+    height: 0px;
+  }
+  .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+    height: 0px;
+  }
+
+
+  //탭바 하단 여백
+  .scroll-content{
+    margin-bottom: 0px !important;
+  }
+
 
     .toolbar-title-md{
       font-weight: bold;
@@ -93,6 +104,55 @@ page-community {
       width: 120%;
       color: #292929;
     }
+
+    .android_search{
+      position: absolute;
+      margin-top: -3%;
+      right: 17%;
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+    }
+
+    .android_my{
+      position: absolute;
+      right: 4%;
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: right;
+      color: #292929;
+      margin-top: -2.5%;
+    }
+
+    .ios_search{
+      position: absolute;
+      margin-top: -5%;
+      right: 17%;
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+    }
+
+    .ios_my{
+      position: absolute;
+      right: 4%;
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: right;
+      color: #292929;
+      margin-top: -4.5%;
+    }
+
 
     .segment-md .segment-button.activated, .segment-md .segment-button.segment-activated{
       height: 3rem;
@@ -578,9 +638,43 @@ page-community {
         }
 
 
+        .android_footer_btn{
+          width: 90%;
+          height: 50px;
+          margin: 0 auto;
+          display: block;
+          font-family: NotoSansCJKkr;
+          font-size: 14px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #ffffff;
+          margin-bottom: -20px !important;
+          background-color: #5c59b6;
+          box-shadow: none;
+        }
 
-
-
+        .ios_footer_btn{
+          width: 90%;
+          height: 50px;
+          margin: 0 auto;
+          display: block;
+          font-family: NotoSansCJKkr;
+          font-size: 14px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #ffffff;
+          margin-bottom: -30px !important;
+          background-color: #5c59b6;
+          box-shadow: none;
+        }
 
 
 }

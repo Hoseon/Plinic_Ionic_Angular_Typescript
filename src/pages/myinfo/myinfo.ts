@@ -62,6 +62,7 @@ export class MyinfoPage {
     this.loadimagePath();
     this.loadItems();
     this.loadNotice();
+    console.log("1234");
 
   }
 

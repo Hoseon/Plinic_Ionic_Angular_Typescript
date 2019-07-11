@@ -1,9 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Inject } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Content, ModalController, Slides, Platform  } from 'ionic-angular';
 import { CommunityModifyPage } from './community-modify/community-modify';
 import { CommunityWritePage } from './community-write/community-write';
 import { ImagesProvider } from '../../providers/images/images';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
+import { DOCUMENT } from '@angular/common';
+
 
 /**
  * Generated class for the CommunityPage page.
@@ -42,7 +44,7 @@ export class CommunityPage {
   @ViewChild(Slides) slides: Slides;
 
   constructor(public nav: NavController, public navParams: NavParams, private alertCtrl: AlertController, public modalCtrl: ModalController, private images: ImagesProvider, public platform: Platform
-  , private themeableBrowser: ThemeableBrowser) {
+  , private themeableBrowser: ThemeableBrowser, @Inject(DOCUMENT) document) {
 
 
     this.platform.ready().then((readySource) => {
@@ -56,13 +58,45 @@ export class CommunityPage {
 
   }
 
-selectedTab(tab){
-  this.slides.slideTo(tab);
+  selectedTab(tab){
+    this.slides.slideTo(tab);
+
+    console.log('  this.slides.slideTo(tab)==================='+   this.slides.slideTo(tab));
+  }
+
+  slideChanged($event) {
+    this.page = $event._snapIndex.toString();
+
+    if(this.page==='0'){
+    let tabs = document.querySelectorAll('.tabbar');
+    if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+        tabs[ key ].style.transform = 'translateY(0)';
+        tabs[key].style.display = 'block';
+        tabs[key].style.display = '';
+      });
+    }
+    }else{
+    let tabs = document.querySelectorAll('.tabbar');
+    if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+        //tabs[ key ].style.transform = 'translateY(0)';
+        tabs[key].style.display = 'none';
+      });
+    }
+  }
+      //
+      // document.getElementById("view").style.display = "block";
+      //     document.getElementById("view").style.display = "none";
+
+    if(this.page!=='0' && this.page!=='1'&& this.page!=='2' && this.page!=='3'&& this.page!=='4'){
+      setTimeout(() => {
+      this.slides.slideTo(0, 0);
+  }, 100)
+  }
 }
 
-slideChanged($event) {
-  this.page = $event._snapIndex.toString();
-}
+
 
 
 public roadbeauty() {
