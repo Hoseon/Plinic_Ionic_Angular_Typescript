@@ -124,9 +124,8 @@ export class SkinChartPage {
     this.chartOilData = [];
     this.chartMoistureData = [];
     for (let i = 0; i < this.skinScoreData.score.length; i++) {
-      console.log(this.skinScoreData.score[i].saveDate.indexOf(date));
       if (this.skinScoreData.score[i].saveDate.indexOf(date) !== -1) {
-        this.chartDateData.push(this.skinScoreData.score[i].saveDate.substr(0, 10));
+        this.chartDateData.push(this.skinScoreData.score[i].saveDate.substr(5, 5));
         this.chartOilData.push(this.skinScoreData.score[i].oil);
         this.chartMoistureData.push(this.skinScoreData.score[i].moisture);
       }
@@ -135,10 +134,14 @@ export class SkinChartPage {
     if (this.chartDateData.length > 0) {
       this.lineCanvas.data.labels = this.chartDateData;
       this.lineCanvas2.data.labels = this.chartDateData;
-      this.lineCanvas.data.datasets.data = this.chartMoistureData;
-      this.lineCanvas2.data.datasets.data = this.chartOilData;
+      this.lineCanvas.data.datasets[0].data = this.chartMoistureData;
+      this.lineCanvas2.data.datasets[0].data = this.chartOilData;
       this.lineCanvas.update();
       this.lineCanvas2.update();
+
+      console.log(this.chartDateData);
+      console.log(this.chartMoistureData);
+      console.log(this.chartOilData);
     } else {
       this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
     }
