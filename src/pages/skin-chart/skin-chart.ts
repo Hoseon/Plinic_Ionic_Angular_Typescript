@@ -1,5 +1,5 @@
 import { Component, ViewChild, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { format } from 'date-fns';
 import 'chartjs-plugin-labels';
@@ -70,7 +70,7 @@ export class SkinChartPage {
 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, @Inject(DOCUMENT) document, public auth: AuthService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, @Inject(DOCUMENT) document, public auth: AuthService, public alertCtrl: AlertController) {
     this.segment_moisture = "수분"
 
   }
@@ -116,17 +116,33 @@ export class SkinChartPage {
   }
 
   yearmonthselect(e) {
-    var year = e.substr(0,4);
-    var month = e.substr(5,2);
+    var year = e.substr(0, 4);
+    var month = e.substr(5, 2);
     var date = year + "-" + month;
+    console.log(this.skinScoreData);
+    this.chartDateData = [];
+    this.chartOilData = [];
+    this.chartMoistureData = [];
+    for (let i = 0; i < this.skinScoreData.score.length; i++) {
+      console.log(this.skinScoreData.score[i].saveDate.indexOf(date));
+      if (this.skinScoreData.score[i].saveDate.indexOf(date) !== -1) {
+        this.chartDateData.push(this.skinScoreData.score[i].saveDate.substr(0, 10));
+        this.chartOilData.push(this.skinScoreData.score[i].oil);
+        this.chartMoistureData.push(this.skinScoreData.score[i].moisture);
+      }
+    }
+    console.log("데이터 길이 : " + this.chartDateData.length)
+    if (this.chartDateData.length > 0) {
+      this.lineCanvas.data.labels = this.chartDateData;
+      this.lineCanvas2.data.labels = this.chartDateData;
+      this.lineCanvas.data.datasets.data = this.chartMoistureData;
+      this.lineCanvas2.data.datasets.data = this.chartOilData;
+      this.lineCanvas.update();
+      this.lineCanvas2.update();
+    } else {
+      this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
+    }
 
-    this.auth.getSkinScoreMonth(this.userData.email, date).subscribe(items => {
-      console.log(items);
-    });
-    // this.lineCanvas.reset();
-    // this.lineCanvas.update();
-    // this.lineCanvas2.update();
-    // this.lineCanvas2.update();
     console.log("yearmonthselect===============" + e);
   }
 
@@ -193,22 +209,20 @@ export class SkinChartPage {
       this.auth.getSkinScore(this.userData.email).subscribe(items => {
         this.skinScoreData = items;
         // let array1 = [];
-        for (let i = 0; i < items.score.length; i++ ){
+        for (let i = 0; i < items.score.length; i++) {
           // this.chartDateData.push({date : items.score[i].saveDate.substr(0,10) });
           // this.chartOilData.push({oil : items.score[i].oil});
           // this.chartMoistureData.push({moisture : items.score[i].moisture});
 
           // this.chartDateData2.push({date : items.score[i].saveDate.substr(0,10) });
-          this.chartDateData.push(items.score[i].saveDate.substr(0,10));
+          this.chartDateData.push(items.score[i].saveDate.substr(0, 10));
           this.chartOilData.push(items.score[i].oil);
           this.chartMoistureData.push(items.score[i].moisture);
           // console.log(this.chartDateData);
           // console.log(this.chartOilData);
           // console.log(this.chartMoistureData);
         }
-        console.log(this.chartDateData);
-        console.log(this.chartOilData);
-        console.log(this.chartMoistureData);
+
         // console.log(this.array1);
 
         if (items !== '') {
@@ -242,6 +256,18 @@ export class SkinChartPage {
   public selectclick() {
     console.log('ionViewDidLoad selectclick');
     this.lineChart.update();
+  }
+
+  showAlert(text) {
+    //this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: 'Plinic',
+      message: text,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   ionViewDidEnter() {
@@ -451,6 +477,12 @@ export class SkinChartPage {
         //   }
       }
     });
+
+    ////처음 진입시 현재 월로 조회 되도록
+    this.skinbtnYear = format(new Date(), 'YYYY');
+    this.skinbtnMonth = format(new Date(), 'MM');
+    var e = this.skinbtnYear + "년" + this.skinbtnMonth;
+    this.yearmonthselect(e);
   }
 
 
