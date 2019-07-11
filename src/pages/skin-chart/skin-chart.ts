@@ -146,18 +146,18 @@ export class SkinChartPage {
       this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
     }
 
-    console.log("yearmonthselect===============" + e);
+    // console.log("yearmonthselect===============" + e);
   }
 
   segmentChanged(ev: any) {
     if (ev.value === '수분') {
-      console.log('Segment changed111111111==============', ev.value);
+      // console.log('Segment changed111111111==============', ev.value);
       this.segment_status == true;
       document.getElementById("moisture").style.display = "block";
       document.getElementById("oil").style.display = "none";
     }
     else {
-      console.log('Segment changed2222222222==============', ev.value);
+      // console.log('Segment changed2222222222==============', ev.value);
       this.segment_status == false;
       document.getElementById("oil").style.display = "block";
       document.getElementById("moisture").style.display = "none";
@@ -243,11 +243,11 @@ export class SkinChartPage {
             this.pre_circle_moisture = this.skinScoreData.score[k].moisture;
             this.pre_circle_oil = this.skinScoreData.score[k].oil;
           }
-          console.log("this.circle_moisture" + this.circle_moisture);
+          // console.log("this.circle_moisture" + this.circle_moisture);
 
-          console.log("moisture:::::::" + this.skinScoreData.score[i].moisture);
-          console.log("oil:::::::" + this.skinScoreData.score[i].oil);
-          console.log("oil:::::::" + (parseInt(this.skinScoreData.score.length) - 1));
+          // console.log("moisture:::::::" + this.skinScoreData.score[i].moisture);
+          // console.log("oil:::::::" + this.skinScoreData.score[i].oil);
+          // console.log("oil:::::::" + (parseInt(this.skinScoreData.score.length) - 1));
         }
       });
       // this.profileimg_url = "http://plinic.cafe24app.com/userimages/";

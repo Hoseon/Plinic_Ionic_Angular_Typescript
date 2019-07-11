@@ -101,9 +101,9 @@ export class SkinDiagnoseFirstOilPage {
     if (this.diagnose_score === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("first_range" + range.value);
-    console.log("first_all_oil_score=============" + this.all_oil_score);
-    console.log("first_diagnose_score=============" + this.diagnose_score);
+    // console.log("first_range" + range.value);
+    // console.log("first_all_oil_score=============" + this.all_oil_score);
+    // console.log("first_diagnose_score=============" + this.diagnose_score);
   }
 
   public range_change2(range) {
@@ -116,9 +116,9 @@ export class SkinDiagnoseFirstOilPage {
     if (this.diagnose_score2 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("first_range" + range.value);
-    console.log("first_all_oil_score=============" + this.all_oil_score);
-    console.log("first_diagnose_score2=============" + this.diagnose_score2);
+    // console.log("first_range" + range.value);
+    // console.log("first_all_oil_score=============" + this.all_oil_score);
+    // console.log("first_diagnose_score2=============" + this.diagnose_score2);
   }
 
   public range_change3(range) {
@@ -131,9 +131,9 @@ export class SkinDiagnoseFirstOilPage {
     if (this.diagnose_score3 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("first_range" + range.value);
-    console.log("first_all_score=============" + this.all_oil_score);
-    console.log("first_diagnose_score3=============" + this.diagnose_score3);
+    // console.log("first_range" + range.value);
+    // console.log("first_all_score=============" + this.all_oil_score);
+    // console.log("first_diagnose_score3=============" + this.diagnose_score3);
   }
 
   public range_change4(range) {
@@ -146,9 +146,9 @@ export class SkinDiagnoseFirstOilPage {
     if (this.diagnose_score4 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("first_range" + range.value);
-    console.log("first_all_score=============" + this.all_oil_score);
-    console.log("first_diagnose_score4=============" + this.diagnose_score4);
+    // console.log("first_range" + range.value);
+    // console.log("first_all_score=============" + this.all_oil_score);
+    // console.log("first_diagnose_score4=============" + this.diagnose_score4);
   }
 
   public range_change5(range) {
@@ -161,9 +161,9 @@ export class SkinDiagnoseFirstOilPage {
     if (this.diagnose_score5 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("first_range" + range.value);
-    console.log("first_all_score=============" + this.all_oil_score);
-    console.log("first_diagnose_score5=============" + this.diagnose_score5);
+    // console.log("first_range" + range.value);
+    // console.log("first_all_score=============" + this.all_oil_score);
+    // console.log("first_diagnose_score5=============" + this.diagnose_score5);
   }
 
 
@@ -208,9 +208,9 @@ export class SkinDiagnoseFirstOilPage {
           toast.present();
         }
         this.navCtrl.setRoot(TabsPage);
-        console.log("데이터 등록 성공");
+        // console.log("데이터 등록 성공");
       } else {
-        console.log("데이터 등록 실패");
+        // console.log("데이터 등록 실패");
         this.navCtrl.setRoot(TabsPage);
       }
     })

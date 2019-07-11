@@ -109,9 +109,9 @@ export class SkinDiagnoseOilPage {
     if (this.diagnose_score === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("range" + range.value);
-    console.log("this.all_oil_score=============" + this.all_oil_score);
-    console.log("this.diagnose_score=============" + this.diagnose_score);
+    // console.log("range" + range.value);
+    // console.log("this.all_oil_score=============" + this.all_oil_score);
+    // console.log("this.diagnose_score=============" + this.diagnose_score);
   }
 
   public range_change2(range) {
@@ -124,9 +124,9 @@ export class SkinDiagnoseOilPage {
     if (this.diagnose_score2 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("range" + range.value);
-    console.log("this.all_oil_score=============" + this.all_oil_score);
-    console.log("this.diagnose_score2=============" + this.diagnose_score2);
+    // console.log("range" + range.value);
+    // console.log("this.all_oil_score=============" + this.all_oil_score);
+    // console.log("this.diagnose_score2=============" + this.diagnose_score2);
   }
 
   public range_change3(range) {
@@ -139,9 +139,9 @@ export class SkinDiagnoseOilPage {
     if (this.diagnose_score3 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("range" + range.value);
-    console.log("this.all_score=============" + this.all_oil_score);
-    console.log("this.diagnose_score3=============" + this.diagnose_score3);
+    // console.log("range" + range.value);
+    // console.log("this.all_score=============" + this.all_oil_score);
+    // console.log("this.diagnose_score3=============" + this.diagnose_score3);
   }
 
   public range_change4(range) {
@@ -154,9 +154,9 @@ export class SkinDiagnoseOilPage {
     if (this.diagnose_score4 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("range" + range.value);
-    console.log("this.all_score=============" + this.all_oil_score);
-    console.log("this.diagnose_score4=============" + this.diagnose_score4);
+    // console.log("range" + range.value);
+    // console.log("this.all_score=============" + this.all_oil_score);
+    // console.log("this.diagnose_score4=============" + this.diagnose_score4);
   }
 
   public range_change5(range) {
@@ -169,9 +169,9 @@ export class SkinDiagnoseOilPage {
     if (this.diagnose_score5 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("range" + range.value);
-    console.log("this.all_score=============" + this.all_oil_score);
-    console.log("this.diagnose_score5=============" + this.diagnose_score5);
+    // console.log("range" + range.value);
+    // console.log("this.all_score=============" + this.all_oil_score);
+    // console.log("this.diagnose_score5=============" + this.diagnose_score5);
   }
 
   public range_change6(range) {
@@ -184,9 +184,9 @@ export class SkinDiagnoseOilPage {
     if (this.diagnose_score6 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("range" + range.value);
-    console.log("this.all_oil_score=============" + this.all_oil_score);
-    console.log("this.diagnose_score6=============" + this.diagnose_score6);
+    // console.log("range" + range.value);
+    // console.log("this.all_oil_score=============" + this.all_oil_score);
+    // console.log("this.diagnose_score6=============" + this.diagnose_score6);
   }
   public range_change7(range) {
     if (this.diagnose_score7 === 1) {
@@ -198,9 +198,9 @@ export class SkinDiagnoseOilPage {
     if (this.diagnose_score7 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("range" + range.value);
-    console.log("this.all_oil_score=============" + this.all_oil_score);
-    console.log("this.diagnose_score7=============" + this.diagnose_score7);
+    // console.log("range" + range.value);
+    // console.log("this.all_oil_score=============" + this.all_oil_score);
+    // console.log("this.diagnose_score7=============" + this.diagnose_score7);
   }
 
 
@@ -214,9 +214,9 @@ export class SkinDiagnoseOilPage {
     if (this.diagnose_score8 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("range" + range.value);
-    console.log("this.all_oil_score=============" + this.all_oil_score);
-    console.log("this.diagnose_score8=============" + this.diagnose_score8);
+    // console.log("range" + range.value);
+    // console.log("this.all_oil_score=============" + this.all_oil_score);
+    // console.log("this.diagnose_score8=============" + this.diagnose_score8);
   }
 
   public range_change9(range) {
@@ -229,9 +229,9 @@ export class SkinDiagnoseOilPage {
     if (this.diagnose_score9 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("range" + range.value);
-    console.log("this.all_oil_score=============" + this.all_oil_score);
-    console.log("this.diagnose_score9=============" + this.diagnose_score9);
+    // console.log("range" + range.value);
+    // console.log("this.all_oil_score=============" + this.all_oil_score);
+    // console.log("this.diagnose_score9=============" + this.diagnose_score9);
   }
 
   public range_change10(range) {
@@ -244,9 +244,9 @@ export class SkinDiagnoseOilPage {
     if (this.diagnose_score10 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("range" + range.value);
-    console.log("this.all_oil_score=============" + this.all_oil_score);
-    console.log("this.diagnose_score10=============" + this.diagnose_score10);
+    // console.log("range" + range.value);
+    // console.log("this.all_oil_score=============" + this.all_oil_score);
+    // console.log("this.diagnose_score10=============" + this.diagnose_score10);
   }
 
   public range_change11(range) {
@@ -259,9 +259,9 @@ export class SkinDiagnoseOilPage {
     if (this.diagnose_score11 === 3) {
       this.all_oil_score = this.all_oil_score + 1;
     }
-    console.log("range" + range.value);
-    console.log("this.all_oil_score=============" + this.all_oil_score);
-    console.log("this.diagnose_score11=============" + this.diagnose_score11);
+    // console.log("range" + range.value);
+    // console.log("this.all_oil_score=============" + this.all_oil_score);
+    // console.log("this.diagnose_score11=============" + this.diagnose_score11);
   }
 
 
