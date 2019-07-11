@@ -227,10 +227,14 @@ page-community-write {
     line-height: normal;
     letter-spacing: normal;
     color: #292929;
+    overflow-y: visible !important;
   }
 
+
+
+
+
    .qna_input{
-    height: 200px;
     font-family: NotoSansCJKkr;
     font-size: 15px;
     font-weight: normal;
@@ -242,6 +246,12 @@ page-community-write {
     transform: translateY(0%) !important;
     transition-duration: 0ms !important;
     transition-delay: 0ms !important;
+    overflow-y: visible !important;
+
+    .text-input{
+      height: 300px;
+      }
+
    }
 
 
