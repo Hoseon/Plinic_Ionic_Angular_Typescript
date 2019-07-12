@@ -5,10 +5,10 @@ import { AddinfoPage } from './addinfo';
 
 @NgModule({
   declarations: [
-    AddinfoPage,
+    // AddinfoPage,
   ],
   imports: [
-    IonicPageModule.forChild(AddinfoPage),
+    // IonicPageModule.forChild(AddinfoPage),
   ],
 })
 export class AddinfoPageModule {}

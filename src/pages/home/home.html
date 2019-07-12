@@ -97,7 +97,7 @@
 
     <ion-item *ngIf="pre_total_score>=0 || total_score>=0" style="margin:0 auto" no-lines>
       <ion-grid *ngIf="(!skin_diagnose_first_check) || (skin_diagnose_first_check && all_oil_score==='')" class="griddata">
-        <ion-row *ngIf="skin_diagnose_first_check">
+        <!-- <ion-row *ngIf="skin_diagnose_first_check">
          <ion-col class="data1">{{all_first_moisture_score}}점</ion-col>
          <ion-col class="data2">수분</ion-col>
          <ion-col class="data3">{{all_first_moisture_score}}점</ion-col>
@@ -106,7 +106,7 @@
          <ion-col class="data1">{{all_first_oil_score}}점</ion-col>
          <ion-col class="data2">유분</ion-col>
          <ion-col class="data3">{{all_first_oil_score}}점</ion-col>
-       </ion-row>
+       </ion-row> -->
       </ion-grid><br>
 
       <ion-grid *ngIf="circle_moisture" class="griddata">
@@ -131,7 +131,7 @@
       <ion-col style="text-align: center">
         <button ion-button class="skin_btn" (click)="skin_measure()">피부 측정하기 >  </button>
         <button ion-button class="skin_btn_2" (click)="openBasicModal()">피부 정밀 측정하기 >  </button>
-        <button ion-button  *ngIf="all_first_total_score>0 || all_total_score>0" class="detail_btn" (click)="skin_chart()">자세히 보기 >  </button>
+        <button ion-button  *ngIf="all_first_total_score>= 0 || all_total_score>=0" class="detail_btn" (click)="skin_chart()">자세히 보기 >  </button>
       </ion-col>
     </ion-row>
   </ion-list>
