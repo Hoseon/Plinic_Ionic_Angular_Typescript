@@ -658,6 +658,9 @@ page-community {
         }
 
         .ios_footer_btn{
+          position: fixed;
+          left : 0;
+          right : 0;
           width: 90%;
           height: 50px;
           margin: 0 auto;

@@ -32,7 +32,7 @@
 
   </ion-navbar>
 
-  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
     <ion-buttons left no-lines>
       <button ion-button navPop icon-only>
         <!-- <img no-lines class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/> -->
@@ -608,7 +608,7 @@
       <button mode="ios" *ngIf="page==='3'" ion-button class="android_footer_btn" (click)="community_write()" > 고민 상담받기 > </button>
 </ion-footer>
 
-<ion-footer *ngIf="platform.is('ios')">
+<ion-footer keyboard-attach no-bounce no-lines *ngIf="platform.is('ios') || platform.is('core')">
       <button mode="ios" *ngIf="page==='2'" ion-button class="ios_footer_btn" (click)="community_write()" > 노트 작성하기 > </button>
       <button mode="ios" *ngIf="page==='3'" ion-button class="ios_footer_btn" (click)="community_write()" > 고민 상담받기 > </button>
 </ion-footer>
