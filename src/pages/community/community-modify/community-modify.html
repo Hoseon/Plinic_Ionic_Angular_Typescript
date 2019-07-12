@@ -1,41 +1,82 @@
-<!--
-  Generated template for the CommunityModifyPage page.
+<ion-header>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header no-lines>
+ <ion-navbar *ngIf="platform.is('android')" no-lines>
+   <ion-buttons left no-lines>
+     <button ion-button navPop icon-only>
+         <img no-lines class="android_nav" src="./assets/img/beauty/ic-system-close-black@3x.png"/>
+     </button>
+   </ion-buttons>
+   <!-- 글 쓰기일 떄 타이틀 -->
+   <ion-title class="android_title" text-wrap>피부고민</ion-title>
 
-  <ion-navbar  *ngIf="platform.is('android')" no-lines>
-    <ion-buttons left no-lines>
-      <button ion-button navPop icon-only>
-        <img no-lines class="ios_nav"src="assets/img/ic-system-close-black/ic-system-close-black@3x.png"/>
-      </button>
-    </ion-buttons>
-    <ion-title class="android_title" text-wrap >글쓰기</ion-title>
-  </ion-navbar>
+   <button ion-button style="color: #5c59b6;" class="android_entroll_btn" >수정 </button>
+ </ion-navbar>
 
-  <ion-navbar *ngIf="platform.is('ios')" no-lines>
-  	<ion-buttons left no-lines>
-  		<button ion-button navPop icon-only>
-        <img no-lines class="ios_nav"src="assets/img/ic-system-close-black/ic-system-close-black@3x.png"/>
-  		</button>
-  	</ion-buttons>
-    <ion-title class="ios_title" text-wrap> 글쓰기</ion-title>
-  </ion-navbar>
+ <ion-navbar *ngIf="platform.is('ios')" no-lines>
+   <ion-buttons left no-lines>
+     <button ion-button navPop icon-only>
+         <img no-lines class="ios_nav" src="./assets/img/beauty/ic-system-close-black@3x.png"/>
+     </button>
+   </ion-buttons>
+   <ion-title class="ios_title" text-wrap>피부고민</ion-title>
+   <button ion-button style="color: #5c59b6;" class="ios_entroll_btn" >수정 </button>
+ </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content no-padding>
 
 
 
-  <!-- <ng-adsense
-    [adClient]="'ca-app-pub-3940256099942544/6300978111'"
-    [adSlot]="7259870550"
-    [display]="'inline-block'"
-    [width]="320"
-    [height]="108">
-  </ng-adsense> -->
+  <ion-item no-lines>
+  <ion-input class="qna_title" placeholder="제목" value="피부고민" readonly></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+  <ion-textarea readonly autoGrow="true" class="qna_input" placeholder="내용을 입력해주세요." value="안녕하세요. 사춘기 때도 잘 나지 않던 여드름이 몇 년 동안 저를 괴롭히고 있어요.
+  한동안 잠잠하다가도 생리 전에는 어김없이 입가를 중심으로 여드름이 돋는데요. 여드름을 잡는 방법과 이미 생긴 흉터를 없애는 길을 알려주세요." ></ion-textarea>
+  </ion-item>
+
+
+  <!-- 첨부 이미지 영역 -->
+  <!-- <img *ngIf="image_enroll" class="attache_image" src="./assets/img/home/carezone3.png"/> -->
+  <img class="attache_image" src="./assets/img/home/carezone3.png"/>
+
+
+  <ion-row class="file_image_row">
+  <ion-col><img class="file_image" src="./assets/img/beauty/ic-system-file-purple@3x.png"/></ion-col>
+  <ion-col class="file_path">image.flaticon.com/12312 …/34735.jpg</ion-col>
+  </ion-row>
+
+   <!-- 태그 배치 for -->
+   <button ion-button class="community_tag_btn">피부트러블</button>
+   <button ion-button class="community_tag_btn">피부트러블</button>
+   <button ion-button class="community_tag_btn">피부트러블</button>
+   <button ion-button class="community_tag_btn">피부트러블</button>
+
+  <ion-list no-lines>
+   <ion-item>
+      <ion-grid>
+            <ion-row class="sns_row">
+                <ion-col><img class="sns-img"src="./assets/img/care-zone/sns/ic-sns-kakao@3x.png"/>
+                <ion-col><img class="sns-img" src="./assets/img/care-zone/sns/ic-sns-fb@3x.png"/>
+                <ion-col><img class="sns-img" src="./assets/img/care-zone/sns/ic-sns-band@3x.png"/></ion-col></ion-col></ion-col>
+            </ion-row>
+       </ion-grid>
+   </ion-item>
+
+  </ion-list>
+
+  <!-- 광고 -->
+   <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
+   <img class="beauty_ad_img" src="./assets/img/beauty/beauty_ad.JPG" />
+   <div style="height:8px; width:100%; margin-top:-0.5%; background-color:#f1f1f1"></div>
+
+    <ion-item no-lines>
+    <ion-col><img class="file_image" src="./assets/img/beauty/ic-system-profile-default@3x.png"/>
+    <ion-textarea class="qna_input" placeholder="내용을 입력해주세요." ></ion-textarea></ion-col>
+    </ion-item>
+
+
 
 
 </ion-content>
