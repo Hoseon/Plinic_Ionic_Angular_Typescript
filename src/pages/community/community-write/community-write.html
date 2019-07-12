@@ -43,6 +43,7 @@
 
 <ion-content padding>
 
+  <!-- 옵션 미지정 추후변경-->
   <ion-item>
   <ion-select class="qna_select" mode="ios" placeholder="문의사항을 선택하세요.">
   <ion-option value="배송문의">배송문의</ion-option>
@@ -71,10 +72,13 @@
 
 <ion-footer padding>
 
+  <ion-item>
   <ion-input class="community_tag" placeholder="#태그를 입력하세요. (최대 10개)"></ion-input>
-
+  </ion-item>
   <!-- 이미지 등록시 파일명 -->
-  <ion-input *ngIf="image_enroll" mode="ios" class="community_attache_image" placeholder="이미지 네임영역" clearInput></ion-input>
+  <ion-item *ngIf="image_enroll">
+  <ion-input  mode="ios" class="community_attache_image" placeholder="이미지 네임영역" clearInput></ion-input>
+  </ion-item>
 
   <img class="community_attache_camera" src="./assets/img/beauty/ic-system-camera@3x.png">
 

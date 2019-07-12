@@ -61,7 +61,7 @@ page-community-write {
     width: 25px !important;
     height: 25px !important;
     object-fit: contain;
-    margin-right: -150%;
+    margin-right: -50%;
     margin-top: -50%;
   }
 
@@ -70,6 +70,7 @@ page-community-write {
     width: 50px !important;
     height: 25px !important;
     object-fit: contain;
+    margin-left: -26%;
   }
 
    .toolbar-ios{
@@ -165,13 +166,14 @@ page-community-write {
 
   .scroll-content{
    margin-bottom: 10px !important;
+   padding-top: 0px !important;
    overflow: hidden;
   }
 
   .android_entroll_btn{
     position: absolute;
     top: 10%;
-    right: 5%;
+    right: 0%;
     font-family: NotoSansCJKkr;
     font-size: 17px;
     font-weight: bold;
@@ -189,7 +191,7 @@ page-community-write {
   .ios_entroll_btn{
     position: absolute;
     top: -30%;
-    right: 5%;
+    right: 0%;
     font-family: NotoSansCJKkr;
     font-size: 17px;
     font-weight: bold;
@@ -215,8 +217,19 @@ page-community-write {
     line-height: normal;
     letter-spacing: normal;
     color: #292929;
-    margin-top: 2%;
+    // margin-top: 2%;
+    padding-top: 18px;
   }
+
+  .select-ios .select-icon{
+    position: absolute;
+    right: -1%;
+  }
+  .select-md .select-icon{
+    position: absolute;
+    right: -1%;
+  }
+
 
   .qna_title{
     font-family: NotoSansCJKkr;
@@ -228,6 +241,8 @@ page-community-write {
     letter-spacing: normal;
     color: #292929;
     overflow-y: visible !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 
 
@@ -264,6 +279,8 @@ page-community-write {
     line-height: normal;
     letter-spacing: normal;
     color: #5c59b6;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 
   .community_attache_image{
@@ -290,7 +307,8 @@ page-community-write {
     width: 25px;
     height: 25px;
     object-fit: contain;
-    margin-top: 0px;
+    margin-top: 10px;
+    margin-bottom: 5px;
   }
 
   .community_attache_file{
@@ -299,7 +317,8 @@ page-community-write {
     width: 25px;
     height: 25px;
     object-fit: contain;
-    margin-top: 0px;
+    margin-top: 10px;
+    margin-bottom: 5px;
   }
 
   ion-footer{
