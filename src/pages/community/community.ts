@@ -101,8 +101,6 @@ export class CommunityPage {
 }
 
 
-
-
 public roadbeauty() {
   this.images.mainbeautyRoad().subscribe(data => {
     this.beauty_data_type1 = data[0].title;
@@ -199,6 +197,14 @@ public roadbeauty() {
         showPageTitle: false,
         staticText: title
       },
+      customButtons: [
+        {
+          wwwImage: 'assets/img/like/like.png',
+          imagePressed: 'assets/img/like/dislike.png',
+          align: 'right',
+          event: 'sharePressed'
+        }
+      ],
     };
 
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);

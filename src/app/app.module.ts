@@ -67,7 +67,7 @@ import { CareZoneMissionCompletePage } from '../pages/care-zone-mission-complete
 // //커뮤니티
 // import { CommunityPage } from '../pages/community/community';
 // import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
-// import { CommunityWritePage } from '../pages/community/community-write/community-write';
+import { CommunityWritePage } from '../pages/community/community-write/community-write';
 // //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 //
 // //미션 시작하기
@@ -133,7 +133,7 @@ import { BeautyTipAddPageModule } from '../pages/beauty-tip-add/beauty-tip-add.m
 // //커뮤니티
 import { CommunityPageModule } from '../pages/community/community.module';
 import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
-import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
+//import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
 //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 //
 // //미션 시작하기
@@ -199,6 +199,9 @@ import { SkinDiagnoseFirstMoisturePageModule } from '../pages/skin-diagnose-firs
 import { SkinDiagnoseFirstOilPageModule } from '../pages/skin-diagnose-first-oil/skin-diagnose-first-oil.module';
 
 
+//태그
+import {IonTagsInputModule} from "ionic-tags-input";
+
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -258,7 +261,7 @@ export function getAuthHttp(http, storage) {
     // QnaWritePage,
     // CommunityPage,
     // CommunityModifyPage,
-    // CommunityWritePage,
+    CommunityWritePage,
     // MissionStartPage,
     // MissionVideoPage,
     // QnaReadPage,
@@ -308,7 +311,7 @@ export function getAuthHttp(http, storage) {
     BeautyTipAddPageModule,
     CommunityPageModule,
     CommunityModifyPageModule,
-    CommunityWritePageModule,
+    //CommunityWritePageModule,
     MissionStartPageModule,
     MissionVideoPageModule,
     BrowserAnimationsModule,
@@ -325,6 +328,7 @@ export function getAuthHttp(http, storage) {
     IonicImageLoader.forRoot(),
     SelectSearchableModule,
     NgCircleProgressModule.forRoot(),
+    IonTagsInputModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
@@ -379,7 +383,7 @@ export function getAuthHttp(http, storage) {
     // QnaWritePage,
     // CommunityPage,
     // CommunityModifyPage,
-    // CommunityWritePage,
+    CommunityWritePage,
     // MissionStartPage,
     // MissionVideoPage,
     // QnaReadPage,

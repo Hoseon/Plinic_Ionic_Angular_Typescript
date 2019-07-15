@@ -4,7 +4,7 @@
 
   <ion-navbar *ngIf="platform.is('android')" no-lines>
   	<ion-buttons left no-lines>
-  		<button ion-button navPop icon-only>
+  		<button ion-button navPop icon-only (click)="dissmiss();" >
           <img no-lines class="android_nav" src="./assets/img/beauty/ic-system-close-black@3x.png"/>
   		</button>
   	</ion-buttons>
@@ -22,7 +22,7 @@
 
   <ion-navbar *ngIf="platform.is('ios')" no-lines>
   	<ion-buttons left no-lines>
-  		<button ion-button navPop icon-only>
+  		<button ion-button navPop icon-only (click)="dissmiss();">
           <img no-lines class="ios_nav" src="./assets/img/beauty/ic-system-close-black@3x.png"/>
   		</button>
   	</ion-buttons>
@@ -41,7 +41,7 @@
 
 
 
-<ion-content padding>
+<ion-content no-bounce padding>
 
   <!-- 옵션 미지정 추후변경-->
   <ion-item>
@@ -59,12 +59,17 @@
   <ion-input class="qna_title" placeholder="제목"></ion-input>
   </ion-item>
 
+
+
+<!-- <div class="container" > -->
+
   <ion-item no-lines>
-  <ion-textarea class="qna_input" placeholder="내용을 입력해주세요." ></ion-textarea>
+  <ion-textarea no-lines class="qna_input" placeholder="내용을 입력해주세요." (ionFocus)="attache_image_hide()" (ionBlur)="attache_image_view()"></ion-textarea>
   </ion-item>
+  <img id="attache_image" class="attache_image" src="./assets/img/home/carezone3.png"/>
 
   <!-- 첨부 이미지 영역 -->
-  <img *ngIf="image_enroll" class="attache_image" src="./assets/img/home/carezone3.png"/>
+  <!-- <img *ngIf="image_enroll" class="attache_image" src="./assets/img/home/carezone3.png"/> -->
 
 
 </ion-content>
@@ -73,10 +78,12 @@
 <ion-footer padding>
 
   <ion-item>
-  <ion-input class="community_tag" placeholder="#태그를 입력하세요. (최대 10개)"></ion-input>
+  <ion-tags-input [(ngModel)]="tags" maxTags="10" (onChange)="onChange($event)" placeholder="#태그를 입력하세요. (최대 10개) (좌우 스크롤)"></ion-tags-input>
   </ion-item>
+
+
   <!-- 이미지 등록시 파일명 -->
-  <ion-item *ngIf="image_enroll">
+  <ion-item >
   <ion-input  mode="ios" class="community_attache_image" placeholder="이미지 네임영역" clearInput></ion-input>
   </ion-item>
 

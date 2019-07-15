@@ -1,14 +1,14 @@
 page-community-write {
 
   .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
-    height: 1px;
+    height: 0px;
     margin-bottom: 5px;
   }
   .item-md.item-block .item-inner{
     padding-right: 12px;
   }
   .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
-    height: 1px;
+    height: 0px;
     margin-bottom: 5px;
   }
 
@@ -150,11 +150,7 @@ page-community-write {
     padding-right: 0px;
   }
 
-  .scroll-content{
-   margin-bottom: 10px !important;
-   padding-top: 0px !important;
-   overflow: hidden;
-  }
+
 
   .android_entroll_btn{
     position: absolute;
@@ -232,10 +228,53 @@ page-community-write {
   }
 
 
+    .text_scroll{
+
+      height: 100%;
+    }
 
 
+    .container {
+      position: relative;
+      width: 100%;
+      height: 20vh;
+      // overflow: scroll;
+      // overflow-y: scroll;
+    }
+
+    .scroll-content{
+     overflow: scroll;
+    }
+
+    .container .attache_image {
+      position: absolute;
+      bottom: -180%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      width: 91%;
+      height: 193px;
+      border-radius: 5px;
+      background-color: #f5f5f5;
+    }
+
+    .attache_image{
+      width: 91%;
+      height: 193px;
+      border-radius: 5px;
+      margin: 0 auto;
+      margin-top: 3vh;
+      margin-left: 2vh;
+      // display: inline;
+      // vertical-align:text-bottom;
+    }
 
    .qna_input{
+    margin-top: 3%;
     font-family: NotoSansCJKkr;
     font-size: 15px;
     font-weight: normal;
@@ -244,19 +283,92 @@ page-community-write {
     line-height: normal;
     letter-spacing: normal;
     color: #292929;
-    transform: translateY(0%) !important;
-    transition-duration: 0ms !important;
-    transition-delay: 0ms !important;
-    overflow-y: visible !important;
-
     .text-input{
-      height: 200px;
+        height: 35vh;
       }
-
    }
 
+   .label-md{
+    //height: 32px;
+    margin: 0px;
+    margin-bottom: 10%;
+    overflow: scroll;
+   }
 
-  .community_tag{
+   .label-ios{
+     //height: 32px;
+     margin: 0px;
+     margin-bottom: 10%;
+     overflow: scroll;
+   }
+
+   ::-webkit-input-placeholder {
+    color: #5c59b6;
+   }
+
+  .ion-tags-input{
+    border-bottom: 0px !important;
+    padding: 0px !important;
+    display: contents !important;
+  }
+
+  .iti-tag:before {
+    content: "#";
+    letter-spacing: -3px;
+  }
+
+   .iti-input{
+    width: 100% !important;
+    font-family: NotoSansCJKkr !important;
+    font-size: 14px !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    font-stretch: normal !important;
+    line-height: normal !important;
+    letter-spacing: normal !important;
+    background-color: #FFF !important;
+    position: absolute;
+    padding: 0px !important;
+    bottom: 5%;
+    left: 0%;
+  }
+
+.text-input-ios{
+  margin: 0px;
+}
+
+.text-input-md{
+  margin: 0px;
+}
+  .iti-tag{
+    width: 100% !important;
+    display: contents !important;
+    font-family: NotoSansCJKkr !important;
+    font-size: 14px !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    font-stretch: normal !important;
+    line-height: normal !important;
+    letter-spacing: normal !important;
+    color: #5c59b6 !important;
+    background-color: #FFF !important;
+    border-radius: 3px !important;
+    max-height: 38px !important;
+    border: solid 1px #f1f1f1 !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    padding-left: 10px !important;
+    border-bottom: 0px !important;
+  }
+  .ion-tags-input.active{
+  border-bottom-color: transparent;
+  padding-left: 10px;
+  margin-right: 10px;
+  }
+
+
+  .ion-tags-input a.iti-tag-rm::before{
+    color: #292929;
     font-family: NotoSansCJKkr;
     font-size: 14px;
     font-weight: normal;
@@ -264,13 +376,10 @@ page-community-write {
     font-stretch: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: #5c59b6;
-    padding-top: 5px;
-    padding-bottom: 5px;
   }
 
+
   .community_attache_image{
-    width: 208px;
     height: 16.5px;
     font-family: Roboto;
     font-size: 14px;
@@ -281,11 +390,6 @@ page-community-write {
     letter-spacing: normal;
     color: #5c59b6;
    }
-
-  .attache_image{
-    width: 97%;
-    height: 194px;
-  }
 
   .community_attache_camera{
     margin: 15px;

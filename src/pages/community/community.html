@@ -491,7 +491,7 @@
       <button mode="ios" *ngIf="page==='3'" ion-button class="android_footer_btn" (click)="community_write()" > 고민 상담받기 > </button>
 </ion-footer>
 
-<ion-footer keyboard-attach no-bounce no-lines *ngIf="platform.is('ios') || platform.is('core')">
+<ion-footer keyboard-attach no-bounce no-lines *ngIf="platform.is('ios')">
       <button mode="ios" *ngIf="page==='2'" ion-button class="ios_footer_btn" (click)="community_write()" > 노트 작성하기 > </button>
       <button mode="ios" *ngIf="page==='3'" ion-button class="ios_footer_btn" (click)="community_write()" > 고민 상담받기 > </button>
 </ion-footer>
