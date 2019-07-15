@@ -4,7 +4,7 @@
 
   <ion-navbar *ngIf="platform.is('android')" no-lines>
   	<ion-buttons left no-lines>
-  		<button ion-button navPop icon-only (click)="dissmiss();" >
+  		<button ion-button icon-only (click)="dissmiss();" >
           <img no-lines class="android_nav" src="./assets/img/beauty/ic-system-close-black@3x.png"/>
   		</button>
   	</ion-buttons>
@@ -22,7 +22,7 @@
 
   <ion-navbar *ngIf="platform.is('ios')" no-lines>
   	<ion-buttons left no-lines>
-  		<button ion-button navPop icon-only (click)="dissmiss();">
+  		<button ion-button icon-only (click)="dissmiss();">
           <img no-lines class="ios_nav" src="./assets/img/beauty/ic-system-close-black@3x.png"/>
   		</button>
   	</ion-buttons>

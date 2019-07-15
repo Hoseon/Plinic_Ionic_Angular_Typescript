@@ -29,34 +29,34 @@ export class CommunityWritePage {
 
       if (activeView != null) {
         if (this.nav.canGoBack()) { // CHECK IF THE USER IS IN THE ROOT PAGE.
-          this.nav.pop(); // IF IT'S NOT THE ROOT, POP A PAGE.
+          //this.nav.pop(); // IF IT'S NOT THE ROOT, POP A PAGE.
         }
         else if (activeView.isOverlay) {
-          activeView.dismiss();
+          //activeView.dismiss();
         }
         else {
-          //backgroundMode.moveToBackground();
-          // let alert = this.alertCtrl.create({
-          //   cssClass: 'push_alert_cancel',
-          //   title: "plinic",
-          //   message: "글쓰기 작성을 취소하시겠습니까?",
-          //   buttons: [
-          //     {
-          //       text: '취소',
-          //       role: 'cancel',
-          //       handler: () => {
-          //         console.log('취소');
-          //       }
-          //     },
-          //     {
-          //       text: '확인',
-          //       handler: () => {
-          //         console.log('확인'),
-          //           this.viewCtrl.dismiss();
-          //       }
-          //     }]
-          // });
-          // alert.present();
+          backgroundMode.moveToBackground();
+          let alert = this.alertCtrl.create({
+            cssClass: 'push_alert_cancel',
+            title: "plinic",
+            message: "글쓰기 작성을 취소하시겠습니까?",
+            buttons: [
+              {
+                text: '취소',
+                role: 'cancel',
+                handler: () => {
+                  console.log('취소');
+                }
+              },
+              {
+                text: '확인',
+                handler: () => {
+                  console.log('확인'),
+                    this.viewCtrl.dismiss();
+                }
+              }]
+          });
+          alert.present();
         }
       }
     });
