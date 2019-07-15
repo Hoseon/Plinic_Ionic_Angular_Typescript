@@ -199,7 +199,6 @@ import { SkinDiagnoseFirstMoisturePageModule } from '../pages/skin-diagnose-firs
 import { SkinDiagnoseFirstOilPageModule } from '../pages/skin-diagnose-first-oil/skin-diagnose-first-oil.module';
 
 
-
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
     headerPrefix: '',
@@ -337,6 +336,7 @@ export function getAuthHttp(http, storage) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    // TextComponent,
     // LoginPage,
     // LoginpagePage,
     // PasswordfindPage,
