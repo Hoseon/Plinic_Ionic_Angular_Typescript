@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ViewController, ActionSheetController, normalizeURL } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ViewController, ActionSheetController, AlertController, normalizeURL } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AuthService } from '../../../providers/auth-service';
 import { ImagesProvider } from '../../../providers/images/images';
 import { FormControl, FormBuilder, FormGroup } from "@angular/forms";
+import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+
 
 /**
  * Generated class for the CommunityWritePage page.
@@ -25,17 +27,54 @@ export class CommunityWritePage {
   imagePath: any;
   imagePath2: any;
   item: FormControl;
+  note = { select: '', title: '', contents: '', tags: [], id: '' };
+  userData: any;
+  jwtHelper: JwtHelper = new JwtHelper();
+  mode: any;
 
-  constructor(private formBuilder: FormBuilder, private auth: AuthService, private actionSheetCtrl: ActionSheetController, private imagesProvider: ImagesProvider, private _camera: Camera, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController) {
+  topics = [];
+  name: string;
+  talks = [];
+  preparedTags = [];
+  skinQna: boolean = false;
+  // ,preparedTags = [
+  //   '#Ionic',
+  //   '#Angular',
+  //   '#Javascript',
+  //   '#Mobile',
+  //   '#Hybrid',
+  //   '#CrossPlatform'
+  // ]
+
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private auth: AuthService, private actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController, private imagesProvider: ImagesProvider, private _camera: Camera, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController) {
+    if (this.navParams.get('qna')) {
+      this.skinQna = true;
+    }
   }
+
+  topic() {
+    console.log(this.topics);
+  }
+
+  addTalk() {
+    this.talks.push({ name: this.name, topics: this.topics });
+  }
+
 
   ionViewWillLoad() {
     this.item = this.formBuilder.control('');
-    console.log("rich");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommunityWritePage');
+  }
+
+  ionViewCanEnter() {
+    this.loadItems();
+    this.getHashTags();
   }
 
 
@@ -116,6 +155,157 @@ export class CommunityWritePage {
     });
   }
 
+  public loadItems() {
+    this.auth.getUserStorage().then(items => {
+
+      if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: items.email,
+          gender: items.gender,
+          nickname: items.nickname,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+        };
+      } else {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: this.jwtHelper.decodeToken(items).email,
+          gender: items.gender,
+          nickname: this.jwtHelper.decodeToken(items).name,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+        };
+        // console.log(this.userData);
+      }
+    });
+  }
+
+  registerNote() {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "글 작성",
+      message: "글쓰기 작성을 완료 하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            if (this.mode === true) {
+              // this.note.id = this.id;
+              // console.log("update Id :" + this.id);
+              this.auth.noteSave(this.userData.email, this.note).subscribe(data => {
+                if (data !== "") {
+                  let alert2 = this.alertCtrl.create({
+                    cssClass: 'push_alert',
+                    title: '글 작성',
+                    message: "글쓰기가 정상적으로 수정 되었습니다.",
+                    buttons: [
+                      {
+                        text: '확인',
+                        handler: () => {
+                          this.navCtrl.pop();
+                        }
+                      }
+                    ]
+                  });
+                  alert2.present();
+                }
+                // this.nav.push(CareZoneMissionIngPage, { _id: id });
+              }, error => {
+                this.showError(JSON.parse(error._body).msg);
+              });
+
+            } else {
+              if (this.skinQna) {
+                this.auth.communitySkinQnaSave(this.userData.email, this.note).subscribe(data => {
+                  if (data !== "") {
+                    let alert2 = this.alertCtrl.create({
+                      cssClass: 'push_alert',
+                      title: '글 작성',
+                      message: "글 작성이 정상적으로 등록 되었습니다.",
+                      buttons: [
+                        {
+                          text: '확인',
+                          handler: () => {
+                            this.navCtrl.pop();
+                          }
+                        }
+                      ]
+                    });
+                    alert2.present();
+                  }
+                  // this.nav.push(CareZoneMissionIngPage, { _id: id });
+                }, error => {
+                  this.showError(JSON.parse(error._body).msg);
+                });
+              } else {
+                this.auth.noteSave(this.userData.email, this.note).subscribe(data => {
+                  if (data !== "") {
+                    let alert2 = this.alertCtrl.create({
+                      cssClass: 'push_alert',
+                      title: '글 작성',
+                      message: "글 작성이 정상적으로 등록 되었습니다.",
+                      buttons: [
+                        {
+                          text: '확인',
+                          handler: () => {
+                            this.navCtrl.pop();
+                          }
+                        }
+                      ]
+                    });
+                    alert2.present();
+                  }
+                  // this.nav.push(CareZoneMissionIngPage, { _id: id });
+                }, error => {
+                  this.showError(JSON.parse(error._body).msg);
+                });
+              }
+            }
+          }
+        }]
+    });
+    alert.present();
+
+
+  }
+
+  getHashTags() {
+    this.auth.getHashTags().subscribe(items => {
+      if (items !== '' || !undefined || !null) {
+        // console.log(items[0].tags);
+        this.preparedTags = items[0].tags.split(",");
+        console.log(this.preparedTags);
+      }
+    });
+  }
+
+
+  showError(text) {
+    //this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: 'Plinic',
+      message: text,
+      buttons: [{
+        text: '확인'
+      }]
+    });
+    alert.present();
+  }
 
 
 }

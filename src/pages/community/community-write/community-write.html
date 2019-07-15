@@ -18,7 +18,7 @@
     <button ion-button *ngIf="text_edit" style="color: #5c59b6;" class="android_entroll_btn">완료 </button>
   </ion-navbar>
 
-  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
     <ion-buttons left no-lines>
       <button ion-button navPop icon-only>
         <img no-lines class="ios_nav" src="./assets/img/beauty/ic-system-close-black@3x.png" />
@@ -31,7 +31,7 @@
     <button ion-button class="ios_entroll_btn">등록 </button>
     <!-- 모든정보 입력시 색상변경 -->
     <!-- 글쓰기일 때 버튼-->
-    <button ion-button *ngIf="all_text_enroll" style="color:#5c59b6;" class="ios_entroll_btn">등록 </button>
+    <button ion-button *ngIf="!all_text_enroll" style="color:#5c59b6;" class="ios_entroll_btn" (click)="registerNote()">등록 </button>
     <!-- 글 수정일 때 버튼-->
     <button ion-button *ngIf="text_edit" style="color: #5c59b6;" class="ios_entroll_btn">완료 </button>
   </ion-navbar>
@@ -43,7 +43,7 @@
 
   <!-- 옵션 미지정 추후변경-->
   <ion-item>
-    <ion-select class="qna_select" mode="ios" placeholder="문의사항을 선택하세요.">
+    <ion-select class="qna_select" mode="ios" [(ngModel)]="note.select" placeholder="문의사항을 선택하세요.">
       <ion-option value="배송문의">배송문의</ion-option>
       <ion-option value="결제문의">결제문의</ion-option>
       <ion-option value="제품문의">제품문의</ion-option>
@@ -55,7 +55,7 @@
 
 
   <ion-item>
-    <ion-input class="qna_title" placeholder="제목"></ion-input>
+    <ion-input class="qna_title" [(ngModel)]="note.title" placeholder="제목"></ion-input>
   </ion-item>
 
   <ion-item no-lines>
@@ -63,22 +63,28 @@
     <div padding [innerHTML]="item.value"></div>
   </ion-item>
 
-  <rich-text [formControlItem]="item" placeholderText="A sample of placeholder text"></rich-text>
-  <rich>11</rich>
-
   <!-- 첨부 이미지 영역 -->
   <!-- <img *ngIf="imagePath2" class="attache_image" [src]="imagePath2" /> -->
   <!-- <img *ngIf="!image_enroll" class="attache_image" src="./assets/img/home/carezone3.png" /> -->
 
-
+<button ion-button (click)="topic()" icon-only>데이터 확인</button>
 </ion-content>
 
 
 <ion-footer padding>
 
-  <ion-item>
-    <ion-input class="community_tag" placeholder="#태그를 입력하세요. (최대 10개)"></ion-input>
-  </ion-item>
+  <rl-tag-input
+    [(ngModel)]="note.tags"
+    [addOnBlur]="false"
+    [autocomplete]="true"
+    [autocompleteItems]="preparedTags"
+    [autocompleteMustMatch]="false"
+    placeholder="#태그를 입력하세요">
+  </rl-tag-input>
+
+  <!-- <ion-item>
+    <ion-input class="community_tag" [(ngModel)]="note.tags" placeholder="#태그를 입력하세요. (최대 10개)"></ion-input>
+  </ion-item> -->
   <!-- 이미지 등록시 파일명 -->
   <ion-item *ngIf="image_enroll">
     <ion-input mode="ios" class="community_attache_image" placeholder="이미지 네임영역" clearInput></ion-input>

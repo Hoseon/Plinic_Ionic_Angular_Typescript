@@ -198,6 +198,15 @@ import { SkinDiagnoseOilPageModule } from '../pages/skin-diagnose-oil/skin-diagn
 import { SkinDiagnoseFirstMoisturePageModule } from '../pages/skin-diagnose-first-moisture/skin-diagnose-first-moisture.module';
 import { SkinDiagnoseFirstOilPageModule } from '../pages/skin-diagnose-first-oil/skin-diagnose-first-oil.module';
 
+// import {IonTagsInputModule} from "ionic-tags-input";
+// import { IonTagsInputModule } from "../ion-tags-input";
+
+import {RlTagInputModule} from 'angular2-tag-input';
+
+
+import { CommunityPage } from '../pages/community/community';
+import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
+import { CommunityWritePage } from '../pages/community/community-write/community-write';
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -262,6 +271,9 @@ export function getAuthHttp(http, storage) {
     // MissionVideoPage,
     // QnaReadPage,
     // KeyboardAttachDirective,
+    CommunityPage,
+    CommunityWritePage,
+    CommunityModifyPage,
   ],
   imports: [
     HttpModule,
@@ -305,9 +317,9 @@ export function getAuthHttp(http, storage) {
     DeviceSkinStartPageModule,
     DeviceSkinIngPageModule,
     BeautyTipAddPageModule,
-    CommunityPageModule,
-    CommunityModifyPageModule,
-    CommunityWritePageModule,
+    // CommunityPageModule,
+    // CommunityModifyPageModule,
+    // CommunityWritePageModule,
     MissionStartPageModule,
     MissionVideoPageModule,
     BrowserAnimationsModule,
@@ -318,6 +330,7 @@ export function getAuthHttp(http, storage) {
     BrowserModule,
     MultiPickerModule,
     IonicModule.forRoot(MyApp),
+    RlTagInputModule,
     ProgressBarModule,
     IonicStorageModule.forRoot(),
     HttpClientModule,
@@ -383,6 +396,9 @@ export function getAuthHttp(http, storage) {
     // MissionStartPage,
     // MissionVideoPage,
     // QnaReadPage,
+    CommunityPage,
+    CommunityWritePage,
+    CommunityModifyPage,
   ],
   providers: [
     StatusBar,

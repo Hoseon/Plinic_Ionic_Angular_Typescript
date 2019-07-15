@@ -37,8 +37,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  apiUrl: 'http://plinic.cafe24app.com/',
-  //apiUrl: 'http://localhost:8001/',
+  //apiUrl: 'http://plinic.cafe24app.com/',
+  apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
@@ -228,14 +228,14 @@ export class AuthService {
     console.log("로그아웃 준비 -------------------------: ");
     // this.naver.logoutAndDeleteToken()
     //   .then(response => {
-        // console.log("로그아웃 성공 ---------------------------" + response)
-        this.deleteToken();
-        this.deleteUser();
-        this.currentUser = null;
-        this.authenticationState.next(false);
-        console.log("로그아웃 성공 ---------------------------")
-      // }) // 성공
-      // .catch(error => console.error(error)); // 실패
+    // console.log("로그아웃 성공 ---------------------------" + response)
+    this.deleteToken();
+    this.deleteUser();
+    this.currentUser = null;
+    this.authenticationState.next(false);
+    console.log("로그아웃 성공 ---------------------------")
+    // }) // 성공
+    // .catch(error => console.error(error)); // 실패
     // this.naver.logout().then(() => {
     //   this.deleteToken();
     //   this.deleteUser();
@@ -408,6 +408,50 @@ export class AuthService {
     console.log("qna : " + JSON.stringify(body));
 
     return this.http.post(CONFIG.apiUrl + 'api/qnaupdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public noteSave(email, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      select: content.select,
+      title: content.title,
+      contents: content.contents,
+      tags: content.tags,
+    };
+
+    console.log("note : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/notesave', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public communitySkinQnaSave(email, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      select: content.select,
+      title: content.title,
+      contents: content.contents,
+      tags: content.tags,
+    };
+
+    console.log("note : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/skinqnasave', JSON.stringify(body), { headers: headers })
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -607,6 +651,12 @@ export class AuthService {
 
   public getSkinScoreMonth(email, date) {
     return this.http.get(CONFIG.apiUrl + 'userskinchart/' + email + '/' + date)
+      .map(response => response.json());
+  }
+
+  //해쉬태그 모두 가져 오기
+  public getHashTags() {
+    return this.http.get(CONFIG.apiUrl + 'gethashtags/')
       .map(response => response.json());
   }
 

@@ -48,18 +48,7 @@ page-community-write {
     margin-top: -5%;
     color: #292929;
   }
-  // .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
-  //   margin-left: -15%;
-  //   margin-top: -15%;
-  //   color: transparent;
-  // }
-  // .input-ios .text-input-clear-icon{
-  //    margin-top: 2% !important;
-  // }
-  //
-  // .input-md .text-input-clear-icon{
-  //   margin-top: 8% !important;
-  // }
+
   .ios_nav {
     background-color: #FFF !important;
     width: 25px !important;
@@ -268,7 +257,7 @@ page-community-write {
     overflow-y: visible !important;
 
     .text-input {
-      height: 300px;
+      height: 200px;
     }
   }
 
@@ -335,5 +324,32 @@ page-community-write {
     background-color: #FFF;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
+  }
+
+  [_nghost-c1] {
+    background-color: color($colors, primary);
+    border-radius: 5px;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  [_nghost-c1] .ng2-tag-input-remove[_ngcontent-c1] {
+    color: color($colors, primary);
+    background: #fff;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+  }
+
+  [_nghost-c2] {
+    box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+    display: block;
+    position: inherit;
+    top: 100%;
+    font-family: "Roboto", "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    color: #444444;
+    background: white;
+    padding: 8px 0;
   }
 }

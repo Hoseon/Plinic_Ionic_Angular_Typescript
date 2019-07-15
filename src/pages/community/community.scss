@@ -226,9 +226,10 @@ page-community {
     }
 
     .beauty_tip{
-     padding: 16px;
+     padding: 5%;
      padding-bottom: 0px;
      margin-bottom: 5%;
+     margin-top: 5%;
     }
 
     .beauty_img {
@@ -473,7 +474,22 @@ page-community {
         .container .beauty_note_img {
           position: absolute;
           top: -50%;
-          right: -90%;
+          right: -100%;
+          transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          width: 85px;
+          max-height: 85px !important;
+          border-radius: 5px;
+          background-color: #f5f5f5;
+        }
+
+        .container .beauty_note_img2 {
+          position: absolute;
+          top: -50%;
+          right: -105%;
           transform: translate(-50%, -50%);
           -ms-transform: translate(-50%, -50%);
           color: #fff;
@@ -652,7 +668,7 @@ page-community {
           letter-spacing: normal;
           text-align: center;
           color: #ffffff;
-          margin-bottom: -20px !important;
+          margin-bottom: 20px !important;
           background-color: #5c59b6;
           box-shadow: none;
         }
@@ -661,7 +677,7 @@ page-community {
           position: fixed;
           left : 0;
           right : 0;
-          bottom : 7%;
+          bottom : 15%;
           width: 90%;
           height: 50px;
           margin: 0 auto;

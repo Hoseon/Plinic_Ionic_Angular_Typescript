@@ -539,8 +539,15 @@ public skin_first_oil_score() {
   }
 
   openBasicModal() {
-    let myModal = this.modalCtrl.create(SkinMeasureStartPage);
-    myModal.present();
+    if(this.platform.is('android')){
+      let myModal = this.modalCtrl.create(SkinMeasureStartPage);
+      myModal.present();
+    }
+
+    if(this.platform.is('ios') || this.platform.is('core')){
+      this.showAlert("ios 블루투스 기능 준비 중입니다. <br />감사합니다.")
+    }
+
   }
   openModalWithParams() {
     let myModal = this.modalCtrl.create(SkinMeasureStartPage, { 'myParam': "test" });

@@ -71,24 +71,24 @@ export class CommunityPage {
   slideChanged($event) {
     this.page = $event._snapIndex.toString();
 
-    if(this.page==='0'){
-    let tabs = document.querySelectorAll('.tabbar');
-    if (tabs !== null) {
-      Object.keys(tabs).map((key) => {
-        tabs[ key ].style.transform = 'translateY(0)';
-        tabs[key].style.display = 'block';
-        tabs[key].style.display = '';
-      });
-    }
-    }else{
-    let tabs = document.querySelectorAll('.tabbar');
-    if (tabs !== null) {
-      Object.keys(tabs).map((key) => {
-        //tabs[ key ].style.transform = 'translateY(0)';
-        tabs[key].style.display = 'none';
-      });
-    }
-  }
+  //   if(this.page==='0'){
+  //   let tabs = document.querySelectorAll('.tabbar');
+  //   if (tabs !== null) {
+  //     Object.keys(tabs).map((key) => {
+  //       tabs[ key ].style.transform = 'translateY(0)';
+  //       tabs[key].style.display = 'block';
+  //       tabs[key].style.display = '';
+  //     });
+  //   }
+  //   }else{
+  //   let tabs = document.querySelectorAll('.tabbar');
+  //   if (tabs !== null) {
+  //     Object.keys(tabs).map((key) => {
+  //       //tabs[ key ].style.transform = 'translateY(0)';
+  //       tabs[key].style.display = 'none';
+  //     });
+  //   }
+  // }
       //
       // document.getElementById("view").style.display = "block";
       //     document.getElementById("view").style.display = "none";
@@ -210,6 +210,11 @@ public roadbeauty() {
     browser.on('closePressed').subscribe(data => {
       browser.close();
     })
+
+    browser.on('sharePressed').subscribe(data => {
+      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+    })
+
   }
 
 
@@ -242,6 +247,16 @@ public roadbeauty() {
     myModal.present();
   }
 
+  public community_qna_write() {
+    let myModal = this.modalCtrl.create(CommunityWritePage, {qna : 'qna'});
+    myModal.present();
+  }
+
+
+  public community_qna_modify() {
+    let myModal = this.modalCtrl.create(CommunityModifyPage, {qna : 'qna'});
+    myModal.present();
+  }
 
 
 

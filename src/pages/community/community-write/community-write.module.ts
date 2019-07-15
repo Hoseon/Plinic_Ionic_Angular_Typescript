@@ -4,7 +4,7 @@ import { CommunityWritePage } from './community-write';
 
 @NgModule({
   declarations: [
-    CommunityWritePage,
+    // CommunityWritePage,
   ],
   imports: [
     IonicPageModule.forChild(CommunityWritePage),
