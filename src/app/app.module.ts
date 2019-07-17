@@ -133,7 +133,7 @@ import { BeautyTipAddPageModule } from '../pages/beauty-tip-add/beauty-tip-add.m
 // //커뮤니티
 import { CommunityPageModule } from '../pages/community/community.module';
 import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
-import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
+//import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
 //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 //
 // //미션 시작하기
@@ -266,7 +266,7 @@ export function getAuthHttp(http, storage) {
     // QnaWritePage,
     // CommunityPage,
     // CommunityModifyPage,
-    // CommunityWritePage,
+    CommunityWritePage,
     // MissionStartPage,
     // MissionVideoPage,
     // QnaReadPage,
@@ -392,7 +392,7 @@ export function getAuthHttp(http, storage) {
     // QnaWritePage,
     // CommunityPage,
     // CommunityModifyPage,
-    // CommunityWritePage,
+    CommunityWritePage,
     // MissionStartPage,
     // MissionVideoPage,
     // QnaReadPage,

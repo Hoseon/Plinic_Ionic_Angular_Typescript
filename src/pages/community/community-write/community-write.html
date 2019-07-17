@@ -1,11 +1,11 @@
 <ion-header>
 
   <ion-navbar *ngIf="platform.is('android')" no-lines>
-    <ion-buttons left no-lines>
-      <button ion-button navPop icon-only>
-        <img no-lines class="android_nav" src="./assets/img/beauty/ic-system-close-black@3x.png" />
-      </button>
-    </ion-buttons>
+  	<ion-buttons left no-lines>
+  		<button ion-button icon-only (click)="dissmiss();" >
+          <img no-lines class="android_nav" src="./assets/img/beauty/ic-system-close-black@3x.png"/>
+  		</button>
+  	</ion-buttons>
     <!-- 글 쓰기일 떄 타이틀 -->
     <ion-title class="android_title" text-wrap>글쓰기</ion-title>
     <!-- 글 수정일 떄 타이틀 -->
@@ -20,7 +20,7 @@
 
   <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
     <ion-buttons left no-lines>
-      <button ion-button navPop icon-only>
+      <button ion-button icon-only (click)="dissmiss();">
         <img no-lines class="ios_nav" src="./assets/img/beauty/ic-system-close-black@3x.png" />
       </button>
     </ion-buttons>
@@ -39,7 +39,7 @@
 
 
 
-<ion-content padding>
+<ion-content no-bounce padding>
 
   <!-- 옵션 미지정 추후변경-->
   <ion-item>
@@ -58,16 +58,18 @@
     <ion-input class="qna_title" [(ngModel)]="note.title" placeholder="제목"></ion-input>
   </ion-item>
 
+
+
+<!-- <div class="container" > -->
+
   <ion-item no-lines>
-    <!-- <ion-textarea class="qna_input" placeholder="내용을 입력해주세요." ></ion-textarea> -->
-    <div padding [innerHTML]="item.value"></div>
+  <ion-textarea no-lines class="qna_input" [(ngModel)]="note.contents" placeholder="내용을 입력해주세요." (ionFocus)="attache_image_hide()" (ionBlur)="attache_image_view()"></ion-textarea>
   </ion-item>
+  <img *ngIf="imagePath2" id="attache_image" class="attache_image" [src]="imagePath2"/>
 
   <!-- 첨부 이미지 영역 -->
   <!-- <img *ngIf="imagePath2" class="attache_image" [src]="imagePath2" /> -->
   <!-- <img *ngIf="!image_enroll" class="attache_image" src="./assets/img/home/carezone3.png" /> -->
-
-<button ion-button (click)="topic()" icon-only>데이터 확인</button>
 </ion-content>
 
 

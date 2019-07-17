@@ -100,6 +100,16 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public beautyNoteLoad() {
+    return this.http.get(this.apiURL + 'beautynote/main_list')
+      .map(response => response.json());
+  }
+
+  public skinQnaLoad() {
+    return this.http.get(this.apiURL + 'skinqna/main_list')
+      .map(response => response.json());
+  }
+
   getImages() {
     return this.http.get(this.apiURL + 'images').map(res => res.json());
   }
@@ -188,6 +198,50 @@ export class ImagesProvider {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  beautyNote_uploadImage(img, desc) {
+
+    // Destination URL
+    let url = this.apiURL + 'userimages';
+
+    // File for Upload
+    var targetPath = img;
+
+    var options: FileUploadOptions = {
+      fileKey: 'image',
+      chunkedMode: false,
+      // mimeType: 'image/jpeg',
+      mimeType: 'multipart/form-data',
+      params: { 'desc': desc }
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+
+    // Use the FileTransfer to upload the image
+    return fileTransfer.upload(targetPath, url, options);
+  }
+
+  skinQna_uploadImage(img, desc) {
+
+    // Destination URL
+    let url = this.apiURL + 'userimages';
+
+    // File for Upload
+    var targetPath = img;
+
+    var options: FileUploadOptions = {
+      fileKey: 'image',
+      chunkedMode: false,
+      // mimeType: 'image/jpeg',
+      mimeType: 'multipart/form-data',
+      params: { 'desc': desc }
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+
+    // Use the FileTransfer to upload the image
+    return fileTransfer.upload(targetPath, url, options);
   }
 
 

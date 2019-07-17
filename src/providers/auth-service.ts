@@ -13,6 +13,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { Naver } from 'ionic-plugin-naver';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { FCM } from '@ionic-native/fcm';
+import { Transfer, TransferObject, FileUploadOptions } from '@ionic-native/transfer'
+
 
 export class User {
   accessToken: string;
@@ -37,8 +39,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  //apiUrl: 'http://plinic.cafe24app.com/',
-  apiUrl: 'http://localhost:8001/',
+  apiUrl: 'http://plinic.cafe24app.com/',
+  //apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
@@ -55,7 +57,7 @@ export class AuthService {
   currentDate: Date = new Date();
 
 
-  constructor(private http: Http, public authHttp: AuthHttp, public storage: Storage,
+  constructor(private transfer: Transfer, private http: Http, public authHttp: AuthHttp, public storage: Storage,
     public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController,
     // private facebook: Facebook,
     private google: GooglePlus,
@@ -415,7 +417,7 @@ export class AuthService {
       });
   }
 
-  public noteSave(email, content) {
+  public noteNoImgSave(email, content) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
 
@@ -427,14 +429,45 @@ export class AuthService {
       tags: content.tags,
     };
 
-    console.log("note : " + JSON.stringify(body));
-
     return this.http.post(CONFIG.apiUrl + 'api/notesave', JSON.stringify(body), { headers: headers })
       .map(res => res.json())
       .map(data => {
         console.log(data);
         return data;
       });
+  }
+
+  public noteSave(email, content, img) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      select: content.select,
+      title: content.title,
+      contents: content.contents,
+      tags: content.tags,
+    };
+
+    let url = CONFIG.apiUrl + 'beautynote';
+
+    var targetPath = img;
+    var options: FileUploadOptions = {
+      fileKey: 'image',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: {
+        'email': body.email,
+        'select': body.select,
+        'title': body.title,
+        'contents': body.contents,
+        'tags': JSON.stringify(body.tags),
+      }
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+    return fileTransfer.upload(targetPath, url, options);
+
   }
 
   public communitySkinQnaSave(email, content) {
@@ -457,6 +490,35 @@ export class AuthService {
         console.log(data);
         return data;
       });
+  }
+
+  public communitySkinQnaImgSave(email, content, img) {
+    let body = {
+      email: email,
+      select: content.select,
+      title: content.title,
+      contents: content.contents,
+      tags: content.tags,
+    };
+
+    let url = CONFIG.apiUrl + 'skinqna';
+
+    var targetPath = img;
+    var options: FileUploadOptions = {
+      fileKey: 'image',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: {
+        'email': body.email,
+        'select': body.select,
+        'title': body.title,
+        'contents': body.contents,
+        'tags': JSON.stringify(body.tags),
+      }
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+    return fileTransfer.upload(targetPath, url, options);
   }
 
   //문진표 Save 20190709 추호선 ------------------------------------------

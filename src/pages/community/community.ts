@@ -26,6 +26,8 @@ export class CommunityPage {
   page = "0";
   beautyData: any;
   communityBeautyLoadData: any;
+  beautyNoteData: any;
+  skinQnaData: any;
   communityEditorBeautyLoadData: any;
   beauty_data_type1: any;
   beauty_data_title1: any;
@@ -53,7 +55,12 @@ export class CommunityPage {
       this.roadbeauty();
       this.communityEditorBeautyLoad();
       this.communityBeautyLoad();
+      this.beautyNoteLoad();
+      this.skinQnaLoad();
     });
+  }
+
+  ionViewCanEnter(){
 
   }
 
@@ -101,8 +108,6 @@ export class CommunityPage {
 }
 
 
-
-
 public roadbeauty() {
   this.images.mainbeautyRoad().subscribe(data => {
     this.beauty_data_type1 = data[0].title;
@@ -137,6 +142,20 @@ public roadbeauty() {
     this.images.communityBeautyLoad().subscribe(data => {
 
       this.communityBeautyLoadData = data;
+      console.log(data.length);
+    });
+  }
+
+  public beautyNoteLoad() {
+    this.images.beautyNoteLoad().subscribe(data => {
+      this.beautyNoteData = data;
+      console.log(data.length);
+    });
+  }
+
+  public skinQnaLoad() {
+    this.images.skinQnaLoad().subscribe(data => {
+      this.skinQnaData = data;
       console.log(data.length);
     });
   }
@@ -199,6 +218,14 @@ public roadbeauty() {
         showPageTitle: false,
         staticText: title
       },
+      customButtons: [
+        {
+          wwwImage: 'assets/img/like/like.png',
+          imagePressed: 'assets/img/like/dislike.png',
+          align: 'right',
+          event: 'sharePressed'
+        }
+      ],
     };
 
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ViewController, ActionSheetController, AlertController, normalizeURL } from 'ionic-angular';
+import { Component, Inject } from '@angular/core';
+import { IonicPage, NavController, NavParams, Platform, ViewController, ActionSheetController, App, AlertController, normalizeURL } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AuthService } from '../../../providers/auth-service';
 import { ImagesProvider } from '../../../providers/images/images';
@@ -47,13 +47,6 @@ export class CommunityWritePage {
   // ]
 
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private auth: AuthService, private actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController, private imagesProvider: ImagesProvider, private _camera: Camera, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController) {
-    if (this.navParams.get('qna')) {
-      this.skinQna = true;
-    }
-  }
 
   topic() {
     console.log(this.topics);
@@ -65,8 +58,56 @@ export class CommunityWritePage {
 
 
   ionViewWillLoad() {
-    this.item = this.formBuilder.control('');
   }
+
+  constructor(private imagesProvider: ImagesProvider, public _camera: Camera, public actionSheetCtrl: ActionSheetController, public nav: NavController, public navParams: NavParams, public platform: Platform, private auth: AuthService, public viewCtrl: ViewController, private alertCtrl: AlertController, public app: App) {
+
+    this.platform.ready().then((readySource) => {
+
+      if (this.navParams.get('qna')) {
+        this.skinQna = true;
+      }
+
+      this.platform.registerBackButtonAction(() => {
+        let nav = app._appRoot._getActivePortal() || app.getActiveNav();
+        let activeView = nav.getActive();
+
+        if (activeView != null) {
+          if (this.nav.canGoBack()) { // CHECK IF THE USER IS IN THE ROOT PAGE.
+            //this.nav.pop(); // IF IT'S NOT THE ROOT, POP A PAGE.
+          }
+          else if (activeView.isOverlay) {
+            //activeView.dismiss();
+          }
+          else {
+            // backgroundMode.moveToBackground();
+            let alert = this.alertCtrl.create({
+              cssClass: 'push_alert_cancel',
+              title: "plinic",
+              message: "글쓰기 작성을 취소하시겠습니까?",
+              buttons: [
+                {
+                  text: '취소',
+                  role: 'cancel',
+                  handler: () => {
+                    console.log('취소');
+                  }
+                },
+                {
+                  text: '확인',
+                  handler: () => {
+                    console.log('확인'),
+                      this.viewCtrl.dismiss();
+                  }
+                }]
+            });
+            alert.present();
+          }
+        }
+      });
+    });
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommunityWritePage');
@@ -77,9 +118,39 @@ export class CommunityWritePage {
     this.getHashTags();
   }
 
+  attache_image_hide() {
+    if (this.imagePath2) {
+      document.getElementById("attache_image").style.display = "none";
+    }
+  }
+
+  attache_image_view() {
+    if (this.imagePath2)
+      document.getElementById("attache_image").style.display = "";
+  }
 
   public dissmiss() {
-    this.viewCtrl.dismiss();
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "plinic",
+      message: "글쓰기 작성을 취소하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+            console.log('취소');
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            console.log('확인'),
+              this.viewCtrl.dismiss();
+          }
+        }]
+    });
+    alert.present();
   }
 
   public camera() {
@@ -205,8 +276,8 @@ export class CommunityWritePage {
             if (this.mode === true) {
               // this.note.id = this.id;
               // console.log("update Id :" + this.id);
-              this.auth.noteSave(this.userData.email, this.note).subscribe(data => {
-                if (data !== "") {
+              this.auth.noteSave(this.userData.email, this.note, this.imagePath2).then(data => {
+                if (!data) {
                   let alert2 = this.alertCtrl.create({
                     cssClass: 'push_alert',
                     title: '글 작성',
@@ -215,7 +286,7 @@ export class CommunityWritePage {
                       {
                         text: '확인',
                         handler: () => {
-                          this.navCtrl.pop();
+                          this.nav.pop();
                         }
                       }
                     ]
@@ -229,49 +300,97 @@ export class CommunityWritePage {
 
             } else {
               if (this.skinQna) {
-                this.auth.communitySkinQnaSave(this.userData.email, this.note).subscribe(data => {
-                  if (data !== "") {
-                    let alert2 = this.alertCtrl.create({
-                      cssClass: 'push_alert',
-                      title: '글 작성',
-                      message: "글 작성이 정상적으로 등록 되었습니다.",
-                      buttons: [
-                        {
-                          text: '확인',
-                          handler: () => {
-                            this.navCtrl.pop();
+                if (this.imagePath2) { //피부고민 이미지가 있을때
+                  this.auth.communitySkinQnaImgSave(this.userData.email, this.note, this.imagePath2).then(data => {
+                    if (data) {
+                      let alert2 = this.alertCtrl.create({
+                        cssClass: 'push_alert',
+                        title: '글 작성',
+                        message: "글 작성이 정상적으로 등록 되었습니다.",
+                        buttons: [
+                          {
+                            text: '확인',
+                            handler: () => {
+                              this.nav.pop();
+                            }
                           }
-                        }
-                      ]
-                    });
-                    alert2.present();
-                  }
-                  // this.nav.push(CareZoneMissionIngPage, { _id: id });
-                }, error => {
-                  this.showError(JSON.parse(error._body).msg);
-                });
+                        ]
+                      });
+                      alert2.present();
+                    }
+                    // this.nav.push(CareZoneMissionIngPage, { _id: id });
+                  }, error => {
+                    this.showError(JSON.parse(error._body).msg);
+                  });
+                } else { //피부고민 이미지가 없을
+                  this.auth.communitySkinQnaSave(this.userData.email, this.note).subscribe(data => {
+                    if (data !== "") {
+                      let alert2 = this.alertCtrl.create({
+                        cssClass: 'push_alert',
+                        title: '글 작성',
+                        message: "글 작성이 정상적으로 등록 되었습니다.",
+                        buttons: [
+                          {
+                            text: '확인',
+                            handler: () => {
+                              this.nav.pop();
+                            }
+                          }
+                        ]
+                      });
+                      alert2.present();
+                    }
+                    // this.nav.push(CareZoneMissionIngPage, { _id: id });
+                  }, error => {
+                    this.showError(JSON.parse(error._body).msg);
+                  });
+
+                }
               } else {
-                this.auth.noteSave(this.userData.email, this.note).subscribe(data => {
-                  if (data !== "") {
-                    let alert2 = this.alertCtrl.create({
-                      cssClass: 'push_alert',
-                      title: '글 작성',
-                      message: "글 작성이 정상적으로 등록 되었습니다.",
-                      buttons: [
-                        {
-                          text: '확인',
-                          handler: () => {
-                            this.navCtrl.pop();
+                //이미지가 있을때 저장
+                if (this.imagePath2) {
+                  this.auth.noteSave(this.userData.email, this.note, this.imagePath2).then(data => {
+                    if (data) {
+                      let alert2 = this.alertCtrl.create({
+                        cssClass: 'push_alert',
+                        title: '글 작성',
+                        message: "글 작성이 정상적으로 등록 되었습니다.",
+                        buttons: [
+                          {
+                            text: '확인',
+                            handler: () => {
+                              this.nav.pop();
+                            }
                           }
-                        }
-                      ]
-                    });
-                    alert2.present();
-                  }
-                  // this.nav.push(CareZoneMissionIngPage, { _id: id });
-                }, error => {
-                  this.showError(JSON.parse(error._body).msg);
-                });
+                        ]
+                      });
+                      alert2.present();
+                    }
+                  }, error => {
+                    this.showError(JSON.parse(error._body).msg);
+                  });
+                } else { // 이미지가 없을 때 저장
+                  this.auth.noteNoImgSave(this.userData.email, this.note).subscribe(data => {
+                    if (data !== "") {
+                      let alert2 = this.alertCtrl.create({
+                        cssClass: 'push_alert',
+                        title: '글 작성',
+                        message: "글 작성이 정상적으로 등록 되었습니다.",
+                        buttons: [
+                          {
+                            text: '확인',
+                            handler: () => {
+                              this.nav.pop();
+                            }
+                          }
+                        ]
+                      });
+                      alert2.present();
+                    }
+                  }, error => {
+                    this.showError(JSON.parse(error._body).msg);
+                  });
+                }
               }
             }
           }
@@ -305,6 +424,7 @@ export class CommunityWritePage {
       }]
     });
     alert.present();
+
   }
 
 
