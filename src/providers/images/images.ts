@@ -105,8 +105,28 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public beautyNoteMainLoad() {
+    return this.http.get(this.apiURL + 'beautynote/editorlist')
+      .map(response => response.json());
+  }
+
+  public beautyNoteOneLoad(id) {
+    return this.http.get(this.apiURL + 'beautynote/list/' + id)
+      .map(response => response.json());
+  }
+
   public skinQnaLoad() {
     return this.http.get(this.apiURL + 'skinqna/main_list')
+      .map(response => response.json());
+  }
+
+  public skinQnaMainLoad() {
+    return this.http.get(this.apiURL + 'skinqna/editorlist')
+      .map(response => response.json());
+  }
+
+  public skinQnaOneLoad(id) {
+    return this.http.get(this.apiURL + 'skinqna/list/' + id)
       .map(response => response.json());
   }
 

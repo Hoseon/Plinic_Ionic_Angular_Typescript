@@ -27,7 +27,9 @@ export class CommunityPage {
   beautyData: any;
   communityBeautyLoadData: any;
   beautyNoteData: any;
+  beautyNoteMainData: any;
   skinQnaData: any;
+  skinQnaMainData: any;
   communityEditorBeautyLoadData: any;
   beauty_data_type1: any;
   beauty_data_title1: any;
@@ -52,17 +54,30 @@ export class CommunityPage {
 
 
     this.platform.ready().then((readySource) => {
-      this.roadbeauty();
-      this.communityEditorBeautyLoad();
-      this.communityBeautyLoad();
-      this.beautyNoteLoad();
-      this.skinQnaLoad();
+      // this.roadbeauty();
+      // this.communityEditorBeautyLoad();
+      // this.communityBeautyLoad();
+      // this.beautyNoteLoad();
+      // this.beautyNoteMainLoad();
+      // this.skinQnaLoad();
+      // this.skinQnaMainLoad();
     });
   }
 
   ionViewCanEnter(){
 
   }
+
+  ionViewWillEnter() {
+    this.roadbeauty();
+    this.communityEditorBeautyLoad();
+    this.communityBeautyLoad();
+    this.beautyNoteLoad();
+    this.beautyNoteMainLoad();
+    this.skinQnaLoad();
+    this.skinQnaMainLoad();
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommunityPage');
@@ -132,31 +147,37 @@ public roadbeauty() {
 
   public communityEditorBeautyLoad() {
     this.images.communityEditorBeautyLoad().subscribe(data => {
-
       this.communityEditorBeautyLoadData = data;
-      console.log(data.length);
     });
   }
 
   public communityBeautyLoad() {
     this.images.communityBeautyLoad().subscribe(data => {
-
       this.communityBeautyLoadData = data;
-      console.log(data.length);
     });
   }
 
   public beautyNoteLoad() {
     this.images.beautyNoteLoad().subscribe(data => {
       this.beautyNoteData = data;
-      console.log(data.length);
+    });
+  }
+
+  public beautyNoteMainLoad() {
+    this.images.beautyNoteMainLoad().subscribe(data => {
+      this.beautyNoteMainData = data;
     });
   }
 
   public skinQnaLoad() {
     this.images.skinQnaLoad().subscribe(data => {
       this.skinQnaData = data;
-      console.log(data.length);
+    });
+  }
+
+  public skinQnaMainLoad() {
+    this.images.skinQnaMainLoad().subscribe(data => {
+      this.skinQnaMainData = data;
     });
   }
 
@@ -269,10 +290,17 @@ public roadbeauty() {
   }
 
 
-  public community_modify() {
-    let myModal = this.modalCtrl.create(CommunityModifyPage);
+  public community_modify(id) {
+    let myModal = this.modalCtrl.create(CommunityModifyPage, {id : id, mode: 'note'} );
     myModal.present();
   }
+
+  public community_qna_modify(id) {
+    let myModal = this.modalCtrl.create(CommunityModifyPage, {id : id, mode: 'qna'} );
+    myModal.present();
+  }
+
+
 
   public community_qna_write() {
     let myModal = this.modalCtrl.create(CommunityWritePage, {qna : 'qna'});
@@ -280,10 +308,10 @@ public roadbeauty() {
   }
 
 
-  public community_qna_modify() {
-    let myModal = this.modalCtrl.create(CommunityModifyPage, {qna : 'qna'});
-    myModal.present();
-  }
+  // public community_qna_modify() {
+  //   let myModal = this.modalCtrl.create(CommunityModifyPage, {qna : 'qna'});
+  //   myModal.present();
+  // }
 
 
 

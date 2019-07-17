@@ -208,6 +208,7 @@ page-community-modify {
     }
 
     .qna_input{
+      position: absolute;
      font-family: NotoSansCJKkr;
      font-size: 15px;
      font-weight: normal;
@@ -230,7 +231,7 @@ page-community-modify {
 
     .attache_image{
       width: 97%;
-      height: 194px;
+      height: auto;
       padding-left: 16px;
       // padding-right: 16px;
       margin: 0px;

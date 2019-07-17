@@ -661,7 +661,7 @@ public skin_first_oil_score() {
           });
 
         } else {
-          // this.new[i] = false;
+          // this.new[i] = false;thirdLoadCareZone
           // this.recruiting[i] = true;
           // this.mdchuchun[i] = false;
           // this.approaching[i] = false;
@@ -676,13 +676,13 @@ public skin_first_oil_score() {
   public thirdLoadCareZone() {
     this.images.third_carezoneRoad().subscribe(data => {
       this.thirdCarezoneData = data;
-      if(data[0]._id ==="" || data[0]._id !== undefined || data[0].id !== null){
-        this.third_missionCount(data[0]._id);
-        this.getday = new Date(data[0].startmission);
-        this.dday = this.diffdate(this.getday, this.currentDate);
-        // this.chkDay = this.dday
-        this.dday = (parseInt(this.dday)-2)
-      }
+      // if(data[0]._id ==="" || data[0]._id !== undefined || data[0].id !== null){
+      //   this.third_missionCount(data[0]._id);
+      //   this.getday = new Date(data[0].startmission);
+      //   this.dday = this.diffdate(this.getday, this.currentDate);
+      //   // this.chkDay = this.dday
+      //   this.dday = (parseInt(this.dday)-2)
+      // }
 
     });
   }
