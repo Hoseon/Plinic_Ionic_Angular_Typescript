@@ -65,9 +65,9 @@ import { CareZoneMissionCompletePage } from '../pages/care-zone-mission-complete
 // import { BeautyTipAddPage } from '../pages/beauty-tip-add/beauty-tip-add';
 //
 // //커뮤니티
-// import { CommunityPage } from '../pages/community/community';
-// import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
-// import { CommunityWritePage } from '../pages/community/community-write/community-write';
+import { CommunityPage } from '../pages/community/community';
+import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
+import { CommunityWritePage } from '../pages/community/community-write/community-write';
 // //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 //
 // //미션 시작하기
@@ -131,8 +131,9 @@ import { DeviceSkinIngPageModule } from '../pages/device-skin-ing/device-skin-in
 import { BeautyTipAddPageModule } from '../pages/beauty-tip-add/beauty-tip-add.module';
 //
 // //커뮤니티
-import { CommunityPageModule } from '../pages/community/community.module';
-import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
+//import { CommunityPageModule } from '../pages/community/community.module';
+//import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
+import { PopoverPage } from '../pages/community/community-modify/popover/popover';
 //import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
 //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 //
@@ -198,15 +199,12 @@ import { SkinDiagnoseOilPageModule } from '../pages/skin-diagnose-oil/skin-diagn
 import { SkinDiagnoseFirstMoisturePageModule } from '../pages/skin-diagnose-first-moisture/skin-diagnose-first-moisture.module';
 import { SkinDiagnoseFirstOilPageModule } from '../pages/skin-diagnose-first-oil/skin-diagnose-first-oil.module';
 
-// import {IonTagsInputModule} from "ionic-tags-input";
-// import { IonTagsInputModule } from "../ion-tags-input";
 
+//태그
+import {IonTagsInputModule} from "ionic-tags-input";
 import {RlTagInputModule} from 'angular2-tag-input';
 
 
-import { CommunityPage } from '../pages/community/community';
-import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
-import { CommunityWritePage } from '../pages/community/community-write/community-write';
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -264,16 +262,14 @@ export function getAuthHttp(http, storage) {
     GenderFilter,
     // BeautyTipAddPage,
     // QnaWritePage,
-    // CommunityPage,
-    // CommunityModifyPage,
+    CommunityPage,
+    CommunityModifyPage,
     CommunityWritePage,
     // MissionStartPage,
     // MissionVideoPage,
     // QnaReadPage,
     // KeyboardAttachDirective,
-    CommunityPage,
-    CommunityWritePage,
-    CommunityModifyPage,
+    PopoverPage,
   ],
   imports: [
     HttpModule,
@@ -317,9 +313,9 @@ export function getAuthHttp(http, storage) {
     DeviceSkinStartPageModule,
     DeviceSkinIngPageModule,
     BeautyTipAddPageModule,
-    // CommunityPageModule,
-    // CommunityModifyPageModule,
-    // CommunityWritePageModule,
+    //CommunityPageModule,
+  //  CommunityModifyPageModule,
+    //CommunityWritePageModule,
     MissionStartPageModule,
     MissionVideoPageModule,
     BrowserAnimationsModule,
@@ -330,13 +326,14 @@ export function getAuthHttp(http, storage) {
     BrowserModule,
     MultiPickerModule,
     IonicModule.forRoot(MyApp),
-    RlTagInputModule,
     ProgressBarModule,
     IonicStorageModule.forRoot(),
     HttpClientModule,
     IonicImageLoader.forRoot(),
+    RlTagInputModule,
     SelectSearchableModule,
     NgCircleProgressModule.forRoot(),
+    IonTagsInputModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
@@ -349,7 +346,6 @@ export function getAuthHttp(http, storage) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    // TextComponent,
     // LoginPage,
     // LoginpagePage,
     // PasswordfindPage,
@@ -390,15 +386,13 @@ export function getAuthHttp(http, storage) {
     // NoticePage,
     // BeautyTipAddPage,
     // QnaWritePage,
-    // CommunityPage,
-    // CommunityModifyPage,
+    CommunityPage,
+    CommunityModifyPage,
     CommunityWritePage,
     // MissionStartPage,
     // MissionVideoPage,
     // QnaReadPage,
-    CommunityPage,
-    CommunityWritePage,
-    CommunityModifyPage,
+    PopoverPage,
   ],
   providers: [
     StatusBar,

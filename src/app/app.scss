@@ -67,6 +67,162 @@
 // }
 
 
+
+
+
+
+
+
+.sk-rotating-plane {
+
+  margin: auto;
+
+      .spinner-md-crescent circle{
+        stroke: transparent !important;
+        height: 0px !important;
+      }
+      .loading-wrapper{
+       border-radius: 50%;
+       background-color: #5c59b6;
+       box-shadow: none !important;
+       -webkit-animation: sk-rotatePlane 1.2s infinite ease-in-out;
+               animation: sk-rotatePlane 1.2s infinite ease-in-out;
+               opacity: 1 !important;
+      }
+      ion-backdrop.backdrop-no-tappable{
+      background: #000 !important;
+      opacity: 0.4 !important;
+      height: 100%;
+      // margin-top: 16%;
+      }
+ }
+
+@-webkit-keyframes sk-rotatePlane {
+  0% {
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+  50% {
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
+  100% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+@keyframes sk-rotatePlane {
+  0% {
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+  50% {
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
+  100% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+
+
+
+  .android_popover .popover-content{
+    top: 42.875px !important;
+    left: 244px !important;
+    transform-origin: right top !important;
+    transform: scale(1) !important;
+    background-color: #fafafa !important;
+    width: 108px;
+    border: solid 1px #dddddd;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    box-shadow:none;
+
+      .list-md{
+        margin: 0px;
+      }
+   }
+
+
+   .ios_popover .popover-content{
+     top: 56.875px !important;
+     left: 244px !important;
+     transform-origin: right top !important;
+     transform: scale(1) !important;
+     background-color: #fafafa !important;
+     width: 108px;
+     border: solid 1px #dddddd;
+     font-family: NotoSansCJKkr;
+     font-size: 15px;
+     font-weight: normal;
+     font-style: normal;
+     font-stretch: normal;
+     line-height: normal;
+     letter-spacing: normal;
+     color: #292929;
+
+       .list-ios{
+         margin: 0px;
+       }
+
+       .list-ios > .item-block:first-child{
+         border-top: 0px;
+       }
+    }
+
+
+
+    .android_comment_popover .popover-content{
+      //top: 42.875px !important;
+      left: 244px !important;
+      transform-origin: right top !important;
+      transform: scale(1) !important;
+      background-color: #fafafa !important;
+      width: 108px;
+      border: solid 1px #dddddd;
+      font-family: NotoSansCJKkr;
+      font-size: 15px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #292929;
+      box-shadow:none;
+
+        .list-md{
+          margin: 0px;
+        }
+     }
+
+
+     .ios_comment_popover .popover-content{
+       //top: 56.875px !important;
+       left: 244px !important;
+       transform-origin: right top !important;
+       transform: scale(1) !important;
+       background-color: #fafafa !important;
+       width: 108px;
+       border: solid 1px #dddddd;
+       font-family: NotoSansCJKkr;
+       font-size: 15px;
+       font-weight: normal;
+       font-style: normal;
+       font-stretch: normal;
+       line-height: normal;
+       letter-spacing: normal;
+       color: #292929;
+
+         .list-ios{
+           margin: 0px;
+         }
+
+         .list-ios > .item-block:first-child{
+           border-top: 0px;
+         }
+      }
+
+
   //탭바 제플린 스타일
   .tabs-md[tabsLayout=icon-top] .has-icon .tab-button-text{
     font-family: NotoSansCJKkr;

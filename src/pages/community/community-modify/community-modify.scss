@@ -49,7 +49,7 @@ page-community-modify {
       height: 25px !important;
       object-fit: contain;
       margin-right: -50%;
-      margin-top: -50%;
+      margin-top: -60%;
     }
 
     .android_nav{
@@ -154,37 +154,27 @@ page-community-modify {
 
     .android_entroll_btn{
       position: absolute;
-      top: 10%;
-      right: 0%;
-      font-family: NotoSansCJKkr;
-      font-size: 17px;
-      font-weight: bold;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: center;
-      color: #c7c7c7;
+      width: 25px;
+      object-fit: contain;
+      top: 23%;
+      right: 3%;
+      background-image: url(../assets/img/beauty/ic-system-more-black.png);
+      background-repeat: no-repeat;
       background-color: #FFF !important;
-      box-shadow: none;
+      box-shadow: none !important;
     }
 
 
     .ios_entroll_btn{
       position: absolute;
-      top: -30%;
-      right: 0%;
-      font-family: NotoSansCJKkr;
-      font-size: 17px;
-      font-weight: bold;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: center;
-      color: #c7c7c7;
+      width: 25px;
+      object-fit: contain;
+      top: 1%;
+      right: 3%;
+      background-image: url(../assets/img/beauty/ic-system-more-black.png);
+      background-repeat: no-repeat;
       background-color: #FFF !important;
-      box-shadow: none;
+      box-shadow: none !important;
     }
 
     .qna_title{
@@ -223,17 +213,18 @@ page-community-modify {
      padding-left: 16px;
 
      .text-input{
-       height: 200px;
+       height: 150px;
        }
 
     }
 
     .attache_image{
       width: 97%;
-      height: 194px;
+      height: auto;
       padding-left: 16px;
       // padding-right: 16px;
       margin: 0px;
+      margin-top: 5%;
     }
 
 
@@ -246,7 +237,7 @@ page-community-modify {
       margin-left: 16px;
       display: block;
       margin-top: 10%;
-      padding: 1%;
+      padding: 3%;
       padding-left: 4%;
       margin-bottom: 10%;
     }
@@ -255,6 +246,7 @@ page-community-modify {
       width: 25px;
       height: 25px;
       object-fit: contain;
+      margin-bottom: -2%;
     }
 
     .file_path{
@@ -263,6 +255,8 @@ page-community-modify {
     }
 
     .community_tag_btn{
+      width: 87px;
+      height: 38px;
       border-radius: 3px;
       border: solid 1px #f1f1f1;
       font-family: AppleSDGothicNeo;
@@ -281,29 +275,112 @@ page-community-modify {
 
 
 
-
     .sns-img{
-      width: 45px;
-      height: 45px;
+      width: 35px;
+      height: 35px;
       object-fit: contain;
       background-color: #FFF;
     }
 
 
     .sns_row{
-      margin: 0 auto;
-      display: block;
-      padding-left: 10%;
-      margin-top: 10%;
-      margin-bottom: -2%;
+      position: absolute;
+      right: 0px;
+      top: 0px;
     }
 
 
+    .profile_comment{
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+          background-color: transparent !important;
+      left: 5%;
+      margin-top: 1%;
+    }
+
+    .nickname_comment{
+      position: relative;
+      left: 20%;
+      width: 150px;
+      height: 17.5px;
+      font-family: Roboto;
+      font-size: 15px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #292929;
+      margin-bottom: 3%;
+      //margin-top: -6%;
+    }
+
+    .time_comment{
+      position: relative;
+      left: 20%;
+      width: 150px;
+      height: 16.5px;
+      font-family: AppleSDGothicNeo;
+      font-size: 13px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #919191;
+      margin-bottom: 3%;
+    }
+
+      textarea.text-input {
+      display: table;
+      transform: translate3d(0px , 0px, 0px) !important;
+      padding: 0px;
+      margin: 0px;
+      }
+
+      .scroll-content{
+        padding-bottom: 0px !important;
+      }
 
 
+    .content_comment{
+      width: 70%;
+      // height: 10vh !important;
+      left: 20%;
+      right: 5%;
+      font-family: NotoSansCJKkr;
+      font-size: 15px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.33;
+      letter-spacing: normal;
+      color: #292929;
+      padding-bottom: 0px !important;
+      margin-left:20%;
+      margin-top:9%;
+      border: 0px;
+
+    }
+
+    ::-webkit-input-placeholder {
+     color: #b6b6b6;
+    }
 
 
-
+    .comment_btn{
+      position: absolute;
+      width: 25px;
+      object-fit: contain;
+      right: 5%;
+      background-image: url(../assets/img/beauty/ic-system-more-grey.png);
+      background-repeat: no-repeat;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      margin-top: -1%;
+    }
 
 
 }

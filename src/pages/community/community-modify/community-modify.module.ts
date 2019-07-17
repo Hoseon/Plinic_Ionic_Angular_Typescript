@@ -4,7 +4,7 @@ import { CommunityModifyPage } from './community-modify';
 
 @NgModule({
   declarations: [
-    // CommunityModifyPage,
+  //  CommunityModifyPage,
   ],
   imports: [
     IonicPageModule.forChild(CommunityModifyPage),
