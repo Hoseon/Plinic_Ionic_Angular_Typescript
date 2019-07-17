@@ -65,14 +65,14 @@ import { CareZoneMissionCompletePage } from '../pages/care-zone-mission-complete
 // import { BeautyTipAddPage } from '../pages/beauty-tip-add/beauty-tip-add';
 //
 // //커뮤니티
-import { CommunityPage } from '../pages/community/community';
-import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
+// import { CommunityPage } from '../pages/community/community';
+// import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
 import { CommunityWritePage } from '../pages/community/community-write/community-write';
 
 
 import { CommunityPageModule } from '../pages/community/community.module';
 import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
-import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
+// import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
 // //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 //
 // //미션 시작하기
@@ -268,7 +268,7 @@ export function getAuthHttp(http, storage) {
     // QnaWritePage,
     // CommunityPage,
     // CommunityModifyPage,
-    // CommunityWritePage,
+    CommunityWritePage,
     // MissionStartPage,
     // MissionVideoPage,
     // QnaReadPage,
@@ -319,7 +319,7 @@ export function getAuthHttp(http, storage) {
     BeautyTipAddPageModule,
     CommunityPageModule,
     CommunityModifyPageModule,
-    CommunityWritePageModule,
+    // CommunityWritePageModule,
     MissionStartPageModule,
     MissionVideoPageModule,
     BrowserAnimationsModule,
@@ -391,7 +391,7 @@ export function getAuthHttp(http, storage) {
     // QnaWritePage,
     // CommunityPage,
     // CommunityModifyPage,
-    // CommunityWritePage,
+    CommunityWritePage,
     // MissionStartPage,
     // MissionVideoPage,
     // QnaReadPage,

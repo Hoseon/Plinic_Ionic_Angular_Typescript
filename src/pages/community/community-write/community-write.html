@@ -3,7 +3,7 @@
   <ion-navbar *ngIf="platform.is('android')" no-lines>
   	<ion-buttons left no-lines>
   		<button ion-button icon-only (click)="dissmiss();" >
-          <img no-lines class="android_nav" src="/assets/img/beauty/ic-system-close-black@3x.png"/>
+          <img no-lines class="android_nav" src="assets/img/beauty/ic-system-close-black@3x.png"/>
   		</button>
   	</ion-buttons>
     <!-- 글 쓰기일 떄 타이틀 -->
@@ -21,7 +21,7 @@
   <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
     <ion-buttons left no-lines>
       <button ion-button icon-only (click)="dissmiss();">
-        <img no-lines class="ios_nav" src="/assets/img/beauty/ic-system-close-black@3x.png" />
+        <img no-lines class="ios_nav" src="assets/img/beauty/ic-system-close-black@3x.png" />
       </button>
     </ion-buttons>
     <!-- 글 쓰기일 떄 타이틀 -->
@@ -69,7 +69,7 @@
 
   <!-- 첨부 이미지 영역 -->
   <!-- <img *ngIf="imagePath2" class="attache_image" [src]="imagePath2" /> -->
-  <!-- <img *ngIf="!image_enroll" class="attache_image" src="/assets/img/home/carezone3.png" /> -->
+  <!-- <img *ngIf="!image_enroll" class="attache_image" src="assets/img/home/carezone3.png" /> -->
 </ion-content>
 
 
@@ -92,8 +92,8 @@
     <ion-input mode="ios" class="community_attache_image" placeholder="이미지 네임영역" clearInput></ion-input>
   </ion-item>
 
-  <img class="community_attache_camera" (click)="camera()" src="/assets/img/beauty/ic-system-camera@3x.png">
+  <img class="community_attache_camera" (click)="camera()" src="assets/img/beauty/ic-system-camera@3x.png">
 
-  <img class="community_attache_file" src="/assets/img/beauty/ic-system-file@3x.png">
+  <img class="community_attache_file" src="assets/img/beauty/ic-system-file@3x.png">
 
 </ion-footer>
