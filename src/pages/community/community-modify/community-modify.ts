@@ -4,14 +4,16 @@ import { PopoverPage } from './popover/popover';
 import { ImagesProvider } from '../../../providers/images/images';
 
 
+
+
 @IonicPage()
 @Component({
   selector: 'page-community-modify',
   templateUrl: 'community-modify.html',
 })
-@Directive({
-  selector: "ion-textarea[autoresize]" // Attribute selector
-})
+// @Directive({
+//   selector: "ion-textarea[autoresize]" // Attribute selector
+// })
 
 export class CommunityModifyPage {
 
