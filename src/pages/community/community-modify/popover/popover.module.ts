@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { CommunityPage } from './community';
+import { PopoverPage } from './popover';
 
 @NgModule({
   declarations: [
-  //  CommunityPage,
+    //PopoverPage,
   ],
   imports: [
-    IonicPageModule.forChild(CommunityPage),
+    //IonicPageModule.forChild(PopoverPage),
   ],
 })
-export class CommunityPageModule {}
+export class PopoverPageModule {}
