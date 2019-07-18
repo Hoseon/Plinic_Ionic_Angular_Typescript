@@ -15,7 +15,7 @@ import { Transfer, TransferObject, FileUploadOptions } from '@ionic-native/trans
 export class ImagesProvider {
 
   apiURL = 'http://plinic.cafe24app.com/';
-  //apiURL = 'http://localhost:8001/';
+  // apiURL = 'http://localhost:8001/';
 
   constructor(public http: Http, private transfer: Transfer, private alertCtrl: AlertController) { }
 
@@ -127,6 +127,11 @@ export class ImagesProvider {
 
   public skinQnaOneLoad(id) {
     return this.http.get(this.apiURL + 'skinqna/list/' + id)
+      .map(response => response.json());
+  }
+
+  public exhibitionLoad() {
+    return this.http.get(this.apiURL + 'exhibition/main_list/')
       .map(response => response.json());
   }
 

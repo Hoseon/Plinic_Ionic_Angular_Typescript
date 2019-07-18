@@ -390,7 +390,7 @@
 
       <ion-slides mode="ios" style="background-color: #f5f5f5; margin-top: 0px;" pager>
         <ng-container *ngFor="let skinqnaMain of skinQnaMainData; let i = index">
-          <ion-slide (click)="community_qna_modify(skinqnaMain._id)" >
+          <ion-slide (click)="community_qna_modify(skinqnaMain._id)">
             <ion-card>
               <div class="card-title"><span class="beauty_note_Q">Q </span> {{skinqnaMain.title}}</div><br>
               <div class="card-subtitle"><span class="beauty_note_Q">A </span>{{skinqnaMain.comments[0].body}}</div>
@@ -441,17 +441,34 @@
     <!-- 기획전 -->
     <ion-slide>
       <!-- <h2 class="beauty_ggul_tip">기획전</h2> -->
-      <img class="imagealign_first" src='assets/img/home/carezone1.png' />
-      <ion-row>
-        <ion-col class="beauty_plan_title">할수 있다! 물광미인</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="beauty_plan_subtitle">디스크립션</ion-col>
-      </ion-row>
-      <br>
-      <div style="height:1px; width:97%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+      <ng-container *ngIf="platform.is('android')">
+        <ng-container *ngFor="let exhibition of exhibitionData; let i = index" >
+          <img (click)="openBrowser_android(exhibition.posturl, exhibition.body)" class="imagealign_first" src='http://plinic.cafe24app.com/exhibition_images/{{exhibition._id}}' />
+          <ion-row (click)="openBrowser_android(exhibition.posturl, exhibition.body)" >
+            <ion-col class="beauty_plan_title">{{exhibition.title}}</ion-col>
+          </ion-row>
+          <ion-row (click)="openBrowser_android(exhibition.posturl, exhibition.body)" >
+            <ion-col class="beauty_plan_subtitle">{{exhibition.body}}</ion-col>
+          </ion-row>
+          <br>
+          <div style="height:1px; width:97%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+        </ng-container>
+      </ng-container>
 
-      <img class="imagealign" src='assets/img/home/carezone2.png' />
+      <ng-container *ngIf="platform.is('ios') || platform.is('core')">
+        <ng-container *ngFor="let exhibition of exhibitionData; let i = index" >
+          <img (click)="openBrowser_ios(exhibition.posturl, exhibition.body)" class="imagealign_first" src='http://plinic.cafe24app.com/exhibition_images/{{exhibition._id}}' />
+          <ion-row (click)="openBrowser_ios(exhibition.posturl, exhibition.body)">
+            <ion-col class="beauty_plan_title">{{exhibition.title}}</ion-col>
+          </ion-row>
+          <ion-row (click)="openBrowser_ios(exhibition.posturl, exhibition.body)">
+            <ion-col class="beauty_plan_subtitle">{{exhibition.body}}</ion-col>
+          </ion-row>
+          <br>
+          <div style="height:1px; width:97%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+        </ng-container>
+      </ng-container>
+      <!-- <img class="imagealign" src='assets/img/home/carezone2.png' />
       <ion-row>
         <ion-col class="beauty_plan_title">할수 있다! 물광미인</ion-col>
       </ion-row>
@@ -481,7 +498,7 @@
         <ion-col class="beauty_plan_subtitle">디스크립션</ion-col>
       </ion-row>
       <br>
-      <div style="height:1px; width:97%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+      <div style="height:1px; width:97%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
 
 
       <br><br>

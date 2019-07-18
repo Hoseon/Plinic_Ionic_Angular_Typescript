@@ -30,6 +30,7 @@ export class CommunityPage {
   beautyNoteMainData: any;
   skinQnaData: any;
   skinQnaMainData: any;
+  exhibitionData: any;
   communityEditorBeautyLoadData: any;
   beauty_data_type1: any;
   beauty_data_title1: any;
@@ -76,6 +77,7 @@ export class CommunityPage {
     this.beautyNoteMainLoad();
     this.skinQnaLoad();
     this.skinQnaMainLoad();
+    this.exhibitionLoad();
   }
 
 
@@ -178,6 +180,12 @@ public roadbeauty() {
   public skinQnaMainLoad() {
     this.images.skinQnaMainLoad().subscribe(data => {
       this.skinQnaMainData = data;
+    });
+  }
+
+  public exhibitionLoad() {
+    this.images.exhibitionLoad().subscribe(data => {
+      this.exhibitionData = data;
     });
   }
 
