@@ -95,6 +95,11 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public communityEditorHomeBeautyLoad() {
+    return this.http.get(this.apiURL + 'commubeauty/home_list')
+      .map(response => response.json());
+  }
+
   public communityBeautyLoad() {
     return this.http.get(this.apiURL + 'commubeauty/main_list')
       .map(response => response.json());

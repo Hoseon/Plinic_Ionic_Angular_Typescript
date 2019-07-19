@@ -46,6 +46,7 @@
     "call-number": "^1.0.1",
     "chart.js": "^2.8.0",
     "chartjs-plugin-labels": "^1.1.0",
+    "cordova-android": "7.0.0",
     "cordova-ios": "5.0.0",
     "cordova-plugin-ble-central": "^1.2.2",
     "cordova-plugin-bluetooth-serial": "^0.4.7",
