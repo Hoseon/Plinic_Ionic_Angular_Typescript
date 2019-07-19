@@ -26,6 +26,10 @@ page-community {
     margin-bottom: 0px !important;
   }
 
+  .toast-ios .toast-message{
+    z-index: 1000;
+  }
+
 
     .toolbar-title-md{
       font-weight: bold;

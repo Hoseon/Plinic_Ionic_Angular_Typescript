@@ -18,7 +18,9 @@
     "@angular/http": "^4.0.2",
     "@angular/platform-browser": "5.0.0",
     "@angular/platform-browser-dynamic": "5.0.0",
+    "@ionic-native/ble": "^4.20.0",
     "@ionic-native/bluetooth-le": "^4.20.0",
+    "@ionic-native/bluetooth-serial": "^4.20.0",
     "@ionic-native/browser-tab": "^4.20.0",
     "@ionic-native/call-number": "^4.20.0",
     "@ionic-native/camera": "^4.20.0",
@@ -45,6 +47,8 @@
     "chart.js": "^2.8.0",
     "chartjs-plugin-labels": "^1.1.0",
     "cordova-ios": "5.0.0",
+    "cordova-plugin-ble-central": "^1.2.2",
+    "cordova-plugin-bluetooth-serial": "^0.4.7",
     "cordova-plugin-bluetoothle": "^4.5.3",
     "cordova-plugin-browsertab": "^0.2.0",
     "cordova-plugin-camera": "4.0.3",
@@ -131,7 +135,11 @@
         "OAUTH_CLIENT_ID": "cIUVxjnNe7iTuqbTQZvu",
         "OAUTH_CLIENT_SECRET": "joXW3wHq8s",
         "OAUTH_CLIENT_NAME": "Plinic"
-      }
+      },
+      "cordova-plugin-ble-central": {
+        "BLUETOOTH_USAGE_DESCRIPTION": " "
+      },
+      "cordova-plugin-bluetooth-serial": {}
     },
     "platforms": [
       "ios"

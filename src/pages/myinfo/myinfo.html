@@ -53,8 +53,9 @@
 
   <ion-list no-lines>
     <ion-item class="connect_status" mode="ios" no-lines>연동상태
-      <button mode="ios" *ngIf="blu_connect" class="blue_status" no-lines ion-item (click)="blue_connect()">연동 중</button>
-      <button mode="ios" *ngIf="!blu_connect" class="blue_status" no-lines ion-item (click)="blue_disconnect()">연동 해제</button>
+      <!-- <button mode="ios" *ngIf="blu_connect" class="blue_status" no-lines ion-item (click)="blue_connect()">연동 중</button> -->
+      <!-- <button mode="ios" *ngIf="!blu_connect" class="blue_status" no-lines ion-item (click)="blue_disconnect()">연동 해제</button> -->
+      <button mode="ios" *ngIf="blu_connect" class="blue_status" no-lines ion-item (click)="blue_disconnect()">연동 해제</button>
     </ion-item>
     <button class="plinic_use" mode="ios" no-lines ion-item (click)="plinic_manual()" icon-start>플리닉 사용법</button>
     <button class="care_zone" mode="ios" no-lines ion-item (click)="openCareZoneTab()" icon-start>케어존</button>

@@ -61,8 +61,8 @@
     </ng-container>
 
   </ion-navbar>
-
-  <ion-segment mode="md" [(ngModel)]="page" color="#5c59b6">
+  <div style="height:1px; width:100%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+  <ion-segment outline mode="md" [(ngModel)]="page" color="#5c59b6">
     <ion-segment-button value="0" (click)="selectedTab(0)">
       홈
     </ion-segment-button>
@@ -79,6 +79,7 @@
       기획전
     </ion-segment-button>
   </ion-segment>
+  <div style="height:1px; width:100%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
 </ion-header>
 
 
@@ -143,7 +144,7 @@
       <ng-container *ngIf="platform.is('ios') || platform.is('core')">
         <ng-container *ngFor="let community of communityBeautyLoadData; let i = index">
           <ng-container *ngIf="(i < 3)">
-            <ion-col class="container" (click)="openBrowser_ios(community.posturl, community.body)">
+            <ion-col class="container" (click)="openBrowser_ioslike(community.posturl, community.body, community._id, userData.email, 'tip')">
               <ion-row class="beauty_row">
                 <ion-col col-7 class="beauty_note_title_img"><span class="beauty_note_tag">{{community.title}} </span>{{community.body}}</ion-col>
               </ion-row>

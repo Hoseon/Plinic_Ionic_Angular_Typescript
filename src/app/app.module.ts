@@ -174,6 +174,12 @@ import { Camera } from '@ionic-native/camera';
 //Bluetooth 모듈 추가
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
 
+import { BLE } from '@ionic-native/ble';
+
+// import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
+
+
+
 //다국어 처리 모듈 추가 20190510-추호선
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 
@@ -417,6 +423,8 @@ export function getAuthHttp(http, storage) {
     ThemeableBrowser,
     CallNumber,
     LocalNotifications,
+    BLE,
+    // BluetoothSerial,
     //  AdMobFree,
     {
       provide: AuthHttp,

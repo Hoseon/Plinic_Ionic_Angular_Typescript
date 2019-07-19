@@ -92,12 +92,12 @@ export class CareZoneMissionIngPage {
   }
 
   ngOnInit() {
-    setInterval(() => {
-      if (this.loadProgress < 50)
-        this.loadProgress += 1;
-      else
-        clearInterval(this.loadProgress);
-    }, 50);
+    // setInterval(() => {
+    //   if (this.loadProgress < 10)
+    //     this.loadProgress += 1;
+    //   else
+    //     clearInterval(this.loadProgress);
+    // }, 50);
   }
 
   public mission_start(){

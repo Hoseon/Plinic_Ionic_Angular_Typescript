@@ -502,7 +502,7 @@ public skin_first_oil_score() {
     //       buttons: ['OK']
     //     });
     //     alert.present();
-    //   }
+    //   }beauty_add
     // )
 
   }
@@ -518,7 +518,7 @@ public skin_first_oil_score() {
         handler: () => {
           console.log('연결하기'),
             //02.2038.4876
-            this.callNumber.callNumber("0220384876", true)
+            this.callNumber.callNumber("18334870", true)
         }
       }]
     });
@@ -920,6 +920,12 @@ public skin_first_oil_score() {
     // The second tab is the one with the index = 1
     //this.nav.push(TabsPage, { selectedTab: 1 });
     this.nav.parent.select(1);
+  }
+
+  public openCommunityTab(): void {
+    // The second tab is the one with the index = 1
+    //this.nav.push(TabsPage, { selectedTab: 1 });
+    this.nav.parent.select(3);
   }
 
 

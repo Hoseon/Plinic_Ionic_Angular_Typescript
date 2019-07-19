@@ -6,15 +6,15 @@
 -->
 <ion-header>
 
-  <ion-navbar  *ngIf="platform.is('android')" no-lines>
+  <ion-navbar *ngIf="platform.is('android')" no-lines>
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios')" no-lines>
-  	<ion-buttons left>
-  		<button ion-button navPop icon-only>
-        <img class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
-  		</button>
-  	</ion-buttons>
+    <ion-buttons left>
+      <button ion-button navPop icon-only>
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -23,11 +23,38 @@
 
 
 
-    <ion-label class="blue_status">연결된 기기없음</ion-label>
-    <ion-label class="blue_sub" >플리닉 디바이스를 보유 중이시면<br>연결하기 버튼을 눌러 앱과 연동하세요</ion-label>
+  <ion-label class="blue_status">연결된 기기없음</ion-label>
+  <ion-label class="blue_sub">플리닉 디바이스를 보유 중이시면<br>연결하기 버튼을 눌러 앱과 연동하세요</ion-label>
 
-    <button ion-button style="box-shadow: none;" class="button_outline" (click)="connect_start()" outline> 연결&nbsp;하기</button>
+  <button ion-button style="box-shadow: none;" class="button_outline" (click)="connect_start()" outline> 연결&nbsp;하기</button>
+
+  <button ion-button (click)="scan()">
+    Scan
+  </button>
 
 
+  <!-- <button ion-button (click)="startScanning()">
+    Scan
+  </button> -->
+
+  <!-- <ion-item class="back" *ngFor='let device of unpairedDevices'>
+    <span (click)="selectDevice(device.address)">
+      {{device.name}}
+    </span>
+  </ion-item> -->
+
+  <ion-list>
+    <button ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">
+      <h2>{{device.name || 'Unnamed' }}</h2>
+      <p>{{device.id}}</p>
+      <p>RSSI: {{device.rssi}}</p>
+    </button>
+  </ion-list>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <p>{{ statusMessage }}</p>
+  </ion-toolbar>
+</ion-footer>

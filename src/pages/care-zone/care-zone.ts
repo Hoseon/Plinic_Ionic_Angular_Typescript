@@ -428,7 +428,7 @@ export class CareZonePage {
         this.carezoneData = data;
         setTimeout(() => {
           this.loading.dismiss();
-        }, 2500);
+        }, 1000);
       } else {
         this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
       }
@@ -492,7 +492,7 @@ export class CareZonePage {
   showLoading() {
     this.loading = this.loadingCtrl.create({
       spinner: 'hide',
-      duration: 2500,
+      duration: 1000,
       cssClass: 'sk-rotating-plane'
     });
     this.loading.present();

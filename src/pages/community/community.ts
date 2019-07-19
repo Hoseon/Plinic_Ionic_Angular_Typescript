@@ -1,10 +1,13 @@
 import { Component, ViewChild, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Content, ModalController, Slides, Platform, Loading, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Content, ModalController, Slides, Platform, Loading, LoadingController, ToastController } from 'ionic-angular';
 import { CommunityModifyPage } from './community-modify/community-modify';
 import { CommunityWritePage } from './community-write/community-write';
 import { ImagesProvider } from '../../providers/images/images';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { DOCUMENT } from '@angular/common';
+import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { AuthService } from '../../providers/auth-service';
+
 
 
 /**
@@ -20,7 +23,11 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: 'community.html',
 })
 export class CommunityPage {
-
+  jwtHelper: JwtHelper = new JwtHelper();
+  userData: any;
+  profileimg_url: any;
+  from: any;
+  thumb_image: any;
   @ViewChild(Content) content: Content;
 
   page = "0";
@@ -52,7 +59,7 @@ export class CommunityPage {
 
   @ViewChild(Slides) slides: Slides;
 
-  constructor(public loadingCtrl: LoadingController, public nav: NavController, public navParams: NavParams, private alertCtrl: AlertController, public modalCtrl: ModalController, private images: ImagesProvider, public platform: Platform
+  constructor(private toastCtrl: ToastController, private authService: AuthService, public loadingCtrl: LoadingController, public nav: NavController, public navParams: NavParams, private alertCtrl: AlertController, public modalCtrl: ModalController, private images: ImagesProvider, public platform: Platform
     , private themeableBrowser: ThemeableBrowser, @Inject(DOCUMENT) document) {
 
 
@@ -68,7 +75,7 @@ export class CommunityPage {
   }
 
   ionViewCanEnter() {
-
+    this.loadItems();
   }
 
   ionViewWillEnter() {
@@ -84,7 +91,7 @@ export class CommunityPage {
     // this.loading.dismiss();
     setTimeout(() => {
       this.loading.dismiss();
-    }, 2500);
+    }, 1000);
   }
 
 
@@ -194,6 +201,74 @@ export class CommunityPage {
     this.images.exhibitionLoad().subscribe(data => {
       this.exhibitionData = data;
     });
+  }
+
+  openBrowser_ioslike(url, title, id, user, mode) {
+    // https://ionicframework.com/docs/native/themeable-browser/
+
+    const options: ThemeableBrowserOptions = {
+      toolbar: {
+        height: 55,
+        color: '#6562b9'
+      },
+      title: {
+        color: '#ffffffff',
+        showPageTitle: false,
+        staticText: title
+      },
+      closeButton: {
+        wwwImage: 'assets/img/close.png',
+        align: 'left',
+        event: 'closePressed'
+      },
+      customButtons: [
+        {
+
+          wwwImage: 'assets/img/like/like.png',
+          // wwwImagePressed: 'assets/img/like/dislike.png',
+          align: 'right',
+          event: 'sharePressed'
+        }
+      ],
+    };
+
+    const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
+    browser.insertCss({
+      file: 'assets/img/close.png',
+      code: '.navbar-fixed-top {display: block !important;}'
+    });
+    browser.reload();
+    browser.on('closePressed').subscribe(data => {
+      browser.close();
+    })
+
+    browser.on('sharePressed').subscribe(data => {
+      browser.executeScript({
+        code: ""
+      });
+      console.log("idididididididid : " + id);
+      console.log("modemodemodemodemodemodemodemodmoe : " + mode);
+      console.log("useruseruseruseruseruseruseruser" + user);
+      console.log(data);
+      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+      if (mode === 'tip') {
+        console.log("tiptiptiptiptiptiptiptiptiptiptip");
+        this.toast();
+        // this.images.like(id, user).subscribe(data => {
+        //   console.log("-----------------------------------------" + data);
+        //
+        // });
+        console.log("tip2tip2tip2tip2tip2tip2tiptiptiptiptip");
+
+      } else if (mode === 'exhi') {
+        console.log("exhiexhiexhiexhiexhiexhiexhiexhi");
+
+      } else {
+        console.log("nothingnothingnothingnothingnothingnothing");
+      }
+    })
+
+
   }
 
   openBrowser_ios(url, title) {
@@ -322,6 +397,51 @@ export class CommunityPage {
     myModal.present();
   }
 
+  public loadItems() {
+    this.authService.getUserStorage().then(items => {
+
+      if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: items.email,
+          gender: items.gender,
+          nickname: items.nickname,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+          from: items.from,
+        };
+        if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
+          this.thumb_image = false;
+        } else {
+          this.thumb_image = true;
+        }
+        // this.chkmission(this.userData.email);
+        // this.chkIngmission(this.userData.email);
+      } else {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: this.jwtHelper.decodeToken(items).email,
+          gender: items.gender,
+          nickname: this.jwtHelper.decodeToken(items).name,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+          from: 'plinic',
+        };
+        // this.chkmission(this.userData.email);
+        // this.chkIngmission(this.userData.email);
+        this.from = 'plinic';
+      }
+      this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
+      this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
+    });
+  }
+
 
   // public community_qna_modify() {
   //   let myModal = this.modalCtrl.create(CommunityModifyPage, {qna : 'qna'});
@@ -333,12 +453,26 @@ export class CommunityPage {
     this.loading = this.loadingCtrl.create({
       // content: 'Please wait...',
       spinner: 'hide',
-      duration: 2500,
+      duration: 1000,
       cssClass: 'sk-rotating-plane'
     });
     this.loading.present();
   }
 
+
+  toast(){
+    let toast = this.toastCtrl.create({
+      message: '좋아요!',
+      duration: 5000,
+      position: 'middle'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
 
 
 

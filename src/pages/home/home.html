@@ -25,7 +25,7 @@
     </ion-row>
 
 
-<!-- <div>{{all_first_total_score}}</div>
+    <!-- <div>{{all_first_total_score}}</div>
 <div>{{all_total_score}}</div> -->
 
     <!-- 첫 문진표 (수분+유분)/2 어제 상태표시-->
@@ -33,32 +33,32 @@
       <ion-col *ngIf="!skin_diagnose_first_check || (skin_diagnose_first_check && all_oil_score==='')" class="left_grid">
         <ion-label *ngIf="pre_circle_date" class="day">{{pre_circle_date}}</ion-label>
         <ion-label *ngIf="!pre_circle_date" class="day">어제</ion-label>
-        <img *ngIf="pre_total_score<25" class="img-status" src="assets/img/successhome/ic-system-skin-bad@3x.png"/>
-        <img *ngIf="pre_total_score>25" class="img-status" src="assets/img/successhome/ic-system-skin-normal@3x.png"/>
+        <img *ngIf="pre_total_score<25" class="img-status" src="assets/img/successhome/ic-system-skin-bad@3x.png" />
+        <img *ngIf="pre_total_score>25" class="img-status" src="assets/img/successhome/ic-system-skin-normal@3x.png" />
         <ion-label *ngIf="pre_total_score>=76" class="status_good">좋음</ion-label>
         <ion-label *ngIf="pre_total_score>=51 && pre_total_score<=75" class="status_normal">보통</ion-label>
         <ion-label *ngIf="pre_total_score>=26 && pre_total_score<=50" class="status_soso">흐림</ion-label>
         <ion-label *ngIf="pre_total_score<=25" class="status_bad">나쁨</ion-label>
         <button ion-button class="status_btn" (click)="moisture_help()">수분 보충
-          <img class="img-logo" src="assets/img/successhome/ic-system-infomation@3x.png"/></button>
+          <img class="img-logo" src="assets/img/successhome/ic-system-infomation@3x.png" /></button>
       </ion-col>
 
       <!-- 첫 문진표 (수분+유분)/2 오늘 상태표시-->
-        <ion-col *ngIf="!skin_diagnose_first_check || (skin_diagnose_first_check && all_oil_score==='')" class="left_grid">
-          <ion-label *ngIf="circle_date" class="day">{{circle_date}}</ion-label>
-          <ion-label *ngIf="!circle_date" class="day">오늘</ion-label>
-          <img *ngIf="total_score<25" class="img-status" src="assets/img/successhome/ic-system-skin-bad@3x.png"/>
-          <img *ngIf="total_score>25" class="img-status" src="assets/img/successhome/ic-system-skin-normal@3x.png"/>
-          <ion-label *ngIf="total_score>=76" class="status_good">좋음</ion-label>
-          <ion-label *ngIf="total_score>=51 && total_score<=75" class="status_normal">보통</ion-label>
-          <ion-label *ngIf="total_score>=26 && total_score<=50" class="status_soso">흐림</ion-label>
-          <ion-label *ngIf="total_score<=25" class="status_bad">나쁨</ion-label>
-          <button ion-button class="status_btn" (click)="moisture_help()">수분 보충
-            <img class="img-logo" src="assets/img/successhome/ic-system-infomation@3x.png"/></button>
-        </ion-col>
+      <ion-col *ngIf="!skin_diagnose_first_check || (skin_diagnose_first_check && all_oil_score==='')" class="left_grid">
+        <ion-label *ngIf="circle_date" class="day">{{circle_date}}</ion-label>
+        <ion-label *ngIf="!circle_date" class="day">오늘</ion-label>
+        <img *ngIf="total_score<25" class="img-status" src="assets/img/successhome/ic-system-skin-bad@3x.png" />
+        <img *ngIf="total_score>25" class="img-status" src="assets/img/successhome/ic-system-skin-normal@3x.png" />
+        <ion-label *ngIf="total_score>=76" class="status_good">좋음</ion-label>
+        <ion-label *ngIf="total_score>=51 && total_score<=75" class="status_normal">보통</ion-label>
+        <ion-label *ngIf="total_score>=26 && total_score<=50" class="status_soso">흐림</ion-label>
+        <ion-label *ngIf="total_score<=25" class="status_bad">나쁨</ion-label>
+        <button ion-button class="status_btn" (click)="moisture_help()">수분 보충
+          <img class="img-logo" src="assets/img/successhome/ic-system-infomation@3x.png" /></button>
+      </ion-col>
 
       <!-- 문진표 (수분+유분)/2 어제 상태표시-->
-      <ion-col *ngIf="skin_diagnose_first_check" class="left_grid">
+      <ion-col *ngIf="circle_moisture" class="left_grid">
         <ion-label *ngIf="pre_circle_date" class="day">{{pre_circle_date}}</ion-label>
         <ion-label *ngIf="!pre_circle_date" class="day">어제</ion-label>
         <img *ngIf="pre_total_score<25" class="img-status" src="assets/img/successhome/ic-system-skin-bad@3x.png"/>
@@ -72,7 +72,7 @@
       </ion-col>
 
       <!-- 문진표 (수분+유분)/2 오늘 상태표시-->
-      <ion-col *ngIf="skin_diagnose_first_check" class="left_grid">
+      <ion-col *ngIf="circle_moisture" class="left_grid">
         <ion-label *ngIf="circle_date" class="day">{{circle_date}}</ion-label>
         <ion-label *ngIf="!circle_date" class="day">오늘</ion-label>
         <img *ngIf="total_score<25" class="img-status" src="assets/img/successhome/ic-system-skin-bad@3x.png"/>
@@ -110,28 +110,32 @@
       </ion-grid><br>
 
       <ion-grid *ngIf="circle_moisture" class="griddata">
-      <ion-row *ngIf="circle_moisture">
-        <ion-col class="data1">{{pre_circle_moisture}}점</ion-col>
-        <ion-col class="data2">수분</ion-col>
-        <ion-col class="data3">{{circle_moisture}}점</ion-col>
-      </ion-row>
+        <ion-row *ngIf="circle_moisture">
+          <ion-col class="data1">{{pre_circle_moisture}}점</ion-col>
+          <ion-col class="data2">수분</ion-col>
+          <ion-col class="data3">{{circle_moisture}}점</ion-col>
+        </ion-row>
         <ion-row>
-        <ion-col class="data1">{{pre_circle_oil}}점</ion-col>
-        <ion-col class="data2">유분</ion-col>
-        <ion-col class="data3">{{circle_oil}}점</ion-col>
-      </ion-row>
+          <ion-col class="data1">{{pre_circle_oil}}점</ion-col>
+          <ion-col class="data2">유분</ion-col>
+          <ion-col class="data3">{{circle_oil}}점</ion-col>
+        </ion-row>
       </ion-grid>
     </ion-item>
 
-    <ion-item  *ngIf="all_first_moisture_score>0" no-lines>
-      <p class="sub"> ※진단 결과는 환경에 따라 상이할 수 있습니다.</p>
-    </ion-item><br>
+    <ng-container *ngIf="circle_moisture">
+      <ion-item *ngIf="all_first_moisture_score>0" no-lines>
+        <p class="sub"> ※진단 결과는 환경에 따라 상이할 수 있습니다.</p>
+      </ion-item><br>
+    </ng-container>
 
     <ion-row>
       <ion-col style="text-align: center">
-        <button ion-button class="skin_btn" (click)="skin_measure()">피부 측정하기 >  </button>
-        <button ion-button class="skin_btn_2" (click)="openBasicModal()">피부 정밀 측정하기 >  </button>
-        <button ion-button  *ngIf="all_first_total_score>= 0 || all_total_score>=0" class="detail_btn" (click)="skin_chart()">자세히 보기 >  </button>
+        <button ion-button class="skin_btn" (click)="skin_measure()">피부 측정하기 > </button>
+        <button ion-button class="skin_btn_2" (click)="openBasicModal()">피부 정밀 측정하기 > </button>
+        <ng-container *ngIf="circle_moisture">
+          <button ion-button *ngIf="all_first_total_score>= 0 || all_total_score>=0" class="detail_btn" (click)="skin_chart()">자세히 보기 > </button>
+        </ng-container>
       </ion-col>
     </ion-row>
   </ion-list>
@@ -380,8 +384,8 @@
 
     <ion-row>
       <ion-col>
-        <button mode="md" class="bound2" (click)="beauty_add()" ion-item icon-start>
-          <div class="font_tip_btn">&nbsp;뷰티 팁</div>
+        <button mode="md" class="bound2" (click)="openCommunityTab()" ion-item icon-start>
+          <div class="font_tip_btn">&nbsp;피부고민</div>
         </button>
       </ion-col>
     </ion-row>
