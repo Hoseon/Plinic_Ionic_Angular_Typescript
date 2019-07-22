@@ -1,11 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ViewController, ActionSheetController, App, AlertController, normalizeURL } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AuthService } from '../../../providers/auth-service';
 import { ImagesProvider } from '../../../providers/images/images';
 import { FormControl, FormBuilder, FormGroup } from "@angular/forms";
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
-
+import { DOCUMENT } from '@angular/common';
 
 /**
  * Generated class for the CommunityWritePage page.
@@ -37,6 +37,10 @@ export class CommunityWritePage {
   talks = [];
   preparedTags = [];
   skinQna: boolean = false;
+
+  @ViewChild('image') imageElement: ElementRef;
+
+
   // ,preparedTags = [
   //   '#Ionic',
   //   '#Angular',
@@ -60,7 +64,9 @@ export class CommunityWritePage {
   ionViewWillLoad() {
   }
 
-  constructor(private imagesProvider: ImagesProvider, public _camera: Camera, public actionSheetCtrl: ActionSheetController, public nav: NavController, public navParams: NavParams, public platform: Platform, private auth: AuthService, public viewCtrl: ViewController, private alertCtrl: AlertController, public app: App) {
+  constructor(private imagesProvider: ImagesProvider, public _camera: Camera, public actionSheetCtrl: ActionSheetController, public nav: NavController,
+    public navParams: NavParams, public platform: Platform, private auth: AuthService, public viewCtrl: ViewController, private alertCtrl: AlertController,
+     public app: App, public element: ElementRef, @Inject(DOCUMENT) document) {
 
     this.platform.ready().then((readySource) => {
 
@@ -109,6 +115,22 @@ export class CommunityWritePage {
   }
 
 
+  protected adjustTextarea(): void {
+    let textArea = this.element.nativeElement.getElementsByTagName('textarea')[0];
+    textArea.style.overflow = 'hidden';
+    textArea.style.height = 'auto';
+    textArea.style.height = textArea.scrollHeight + 'px';
+    return;
+  }
+
+  // 첨부이미지 삭제
+  image_close(){
+      setTimeout(() => {
+      this.imageElement.nativeElement.remove();
+      }, 100)
+  }
+
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommunityWritePage');
   }
@@ -125,8 +147,9 @@ export class CommunityWritePage {
   }
 
   attache_image_view() {
-    if (this.imagePath2)
+    if (this.imagePath2){
       document.getElementById("attache_image").style.display = "";
+    }
   }
 
   public dissmiss() {
