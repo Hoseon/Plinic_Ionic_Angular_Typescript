@@ -10,10 +10,10 @@
     <ion-title class="android_title" text-wrap>글쓰기</ion-title>
     <!-- 글 수정일 떄 타이틀 -->
     <ion-title *ngIf="text_edit" class="android_title" text-wrap>글 수정</ion-title>
-    <button ion-button class="android_entroll_btn">등록 </button>
+    <button ion-button class="android_entroll_btn" (click)="registerNote()">등록 </button>
     <!-- 모든정보 입력시 색상변경 -->
     <!-- 글쓰기일 때 버튼-->
-    <button ion-button *ngIf="all_text_enroll" style="color: #5c59b6;" class="android_entroll_btn">등록 </button>
+    <button ion-button *ngIf="all_text_enroll" style="color: #5c59b6;" class="android_entroll_btn" (click)="registerNote()">등록 </button>
     <!-- 글 수정일 때 버튼-->
     <button ion-button *ngIf="text_edit" style="color: #5c59b6;" class="android_entroll_btn">완료 </button>
   </ion-navbar>

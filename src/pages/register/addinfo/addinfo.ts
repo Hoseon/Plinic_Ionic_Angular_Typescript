@@ -146,7 +146,7 @@ toggle(){
     //this.showPopup("this.registerCredentials.imagePath" , this.registerCredentials.imagePath);
     //this.showPopup("imagePath2" , this.imagePath2);
 
-    this.auth.setUserStorageimagePath(this.imagePath2);
+    //this.auth.setUserStorageimagePath(this.imagePath2);
     this.imagesProvider.user_uploadImage(this.registerCredentials.imagePath, this.registerCredentials.email).then(res => {
       // this.viewCtrl.dismiss({reload: true});
       // this.loading.dismiss();
