@@ -83,58 +83,58 @@ export class AuthService {
   }
 
 
-  // //최초 실행검사인지 체크
-  // public setUserStoragediagnose_first_check(check) {
-  //   this.storage.set('check', check);
-  // }
-  //
-  // public getUserStoragediagnose_first_check() {
-  //   return this.storage.get('check');
-  // }
-  //
-  // //최초 데이터
-  // public setUserStoragediagnose_first_moisture(moisture) {
-  //   this.storage.set('moisture', moisture);
-  // }
-  //
-  // public getUserStoragediagnose_first_moisture() {
-  //   return this.storage.get('moisture');
-  // }
-  // 
-  // public setUserStoragediagnose_first_oil(oil) {
-  //   this.storage.set('oil', oil);
-  // }
-  //
-  // public getUserStoragediagnose_first_oil() {
-  //   return this.storage.get('oil');
-  // }
-  //
-  //
-  // //두번째이상 데이터
-  // public setUserStoragediagnose_moisture(moisture) {
-  //   this.storage.set('moisture', moisture);
-  // }
-  //
-  // public getUserStoragediagnose_moisture() {
-  //   return this.storage.get('moisture');
-  // }
-  //
-  // public setUserStoragediagnose_oil(oil) {
-  //   this.storage.set('oil', oil);
-  // }
-  //
-  // public getUserStoragediagnose_oil() {
-  //   return this.storage.get('oil');
-  // }
-  //
-  // // 썸네일 이미지 저장.. 추후 서버로 변경
-  // public setUserStorageimagePath(imagePath) {
-  //   this.storage.set('imagePath', imagePath);
-  // }
-  //
-  // public getUserStorageimagePath() {
-  //   return this.storage.get('imagePath');
-  // }
+  //최초 실행검사인지 체크
+  public setUserStoragediagnose_first_check(check) {
+    this.storage.set('check', check);
+  }
+
+  public getUserStoragediagnose_first_check() {
+    return this.storage.get('check');
+  }
+
+  //최초 데이터
+  public setUserStoragediagnose_first_moisture(moisture) {
+    this.storage.set('moisture', moisture);
+  }
+
+  public getUserStoragediagnose_first_moisture() {
+    return this.storage.get('moisture');
+  }
+
+  public setUserStoragediagnose_first_oil(oil) {
+    this.storage.set('oil', oil);
+  }
+
+  public getUserStoragediagnose_first_oil() {
+    return this.storage.get('oil');
+  }
+
+
+  //두번째이상 데이터
+  public setUserStoragediagnose_moisture(moisture) {
+    this.storage.set('moisture', moisture);
+  }
+
+  public getUserStoragediagnose_moisture() {
+    return this.storage.get('moisture');
+  }
+
+  public setUserStoragediagnose_oil(oil) {
+    this.storage.set('oil', oil);
+  }
+
+  public getUserStoragediagnose_oil() {
+    return this.storage.get('oil');
+  }
+
+  // 썸네일 이미지 저장.. 추후 서버로 변경
+  public setUserStorageimagePath(imagePath) {
+    this.storage.set('imagePath', imagePath);
+  }
+
+  public getUserStorageimagePath() {
+    return this.storage.get('imagePath');
+  }
 
 
   public get_qna_answer() {
