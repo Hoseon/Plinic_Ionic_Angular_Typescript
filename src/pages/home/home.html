@@ -30,7 +30,7 @@
 
     <!-- 첫 문진표 (수분+유분)/2 어제 상태표시-->
     <ion-row *ngIf="pre_circle_moisture>=0 || pre_circle_oil>=0" class="row_align">
-      <ion-col *ngIf="!skin_diagnose_first_check || (skin_diagnose_first_check && all_oil_score==='')" class="left_grid">
+      <!-- <ion-col *ngIf="!skin_diagnose_first_check || (skin_diagnose_first_check && all_oil_score==='')" class="left_grid">
         <ion-label *ngIf="pre_circle_date" class="day">{{pre_circle_date}}</ion-label>
         <ion-label *ngIf="!pre_circle_date" class="day">어제</ion-label>
         <img *ngIf="pre_total_score<25" class="img-status" src="assets/img/successhome/ic-system-skin-bad@3x.png" />
@@ -41,10 +41,10 @@
         <ion-label *ngIf="pre_total_score<=25" class="status_bad">나쁨</ion-label>
         <button ion-button class="status_btn" (click)="moisture_help()">수분 보충
           <img class="img-logo" src="assets/img/successhome/ic-system-infomation@3x.png" /></button>
-      </ion-col>
+      </ion-col> -->
 
       <!-- 첫 문진표 (수분+유분)/2 오늘 상태표시-->
-      <ion-col *ngIf="!skin_diagnose_first_check || (skin_diagnose_first_check && all_oil_score==='')" class="left_grid">
+      <!-- <ion-col *ngIf="!skin_diagnose_first_check || (skin_diagnose_first_check && all_oil_score==='')" class="left_grid">
         <ion-label *ngIf="circle_date" class="day">{{circle_date}}</ion-label>
         <ion-label *ngIf="!circle_date" class="day">오늘</ion-label>
         <img *ngIf="total_score<25" class="img-status" src="assets/img/successhome/ic-system-skin-bad@3x.png" />
@@ -55,7 +55,7 @@
         <ion-label *ngIf="total_score<=25" class="status_bad">나쁨</ion-label>
         <button ion-button class="status_btn" (click)="moisture_help()">수분 보충
           <img class="img-logo" src="assets/img/successhome/ic-system-infomation@3x.png" /></button>
-      </ion-col>
+      </ion-col> -->
 
       <!-- 문진표 (수분+유분)/2 어제 상태표시-->
       <ion-col *ngIf="circle_moisture" class="left_grid">
