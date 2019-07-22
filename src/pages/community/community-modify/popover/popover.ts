@@ -15,6 +15,9 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class PopoverPage {
 
+
+  comment_option: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
   }
 
@@ -22,12 +25,14 @@ export class PopoverPage {
     console.log('ionViewDidLoad PopoverPage');
   }
 
-  edit() {
-    this.viewCtrl.dismiss();
+  edit(comment_option) {
+    comment_option = this.comment_option= "수정";
+    this.viewCtrl.dismiss(comment_option);
   }
 
-  delete() {
-    this.viewCtrl.dismiss();
+  delete(comment_option) {
+    comment_option = this.comment_option= "삭제";
+    this.viewCtrl.dismiss(comment_option);
   }
 
 }

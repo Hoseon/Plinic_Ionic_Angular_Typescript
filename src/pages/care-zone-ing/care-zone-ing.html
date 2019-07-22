@@ -15,14 +15,14 @@
 
   <ion-list>
 
-      <ion-item  *ngIf="platform.is('ios')" no-lines>
+      <ion-item no-lines>
         <div *ngIf="userData">
         <img *ngIf="!thumb_image" class="profile-img" src="{{profileimg_url}}" />
         </div>
         <img *ngIf="thumb_image" class="profile-img" src="{{userData.thumbnail_image}}" />
-      </ion-item>
+      </ion-item><br>
 
-      <ion-item  *ngIf="platform.is('android') && from !=='plinic'" no-lines>
+      <!-- <ion-item  *ngIf="platform.is('android') && from !=='plinic'" no-lines>
         <div *ngIf="userData">
         <img *ngIf="!thumb_image" class="profile-img" src="{{profileimg_url}}" />
         </div>
@@ -34,7 +34,7 @@
         <img *ngIf="imagePath" class="profile-img" [src]="imagePath" />
         </div>
         <img *ngIf="!imagePath" class="profile-img" src="assets/img/register/ic-system-profile-default@3x.png" />
-      </ion-item><br>
+      </ion-item><br> -->
 
     <ion-item no-lines>
       <div *ngIf="userData" style="text-align:center">

@@ -52,6 +52,10 @@ page-community-modify {
       margin-top: -60%;
     }
 
+
+
+
+
     .android_nav{
       background-color: #FFF !important;
       width: 50px !important;
@@ -177,6 +181,10 @@ page-community-modify {
       box-shadow: none !important;
     }
 
+    .label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input{
+     margin-left: 0px;
+    }
+
     .qna_title{
       font-family: NotoSansCJKkr;
       font-size: 15px;
@@ -187,10 +195,9 @@ page-community-modify {
       letter-spacing: normal;
       color: #5c59b6;
       overflow-y: visible !important;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      padding-left: 16px;
-      padding-right: 16px;
+      padding-top: 2%;
+      padding-bottom: 2%;
+      padding-left: 3%;
     }
 
     .item-md.item-block .item-inner{
@@ -198,6 +205,7 @@ page-community-modify {
     }
 
     .qna_input{
+      width: 97%;
      font-family: NotoSansCJKkr;
      font-size: 15px;
      font-weight: normal;
@@ -210,12 +218,29 @@ page-community-modify {
      transition-duration: 0ms !important;
      transition-delay: 0ms !important;
      overflow-y: visible !important;
-     padding-left: 16px;
+     margin-left: 5%;
+    }
 
-     .text-input{
-       height: 150px;
-       }
+    .item-ios.item-block .item-inner{
+      padding-right: 0px !important;
+    }
 
+    .qna_textarea{
+      width: 97%;
+      font-family: NotoSansCJKkr;
+      font-size: 15px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #292929;
+      transform: translateY(0%) !important;
+      transition-duration: 0ms !important;
+      transition-delay: 0ms !important;
+      overflow-y: visible !important;
+      margin-left: 3%;
+      border:2px solid #5c59b6;
     }
 
     .attache_image{
@@ -228,17 +253,21 @@ page-community-modify {
     }
 
 
+
+
+
     .file_image_row{
       width: 89%;
       height: 50px;
       border-radius: 4px;
       border: solid 0.5px #e5e5e5;
       background-color: #fafafa;
-      margin-left: 16px;
+      margin-left: auto;
+      margin-right: auto;
       display: block;
       margin-top: 10%;
       padding: 3%;
-      padding-left: 4%;
+      padding-left: 28%;
       margin-bottom: 10%;
     }
 
@@ -268,7 +297,7 @@ page-community-modify {
       background-color: #FFF !important;
       letter-spacing: normal;
       color: #292929;
-      box-shadow: none;
+      box-shadow: none !important;
       margin-left: 16px;
       margin-right: -10px;
     }
@@ -314,7 +343,7 @@ page-community-modify {
       letter-spacing: normal;
       color: #292929;
       margin-bottom: 3%;
-      //margin-top: -6%;
+      z-index: 1;
     }
 
     .time_comment{
@@ -344,10 +373,27 @@ page-community-modify {
         padding-bottom: 0px !important;
       }
 
+      .content_comment_textarea{
+        width: 60%;
+        //height: 30vh !important;
+        left: 20%;
+        right: 5%;
+        font-family: NotoSansCJKkr;
+        font-size: 15px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.33;
+        letter-spacing: normal;
+        color: #292929;
+        padding-bottom: 0px !important;
+        margin-left:20%;
+        border:2px solid #5c59b6;
+      }
 
     .content_comment{
-      width: 70%;
-      // height: 10vh !important;
+      width: 65%;
+      //height: 30vh !important;
       left: 20%;
       right: 5%;
       font-family: NotoSansCJKkr;
@@ -360,27 +406,75 @@ page-community-modify {
       color: #292929;
       padding-bottom: 0px !important;
       margin-left:20%;
-      margin-top:9%;
       border: 0px;
 
+    }
+    #myInput {
+        width: calc(100% - 10px);
+        border: 0;
+        border-radius: 0;
+        background: transparent;
     }
 
     ::-webkit-input-placeholder {
      color: #b6b6b6;
     }
 
-
     .comment_btn{
       position: absolute;
       width: 25px;
       object-fit: contain;
-      right: 5%;
+      right: 0%;
       background-image: url(../assets/img/beauty/ic-system-more-grey.png);
       background-repeat: no-repeat;
       background-color: transparent !important;
       box-shadow: none !important;
       margin-top: -1%;
+      z-index: 10;
     }
 
+    .container {
+      position: relative;
+      width: 100%;
+    }
+
+    .container .comment_enroll{
+       position: absolute;
+       width: 48px;
+       height: 30px;
+       font-family: NotoSansCJKkr;
+       font-size: 14px;
+       font-weight: normal;
+       font-style: normal;
+       font-stretch: normal;
+       line-height: 1.43;
+       letter-spacing: normal;
+       color: #FFF;
+       border-radius: 3px;
+       background-color: #5c59b6;
+       top: -25%;
+       right: 5%;
+       z-index: 20;
+       box-shadow: none !important;
+    }
+
+    .container .comment_input_enroll{
+       position: absolute;
+       width: 48px;
+       height: 30px;
+       font-family: NotoSansCJKkr;
+       font-size: 14px;
+       font-weight: normal;
+       font-style: normal;
+       font-stretch: normal;
+       line-height: 1.43;
+       letter-spacing: normal;
+       color: #FFF;
+       border-radius: 3px;
+       background-color: #5c59b6;
+       right: 5%;
+       margin-top: 7%;
+       box-shadow: none !important;
+    }
 
 }

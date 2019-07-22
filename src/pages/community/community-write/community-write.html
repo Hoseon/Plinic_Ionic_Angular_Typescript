@@ -63,25 +63,40 @@
 <!-- <div class="container" > -->
 
   <ion-item no-lines>
-  <ion-textarea no-lines class="qna_input" [(ngModel)]="note.contents" placeholder="내용을 입력해주세요." (ionFocus)="attache_image_hide()" (ionBlur)="attache_image_view()"></ion-textarea>
+    <ion-textarea no-lines class="qna_input" [(ngModel)]="note.contents" placeholder="내용을 입력해주세요." (ionFocus)="attache_image_hide()" (ionBlur)="attache_image_view()"
+   (input)="adjustTextarea($event)"></ion-textarea>
   </ion-item>
-  <img *ngIf="imagePath2" id="attache_image" class="attache_image" [src]="imagePath2"/>
+
+
+  <div #image *ngIf="imagePath2" id="attache_image"  class="container">
+  <img class="attache_image" [src]="imagePath2"/>
+  <img class="close_image" (click)="image_close();"src="/assets/img/register/ic-system-clear-grey@3x.png"/>
+  </div>
 
   <!-- 첨부 이미지 영역 -->
   <!-- <img *ngIf="imagePath2" class="attache_image" [src]="imagePath2" /> -->
-  <!-- <img *ngIf="!image_enroll" class="attache_image" src="assets/img/home/carezone3.png" /> -->
+  <!-- <img *ngIf="!image_enroll" class="attache_image" src="/assets/img/home/carezone3.png" /> -->
 </ion-content>
 
 
 <ion-footer padding>
 
-  <rl-tag-input
+  <rl-tag-input *ngIf="platform.is('ios')" class="community_tag_ios"
     [(ngModel)]="note.tags"
     [addOnBlur]="false"
     [autocomplete]="true"
     [autocompleteItems]="preparedTags"
     [autocompleteMustMatch]="false"
-    placeholder="#태그를 입력하세요">
+    placeholder="#태그를 입력하세요.">
+  </rl-tag-input>
+
+  <rl-tag-input *ngIf="platform.is('android')" class="community_tag_android"
+    [(ngModel)]="note.tags"
+    [addOnBlur]="false"
+    [autocomplete]="true"
+    [autocompleteItems]="preparedTags"
+    [autocompleteMustMatch]="false"
+    placeholder="#태그를 입력하세요.">
   </rl-tag-input>
 
   <!-- <ion-item>
@@ -89,7 +104,7 @@
   </ion-item> -->
   <!-- 이미지 등록시 파일명 -->
   <ion-item *ngIf="image_enroll">
-    <ion-input mode="ios" class="community_attache_image" placeholder="이미지 네임영역" clearInput></ion-input>
+    <ion-input mode="ios" class="community_attache_image" placeholder="이미지 네임영역" readonly></ion-input>
   </ion-item>
 
   <img class="community_attache_camera" (click)="camera()" src="assets/img/beauty/ic-system-camera@3x.png">

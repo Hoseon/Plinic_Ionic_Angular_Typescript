@@ -81,14 +81,20 @@
         stroke: transparent !important;
         height: 0px !important;
       }
+      .spinner-ios-crescent circle{
+        stroke: transparent !important;
+        height: 0px !important;
+      }
       .loading-wrapper{
        border-radius: 50%;
        background-color: #5c59b6;
        box-shadow: none !important;
-       -webkit-animation: sk-rotatePlane 1.2s infinite ease-in-out;
-               animation: sk-rotatePlane 1.2s infinite ease-in-out;
+       -webkit-animation: sk-rotatePlane 1.4s infinite ease-in-out;
+               animation: sk-rotatePlane 1.4s infinite ease-in-out;
                opacity: 1 !important;
+      padding: 24px !important;
       }
+
       ion-backdrop.backdrop-no-tappable{
       background: #000 !important;
       opacity: 0.4 !important;
@@ -116,7 +122,9 @@
             transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
   100% {
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); }
+  }
+
 
 
 
