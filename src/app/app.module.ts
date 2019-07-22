@@ -68,10 +68,9 @@ import { CareZoneMissionCompletePage } from '../pages/care-zone-mission-complete
 // import { CommunityPage } from '../pages/community/community';
 // import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
 import { CommunityWritePage } from '../pages/community/community-write/community-write';
-
-
 import { CommunityPageModule } from '../pages/community/community.module';
 import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
+
 // import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
 // //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 //
@@ -139,6 +138,7 @@ import { BeautyTipAddPageModule } from '../pages/beauty-tip-add/beauty-tip-add.m
 //import { CommunityPageModule } from '../pages/community/community.module';
 //import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
 import { PopoverPage } from '../pages/community/community-modify/popover/popover';
+import { MyPage} from '../pages/community/my/my';
 //import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
 //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 //
@@ -275,6 +275,7 @@ export function getAuthHttp(http, storage) {
     // QnaReadPage,
     // KeyboardAttachDirective,
     PopoverPage,
+    MyPage,
   ],
   imports: [
     HttpModule,
@@ -398,6 +399,7 @@ export function getAuthHttp(http, storage) {
     // MissionVideoPage,
     // QnaReadPage,
     PopoverPage,
+    MyPage,
   ],
   providers: [
     StatusBar,

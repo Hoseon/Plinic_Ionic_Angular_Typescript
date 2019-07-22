@@ -19,11 +19,11 @@
     </ng-container>
     <ng-container *ngIf="page==='2'">
       <img class="android_search" src="assets/img/beauty/ic-system-search@3x.png" />
-      <div class="android_my">MY</div>
+      <button ion-button class="android_my" (click)="community_my()">MY</button>
     </ng-container>
     <ng-container *ngIf="page==='3'">
       <img class="android_search" src="assets/img/beauty/ic-system-search@3x.png" />
-      <div class="android_my">MY</div>
+      <button ion-button class="android_my" (click)="community_my()">MY</button>
     </ng-container>
     <ng-container *ngIf="page==='4'">
       <!-- <img class="android_search" src="assets/img/beauty/ic-system-search@3x.png" />
@@ -49,11 +49,11 @@
     </ng-container>
     <ng-container *ngIf="page==='2'">
       <img class="ios_search" src="assets/img/beauty/ic-system-search@3x.png" />
-      <div class="ios_my">MY</div>
+      <button ion-button class="ios_my" (click)="community_my()">MY</button>
     </ng-container>
     <ng-container *ngIf="page==='3'">
       <img class="ios_search" src="assets/img/beauty/ic-system-search@3x.png" />
-      <div class="ios_my">MY</div>
+      <button ion-button class="ios_my" (click)="community_my()">MY</button>
     </ng-container>
     <ng-container *ngIf="page==='4'">
       <!-- <img class="ios_search" src="assets/img/beauty/ic-system-search@3x.png" />
@@ -85,7 +85,7 @@
 
 
 <ion-content no-padding>
-  <ion-slides mode="ios" #Slides (ionSlideWillChange)="slideChanged($event)">
+  <ion-slides mode="ios" #Slides (ionDrag)="onSlideDrag()" (ionSlideWillChange)="slideChanged($event)">
 
 
     <!-- 뷰티 홈 -->

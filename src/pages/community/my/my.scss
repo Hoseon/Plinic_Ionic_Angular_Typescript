@@ -1,0 +1,370 @@
+page-my {
+
+
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+      height: 0px;
+      margin-bottom: 5px;
+    }
+    .item-md.item-block .item-inner{
+      padding-right: 12px;
+    }
+    .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+      height: 1px;
+      margin-bottom: 5px;
+    }
+
+    .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+      height: 0px;
+    }
+    .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+      height: 0px;
+    }
+
+
+    //탭바 하단 여백
+    .scroll-content{
+      margin-bottom: 0px !important;
+    }
+
+
+      .toolbar-title-md{
+        font-weight: bold;
+        font-size: 17px;
+        background-color: #FFF;
+        font-family: NotoSansCJKkr;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+      }
+
+      .toolbar-title-ios{
+        font-weight: bold;
+        font-size: 17px;
+        background-color: #FFF;
+        font-family: NotoSansCJKkr;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        margin-top: -5%;
+        color: #292929;
+      }
+
+      .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+        margin-left: -15%;
+        margin-top: -15%;
+        color: transparent;
+      }
+
+      .ios_nav{
+        background-color: transparent;
+        width: 140px !important;
+        height: 25px !important;
+        object-fit: contain;
+      }
+
+      .toolbar-background {
+        background-color: #FFF;
+      }
+
+      .ion-md-arrow-back:before {
+        position: absolute;
+        content: "\f27d";
+        left: 10%;
+        top: 2px;
+        width: 25px;
+        height: 25px;
+    }
+
+       .toolbar-ios{
+         margin-top: 8%;
+       }
+
+      .back-button-text-ios{
+        font-size: 0px;
+      }
+      .android_title{
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        height: 100%;
+        width: 70%;
+        color: #292929;
+      }
+      .ios_title{
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        height: 100%;
+        width: 120%;
+        color: #292929;
+      }
+
+      .android_search{
+        position: absolute;
+        right: 17%;
+        top: 30%;
+        width: 25px;
+        height: 25px;
+        object-fit: contain;
+      }
+
+      .android_my{
+        position: absolute;
+        right: 4%;
+        font-family: Roboto;
+        font-size: 18px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: #292929;
+        background-color: #FFF !important;
+        box-shadow: none;
+        margin-top: -4.5%;
+        padding: 0px;
+      }
+
+      .ios_search{
+        position: absolute;
+        margin-top: -5%;
+        right: 17%;
+        width: 25px;
+        height: 25px;
+        object-fit: contain;
+      }
+
+      .ios_my{
+        position: absolute;
+        right: 4%;
+        font-family: Roboto;
+        font-size: 18px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: #292929;
+        margin-top: -4.5%;
+      }
+
+
+      .segment-md .segment-button.activated, .segment-md .segment-button.segment-activated{
+        height: 3rem;
+        border-color: #6562b9;
+        border-bottom-width: 3px;
+        opacity: 1;
+        font-family: NotoSansCJKkr;
+        font-size: 15px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #5c59b6;
+        margin-top: 5%;
+      }
+
+
+      .segment-ios .segment-button.activated, .segment-ios .segment-button.segment-activated{
+        height: 3rem;
+        border-color: #6562b9;
+        border-bottom-width: 3px;
+        opacity: 1;
+        font-family: NotoSansCJKkr;
+        font-size: 15px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #5c59b6;
+        margin-top: 5%;
+      }
+
+      .segment-md .segment-button{
+        height: 3rem;
+        font-family: NotoSansCJKkr;
+        font-size: 15px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #b6b6b6;
+        margin-top: 5%;
+        border-width: 0px;
+      }
+
+      .segment-ios .segment-button{
+        height: 3rem;
+        font-family: NotoSansCJKkr;
+        font-size: 15px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #b6b6b6;
+        margin-top: 5%;
+        border-width: 0px;
+      }
+
+
+      .swiper-slide {
+          overflow-y: scroll;
+          display: block;
+      }
+
+      .slide-zoom{
+       height: 100%;
+      }
+
+
+
+
+        .beauty_note_title_img{
+          max-width: 65%;
+          font-family: NotoSansCJKkr;
+          font-size: 15px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.4;
+          letter-spacing: normal;
+          color: #292929;
+          text-align: left;
+          margin-left: 4%;
+        }
+
+        .beauty_note_title{
+          min-width: 97%;
+          font-family: NotoSansCJKkr;
+          font-size: 15px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.4;
+          letter-spacing: normal;
+          color: #292929;
+          text-align: left;
+          margin-left: 4%;
+          padding-right: 4%;
+        }
+
+        .beauty_note_like{
+          font-family: NotoSansCJKkr;
+          font-size: 13px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #b6b6b6;
+          left: -27%;
+        }
+
+
+        .beauty_note_count{
+          font-family: NotoSansCJKkr;
+          font-size: 13px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #b6b6b6;
+        }
+
+        .beauty_note_answer{
+          font-family: NotoSansCJKkr;
+          font-size: 13px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #5c59b6;
+        }
+
+          .container {
+            position: relative;
+            width: 100%;
+          }
+
+          .container .beauty_note_img {
+            position: absolute;
+            top: -50%;
+            right: -100%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            width: 85px;
+            max-height: 85px !important;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+          }
+
+          .container .beauty_note_img2 {
+            position: absolute;
+            top: -100%;
+            right: -105%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            width: 85px;
+            height: 85px;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+          }
+
+
+          .beauty_note_Q{
+            font-family: AppleSDGothicNeo;
+            font-size: 15px;
+            font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.4;
+            letter-spacing: normal;
+            color: #5c59b6;
+          }
+
+
+
+          .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+            bottom: 10%;
+          }
+
+          .swiper-pagination-bullet-active{
+            background-color: #5c59b6 !important;
+          }
+
+          .swiper-pagination-bullet{
+            background: transparent;
+            border: solid 5px #5c59b6!important;
+          }
+
+          .slide-zoom{
+            height: auto;
+            overflow:auto;
+          }
+
+
+
+
+
+
+}

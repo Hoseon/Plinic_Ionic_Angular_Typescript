@@ -1,0 +1,125 @@
+<!--
+  Generated template for the MyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android')">
+    <ion-title class="android_title" text-wrap> MY </ion-title>
+  </ion-navbar>
+
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+    <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios')">
+    <ion-buttons left>
+      <button ion-button navPop icon-only>
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap> MY </ion-title>
+  </ion-navbar>
+
+
+  <ion-segment mode="md" [(ngModel)]="page" color="#5c59b6">
+    <ion-segment-button value="0" (click)="selectedTab(0)">
+      뷰티 노트
+    </ion-segment-button>
+    <ion-segment-button value="1" (click)="selectedTab(1)">
+      피부고민
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+
+
+
+
+<ion-content no-padding>
+  <ion-slides mode="ios" #Slides (ionSlideWillChange)="slideChanged($event)">
+
+
+    <!-- 뷰티 노투 -->
+    <ion-slide>
+          <h1>ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ1</h1>
+    </ion-slide>
+
+    <!-- 피부 고민 -->
+    <ion-slide>
+      <!-- 피부 고민 이미지가 있을 때  -->
+      <ion-col class="container">
+        <ion-row class="beauty_row">
+          <ion-col class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</ion-col>
+        </ion-row>
+        <ion-col class="beauty_note_like">좋아요 32 ∙
+          <ion-col class="beauty_note_answer">답변수 3</ion-col>
+        </ion-col>
+        <img class="beauty_note_img2" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}" />
+      </ion-col><br><br>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+      <ion-col class="container">
+        <ion-row class="beauty_row">
+          <ion-col class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</ion-col>
+        </ion-row>
+        <ion-col class="beauty_note_like">좋아요 32 ∙
+          <ion-col class="beauty_note_answer">답변수 3</ion-col>
+        </ion-col>
+        <img class="beauty_note_img2" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}" />
+      </ion-col><br><br>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+      <ion-col class="container">
+        <ion-row class="beauty_row">
+          <ion-col class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</ion-col>
+        </ion-row>
+        <ion-col class="beauty_note_like">좋아요 32 ∙
+          <ion-col class="beauty_note_answer">답변수 3</ion-col>
+        </ion-col>
+        <img class="beauty_note_img2" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}" />
+      </ion-col><br><br>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+
+
+      <!-- 피부 고민 이미지가 없을 때  -->
+      <ion-col class="container">
+        <ion-row class="beauty_row">
+          <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>얼굴 피부에 색소침착 때문에 고민입니다.어떻게 하면 깨끗하게 지울수 있을까요?</ion-col>
+        </ion-row>
+        <ion-col class="beauty_note_like">좋아요 32 ∙
+          <ion-col class="beauty_note_answer">답변수 3</ion-col>
+        </ion-col>
+      </ion-col><br><br>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+      <ion-col class="container">
+        <ion-row class="beauty_row">
+          <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>얼굴 피부에 색소침착 때문에 고민입니다.어떻게 하면 깨끗하게 지울수 있을까요?</ion-col>
+        </ion-row>
+        <ion-col class="beauty_note_like">좋아요 32 ∙
+          <ion-col class="beauty_note_answer">답변수 3</ion-col>
+        </ion-col>
+      </ion-col><br><br>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+
+      <ion-col class="container">
+        <ion-row class="beauty_row">
+          <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>얼굴 피부에 색소침착 때문에 고민입니다.어떻게 하면 깨끗하게 지울수 있을까요?</ion-col>
+        </ion-row>
+        <ion-col class="beauty_note_like">좋아요 32 ∙
+          <ion-col class="beauty_note_answer">답변수 3</ion-col>
+        </ion-col>
+      </ion-col><br><br>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+
+    </ion-slide>
+
+  </ion-slides>
+
+</ion-content>

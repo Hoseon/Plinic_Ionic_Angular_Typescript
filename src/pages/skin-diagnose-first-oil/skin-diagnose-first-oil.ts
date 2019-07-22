@@ -188,7 +188,7 @@ export class SkinDiagnoseFirstOilPage {
     this.auth.skinChartSave(this.userData.email, this.score).subscribe(data => {
       if (data !== '') {
         // this.auth.setUserStoragediagnose_first_oil(this.all_oil_score*20);
-        this.auth.setUserStoragediagnose_first_check(true);
+        //this.auth.setUserStoragediagnose_first_check(true);
         if (this.platform.is('android')) {
           const toast = this.toastCtrl.create({
             cssClass: 'blu_toast_android',
