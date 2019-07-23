@@ -416,6 +416,9 @@ export class CommunityPage {
 
   public community_qna_write() {
     let myModal = this.modalCtrl.create(CommunityWritePage, { qna: 'qna' });
+    myModal.onDidDismiss(data => {
+      this.ionViewWillEnter();
+    });
     myModal.present();
   }
 

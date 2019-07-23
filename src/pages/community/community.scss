@@ -415,7 +415,7 @@ page-community {
       }
 
       .beauty_tip_title_img{
-        max-width: 65%;
+        //max-width: 50%;
         font-family: NotoSansCJKkr;
         font-size: 15px;
         font-weight: bold;
@@ -426,8 +426,6 @@ page-community {
         color: #292929;
         text-align: left;
         margin-left: 4%;
-        padding-right: 5%
-
       }
 
       .beauty_note_title_img{
@@ -474,19 +472,6 @@ page-community {
         padding-right: 4%;
       }
 
-      .beauty_note_like{
-        font-family: NotoSansCJKkr;
-        font-size: 13px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #b6b6b6;
-        left: -28%;
-      }
-
-
       .beauty_note_count{
         font-family: NotoSansCJKkr;
         font-size: 13px;
@@ -514,34 +499,86 @@ page-community {
           width: 100%;
         }
 
-        .container .beauty_note_img {
-          position: absolute;
-          top: -50%;
-          right: -100%;
-          transform: translate(-50%, -50%);
+
+              .container .beauty_note_like{
+                font-family: NotoSansCJKkr;
+                font-size: 13px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                color: #b6b6b6;
+                position: absolute;
+                display: table;
+                width: 100%;
+                text-align: left;
+                padding-left: 5%;
+              }
+
+
+        .container .beauty_home_img {
+          // position: absolute;
+          // top: -25%;
+          // right: -120%;
+          transform: translate(179%, -70%);
           -ms-transform: translate(-50%, -50%);
           color: #fff;
           border: none;
           cursor: pointer;
-          width: 85px;
-          max-height: 85px !important;
+          width: 80px;
+          max-height: 80px;
           border-radius: 5px;
           background-color: #f5f5f5;
+          margin-bottom: -15%;
         }
 
-        .container .beauty_note_img2 {
-          position: absolute;
-          top: -50%;
-          right: -105%;
-          transform: translate(-50%, -50%);
+        .container .beauty_home_note_img {
+          // position: absolute;
+          // top: -25%;
+          // right: -120%;
+          transform: translate(179%, -70%);
           -ms-transform: translate(-50%, -50%);
           color: #fff;
           border: none;
           cursor: pointer;
-          width: 85px;
-          max-height: 85px !important;
+          width: 80px;
+          max-height: 80px;
           border-radius: 5px;
           background-color: #f5f5f5;
+          margin-bottom: -15%;
+        }
+
+        .container .beauty_note_img {
+          // position: absolute;
+          // top: -25%;
+          // right: -120%;
+          transform: translate(179%, -70%);
+          -ms-transform: translate(-50%, -50%);
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          width: 80px;
+          max-height: 80px;
+          border-radius: 5px;
+          background-color: #f5f5f5;
+          margin-bottom: -15%;
+        }
+
+        .container .beauty_worry_img {
+          // position: absolute;
+          // top: -25%;
+          // right: -120%;
+          transform: translate(179%, -70%);
+          -ms-transform: translate(-50%, -50%);
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          width: 80px;
+          max-height: 80px;
+          border-radius: 5px;
+          background-color: #f5f5f5;
+          margin-bottom: -15%;
         }
 
 
@@ -681,6 +718,7 @@ page-community {
           color: #292929;
           text-align: left;
           padding-left: 4%;
+          margin-top: 1%;
         }
 
         .beauty_plan_subtitle{
