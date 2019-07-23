@@ -219,6 +219,7 @@ page-community-modify {
      transition-delay: 0ms !important;
      overflow-y: visible !important;
      margin-left: 4%;
+     white-space: pre-wrap !important;
     }
 
     .item-ios.item-block .item-inner{
@@ -407,7 +408,7 @@ page-community-modify {
       padding-bottom: 0px !important;
       margin-left:20%;
       border: 0px;
-
+      white-space: pre-wrap !important;
     }
     #myInput {
         width: calc(100% - 10px);
