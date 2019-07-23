@@ -396,6 +396,26 @@ export class AuthService {
       });
   }
 
+  public replySave(email, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      id : content.id,
+      comment: content.comment,
+    };
+
+    console.log("ReplySave : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/replysave', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
   public qnaUpdate(email, content) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");

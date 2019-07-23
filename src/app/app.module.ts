@@ -66,12 +66,12 @@ import { CareZoneMissionCompletePage } from '../pages/care-zone-mission-complete
 //
 // //커뮤니티
 // import { CommunityPage } from '../pages/community/community';
-// import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
+import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
 import { CommunityWritePage } from '../pages/community/community-write/community-write';
 
 
 import { CommunityPageModule } from '../pages/community/community.module';
-import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
+// import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
 // import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
 // //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 //
@@ -269,7 +269,7 @@ export function getAuthHttp(http, storage) {
     // BeautyTipAddPage,
     // QnaWritePage,
     // CommunityPage,
-    // CommunityModifyPage,
+    CommunityModifyPage,
     CommunityWritePage,
     // MissionStartPage,
     // MissionVideoPage,
@@ -320,7 +320,7 @@ export function getAuthHttp(http, storage) {
     DeviceSkinIngPageModule,
     BeautyTipAddPageModule,
     CommunityPageModule,
-    CommunityModifyPageModule,
+    // CommunityModifyPageModule,
     // CommunityWritePageModule,
     MissionStartPageModule,
     MissionVideoPageModule,
@@ -393,7 +393,7 @@ export function getAuthHttp(http, storage) {
     // BeautyTipAddPage,
     // QnaWritePage,
     // CommunityPage,
-    // CommunityModifyPage,
+    CommunityModifyPage,
     CommunityWritePage,
     // MissionStartPage,
     // MissionVideoPage,

@@ -37,6 +37,8 @@ export class CommunityWritePage {
   talks = [];
   preparedTags = [];
   skinQna: boolean = false;
+  profileimg_url: any;
+  
 
   @ViewChild('image') imageElement: ElementRef;
 
@@ -278,6 +280,8 @@ export class CommunityWritePage {
         };
         // console.log(this.userData);
       }
+      this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
+      this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
     });
   }
 

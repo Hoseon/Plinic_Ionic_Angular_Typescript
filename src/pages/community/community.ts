@@ -64,6 +64,8 @@ export class CommunityPage {
 
 
     this.platform.ready().then((readySource) => {
+
+      console.log(this.navParams.get('back'));
       // this.roadbeauty();
       // this.communityEditorBeautyLoad();
       // this.communityBeautyLoad();
@@ -357,6 +359,7 @@ export class CommunityPage {
 
 
   ionViewDidEnter() {
+    console.log("다시다시");
     this.content.resize();
     // console.log('ionViewDidLoad CommunityPage');
     //

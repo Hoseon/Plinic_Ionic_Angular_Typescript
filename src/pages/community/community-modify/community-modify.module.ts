@@ -4,10 +4,10 @@ import { CommunityModifyPage } from './community-modify';
 
 @NgModule({
   declarations: [
-  CommunityModifyPage,
+  // CommunityModifyPage,
   ],
   imports: [
-  IonicPageModule.forChild(CommunityModifyPage),
+  // IonicPageModule.forChild(CommunityModifyPage),
   ],
 })
 export class CommunityModifyPageModule {}

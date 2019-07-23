@@ -4,11 +4,15 @@ import { SkinMeasureStartPage } from '../../../skin-measure-start/skin-measure-s
 import { BLE } from '@ionic-native/ble';
 // import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 
-const PLINIC_SERVICE = 'FEFB';
+//Blue Mod S42
+// const PLINIC_SERVICE = 'FEFB';
+// const UUID_SERVICE = 'FEFB';
+// const SWITCH_CHARACTERISTIC = 'FF00';
 
-
-const UUID_SERVICE = 'FEFB';
-const SWITCH_CHARACTERISTIC = 'FF00';
+//HM Soft Bluetooth Mod
+const PLINIC_SERVICE = 'FFE0';
+const UUID_SERVICE = 'FFE0';
+const SWITCH_CHARACTERISTIC = 'FFE1';
 
 
 
@@ -179,7 +183,12 @@ export class BluetoothConnectIngPage {
     this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(
       buffer => {
         let data = new Uint8Array(buffer);
-        console.log('switch characteristic ' + data[0]);
+        console.log('switch characteristic 0' + data[0]);
+        console.log('switch characteristic 1' + data[1]);
+        console.log('switch characteristic 2' + data[2]);
+        console.log('switch characteristic 3' + data[3]);
+        console.log('switch characteristic 4' + data[4]);
+        console.log('switch characteristic 5' + data[5]);
         // this.ngZone.run(() => {
         //     this.power = data[0] !== 0;
         // });

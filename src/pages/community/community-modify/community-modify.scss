@@ -327,6 +327,7 @@ page-community-modify {
           background-color: transparent !important;
       left: 5%;
       margin-top: 1%;
+      border-radius: 50% !important;
     }
 
     .nickname_comment{
@@ -393,7 +394,7 @@ page-community-modify {
 
     .content_comment{
       width: 65%;
-      //height: 30vh !important;
+      // height: auto !important;
       left: 20%;
       right: 5%;
       font-family: NotoSansCJKkr;
