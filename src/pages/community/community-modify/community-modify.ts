@@ -1,5 +1,5 @@
 import { Component, ViewChild, Directive, HostListener, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ViewController, PopoverController, LoadingController, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ViewController, PopoverController, LoadingController, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { PopoverPage } from './popover/popover';
 import { ImagesProvider } from '../../../providers/images/images';
 import { CommunityWritePage } from '../community-write/community-write';
@@ -35,12 +35,14 @@ export class CommunityModifyPage {
   registerReply = { comment: '', id: '' };
   reply = { comment: '', id: '', email: '' };
 
+  islike: boolean = false;
+
 
 
   @ViewChild('myInput') myInput: ElementRef;
 
 
-  constructor(private alertCtrl: AlertController, private auth: AuthService, public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
+  constructor(private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
     public viewCtrl: ViewController, public popoverCtrl: PopoverController, public element: ElementRef, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
     this.platform.ready().then((readySource) => {
 
@@ -395,10 +397,11 @@ export class CommunityModifyPage {
     this.images.beautyNoteOneLoad(id).subscribe(data => {
       this.beautyNoteOneLoadData = data;
       this.tags = data.tags.split(",");
-      console.log("태그 길이 : " + this.tags.length);
-      // for(var i = 0; i < data.length; i++){
-      //
-      // }
+      for (var i = 0; i < data.likeuser.length; i++) {
+        if (this.userData.email === data.likeuser[i]) {
+          this.islike = true;
+        }
+      }
     });
   }
 
@@ -406,7 +409,11 @@ export class CommunityModifyPage {
     this.images.skinQnaOneLoad(id).subscribe(data => {
       this.skinQnaOneLoadData = data;
       this.tags = data.tags.split(",");
-      console.log("태그 길이 : " + this.tags.length);
+      for (var i = 0; i < data.likeuser.length; i++) {
+        if (this.userData.email === data.likeuser[i]) {
+          this.islike = true;
+        }
+      }
     });
   }
 
@@ -624,6 +631,76 @@ export class CommunityModifyPage {
     alert.present();
   }
 
+
+  like(id, user) {
+    if (this.mode === 'note') {
+      this.images.noteLike(id, user).subscribe(data => {
+        if (data !== '') {
+          this.islike = true;
+          this.toast();
+          console.log("-----------------------------------------" + data);
+        }
+      });
+    }
+    if (this.mode === 'qna') {
+      this.images.skinQnaLike(id, user).subscribe(data => {
+        if (data !== '') {
+          this.islike = true;
+          this.toast();
+          console.log("-----------------------------------------" + data);
+        }
+      });
+    }
+  }
+
+  dislike(id, user) {
+    if (this.mode === 'note') {
+      this.images.noteDisLike(id, user).subscribe(data => {
+        if (data !== '') {
+          this.islike = false;
+          this.distoast();
+          console.log("-----------------------------------------" + data);
+        }
+      });
+    }
+
+    if(this.mode === 'qna'){
+      this.images.skinQnaDisLike(id, user).subscribe(data => {
+        if (data !== '') {
+          this.islike = false;
+          this.distoast();
+          console.log("-----------------------------------------" + data);
+        }
+      });
+    }
+
+  }
+
+  toast() {
+    let toastctrl = this.toastctrl.create({
+      message: '좋아요!',
+      duration: 1000,
+      position: 'middle'
+    });
+
+    toastctrl.onDidDismiss(() => {
+    });
+
+    toastctrl.present();
+  }
+
+  distoast() {
+    let toastctrl = this.toastctrl.create({
+      message: '좋아요를 취소하셨습니다',
+      duration: 1000,
+      position: 'middle'
+    });
+
+    toastctrl.onDidDismiss(() => {
+    });
+
+    toastctrl.present();
+  }
 
 
 

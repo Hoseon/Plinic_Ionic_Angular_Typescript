@@ -145,6 +145,26 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public noteLike(id, email) {
+    return this.http.get(this.apiURL + 'beautynote/like/' + id + '/' + email)
+      .map(response => response.json());
+  }
+
+  public noteDisLike(id, email) {
+    return this.http.get(this.apiURL + 'beautynote/dislike/' + id + '/' + email)
+      .map(response => response.json());
+  }
+
+  public skinQnaLike(id, email) {
+    return this.http.get(this.apiURL + 'skinqna/like/' + id + '/' + email)
+      .map(response => response.json());
+  }
+
+  public skinQnaDisLike(id, email) {
+    return this.http.get(this.apiURL + 'skinqna/dislike/' + id + '/' + email)
+      .map(response => response.json());
+  }
+
   getImages() {
     return this.http.get(this.apiURL + 'images').map(res => res.json());
   }

@@ -100,7 +100,7 @@
                 <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{editor._id}}" />
                 <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
                 <div class="beauty_desc">{{editor.body}}</div>
-                <div class="beauty_count">ios 좋아요 1,234</div>
+                <div class="beauty_count">좋아요 1,234</div>
               </ion-col>
             </ng-container>
 
@@ -201,7 +201,7 @@
               <ion-row class="beauty_row" style="height : 55px;">
                 <ion-col col-7 class="beauty_note_title_img"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
               </ion-row>
-              <ion-col class="beauty_note_like">좋아요 32 ∙
+              <ion-col *ngIf="beautynote.like" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
                 <ion-col class="beauty_note_count">조회수 {{beautynote.views}}</ion-col>
               </ion-col>
               <img class="beauty_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
@@ -215,7 +215,7 @@
               <ion-row class="beauty_row" style="height : 55px;">
                 <ion-col col-7 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
               </ion-row>
-              <ion-col class="beauty_note_like">좋아요 32 ∙
+              <ion-col *ngIf="beautynote.like" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
                 <ion-col class="beauty_note_count">조회수 {{beautynote.views}}</ion-col>
               </ion-col>
             </ion-col><br><br>
@@ -261,7 +261,7 @@
               <ion-row class="beauty_row" style="height : 55px;">
                 <ion-col col-7 class="beauty_note_title_img"><span class="beauty_note_Q">Q. {{skinqna.select}} </span>{{skinqna.title}}</ion-col>
               </ion-row>
-              <ion-col class="beauty_note_like">공감순 32 ∙
+              <ion-col *ngIf="skinqna.like" class="beauty_note_like">공감순 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변수 {{skinqna.comments.length}}</ion-col>
               </ion-col>
               <img class="beauty_note_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
@@ -274,7 +274,7 @@
               <ion-row class="beauty_row" style="height : 55px;">
                 <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. {{skinqna.select}} </span>{{skinqna.title}}</ion-col>
               </ion-row>
-              <ion-col class="beauty_note_like">공감순 32 ∙
+              <ion-col *ngIf="skinqna.like" class="beauty_note_like">공감순 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변수 {{skinqna.comments.length}}</ion-col>
               </ion-col>
             </ion-col><br><br>
@@ -303,7 +303,7 @@
                 <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{editor._id}}" />
                 <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
                 <div class="beauty_desc">{{editor.body}}</div>
-                <div class="beauty_count">ios 좋아요 1,234</div>
+                <div class="beauty_count">좋아요 1,234</div>
               </ion-col>
             </ng-container>
 
@@ -362,7 +362,7 @@
             <img class="beauty_img" src="http://plinic.cafe24app.com/beautynoteimage/{{mainNote._id}}" />
             <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
             <div class="beauty_desc">{{mainNote.title}}</div>
-            <div class="beauty_count"> 좋아요 1,234</div>
+            <div *ngIf="mainNote.like" class="beauty_count"> 좋아요 {{mainNote.like}}</div>
           </ion-col>
         </ng-container>
       </ion-row>
@@ -375,7 +375,7 @@
             <ion-row class="beauty_row" style="height : 55px;">
               <ion-col col-7 class="beauty_note_title_img"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
             </ion-row>
-            <ion-col class="beauty_note_like">좋아요 32 ∙
+            <ion-col *ngIf="beautynote.like" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
               <ion-col class="beauty_note_count">조회수 {{beautynote.views}}</ion-col>
             </ion-col>
             <img class="beauty_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
@@ -389,7 +389,7 @@
             <ion-row class="beauty_row" style="height : 55px;">
               <ion-col col-7 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
             </ion-row>
-            <ion-col class="beauty_note_like">좋아요 32 ∙
+            <ion-col *ngIf="beautynote.like" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
               <ion-col class="beauty_note_count">조회수 {{beautynote.views}}</ion-col>
             </ion-col>
           </ion-col><br><br>
@@ -422,7 +422,7 @@
             <ion-row class="beauty_row" style="height : 55px;">
               <ion-col col-7 class="beauty_note_title_img"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
             </ion-row>
-            <ion-col class="beauty_note_like">공감순 32 ∙
+            <ion-col *ngIf="skinqna.like" class="beauty_note_like">공감순 {{skinqna.like}} ∙
               <ion-col class="beauty_note_answer">답변수 {{skinqna.comments.length}}</ion-col>
             </ion-col>
             <img class="beauty_note_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
@@ -435,7 +435,7 @@
             <ion-row class="beauty_row" style="height : 55px;">
               <ion-col class="beauty_note_title"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
             </ion-row>
-            <ion-col class="beauty_note_like">공감순 32 ∙
+            <ion-col *ngIf="skinqna.like" class="beauty_note_like">공감순 {{skinqna.like}} ∙
               <ion-col class="beauty_note_answer">답변수 {{skinqna.comments.length}}</ion-col>
             </ion-col>
           </ion-col><br><br>
