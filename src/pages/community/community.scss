@@ -116,35 +116,12 @@ page-community {
       width: 25px;
       height: 25px;
       object-fit: contain;
+      z-index: 10;
     }
 
     .android_my{
       position: absolute;
-      right: 4%;
-      font-family: Roboto;
-      font-size: 18px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: right;
-      color: #292929;
-      margin-top: -2.5%;
-    }
-
-    .ios_search{
-      position: absolute;
-      margin-top: -5%;
-      right: 17%;
-      width: 25px;
-      height: 25px;
-      object-fit: contain;
-    }
-
-    .ios_my{
-      position: absolute;
-      right: 4%;
+      right: 0%;
       font-family: Roboto;
       font-size: 18px;
       font-weight: normal;
@@ -155,6 +132,37 @@ page-community {
       text-align: right;
       color: #292929;
       margin-top: -4.5%;
+      background-color: #FFF !important;
+      box-shadow: none !important;
+      z-index: 1;
+    }
+
+    .ios_search{
+      position: absolute;
+      margin-top: -5%;
+      right: 17%;
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      z-index: 10;
+    }
+
+    .ios_my{
+      position: absolute;
+      right: 0%;
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: right;
+      color: #292929;
+      margin-top: -8.5%;
+      background-color: #FFF !important;
+      box-shadow: none !important;
+      z-index: 1;
     }
 
 
@@ -475,7 +483,7 @@ page-community {
         line-height: normal;
         letter-spacing: normal;
         color: #b6b6b6;
-        left: -27%;
+        left: -28%;
       }
 
 

@@ -286,7 +286,7 @@ export class SkinDiagnoseOilPage {
     this.auth.skinChartSave(this.userData.email, this.score).subscribe(data => {
       if (data !== '') {
         // this.auth.setUserStoragediagnose_oil(this.all_oil_score*9);
-        this.auth.setUserStoragediagnose_first_check(true);
+        //this.auth.setUserStoragediagnose_first_check(true);
         if (this.platform.is('android')) {
           const toast = this.toastCtrl.create({
             cssClass: 'blu_toast_android',

@@ -416,6 +416,107 @@ export class AuthService {
       });
   }
 
+  public replyUpdate(content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: content.email,
+      id : content.id,
+      comment: content.comment,
+    };
+
+    console.log("Replyupdate : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/replyupdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public replyDelete(content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: content.email,
+      id : content.id,
+      comment: content.comment,
+    };
+
+    console.log("Replydelete : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/replydelete', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+
+  public replySkinQnaSave(email, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      id : content.id,
+      comment: content.comment,
+    };
+
+    console.log("ReplySave : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/replyskinqnasave', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public replySkinQnaUpdate(content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: content.email,
+      id : content.id,
+      comment: content.comment,
+    };
+
+    console.log("Replyupdate : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/replyskinqnaupdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public replySkinQnaDelete(content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: content.email,
+      id : content.id,
+      comment: content.comment,
+    };
+
+    console.log("Replydelete : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/replyskinqnadelete', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
   public qnaUpdate(email, content) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");

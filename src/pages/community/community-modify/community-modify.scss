@@ -161,7 +161,7 @@ page-community-modify {
       width: 25px;
       object-fit: contain;
       top: 23%;
-      right: 3%;
+      right: 0%;
       background-image: url(../assets/img/beauty/ic-system-more-black.png);
       background-repeat: no-repeat;
       background-color: #FFF !important;
@@ -218,7 +218,8 @@ page-community-modify {
      transition-duration: 0ms !important;
      transition-delay: 0ms !important;
      overflow-y: visible !important;
-     margin-left: 5%;
+     margin-left: 4%;
+     white-space: pre-wrap !important;
     }
 
     .item-ios.item-block .item-inner{
@@ -408,7 +409,7 @@ page-community-modify {
       padding-bottom: 0px !important;
       margin-left:20%;
       border: 0px;
-
+      white-space: pre-wrap !important;
     }
     #myInput {
         width: calc(100% - 10px);

@@ -38,7 +38,8 @@ export class CommunityWritePage {
   preparedTags = [];
   skinQna: boolean = false;
   profileimg_url: any;
-  
+  page_write = "2";
+  page_modify = "3";
 
   @ViewChild('image') imageElement: ElementRef;
 
@@ -313,7 +314,10 @@ export class CommunityWritePage {
                       {
                         text: '확인',
                         handler: () => {
-                          this.nav.pop();
+                          //this.nav.pop();
+                          this.viewCtrl.dismiss({
+                            page_modify : this.page_modify
+                          });
                         }
                       }
                     ]
@@ -338,7 +342,10 @@ export class CommunityWritePage {
                           {
                             text: '확인',
                             handler: () => {
-                              this.nav.pop();
+                              //this.nav.pop();
+                              this.viewCtrl.dismiss({
+                                page_write : this.page_write
+                              });
                             }
                           }
                         ]
@@ -360,7 +367,10 @@ export class CommunityWritePage {
                           {
                             text: '확인',
                             handler: () => {
-                              this.nav.pop();
+                              //this.nav.pop();
+                              this.viewCtrl.dismiss({
+                                page_write : this.page_write
+                              });
                             }
                           }
                         ]
@@ -386,7 +396,10 @@ export class CommunityWritePage {
                           {
                             text: '확인',
                             handler: () => {
-                              this.nav.pop();
+                              //this.nav.pop();
+                              this.viewCtrl.dismiss({
+                                page_write : this.page_write
+                              });
                             }
                           }
                         ]
@@ -407,7 +420,10 @@ export class CommunityWritePage {
                           {
                             text: '확인',
                             handler: () => {
-                              this.nav.pop();
+                              //this.nav.pop();
+                              this.viewCtrl.dismiss({
+                                page_write : this.page_write
+                              });
                             }
                           }
                         ]

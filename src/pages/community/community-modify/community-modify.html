@@ -44,7 +44,7 @@
     <!-- 파일 네임 -->
     <!-- 보기 -->
     <ion-row *ngIf="select_popover_option==='보기'" class="file_image_row">
-      <ion-col><img class="file_image" src="/assets/img/beauty/ic-system-file-purple@3x.png" /></ion-col>
+      <ion-col><img class="file_image" src="assets/img/beauty/ic-system-file-purple@3x.png" /></ion-col>
       <ion-col *ngIf="beautyNoteOneLoadData" class="file_path">{{beautyNoteOneLoadData.originalName}}</ion-col>
     </ion-row>
 
@@ -62,9 +62,9 @@
     <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 5%; background-color:#f1f1f1"></div>
     <ion-item no-lines>
       <ion-row class="sns_row">
-        <ion-col><img class="sns-img" src="./assets/img/care-zone/sns/ic-sns-kakao@3x.png" />
-          <ion-col><img class="sns-img" src="./assets/img/care-zone/sns/ic-sns-fb@3x.png" />
-            <ion-col><img class="sns-img" src="./assets/img/care-zone/sns/ic-sns-band@3x.png" /></ion-col>
+        <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" />
+          <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" />
+            <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-band@3x.png" /></ion-col>
           </ion-col>
         </ion-col>
       </ion-row>
@@ -73,7 +73,7 @@
 
     <!-- 광고 -->
     <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
-    <img class="beauty_ad_img" src="./assets/img/beauty/beauty_ad.JPG" />
+    <img class="beauty_ad_img" src="assets/img/beauty/beauty_ad.JPG" />
     <div style="height:8px; width:100%; margin-top:-0.5%; background-color:#f1f1f1"></div>
 
 
@@ -97,19 +97,24 @@
 
     <!-- 댓글  -->
     <ng-container *ngIf="beautyNoteOneLoadData">
-      <ng-container *ngFor="let reply of beautyNoteOneLoadData.comments; let i = index">
+      <ng-container *ngFor="let registerReply of beautyNoteOneLoadData.comments; let i = index">
 
-        <img class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{reply.email}}">
-        <button ion-button class="comment_btn" (click)="comment_popover($event);"></button>
+        <img class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{registerReply.email}}">
+        <ng-container *ngIf="userData.email === registerReply.email">
+          <button ion-button class="comment_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
+        </ng-container>
         <div class="container">
-          <div class="nickname_comment">{{reply.email}}</div>
-          <button *ngIf="comment_popover_option==='수정'" ion-button class="comment_enroll">등록</button>
+          <div class="nickname_comment">{{registerReply.email}}</div>
+          <button *ngIf="comment_popover_option_textarea === i" (click)="replyUpdate(registerReply.email, registerReply._id)" ion-button class="comment_enroll">수정</button>
         </div>
-        <div class="time_comment">2시간 전</div>
+        <div class="time_comment">{{registerReply.createdAt.substr(0,19)}}</div>
         <!-- 보기 -->
-        <textarea *ngIf="comment_popover_option==='보기'" class="content_comment" readonly autoGrow autoresize value="{{reply.comment}}"></textarea>
+        <!-- <textarea *ngIf="comment_popover_option==='보기'" class="content_comment" readonly autoGrow autoresize value="{{reply.comment}}"></textarea> -->
+        <ng-container *ngIf="comment_popover_option_textarea !== i ">
+          <div *ngIf="comment_popover_option==='보기'" class="content_comment" text-wrap>{{registerReply.comment}}</div>
+        </ng-container>
         <!-- 수정 -->
-        <textarea *ngIf="comment_popover_option==='수정'" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" >{{reply.comment}}</textarea>
+        <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment" (input)="updateComment($event)"></textarea>
 
         <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 2%; background-color:#f1f1f1"></div>
       </ng-container>
@@ -171,12 +176,12 @@
 
     <!-- 첨부 이미지 -->
     <!-- 보기 -->
-    <img *ngIf="skinQnaOneLoadData && select_popover_option==='보기'" class="attache_image" src="http://plinic.cafe24app.com/beautynoteimage/{{skinQnaOneLoadData._id}}" />
+    <img *ngIf="skinQnaOneLoadData && select_popover_option==='보기'" class="attache_image" src="http://plinic.cafe24app.com/skinqnaimage/{{skinQnaOneLoadData._id}}" />
 
     <!-- 파일 네임 -->
     <!-- 보기 -->
     <ion-row *ngIf="select_popover_option==='보기'" class="file_image_row">
-      <ion-col><img class="file_image" src="/assets/img/beauty/ic-system-file-purple@3x.png" /></ion-col>
+      <ion-col><img class="file_image" src="assets/img/beauty/ic-system-file-purple@3x.png" /></ion-col>
       <ion-col *ngIf="skinQnaOneLoadData" class="file_path">{{skinQnaOneLoadData.originalName}}</ion-col>
     </ion-row>
 
@@ -194,9 +199,9 @@
     <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 5%; background-color:#f1f1f1"></div>
     <ion-item no-lines>
       <ion-row class="sns_row">
-        <ion-col><img class="sns-img" src="./assets/img/care-zone/sns/ic-sns-kakao@3x.png" />
-          <ion-col><img class="sns-img" src="./assets/img/care-zone/sns/ic-sns-fb@3x.png" />
-            <ion-col><img class="sns-img" src="./assets/img/care-zone/sns/ic-sns-band@3x.png" /></ion-col>
+        <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" />
+          <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" />
+            <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-band@3x.png" /></ion-col>
           </ion-col>
         </ion-col>
       </ion-row>
@@ -205,7 +210,7 @@
 
     <!-- 광고 -->
     <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
-    <img class="beauty_ad_img" src="./assets/img/beauty/beauty_ad.JPG" />
+    <img class="beauty_ad_img" src="assets/img/beauty/beauty_ad.JPG" />
     <div style="height:8px; width:100%; margin-top:-0.5%; background-color:#f1f1f1"></div>
 
 
@@ -215,73 +220,44 @@
 <div *ngIf="comment_popover_option==='보기'" style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div> -->
 
 
-    <!-- <img class="profile_comment" style="margin-top: 7%;"src="./assets/img/beauty/ic-system-profile-default@3x.png"> -->
-    <div *ngIf="userData">
-      <!-- <img *ngIf="!thumb_image" class="profile-img" src="{{profileimg_url}}" /> -->
-      <img *ngIf="!thumb_image" class="profile_comment" src="{{profileimg_url}}">
-    </div>
-    <!-- <img *ngIf="thumb_image" class="profile-img" src="{{userData.thumbnail_image}}" /> -->
-    <img *ngIf="thumb_image" class="profile_comment" src="{{userData.thumbnail_image}}">
+    <img *ngIf="!thumb_image" class="profile_comment" style="margin-top: 7%;" src="{{profileimg_url}}">
+    <img *ngIf="thumb_image" class="profile_comment" style="margin-top: 7%;" src="{{userData.thumbnail_image}}">
     <div class="container">
-      <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" maxLength="300" autoGrow="true" placeholder="댓글 등록" (input)="adjustTextarea()"></textarea>
-      <button ion-button class="comment_input_enroll">등록</button>
+      <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300" autoGrow="true" placeholder="댓글 등록" (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea>
+      <button ion-button class="comment_input_enroll" (click)="saveSkinQnaReply()">등록</button>
     </div>
     <div style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div>
 
 
     <!-- 댓글  -->
-    <div *ngIf="userData">
-      <!-- <img *ngIf="!thumb_image" class="profile-img" src="{{profileimg_url}}" /> -->
-      <img *ngIf="!thumb_image" class="profile_comment" src="{{profileimg_url}}">
-    </div>
-    <!-- <img *ngIf="thumb_image" class="profile-img" src="{{userData.thumbnail_image}}" /> -->
-    <img *ngIf="thumb_image" class="profile_comment" src="{{userData.thumbnail_image}}">
+    <ng-container *ngIf="skinQnaOneLoadData">
+      <ng-container *ngFor="let registerReply of skinQnaOneLoadData.comments; let i = index">
 
-    <button ion-button class="comment_btn" (click)="comment_popover($event);"></button>
-    <div class="container">
-      <div class="nickname_comment">bebe (bebe***)</div>
-      <button *ngIf="comment_popover_option==='수정'" ion-button class="comment_enroll">등록</button>
-    </div>
-    <div class="time_comment">2시간 전</div>
-    <!-- 보기 -->
-    <div *ngIf="comment_popover_option==='보기'" class="content_comment" text-wrap>안녕하세요. 사춘기 때도 잘 나지 않던 여드름 없애는 길을 알려주세요.ddddddddddddddddddddddddddd안녕하세요. ddddddddddddddddddddddddddd안녕하세요. 사춘기 때도 잘 나지 않던 여드름 없애는 길을
-      알려주세요.ddddddddddddddddddddddddddd안녕하세//요. 사춘기 때도 잘 나지 않</div>
-    <!-- 수정 -->
-    <textarea *ngIf="comment_popover_option==='수정'" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()"
-      (input)="adjustTextarea($event)">안녕하세요. 사춘기 때도 잘 나지 않던 여드름 없애는 길을 알려주세요.ddddddddddddddddddddddddddd안녕하세요. ddddddddddddddddddddddddddd안녕하세요. 사춘기 때도 잘 나지 않던 여드름 없애는 길을 알려주세요.ddddddddddddddddddddddddddd안녕하세//요. 사춘기 때도 잘 나지 않</textarea>
+        <img class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{registerReply.email}}">
+        <ng-container *ngIf="userData.email === registerReply.email">
+          <button ion-button class="comment_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
+        </ng-container>
+        <div class="container">
+          <div class="nickname_comment">{{registerReply.email}}</div>
+          <button *ngIf="comment_popover_option_textarea === i" (click)="replySkinQnaUpdate(registerReply.email, registerReply._id)" ion-button class="comment_enroll">수정</button>
+        </div>
+        <div class="time_comment">{{registerReply.createdAt.substr(0,19)}}</div>
+        <!-- 보기 -->
+        <!-- <textarea *ngIf="comment_popover_option==='보기'" class="content_comment" readonly autoGrow autoresize value="{{reply.comment}}"></textarea> -->
+        <ng-container *ngIf="comment_popover_option_textarea !== i ">
+          <div *ngIf="comment_popover_option==='보기'" class="content_comment" text-wrap>{{registerReply.comment}}</div>
+        </ng-container>
+        <!-- 수정 -->
+        <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment" (input)="updateComment($event)"></textarea>
 
-    <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 5%; background-color:#f1f1f1"></div>
-
-
-    <img class="profile_comment" src="./assets/img/beauty/ic-system-profile-default@3x.png">
-    <button ion-button class="comment_btn" (click)="comment_popover($event);"></button>
-    <div class="container">
-      <div class="nickname_comment">bebe (bebe***)</div>
-      <button *ngIf="comment_popover_option==='수정'" ion-button class="comment_enroll">등록</button>
-    </div>
-    <div class="time_comment">2시간 전</div>
-    <!-- 보기 -->
-    <div *ngIf="comment_popover_option==='보기'" class="content_comment" text-wrap>안녕하세요. 사춘기 때도 잘 나지 않던 여드름 없애는 길을 알려주세요.</div>
-    <!-- 수정 -->
-    <textarea *ngIf="comment_popover_option==='수정'" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" (input)="adjustTextarea($event)">
-    안녕하세요. 사춘기 때도 잘 나지 않던 여드름 없애는 길을 알려주세요.</textarea>
-    <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 5%; background-color:#f1f1f1"></div>
+        <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 2%; background-color:#f1f1f1"></div>
+      </ng-container>
+    </ng-container>
 
 
-    <img class="profile_comment" src="./assets/img/beauty/ic-system-profile-default@3x.png">
-    <button ion-button class="comment_btn" (click)="comment_popover($event);"></button>
-    <div class="container">
-      <div class="nickname_comment">bebe (bebe***)</div>
-      <button *ngIf="comment_popover_option==='수정'" ion-button class="comment_enroll">등록</button>
-    </div>
-    <div class="time_comment">2시간 전</div>
-    <!-- 보기 -->
-    <div *ngIf="comment_popover_option==='보기'" class="content_comment" text-wrap>
-      안녕하세요. 사춘기 때도 잘 길을 알려주세요.ddddddddddddddddddddddddddd안녕하세요. 사춘기 때도 잘 나지 않던 여드름 없애는 길을 알려주세요.ddddddddddddddddddddddddddd</div>
-    <!-- 수정 -->
-    <textarea *ngIf="comment_popover_option==='수정'" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" (input)="adjustTextarea($event)">
-      안녕하세요. 사춘기 때도 잘 길을 알려주세요.ddddddddddddddddddddddddddd안녕하세요. 사춘기 때도 잘 나지 않던 여드름 없애는 길을 알려주세요.ddddddddddddddddddddddddddd</textarea>
-    <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 5%; background-color:#f1f1f1"></div>
+
+
+
   </ng-container>
 
 

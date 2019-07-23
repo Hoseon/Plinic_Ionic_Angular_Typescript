@@ -1,7 +1,8 @@
 import { Component, ViewChild, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Content, ModalController, Slides, Platform, Loading, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Content, ModalController, Slides, Platform, Loading, LoadingController, ToastController} from 'ionic-angular';
 import { CommunityModifyPage } from './community-modify/community-modify';
 import { CommunityWritePage } from './community-write/community-write';
+import { MyPage } from './my/my';
 import { ImagesProvider } from '../../providers/images/images';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { DOCUMENT } from '@angular/common';
@@ -57,6 +58,7 @@ export class CommunityPage {
   beauty_data_url4: any;
   loading: Loading;
 
+
   @ViewChild(Slides) slides: Slides;
 
   constructor(private toastCtrl: ToastController, private authService: AuthService, public loadingCtrl: LoadingController, public nav: NavController, public navParams: NavParams, private alertCtrl: AlertController, public modalCtrl: ModalController, private images: ImagesProvider, public platform: Platform
@@ -91,10 +93,20 @@ export class CommunityPage {
     this.skinQnaMainLoad();
     this.exhibitionLoad();
     // this.loading.dismiss();
+
+    if(this.page === '2' || this.page === '3'){
+    let tabs = document.querySelectorAll('.tabbar');
+    if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+        //tabs[ key ].style.transform = 'translateY(0)';
+        tabs[key].style.display = '';
+      });
+    }
     setTimeout(() => {
       this.loading.dismiss();
     }, 1000);
   }
+}
 
 
   ionViewDidLoad() {
@@ -376,11 +388,18 @@ export class CommunityPage {
   }
 
 
+  public community_my() {
+  this.nav.push(MyPage);
+  }
 
   public community_write() {
     let myModal = this.modalCtrl.create(CommunityWritePage);
+    myModal.onDidDismiss(data => {
+      this.ionViewWillEnter();
+    });
     myModal.present();
   }
+
 
 
   public community_modify(id) {

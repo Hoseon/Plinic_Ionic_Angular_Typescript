@@ -26,19 +26,21 @@ export class CommunityModifyPage {
   skinQnaOneLoadData: any;
   tags = [];
   comment_popover_option: any = "보기";
+  comment_popover_option_textarea: any;
   select_popover_option: any = "보기";
   userData: any;
   profileimg_url: any;
   jwtHelper: JwtHelper = new JwtHelper();
 
-  registerReply = { comment : '', id : ''};
+  registerReply = { comment: '', id: '' };
+  reply = { comment: '', id: '', email: '' };
 
 
 
   @ViewChild('myInput') myInput: ElementRef;
 
 
-  constructor(private alertCtrl : AlertController, private auth: AuthService, public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
+  constructor(private alertCtrl: AlertController, private auth: AuthService, public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
     public viewCtrl: ViewController, public popoverCtrl: PopoverController, public element: ElementRef, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
     this.platform.ready().then((readySource) => {
 
@@ -64,11 +66,11 @@ export class CommunityModifyPage {
     }
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     // console.log("refresh");
   }
 
-  update(){
+  update() {
     this.viewCtrl._didLoad();
     // this.nav.setRoot(this.nav.getActive().component);
   }
@@ -140,8 +142,8 @@ export class CommunityModifyPage {
 
 
   // 댓글 수정
-  public comment_popover(event) {
-    if (this.platform.is('ios')) {
+  public comment_popover(event, i, email, id) {
+    if (this.platform.is('ios') || this.platform.is('core')) {
       let popover = this.popoverCtrl.create(PopoverPage, {},
         {
           cssClass: "ios_comment_popover"
@@ -150,17 +152,102 @@ export class CommunityModifyPage {
         ev: event
       });
       popover.onDidDismiss(popoverData => {
-        console.log(popoverData);
-        this.comment_popover_option = popoverData;
-        if (this.comment_popover_option === "수정") {
-          setTimeout(() => {
-            console.log('수정');
-            this.presentLoading();
-            this.resize();
-          }, 100)
+        console.log("popoverData : " + popoverData);
+        // this.comment_popover_option = popoverData;
+        console.log(this.comment_popover_option_textarea)
+        if (popoverData === "수정") {
+          this.comment_popover_option_textarea = i;
+          // setTimeout(() => {
+          console.log('수정');
+          // this.presentLoading();
+          this.resize();
+          // }, 100)
         }
-        else if (this.comment_popover_option === "삭제") {
-          console.log('comment_popover_option==========' + this.comment_popover_option);
+        else if (popoverData === "삭제") {
+          // console.log('comment_popover_option==========' + this.comment_popover_option);
+          this.reply.email = email;
+          this.reply.id = id;
+          console.log("mode : " + this.mode);
+
+          // this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
+
+          let alert = this.alertCtrl.create({
+            cssClass: 'push_alert_cancel',
+            title: "plinic",
+            message: "댓글을 정말로 삭제하시겠습니까?",
+            buttons: [
+              {
+                text: '취소',
+                role: 'cancel',
+                handler: () => {
+                  console.log('취소');
+                }
+              },
+              {
+                text: '확인',
+                handler: () => {
+                  if (this.mode === 'note') {
+                    this.auth.replyDelete(this.reply).subscribe(data => {
+                      if (data !== "") {
+                        let alert2 = this.alertCtrl.create({
+                          cssClass: 'push_alert',
+                          title: '댓글삭제',
+                          message: "댓글이 정상적으로 삭제 되었습니다.",
+                          buttons: [
+                            {
+                              text: '확인',
+                              handler: () => {
+                                // this.registerReply.comment = '';
+                                this.comment_popover_option_textarea = -1;
+                                this.textareaResize();
+                                this.update();
+                              }
+                            }
+                          ]
+                        });
+                        alert2.present();
+                      }
+                      // this.nav.push(CareZoneMissionIngPage, { _id: id });
+                    }, error => {
+                      this.showError(JSON.parse(error._body).msg);
+                    });
+
+                  }
+
+                  if (this.mode === 'qna') {
+                    this.auth.replySkinQnaDelete(this.reply).subscribe(data => {
+                      if (data !== "") {
+                        let alert2 = this.alertCtrl.create({
+                          cssClass: 'push_alert',
+                          title: '댓글삭제',
+                          message: "댓글이 정상적으로 삭제 되었습니다.",
+                          buttons: [
+                            {
+                              text: '확인',
+                              handler: () => {
+                                // this.registerReply.comment = '';
+                                this.comment_popover_option_textarea = -1;
+                                this.textareaResize();
+                                this.update();
+                              }
+                            }
+                          ]
+                        });
+                        alert2.present();
+                      }
+                      // this.nav.push(CareZoneMissionIngPage, { _id: id });
+                    }, error => {
+                      this.showError(JSON.parse(error._body).msg);
+                    });
+
+                  }
+
+
+
+                }
+              }]
+          });
+          alert.present();
         }
       });
     }
@@ -174,17 +261,96 @@ export class CommunityModifyPage {
       });
 
       popover.onDidDismiss(popoverData => {
-        console.log(popoverData);
-        this.comment_popover_option = popoverData;
-        if (this.comment_popover_option === "수정") {
-          setTimeout(() => {
-            console.log('수정');
-            this.presentLoading();
-            this.resize();
-          }, 100)
+        console.log("popoverData : " + popoverData);
+        // this.comment_popover_option = popoverData;
+        console.log(this.comment_popover_option_textarea)
+        if (popoverData === "수정") {
+          this.comment_popover_option_textarea = i;
+          // setTimeout(() => {
+          console.log('수정');
+          // this.presentLoading();
+          this.resize();
+          // }, 100)
         }
-        else if (this.comment_popover_option === "삭제") {
-          console.log('comment_popover_option==========' + this.comment_popover_option);
+        else if (popoverData === "삭제") {
+          // console.log('comment_popover_option==========' + this.comment_popover_option);
+          this.reply.email = email;
+          this.reply.id = id;
+          // this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
+
+          let alert = this.alertCtrl.create({
+            cssClass: 'push_alert_cancel',
+            title: "plinic",
+            message: "댓글을 정말로 삭제하시겠습니까?",
+            buttons: [
+              {
+                text: '취소',
+                role: 'cancel',
+                handler: () => {
+                  console.log('취소');
+                }
+              },
+              {
+                text: '확인',
+                handler: () => {
+                  if (this.mode === 'note') {
+                    this.auth.replyDelete(this.reply).subscribe(data => {
+                      if (data !== "") {
+                        let alert2 = this.alertCtrl.create({
+                          cssClass: 'push_alert',
+                          title: '댓글삭제',
+                          message: "댓글이 정상적으로 삭제 되었습니다.",
+                          buttons: [
+                            {
+                              text: '확인',
+                              handler: () => {
+                                // this.registerReply.comment = '';
+                                this.comment_popover_option_textarea = -1;
+                                this.textareaResize();
+                                this.update();
+                              }
+                            }
+                          ]
+                        });
+                        alert2.present();
+                      }
+                      // this.nav.push(CareZoneMissionIngPage, { _id: id });
+                    }, error => {
+                      this.showError(JSON.parse(error._body).msg);
+                    });
+
+                  }
+
+                  if (this.mode === 'qna') {
+                    this.auth.replySkinQnaDelete(this.reply).subscribe(data => {
+                      if (data !== "") {
+                        let alert2 = this.alertCtrl.create({
+                          cssClass: 'push_alert',
+                          title: '댓글삭제',
+                          message: "댓글이 정상적으로 삭제 되었습니다.",
+                          buttons: [
+                            {
+                              text: '확인',
+                              handler: () => {
+                                // this.registerReply.comment = '';
+                                this.comment_popover_option_textarea = -1;
+                                this.textareaResize();
+                                this.update();
+                              }
+                            }
+                          ]
+                        });
+                        alert2.present();
+                      }
+                      // this.nav.push(CareZoneMissionIngPage, { _id: id });
+                    }, error => {
+                      this.showError(JSON.parse(error._body).msg);
+                    });
+                  }
+                }
+              }]
+          });
+          alert.present();
         }
       });
     }
@@ -212,6 +378,12 @@ export class CommunityModifyPage {
   }
 
 
+  updateComment(event) {
+    // this.registerReply.comment = event.target.value;
+    // console.log(this.registerReply.comment);
+    // console.log(document.getElementById('updatereply').getAttribute('ng-reflect-model'));
+
+  }
 
 
 
@@ -303,6 +475,140 @@ export class CommunityModifyPage {
   }
 
 
+  replyUpdate(email, id) {
+    this.reply.email = email;
+    this.reply.id = id;
+    this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
+
+
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "plinic",
+      message: "댓글을 수정 하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+            console.log('취소');
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            this.auth.replyUpdate(this.reply).subscribe(data => {
+              if (data !== "") {
+                let alert2 = this.alertCtrl.create({
+                  cssClass: 'push_alert',
+                  title: '댓글삭제',
+                  message: "댓글이 정상적으로 수정 되었습니다.",
+                  buttons: [
+                    {
+                      text: '확인',
+                      handler: () => {
+                        // this.registerReply.comment = '';
+                        this.comment_popover_option_textarea = -1;
+                        this.textareaResize();
+                        this.update();
+                      }
+                    }
+                  ]
+                });
+                alert2.present();
+              }
+              // this.nav.push(CareZoneMissionIngPage, { _id: id });
+            }, error => {
+              this.showError(JSON.parse(error._body).msg);
+            });
+          }
+        }]
+    });
+    alert.present();
+  }
+
+
+  saveSkinQnaReply() {
+    console.log(this.id);
+    console.log(this.registerReply.comment);
+    this.registerReply.id = this.id;
+    this.auth.replySkinQnaSave(this.userData.email, this.registerReply).subscribe(data => {
+      if (data !== "") {
+        let alert2 = this.alertCtrl.create({
+          cssClass: 'push_alert',
+          title: '댓글달기',
+          message: "댓글이 정상적으로 등록되었습니다.",
+          buttons: [
+            {
+              text: '확인',
+              handler: () => {
+                this.registerReply.comment = '';
+                this.textareaResize();
+                this.update();
+              }
+            }
+          ]
+        });
+        alert2.present();
+      }
+      // this.nav.push(CareZoneMissionIngPage, { _id: id });
+    }, error => {
+      this.showError(JSON.parse(error._body).msg);
+    });
+  }
+
+
+  replySkinQnaUpdate(email, id) {
+    this.reply.email = email;
+    this.reply.id = id;
+    this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
+
+
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "plinic",
+      message: "댓글을 수정 하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+            console.log('취소');
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            this.auth.replySkinQnaUpdate(this.reply).subscribe(data => {
+              if (data !== "") {
+                let alert2 = this.alertCtrl.create({
+                  cssClass: 'push_alert',
+                  title: '댓글삭제',
+                  message: "댓글이 정상적으로 수정 되었습니다.",
+                  buttons: [
+                    {
+                      text: '확인',
+                      handler: () => {
+                        // this.registerReply.comment = '';
+                        this.comment_popover_option_textarea = -1;
+                        this.textareaResize();
+                        this.update();
+                      }
+                    }
+                  ]
+                });
+                alert2.present();
+              }
+              // this.nav.push(CareZoneMissionIngPage, { _id: id });
+            }, error => {
+              this.showError(JSON.parse(error._body).msg);
+            });
+          }
+        }]
+    });
+    alert.present();
+  }
+
+
 
   showError(text) {
     //this.loading.dismiss();
@@ -317,6 +623,7 @@ export class CommunityModifyPage {
     });
     alert.present();
   }
+
 
 
 

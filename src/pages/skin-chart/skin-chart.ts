@@ -168,10 +168,10 @@ export class SkinChartPage {
   ionViewDidLoad() {
     this.loadItems();
 
-    this.skin_first_check();
-    this.skin_first_moisture_score();
-    this.skin_first_oil_score();
-    this.skin_oil_score();
+    // this.skin_first_check();
+    // this.skin_first_moisture_score();
+    // this.skin_first_oil_score();
+    // this.skin_oil_score();
   }
 
   public loadItems() {
