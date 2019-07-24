@@ -50,7 +50,6 @@ export class CommunityModifyPage {
     public viewCtrl: ViewController, public popoverCtrl: PopoverController, public element: ElementRef, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
     this.platform.ready().then((readySource) => {
 
-
       //this.presentLoading();
     })
   }
@@ -114,7 +113,7 @@ export class CommunityModifyPage {
             console.log('수정');
             let myModal = this.modalCtrl.create(CommunityWritePage);
             myModal.present();
-          }, 500)
+          }, 100)
         }
         else if (this.select_popover_option === "삭제") {
           console.log('select_popover_option==========' + this.select_popover_option);
@@ -137,7 +136,7 @@ export class CommunityModifyPage {
             console.log('수정');
             let myModal = this.modalCtrl.create(CommunityWritePage);
             myModal.present();
-          }, 500)
+          }, 100)
         }
         else if (this.select_popover_option === "삭제") {
           console.log('select_popover_option==========' + this.select_popover_option);
@@ -159,7 +158,7 @@ export class CommunityModifyPage {
       });
       popover.onDidDismiss(popoverData => {
         console.log("popoverData : " + popoverData);
-        // this.comment_popover_option = popoverData;
+        this.comment_popover_option = popoverData;
         console.log(this.comment_popover_option_textarea)
         if (popoverData === "수정") {
           this.comment_popover_option_textarea = i;
@@ -270,14 +269,16 @@ export class CommunityModifyPage {
 
       popover.onDidDismiss(popoverData => {
         console.log("popoverData : " + popoverData);
-        // this.comment_popover_option = popoverData;
+        this.comment_popover_option = popoverData;
         console.log(this.comment_popover_option_textarea)
         if (popoverData === "수정") {
           this.comment_popover_option_textarea = i;
            setTimeout(() => {
-          console.log('수정');
-          // this.presentLoading();
-          this.resize();
+           console.log('수정');
+           // this.mytextarea.setFocus();
+           this.myInput.nativeElement.focus();
+           // this.presentLoading();
+           this.resize();
            }, 100)
         }
         else if (popoverData === "삭제") {
@@ -601,7 +602,7 @@ export class CommunityModifyPage {
     // this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
     this.reply.comment = this.updatevalue;
     console.log(this.registerReply.comment);
-
+    console.log("comment_popover_option=================" + this.comment_popover_option);
 
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert_cancel',
@@ -636,6 +637,8 @@ export class CommunityModifyPage {
                     }
                   ]
                 });
+                this.comment_popover_option="보기";
+                console.log("comment_popover_option=================" + this.comment_popover_option);
                 alert2.present();
               }
               // this.nav.push(CareZoneMissionIngPage, { _id: id });
