@@ -43,6 +43,8 @@ export class CommunityModifyPage {
 
   @ViewChild('myInput') myInput: ElementRef;
 
+  @ViewChild('textarea') mytextarea ;
+
 
   constructor(private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
     public viewCtrl: ViewController, public popoverCtrl: PopoverController, public element: ElementRef, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
@@ -80,13 +82,13 @@ export class CommunityModifyPage {
   }
 
   resize() {
-    // this.myInput.nativeElement.style.height = 'auto'
-    // this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
+    this.myInput.nativeElement.style.height = 'auto'
+    this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
   }
 
   textareaResize() {
-    // this.myInput.nativeElement.style.height = '40px'
-    // this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
+    this.myInput.nativeElement.style.height = '40px'
+    this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
   }
 
 
@@ -112,7 +114,7 @@ export class CommunityModifyPage {
             console.log('수정');
             let myModal = this.modalCtrl.create(CommunityWritePage);
             myModal.present();
-          }, 100)
+          }, 500)
         }
         else if (this.select_popover_option === "삭제") {
           console.log('select_popover_option==========' + this.select_popover_option);
@@ -135,7 +137,7 @@ export class CommunityModifyPage {
             console.log('수정');
             let myModal = this.modalCtrl.create(CommunityWritePage);
             myModal.present();
-          }, 100)
+          }, 500)
         }
         else if (this.select_popover_option === "삭제") {
           console.log('select_popover_option==========' + this.select_popover_option);
@@ -161,11 +163,12 @@ export class CommunityModifyPage {
         console.log(this.comment_popover_option_textarea)
         if (popoverData === "수정") {
           this.comment_popover_option_textarea = i;
-          // setTimeout(() => {
+          setTimeout(() => {
           console.log('수정');
+          // this.mytextarea.setFocus();
           // this.presentLoading();
           this.resize();
-          // }, 100)
+          }, 100)
         }
         else if (popoverData === "삭제") {
           // console.log('comment_popover_option==========' + this.comment_popover_option);
@@ -270,11 +273,11 @@ export class CommunityModifyPage {
         console.log(this.comment_popover_option_textarea)
         if (popoverData === "수정") {
           this.comment_popover_option_textarea = i;
-          // setTimeout(() => {
+           setTimeout(() => {
           console.log('수정');
           // this.presentLoading();
           this.resize();
-          // }, 100)
+           }, 100)
         }
         else if (popoverData === "삭제") {
           // console.log('comment_popover_option==========' + this.comment_popover_option);
@@ -373,11 +376,15 @@ export class CommunityModifyPage {
   }
 
 
-  protected adjustTextarea(): void {
+  protected adjustTextarea(event): void {
     let textArea = this.element.nativeElement.getElementsByTagName('textarea')[0];
     textArea.style.overflow = 'hidden';
     textArea.style.height = 'auto';
     textArea.style.height = textArea.scrollHeight + 'px';
+    textArea.style.cursor = 'pointer';
+    console.log("-------------------updatecomment");
+    console.log(event.target.value);
+    this.updatevalue = event.target.value;
     return;
   }
 

@@ -94,15 +94,16 @@
   <img *ngIf="!thumb_image" class="profile_comment" src="{{profileimg_url}}">
   </div> -->
     <!-- <img *ngIf="thumb_image" class="profile_comment" src="{{userData.thumbnail_image}}"> -->
+    <ng-container *ngIf="comment_popover_option_textarea === i ">
     <img *ngIf="!thumb_image" class="profile_comment" style="margin-top: 7%;" src="{{profileimg_url}}">
     <img *ngIf="thumb_image" class="profile_comment" style="margin-top: 7%;" src="{{userData.thumbnail_image}}">
     <div class="container">
-      <!-- <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300" autoGrow="true" placeholder="댓글 등록" (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea> -->
-      <textarea class="content_comment" style="margin-top: 9%;" (input)="updateComment($event)" placeholder="댓글 등록" [(ngModel)]="registerReply.comment"></textarea>
+      <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300" autoGrow="true" placeholder="댓글 등록"
+      (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea>
       <button ion-button class="comment_input_enroll" (click)="saveReply()">등록</button>
     </div>
     <div style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div>
-
+   </ng-container>
 
     <!-- 댓글  -->
     <ng-container *ngIf="beautyNoteOneLoadData">
@@ -123,7 +124,8 @@
           <div *ngIf="comment_popover_option==='보기'" class="content_comment" text-wrap>{{registerReply.comment}}</div>
         </ng-container>
         <!-- 수정 -->
-        <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" [(ngModel)]="registerReply.comment" autofocus="true" (focus)="focus($event)" (input)="updateComment($event)"></textarea>
+        <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment"
+         (input)="adjustTextarea($event)" autofocus="true" (focus)="focus($event)" ></textarea>
 
         <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 2%; background-color:#f1f1f1"></div>
       </ng-container>
@@ -234,15 +236,16 @@
 <textarea *ngIf="comment_popover_option==='보기'" class="content_comment" style="margin-top: 9%;" rows="3" cols="20" maxLength="300" autoGrow="true" placeholder="댓글 등록" (input)="adjustTextarea()" ></textarea>
 <div *ngIf="comment_popover_option==='보기'" style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div> -->
 
-
+    <ng-container *ngIf="comment_popover_option_textarea === i ">
     <img *ngIf="!thumb_image" class="profile_comment" style="margin-top: 7%;" src="{{profileimg_url}}">
     <img *ngIf="thumb_image" class="profile_comment" style="margin-top: 7%;" src="{{userData.thumbnail_image}}">
     <div class="container">
-      <textarea class="content_comment" style="margin-top: 9%;" placeholder="댓글 등록" [(ngModel)]="registerReply.comment"></textarea>
-      <!-- <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300" autoGrow="true" placeholder="댓글 등록" (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea> -->
+      <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300" autoGrow="true" placeholder="댓글 등록"
+      (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea>
       <button ion-button class="comment_input_enroll" (click)="saveSkinQnaReply()">등록</button>
     </div>
     <div style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div>
+  </ng-container>
 
 
     <!-- 댓글  -->
@@ -264,7 +267,8 @@
           <div *ngIf="comment_popover_option==='보기'" class="content_comment" text-wrap>{{registerReply.comment}}</div>
         </ng-container>
         <!-- 수정 -->
-        <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment" (input)="updateComment($event)"></textarea>
+        <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment"
+        (input)="adjustTextarea()"></textarea>
 
         <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 2%; background-color:#f1f1f1"></div>
       </ng-container>
@@ -272,10 +276,5 @@
 
 
 
-
-
   </ng-container>
-
-
-
 </ion-content>
