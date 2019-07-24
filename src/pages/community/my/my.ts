@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, Slides } from 'ionic-angular';
+import { ImagesProvider } from '../../../providers/images/images';
 
 /**
  * Generated class for the MyPage page.
@@ -16,9 +17,12 @@ import { IonicPage, NavController, NavParams, Platform, Slides } from 'ionic-ang
 export class MyPage {
 
    page = "0";
+   skinQnaData: any;
+   beautyNoteData: any;
+
     @ViewChild(Slides) slides: Slides;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider) {
   }
 
   ionViewDidLoad() {
@@ -27,6 +31,9 @@ export class MyPage {
   }
 
   ionViewWillEnter() {
+    this.skinQnaLoad();
+    this.beautyNoteLoad();
+
     let tabs = document.querySelectorAll('.tabbar');
     if (tabs !== null) {
       Object.keys(tabs).map((key) => {
@@ -52,5 +59,18 @@ export class MyPage {
   }, 100)
   }
 }
+
+public beautyNoteLoad() {
+  this.images.beautyNoteLoad().subscribe(data => {
+    this.beautyNoteData = data;
+  });
+}
+
+public skinQnaLoad() {
+  this.images.skinQnaLoad().subscribe(data => {
+    this.skinQnaData = data;
+  });
+}
+
 
 }
