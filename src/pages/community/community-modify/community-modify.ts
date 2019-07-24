@@ -166,6 +166,7 @@ export class CommunityModifyPage {
           setTimeout(() => {
           console.log('수정');
           // this.mytextarea.setFocus();
+          this.myInput.nativeElement.focus();
           // this.presentLoading();
           this.resize();
           }, 100)
@@ -206,7 +207,7 @@ export class CommunityModifyPage {
                               handler: () => {
                                 // this.registerReply.comment = '';
                                 this.comment_popover_option_textarea = -1;
-                                this.textareaResize();
+                                // this.textareaResize();
                                 this.update();
                               }
                             }
@@ -234,7 +235,7 @@ export class CommunityModifyPage {
                               handler: () => {
                                 // this.registerReply.comment = '';
                                 this.comment_popover_option_textarea = -1;
-                                this.textareaResize();
+                                // this.textareaResize();
                                 this.update();
                               }
                             }
@@ -376,7 +377,16 @@ export class CommunityModifyPage {
   }
 
 
-  protected adjustTextarea(event): void {
+  protected adjustTextarea(): void {
+    let textArea = this.element.nativeElement.getElementsByTagName('textarea')[0];
+    textArea.style.overflow = 'hidden';
+    textArea.style.height = 'auto';
+    textArea.style.height = textArea.scrollHeight + 'px';
+    textArea.style.cursor = 'pointer';
+    return;
+  }
+
+  protected adjustTextareaUpdate(event): void {
     let textArea = this.element.nativeElement.getElementsByTagName('textarea')[0];
     textArea.style.overflow = 'hidden';
     textArea.style.height = 'auto';
@@ -588,7 +598,9 @@ export class CommunityModifyPage {
   replySkinQnaUpdate(email, id) {
     this.reply.email = email;
     this.reply.id = id;
-    this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
+    // this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
+    this.reply.comment = this.updatevalue;
+    console.log(this.registerReply.comment);
 
 
     let alert = this.alertCtrl.create({

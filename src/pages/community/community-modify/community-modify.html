@@ -125,7 +125,7 @@
         </ng-container>
         <!-- 수정 -->
         <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment"
-         (input)="adjustTextarea($event)" autofocus="true" (focus)="focus($event)" ></textarea>
+         (input)="adjustTextareaUpdate($event)" autofocus="true" (focus)="focus($event)" ></textarea>
 
         <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 2%; background-color:#f1f1f1"></div>
       </ng-container>
@@ -268,7 +268,7 @@
         </ng-container>
         <!-- 수정 -->
         <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment"
-        (input)="adjustTextarea()"></textarea>
+         (input)="adjustTextareaUpdate($event)" autofocus="true" (focus)="focus($event)" ></textarea>
 
         <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 2%; background-color:#f1f1f1"></div>
       </ng-container>
