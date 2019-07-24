@@ -44,82 +44,73 @@
 
     <!-- 뷰티 노투 -->
     <ion-slide>
-          <h1>ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ1</h1>
+      <ng-container *ngFor="let beautynote of beautyNoteData; let i = index">
+        <!-- 뷰트꿀팁 이미지가 있을 때  -->
+        <ng-container *ngIf="beautynote.filename">
+          <ion-item class="line_item">
+          <ion-col (click)="community_modify(beautynote._id)" class="container">
+            <ion-row class="beauty_row">
+              <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
+            </ion-row>
+            <ion-col *ngIf="beautynote.like" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
+              <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
+            </ion-col>
+            <img class="beauty_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
+          </ion-col></ion-item>
+          <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+        </ng-container>
+
+        <ng-container *ngIf="!beautynote.filename">
+          <!-- 뷰트노트 이미지가 없을 때  -->
+          <ion-item class="line_item">
+          <ion-col (click)="community_modify(beautynote._id)" class="container">
+            <ion-row class="beauty_row">
+              <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
+            </ion-row>
+            <ion-col *ngIf="beautynote.like" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
+              <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
+            </ion-col>
+          </ion-col></ion-item>
+          <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+        </ng-container>
+      </ng-container>
     </ion-slide>
 
     <!-- 피부 고민 -->
     <ion-slide>
-      <!-- 피부 고민 이미지가 있을 때  -->
-      <ion-col class="container">
-        <ion-row class="beauty_row">
-          <ion-col class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</ion-col>
-        </ion-row>
-        <ion-col class="beauty_note_like">좋아요 32 ∙
-          <ion-col class="beauty_note_answer">답변수 3</ion-col>
-        </ion-col>
-        <img class="beauty_note_img2" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}" />
-      </ion-col><br><br>
-      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
-
-      <ion-col class="container">
-        <ion-row class="beauty_row">
-          <ion-col class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</ion-col>
-        </ion-row>
-        <ion-col class="beauty_note_like">좋아요 32 ∙
-          <ion-col class="beauty_note_answer">답변수 3</ion-col>
-        </ion-col>
-        <img class="beauty_note_img2" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}" />
-      </ion-col><br><br>
-      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
-
-      <ion-col class="container">
-        <ion-row class="beauty_row">
-          <ion-col class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>플리닉으로 관리 중인데요. 하루에 몇 번 관리하는게 좋나요?</ion-col>
-        </ion-row>
-        <ion-col class="beauty_note_like">좋아요 32 ∙
-          <ion-col class="beauty_note_answer">답변수 3</ion-col>
-        </ion-col>
-        <img class="beauty_note_img2" src="http://plinic.cafe24app.com/beauty_images/{{beauty_data_id1}}" />
-      </ion-col><br><br>
-      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
 
 
+      <ng-container *ngFor="let skinqna of skinQnaData; let i = index">
+        <ng-container *ngIf="skinqna.filename">
+          <!-- 피부 고민 이미지가 있을 때  -->
+          <ion-item class="line_item">
+          <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
+            <ion-row class="beauty_row">
+              <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
+            </ion-row>
+            <ion-col *ngIf="skinqna.like" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+              <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
+            </ion-col>
+            <img class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+          </ion-col></ion-item>
+          <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+        </ng-container>
 
-      <!-- 피부 고민 이미지가 없을 때  -->
-      <ion-col class="container">
-        <ion-row class="beauty_row">
-          <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>얼굴 피부에 색소침착 때문에 고민입니다.어떻게 하면 깨끗하게 지울수 있을까요?</ion-col>
-        </ion-row>
-        <ion-col class="beauty_note_like">좋아요 32 ∙
-          <ion-col class="beauty_note_answer">답변수 3</ion-col>
-        </ion-col>
-      </ion-col><br><br>
-      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
-
-      <ion-col class="container">
-        <ion-row class="beauty_row">
-          <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>얼굴 피부에 색소침착 때문에 고민입니다.어떻게 하면 깨끗하게 지울수 있을까요?</ion-col>
-        </ion-row>
-        <ion-col class="beauty_note_like">좋아요 32 ∙
-          <ion-col class="beauty_note_answer">답변수 3</ion-col>
-        </ion-col>
-      </ion-col><br><br>
-      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
-
-
-      <ion-col class="container">
-        <ion-row class="beauty_row">
-          <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>얼굴 피부에 색소침착 때문에 고민입니다.어떻게 하면 깨끗하게 지울수 있을까요?</ion-col>
-        </ion-row>
-        <ion-col class="beauty_note_like">좋아요 32 ∙
-          <ion-col class="beauty_note_answer">답변수 3</ion-col>
-        </ion-col>
-      </ion-col><br><br>
-      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
-
-
+      <ng-container *ngIf="!skinqna.filename">
+        <!-- 피부 고민 이미지가 없을 때  -->
+        <ion-item class="line_item">
+        <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
+          <ion-row class="beauty_row">
+            <ion-col class="beauty_note_title"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
+          </ion-row>
+          <ion-col *ngIf="skinqna.like" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+            <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
+          </ion-col>
+        </ion-col></ion-item>
+        <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+        </ng-container>
+      </ng-container>
     </ion-slide>
-
   </ion-slides>
 
 </ion-content>

@@ -86,7 +86,7 @@ export class CommunityWritePage {
             //this.nav.pop(); // IF IT'S NOT THE ROOT, POP A PAGE.
           }
           else if (activeView.isOverlay) {
-            //activeView.dismiss();
+            activeView.dismiss();
           }
           else {
             // backgroundMode.moveToBackground();

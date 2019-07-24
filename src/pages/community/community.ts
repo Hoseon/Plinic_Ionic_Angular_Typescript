@@ -61,7 +61,8 @@ export class CommunityPage {
 
   @ViewChild(Slides) slides: Slides;
 
-  constructor(private toastCtrl: ToastController, private authService: AuthService, public loadingCtrl: LoadingController, public nav: NavController, public navParams: NavParams, private alertCtrl: AlertController, public modalCtrl: ModalController, private images: ImagesProvider, public platform: Platform
+  constructor(private toastCtrl: ToastController, private authService: AuthService, public loadingCtrl: LoadingController, public nav: NavController,
+    public navParams: NavParams, private alertCtrl: AlertController, public modalCtrl: ModalController, private images: ImagesProvider, public platform: Platform
     , private themeableBrowser: ThemeableBrowser, @Inject(DOCUMENT) document) {
 
 
