@@ -116,8 +116,10 @@
         </ion-grid>
       </ng-container>
       <div style="height:1px; width:97%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+
       <!-- 뷰트꿀팁 이미지가 있을 때  -->
-      <!-- <ng-container *ngIf="platform.is('android')">
+      <ng-container *ngIf="platform.is('android')">
         <ng-container *ngFor="let community of communityBeautyLoadData; let i = index">
           <ng-container *ngIf="(i < 3)">
               <ion-col col-9 class="container" (click)="openBrowser_android(community.posturl, community.body)">
@@ -150,16 +152,14 @@
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
           </ng-container>
         </ng-container>
-      </ng-container> -->
+      </ng-container>
 
-
-
-      <button mode="md" no-lines ion-item icon-start class="beauty_top_label"> 여름철 피부관리 노하우 대방출!</button>
+      <!-- <button mode="md" no-lines ion-item icon-start class="beauty_top_label"> 여름철 피부관리 노하우 대방출!</button>
       <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
       <button mode="md" no-lines ion-item icon-start class="beauty_top_label"> 여름철 피부관리 노하우 대방출!</button>
       <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
       <button mode="md" no-lines ion-item icon-start class="beauty_top_label"> 여름철 피부관리 노하우 대방출!</button>
-      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
 
       <button ion-button class="beauty_top_add" (click)="selectedTab(1)"> 더보기 > </button>
 
