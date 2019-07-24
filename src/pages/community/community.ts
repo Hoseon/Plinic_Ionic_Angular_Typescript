@@ -330,6 +330,76 @@ export class CommunityPage {
 
   }
 
+
+  openBrowser_androidlike(url, title, id, user, mode) {
+    // https://ionicframework.com/docs/native/themeable-browser/
+
+    const options: ThemeableBrowserOptions = {
+      toolbar: {
+        height: 55,
+        color: '#6562b9'
+      },
+      title: {
+        color: '#ffffffff',
+        showPageTitle: false,
+        staticText: title
+      },
+      closeButton: {
+        wwwImage: 'assets/img/close.png',
+        align: 'left',
+        event: 'closePressed'
+      },
+      customButtons: [
+        {
+
+          wwwImage: 'assets/img/like/like.png',
+          // wwwImagePressed: 'assets/img/like/dislike.png',
+          align: 'right',
+          event: 'sharePressed'
+        }
+      ],
+    };
+
+    const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
+    browser.insertCss({
+      file: 'assets/img/close.png',
+      code: '.navbar-fixed-top {display: block !important;}'
+    });
+    browser.reload();
+    browser.on('closePressed').subscribe(data => {
+      browser.close();
+    })
+
+    browser.on('sharePressed').subscribe(data => {
+      browser.executeScript({
+        code: ""
+      });
+      console.log("idididididididid : " + id);
+      console.log("modemodemodemodemodemodemodemodmoe : " + mode);
+      console.log("useruseruseruseruseruseruseruser" + user);
+      console.log(data);
+      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+      if (mode === 'tip') {
+        console.log("tiptiptiptiptiptiptiptiptiptiptip");
+        this.toast();
+        // this.images.like(id, user).subscribe(data => {
+        //   console.log("-----------------------------------------" + data);
+        //
+        // });
+        console.log("tip2tip2tip2tip2tip2tip2tiptiptiptiptip");
+
+      } else if (mode === 'exhi') {
+        console.log("exhiexhiexhiexhiexhiexhiexhiexhi");
+
+      } else {
+        console.log("nothingnothingnothingnothingnothingnothing");
+      }
+    })
+
+
+  }
+
+
   openBrowser_android(url, title) {
     // https://ionicframework.com/docs/native/themeable-browser/
 
@@ -368,6 +438,8 @@ export class CommunityPage {
     })
 
   }
+
+
 
 
   ionViewDidEnter() {

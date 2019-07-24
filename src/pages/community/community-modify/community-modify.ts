@@ -110,7 +110,7 @@ export class CommunityModifyPage {
             console.log('수정');
             let myModal = this.modalCtrl.create(CommunityWritePage);
             myModal.present();
-          }, 100)
+          }, 500)
         }
         else if (this.select_popover_option === "삭제") {
           console.log('select_popover_option==========' + this.select_popover_option);
@@ -133,7 +133,7 @@ export class CommunityModifyPage {
             console.log('수정');
             let myModal = this.modalCtrl.create(CommunityWritePage);
             myModal.present();
-          }, 100)
+          }, 500)
         }
         else if (this.select_popover_option === "삭제") {
           console.log('select_popover_option==========' + this.select_popover_option);
@@ -268,11 +268,11 @@ export class CommunityModifyPage {
         console.log(this.comment_popover_option_textarea)
         if (popoverData === "수정") {
           this.comment_popover_option_textarea = i;
-          // setTimeout(() => {
+           setTimeout(() => {
           console.log('수정');
           // this.presentLoading();
           this.resize();
-          // }, 100)
+           }, 100)
         }
         else if (popoverData === "삭제") {
           // console.log('comment_popover_option==========' + this.comment_popover_option);
@@ -376,6 +376,7 @@ export class CommunityModifyPage {
     textArea.style.overflow = 'hidden';
     textArea.style.height = 'auto';
     textArea.style.height = textArea.scrollHeight + 'px';
+    textArea.style.cursor = 'pointer';
     return;
   }
 
