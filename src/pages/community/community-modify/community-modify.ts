@@ -37,6 +37,8 @@ export class CommunityModifyPage {
 
   islike: boolean = false;
 
+  focusvalue : any;
+  updatevalue : any;
 
 
   @ViewChild('myInput') myInput: ElementRef;
@@ -77,16 +79,16 @@ export class CommunityModifyPage {
     // this.nav.setRoot(this.nav.getActive().component);
   }
 
-
   resize() {
-    this.myInput.nativeElement.style.height = 'auto'
-    this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
+    // this.myInput.nativeElement.style.height = 'auto'
+    // this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
   }
 
   textareaResize() {
-    this.myInput.nativeElement.style.height = '40px'
+    // this.myInput.nativeElement.style.height = '40px'
     // this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
   }
+
 
 
 
@@ -382,9 +384,20 @@ export class CommunityModifyPage {
 
   updateComment(event) {
     // this.registerReply.comment = event.target.value;
+    console.log("-------------------updatecomment");
+    console.log(event.target.value);
+    this.updatevalue = event.target.value;
+    // console.log(document.getElementById('updatereply').getAttribute('value'));
     // console.log(this.registerReply.comment);
-    // console.log(document.getElementById('updatereply').getAttribute('ng-reflect-model'));
 
+  }
+
+  focus(event){
+    console.log(event.target.value)
+    // this.focusvalue = event.target.value
+    this.updatevalue = event.target.value
+    console.log(event)
+    console.log("focus focus")
   }
 
 
@@ -485,8 +498,9 @@ export class CommunityModifyPage {
   replyUpdate(email, id) {
     this.reply.email = email;
     this.reply.id = id;
-    this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
-
+    // this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
+    this.reply.comment = this.updatevalue;
+    console.log(this.registerReply.comment);
 
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert_cancel',
