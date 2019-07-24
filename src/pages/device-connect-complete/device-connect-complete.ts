@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, ModalController, ViewController, P
 import { DeviceSkinStartPage } from '../device-skin-start/device-skin-start';
 import { DeviceSkinIngPage } from '../device-skin-ing/device-skin-ing';
 // import { SuccessHomePage } from '../success-home/success-home';
+import { TabsPage } from '../tabs/tabs';
+
 /**
  * Generated class for the DeviceConnectCompletePage page.
  *
@@ -22,11 +24,11 @@ export class DeviceConnectCompletePage {
     public modalCtrl: ModalController, public viewCtrl: ViewController, public platform: Platform) {
 
       this.platform.ready().then((readySource)=>{
-        setTimeout(()=>{
-          this.spintime = 1;
-          let myModal = this.modalCtrl.create(DeviceSkinStartPage);
-          myModal.present();
-        }, 3500);
+        // setTimeout(()=>{
+        //   this.spintime = 1;
+        //   let myModal = this.modalCtrl.create(DeviceSkinStartPage);
+        //   myModal.present();
+        // }, 3500);
       });
   }
 
@@ -41,7 +43,12 @@ export class DeviceConnectCompletePage {
   }
 
   public measureBack(){
-    this.navCtrl.push(DeviceSkinIngPage);
+    // this.navCtrl.push(DeviceSkinIngPage);
+    this.navCtrl.setRoot(TabsPage);
+  }
+
+  deviceFail(){
+    this.navCtrl.setRoot(TabsPage);
   }
 
 

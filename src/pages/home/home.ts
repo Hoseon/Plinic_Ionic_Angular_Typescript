@@ -545,7 +545,9 @@ public skin_first_oil_score() {
     }
 
     if(this.platform.is('ios') || this.platform.is('core')){
-      this.showAlert("ios 블루투스 기능 준비 중입니다. <br />감사합니다.")
+      // this.showAlert("ios 블루투스 기능 준비 중입니다. <br />감사합니다.")
+      let myModal = this.modalCtrl.create(SkinMeasureStartPage);
+      myModal.present();
     }
 
   }

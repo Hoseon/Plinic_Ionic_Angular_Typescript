@@ -14,6 +14,17 @@ import { Naver } from 'ionic-plugin-naver';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { FCM } from '@ionic-native/fcm';
 import { Transfer, TransferObject, FileUploadOptions } from '@ionic-native/transfer'
+import { BLE } from '@ionic-native/ble';
+
+//Blue Mod S42
+// const PLINIC_SERVICE = 'FEFB';
+// const UUID_SERVICE = 'FEFB';
+// const SWITCH_CHARACTERISTIC = 'FF00';
+
+//HM Soft Bluetooth Mod
+const PLINIC_SERVICE = 'FFE0';
+const UUID_SERVICE = 'FFE0';
+const SWITCH_CHARACTERISTIC = 'FFE1';
 
 
 export class User {
@@ -857,4 +868,13 @@ export class AuthService {
     });
     alert.present();
   }
+
+
+  //Bluetooth Test 향후 별도의 블루투스 Provider로 분리 시켜야 함
+
+
+
+
+
+
 }
