@@ -1,13 +1,13 @@
 page-search {
 
   .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
-    margin-bottom: -0.5%;
-    height: 1px;
+    margin-bottom: 1%;
+    height: 0px;
   }
 
   .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
     margin-bottom: -0.5%;
-    height: 1px;
+    height: 0px;
   }
 
   .ios_search{
@@ -26,7 +26,9 @@ page-search {
   }
 
   .searchbar-ios{
-    background: transparent;
+    background-color: #FFF !important;
+    height: 56px;
+    border-bottom: 1px solid #f1f1f1;
   }
 
   .searchbar-ios .searchbar-search-icon{
@@ -48,7 +50,7 @@ page-search {
 
   .searchbar-ios.searchbar-left-aligned .searchbar-input{
     padding-left: 15%;
-    padding-top: 3%;
+    padding-top: 2%;
     font-family: NotoSansCJKkr;
     font-size: 17px;
     font-weight: bold;
