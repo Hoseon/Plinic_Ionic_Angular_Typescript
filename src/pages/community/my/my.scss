@@ -330,18 +330,6 @@ page-my {
           color: #b6b6b6;
         }
 
-        .beauty_note_count2{
-          font-family: NotoSansCJKkr;
-          font-size: 13px;
-          font-weight: normal;
-          font-style: normal;
-          font-stretch: normal;
-          line-height: normal;
-          letter-spacing: normal;
-          color: #b6b6b6;
-          padding-left: 5%;
-        }
-
         .beauty_note_answer{
           font-family: NotoSansCJKkr;
           font-size: 13px;
@@ -351,18 +339,6 @@ page-my {
           line-height: normal;
           letter-spacing: normal;
           color: #5c59b6;
-        }
-
-        .beauty_note_answer2{
-          font-family: NotoSansCJKkr;
-          font-size: 13px;
-          font-weight: normal;
-          font-style: normal;
-          font-stretch: normal;
-          line-height: normal;
-          letter-spacing: normal;
-          color: #5c59b6;
-          padding-left: 5%;
         }
 
           .container {
@@ -386,11 +362,43 @@ page-my {
             margin-bottom: -10%;
           }
 
+          .container .beauty_note_img_ios {
+            // position: absolute;
+            // top: -25%;
+            // right: -120%;
+            transform: translate(295%, -60%);
+            -ms-transform: translate(-50%, -50%);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            width: 80px;
+            max-height: 80px;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            margin-bottom: -10%;
+          }
+
           .container .beauty_worry_img {
             // position: absolute;
             // top: -25%;
             // right: -120%;
             transform: translate(385%, -60%);
+            -ms-transform: translate(-50%, -50%);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            width: 80px;
+            max-height: 80px;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            margin-bottom: -10%;
+          }
+
+          .container .beauty_worry_img_ios {
+            // position: absolute;
+            // top: -25%;
+            // right: -120%;
+            transform: translate(295%, -60%);
             -ms-transform: translate(-50%, -50%);
             color: #fff;
             border: none;

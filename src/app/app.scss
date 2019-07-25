@@ -126,8 +126,59 @@
   }
 
 
+    //검색 정렬 팝오버 최신순,인기순
+  .android_align_popover .popover-content{
+    top: 90px !important;
+    left: 230px !important;
+    transform-origin: right top !important;
+    transform: scale(1) !important;
+    background-color: #fafafa !important;
+    width: 108px;
+    border: solid 1px #dddddd;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    box-shadow:none;
+
+      .list-md{
+        margin: 0px;
+      }
+   }
 
 
+   .ios_align_popover .popover-content{
+     top: 120px !important;
+     left: 230px !important;
+     transform-origin: right top !important;
+     transform: scale(1) !important;
+     background-color: #fafafa !important;
+     width: 108px;
+     border: solid 1px #dddddd;
+     font-family: NotoSansCJKkr;
+     font-size: 15px;
+     font-weight: normal;
+     font-style: normal;
+     font-stretch: normal;
+     line-height: normal;
+     letter-spacing: normal;
+     color: #292929;
+
+       .list-ios{
+         margin: 0px;
+       }
+
+       .list-ios > .item-block:first-child{
+         border-top: 0px;
+       }
+    }
+
+
+  //글쓰기 수정/삭제 팝오버
   .android_popover .popover-content{
     top: 42.875px !important;
     left: 244px !important;
@@ -179,7 +230,7 @@
     }
 
 
-
+    //댓글 수정/삭제 팝오버
     .android_comment_popover .popover-content{
       //top: 42.875px !important;
       left: 244px !important;

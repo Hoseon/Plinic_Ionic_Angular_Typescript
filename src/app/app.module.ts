@@ -137,7 +137,9 @@ import { BeautyTipAddPageModule } from '../pages/beauty-tip-add/beauty-tip-add.m
 //import { CommunityPageModule } from '../pages/community/community.module';
 //import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
 import { PopoverPage } from '../pages/community/community-modify/popover/popover';
+import { AlignPopoverPage } from '../pages/community/search/align-popover/align-popover';
 import { MyPage} from '../pages/community/my/my';
+import { SearchPage} from '../pages/community/search/search';
 //import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
 //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 //
@@ -276,6 +278,8 @@ export function getAuthHttp(http, storage) {
     // KeyboardAttachDirective,
     PopoverPage,
     MyPage,
+    SearchPage,
+    AlignPopoverPage,
   ],
   imports: [
     HttpModule,
@@ -400,6 +404,8 @@ export function getAuthHttp(http, storage) {
     // QnaReadPage,
     PopoverPage,
     MyPage,
+    SearchPage,
+    AlignPopoverPage,
   ],
   providers: [
     StatusBar,

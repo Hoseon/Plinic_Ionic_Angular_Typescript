@@ -10,7 +10,7 @@
 
     <ion-title class="android_title" text-wrap>커뮤니티</ion-title>
     <ng-container *ngIf="page==='0'">
-      <img class="android_search" style="right:5%" (click)="ionViewDidLoad()" src="assets/img/beauty/ic-system-search@3x.png" />
+      <img class="android_search" style="right:5%" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
       <!-- <div class="android_my">MY</div> -->
     </ng-container>
     <ng-container *ngIf="page==='1'">
@@ -18,11 +18,11 @@
     <div class="android_my">MY</div> -->
     </ng-container>
     <ng-container *ngIf="page==='2'">
-      <img class="android_search" src="assets/img/beauty/ic-system-search@3x.png" />
+      <img class="android_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
       <button ion-button class="android_my" (click)="community_my()">MY</button>
     </ng-container>
     <ng-container *ngIf="page==='3'">
-      <img class="android_search" src="assets/img/beauty/ic-system-search@3x.png" />
+      <img class="android_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
       <button ion-button class="android_my" (click)="community_my()">MY</button>
     </ng-container>
     <ng-container *ngIf="page==='4'">
@@ -40,7 +40,7 @@
     </ion-buttons>
     <ion-title class="ios_title" text-wrap>커뮤니티</ion-title>
     <ng-container *ngIf="page==='0'">
-      <img class="ios_search" style="right:5%" src="assets/img/beauty/ic-system-search@3x.png" />
+      <img class="ios_search" style="right:5%" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
       <!-- <div class="ios_my">MY</div> -->
     </ng-container>
     <ng-container *ngIf="page==='1'">
@@ -48,11 +48,11 @@
     <div class="ios_my">MY</div> -->
     </ng-container>
     <ng-container *ngIf="page==='2'">
-      <img class="ios_search" src="assets/img/beauty/ic-system-search@3x.png" />
+      <img class="ios_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
       <button ion-button class="ios_my" (click)="community_my()">MY</button>
     </ng-container>
     <ng-container *ngIf="page==='3'">
-      <img class="ios_search" src="assets/img/beauty/ic-system-search@3x.png" />
+      <img class="ios_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
       <button ion-button class="ios_my" (click)="community_my()">MY</button>
     </ng-container>
     <ng-container *ngIf="page==='4'">
@@ -149,7 +149,7 @@
               <ion-col class="beauty_note_like">좋아요 32 ∙
                 <ion-col class="beauty_note_count">조회 {{community.views}}</ion-col>
               </ion-col>
-              <img class="beauty_home_img" src="http://plinic.cafe24app.com/commubeauty_images/{{community._id}}" />
+              <img class="beauty_home_img_ios" src="http://plinic.cafe24app.com/commubeauty_images/{{community._id}}" />
             </ion-col></ion-item>
             <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
           </ng-container>
@@ -168,7 +168,7 @@
 
       <!-- 광고 -->
       <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
-      <img class="beauty_ad_img" src="assets/img/beauty/beauty_ad.jpg" />
+      <img class="beauty_ad_img" src="assets/img/beauty/beauty_ad.JPG" />
       <div style="height:8px; width:100%; margin-top:-1.5%; background-color:#f1f1f1"></div>
 
 
@@ -190,7 +190,8 @@
               <ion-col *ngIf="beautynote.like" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
                 <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
               </ion-col>
-              <img class="beauty_home_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}"/>
+              <img *ngIf="platform.is('android') " class="beauty_home_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}"/>
+              <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_home_note_img_ios" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}"/>
             </ion-col></ion-item>
             <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
           </ng-container>
@@ -203,7 +204,7 @@
               <ion-row class="beauty_row">
                 <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
               </ion-row>
-              <ion-col *ngIf="beautynote.like || beautynote.like===0" class="beauty_note_count2">좋아요 {{beautynote.like}} ∙
+              <ion-col *ngIf="beautynote.like" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
                 <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
               </ion-col>
             </ion-col></ion-item>
@@ -251,7 +252,9 @@
               <ion-col *ngIf="skinqna.like" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
-              <img class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+
+              <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+              <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
             </ion-col></ion-item>
             <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
           </ng-container>
@@ -262,7 +265,7 @@
               <ion-row class="beauty_row">
                 <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
               </ion-row>
-              <ion-col *ngIf="skinqna.like || skinqna.like===0" class="beauty_note_answer2">좋아요 {{skinqna.like}} ∙
+              <ion-col *ngIf="skinqna.like" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
             </ion-col></ion-item>
@@ -334,7 +337,7 @@
             <ion-col class="beauty_note_like">좋아요 32 ∙
               <ion-col class="beauty_note_count">조회 {{community.views}}</ion-col>
             </ion-col>
-            <img class="beauty_home_img" src="http://plinic.cafe24app.com/commubeauty_images/{{community._id}}" />
+            <img class="beauty_home_img_ios" src="http://plinic.cafe24app.com/commubeauty_images/{{community._id}}" />
           </ion-col></ion-item>
           <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
         </ng-container>
@@ -366,10 +369,12 @@
             <ion-row class="beauty_row">
               <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
             </ion-row>
-            <ion-col *ngIf="beautynote.like || beautynote.like===0" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
+            <ion-col *ngIf="beautynote.like" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
               <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
             </ion-col>
-            <img class="beauty_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
+
+            <img *ngIf="platform.is('android')" class="beauty_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
+            <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_note_img_ios" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
           </ion-col></ion-item>
           <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
         </ng-container>
@@ -381,17 +386,14 @@
             <ion-row class="beauty_row">
               <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
             </ion-row>
-            <ion-col class="beauty_note_count2">좋아요 {{beautynote.like}} ∙
+            <ion-col *ngIf="beautynote.like" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
               <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
             </ion-col>
-            <!-- <ion-col *ngIf="beautynote.like === 0" class="beauty_note_like">좋아요 0 ∙
-              <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
-            </ion-col> -->
           </ion-col></ion-item>
           <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
         </ng-container>
       </ng-container>
-      <br><br><br><br><br><br><br>
+      <br><br><br><br><br><br>
     </ion-slide>
 
 
@@ -422,7 +424,8 @@
             <ion-col *ngIf="skinqna.like" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
               <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
             </ion-col>
-            <img class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+            <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+            <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
           </ion-col></ion-item>
           <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
         </ng-container>
@@ -433,7 +436,7 @@
             <ion-row class="beauty_row">
               <ion-col class="beauty_note_title"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
             </ion-row>
-            <ion-col *ngIf="skinqna.like || skinqna.like===0" class="beauty_note_answer2">좋아요 {{skinqna.like}} ∙
+            <ion-col *ngIf="skinqna.like" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
               <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
             </ion-col>
           </ion-col></ion-item>
@@ -445,7 +448,7 @@
       <!-- <button ion-button class="beauty_top_add" > 더보기 > </button>
 
     <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br> -->
-      <br><br><br><br><br><br><br />
+      <br><br><br><br><br><br>
     </ion-slide>
 
 

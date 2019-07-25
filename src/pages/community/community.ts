@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, Content, ModalCon
 import { CommunityModifyPage } from './community-modify/community-modify';
 import { CommunityWritePage } from './community-write/community-write';
 import { MyPage } from './my/my';
+import { SearchPage } from './search/search';
 import { ImagesProvider } from '../../providers/images/images';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { DOCUMENT } from '@angular/common';
@@ -68,7 +69,7 @@ export class CommunityPage {
 
     this.platform.ready().then((readySource) => {
 
-      // console.log(this.navParams.get('back'));
+      console.log(this.navParams.get('back'));
       // this.roadbeauty();
       // this.communityEditorBeautyLoad();
       // this.communityBeautyLoad();
@@ -111,14 +112,14 @@ export class CommunityPage {
 
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad CommunityPage');
+    console.log('ionViewDidLoad CommunityPage');
 
   }
 
   selectedTab(tab) {
     this.slides.slideTo(tab);
 
-    // console.log('  this.slides.slideTo(tab)===================' + tab);
+    console.log('  this.slides.slideTo(tab)===================' + tab);
   }
 
   slideChanged($event) {
@@ -261,16 +262,25 @@ export class CommunityPage {
       browser.executeScript({
         code: ""
       });
+      console.log("idididididididid : " + id);
+      console.log("modemodemodemodemodemodemodemodmoe : " + mode);
+      console.log("useruseruseruseruseruseruseruser" + user);
+      console.log(data);
+      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
       if (mode === 'tip') {
+        console.log("tiptiptiptiptiptiptiptiptiptiptip");
         this.toast();
         // this.images.like(id, user).subscribe(data => {
         //   console.log("-----------------------------------------" + data);
         //
         // });
+        console.log("tip2tip2tip2tip2tip2tip2tiptiptiptiptip");
 
       } else if (mode === 'exhi') {
+        console.log("exhiexhiexhiexhiexhiexhiexhiexhi");
 
       } else {
+        console.log("nothingnothingnothingnothingnothingnothing");
       }
     })
 
@@ -316,6 +326,7 @@ export class CommunityPage {
     })
 
     browser.on('sharePressed').subscribe(data => {
+      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
     })
 
 
@@ -365,16 +376,25 @@ export class CommunityPage {
       browser.executeScript({
         code: ""
       });
+      console.log("idididididididid : " + id);
+      console.log("modemodemodemodemodemodemodemodmoe : " + mode);
+      console.log("useruseruseruseruseruseruseruser" + user);
+      console.log(data);
+      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
       if (mode === 'tip') {
+        console.log("tiptiptiptiptiptiptiptiptiptiptip");
         this.toast();
         // this.images.like(id, user).subscribe(data => {
         //   console.log("-----------------------------------------" + data);
         //
         // });
+        console.log("tip2tip2tip2tip2tip2tip2tiptiptiptiptip");
 
       } else if (mode === 'exhi') {
+        console.log("exhiexhiexhiexhiexhiexhiexhiexhi");
 
       } else {
+        console.log("nothingnothingnothingnothingnothingnothing");
       }
     })
 
@@ -416,6 +436,7 @@ export class CommunityPage {
     })
 
     browser.on('sharePressed').subscribe(data => {
+      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
     })
 
   }
@@ -424,6 +445,7 @@ export class CommunityPage {
 
 
   ionViewDidEnter() {
+    console.log("다시다시");
     this.content.resize();
     // console.log('ionViewDidLoad CommunityPage');
     //
@@ -444,6 +466,14 @@ export class CommunityPage {
   this.nav.push(MyPage);
   }
 
+  public community_search() {
+  let myModal = this.modalCtrl.create(SearchPage);
+  myModal.onDidDismiss(data => {
+
+  });
+  myModal.present();
+  }
+
   public community_write() {
     let myModal = this.modalCtrl.create(CommunityWritePage);
     myModal.onDidDismiss(data => {
@@ -451,8 +481,6 @@ export class CommunityPage {
     });
     myModal.present();
   }
-
-
 
   public community_modify(id) {
     let myModal = this.modalCtrl.create(CommunityModifyPage, { id: id, mode: 'note' });
@@ -545,6 +573,7 @@ export class CommunityPage {
     });
 
     toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
     });
 
     toast.present();

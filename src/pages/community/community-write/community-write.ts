@@ -89,28 +89,6 @@ export class CommunityWritePage {
             activeView.dismiss();
           }
           else {
-            // backgroundMode.moveToBackground();
-            let alert = this.alertCtrl.create({
-              cssClass: 'push_alert_cancel',
-              title: "plinic",
-              message: "글쓰기 작성을 취소하시겠습니까?",
-              buttons: [
-                {
-                  text: '취소',
-                  role: 'cancel',
-                  handler: () => {
-                    console.log('취소');
-                  }
-                },
-                {
-                  text: '확인',
-                  handler: () => {
-                    console.log('확인'),
-                      this.viewCtrl.dismiss();
-                  }
-                }]
-            });
-            alert.present();
           }
         }
       });
