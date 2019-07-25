@@ -68,7 +68,7 @@ export class CommunityPage {
 
     this.platform.ready().then((readySource) => {
 
-      console.log(this.navParams.get('back'));
+      // console.log(this.navParams.get('back'));
       // this.roadbeauty();
       // this.communityEditorBeautyLoad();
       // this.communityBeautyLoad();
@@ -111,14 +111,14 @@ export class CommunityPage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CommunityPage');
+    // console.log('ionViewDidLoad CommunityPage');
 
   }
 
   selectedTab(tab) {
     this.slides.slideTo(tab);
 
-    console.log('  this.slides.slideTo(tab)===================' + tab);
+    // console.log('  this.slides.slideTo(tab)===================' + tab);
   }
 
   slideChanged($event) {
@@ -261,25 +261,16 @@ export class CommunityPage {
       browser.executeScript({
         code: ""
       });
-      console.log("idididididididid : " + id);
-      console.log("modemodemodemodemodemodemodemodmoe : " + mode);
-      console.log("useruseruseruseruseruseruseruser" + user);
-      console.log(data);
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
       if (mode === 'tip') {
-        console.log("tiptiptiptiptiptiptiptiptiptiptip");
         this.toast();
         // this.images.like(id, user).subscribe(data => {
         //   console.log("-----------------------------------------" + data);
         //
         // });
-        console.log("tip2tip2tip2tip2tip2tip2tiptiptiptiptip");
 
       } else if (mode === 'exhi') {
-        console.log("exhiexhiexhiexhiexhiexhiexhiexhi");
 
       } else {
-        console.log("nothingnothingnothingnothingnothingnothing");
       }
     })
 
@@ -325,7 +316,6 @@ export class CommunityPage {
     })
 
     browser.on('sharePressed').subscribe(data => {
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
     })
 
 
@@ -375,25 +365,16 @@ export class CommunityPage {
       browser.executeScript({
         code: ""
       });
-      console.log("idididididididid : " + id);
-      console.log("modemodemodemodemodemodemodemodmoe : " + mode);
-      console.log("useruseruseruseruseruseruseruser" + user);
-      console.log(data);
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
       if (mode === 'tip') {
-        console.log("tiptiptiptiptiptiptiptiptiptiptip");
         this.toast();
         // this.images.like(id, user).subscribe(data => {
         //   console.log("-----------------------------------------" + data);
         //
         // });
-        console.log("tip2tip2tip2tip2tip2tip2tiptiptiptiptip");
 
       } else if (mode === 'exhi') {
-        console.log("exhiexhiexhiexhiexhiexhiexhiexhi");
 
       } else {
-        console.log("nothingnothingnothingnothingnothingnothing");
       }
     })
 
@@ -435,7 +416,6 @@ export class CommunityPage {
     })
 
     browser.on('sharePressed').subscribe(data => {
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
     })
 
   }
@@ -444,7 +424,6 @@ export class CommunityPage {
 
 
   ionViewDidEnter() {
-    console.log("다시다시");
     this.content.resize();
     // console.log('ionViewDidLoad CommunityPage');
     //
@@ -566,7 +545,6 @@ export class CommunityPage {
     });
 
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
     });
 
     toast.present();

@@ -246,7 +246,7 @@
 
     <div *ngFor="let thirdCarezone of thirdCarezoneData">
       <ion-row>
-        <ion-col *ngIf="thirdCarezone" class="img_carezone_background3" style="text-align: center" (click)="mission_start(thirdCarezone._id)">
+        <ion-col *ngIf="thirdCarezone._id" class="img_carezone_background3" style="text-align: center" (click)="mission_start(thirdCarezone._id)">
           <!-- 모집중, 모집마감 -->
           <button class="carezon_btn1_1" style="box-shadow: none; background-color: #644A99;" ion-button>모집 D-{{dday}}</button>
 
@@ -258,7 +258,7 @@
           <!-- <button *ngIf="third_new" class="carezon_status1_1" ion-button>NEW</button>
           <button *ngIf="third_mdchuchun" class="carezon_status1_2" ion-button>Md 추천</button>
           <button *ngIf="third_approaching" class="carezon_status1_3" ion-button>마감 임박</button> -->
-          <img class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{thirdCarezone._id}}" />
+          <img *ngIf="thirdCarezone._id" class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{thirdCarezone._id}}" />
         </ion-col>
 
       </ion-row>

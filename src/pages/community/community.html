@@ -203,7 +203,7 @@
               <ion-row class="beauty_row">
                 <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
               </ion-row>
-              <ion-col *ngIf="beautynote.like" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
+              <ion-col *ngIf="beautynote.like || beautynote.like===0" class="beauty_note_count2">좋아요 {{beautynote.like}} ∙
                 <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
               </ion-col>
             </ion-col></ion-item>
@@ -262,7 +262,7 @@
               <ion-row class="beauty_row">
                 <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
               </ion-row>
-              <ion-col *ngIf="skinqna.like" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+              <ion-col *ngIf="skinqna.like || skinqna.like===0" class="beauty_note_answer2">좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
             </ion-col></ion-item>
@@ -366,7 +366,7 @@
             <ion-row class="beauty_row">
               <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
             </ion-row>
-            <ion-col *ngIf="beautynote.like" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
+            <ion-col *ngIf="beautynote.like || beautynote.like===0" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
               <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
             </ion-col>
             <img class="beauty_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
@@ -381,14 +381,17 @@
             <ion-row class="beauty_row">
               <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
             </ion-row>
-            <ion-col *ngIf="beautynote.like" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
+            <ion-col class="beauty_note_count2">좋아요 {{beautynote.like}} ∙
               <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
             </ion-col>
+            <!-- <ion-col *ngIf="beautynote.like === 0" class="beauty_note_like">좋아요 0 ∙
+              <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
+            </ion-col> -->
           </ion-col></ion-item>
           <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
         </ng-container>
       </ng-container>
-      <br><br><br><br><br><br>
+      <br><br><br><br><br><br><br>
     </ion-slide>
 
 
@@ -430,7 +433,7 @@
             <ion-row class="beauty_row">
               <ion-col class="beauty_note_title"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
             </ion-row>
-            <ion-col *ngIf="skinqna.like" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+            <ion-col *ngIf="skinqna.like || skinqna.like===0" class="beauty_note_answer2">좋아요 {{skinqna.like}} ∙
               <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
             </ion-col>
           </ion-col></ion-item>
@@ -442,7 +445,7 @@
       <!-- <button ion-button class="beauty_top_add" > 더보기 > </button>
 
     <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br> -->
-      <br><br><br><br><br><br>
+      <br><br><br><br><br><br><br />
     </ion-slide>
 
 

@@ -172,8 +172,8 @@ export class HomePage {
   array1 = [];
   chartDateData2: Array<any>;
 
-  total_score : any = 0;
-  pre_total_score : any = 0;
+  total_score: any = 0;
+  pre_total_score: any = 0;
 
 
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
@@ -193,9 +193,9 @@ export class HomePage {
       this.roadbeauty();
 
 
-      if(this.skin_diagnose_first_check===null || false){
-      this.auth.setUserStoragediagnose_first_check(this.skin_diagnose_first_check);
-      console.log("===================="+this.skin_diagnose_first_check);
+      if (this.skin_diagnose_first_check === null || false) {
+        this.auth.setUserStoragediagnose_first_check(this.skin_diagnose_first_check);
+        // console.log("===================="+this.skin_diagnose_first_check);
       }
       if (this.auth.bluetooth_connect() == true) {
         //this.nav.push(SkinChartPage);
@@ -253,55 +253,55 @@ export class HomePage {
 
   public skin_first_check() {
     this.auth.getUserStoragediagnose_first_check().then(items => {
-        this.skin_diagnose_first_check = items;
-        console.log("skin_diagnose_first_check========" + this.skin_diagnose_first_check);
-        //console.log("items" + items);
-  });
-}
+      this.skin_diagnose_first_check = items;
+      // console.log("skin_diagnose_first_check========" + this.skin_diagnose_first_check);
+      //console.log("items" + items);
+    });
+  }
 
   public skin_moisture_score() {
     this.auth.getUserStoragediagnose_moisture().then(items => {
-        this.all_moisture_score = items;
-        this.all_total_score += this.all_moisture_score/2;
-        console.log("all_moisture_score==========" + this.all_moisture_score);
-        console.log("all_total_score=========" + this.all_total_score);
-        //console.log("items" + items);
-  });
-}
+      this.all_moisture_score = items;
+      this.all_total_score += this.all_moisture_score / 2;
+      // console.log("all_moisture_score==========" + this.all_moisture_score);
+      // console.log("all_total_score=========" + this.all_total_score);
+      //console.log("items" + items);
+    });
+  }
 
   public skin_oil_score() {
     this.auth.getUserStoragediagnose_oil().then(items => {
-        this.all_oil_score = items;
-        this.all_total_score += this.all_oil_score/2;
-        console.log("all_oil_score=========" + this.all_oil_score);
-        console.log("all_total_score=========" + this.all_total_score);
-        //console.log("items" + items);
-  });
-}
+      this.all_oil_score = items;
+      this.all_total_score += this.all_oil_score / 2;
+      // console.log("all_oil_score=========" + this.all_oil_score);
+      // console.log("all_total_score=========" + this.all_total_score);
+      //console.log("items" + items);
+    });
+  }
 
-public skin_first_moisture_score() {
-  this.auth.getUserStoragediagnose_first_moisture().then(items => {
+  public skin_first_moisture_score() {
+    this.auth.getUserStoragediagnose_first_moisture().then(items => {
       this.all_first_moisture_score = items;
-      this.all_first_total_score += this.all_first_moisture_score/2;
-      console.log("all_first_moisture_score==========" + this.all_first_moisture_score);
-      console.log("all_first_total_score==========" + this.all_first_total_score);
+      this.all_first_total_score += this.all_first_moisture_score / 2;
+      // console.log("all_first_moisture_score==========" + this.all_first_moisture_score);
+      // console.log("all_first_total_score==========" + this.all_first_total_score);
       //console.log("items" + items);
-});
-}
+    });
+  }
 
-public skin_first_oil_score() {
-  this.auth.getUserStoragediagnose_first_oil().then(items => {
+  public skin_first_oil_score() {
+    this.auth.getUserStoragediagnose_first_oil().then(items => {
       this.all_first_oil_score = items;
-      this.all_first_total_score += this.all_first_oil_score/2;
-      console.log("all_first_oil_score=======" + this.all_first_oil_score);
-      console.log("all_first_total_score=======" + this.all_first_total_score);
+      this.all_first_total_score += this.all_first_oil_score / 2;
+      // console.log("all_first_oil_score=======" + this.all_first_oil_score);
+      // console.log("all_first_total_score=======" + this.all_first_total_score);
       //console.log("items" + items);
-});
-}
+    });
+  }
 
 
 
-  public skin_measure(){
+  public skin_measure() {
     // let alert = this.alertCtrl.create({
     //   cssClass: 'push_alert',
     //   title: "plinic",
@@ -311,17 +311,17 @@ public skin_first_oil_score() {
     //   }]
     // });
     // alert.present();
-    if(this.skin_diagnose_first_check){
-    let myModal = this.modalCtrl.create(SkinDiagnoseMoisturePage);
-    myModal.present();
+    if (this.skin_diagnose_first_check) {
+      let myModal = this.modalCtrl.create(SkinDiagnoseMoisturePage);
+      myModal.present();
     }
-    else{
-    let myModal = this.modalCtrl.create(SkinDiagnoseFirstMoisturePage);
-    myModal.present();
+    else {
+      let myModal = this.modalCtrl.create(SkinDiagnoseFirstMoisturePage);
+      myModal.present();
     }
   }
 
-  public beauty_add(){
+  public beauty_add() {
     // this.nav.push(BeautyTipAddPage);
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
@@ -334,7 +334,7 @@ public skin_first_oil_score() {
     alert.present();
   }
 
-  public plinic_manual(){
+  public plinic_manual() {
     this.nav.push(PlinicManualPage);
   }
 
@@ -390,25 +390,25 @@ public skin_first_oil_score() {
 
             this.circle_moisture = this.skinScoreData.score[i].moisture;
             this.circle_oil = this.skinScoreData.score[i].oil;
-            this.circle_date = this.skinScoreData.score[i].saveDate.substr(0,10);
+            this.circle_date = this.skinScoreData.score[i].saveDate.substr(0, 10);
 
-            this.total_score = (parseInt(this.circle_moisture) + parseInt(this.circle_oil))/2;
-            console.log("total :" + this.total_score);
+            this.total_score = (parseInt(this.circle_moisture) + parseInt(this.circle_oil)) / 2;
+            // console.log("total :" + this.total_score);
 
           }
           if (k >= 0) {
             this.pre_circle_moisture = this.skinScoreData.score[k].moisture;
             this.pre_circle_oil = this.skinScoreData.score[k].oil;
-            this.pre_circle_date = this.skinScoreData.score[k].saveDate.substr(0,10);
+            this.pre_circle_date = this.skinScoreData.score[k].saveDate.substr(0, 10);
 
-            this.pre_total_score = (parseInt(this.pre_circle_moisture) + parseInt(this.pre_circle_oil))/2;
-            console.log("pre_total :" + this.pre_total_score);
+            this.pre_total_score = (parseInt(this.pre_circle_moisture) + parseInt(this.pre_circle_oil)) / 2;
+            // console.log("pre_total :" + this.pre_total_score);
 
           }
-          console.log("this.circle_moisture" + this.circle_moisture);
+          // console.log("this.circle_moisture" + this.circle_moisture);
 
-          console.log("moisture:::::::" + this.skinScoreData.score[i].moisture);
-          console.log("oil:::::::" + this.skinScoreData.score[i].oil);
+          // console.log("moisture:::::::" + this.skinScoreData.score[i].moisture);
+          // console.log("oil:::::::" + this.skinScoreData.score[i].oil);
         }
       });
     });
@@ -516,9 +516,9 @@ public skin_first_oil_score() {
       buttons: [{
         text: '연결하기',
         handler: () => {
-          console.log('연결하기'),
-            //02.2038.4876
-            this.callNumber.callNumber("18334870", true)
+          // console.log('연결하기'),
+          //02.2038.4876
+          this.callNumber.callNumber("18334870", true)
         }
       }]
     });
@@ -527,24 +527,24 @@ public skin_first_oil_score() {
 
 
   public moisture_help() {
-    console.log('view');
+    // console.log('view');
     document.getElementById("view").style.display = "block";
   }
 
 
   public close() {
-    console.log('close');
+    // console.log('close');
     document.getElementById("view").style.display = "none";
     // document.getElementById("view2").style.display = "none";
   }
 
   openBasicModal() {
-    if(this.platform.is('android')){
+    if (this.platform.is('android')) {
       let myModal = this.modalCtrl.create(SkinMeasureStartPage);
       myModal.present();
     }
 
-    if(this.platform.is('ios') || this.platform.is('core')){
+    if (this.platform.is('ios') || this.platform.is('core')) {
       // this.showAlert("ios 블루투스 기능 준비 중입니다. <br />감사합니다.")
       let myModal = this.modalCtrl.create(SkinMeasureStartPage);
       myModal.present();
@@ -612,11 +612,11 @@ public skin_first_oil_score() {
             this.missionCounter2[i] = data2;
             this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
 
-            if(this.percent[i] <= 50){
+            if (this.percent[i] <= 50) {
               this.ingmdchuchun[i] = true;
               this.ingapproaching[i] = false;
             }
-            if(this.percent[i] > 50){
+            if (this.percent[i] > 50) {
               this.ingmdchuchun[i] = false;
               this.ingapproaching[i] = true;
             }
@@ -630,12 +630,12 @@ public skin_first_oil_score() {
             this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
             //console.log(this.percent[i])
 
-            if(this.percent[i] <= 50){
+            if (this.percent[i] <= 50) {
               //console.log("MD추천");
               this.ingmdchuchun[i] = true;
               this.ingapproaching[i] = false;
             }
-            if(this.percent[i] > 50){
+            if (this.percent[i] > 50) {
               //console.log("마감임박");
               this.ingmdchuchun[i] = false;
               this.ingapproaching[i] = true;
@@ -650,12 +650,12 @@ public skin_first_oil_score() {
             this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
             // console.log(this.percent[i])
 
-            if(this.percent[i] <= 50){
+            if (this.percent[i] <= 50) {
               // console.log("MD추천");
               this.ingmdchuchun[i] = true;
               this.ingapproaching[i] = false;
             }
-            if(this.percent[i] > 50){
+            if (this.percent[i] > 50) {
               // console.log("마감임박");
               this.ingmdchuchun[i] = false;
               this.ingapproaching[i] = true;
@@ -678,13 +678,15 @@ public skin_first_oil_score() {
   public thirdLoadCareZone() {
     this.images.third_carezoneRoad().subscribe(data => {
       this.thirdCarezoneData = data;
-      if(data[0]._id ==="" || data[0]._id !== undefined || data[0].id !== null){
-        this.third_missionCount(data[0]._id);
-        this.getday = new Date(data[0].startmission);
-        this.dday = this.diffdate(this.getday, this.currentDate);
-        // this.chkDay = this.dday
-        this.dday = (parseInt(this.dday)-2)
-      }
+      // if (data.length !== 0) {
+        if (data[0]._id !== "" || data[0]._id !== undefined || data[0].id !== null) {
+          this.third_missionCount(data[0]._id);
+          this.getday = new Date(data[0].startmission);
+          this.dday = this.diffdate(this.getday, this.currentDate);
+          // this.chkDay = this.dday
+          this.dday = (parseInt(this.dday) - 2)
+        }
+      // }
 
     });
   }
