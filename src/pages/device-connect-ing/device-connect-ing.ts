@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams, Platform, AlertController, ToastCo
 import { DeviceConnectCompletePage } from '../device-connect-complete/device-connect-complete';
 import { DeviceConnectFailPage } from '../device-connect-fail/device-connect-fail';
 import { TabsPage } from '../tabs/tabs';
+import { AuthService } from '../../providers/auth-service';
+
+
+
 // import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { BLE } from '@ionic-native/ble';
 // import { SuccessHomePage } from '../success-home/success-home';
@@ -14,14 +18,15 @@ import { BLE } from '@ionic-native/ble';
  */
 
 //Blue Mod S42
-const PLINIC_SERVICE = 'FEFB';
+// const PLINIC_SERVICE = 'FEFB';
+// const UUID_SERVICE = 'FEFB';
+// // const SWITCH_CHARACTERISTIC = '00000004-0000-1000-8000-008025000000';
+// const SWITCH_CHARACTERISTIC = '0000000A-0000-1000-8000-008025000000';
+
+// //HM Soft Bluetooth Mod
+const PLINIC_SERVICE = 'FFE0';
 const UUID_SERVICE = 'FFE0';
 const SWITCH_CHARACTERISTIC = 'FFE1';
-
-//HM Soft Bluetooth Mod
-// const PLINIC_SERVICE = 'FFE0';
-// const UUID_SERVICE = 'FFE0';
-// const SWITCH_CHARACTERISTIC = 'FFE1';
 
 
 @IonicPage()
@@ -34,9 +39,9 @@ export class DeviceConnectIngPage {
   devices: any[] = [];
   statusMessage: string;
 
-  output:any;
-  message:String;
-  responseTxt:any;
+  output: any;
+  message: String;
+  responseTxt: any;
   unpairedDevices: any;
   pairedDevices: any;
   gettingDevices: Boolean;
@@ -46,7 +51,7 @@ export class DeviceConnectIngPage {
 
   spintime: any = 0;
 
-  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams,public toastCtrl: ToastController, private ngZone: NgZone,
+  constructor(public auth: AuthService, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private ngZone: NgZone,
     // public bluetoothle: BluetoothLE,
     public ble: BLE,
     public platform: Platform, private alertCtrl: AlertController
@@ -54,20 +59,20 @@ export class DeviceConnectIngPage {
     this.platform.ready().then((readySource) => {
 
       // setTimeout(() => {
-        this.spintime = 1;
-        if (this.platform.is('cordova')) {
-          this.scan();
-          // this.bluetoothle.initialize().then(ble => {
-          //   //console.log('ble', ble.status) // logs 'enabled'
-          //   if (ble.status === "enabled") {
-          //     this.navCtrl.push(DeviceConnectCompletePage);
-          //   } else {
-          //     this.navCtrl.push(DeviceConnectFailPage);
-          //   }
-          // });
-        } else {  // 웹 개발 시에는 무조건 성공페이지로 넘어가 데이터를 강제적으로 보여준다
-          // this.navCtrl.push(DeviceConnectCompletePage);
-        }
+      this.spintime = 1;
+      if (this.platform.is('cordova')) {
+        this.scan();
+        // this.bluetoothle.initialize().then(ble => {
+        //   //console.log('ble', ble.status) // logs 'enabled'
+        //   if (ble.status === "enabled") {
+        //     this.navCtrl.push(DeviceConnectCompletePage);
+        //   } else {
+        //     this.navCtrl.push(DeviceConnectFailPage);
+        //   }
+        // });
+      } else {  // 웹 개발 시에는 무조건 성공페이지로 넘어가 데이터를 강제적으로 보여준다
+        // this.navCtrl.push(DeviceConnectCompletePage);
+      }
       // }, 3500);
 
 
@@ -130,7 +135,7 @@ export class DeviceConnectIngPage {
         console.log("aaaaa :" + device);
         this.onDeviceDiscovered(device);
         this.deviceSelected(device);
-        this.navCtrl.push(DeviceConnectCompletePage);
+        this.navCtrl.push(DeviceConnectCompletePage, { device: device });
       },
       error => {
         console.log("bbbbb" + error);
@@ -177,8 +182,19 @@ export class DeviceConnectIngPage {
 
     this.ble.connect(device.id).subscribe(
       peripheral => this.onConnected(peripheral),
-      peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
+      // peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
+      peripheral => this.bleshowAlert('Disconnected', '디바이스 연결이 중단 되었습니다.')
     );
+
+    this.ble.startNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
+      console.log("Plinic G1Partners Notifi " + String.fromCharCode.apply(null, new Uint8Array(buffer)))
+    }, error => {
+      console.log("Notifi Error : " + error);
+    })
+
+
+
+    // this.startNotification();
   }
 
   onConnected(peripheral) {
@@ -191,17 +207,39 @@ export class DeviceConnectIngPage {
     this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(
       buffer => {
         let data = new Uint8Array(buffer);
-        console.log('switch characteristic 0' + data[0]);
-        console.log('switch characteristic 1' + data[1]);
-        console.log('switch characteristic 2' + data[2]);
-        console.log('switch characteristic 3' + data[3]);
-        console.log('switch characteristic 4' + data[4]);
-        console.log('switch characteristic 5' + data[5]);
+        let data2 = String.fromCharCode.apply(null, new Uint8Array(buffer));
+        console.log("data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : " + data2)
+
+
+        // console.log('switch characteristic 0' + data[0]);
+        // console.log('switch characteristic 1' + data[1]);
+        // console.log('switch characteristic 2' + data[2]);
+        // console.log('switch characteristic 3' + data[3]);
+        // console.log('switch characteristic 4' + data[4]);
+        // console.log('switch characteristic 5' + data[5]);
+
+
+        for( var i = 0; i < data.length; i ++){
+          console.log("data" + i + "--- :" + data[i]);
+        }
+        // var array = new Uint8Array(string.length);
+        // for (var i = 0, l = string.length; i < l; i++) {
+        //   array[i] = string.charCodeAt(i);
+        // }
+        // return array.buffer;
+
+
         // this.ngZone.run(() => {
         //     this.power = data[0] !== 0;
         // });
       }
     )
+
+    this.ble.startNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
+      console.log("Plinic G1Partners Notifi " + String.fromCharCode.apply(null, new Uint8Array(buffer)));
+    }, error => {
+      console.log("Notifi Error : " + error);
+    })
 
     // Update the UI with the current state of the dimmer characteristic
     // this.ble.read(this.peripheral.id, LIGHTBULB_SERVICE, DIMMER_CHARACTERISTIC).then(
@@ -224,6 +262,11 @@ export class DeviceConnectIngPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  startNotification() {
+
+
   }
 
 

@@ -16,6 +16,7 @@ import { FCM } from '@ionic-native/fcm';
 import { Transfer, TransferObject, FileUploadOptions } from '@ionic-native/transfer'
 import { BLE } from '@ionic-native/ble';
 
+
 //Blue Mod S42
 // const PLINIC_SERVICE = 'FEFB';
 // const UUID_SERVICE = 'FEFB';
@@ -68,7 +69,18 @@ export class AuthService {
   currentDate: Date = new Date();
 
 
-  constructor(private transfer: Transfer, private http: Http, public authHttp: AuthHttp, public storage: Storage,
+  devices: any[] = [];
+  statusMessage: string;
+  output:any;
+  message:String;
+  responseTxt:any;
+  unpairedDevices: any;
+  pairedDevices: any;
+  gettingDevices: Boolean;
+  peripheral: any = {};
+
+
+  constructor(private ble : BLE, private transfer: Transfer, private http: Http, public authHttp: AuthHttp, public storage: Storage,
     public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController,
     // private facebook: Facebook,
     private google: GooglePlus,
@@ -870,9 +882,114 @@ export class AuthService {
   }
 
 
-  //Bluetooth Test 향후 별도의 블루투스 Provider로 분리 시켜야 함
+
+  ///ble 개발 향후 별도 provider 분리 필요
+
+  scan() {
+    this.setStatus('Scanning for Bluetooth LE Devices');
+    this.devices = [];  // clear list
+
+    this.ble.scan([PLINIC_SERVICE], 10).subscribe(
+      device => {
+        console.log("aaaaa :" + device);
+        this.onDeviceDiscovered(device);
+        this.deviceSelected(device);
+        // this.navCtrl.push(DeviceConnectCompletePage);
+      },
+      error => {
+        console.log("bbbbb" + error);
+        this.scanError(error);
+        // this.navCtrl.push(DeviceConnectFailPage);
+      }
+    );
+    return this.devices;
+    // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
+  }
+
+  onDeviceDiscovered(device) {
+    console.log('Discovered ' + JSON.stringify(device, null, 2));
+    // this.ngZone.run(() => {
+    //   this.devices.push(device);
+    // });
+  }
+
+  // If location permission is denied, you'll end up here
+  scanError(error) {
+    this.setStatus('Error ' + error);
+    // let toast = this.toastCtrl.create({
+    //   message: 'Error scanning for Bluetooth low energy devices',
+    //   position: 'middle',
+    //   duration: 5000
+    // });
+    // toast.present();
+    // this.navCtrl.push(DeviceConnectFailPage);
+
+  }
 
 
+  setStatus(message) {
+    console.log(message);
+    // this.ngZone.run(() => {
+    //   this.statusMessage = message;
+    // });
+  }
+
+  deviceSelected(device) {
+    console.log(JSON.stringify(device) + ' selected');
+    // this.navCtrl.push(DetailPage, {
+    //   device: device
+    // });
+
+    this.ble.connect(device.id).subscribe(
+      peripheral => this.onConnected(peripheral),
+      peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
+    );
+  }
+
+  onConnected(peripheral) {
+
+    this.peripheral = peripheral;
+    this.setStatus('Connected to ' + (peripheral.name || peripheral.id));
+
+    console.log("this.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.id : " + this.peripheral.id);
+    // Update the UI with the current state of the switch characteristic
+    this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(
+      buffer => {
+        let data = new Uint8Array(buffer);
+        console.log('switch characteristic 0' + data[0]);
+        console.log('switch characteristic 1' + data[1]);
+        console.log('switch characteristic 2' + data[2]);
+        console.log('switch characteristic 3' + data[3]);
+        console.log('switch characteristic 4' + data[4]);
+        console.log('switch characteristic 5' + data[5]);
+        // this.ngZone.run(() => {
+        //     this.power = data[0] !== 0;
+        // });
+      }
+    )
+
+    // Update the UI with the current state of the dimmer characteristic
+    // this.ble.read(this.peripheral.id, LIGHTBULB_SERVICE, DIMMER_CHARACTERISTIC).then(
+    //   buffer => {
+    //     let data = new Uint8Array(buffer);
+    //     console.log('dimmer characteristic ' + data[0]);
+    //     this.ngZone.run(() => {
+    //       this.brightness = data[0];
+    //     });
+    //   }
+    // )
+  }
+
+
+  bleshowAlert(title, message) {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: title,
+      message: message,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
 
 

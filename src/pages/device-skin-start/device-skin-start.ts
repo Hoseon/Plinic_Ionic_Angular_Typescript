@@ -16,7 +16,11 @@ import { DeviceSkinIngPage } from '../device-skin-ing/device-skin-ing';
 })
 export class DeviceSkinStartPage {
 
+  device : any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController , public platform: Platform) {
+    this.device = this.navParams.get('device');
+    console.log("Skin-Start Device Id : " + this.device.id);
   }
 
   ionViewDidLoad() {
@@ -29,7 +33,7 @@ export class DeviceSkinStartPage {
   }
 
   public measureStart(){
-    this.navCtrl.push(DeviceSkinIngPage);
+    this.navCtrl.push(DeviceSkinIngPage, {device : this.device});
   }
 
 }

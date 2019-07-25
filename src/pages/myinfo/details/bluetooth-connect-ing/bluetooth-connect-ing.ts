@@ -32,16 +32,12 @@ export class BluetoothConnectIngPage {
 
   devices: any[] = [];
   statusMessage: string;
-
-
   output:any;
   message:String;
   responseTxt:any;
   unpairedDevices: any;
   pairedDevices: any;
   gettingDevices: Boolean;
-
-
   peripheral: any = {};
 
 

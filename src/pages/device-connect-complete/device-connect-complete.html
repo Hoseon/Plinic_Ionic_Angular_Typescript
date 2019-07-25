@@ -27,9 +27,9 @@
   <ion-footer class="footer" no-shadow>
   	<!-- <ion-toolbar position="bottom"> -->
     <div class="center">
-      <button class="cell" ion-button >
-        <ion-spinner class="ing_spinner" name="crescent" *ngIf="spintime == 0"></ion-spinner>
-        <div class="font_button">잠시만 기다려주세요.</div>
+      <button class="cell" (click)="deviceComplete()" ion-button >
+        <!-- <ion-spinner class="ing_spinner" name="crescent" *ngIf="spintime == 0"></ion-spinner> -->
+        <div class="font_button">피부측정 하러가기 > </div>
       </button>
     </div>
 
