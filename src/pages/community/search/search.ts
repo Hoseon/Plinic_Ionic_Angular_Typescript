@@ -20,11 +20,11 @@ import { AlignPopoverPage } from './align-popover/align-popover';
 export class SearchPage {
 
 
-  searchTerm : any="";
-  jsonData : any;
-  items : any;
-  focus : boolean = false;
-  page_view : boolean = false;
+  searchTerm: any = "";
+  jsonData: any;
+  items: any;
+  focus: boolean = false;
+  page_view: boolean = false;
   communityBeautyLoadData: any;
   beautyNoteData: any;
   skinQnaData: any;
@@ -40,63 +40,65 @@ export class SearchPage {
     console.log('ionViewDidLoad SearchPage');
   }
 
-  initializeItems(){
-    this.jsonData=[
-      {"id":1,"label":"saw","name":"피부트러블"},
-      {"id":2,"label":"saw1","name":"피부트러블관리"},
-      {"id":3,"label":"saw2","name":"여드름"},
-      {"id":4,"label":"saw2","name":"여름철"},
-      {"id":5,"label":"saw2","name":"여름철피부"},
-      {"id":6,"label":"saw2","name":"여름철피부관리"},
-      {"id":7,"label":"saw2","name":"피부"},
-      {"id":8,"label":"saw2","name":"피부트러블관리하자"},
-
-      ];
+  initializeItems() {
+    this.jsonData = [
+      { "id": 1, "label": "saw", "name": "피부트러블" },
+      { "id": 2, "label": "saw1", "name": "피부트러블관리" },
+      { "id": 3, "label": "saw2", "name": "여드름" },
+      { "id": 4, "label": "saw2", "name": "여름철" },
+      { "id": 5, "label": "saw2", "name": "여름철피부" },
+      { "id": 6, "label": "saw2", "name": "여름철피부관리" },
+      { "id": 7, "label": "saw2", "name": "피부" },
+      { "id": 8, "label": "saw2", "name": "피부트러블관리하자" },
+    ];
 
     this.items = this.jsonData
+    console.log("this.beautyNoteData : " + this.beautyNoteData);
   }
 
-  ionViewWillEnter(){
-  this.setFilteredItems();
-  this.communityBeautyLoad();
-  this.beautyNoteLoad();
-  this.skinQnaLoad();
+  ionViewWillEnter() {
+    this.setFilteredItems(event);
+    this.communityBeautyLoad();
+    this.beautyNoteLoad();
+    this.skinQnaLoad();
   }
 
-  setFilteredItems() {
+  setFilteredItems(event) {
     this.jsonData = this.filterItems(this.searchTerm);
+    console.log("enterCheck : " + event);
   }
 
-  filterItems(searchTerm){
-    this.initializeItems();
-     return this.items.filter((item) => {
-          return item.name.toLowerCase().includes(searchTerm.toLowerCase());
-      });
+  filterItems(searchTerm) {
+    // this.initializeItems();
+    return this.items.filter((item) => {
+      return item.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
 
   }
 
-  navigateToDetails(data){
-  console.log("data============" + data.name);
-  this.page_view = true;
-  this.searchTerm = data.name;
+  navigateToDetails(data) {
+    console.log("data============name" + data.name);
+    console.log("data============id" + data.id);
+    this.page_view = true;
+    this.searchTerm = data.name;
   }
 
-  onSearch(event){
-    console.log("onSearch==========" + event.target.value)
+  onSearch(event) {
+    // console.log("onSearch==========" + event.target.value)
   }
 
-  onCancel(event){
+  onCancel(event) {
     this.viewCtrl.dismiss();
   }
 
-  onFocus(event){
-    console.log("onFocus==============" + event);
+  onFocus(event) {
+    // console.log("onFocus==============" + event);
     this.focus = true
     this.page_view = false;
   }
 
-  onChange(event){
-    console.log("onChange==============" + event.target.value);
+  onChange(event) {
+    // console.log("onChange==============" + event.target.value);
 
   }
 
@@ -149,18 +151,63 @@ export class SearchPage {
   public communityBeautyLoad() {
     this.images.communityBeautyLoad().subscribe(data => {
       this.communityBeautyLoadData = data;
+      if (data !== '') {
+        for (var i = 0; i < data.length; i++) {
+          this.jsonData.push({
+            "id": data[i]._id,
+            "name": data[i].title,
+            "views": data[i].views,
+            "like": data[i].like,
+            "body": data[i].body,
+            "posturl": data[i].posturl,
+          })
+        }
+        console.log("this.communityBeautyLoadData : " + JSON.stringify(this.jsonData));
+        this.items = this.jsonData;
+      }
     });
   }
 
   public beautyNoteLoad() {
     this.images.beautyNoteLoad().subscribe(data => {
       this.beautyNoteData = data;
+      if (data !== '') {
+        for (var i = 0; i < data.length; i++) {
+          this.jsonData.push({
+            "id": data[i]._id,
+            "select": data[i].select,
+            "name": data[i].title,
+            "views": data[i].views,
+            "like": data[i].like,
+            "comments" : data[i].comments
+          })
+
+        }
+        console.log("this.beautyNoteData : " + JSON.stringify(this.jsonData));
+        this.items = this.jsonData;
+      }
+
     });
   }
 
   public skinQnaLoad() {
     this.images.skinQnaLoad().subscribe(data => {
       this.skinQnaData = data;
+      if (data !== '') {
+        for (var i = 0; i < data.length; i++) {
+          this.jsonData.push({
+            "id": data[i]._id,
+            "select": data[i].select,
+            "name": data[i].title,
+            "views": data[i].views,
+            "like": data[i].like,
+            "comments" : data[i].comments
+          })
+
+        }
+        console.log("this.skinQnaLoad : " + JSON.stringify(this.jsonData));
+        this.items = this.jsonData;
+      }
     });
   }
 
@@ -384,6 +431,11 @@ export class SearchPage {
       console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
     })
 
+  }
+
+
+  enterCheck(event){
+    console.log(event);
   }
 
 

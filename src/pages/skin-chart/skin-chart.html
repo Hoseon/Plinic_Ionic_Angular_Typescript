@@ -272,7 +272,7 @@
           <ion-col *ngIf="circle_oil>51 && circle_oil<75" class="secondstatus_normal">보통</ion-col>
           <ion-col *ngIf="circle_oil>26 && circle_oil<50 " class="secondstatus_soso">흐림</ion-col>
           <ion-col *ngIf="circle_oil<25" class="secondstatus_bad">나쁨</ion-col>
-          <div>{{all_first_oil_score}}</div>
+          <!-- <div>{{all_first_oil_score}}</div> -->
 
           <!-- 첫 문진표 수분데이터 상태표시-->
           <ion-col *ngIf="circle_moisture>76" class="status_good">좋음</ion-col>
@@ -305,12 +305,12 @@
     <ion-item *ngIf="(!skin_diagnose_first_check) || (skin_diagnose_first_check && all_oil_score==='')" style="margin:0 auto; width:97%" no-lines>
       <ion-grid class="griddata">
          <ion-row>
-          <ion-col class="data1">{{circle_oil}}점</ion-col>
+          <ion-col class="data1">{{pre_circle_oil}}점</ion-col>
           <ion-col class="data2">유분</ion-col>
           <ion-col class="data3">{{circle_oil}}점</ion-col>
         </ion-row>
-        <ion-row *ngIf="skin_diagnose_first_check">
-         <ion-col class="data1">{{circle_moisture}}점</ion-col>
+        <ion-row *ngIf="!skin_diagnose_first_check">
+         <ion-col class="data1">{{pre_circle_moisture}}점</ion-col>
          <ion-col class="data2">수분</ion-col>
          <ion-col class="data3">{{circle_moisture}}점</ion-col>
        </ion-row>

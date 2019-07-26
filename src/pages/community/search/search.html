@@ -9,7 +9,7 @@
   <ion-searchbar *ngIf="platform.is('android')" mode="ios" class="android_search"
     [(ngModel)]="searchTerm"
     [showCancelButton]="shouldShowCancel"
-    (ionInput)="setFilteredItems()"
+    (ionInput)="setFilteredItems($event)"
     (ionCancel)="onCancel($event)"
     (ionFocus)="onFocus($event)"
     (search)="onSearch($event)"
@@ -19,7 +19,7 @@
   <ion-searchbar *ngIf="platform.is('ios') || platform.is('core')" mode="ios" class="ios_search"
   [(ngModel)]="searchTerm"
   [showCancelButton]="shouldShowCancel"
-  (ionInput)="setFilteredItems()"
+  (ionInput)="setFilteredItems($event)"
   (ionCancel)="onCancel($event)"
   (ionFocus)="onFocus($event)"
   (ionChange)="onChange($event)"
@@ -70,7 +70,8 @@
               <ion-col class="beauty_note_count">조회 {{community.views}}</ion-col>
             </ion-col>
             <img class="beauty_home_img" src="http://plinic.cafe24app.com/commubeauty_images/{{community._id}}" />
-          </ion-col></ion-item>
+          </ion-col>
+        </ion-item>
           <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
         </ng-container>
       </ng-container>
