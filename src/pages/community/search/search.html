@@ -59,8 +59,7 @@
 
     <!-- 뷰트꿀팁 이미지가 있을 때  -->
     <ng-container *ngIf="platform.is('android')">
-      <ng-container *ngFor="let community of communityBeautyLoadData; let i = index">
-        <ng-container *ngIf="(i < 3)">
+      <ng-container *ngFor="let community of communityBeautyLoadData">
           <ion-item class="line_item">
             <ion-col col-9 class="container" (click)="openBrowser_android(community.posturl, community.body)">
             <ion-row class="beauty_row">
@@ -74,13 +73,11 @@
         </ion-item>
           <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
         </ng-container>
-      </ng-container>
     </ng-container>
 
 
     <ng-container *ngIf="platform.is('ios') || platform.is('core')">
-      <ng-container *ngFor="let community of communityBeautyLoadData; let i = index">
-        <ng-container *ngIf="(i < 3)">
+      <ng-container *ngFor="let community of communityBeautyLoadData">
           <ion-item class="line_item">
           <ion-col class="container" (click)="openBrowser_ioslike(community.posturl, community.body, community._id, userData.email, 'tip')">
             <ion-row class="beauty_row">
@@ -93,14 +90,12 @@
           </ion-col></ion-item>
           <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
         </ng-container>
-      </ng-container>
     </ng-container>
 
 
-    <ng-container *ngFor="let beautynote of beautyNoteData; let i = index">
+    <ng-container *ngFor="let beautynote of beautyNoteData">
       <!-- 뷰트꿀팁 이미지가 있을 때  -->
       <!-- {{i}} -->
-      <ng-container *ngIf="(i < 5)">
         <ng-container *ngIf="beautynote.filename">
           <ion-item class="line_item">
           <ion-col (click)="community_modify(beautynote._id)" class="container">
@@ -130,14 +125,12 @@
           </ion-col></ion-item>
           <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
         </ng-container>
-      </ng-container>
     </ng-container>
 
 
 
     <!-- 피부 고민 이미지가 있을 때  -->
-  <ng-container *ngFor="let skinqna of skinQnaData; let i = index">
-    <ng-container *ngIf="(i < 4)">
+  <ng-container *ngFor="let skinqna of skinQnaData">
     <ng-container *ngIf="skinqna.filename">
     <ion-item class="line_item">
     <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
@@ -166,7 +159,6 @@
     </ion-col></ion-item>
     <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
       </ng-container>
-    </ng-container>
   </ng-container>
 
 

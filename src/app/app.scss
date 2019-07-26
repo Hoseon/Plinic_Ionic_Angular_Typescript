@@ -180,8 +180,8 @@
 
   //글쓰기 수정/삭제 팝오버
   .android_popover .popover-content{
-    top: 42.875px !important;
-    left: 244px !important;
+    top: 6% !important;
+    left: 70% !important;
     transform-origin: right top !important;
     transform: scale(1) !important;
     background-color: #fafafa !important;
@@ -204,8 +204,8 @@
 
 
    .ios_popover .popover-content{
-     top: 56.875px !important;
-     left: 244px !important;
+     top: 8% !important;
+     left: 70% !important;
      transform-origin: right top !important;
      transform: scale(1) !important;
      background-color: #fafafa !important;
@@ -233,7 +233,7 @@
     //댓글 수정/삭제 팝오버
     .android_comment_popover .popover-content{
       //top: 42.875px !important;
-      left: 244px !important;
+      left: 65% !important;
       transform-origin: right top !important;
       transform: scale(1) !important;
       background-color: #fafafa !important;
@@ -257,7 +257,7 @@
 
      .ios_comment_popover .popover-content{
        //top: 56.875px !important;
-       left: 244px !important;
+       left: 65% !important;
        transform-origin: right top !important;
        transform: scale(1) !important;
        background-color: #fafafa !important;
