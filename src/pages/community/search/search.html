@@ -38,11 +38,37 @@
     </ion-item>
   </ion-scroll> -->
 
-    <ion-list *ngIf="focus && !page_view">
-        <ion-item *ngFor="let data of jsonData" (click)="navigateToDetails(data)">
+  <ion-list *ngIf="focus && !page_view"> <br />뷰티꿀팁
+    <ng-container *ngFor="let data of jsonData">
+        <ng-container *ngIf="data.type ==='beauty'">
+        <ion-item (click)="navigateToDetails(data)">
             {{data.name}}
         </ion-item>
+      </ng-container>
+    </ng-container>
+  </ion-list>
 
+
+    <ion-list *ngIf="focus && !page_view"> 뷰티노트
+      <ng-container *ngFor="let data of jsonData">
+          <ng-container *ngIf="data.type ==='note'">
+
+          <ion-item (click)="navigateToDetails(data)">
+              {{data.name}}
+          </ion-item>
+        </ng-container>
+      </ng-container>
+    </ion-list>
+
+    <ion-list *ngIf="focus && !page_view"> 피부고민
+      <ng-container *ngFor="let data of jsonData">
+          <ng-container *ngIf="data.type ==='qna'">
+
+          <ion-item (click)="navigateToDetails(data)">
+              {{data.name}}
+          </ion-item>
+        </ng-container>
+      </ng-container>
     </ion-list>
 
 
