@@ -160,6 +160,7 @@ export class SearchPage {
             "like": data[i].like,
             "body": data[i].body,
             "posturl": data[i].posturl,
+            "type": 'beauty',
           })
         }
         console.log("this.communityBeautyLoadData : " + JSON.stringify(this.jsonData));
@@ -179,7 +180,8 @@ export class SearchPage {
             "name": data[i].title,
             "views": data[i].views,
             "like": data[i].like,
-            "comments" : data[i].comments
+            "comments" : data[i].comments,
+            "type": 'note',
           })
 
         }
@@ -201,7 +203,8 @@ export class SearchPage {
             "name": data[i].title,
             "views": data[i].views,
             "like": data[i].like,
-            "comments" : data[i].comments
+            "comments" : data[i].comments,
+            "type": 'qna',
           })
 
         }

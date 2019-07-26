@@ -32,16 +32,17 @@
 
 <ion-content no-padding>
 
-  <ion-scroll *ngIf="!focus && !page_view" class="search_scroll" scrollX="true">
+  <!-- <ion-scroll *ngIf="!focus && !page_view" class="search_scroll" scrollX="true">
     <ion-item class="item_search_btn" *ngFor="let data of jsonData" (click)="navigateToDetails(data)">
         <button ion-button class="search_btn"> {{data.name}}</button><br><br>
     </ion-item>
-  </ion-scroll>
+  </ion-scroll> -->
 
     <ion-list *ngIf="focus && !page_view">
         <ion-item *ngFor="let data of jsonData" (click)="navigateToDetails(data)">
             {{data.name}}
         </ion-item>
+
     </ion-list>
 
 
