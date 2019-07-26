@@ -25,20 +25,28 @@
   (ionChange)="onChange($event)"
   placeholder="검색">
   </ion-searchbar>
-
+  <ion-segment *ngIf="focus && !page_view" outline mode="md" [(ngModel)]="page" color="#5c59b6">
+    <ion-segment-button value="0" (click)="selectedTab(0)">
+      게시물
+    </ion-segment-button>
+    <ion-segment-button value="1" (click)="selectedTab(1)">
+      태그
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
 
 
 <ion-content no-padding>
 
-  <!-- <ion-scroll *ngIf="!focus && !page_view" class="search_scroll" scrollX="true">
+  <ion-scroll *ngIf="!focus && !page_view" class="search_scroll" scrollX="true">
     <ion-item class="item_search_btn" *ngFor="let data of jsonData" (click)="navigateToDetails(data)">
         <button ion-button class="search_btn"> {{data.name}}</button><br><br>
     </ion-item>
-  </ion-scroll> -->
+  </ion-scroll>
 
-  <ion-list *ngIf="focus && !page_view"> <br />뷰티꿀팁
+
+  <ion-list *ngIf="focus && !page_view"> <br /><br /><br />뷰티꿀팁
     <ng-container *ngFor="let data of jsonData">
         <ng-container *ngIf="data.type ==='beauty'">
         <ion-item (click)="navigateToDetails(data)">
@@ -47,7 +55,6 @@
       </ng-container>
     </ng-container>
   </ion-list>
-
 
     <ion-list *ngIf="focus && !page_view"> 뷰티노트
       <ng-container *ngFor="let data of jsonData">

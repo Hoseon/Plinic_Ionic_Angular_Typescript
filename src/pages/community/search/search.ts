@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ViewController, PopoverController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Platform, ViewController, PopoverController, Slides } from 'ionic-angular';
 import { MyPage } from '../my/my';
 import { ImagesProvider } from '../../../providers/images/images';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
@@ -29,6 +29,8 @@ export class SearchPage {
   beautyNoteData: any;
   skinQnaData: any;
   select_popover_option: any = "최신순";
+  @ViewChild(Slides) slides: Slides;
+
 
   constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, public popoverCtrl: PopoverController,
     private themeableBrowser: ThemeableBrowser, private images: ImagesProvider) {
@@ -83,6 +85,11 @@ export class SearchPage {
     this.searchTerm = data.name;
   }
 
+  selectedTab(tab) {
+  //  this.slides.slideTo(tab);
+
+    console.log('  this.slides.slideTo(tab)===================' + tab);
+  }
   onSearch(event) {
     // console.log("onSearch==========" + event.target.value)
   }
