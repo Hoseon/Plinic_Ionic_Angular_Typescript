@@ -61,7 +61,6 @@ export class DeviceConnectIngPage {
       // setTimeout(() => {
       this.spintime = 1;
       if (this.platform.is('cordova')) {
-        this.enableBluetooth();
         this.scan();
         // this.bluetoothle.initialize().then(ble => {
         //   //console.log('ble', ble.status) // logs 'enabled'
@@ -118,67 +117,56 @@ export class DeviceConnectIngPage {
 
   }
 
-  enableBluetooth() {
-      this.ble.enable().then(
-        success => {
-          // this.showToast("Bluetooth is enabled");
-        },
-        error => {
-          // this.showError("The user did *not* enable Bluetooth");
-        }
-      );
+    showAlert(text) {
+      let alert = this.alertCtrl.create({
+        title: 'Alert',
+        message: text,
+        buttons: ['OK']
+      });
+      alert.present();
     }
 
-  showAlert(text) {
-    let alert = this.alertCtrl.create({
-      title: 'Alert',
-      message: text,
-      buttons: ['OK']
-    });
-    alert.present();
-  }
+    scan() {
+       this.setStatus('Scanning for Bluetooth LE Devices');
+       this.devices = [];  // clear list
+       // 시간내로 스캔 하는 방법
+       // this.ble.scan([PLINIC_SERVICE], 10).subscribe(
+       //   device => {
+       //     console.log("aaaaa :" + device);
+       //     this.onDeviceDiscovered(device);
+       //     this.deviceSelected(device);
+       //     this.navCtrl.push(DeviceConnectCompletePage, { device: device });
+       //   },
+       //   error => {
+       //     console.log("bbbbb" + error);
+       //     this.scanError(error);
+       //     this.navCtrl.push(DeviceConnectFailPage);
+       //   }
+       // );
+       // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
 
-  scan() {
-    this.setStatus('Scanning for Bluetooth LE Devices');
-    this.devices = [];  // clear list
-    // 시간내로 스캔 하는 방법
-    // this.ble.scan([PLINIC_SERVICE], 10).subscribe(
-    //   device => {
-    //     console.log("aaaaa :" + device);
-    //     this.onDeviceDiscovered(device);
-    //     this.deviceSelected(device);
-    //     this.navCtrl.push(DeviceConnectCompletePage, { device: device });
-    //   },
-    //   error => {
-    //     console.log("bbbbb" + error);
-    //     this.scanError(error);
-    //     this.navCtrl.push(DeviceConnectFailPage);
-    //   }
-    // );
-    // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
-
-    //잡힐떄 까지 계속 스캔하는 방법
-    this.ble.startScan([PLINIC_SERVICE]).subscribe(
-      device => {
-        console.log("aaaaa :" + device);
-        this.onDeviceDiscovered(device);
-        // this.deviceSelected(device);
-        this.ble.stopScan();
-        this.navCtrl.push(DeviceConnectCompletePage, { device: device });
-      },
-      error => {
-        console.log("bbbbb" + error);
-        this.scanError(error);
-        this.ble.stopScan();
-        this.navCtrl.push(DeviceConnectFailPage);
-      }
-    );
-    setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
+       //잡힐떄 까지 계속 스캔하는 방법
+       this.ble.startScan([PLINIC_SERVICE]).subscribe(
+         device => {
+           console.log("aaaaa :" + device);
+           this.onDeviceDiscovered(device);
+           // this.deviceSelected(device);
+           this.ble.stopScan();
+           this.navCtrl.push(DeviceConnectCompletePage, { device: device });
+         },
+         error => {
+           console.log("bbbbb" + error);
+           this.scanError(error);
+           this.ble.stopScan();
+           this.navCtrl.push(DeviceConnectFailPage);
+         }
+       );
+       setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
 
 
-  }
+     }
 
-  onDeviceDiscovered(device) {
+     onDeviceDiscovered(device) {
     console.log('Discovered ' + JSON.stringify(device, null, 2));
     this.ngZone.run(() => {
       this.devices.push(device);

@@ -1,6 +1,7 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, Platform } from 'ionic-angular';
 import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing';
+import { BLE } from '@ionic-native/ble';
 // import { TimerComponent } from './timer';
 
 /**
@@ -31,8 +32,14 @@ export class SkinMeasureStartPage {
 
   constructor(
     // private timer : TimerComponent,
-    public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public platform: Platform) {
+    public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public platform: Platform, public ble: BLE) {
 
+
+  this.platform.ready().then((readySource) => {
+  if(this.platform.is('android')){
+  this.enableBluetooth();
+  }
+  });
       // this.initTimer();
       // setTimeout(() => {
       //   console.log("start timer");
@@ -60,6 +67,17 @@ export class SkinMeasureStartPage {
   public measureStart() {
     this.navCtrl.push(DeviceConnectIngPage);
   }
+
+  public enableBluetooth() {
+      this.ble.enable().then(
+        success => {
+          console.log("Bluetooth is enabled");
+        },
+        error => {
+          console.log("The user did *not* enable Bluetooth");
+        }
+      );
+    }
 
   initTimer() {
     if (!this.timeInSeconds) { this.timeInSeconds = 0; }
