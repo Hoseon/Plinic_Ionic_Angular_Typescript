@@ -18,15 +18,15 @@ import { BLE } from '@ionic-native/ble';
  */
 
 //Blue Mod S42
-const PLINIC_SERVICE = 'FEFB';
-const UUID_SERVICE = 'FEFB';
-const SWITCH_CHARACTERISTIC = '00000001-0000-1000-8000-008025000000';
+// const PLINIC_SERVICE = 'FEFB';
+// const UUID_SERVICE = 'FEFB';
+// const SWITCH_CHARACTERISTIC = '00000001-0000-1000-8000-008025000000';
 // const SWITCH_CHARACTERISTIC = 'FF01';
 
 // //HM Soft Bluetooth Mod
-// const PLINIC_SERVICE = 'FFE0';
-// const UUID_SERVICE = 'FFE0';
-// const SWITCH_CHARACTERISTIC = 'FFE1';
+const PLINIC_SERVICE = 'FFE0';
+const UUID_SERVICE = 'FFE0';
+const SWITCH_CHARACTERISTIC = 'FFE1';
 
 
 @IonicPage()
@@ -71,7 +71,7 @@ export class DeviceConnectIngPage {
         //   }
         // });
       } else {  // 웹 개발 시에는 무조건 성공페이지로 넘어가 데이터를 강제적으로 보여준다
-        // this.navCtrl.push(DeviceConnectCompletePage);
+        this.navCtrl.push(DeviceConnectCompletePage);
       }
       // }, 3500);
 
@@ -99,7 +99,7 @@ export class DeviceConnectIngPage {
   }
 
   // public successpage() {
-  //   this.navCtrl.push(SuccessHomePage);
+  //   this.navCtrl.push(DeviceConnectCompletePage);
   // }
 
   public measureBack() {
@@ -129,21 +129,41 @@ export class DeviceConnectIngPage {
   scan() {
     this.setStatus('Scanning for Bluetooth LE Devices');
     this.devices = [];  // clear list
+    // 시간내로 스캔 하는 방법
+    // this.ble.scan([PLINIC_SERVICE], 10).subscribe(
+    //   device => {
+    //     console.log("aaaaa :" + device);
+    //     this.onDeviceDiscovered(device);
+    //     this.deviceSelected(device);
+    //     this.navCtrl.push(DeviceConnectCompletePage, { device: device });
+    //   },
+    //   error => {
+    //     console.log("bbbbb" + error);
+    //     this.scanError(error);
+    //     this.navCtrl.push(DeviceConnectFailPage);
+    //   }
+    // );
+    // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
 
-    this.ble.scan([PLINIC_SERVICE], 10).subscribe(
+    //잡힐떄 까지 계속 스캔하는 방법
+    this.ble.startScan([PLINIC_SERVICE]).subscribe(
       device => {
         console.log("aaaaa :" + device);
         this.onDeviceDiscovered(device);
-        this.deviceSelected(device);
+        // this.deviceSelected(device);
+        this.ble.stopScan();
         this.navCtrl.push(DeviceConnectCompletePage, { device: device });
       },
       error => {
         console.log("bbbbb" + error);
         this.scanError(error);
+        this.ble.stopScan();
         this.navCtrl.push(DeviceConnectFailPage);
       }
     );
     setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
+
+
   }
 
   onDeviceDiscovered(device) {
@@ -180,17 +200,17 @@ export class DeviceConnectIngPage {
     //   device: device
     // });
 
-    this.ble.connect(device.id).subscribe(
-      peripheral => this.onConnected(peripheral),
-      // peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
-      peripheral => this.bleshowAlert('Disconnected', '디바이스 연결이 중단 되었습니다.')
-    );
-
-    this.ble.startNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
-      console.log("Plinic G1Partners Notifi " + String.fromCharCode.apply(null, new Uint8Array(buffer)))
-    }, error => {
-      console.log("Notifi Error : " + error);
-    })
+    // this.ble.connect(device.id).subscribe(
+    //   peripheral => this.onConnected(peripheral),
+    //   // peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
+    //   peripheral => this.bleshowAlert('Disconnected', '디바이스 연결이 중단 되었습니다.')
+    // );
+    //
+    // this.ble.startNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
+    //   console.log("Plinic G1Partners Notifi " + String.fromCharCode.apply(null, new Uint8Array(buffer)))
+    // }, error => {
+    //   console.log("Notifi Error : " + error);
+    // })
 
 
 

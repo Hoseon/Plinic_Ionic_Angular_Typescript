@@ -138,8 +138,8 @@ import { BeautyTipAddPageModule } from '../pages/beauty-tip-add/beauty-tip-add.m
 //import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
 import { PopoverPage } from '../pages/community/community-modify/popover/popover';
 import { AlignPopoverPage } from '../pages/community/search/align-popover/align-popover';
-import { MyPage} from '../pages/community/my/my';
-import { SearchPage} from '../pages/community/search/search';
+import { MyPage } from '../pages/community/my/my';
+import { SearchPage } from '../pages/community/search/search';
 //import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
 //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 //
@@ -208,7 +208,9 @@ import { SkinDiagnoseFirstOilPageModule } from '../pages/skin-diagnose-first-oil
 
 
 //태그
-import {RlTagInputModule} from 'angular2-tag-input';
+import { RlTagInputModule } from 'angular2-tag-input';
+
+// import { TimerComponent } from '../pages/skin-measure-start/timer'
 
 
 
@@ -226,6 +228,7 @@ export function getAuthHttp(http, storage) {
 @NgModule({
   declarations: [
     MyApp,
+    // TimerComponent,
     // LoginPage,
     // LoginpagePage,
     // PasswordfindPage,
@@ -356,6 +359,7 @@ export function getAuthHttp(http, storage) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    // TimerComponent,
     // LoginPage,
     // LoginpagePage,
     // PasswordfindPage,
@@ -429,6 +433,7 @@ export function getAuthHttp(http, storage) {
     LocalNotifications,
     //  AdMobFree,
     BLE,
+    // TimerComponent,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,

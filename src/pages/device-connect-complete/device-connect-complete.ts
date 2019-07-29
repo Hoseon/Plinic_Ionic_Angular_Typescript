@@ -44,9 +44,18 @@ export class DeviceConnectCompletePage {
   }
 
   public deviceComplete() {
-    this.viewCtrl.dismiss();
-    let myModal = this.modalCtrl.create(DeviceSkinStartPage, {device : this.device});
-    myModal.present();
+    if(this.platform.is('cordova')){
+      this.viewCtrl.dismiss();
+      let myModal = this.modalCtrl.create(DeviceSkinStartPage, {device : this.device});
+      myModal.present();
+    } else {
+      // this.viewCtrl.dismiss();
+      let myModal = this.modalCtrl.create(DeviceSkinStartPage);
+      myModal.present();
+    }
+
+
+
   }
 
   public measureBack(){

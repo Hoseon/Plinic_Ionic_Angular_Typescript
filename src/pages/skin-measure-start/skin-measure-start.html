@@ -10,31 +10,72 @@
 
   <ion-img no-lines *ngIf="platform.is('android')" class="close" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
                 assets/img/login\ic-system-close-black@3x.png" (click)="dismiss()"></ion-img>
-  <ion-img no-lines *ngIf="platform.is('ios')" class="close" style="margin-top: 8%;" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
+  <ion-img no-lines *ngIf="platform.is('ios')" class="close" style="margin-top: 12%;" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
                 assets/img/login\ic-system-close-black@3x.png" (click)="dismiss()"></ion-img>
 
   <ion-item class="font_title" no-lines> 데일리 피부측정 </ion-item>
 
   <ion-item class="font-sub" no-lines>
-      오늘의 피부 상태를 체크하기 위해<br />
-      데일리 피부 측정을 시작할까요?
+    오늘의 피부 상태를 체크하기 위해<br />
+    데일리 피부 측정을 시작할까요?
   </ion-item>
 
-    <img no-lines class="img ic_system_skin_face" src="assets/img/ic-system-skin-face/ic-system-skin-face@3x.png" />
+  <img no-lines class="img ic_system_skin_face" src="assets/img/ic-system-skin-face/ic-system-skin-face@3x.png" />
 
 
-    <ion-footer no-lines no-shadow>
-      <div>
-        <button class="font_button" ion-button (click)="measureStart();">
-          <div>확인</div>
-        </button>
-      </div>
 
-    		<div class="center">
-          <button  class="cancel_button" clear ion-button (click)="dismiss()">
-            <div>취소하기</div>
-          </button>
-        </div>
+  <!-- <ion-card style =" width=100%;">
+    <ion-item >
+      <button ion-button large full clear class="timer-button timer-text">{{displayTime}}</button>
+    </ion-item>
+    <ion-item >
+      <button ion-button icon-left clear color="danger" small (click)="initTimer()" item-left >
+        <ion-icon name="refresh"></ion-icon>
+        Reset
+      </button>
+      <button ion-button icon-left clear small color="primary" (click)="pauseTimer()" item-right >
+        <ion-icon name="pause"></ion-icon>
+        Pause
+      </button>
+      <button ion-button icon-left clear small color="primary" (click)="resumeTimer()" item-right >
+        <ion-icon name="play"></ion-icon>
+        Resume
+      </button>
+      <button ion-button icon-left clear small color="primary" (click)="startTimer()" item-right >
+        <ion-icon name="play"></ion-icon>
+        Start
+      </button>
+    </ion-item>
+  </ion-card>
 
-    </ion-footer>
+  <style>
+    .timer-button {
+      font-size: 5rem !important;
+      height: 1em !important;
+    }
+
+    .no-bottom-border.item .item-inner {
+      border-bottom: none !important;
+    }
+  </style> -->
+
+
+
+  <!-- <timer #timer timeInSeconds="60"></timer>   -->
+  <!-- <timer #timer [timeInSeconds]="60"></timer> -->
+
+  <ion-footer no-lines no-shadow>
+    <div>
+      <button class="font_button" ion-button (click)="measureStart();">
+        <div>확인</div>
+      </button>
+    </div>
+
+    <div class="center">
+      <button class="cancel_button" clear ion-button (click)="dismiss()">
+        <div>취소하기</div>
+      </button>
+    </div>
+
+  </ion-footer>
 </ion-content>

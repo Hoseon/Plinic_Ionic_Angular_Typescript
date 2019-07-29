@@ -19,8 +19,10 @@ export class DeviceSkinStartPage {
   device : any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController , public platform: Platform) {
-    this.device = this.navParams.get('device');
-    console.log("Skin-Start Device Id : " + this.device.id);
+    if(this.navParams.get('device')){
+      this.device = this.navParams.get('device');
+      console.log("Skin-Start Device Id : " + this.device.id);
+    }
   }
 
   ionViewDidLoad() {
