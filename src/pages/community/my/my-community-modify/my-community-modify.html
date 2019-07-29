@@ -1,0 +1,97 @@
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android')">
+    <!-- 글 쓰기일 떄 타이틀 -->
+    <ion-title class="android_title" text-wrap>피부고민</ion-title>
+    <button ion-button class="android_entroll_btn" (click)="select_popover($event);"></button>
+  </ion-navbar>
+
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+    <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')">
+    <ion-buttons left >
+      <button ion-button navPop icon-only>
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>피부고민</ion-title>
+    <button ion-button class="ios_entroll_btn" (click)="select_popover($event);"></button>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-padding>
+
+
+
+  <img class="beauty_text_img" src="assets/img/beauty/ic-q-a-question@3x.png" />
+  <div class="skinqna" >안녕하세요. 사춘기 때도 잘 나지 않던 여드름이 몇 년 동안 저를 괴롭히고 있어요. 한동안 잠잠하다가도 생리 전에는 어김없이 입가를 중심으로 여드름이 돋는데요. 여드름을 잡는 방법과 이미 생긴 흉터를 없애는 길을 알려주세요.</div>
+
+  <ion-col class="skinqna_sub">꾸꾸가까</ion-col>
+  <ion-col class="skinqna_sub" style="margin-left: 0%; font-family: Roboto;">2019.05.09</ion-col><br><br>
+
+
+  <!-- 광고 -->
+  <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
+  <img class="beauty_ad_img" src="assets/img/beauty/beauty_ad.JPG" />
+  <div style="height:8px; width:100%; margin-top:-1.5%; background-color:#f1f1f1"></div>
+
+  <img class="beauty_text_img" src="assets/img/beauty/ic-q-a-answer@3x.png" />
+  <div class="skinqna">안녕하세요. 사춘기 때도 잘 나지 않던 여드름이 몇 년 동안 저를 괴롭히고 있어요. 한동안 잠잠하다가도 생리 전에는 어김없이 입가를 중심으로 여드름이 돋는데요. 여드름을 잡는 방법과 이미 생긴 흉터를 없애는 길을 알려주세요.</div>
+
+  <ion-col class="skinqna_sub">꾸꾸가까</ion-col>
+  <ion-col class="skinqna_sub" style="margin-left: 0%; font-family: Roboto;">2019.05.09</ion-col><br><br><br><br>
+
+
+
+
+
+    <h2 class="beauty_worry_tip">관련 고민</h2>
+
+    <ng-container *ngFor="let skinqna of skinQnaData; let i = index">
+      <ng-container *ngIf="(i < 4)">
+        <ng-container *ngIf="skinqna.filename">
+          <!-- 피부 고민 이미지가 있을 때  -->
+          <ion-item class="line_item">
+          <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
+            <ion-row class="beauty_row">
+              <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
+            </ion-row>
+            <ion-col *ngIf="skinqna.like" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+              <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
+            </ion-col>
+
+            <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+            <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+          </ion-col></ion-item>
+          <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+        </ng-container>
+        <ng-container *ngIf="!skinqna.filename">
+          <!-- 피부 고민 이미지가 없을 때  -->
+          <ion-item class="line_item">
+          <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
+            <ion-row class="beauty_row">
+              <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
+            </ion-row>
+            <ion-col *ngIf="skinqna.like" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+              <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
+            </ion-col>
+          </ion-col></ion-item>
+          <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+        </ng-container>
+      </ng-container>
+    </ng-container>
+
+
+<br><br><br><br><br>
+</ion-content>
+
+<ion-footer *ngIf="platform.is('android')">
+  <button mode="ios" ion-button class="android_footer_btn" (click)="community_write()"> 답변 달기 > </button>
+</ion-footer>
+
+<ion-footer keyboard-attach no-bounce no-lines *ngIf="platform.is('ios') || platform.is('core')">
+  <button mode="ios" ion-button class="ios_footer_btn" (click)="community_write()"> 답변 달기 > </button>
+</ion-footer>

@@ -88,7 +88,7 @@ export class SearchPage {
   selectedTab(tab) {
   //  this.slides.slideTo(tab);
 
-    console.log('  this.slides.slideTo(tab)===================' + tab);
+  console.log('  this.slides.slideTo(tab)===================' + tab);
   }
   onSearch(event) {
     // console.log("onSearch==========" + event.target.value)

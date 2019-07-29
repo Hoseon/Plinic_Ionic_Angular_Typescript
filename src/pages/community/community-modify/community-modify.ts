@@ -46,7 +46,8 @@ export class CommunityModifyPage {
   @ViewChild('textarea') mytextarea ;
 
 
-  constructor(private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
+  constructor(private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController,
+     public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
     public viewCtrl: ViewController, public popoverCtrl: PopoverController, public element: ElementRef, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
     this.platform.ready().then((readySource) => {
 

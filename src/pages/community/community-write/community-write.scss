@@ -461,6 +461,11 @@ page-community-write {
       color: #5c59b6;
     }
 
+    [_nghost-c1]:before {
+      content: "#";
+      letter-spacing: 3px;
+    }
+
     .ng2-tag-input-field{
     position: absolute;
     left: 4%;
@@ -538,6 +543,11 @@ page-community-write {
     overflow-x: scroll;
     color: #292929;
 
+
+    [_nghost-c1]:before {
+      content: "#";
+      letter-spacing: 3px;
+    }
 
     [_nghost-c1]{
       background-color: #FFF !important;

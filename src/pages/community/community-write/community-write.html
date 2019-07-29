@@ -84,7 +84,7 @@
   <rl-tag-input *ngIf="platform.is('ios')" class="community_tag_ios"
     [(ngModel)]="note.tags"
     [addOnBlur]="false"
-    [autocomplete]="true"
+    [autocomplete]="false"
     [autocompleteItems]="preparedTags"
     [autocompleteMustMatch]="false"
     placeholder="#태그를 입력하세요.">
@@ -93,7 +93,7 @@
   <rl-tag-input *ngIf="platform.is('android')" class="community_tag_android"
     [(ngModel)]="note.tags"
     [addOnBlur]="false"
-    [autocomplete]="true"
+    [autocomplete]="false"
     [autocompleteItems]="preparedTags"
     [autocompleteMustMatch]="false"
     placeholder="#태그를 입력하세요.">
