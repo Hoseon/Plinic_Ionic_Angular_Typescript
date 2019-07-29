@@ -78,7 +78,6 @@ export class DeviceSkinIngPage {
 
   ionViewDidLeave() {
     // this.device_disconnect();
-    console.log("Ionic Bluetooth Leave");
   }
 
   cancel() {
