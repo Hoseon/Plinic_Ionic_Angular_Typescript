@@ -40,7 +40,7 @@ export class DeviceSkinIngPage {
   runTimer: boolean;
   hasStarted: boolean;
   hasFinished: boolean;
-  displayTime: string;
+  displayTime: string = '';
 
   step: any = '0단계';
   stepdesc: any = '화장품 도포';
@@ -68,37 +68,7 @@ export class DeviceSkinIngPage {
       }
       setTimeout(() => {
         this.startTimer();
-        // this.timer.startTimer();
       }, 1000)
-      // setTimeout(()=>{
-      //   this.spintime = 1;
-      //   this.navCtrl.setRoot(TabsPage);
-      //   this.ble.disconnect(this.device.id).then(result => {
-      //     console.log("ble skin ing disconnect OK : " + result);
-      //     this.navCtrl.setRoot(TabsPage);
-      //   }, error =>{
-      //     console.log("ble skin ing disconnect error :" + error);
-      //   })
-      //
-      //   if(platform.is('android')){
-      //    const toast = this.toastCtrl.create({
-      //     cssClass: 'blu_toast_android',
-      //     message: '피부측정이 연결이 완료되었습니다.',
-      //     duration: 3000,
-      //     position: 'bottom'
-      //   });
-      //   toast.present();
-      // }
-      // else{
-      //   const toast = this.toastCtrl.create({
-      //    cssClass: 'blu_toast_ios',
-      //    message: '피부측정이 완료되었습니다.',
-      //    duration: 3000,
-      //    position: 'bottom'
-      //  });
-      //  toast.present();
-      // }
-      // }, 3500);
     });
   }
 
@@ -108,6 +78,7 @@ export class DeviceSkinIngPage {
 
   ionViewDidLeave() {
     // this.device_disconnect();
+    console.log("Ionic Bluetooth Leave");
   }
 
   cancel() {
@@ -262,15 +233,6 @@ export class DeviceSkinIngPage {
         let data2 = String.fromCharCode.apply(null, new Uint8Array(buffer));
         console.log("data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : " + data2)
 
-
-        // console.log('switch characteristic 0' + data[0]);
-        // console.log('switch characteristic 1' + data[1]);
-        // console.log('switch characteristic 2' + data[2]);
-        // console.log('switch characteristic 3' + data[3]);
-        // console.log('switch characteristic 4' + data[4]);
-        // console.log('switch characteristic 5' + data[5]);
-
-
         for( var i = 0; i < data.length; i ++){
           console.log("data" + i + "--- :" + data[i]);
         }
@@ -330,7 +292,7 @@ export class DeviceSkinIngPage {
       this.secondsRemaining = this.timeInSeconds
     // };
 
-    this.displayTime = this.getSecondsAsDigitalClock(this.secondsRemaining);
+    // this.displayTime = this.getSecondsAsDigitalClock(this.secondsRemaining);
   }
 
   startTimer() {
@@ -351,7 +313,8 @@ export class DeviceSkinIngPage {
     setTimeout(() => {
       if (!this.runTimer) { return; }
       this.secondsRemaining++;
-      this.displayTime = this.getSecondsAsDigitalClock(this.secondsRemaining);
+      // this.displayTime = this.getSecondsAsDigitalClock(this.secondsRemaining);
+      this.getSecondsAsDigitalClock(this.secondsRemaining);
       if (this.displayTime === "00:00:00") {
         this.step = "0단계";
         this.stepdesc = "화장품 도포";
@@ -385,6 +348,7 @@ export class DeviceSkinIngPage {
       } else if (this.displayTime === "00:06:00") {
         this.device_disconnect();
       }
+
       if (this.secondsRemaining > 0) {
         this.timerTick();
       }
@@ -405,6 +369,6 @@ export class DeviceSkinIngPage {
     hoursString = (hours < 10) ? "0" + hours : hours.toString();
     minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
     secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
-    return hoursString + ':' + minutesString + ':' + secondsString;
+    this.displayTime = hoursString + ':' + minutesString + ':' + secondsString;
   }
 }
