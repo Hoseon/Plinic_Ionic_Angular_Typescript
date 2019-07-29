@@ -32,7 +32,7 @@ import { AddinfoPage } from '../pages/register/addinfo/addinfo';
 // import { BluetoothDisconnectPage } from '../pages/myinfo/details/bluetooth-disconnect/bluetooth-disconnect';
 
 //수정페이지
-// import { ReRegisterPage } from '../pages/re-register/re-register';
+ import { ReRegisterPage } from '../pages/re-register/re-register';
 // import { ModifyEmailPage } from '../pages/re-register/modify-email/modify-email';
 // import { ModifyNumberPage } from '../pages/re-register/modify-number/modify-number';
 // import { ModifyPasswordPage } from '../pages/re-register/modify-password/modify-password';
@@ -41,8 +41,8 @@ import { AddinfoPage } from '../pages/register/addinfo/addinfo';
 //
 //
 import { SkinChartPage } from '../pages/skin-chart/skin-chart';
-// import { RegisterPage } from '../pages/register/register';
-// import { RegistercompletePage } from '../pages/register/registercomplete/registercomplete';
+import { RegisterPage } from '../pages/register/register';
+import { RegistercompletePage } from '../pages/register/registercomplete/registercomplete';
 // //케어존
 // import { CareZonePage } from '../pages/care-zone/care-zone';
 // import { CareZoneIngPage } from '../pages/care-zone-ing/care-zone-ing';
@@ -100,7 +100,7 @@ import { BluetoothConnectIngPageModule } from '../pages/myinfo/details/bluetooth
 import { BluetoothDisconnectPageModule } from '../pages/myinfo/details/bluetooth-disconnect/bluetooth-disconnect.module';
 //
 // //수정페이지
-import { ReRegisterPageModule } from '../pages/re-register/re-register.module';
+//import { ReRegisterPageModule } from '../pages/re-register/re-register.module';
 import { ModifyEmailPageModule } from '../pages/re-register/modify-email/modify-email.module';
 import { ModifyNumberPageModule } from '../pages/re-register/modify-number/modify-number.module';
 import { ModifyPasswordPageModule } from '../pages/re-register/modify-password/modify-password.module';
@@ -110,8 +110,8 @@ import { QnaReadPageModule } from '../pages/myinfo/details/qna/qna-read/qna-read
 //
 //
 import { SkinChartPageModule } from '../pages/skin-chart/skin-chart.module';
-import { RegisterPageModule } from '../pages/register/register.module';
-import { RegistercompletePageModule } from '../pages/register/registercomplete/registercomplete.module';
+//import { RegisterPageModule } from '../pages/register/register.module';
+//import { RegistercompletePageModule } from '../pages/register/registercomplete/registercomplete.module';
 // //케어존
 import { CareZonePageModule } from '../pages/care-zone/care-zone.module';
 import { CareZoneIngPageModule } from '../pages/care-zone-ing/care-zone-ing.module';
@@ -138,8 +138,9 @@ import { BeautyTipAddPageModule } from '../pages/beauty-tip-add/beauty-tip-add.m
 //import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
 import { PopoverPage } from '../pages/community/community-modify/popover/popover';
 import { AlignPopoverPage } from '../pages/community/search/align-popover/align-popover';
-import { MyPage } from '../pages/community/my/my';
-import { SearchPage } from '../pages/community/search/search';
+import { MyPage} from '../pages/community/my/my';
+import { MyCommunityModifyPage} from '../pages/community/my/my-community-modify/my-community-modify';
+import { SearchPage} from '../pages/community/search/search';
 //import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
 //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 //
@@ -250,12 +251,12 @@ export function getAuthHttp(http, storage) {
     // PlinicManualPage,
     // QnaPage,
     // TermsPage,
-    // RegisterPage,
-    // ReRegisterPage,
+    RegisterPage,
+    ReRegisterPage,
     // ModifyEmailPage,
     // ModifyNumberPage,
     // ModifyPasswordPage,
-    // RegistercompletePage,
+    RegistercompletePage,
     // AgreementPage,
     // PersonalinfoPage,
     // MarketingPage,
@@ -283,6 +284,7 @@ export function getAuthHttp(http, storage) {
     MyPage,
     SearchPage,
     AlignPopoverPage,
+    MyCommunityModifyPage,
   ],
   imports: [
     HttpModule,
@@ -301,7 +303,7 @@ export function getAuthHttp(http, storage) {
     MarketingPageModule,
     BluetoothConnectIngPageModule,
     BluetoothDisconnectPageModule,
-    ReRegisterPageModule,
+    //ReRegisterPageModule,
     ModifyEmailPageModule,
     ModifyNumberPageModule,
     ModifyPasswordPageModule,
@@ -309,8 +311,8 @@ export function getAuthHttp(http, storage) {
     QnaWritePageModule,
     QnaReadPageModule,
     // SkinChartPageModule,
-    RegisterPageModule,
-    RegistercompletePageModule,
+    //RegisterPageModule,
+    //RegistercompletePageModule,
     CareZonePageModule,
     CareZoneIngPageModule,
     // CareZoneMissionIngPageModule,
@@ -380,12 +382,12 @@ export function getAuthHttp(http, storage) {
     // PlinicManualPage,
     // QnaPage,
     // TermsPage,
-    // RegisterPage,
-    // ReRegisterPage,
+    RegisterPage,
+    ReRegisterPage,
     // ModifyEmailPage,
     // ModifyNumberPage,
     // ModifyPasswordPage,
-    // RegistercompletePage,
+    RegistercompletePage,
     // AgreementPage,
     // PersonalinfoPage,
     // MarketingPage,
@@ -410,6 +412,7 @@ export function getAuthHttp(http, storage) {
     MyPage,
     SearchPage,
     AlignPopoverPage,
+    MyCommunityModifyPage,
   ],
   providers: [
     StatusBar,

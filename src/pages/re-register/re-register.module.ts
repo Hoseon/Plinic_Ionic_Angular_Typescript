@@ -4,10 +4,10 @@ import { ReRegisterPage } from './re-register';
 
 @NgModule({
   declarations: [
-    ReRegisterPage,
+    //ReRegisterPage,
   ],
   imports: [
-    IonicPageModule.forChild(ReRegisterPage),
+    //IonicPageModule.forChild(ReRegisterPage),
   ],
 })
 export class ReRegisterPageModule {}

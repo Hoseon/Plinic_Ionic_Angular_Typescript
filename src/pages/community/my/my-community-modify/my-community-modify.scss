@@ -1,0 +1,430 @@
+page-my-community-modify {
+
+
+  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+    height: 1px;
+    margin-bottom: 5px;
+  }
+  .item-md.item-block .item-inner{
+    padding-right: 12px;
+  }
+  .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+    height: 1px;
+    margin-bottom: 5px;
+  }
+
+
+  //탭바 하단 여백
+  .scroll-content{
+    margin-bottom: 0px !important;
+  }
+
+
+    .toolbar-title-md{
+      font-weight: bold;
+      font-size: 17px;
+      background-color: #FFF;
+      font-family: NotoSansCJKkr;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+
+    .toolbar-title-ios{
+      font-weight: bold;
+      font-size: 17px;
+      background-color: #FFF;
+      font-family: NotoSansCJKkr;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      margin-top: -5%;
+      color: #292929;
+    }
+
+    .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+      margin-left: -15%;
+      margin-top: -15%;
+      color: transparent;
+    }
+
+    .ios_nav{
+      background-color: transparent;
+      width: 140px !important;
+      height: 25px !important;
+      object-fit: contain;
+    }
+
+    .toolbar-background {
+      background-color: #FFF;
+    }
+
+    .ion-md-arrow-back:before {
+      position: absolute;
+      content: "\f27d";
+      left: 10%;
+      top: 2px;
+      width: 25px;
+      height: 25px;
+  }
+
+     .toolbar-ios{
+       margin-top: 8%;
+     }
+
+    .back-button-text-ios{
+      font-size: 0px;
+    }
+    .android_title{
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 70%;
+      color: #292929;
+    }
+    .ios_title{
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 120%;
+      color: #292929;
+    }
+
+  .item-md.item-input.item-has-focus .item-inner, .item-md.item-input.input-has-focus .item-inner{
+    border-bottom-color: transparent;
+    -webkit-box-shadow: inset 0 0 0 0 transparent;
+    box-shadow: inset 0 0 0 0 transparent;
+  }
+  .item-ios.item-input.item-has-focus .item-inner, .item-ios.item-input.input-has-focus .item-inner{
+    border-bottom-color: #transparent;
+    -webkit-box-shadow: inset 0 0 0 0 transparent;
+    box-shadow: inset 0 0 0 0 transparent;
+  }
+  .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+   .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
+     border-bottom-color: #transparent;
+     -webkit-box-shadow: inset 0 0 0 0 transparent;
+     box-shadow: inset 0 0 0 0 transparent;
+   }
+   .item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+    .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
+      border-bottom-color: #transparent;
+      -webkit-box-shadow: inset 0 -0 0 0 transparent;
+      box-shadow: inset 0 0 0 0 transparent;
+  }
+
+  .select-ios{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .select-md{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+
+  .select-ios .select-icon{
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+  }
+
+  .select-md .select-icon{
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+  }
+
+  .text-input-md{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .item-md{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .item-ios{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+
+  .android_entroll_btn{
+    position: absolute;
+    width: 25px;
+    object-fit: contain;
+    top: 23%;
+    right: 0%;
+    background-image: url(../assets/img/beauty/ic-system-more-black.png);
+    background-repeat: no-repeat;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+  }
+
+
+  .ios_entroll_btn{
+    position: absolute;
+    width: 25px;
+    object-fit: contain;
+    top: 1%;
+    right: 3%;
+    background-image: url(../assets/img/beauty/ic-system-more-black.png);
+    background-repeat: no-repeat;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+  }
+
+  .label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input{
+   margin-left: 0px;
+  }
+
+
+  .beauty_ad_img{
+    width: 100%;
+    height: 60px;
+  }
+
+
+  .beauty_worry_tip{
+    font-family: NotoSansCJKkr;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    padding-left: 5%;
+    margin-top: 5% !important;
+    margin-bottom: 5%;
+    text-align: left;
+  }
+
+  .skinqna{
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.73;
+    letter-spacing: normal;
+    color: #292929;
+    margin-bottom: 10%;
+    margin-left: 6%;
+    margin-right: 6%;
+  }
+
+  .skinqna_sub{
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #b6b6b6;
+    margin-left: 5%;
+  }
+
+
+
+  .beauty_text_img{
+    width: 18px;
+    height: 21px;
+    object-fit: contain;
+    margin-bottom: 3%;
+    margin-top: 10%;
+    margin-left: 6%;
+  }
+
+
+  .container {
+    position: relative;
+    width: 100%;
+  }
+
+
+        .container .beauty_note_like{
+          font-family: NotoSansCJKkr;
+          font-size: 13px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #b6b6b6;
+          position: absolute;
+          display: table;
+          width: 100%;
+          text-align: left;
+          padding-left: 5%;
+          margin-bottom: 5%;
+        }
+
+        .container .beauty_worry_img {
+          // position: absolute;
+          // top: -25%;
+          // right: -120%;
+          transform: translate(385%, -60%);
+          -ms-transform: translate(-50%, -50%);
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          width: 80px;
+          max-height: 80px;
+          border-radius: 5px;
+          background-color: #f5f5f5;
+          margin-bottom: -10%;
+        }
+
+        .container .beauty_worry_img_ios {
+          // position: absolute;
+          // top: -25%;
+          // right: -120%;
+          transform: translate(320%, -60%);
+          -ms-transform: translate(-50%, -50%);
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          width: 80px;
+          max-height: 80px;
+          border-radius: 5px;
+          background-color: #f5f5f5;
+          margin-bottom: -10%;
+        }
+
+        .beauty_note_answer{
+          font-family: NotoSansCJKkr;
+          font-size: 13px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #5c59b6;
+        }
+
+  .beauty_note_title_img{
+    max-width: 65%;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    color: #292929;
+    text-align: left;
+    margin-left: 4%;
+    white-space: pre-wrap;
+  }
+
+
+
+  .beauty_note_title{
+    min-width: 97%;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    color: #292929;
+    text-align: left;
+    margin-left: 4%;
+    white-space: pre-wrap;
+  }
+
+  .beauty_note_Q{
+    font-family: AppleSDGothicNeo;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    color: #5c59b6;
+  }
+
+  .line_item{
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+  }
+
+
+  .label-md{
+    margin: 0px;
+  }
+
+  .label-ios{
+    margin: 0px;
+  }
+
+  .item-md{
+    padding: 0px;
+  }
+  .item-ios{
+    padding: 0px;
+  }
+
+
+
+  .android_footer_btn{
+    width: 90%;
+    height: 50px;
+    margin: 0 auto;
+    display: block;
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px !important;
+    background-color: #5c59b6;
+    box-shadow: none;
+  }
+
+  .ios_footer_btn{
+    position: fixed;
+    left : 0;
+    right : 0;
+    bottom : 15%;
+    width: 90%;
+    height: 50px;
+    margin: 0 auto;
+    display: block;
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: -30px !important;
+    background-color: #5c59b6;
+    box-shadow: none;
+  }
+
+
+
+
+}

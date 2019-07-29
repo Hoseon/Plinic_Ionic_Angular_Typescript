@@ -150,10 +150,10 @@ toggle(){
     this.imagesProvider.user_uploadImage(this.registerCredentials.imagePath, this.registerCredentials.email).then(res => {
       // this.viewCtrl.dismiss({reload: true});
       // this.loading.dismiss();
-      this.showPopup("이미지 업로드", "이미지 업로드에 성공 하였습니다.");
+      //this.showPopup("이미지 업로드", "이미지 업로드에 성공 하였습니다.");
     }, err => {
       // this.dismiss();
-      this.showPopup("이미지 업로드", "이미지 업로드에 실패 하였습니다.");
+      //this.showPopup("이미지 업로드", "이미지 업로드에 실패 하였습니다.");
     });
 
     this.auth.register(this.registerCredentials).subscribe(success => {
