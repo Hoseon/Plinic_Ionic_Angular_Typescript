@@ -61,6 +61,7 @@ export class DeviceConnectIngPage {
       // setTimeout(() => {
       this.spintime = 1;
       if (this.platform.is('cordova')) {
+        this.enableBluetooth();
         this.scan();
         // this.bluetoothle.initialize().then(ble => {
         //   //console.log('ble', ble.status) // logs 'enabled'
@@ -116,6 +117,17 @@ export class DeviceConnectIngPage {
     // this.viewCtrl.dismiss();
 
   }
+
+  enableBluetooth() {
+      this.ble.enable().then(
+        success => {
+          this.showToast("Bluetooth is enabled");
+        },
+        error => {
+          this.showError("The user did *not* enable Bluetooth");
+        }
+      );
+    }
 
   showAlert(text) {
     let alert = this.alertCtrl.create({
