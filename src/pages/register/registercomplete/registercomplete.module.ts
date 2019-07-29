@@ -4,10 +4,10 @@ import { RegistercompletePage } from './registercomplete';
 
 @NgModule({
   declarations: [
-    RegistercompletePage,
+    //RegistercompletePage,
   ],
   imports: [
-    IonicPageModule.forChild(RegistercompletePage),
+    //IonicPageModule.forChild(RegistercompletePage),
   ],
 })
 export class RegistercompletePageModule {}
