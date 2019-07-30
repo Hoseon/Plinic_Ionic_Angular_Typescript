@@ -39,16 +39,18 @@
 
     <!-- 첨부 이미지 -->
     <!-- 보기 -->
-    <img *ngIf="beautyNoteOneLoadData && select_popover_option==='보기'" class="attache_image" src="http://plinic.cafe24app.com/beautynoteimage/{{beautyNoteOneLoadData._id}}" />
+    <ng-container *ngIf="beautyNoteOneLoadData.originalName && select_popover_option==='보기'">
+    <img  class="attache_image" src="http://plinic.cafe24app.com/beautynoteimage/{{beautyNoteOneLoadData._id}}" />
+    </ng-container>
 
     <!-- 파일 네임 -->
     <!-- 보기 -->
-    <ion-row *ngIf="select_popover_option==='보기'" class="file_image_row">
+    <ng-container *ngIf="select_popover_option==='보기' && beautyNoteOneLoadData.originalName " >
+    <ion-row  class="file_image_row">
       <ion-col><img class="file_image" src="assets/img/beauty/ic-system-file-purple@3x.png" /></ion-col>
-      <ion-col *ngIf="beautyNoteOneLoadData" class="file_path">{{beautyNoteOneLoadData.originalName}}</ion-col>
+      <ion-col class="file_path">{{beautyNoteOneLoadData.originalName}}</ion-col>
     </ion-row>
-
-
+    </ng-container>
 
     <!-- 태그 배치 for -->
     <ng-container *ngFor="let tag of tags; let i = index">
@@ -188,13 +190,13 @@
 
     <!-- 첨부 이미지 -->
     <!-- 보기 -->
-    <img *ngIf="skinQnaOneLoadData && select_popover_option==='보기'" class="attache_image" src="http://plinic.cafe24app.com/skinqnaimage/{{skinQnaOneLoadData._id}}" />
+    <img *ngIf="skinQnaOneLoadData.originalName && select_popover_option==='보기'" class="attache_image" src="http://plinic.cafe24app.com/skinqnaimage/{{skinQnaOneLoadData._id}}" />
 
     <!-- 파일 네임 -->
     <!-- 보기 -->
-    <ion-row *ngIf="select_popover_option==='보기'" class="file_image_row">
+    <ion-row *ngIf="skinQnaOneLoadData.originalName && select_popover_option==='보기'" class="file_image_row">
       <ion-col><img class="file_image" src="assets/img/beauty/ic-system-file-purple@3x.png" /></ion-col>
-      <ion-col *ngIf="skinQnaOneLoadData" class="file_path">{{skinQnaOneLoadData.originalName}}</ion-col>
+      <ion-col class="file_path">{{skinQnaOneLoadData.originalName}}</ion-col>
     </ion-row>
 
 

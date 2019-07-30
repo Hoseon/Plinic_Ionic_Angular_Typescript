@@ -22,8 +22,8 @@ export class CommunityModifyPage {
 
   id: any;
   mode: any;
-  beautyNoteOneLoadData: any;
-  skinQnaOneLoadData: any;
+  beautyNoteOneLoadData: any = {};
+  skinQnaOneLoadData: any = {};
   tags = [];
   comment_popover_option: any = "보기";
   comment_popover_option_textarea: any;
@@ -52,24 +52,25 @@ export class CommunityModifyPage {
     this.platform.ready().then((readySource) => {
 
       //this.presentLoading();
+      this.id = this.navParams.get('id');
+      this.mode = this.navParams.get('mode');
+      console.log("mode : " + this.mode);
+      if (this.navParams.get('mode') === 'qna') {
+        this.skinQnaOneLoad(this.id);
+      } else {
+        this.beautyNoteOneLoad(this.id);
+      }
+      this.loadItems();
     })
   }
 
   ionViewCanEnter() {
-
+    //this.loadItems();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommunityModifyPage');
-    this.loadItems();
-    this.id = this.navParams.get('id');
-    this.mode = this.navParams.get('mode');
-    console.log("mode : " + this.mode);
-    if (this.navParams.get('mode') === 'qna') {
-      this.skinQnaOneLoad(this.id);
-    } else {
-      this.beautyNoteOneLoad(this.id);
-    }
+
   }
 
   ionViewDidEnter() {
@@ -318,6 +319,7 @@ export class CommunityModifyPage {
                                 this.comment_popover_option_textarea = -1;
                                 this.textareaResize();
                                 this.update();
+                                this.dissmiss();
                               }
                             }
                           ]
@@ -434,6 +436,8 @@ export class CommunityModifyPage {
           this.islike = true;
         }
       }
+      console.log("beautyNoteOneLoadDat=====a" + this.beautyNoteOneLoadData);
+      console.log("beautyNoteOneLoadDat=====a" + this.beautyNoteOneLoadData.originalName);
     });
   }
 
