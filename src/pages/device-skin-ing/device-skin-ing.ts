@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, Platform, ModalController, ViewCon
 import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 import { BLE } from '@ionic-native/ble';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * Generated class for the DeviceSkinIngPage page.
@@ -12,16 +13,16 @@ import { BLE } from '@ionic-native/ble';
  * Ionic pages and navigation.
  */
 
- //Blue Mod S42
- const PLINIC_SERVICE = 'FEFB';
- const UUID_SERVICE = 'FEFB';
- const SWITCH_CHARACTERISTIC = '00000001-0000-1000-8000-008025000000';
- // const SWITCH_CHARACTERISTIC = 'FF01';
+//Blue Mod S42
+const PLINIC_SERVICE = 'FEFB';
+const UUID_SERVICE = 'FEFB';
+const SWITCH_CHARACTERISTIC = '00000001-0000-1000-8000-008025000000';
+// const SWITCH_CHARACTERISTIC = 'FF01';
 
- // //HM Soft Bluetooth Mod
- // const PLINIC_SERVICE = 'FFE0';
- // const UUID_SERVICE = 'FFE0';
- // const SWITCH_CHARACTERISTIC = 'FFE1';
+// //HM Soft Bluetooth Mod
+// const PLINIC_SERVICE = 'FFE0';
+// const UUID_SERVICE = 'FFE0';
+// const SWITCH_CHARACTERISTIC = 'FFE1';
 
 
 
@@ -42,6 +43,8 @@ export class DeviceSkinIngPage {
   hasFinished: boolean;
   displayTime: string = '';
 
+  displayTime2: Observable<any>;
+
   step: any = '0단계';
   stepdesc: any = '화장품 도포';
   desc: any = '사용하시는 화장품을 골구로 넉넉하게 도포하세요.';
@@ -57,7 +60,7 @@ export class DeviceSkinIngPage {
 
 
 
-  constructor(private alertCtrl : AlertController, private ble: BLE, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public modalCtrl: ModalController,
+  constructor(private alertCtrl: AlertController, private ble: BLE, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public modalCtrl: ModalController,
     public viewCtrl: ViewController, public ionicApp: IonicApp, public toastCtrl: ToastController) {
 
     this.platform.ready().then((readySource) => {
@@ -94,49 +97,49 @@ export class DeviceSkinIngPage {
     this.runTimer = false;
     console.log("device skin ing Device id : " + this.device.id);
     // setTimeout(() => {
-      // this.spintime = 1;
-      this.navCtrl.setRoot(TabsPage);
-      this.ble.disconnect(this.device.id).then(result => {
-        // console.log("ble skin ing disconnect OK : " + result);
-        if (this.platform.is('android')) {
-          const toast = this.toastCtrl.create({
-            cssClass: 'blu_toast_android',
-            message: '피부측정이 연결이 완료되었습니다.',
-            duration: 3000,
-            position: 'bottom'
-          });
-          toast.present();
-        }
-        else {
-          const toast = this.toastCtrl.create({
-            cssClass: 'blu_toast_ios',
-            message: '피부측정이 완료되었습니다.',
-            duration: 3000,
-            position: 'bottom'
-          });
-          toast.present();
-        }
-      }, error => {
-        // console.log("ble skin ing disconnect error :" + error);
-        if (this.platform.is('android')) {
-          const toast = this.toastCtrl.create({
-            cssClass: 'blu_toast_android',
-            message: '피부측정이 취소 되었습니다.',
-            duration: 3000,
-            position: 'bottom'
-          });
-          toast.present();
-        }
-        else {
-          const toast = this.toastCtrl.create({
-            cssClass: 'blu_toast_ios',
-            message: '피부측정이 취소 되었습니다.',
-            duration: 3000,
-            position: 'bottom'
-          });
-          toast.present();
-        }
-      })
+    // this.spintime = 1;
+    this.navCtrl.setRoot(TabsPage);
+    this.ble.disconnect(this.device.id).then(result => {
+      // console.log("ble skin ing disconnect OK : " + result);
+      if (this.platform.is('android')) {
+        const toast = this.toastCtrl.create({
+          cssClass: 'blu_toast_android',
+          message: '피부측정이 연결이 완료되었습니다.',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      }
+      else {
+        const toast = this.toastCtrl.create({
+          cssClass: 'blu_toast_ios',
+          message: '피부측정이 완료되었습니다.',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      }
+    }, error => {
+      // console.log("ble skin ing disconnect error :" + error);
+      if (this.platform.is('android')) {
+        const toast = this.toastCtrl.create({
+          cssClass: 'blu_toast_android',
+          message: '피부측정이 취소 되었습니다.',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      }
+      else {
+        const toast = this.toastCtrl.create({
+          cssClass: 'blu_toast_ios',
+          message: '피부측정이 취소 되었습니다.',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      }
+    })
 
 
     // }, 1000);
@@ -146,50 +149,50 @@ export class DeviceSkinIngPage {
     this.runTimer = false;
     console.log("device skin ing Device id : " + this.device.id);
     // setTimeout(() => {
-      // this.spintime = 1;
-      // this.navCtrl.setRoot(TabsPage);
-      this.ble.disconnect(this.device.id).then(result => {
-        // console.log("ble skin ing disconnect OK : " + result);
-        this.navCtrl.setRoot(TabsPage);
-        if (this.platform.is('android')) {
-          const toast = this.toastCtrl.create({
-            cssClass: 'blu_toast_android',
-            message: '피부측정이 취소 되었습니다.',
-            duration: 3000,
-            position: 'bottom'
-          });
-          toast.present();
-        }
-        else {
-          const toast = this.toastCtrl.create({
-            cssClass: 'blu_toast_ios',
-            message: '피부측정이 취소 되었습니다.',
-            duration: 3000,
-            position: 'bottom'
-          });
-          toast.present();
-        }
-      }, error => {
-        // console.log("ble skin ing disconnect error :" + error);
-        if (this.platform.is('android')) {
-          const toast = this.toastCtrl.create({
-            cssClass: 'blu_toast_android',
-            message: '피부측정이 취소 되었습니다.',
-            duration: 3000,
-            position: 'bottom'
-          });
-          toast.present();
-        }
-        else {
-          const toast = this.toastCtrl.create({
-            cssClass: 'blu_toast_ios',
-            message: '피부측정이 취소 되었습니다.',
-            duration: 3000,
-            position: 'bottom'
-          });
-          toast.present();
-        }
-      })
+    // this.spintime = 1;
+    // this.navCtrl.setRoot(TabsPage);
+    this.ble.disconnect(this.device.id).then(result => {
+      // console.log("ble skin ing disconnect OK : " + result);
+      this.navCtrl.setRoot(TabsPage);
+      if (this.platform.is('android')) {
+        const toast = this.toastCtrl.create({
+          cssClass: 'blu_toast_android',
+          message: '피부측정이 취소 되었습니다.',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      }
+      else {
+        const toast = this.toastCtrl.create({
+          cssClass: 'blu_toast_ios',
+          message: '피부측정이 취소 되었습니다.',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      }
+    }, error => {
+      // console.log("ble skin ing disconnect error :" + error);
+      if (this.platform.is('android')) {
+        const toast = this.toastCtrl.create({
+          cssClass: 'blu_toast_android',
+          message: '피부측정이 취소 되었습니다.',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      }
+      else {
+        const toast = this.toastCtrl.create({
+          cssClass: 'blu_toast_ios',
+          message: '피부측정이 취소 되었습니다.',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      }
+    })
 
 
     // }, 1000);
@@ -232,7 +235,7 @@ export class DeviceSkinIngPage {
         let data2 = String.fromCharCode.apply(null, new Uint8Array(buffer));
         console.log("data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : " + data2)
 
-        for( var i = 0; i < data.length; i ++){
+        for (var i = 0; i < data.length; i++) {
           console.log("data" + i + "--- :" + data[i]);
         }
         // var array = new Uint8Array(string.length);
@@ -309,8 +312,108 @@ export class DeviceSkinIngPage {
   }
 
   timerTick() {
-    setTimeout(() => {
-      if (!this.runTimer) { return; }
+    // Observable.timer(1000)
+    // .subscribe(() => {
+    //
+    //   if (!this.runTimer) { return; }
+    //   this.secondsRemaining++;
+    //   // this.displayTime = this.getSecondsAsDigitalClock(this.secondsRemaining);
+    //   this.getSecondsAsDigitalClock(this.secondsRemaining);
+    //   if (this.displayTime === "00:00:00") {
+    //     this.step = "0단계";
+    //     this.stepdesc = "화장품 도포";
+    //     this.desc = "사용하시는 화장품을 골구로 넉넉하게 도포하세요";
+    //   } else if (this.displayTime === "00:01:00") {
+    //     this.step = "1단계";
+    //     this.anipoint = true;
+    //     this.animpoint = "anim-point";
+    //     this.stepdesc = "좌측 볼 마사지(1분)";
+    //     this.desc = "원을 그리듯 아래에서 위로 마사지해주세요.";
+    //   } else if (this.displayTime === "00:02:00") {
+    //     this.step = "2단계";
+    //     this.animpoint = "anim-point2";
+    //     this.stepdesc = "우측볼 마사지(1분)";
+    //     this.desc = "원을 그리듯 아래에서 위로 마사지해주세요.";
+    //   } else if (this.displayTime === "00:03:00") {
+    //     this.step = "3단계";
+    //     this.animpoint = "anim-point3";
+    //     this.stepdesc = "이마 마사지(1분)";
+    //     this.desc = "원을 그리듯 아래에서 위로 마사지해주세요.";
+    //   } else if (this.displayTime === "00:04:00") {
+    //     this.step = "4단계";
+    //     this.animpoint = "anim-point4";
+    //     this.stepdesc = "목 마사지(1분)";
+    //     this.desc = "아래에서 위로 마사지해주세요.";
+    //   } else if (this.displayTime === "00:05:00") {
+    //     this.step = "5단계";
+    //     this.animpoint = "anim-point5";
+    //     this.stepdesc = "V라인 리프팅";
+    //     this.desc = "아래에서 위로 마사지해주세요.";
+    //   } else if (this.displayTime === "00:06:00") {
+    //     this.device_disconnect();
+    //   }
+    //
+    //   if (this.secondsRemaining > 0) {
+    //     this.timerTick();
+    //   }
+    //   else {
+    //     this.hasFinished = true;
+    //   }
+    // });
+    // Observable.interval(1100).subscribe(() => {
+      // if (!this.runTimer) { return; }
+      // this.secondsRemaining++;
+      // // this.displayTime = this.getSecondsAsDigitalClock(this.secondsRemaining);
+      // this.getSecondsAsDigitalClock(this.secondsRemaining);
+      // if (this.displayTime === "00:00:00") {
+      //   this.step = "0단계";
+      //   this.stepdesc = "화장품 도포";
+      //   this.desc = "사용하시는 화장품을 골구로 넉넉하게 도포하세요";
+      // } else if (this.displayTime === "00:01:00") {
+      //   this.step = "1단계";
+      //   this.anipoint = true;
+      //   this.animpoint = "anim-point";
+      //   this.stepdesc = "좌측 볼 마사지(1분)";
+      //   this.desc = "원을 그리듯 아래에서 위로 마사지해주세요.";
+      // } else if (this.displayTime === "00:02:00") {
+      //   this.step = "2단계";
+      //   this.animpoint = "anim-point2";
+      //   this.stepdesc = "우측볼 마사지(1분)";
+      //   this.desc = "원을 그리듯 아래에서 위로 마사지해주세요.";
+      // } else if (this.displayTime === "00:03:00") {
+      //   this.step = "3단계";
+      //   this.animpoint = "anim-point3";
+      //   this.stepdesc = "이마 마사지(1분)";
+      //   this.desc = "원을 그리듯 아래에서 위로 마사지해주세요.";
+      // } else if (this.displayTime === "00:04:00") {
+      //   this.step = "4단계";
+      //   this.animpoint = "anim-point4";
+      //   this.stepdesc = "목 마사지(1분)";
+      //   this.desc = "아래에서 위로 마사지해주세요.";
+      // } else if (this.displayTime === "00:05:00") {
+      //   this.step = "5단계";
+      //   this.animpoint = "anim-point5";
+      //   this.stepdesc = "V라인 리프팅";
+      //   this.desc = "아래에서 위로 마사지해주세요.";
+      // } else if (this.displayTime === "00:06:00") {
+      //   this.device_disconnect();
+      // }
+      //
+      // if (this.secondsRemaining > 0) {
+      //   this.timerTick();
+      // }
+      // else {
+      //   this.hasFinished = true;
+      // }
+    // });
+    //
+    //
+    var timer = setTimeout(() => {
+      // if (!this.runTimer) {
+      //   clearTimeout(timer);
+      //   console.log("Clear Timeout");
+      //   return;
+      // }
       this.secondsRemaining++;
       // this.displayTime = this.getSecondsAsDigitalClock(this.secondsRemaining);
       this.getSecondsAsDigitalClock(this.secondsRemaining);
@@ -355,6 +458,14 @@ export class DeviceSkinIngPage {
         this.hasFinished = true;
       }
     }, 1000);
+
+    if (!this.runTimer) {
+      clearTimeout(timer);
+      console.log("Clear Timeout");
+      return;
+    }
+
+
   }
 
   getSecondsAsDigitalClock(inputSeconds: number) {

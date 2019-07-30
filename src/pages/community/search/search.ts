@@ -4,6 +4,10 @@ import { MyPage } from '../my/my';
 import { ImagesProvider } from '../../../providers/images/images';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { AlignPopoverPage } from './align-popover/align-popover';
+import { AuthService } from '../../../providers/auth-service';
+import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+
+
 
 /**
  * Generated class for the SearchPage page.
@@ -23,6 +27,7 @@ export class SearchPage {
   searchTerm: any = "";
   jsonData: any;
   items: any;
+  items2: any;
   focus: boolean = false;
   page_view: boolean = false;
   communityBeautyLoadData: any;
@@ -30,19 +35,38 @@ export class SearchPage {
   skinQnaData: any;
   select_popover_option: any = "최신순";
   @ViewChild(Slides) slides: Slides;
+  tags: any;
+  tempTags: any;
+  tempdata: any;
+  toggleTag: boolean = false;
+  pageNum : any;
+  page: any = "0";
+  search_view : boolean = false;
+  search_tip : boolean = true;
+  userData : any;
+  jwtHelper: JwtHelper = new JwtHelper();
 
 
-  constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, public popoverCtrl: PopoverController,
+
+  constructor(private auth: AuthService, public nav: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, public popoverCtrl: PopoverController,
     private themeableBrowser: ThemeableBrowser, private images: ImagesProvider) {
 
     this.initializeItems();
   }
 
+  search(event) {
+    this.page_view = true;
+    // console.log("serach =---------" + this.searchTerm);
+  }
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchPage');
+    // console.log('ionViewDidLoad SearchPage');
   }
 
   initializeItems() {
+    this.tempTags = [
+      { "name": "#g1partners" }
+    ]
     this.jsonData = [
       { "id": 1, "label": "saw", "name": "피부트러블" },
       { "id": 2, "label": "saw1", "name": "피부트러블관리" },
@@ -54,20 +78,55 @@ export class SearchPage {
       { "id": 8, "label": "saw2", "name": "피부트러블관리하자" },
     ];
 
-    this.items = this.jsonData
-    console.log("this.beautyNoteData : " + this.beautyNoteData);
+    this.items = this.jsonData;
+    this.items2 = this.tempTags;
   }
 
   ionViewWillEnter() {
-    this.setFilteredItems(event);
+    // this.setFilteredItems(event);
+    this.loadItems();
     this.communityBeautyLoad();
     this.beautyNoteLoad();
     this.skinQnaLoad();
+    this.getHashTags();
+
   }
 
   setFilteredItems(event) {
+    // if (event.data === '#') {
+    //   this.toggleTag = true;
+    // } else {
+    //   this.toggleTag = false;
+    // }
+    if (event) {
+      console.log(event.target.value);
+      if (event.target.value.indexOf('#') >= 0) {
+        this.toggleTag = true;
+        this.page = "1";
+      } else {
+        this.toggleTag = false;
+        this.page = "0";
+
+      }
+
+      if (event.target.value.length === 0 || event.target.value.length < 2){
+        console.log("자릿수 두자리 미만");
+        this.page_view = false;
+        this.search_view = false;
+        this.search_tip = true;
+      } else if (event.target.value.length >= 2){  //검색어 입려부터 연관 검색어가 보이도록 한다.
+        this.search_view = true;
+        this.search_tip = false;
+
+      }
+    }
+    // if(event.target.value === '#'){
+    //   console.log("샵검색 시작");
+    // }
     this.jsonData = this.filterItems(this.searchTerm);
-    console.log("enterCheck : " + event);
+    this.tempTags = this.tagfilterItems(this.searchTerm);
+
+    // console.log("enterCheck : " + event);
   }
 
   filterItems(searchTerm) {
@@ -78,18 +137,28 @@ export class SearchPage {
 
   }
 
+  tagfilterItems(searchTerm) {
+    // this.initializeItems();
+    return this.items2.filter((item) => {
+      return item.name.toLowerCase().includes(searchTerm.toLowerCase());
+      // return item.tags.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
+  }
+
   navigateToDetails(data) {
-    console.log("data============name" + data.name);
-    console.log("data============id" + data.id);
+    // console.log("data============name" + data.name);
+    // console.log("data============id" + data.id);
     this.page_view = true;
     this.searchTerm = data.name;
   }
 
   selectedTab(tab) {
-  //  this.slides.slideTo(tab);
-
-  console.log('  this.slides.slideTo(tab)===================' + tab);
+    // this.slides.slideTo(tab);
+    console.log('  this.slides.slideTo(tab)===================' + tab);
+    this.page = tab.toString();
   }
+
   onSearch(event) {
     // console.log("onSearch==========" + event.target.value)
   }
@@ -128,7 +197,7 @@ export class SearchPage {
           }, 100)
         }
         else if (this.select_popover_option === "인기순") {
-          console.log('select_popover_option==========' + this.select_popover_option);
+          // console.log('select_popover_option==========' + this.select_popover_option);
         }
       });
     }
@@ -149,7 +218,7 @@ export class SearchPage {
           }, 100)
         }
         else if (this.select_popover_option === "인기순") {
-          console.log('select_popover_option==========' + this.select_popover_option);
+          // console.log('select_popover_option==========' + this.select_popover_option);
         }
       });
     }
@@ -170,7 +239,7 @@ export class SearchPage {
             "type": 'beauty',
           })
         }
-        console.log("this.communityBeautyLoadData : " + JSON.stringify(this.jsonData));
+        // console.log("this.communityBeautyLoadData : " + JSON.stringify(this.jsonData));
         this.items = this.jsonData;
       }
     });
@@ -181,18 +250,21 @@ export class SearchPage {
       this.beautyNoteData = data;
       if (data !== '') {
         for (var i = 0; i < data.length; i++) {
+
+
           this.jsonData.push({
             "id": data[i]._id,
             "select": data[i].select,
             "name": data[i].title,
             "views": data[i].views,
             "like": data[i].like,
-            "comments" : data[i].comments,
+            "comments": data[i].comments,
+            "tags": data[i].tags,
             "type": 'note',
           })
 
         }
-        console.log("this.beautyNoteData : " + JSON.stringify(this.jsonData));
+        // console.log("this.beautyNoteData : " + JSON.stringify(this.jsonData));
         this.items = this.jsonData;
       }
 
@@ -210,12 +282,15 @@ export class SearchPage {
             "name": data[i].title,
             "views": data[i].views,
             "like": data[i].like,
-            "comments" : data[i].comments,
+            "comments": data[i].comments,
+            "tags": data[i].tags,
             "type": 'qna',
           })
 
         }
-        console.log("this.skinQnaLoad : " + JSON.stringify(this.jsonData));
+
+        // console.log("this.skinQnaLoad : " + JSON.stringify(this.tags));
+        // console.log("this.skinQnaLoadㅁ;ㅣ어ㅏㄴㄹ;미어ㅏㄴㄹ;ㅣ마ㅓㄴㅇㄹ;ㅣㅏㅁ넝;리ㅏ먼ㅇㄹ;ㅣㅏㅓ : " + JSON.stringify(this.items));
         this.items = this.jsonData;
       }
     });
@@ -444,10 +519,89 @@ export class SearchPage {
   }
 
 
-  enterCheck(event){
+  enterCheck(event) {
     console.log(event);
   }
 
+
+  getHashTags() {
+    this.auth.getHashTags().subscribe(items => {
+      if (items !== '' || !undefined || !null) {
+        // console.log(items[0].tags);
+        // for(var i = 0; i < items[0].tags.length; i++){
+        //   console.log("tag 길이 : " + items[0].tags[i]);
+        // }
+        this.tags = items[0].tags.split(",");
+        // console.log("태그 형태 : " + this.tags)
+        // console.log("태그 형태 길이 : " + this.tags[0])
+        for (var i = 0; i < this.tags.length; i++) {
+          if (this.tags[i] !== '') {
+            this.tempTags.push({
+              // id: i,
+              name: this.tags[i],
+            })
+          }
+        }
+        // console.log("태그 결과 : " + JSON.stringify(this.tempTags));
+        this.items2 = this.tempTags;
+        setTimeout(() => {
+          this.tempdata = Array.from(new Set(
+            this.items2.map(data => data.name)
+          ));
+        }, 0); // execute timeout function immediately, fakes async
+        console.log("과연 중복제거는 잘 되었나 : " + JSON.stringify(this.items2));
+      }
+    });
+  }
+
+  removeDuplicates() {
+    setTimeout(() => {
+      this.items2 = Array.from(new Set(
+        this.items2.map(data => data.name)
+      ));
+    }, 0); // execute timeout function immediately, fakes async
+    console.log("과연 중복제거는 잘 되었나 : " + this.items2)
+  }
+
+
+  community_modify(id){
+      console.log("커뮤니티니" + id);
+  }
+
+  community_qna_modify(id){
+    console.log("커뮤니티 " + id)
+  }
+
+  public loadItems() {
+    this.auth.getUserStorage().then(items => {
+
+      if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: items.email,
+          gender: items.gender,
+          nickname: items.nickname,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+        };
+      } else {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: this.jwtHelper.decodeToken(items).email,
+          gender: items.gender,
+          nickname: this.jwtHelper.decodeToken(items).name,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+        };
+      }
+    });
+  }
 
 
 }

@@ -48,7 +48,7 @@
 
   <!-- <ion-card style =" width=100%;"> -->
     <ion-item no-lines>
-      <button ion-button large full clear class="timer-button timer-text">{{displayTime}}</button>
+      <button *ngIf="displayTime" ion-button large full clear >{{displayTime}}</button>
     </ion-item>
     <!-- <ion-item > -->
       <!-- <button ion-button icon-left clear color="danger" small (click)="initTimer()" item-left >
