@@ -97,7 +97,7 @@
   </div> -->
     <!-- <img *ngIf="thumb_image" class="profile_comment" src="{{userData.thumbnail_image}}"> -->
 
-    <ng-container *ngIf="comment_popover_option ==='보기'">
+    <ng-container *ngIf="comment_popover_option ==='보기' || comment_popover_option ==='삭제'">
     <img *ngIf="!thumb_image" class="profile_comment" style="margin-top: 7%;" src="{{profileimg_url}}">
     <img *ngIf="thumb_image" class="profile_comment" style="margin-top: 7%;" src="{{userData.thumbnail_image}}">
     <div class="container">
@@ -239,7 +239,7 @@
 <textarea *ngIf="comment_popover_option==='보기'" class="content_comment" style="margin-top: 9%;" rows="3" cols="20" maxLength="300" autoGrow="true" placeholder="댓글 등록" (input)="adjustTextarea()" ></textarea>
 <div *ngIf="comment_popover_option==='보기'" style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div> -->
 
-    <ng-container *ngIf="comment_popover_option==='보기'">
+    <ng-container *ngIf="comment_popover_option==='보기' || comment_popover_option ==='삭제'">
     <img *ngIf="!thumb_image" class="profile_comment" style="margin-top: 7%;" src="{{profileimg_url}}">
     <img *ngIf="thumb_image" class="profile_comment" style="margin-top: 7%;" src="{{userData.thumbnail_image}}">
     <div class="container">

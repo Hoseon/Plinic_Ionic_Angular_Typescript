@@ -28,7 +28,7 @@ export class CommunityModifyPage {
   comment_popover_option: any = "보기";
   comment_popover_option_textarea: any;
   select_popover_option: any = "보기";
-  userData: any;
+  userData: any = {};
   profileimg_url: any;
   jwtHelper: JwtHelper = new JwtHelper();
 
@@ -52,15 +52,7 @@ export class CommunityModifyPage {
     this.platform.ready().then((readySource) => {
 
       //this.presentLoading();
-      this.id = this.navParams.get('id');
-      this.mode = this.navParams.get('mode');
-      console.log("mode : " + this.mode);
-      if (this.navParams.get('mode') === 'qna') {
-        this.skinQnaOneLoad(this.id);
-      } else {
-        this.beautyNoteOneLoad(this.id);
-      }
-      this.loadItems();
+
     })
   }
 
@@ -70,11 +62,19 @@ export class CommunityModifyPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommunityModifyPage');
-
+    this.loadItems();
+    this.id = this.navParams.get('id');
+    this.mode = this.navParams.get('mode');
+    console.log("mode : " + this.mode);
+    if (this.navParams.get('mode') === 'qna') {
+      this.skinQnaOneLoad(this.id);
+    } else {
+      this.beautyNoteOneLoad(this.id);
+    }
   }
 
   ionViewDidEnter() {
-    // console.log("refresh");
+
   }
 
   update() {
@@ -83,13 +83,17 @@ export class CommunityModifyPage {
   }
 
   resize() {
+    setTimeout(() => {
     this.myInput.nativeElement.style.height = 'auto'
     this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
+  }, 100)
   }
 
   textareaResize() {
+    setTimeout(() => {
     this.myInput.nativeElement.style.height = '40px'
     this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
+  }, 100)
   }
 
 
@@ -319,7 +323,6 @@ export class CommunityModifyPage {
                                 this.comment_popover_option_textarea = -1;
                                 this.textareaResize();
                                 this.update();
-                                this.dissmiss();
                               }
                             }
                           ]
@@ -468,6 +471,7 @@ export class CommunityModifyPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: items.from
         };
       } else {
         this.userData = {
@@ -481,8 +485,9 @@ export class CommunityModifyPage {
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
         };
-        // console.log(this.userData);
+        console.log(this.userData.from);
       }
+
       this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
       this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
     });

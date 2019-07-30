@@ -288,6 +288,13 @@ page-community-modify {
      padding: 0px;
     }
 
+
+    .community_tag_btn:before {
+      content: "#";
+      letter-spacing: -2px;
+    }
+
+
     .community_tag_btn{
       //width: 87px;
       height: 38px;
@@ -305,6 +312,7 @@ page-community-modify {
       box-shadow: none !important;
       margin-left: 16px;
       margin-right: -10px;
+      display: inline-flex;
     }
 
 
