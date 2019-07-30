@@ -17,9 +17,9 @@
 
       <ion-item no-lines>
         <div *ngIf="userData">
-        <img *ngIf="!thumb_image" class="profile-img" src="{{profileimg_url}}" />
+        <img *ngIf="!thumb_image" class="profile-img" src="{{profileimg_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
         </div>
-        <img *ngIf="thumb_image" class="profile-img" src="{{userData.thumbnail_image}}" />
+        <img *ngIf="thumb_image" class="profile-img" src="{{userData.thumbnail_image}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
       </ion-item><br>
 
       <!-- <ion-item  *ngIf="platform.is('android') && from !=='plinic'" no-lines>

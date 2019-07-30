@@ -223,6 +223,7 @@ page-community-modify {
      transition-delay: 0ms !important;
      overflow-y: visible !important;
      margin-left: 5%;
+     padding-right: 5%;
      white-space: pre-wrap !important;
     }
 
@@ -343,10 +344,11 @@ page-community-modify {
       width: 34px;
       height: 34px;
       object-fit: contain;
-          background-color: transparent !important;
+      background-color: transparent !important;
       left: 5%;
       margin-top: 1%;
-      border-radius: 50% !important;
+      border-radius: 50%;
+      border: 0px;
     }
 
     .nickname_comment{
