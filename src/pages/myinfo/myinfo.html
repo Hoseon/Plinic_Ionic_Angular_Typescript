@@ -12,8 +12,8 @@
     </ion-item>
     <ion-item *ngIf="userData">
       <ion-thumbnail item-start>
-        <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image"/>
-        <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url"/>
+        <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
+        <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
       </ion-thumbnail>
 
       <!-- <ion-thumbnail *ngIf="platform.is('android') && userData.from ==='plinic'" item-start>

@@ -141,8 +141,12 @@ page-community-modify {
     }
 
     .text-input-md{
-      margin-left: 0px;
       margin-right: 0px;
+    }
+
+    .text-input-ios{
+      margin-right: 0px;
+      margin-left: 3%;
     }
 
     .item-md{
@@ -219,6 +223,7 @@ page-community-modify {
      transition-delay: 0ms !important;
      overflow-y: visible !important;
      margin-left: 5%;
+     padding-right: 5%;
      white-space: pre-wrap !important;
     }
 
@@ -284,6 +289,13 @@ page-community-modify {
      padding: 0px;
     }
 
+
+    .community_tag_btn:before {
+      content: "#";
+      letter-spacing: -2px;
+    }
+
+
     .community_tag_btn{
       //width: 87px;
       height: 38px;
@@ -301,6 +313,7 @@ page-community-modify {
       box-shadow: none !important;
       margin-left: 16px;
       margin-right: -10px;
+      display: inline-flex;
     }
 
 
@@ -331,10 +344,11 @@ page-community-modify {
       width: 34px;
       height: 34px;
       object-fit: contain;
-          background-color: transparent !important;
+      background-color: transparent !important;
       left: 5%;
       margin-top: 1%;
-      border-radius: 50% !important;
+      border-radius: 50%;
+      border: 0px;
     }
 
     .nickname_comment{

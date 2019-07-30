@@ -549,6 +549,11 @@ page-community-write {
       letter-spacing: 3px;
     }
 
+    [_nghost-c2]:before {
+      content: "#";
+      letter-spacing: 3px;
+    }
+
     [_nghost-c1]{
       background-color: #FFF !important;
       display: inline-flex;
@@ -589,20 +594,68 @@ page-community-write {
       margin-top: 3px;
     }
 
+    [_nghost-c2] .ng2-tag-input-remove[_ngcontent-c2]{
+      background-color: #FFF !important;
+      color: #292929;
+      width: auto;
+      margin-top: 3px;
+    }
+
     [_nghost-c2]{
       left: 22%;
       position: fixed;
       top: 47%;
-      width: 120px;
+      //width: 120px;
+      display: inline-table;
+      height: 100px;
+      //background-color: #5c59b6;
+      color: #FFF;
+    }
+
+    [_nghost-c2]{
+      background-color: #FFF !important;
+      display: inline-flex;
+      position: inherit;
+      padding-left: 0px;
+      padding-right: 2px;
+      min-width: fit-content;
+      font-size: 14px;
+      color: #5c59b6;
+    }
+
+    [_nghost-c2] .rl-autocomplete-item[_ngcontent-c2]{
+      left: 22%;
+      top: 10%;
+      //width: 150px;
+      line-height: normal;
+      display: block;
+      height: 40px;
+      background-color: #5c59b6;
+      color: #FFF;
+      font-family: NotoSansCJKkr;
+      font-size: 14px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+    }
+
+    [_nghost-c3]{
+      left: 22%;
+      position: fixed;
+      top: 47%;
+      //width: 120px;
       display: inline-table;
       height: 100px;
       background-color: #5c59b6;
       color: #FFF;
     }
-    [_nghost-c2] .rl-autocomplete-item[_ngcontent-c2]{
+
+    [_nghost-c3] .rl-autocomplete-item[_ngcontent-c3]{
       left: 22%;
       top: 10%;
-      width: 150px;
+      //width: 150px;
       line-height: normal;
       display: block;
       height: 40px;

@@ -62,6 +62,7 @@ export class MyinfoPage {
     this.loadimagePath();
     this.loadItems();
     this.loadNotice();
+    console.log("1234");
 
   }
 
@@ -73,6 +74,7 @@ export class MyinfoPage {
 
   ionViewDidEnter() {
     this.blu_connect = this.authService.bluetooth_connect();
+    console.log('blu_connect=====================' + this.authService.bluetooth_connect());
     // this.loadItems();
     // this.loadNotice();
     let tabs = document.querySelectorAll('.tabbar');
@@ -155,6 +157,7 @@ export class MyinfoPage {
   }
 
   ionViewDidLoad() {
+    console.log('ionViewDidLoad MyinfoPage');
   }
 
   public logout() {
