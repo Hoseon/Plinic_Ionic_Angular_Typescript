@@ -13,7 +13,7 @@
     </ion-searchbar>
 
     <ion-searchbar *ngIf="platform.is('ios') || platform.is('core')" mode="ios" class="ios_search" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" [showCancelButton]="shouldShowCancel" (ionInput)="setFilteredItems($event)"
-      (ionCancel)="onCancel($event)" (ionFocus)="onFocus($event)" (ionChange)="onChange($event)" (search)="search(data)" placeholder="검색">
+      (ionCancel)="onCancel($event)" (ionFocus)="onFocus($event)" (ionChange)="onChange($event)" (search)="search($event)" placeholder="검색">
     </ion-searchbar>
   </form>
 </ion-header>
@@ -279,7 +279,7 @@
         <!-- 뷰트꿀팁 이미지가 있을 때  -->
         <!-- {{i}} -->
         <ng-container *ngIf="beautynote.filename">
-          <ng-container *ngIf="beautynote.tags.indexOf(searchTerm) >= 0">
+          <ng-container *ngIf="beautynote.tags.indexOf(tagTerms) >= 0">
             <ion-item class="line_item">
               <ion-col (click)="community_modify(beautynote._id)" class="container">
                 <ion-row class="beauty_row">
@@ -298,7 +298,7 @@
 
 
         <ng-container *ngIf="!beautynote.filename">
-          <ng-container *ngIf="beautynote.tags.indexOf(searchTerm) >= 0">
+          <ng-container *ngIf="beautynote.tags.indexOf(tagTerms) >= 0">
             <!-- 뷰트노트 이미지가 없을 때  -->
             <ion-item class="line_item">
               <ion-col (click)="community_modify(beautynote._id)" class="container">
@@ -320,7 +320,7 @@
       <!-- 피부 고민 이미지가 있을 때  -->
       <ng-container *ngFor="let skinqna of skinQnaData">
         <ng-container *ngIf="skinqna.filename">
-          <ng-container *ngIf="skinqna.tags.indexOf(searchTerm) >= 0">
+          <ng-container *ngIf="skinqna.tags.indexOf(tagTerms) >= 0">
             <ion-item class="line_item">
               <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
                 <ion-row class="beauty_row">
@@ -338,7 +338,7 @@
           </ng-container>
         </ng-container>
         <ng-container *ngIf="!skinqna.filename">
-          <ng-container *ngIf="skinqna.tags.indexOf(searchTerm) >= 0">
+          <ng-container *ngIf="skinqna.tags.indexOf(tagTerms) >= 0">
             <!-- 피부 고민 이미지가 없을 때  -->
             <ion-item class="line_item">
               <ion-col (click)="community_qna_modify(skinqna._id)" class="container">

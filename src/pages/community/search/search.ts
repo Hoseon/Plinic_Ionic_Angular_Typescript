@@ -28,6 +28,7 @@ export class SearchPage {
 
   searchTerm: any = "";
   jsonData: any;
+  jsonData2: any;
   items: any;
   items2: any;
   focus: boolean = false;
@@ -47,6 +48,9 @@ export class SearchPage {
   search_tip: boolean = true;
   userData: any;
   jwtHelper: JwtHelper = new JwtHelper();
+  datamode: any = "date";
+  tagTerms: any;
+
 
 
 
@@ -59,6 +63,7 @@ export class SearchPage {
   search(event) {
     this.page_view = true;
     // console.log("serach =---------" + this.searchTerm);
+
   }
 
   ionViewDidLoad() {
@@ -87,9 +92,9 @@ export class SearchPage {
   ionViewWillEnter() {
     // this.setFilteredItems(event);
     this.loadItems();
-    this.communityBeautyLoad();
-    this.beautyNoteLoad();
-    this.skinQnaLoad();
+    this.communityBeautyLoad(this.datamode);
+    this.beautyNoteLoad(this.datamode);
+    this.skinQnaLoad(this.datamode);
     this.getHashTags();
 
   }
@@ -101,8 +106,10 @@ export class SearchPage {
     //   this.toggleTag = false;
     // }
     if (event) {
-      console.log(event.target.value);
+      // console.log(event.target.value);
       if (event.target.value.indexOf('#') >= 0) {
+        this.tagTerms = this.searchTerm;
+        this.tagTerms = this.tagTerms.replace("#","");
         this.toggleTag = true;
         this.page = "1";
       } else {
@@ -112,7 +119,7 @@ export class SearchPage {
       }
 
       if (event.target.value.length === 0 || event.target.value.length < 2) {
-        console.log("자릿수 두자리 미만");
+        // console.log("자릿수 두자리 미만");
         this.page_view = false;
         this.search_view = false;
         this.search_tip = true;
@@ -125,6 +132,7 @@ export class SearchPage {
     // if(event.target.value === '#'){
     //   console.log("샵검색 시작");
     // }
+    // this.searchTerm = this.searchTerm.replace("#","");
     this.jsonData = this.filterItems(this.searchTerm);
     this.tempTags = this.tagfilterItems(this.searchTerm);
 
@@ -157,7 +165,7 @@ export class SearchPage {
 
   selectedTab(tab) {
     // this.slides.slideTo(tab);
-    console.log('  this.slides.slideTo(tab)===================' + tab);
+    // console.log('  this.slides.slideTo(tab)===================' + tab);
     this.page = tab.toString();
   }
 
@@ -191,15 +199,29 @@ export class SearchPage {
         ev: event
       });
       popover.onDidDismiss(popoverData => {
-        console.log(popoverData);
+        // console.log(popoverData);
         this.select_popover_option = popoverData;
         if (this.select_popover_option === "최신순") {
           setTimeout(() => {
-            //console.log('최신순');
+            // console.log('최신순');
+            this.sortData("date");
+            this.communityBeautyLoad("date");
+            this.beautyNoteLoad("date");
+            this.skinQnaLoad("date");
           }, 100)
         }
         else if (this.select_popover_option === "인기순") {
           // console.log('select_popover_option==========' + this.select_popover_option);
+          this.sortData("views");
+          this.communityBeautyLoad("views");
+          this.beautyNoteLoad("views");
+          this.skinQnaLoad("views");
+        } else {
+          this.select_popover_option = "최신순";
+          this.sortData("date");
+          this.communityBeautyLoad("date");
+          this.beautyNoteLoad("date");
+          this.skinQnaLoad("date");
         }
       });
     }
@@ -212,23 +234,54 @@ export class SearchPage {
         ev: event
       });
       popover.onDidDismiss(popoverData => {
-        console.log(popoverData);
+        // console.log(popoverData);
         this.select_popover_option = popoverData;
         if (this.select_popover_option === "최신순") {
           setTimeout(() => {
+            this.sortData("date");
             //console.log('최신순');
           }, 100)
         }
         else if (this.select_popover_option === "인기순") {
+          this.sortData("views");
           // console.log('select_popover_option==========' + this.select_popover_option);
+        } else {
+          this.select_popover_option = "최신순";
+          this.sortData("date");
         }
       });
     }
   }
 
-  public communityBeautyLoad() {
+  public communityBeautyLoad(mode) {
     this.images.communityBeautyLoad().subscribe(data => {
-      this.communityBeautyLoadData = data;
+
+      if(mode === "date"){
+        // this.beautyNoteData = data;
+        this.communityBeautyLoadData = data.sort((a, b) => {
+          if (a.createdAt > b.createdAt) {
+            return -1;
+          }
+          if (a.createdAt < b.createdAt) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+
+      if(mode === "views"){
+        this.communityBeautyLoadData = data.sort((a, b) => {
+          if (a.views > b.views) {
+            return -1;
+          }
+          if (a.views < b.views) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+
+      // this.communityBeautyLoadData = data;
       if (data !== '') {
         for (var i = 0; i < data.length; i++) {
           this.jsonData.push({
@@ -238,6 +291,7 @@ export class SearchPage {
             "like": data[i].like,
             "body": data[i].body,
             "posturl": data[i].posturl,
+            "createdAt": data[i].createdAt,
             "type": 'beauty',
           })
         }
@@ -247,9 +301,32 @@ export class SearchPage {
     });
   }
 
-  public beautyNoteLoad() {
+  public beautyNoteLoad(mode) {
     this.images.beautyNoteLoad().subscribe(data => {
-      this.beautyNoteData = data;
+      if(mode === "date"){
+        // this.beautyNoteData = data;
+        this.beautyNoteData = data.sort((a, b) => {
+          if (a.createdAt > b.createdAt) {
+            return -1;
+          }
+          if (a.createdAt < b.createdAt) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+
+      if(mode === "views"){
+        this.beautyNoteData = data.sort((a, b) => {
+          if (a.views > b.views) {
+            return -1;
+          }
+          if (a.views < b.views) {
+            return 1;
+          }
+          return 0;
+        });
+      }
       if (data !== '') {
         for (var i = 0; i < data.length; i++) {
 
@@ -262,6 +339,7 @@ export class SearchPage {
             "like": data[i].like,
             "comments": data[i].comments,
             "tags": data[i].tags,
+            "createdAt": data[i].createdAt,
             "type": 'note',
           })
 
@@ -273,9 +351,34 @@ export class SearchPage {
     });
   }
 
-  public skinQnaLoad() {
+  public skinQnaLoad(mode) {
     this.images.skinQnaLoad().subscribe(data => {
-      this.skinQnaData = data;
+      if(mode === "date"){
+        // this.beautyNoteData = data;
+        this.skinQnaData = data.sort((a, b) => {
+          if (a.createdAt > b.createdAt) {
+            return -1;
+          }
+          if (a.createdAt < b.createdAt) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+
+      if(mode === "views"){
+        this.skinQnaData = data.sort((a, b) => {
+          if (a.views > b.views) {
+            return -1;
+          }
+          if (a.views < b.views) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+
+      // this.skinQnaData = data;
       if (data !== '') {
         for (var i = 0; i < data.length; i++) {
           this.jsonData.push({
@@ -286,6 +389,7 @@ export class SearchPage {
             "like": data[i].like,
             "comments": data[i].comments,
             "tags": data[i].tags,
+            "createdAt": data[i].createdAt,
             "type": 'qna',
           })
 
@@ -294,6 +398,8 @@ export class SearchPage {
         // console.log("this.skinQnaLoad : " + JSON.stringify(this.tags));
         // console.log("this.skinQnaLoadㅁ;ㅣ어ㅏㄴㄹ;미어ㅏㄴㄹ;ㅣ마ㅓㄴㅇㄹ;ㅣㅏㅁ넝;리ㅏ먼ㅇㄹ;ㅣㅏㅓ : " + JSON.stringify(this.items));
         this.items = this.jsonData;
+        // console.log("데이터 : " + JSON.stringify(this.jsonData));
+
       }
     });
   }
@@ -341,25 +447,25 @@ export class SearchPage {
       browser.executeScript({
         code: ""
       });
-      console.log("idididididididid : " + id);
-      console.log("modemodemodemodemodemodemodemodmoe : " + mode);
-      console.log("useruseruseruseruseruseruseruser" + user);
-      console.log(data);
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+      // console.log("idididididididid : " + id);
+      // console.log("modemodemodemodemodemodemodemodmoe : " + mode);
+      // console.log("useruseruseruseruseruseruseruser" + user);
+      // console.log(data);
+      // console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
       if (mode === 'tip') {
-        console.log("tiptiptiptiptiptiptiptiptiptiptip");
+        // console.log("tiptiptiptiptiptiptiptiptiptiptip");
         //this.toast();
         // this.images.like(id, user).subscribe(data => {
         //   console.log("-----------------------------------------" + data);
         //
         // });
-        console.log("tip2tip2tip2tip2tip2tip2tiptiptiptiptip");
+        // console.log("tip2tip2tip2tip2tip2tip2tiptiptiptiptip");
 
       } else if (mode === 'exhi') {
-        console.log("exhiexhiexhiexhiexhiexhiexhiexhi");
+        // console.log("exhiexhiexhiexhiexhiexhiexhiexhi");
 
       } else {
-        console.log("nothingnothingnothingnothingnothingnothing");
+        // console.log("nothingnothingnothingnothingnothingnothing");
       }
     })
 
@@ -405,7 +511,7 @@ export class SearchPage {
     })
 
     browser.on('sharePressed').subscribe(data => {
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+      // console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
     })
 
 
@@ -455,25 +561,25 @@ export class SearchPage {
       browser.executeScript({
         code: ""
       });
-      console.log("idididididididid : " + id);
-      console.log("modemodemodemodemodemodemodemodmoe : " + mode);
-      console.log("useruseruseruseruseruseruseruser" + user);
-      console.log(data);
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+      // console.log("idididididididid : " + id);
+      // console.log("modemodemodemodemodemodemodemodmoe : " + mode);
+      // console.log("useruseruseruseruseruseruseruser" + user);
+      // console.log(data);
+      // console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
       if (mode === 'tip') {
-        console.log("tiptiptiptiptiptiptiptiptiptiptip");
+        // console.log("tiptiptiptiptiptiptiptiptiptiptip");
         //this.toast();
         // this.images.like(id, user).subscribe(data => {
         //   console.log("-----------------------------------------" + data);
         //
         // });
-        console.log("tip2tip2tip2tip2tip2tip2tiptiptiptiptip");
+        // console.log("tip2tip2tip2tip2tip2tip2tiptiptiptiptip");
 
       } else if (mode === 'exhi') {
-        console.log("exhiexhiexhiexhiexhiexhiexhiexhi");
+        // console.log("exhiexhiexhiexhiexhiexhiexhiexhi");
 
       } else {
-        console.log("nothingnothingnothingnothingnothingnothing");
+        // console.log("nothingnothingnothingnothingnothingnothing");
       }
     })
 
@@ -515,14 +621,14 @@ export class SearchPage {
     })
 
     browser.on('sharePressed').subscribe(data => {
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+      // console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
     })
 
   }
 
 
   enterCheck(event) {
-    console.log(event);
+    // console.log(event);
   }
 
 
@@ -551,7 +657,7 @@ export class SearchPage {
             this.items2.map(data => data.name)
           ));
         }, 0); // execute timeout function immediately, fakes async
-        console.log("과연 중복제거는 잘 되었나 : " + JSON.stringify(this.items2));
+        // console.log("과연 중복제거는 잘 되었나 : " + JSON.stringify(this.items2));
       }
     });
   }
@@ -562,7 +668,7 @@ export class SearchPage {
         this.items2.map(data => data.name)
       ));
     }, 0); // execute timeout function immediately, fakes async
-    console.log("과연 중복제거는 잘 되었나 : " + this.items2)
+    // console.log("과연 중복제거는 잘 되었나 : " + this.items2)
   }
 
   public loadItems() {
@@ -605,6 +711,37 @@ export class SearchPage {
     let myModal = this.modalCtrl.create(CommunityModifyPage, { id: id, mode: 'qna' });
     myModal.present();
   }
+
+
+
+  public sortData(mode) {
+    if (mode === 'date') {
+      this.jsonData = this.jsonData.sort((a, b) => {
+        if (a.createdAt > b.createdAt) {
+          return -1;
+        }
+        if (a.createdAt < b.createdAt) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+
+    if (mode === 'views') {
+      this.jsonData = this.jsonData.sort((a, b) => {
+        if (a.views > b.views) {
+          return -1;
+        }
+        if (a.views < b.views) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+    // console.log("this JSON Data : " + JSON.stringify(this.jsonData));
+  }
+
+
 
 
 }
