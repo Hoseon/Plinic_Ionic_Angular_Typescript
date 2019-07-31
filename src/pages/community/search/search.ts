@@ -1,11 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ViewController, PopoverController, Slides } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ViewController, PopoverController, Slides, ModalController } from 'ionic-angular';
 import { MyPage } from '../my/my';
 import { ImagesProvider } from '../../../providers/images/images';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { AlignPopoverPage } from './align-popover/align-popover';
 import { AuthService } from '../../../providers/auth-service';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { CommunityModifyPage } from '../community-modify/community-modify';
+import { CommunityWritePage } from '../community-write/community-write';
 
 
 
@@ -39,16 +41,16 @@ export class SearchPage {
   tempTags: any;
   tempdata: any;
   toggleTag: boolean = false;
-  pageNum : any;
+  pageNum: any;
   page: any = "0";
-  search_view : boolean = false;
-  search_tip : boolean = true;
-  userData : any;
+  search_view: boolean = false;
+  search_tip: boolean = true;
+  userData: any;
   jwtHelper: JwtHelper = new JwtHelper();
 
 
 
-  constructor(private auth: AuthService, public nav: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, public popoverCtrl: PopoverController,
+  constructor(public modalCtrl: ModalController, private auth: AuthService, public nav: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, public popoverCtrl: PopoverController,
     private themeableBrowser: ThemeableBrowser, private images: ImagesProvider) {
 
     this.initializeItems();
@@ -109,12 +111,12 @@ export class SearchPage {
 
       }
 
-      if (event.target.value.length === 0 || event.target.value.length < 2){
+      if (event.target.value.length === 0 || event.target.value.length < 2) {
         console.log("자릿수 두자리 미만");
         this.page_view = false;
         this.search_view = false;
         this.search_tip = true;
-      } else if (event.target.value.length >= 2){  //검색어 입려부터 연관 검색어가 보이도록 한다.
+      } else if (event.target.value.length >= 2) {  //검색어 입려부터 연관 검색어가 보이도록 한다.
         this.search_view = true;
         this.search_tip = false;
 
@@ -563,15 +565,6 @@ export class SearchPage {
     console.log("과연 중복제거는 잘 되었나 : " + this.items2)
   }
 
-
-  community_modify(id){
-      console.log("커뮤니티니" + id);
-  }
-
-  community_qna_modify(id){
-    console.log("커뮤니티 " + id)
-  }
-
   public loadItems() {
     this.auth.getUserStorage().then(items => {
 
@@ -601,6 +594,16 @@ export class SearchPage {
         };
       }
     });
+  }
+
+  public community_modify(id) {
+    let myModal = this.modalCtrl.create(CommunityModifyPage, { id: id, mode: 'note' });
+    myModal.present();
+  }
+
+  public community_qna_modify(id) {
+    let myModal = this.modalCtrl.create(CommunityModifyPage, { id: id, mode: 'qna' });
+    myModal.present();
   }
 
 
