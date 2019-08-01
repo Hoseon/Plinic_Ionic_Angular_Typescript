@@ -1,11 +1,21 @@
 <ion-content class="page_home" no-padding>
 
+  <ion-item style="padding-left:0px;" *ngIf="platform.is('android') || platform.is('core')">
+   <img class="android_plinic_logo" src="assets/img/ic-system-logo-word/ic-system-logo-word@3x.png" />
+   <img class="android_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
+  </ion-item>
+
+  <ion-item style="padding-left:0px;" *ngIf="platform.is('ios')">
+    <img class="ios_plinic_logo" src="assets/img/ic-system-logo-word/ic-system-logo-word@3x.png" />
+    <img class="ios_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
+  </ion-item>
 
   <ion-slides *ngIf="bannerData && bannerData.length" class="img-banner_top_19000501" pager loop=true autoplay=2000>
     <ion-slide *ngFor="let banner of bannerData">
       <img src='http://plinic.cafe24app.com/images/{{banner._id}}' />
     </ion-slide>
   </ion-slides>
+  <div style="height:8px; width:100%; margin-top:-1%; background-color:#f1f1f1"></div>
 
   <ion-list class="skin_chart">
     <br />

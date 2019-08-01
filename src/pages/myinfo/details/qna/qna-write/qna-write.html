@@ -6,12 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar  *ngIf="platform.is('android')" >
+  <ion-navbar #navbar *ngIf="platform.is('android')">
     <ion-title class="android_title" text-wrap>문의하기</ion-title>
   </ion-navbar>
 
 
-  <ion-navbar *ngIf="platform.is('ios')">
+  <ion-navbar #navbar *ngIf="platform.is('ios')">
   	<ion-buttons left>
   		<button ion-button navPop icon-only>
   			<!-- <ion-icon md="md-arrow-forward"></ion-icon> -->

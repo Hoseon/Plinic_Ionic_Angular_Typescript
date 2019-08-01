@@ -135,30 +135,35 @@ page-notice {
   .item-ios ion-icon[item-left], .item-ios ion-icon[item-right], .item-ios ion-icon[item-start], .item-ios ion-icon[item-end]{
     color: transparent;
   }
+
   .arrow-forward{
-    background-image: url(assets/img/myinfo/ic-system-arrowdown-grey@3x.png);
+    background-image: url(../assets/img/myinfo/ic-system-arrowdown-grey@3x.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 25px;
     height: 25px;
     position: absolute;
-    right: 2%;
+    right: 0%;
     top: 12%;
   }
 
   .arrow-down{
-    background-image: url(assets/img/myinfo/ic-system-arrowup-grey@3x.png);
+    background-image: url(../assets/img/myinfo/ic-system-arrowup-grey@3x.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 25px;
     height: 25px;
     position: absolute;
-    right: 2%;
+    right: 0%;
     top: 12%;
   }
 
 
   .notice_title{
+    // width: 91%;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    // white-space: nowrap;
     background-color: #ffffff;
     font-family: NotoSansCJKkr;
     font-size: 15px;

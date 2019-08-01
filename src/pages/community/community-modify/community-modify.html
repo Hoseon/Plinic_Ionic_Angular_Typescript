@@ -113,7 +113,7 @@
     <ng-container *ngIf="beautyNoteOneLoadData">
       <ng-container *ngFor="let registerReply of beautyNoteOneLoadData.comments; let i = index">
 
-        <img *ngIf="userData.email === registerReply.email && profileimg_url" class="profile_comment" [src]="profileimg_url"/>
+        <img *ngIf="userData.email === registerReply.email && profileimg_url" class="profile_comment" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
         <img class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{registerReply.email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
         <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="./assets/img/register/ic-system-profile-default@3x.png"/>
 

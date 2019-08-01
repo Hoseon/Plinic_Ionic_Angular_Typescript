@@ -1,5 +1,5 @@
 import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ViewController, ActionSheetController, App, AlertController, normalizeURL } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ViewController, ActionSheetController, App, AlertController, normalizeURL, ModalController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AuthService } from '../../../providers/auth-service';
 import { ImagesProvider } from '../../../providers/images/images';
@@ -42,7 +42,7 @@ export class CommunityWritePage {
   page_modify = "3";
 
   @ViewChild('image') imageElement: ElementRef;
-
+  unregisterBackButtonAction: Function
 
   // ,preparedTags = [
   //   '#Ionic',
@@ -68,6 +68,7 @@ export class CommunityWritePage {
   }
 
   constructor(private imagesProvider: ImagesProvider, public _camera: Camera, public actionSheetCtrl: ActionSheetController, public nav: NavController,
+    private modalCtrl: ModalController,
     public navParams: NavParams, public platform: Platform, private auth: AuthService, public viewCtrl: ViewController, private alertCtrl: AlertController,
      public app: App, public element: ElementRef, @Inject(DOCUMENT) document) {
 
@@ -77,22 +78,14 @@ export class CommunityWritePage {
         this.skinQna = true;
       }
 
-      this.platform.registerBackButtonAction(() => {
-        let nav = app._appRoot._getActivePortal() || app.getActiveNav();
-        let activeView = nav.getActive();
-
-        if (activeView != null) {
-          if (this.nav.canGoBack()) { // CHECK IF THE USER IS IN THE ROOT PAGE.
-            //this.nav.pop(); // IF IT'S NOT THE ROOT, POP A PAGE.
-          }
-          else if (activeView.isOverlay) {
-            activeView.dismiss();
-          }
-          else {
-          }
-        }
-      });
+        this.unregisterBackButtonAction = this.platform.registerBackButtonAction(() => {
+            this.dissmiss();
+        }, 99999);
     });
+  }
+
+  ionViewWillLeave(){
+    this.unregisterBackButtonAction();
   }
 
 

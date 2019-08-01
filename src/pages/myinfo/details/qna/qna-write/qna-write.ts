@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController, Loading } from 'ionic-angular';
+import { Component , ViewChild} from '@angular/core';
+import { IonicPage, NavController, NavParams, Platform, AlertController, Loading, ViewController, Navbar  } from 'ionic-angular';
 import { AuthService } from '../../../../../providers/auth-service';
 // import { KeyboardAttachDirective } from '../../../../../providers/keyboard-attach.directive'
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
@@ -31,15 +31,56 @@ export class QnaWritePage {
   jwtHelper: JwtHelper = new JwtHelper();
   qnaDetailData: any;
   mode: any;
-  // fruits = [
-  //   {'배송문의' },
-  //   {'결제문의' },
-  //   {'기타문의' },
-  // ];
+  unregisterBackButtonAction: Function
+
+  @ViewChild('navbar') navBar: Navbar;
 
   constructor(
     // public keyboard: Keyboard,
-    public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public alertCtrl: AlertController, private auth: AuthService) {
+    public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public alertCtrl: AlertController, private auth: AuthService
+  , public viewCtrl: ViewController ) {
+
+      this.platform.ready().then((readySource) => {
+
+          this.unregisterBackButtonAction = this.platform.registerBackButtonAction(() => {
+              this.dissmiss();
+          }, 99999);
+      });
+  }
+
+  ionViewDidEnter() {
+      this.navBar.backButtonClick = () => {
+        this.dissmiss();
+      };
+
+    }
+
+  public dissmiss() {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "plinic",
+      message: "문의하기 작성을 취소하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+            console.log('취소');
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            console.log('확인'),
+            this.viewCtrl.dismiss();
+          }
+        }]
+    });
+    alert.present();
+  }
+
+  ionViewWillLeave(){
+    this.unregisterBackButtonAction();
   }
 
   ionViewDidLoad() {

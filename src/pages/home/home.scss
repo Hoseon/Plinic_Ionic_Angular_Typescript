@@ -1,5 +1,39 @@
 page-home {
 
+
+   .ios_plinic_logo{
+    width: 62.5px;
+    height: 31px;
+    object-fit: contain;
+    margin-top: 4%;
+    margin-left: 6%;
+    }
+
+    .android_plinic_logo{
+    width: 62.5px;
+    height: 31px;
+    object-fit: contain;
+    margin-left: 6%;
+    }
+
+    .android_search{
+      position: absolute;
+      top: 25%;
+      right: 5%;
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+    }
+
+    .ios_search{
+      position: absolute;
+      top: 40%;
+      right: 5%;
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+    }
+
     .swiper-pagination-bullet-active{
       background: #5c59b6;
     }
@@ -17,15 +51,18 @@ page-home {
     .img-banner_top_19000501 {
       position: relative;
       top: 0;
-      width: auto;
-      height: 143px;
+      width: 100%;
+      height: auto;
       object-fit: contain;
       //margin: -27px -27px -12px 0px;
       //padding: -0px 0px 0px 0px;
       //font-size:0;
       //line-height:0;
     }
-
+    .swiper-slide img{
+     width: 100%;
+     height: 31vh;
+    }
    .moisture_help{
      width: 90%;
      margin-left: auto;

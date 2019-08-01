@@ -23,7 +23,7 @@
 
 import { IonicPage, App } from 'ionic-angular';
 import { Component, Inject } from '@angular/core';
-import { NavController, Platform, AlertController, ModalController, Loading, LoadingController } from 'ionic-angular';
+import { NavController, Platform, AlertController, ModalController, Loading, LoadingController, ViewController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
@@ -46,7 +46,6 @@ import { BeautyTipAddPage } from '../beauty-tip-add/beauty-tip-add';
 import { PlinicManualPage } from '../myinfo/details/plinic-manual/plinic-manual';
 import { SkinDiagnoseMoisturePage } from '../skin-diagnose-moisture/skin-diagnose-moisture';
 import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture';
-
 
 
 
@@ -175,10 +174,9 @@ export class HomePage {
   total_score: any = 0;
   pre_total_score: any = 0;
 
-
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController,
-    public translateService: TranslateService, public bluetoothle: BluetoothLE,
+    public translateService: TranslateService, public bluetoothle: BluetoothLE, public viewCtrl: ViewController,
     private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, public app: App, private callNumber: CallNumber
     , @Inject(DOCUMENT) document) {
     this.platform.ready().then((readySource) => {
@@ -200,19 +198,46 @@ export class HomePage {
       if (this.auth.bluetooth_connect() == true) {
         //this.nav.push(SkinChartPage);
       }
+
+
       this.platform.registerBackButtonAction(() => {
         let nav = app._appRoot._getActivePortal() || app.getActiveNav();
         let activeView = nav.getActive();
 
+        console.log("activeView.name===================" + activeView.name);
+
         if (activeView != null) {
-          if (this.nav.canGoBack()) { // CHECK IF THE USER IS IN THE ROOT PAGE.
-            this.nav.pop(); // IF IT'S NOT THE ROOT, POP A PAGE.
+          if (this.nav.canGoBack()) {
+             this.nav.pop();
           }
           else if (activeView.isOverlay) {
-            activeView.dismiss();
+              activeView.dismiss();
           }
           else {
             // backgroundMode.moveToBackground();
+            if(activeView.name === 'QnaPage'
+            || activeView.name === 'QnaReadPage'
+            || activeView.name === 'PersonalinfoPage'
+            || activeView.name === 'PlinicManualPage'
+            || activeView.name === 'MarketingPage'
+            || activeView.name === 'BluetoothConnectIngPage'
+            || activeView.name === 'BluetoothDisconnectPage'
+            || activeView.name === 'TermsPage'
+            || activeView.name === 'NoticePage'
+            || activeView.name === 'CareZoneMissionStartPage'
+            || activeView.name === 'CareZoneMissionIngPage'
+            || activeView.name === 'CareZoneMissionDeadlineEndPage'
+            || activeView.name === 'CareZoneMissionDeadlinePage'
+            || activeView.name === 'CareZoneMissionCompletePage'
+            || activeView.name === 'MyPage'
+            || activeView.name === 'MyCommunityModifyPage'
+
+
+          ){
+                console.log("activeView.name===================111111111000000");
+                activeView.dismiss();
+            }
+            else{
             let alert = this.alertCtrl.create({
               cssClass: 'push_alert_cancel',
               title: "plinic",
@@ -229,11 +254,12 @@ export class HomePage {
                   text: '확인',
                   handler: () => {
                     console.log('확인'),
-                      this.platform.exitApp(); // IF IT'S THE ROOT, EXIT THE APP.
+                    this.platform.exitApp(); // IF IT'S THE ROOT, EXIT THE APP.
                   }
                 }]
             });
             alert.present();
+            }
           }
         }
       });

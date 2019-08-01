@@ -275,7 +275,7 @@ page-my-community-modify {
           // position: absolute;
           // top: -25%;
           // right: -120%;
-          transform: translate(385%, -55%);
+          transform: translate(39.5vh, -6vh);
           -ms-transform: translate(-50%, -50%);
           color: #fff;
           border: none;
@@ -291,7 +291,7 @@ page-my-community-modify {
           // position: absolute;
           // top: -25%;
           // right: -120%;
-          transform: translate(320%, -55%);
+          transform: translate(39.5vh, -6vh);
           -ms-transform: translate(-50%, -50%);
           color: #fff;
           border: none;
@@ -314,29 +314,30 @@ page-my-community-modify {
           color: #5c59b6;
         }
 
-  .beauty_note_title_img{
-    max-width: 65%;
-    font-family: NotoSansCJKkr;
-    font-size: 15px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.4;
-    letter-spacing: normal;
-    color: #292929;
-    text-align: left;
-    margin-left: 4%;
-    padding-bottom: 0px;
+        .beauty_note_title_img{
+          max-width: 65%;
+          height: 7vh;
+          font-family: NotoSansCJKkr;
+          font-size: 15px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.4;
+          letter-spacing: normal;
+          color: #292929;
+          text-align: left;
+          margin-left: 4%;
+          padding-bottom: 0px;
 
-    @supports (-webkit-line-clamp: 2) {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: initial;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
-  }
+          @supports (-webkit-line-clamp: 2) {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: initial;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+          }
+        }
 
 
 

@@ -25,12 +25,12 @@
 
 <ion-content no-lines no-padding>
 
-<div *ngFor="let qna of qnaData">
-  <button class="qna_list" mode="ios" no-lines ion-item icon-start (click)="qna_read(qna._id)">[{{qna.select}}] {{qna.qna}}</button>
-</div>
-<!-- <button class="qna_list" mode="ios" no-lines ion-item icon-start>문의하기</button>
-<button class="qna_list" mode="ios" no-lines ion-item icon-start>문의하기</button> -->
-<!-- <div class="no_list" >문의하신 게시글이 없습니다.</div> -->
+<div *ngIf="qnaData_length===0" class="no_list" >문의하신 게시글이 없습니다.</div>
+<ng-container *ngFor="let qna of qnaData">
+  <button *ngIf="qnaData_length!==0" class="qna_list" mode="ios" no-lines ion-item icon-start (click)="qna_read(qna._id)">[{{qna.select}}] {{qna.qna}}</button>
+</ng-container>
+
+
 </ion-content>
 
 
