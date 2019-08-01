@@ -55,7 +55,6 @@
                 <ion-col *ngIf="beautynote.like || beautynote.like===0" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
                   <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
                 </ion-col>
-                <img class="beauty_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
                 <img *ngIf="platform.is('android')" class="beauty_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
                 <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_note_img_ios" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
               </ion-col>
@@ -97,7 +96,6 @@
                 <ion-col *ngIf="skinqna.like || skinqna.like===0" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
                   <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
                 </ion-col>
-                <img class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
                 <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
                 <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
               </ion-col>
