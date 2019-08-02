@@ -23,11 +23,14 @@ export class QnaPage {
   seeTabs;
   qna_select: any = '';
   qna_input: any = '';
-  qnaData: any;
+  qnaData: any = '';
+  qnaData_length: any;
   userData: any;
   jwtHelper: JwtHelper = new JwtHelper();
 
+
   constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, public auth: AuthService) {
+
   }
 
   ionViewDidLoad() {
@@ -62,7 +65,9 @@ export class QnaPage {
   loadQna(email) {
     this.auth.getAllQna(email).subscribe(items => {
       this.qnaData = items;
-      // console.log(items);
+      this.qnaData_length = items.length;
+      console.log(items);
+      console.log(items.length);
     })
   }
 

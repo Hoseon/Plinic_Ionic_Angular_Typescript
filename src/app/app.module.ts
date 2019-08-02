@@ -209,9 +209,7 @@ import { SkinDiagnoseFirstOilPageModule } from '../pages/skin-diagnose-first-oil
 
 
 //태그
-import { RlTagInputModule } from 'angular2-tag-input';
-
-// import { TimerComponent } from '../pages/skin-measure-start/timer'
+import {RlTagInputModule} from 'angular2-tag-input';
 
 
 //인스타그램공유하기
@@ -236,7 +234,6 @@ export function getAuthHttp(http, storage) {
 @NgModule({
   declarations: [
     MyApp,
-    // TimerComponent,
     // LoginPage,
     // LoginpagePage,
     // PasswordfindPage,
@@ -368,7 +365,6 @@ export function getAuthHttp(http, storage) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    // TimerComponent,
     // LoginPage,
     // LoginpagePage,
     // PasswordfindPage,

@@ -27,7 +27,6 @@ export class LoginPage {
     public modalCtrl: ModalController,  public app: App, public platform: Platform
   ) {
     this.platform.ready().then((readySource) => {
-
       this.platform.registerBackButtonAction(() => {
         let nav = app._appRoot._getActivePortal() || app.getActiveNav();
         let activeView = nav.getActive();

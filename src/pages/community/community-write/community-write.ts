@@ -1,5 +1,5 @@
 import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ViewController, ActionSheetController, App, AlertController, normalizeURL } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ViewController, ActionSheetController, App, AlertController, normalizeURL, ModalController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AuthService } from '../../../providers/auth-service';
 import { ImagesProvider } from '../../../providers/images/images';
@@ -50,7 +50,7 @@ export class CommunityWritePage {
   text_edit: boolean = false;
 
   @ViewChild('image') imageElement: ElementRef;
-
+  unregisterBackButtonAction: Function
 
   // ,preparedTags = [
   //   '#Ionic',
@@ -76,6 +76,7 @@ export class CommunityWritePage {
   }
 
   constructor(private imagesProvider: ImagesProvider, public _camera: Camera, public actionSheetCtrl: ActionSheetController, public nav: NavController,
+    private modalCtrl: ModalController,
     public navParams: NavParams, public platform: Platform, private auth: AuthService, public viewCtrl: ViewController, private alertCtrl: AlertController,
     public app: App, public element: ElementRef, @Inject(DOCUMENT) document) {
 
@@ -119,6 +120,10 @@ export class CommunityWritePage {
         }
       });
     });
+  }
+
+  ionViewWillLeave(){
+    this.unregisterBackButtonAction();
   }
 
 
