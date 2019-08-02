@@ -71,16 +71,16 @@ export class AuthService {
 
   devices: any[] = [];
   statusMessage: string;
-  output:any;
-  message:String;
-  responseTxt:any;
+  output: any;
+  message: String;
+  responseTxt: any;
   unpairedDevices: any;
   pairedDevices: any;
   gettingDevices: Boolean;
   peripheral: any = {};
 
 
-  constructor(private ble : BLE, private transfer: Transfer, private http: Http, public authHttp: AuthHttp, public storage: Storage,
+  constructor(private ble: BLE, private transfer: Transfer, private http: Http, public authHttp: AuthHttp, public storage: Storage,
     public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController,
     // private facebook: Facebook,
     private google: GooglePlus,
@@ -425,7 +425,7 @@ export class AuthService {
 
     let body = {
       email: email,
-      id : content.id,
+      id: content.id,
       comment: content.comment,
     };
 
@@ -445,7 +445,7 @@ export class AuthService {
 
     let body = {
       email: content.email,
-      id : content.id,
+      id: content.id,
       comment: content.comment,
     };
 
@@ -465,7 +465,7 @@ export class AuthService {
 
     let body = {
       email: content.email,
-      id : content.id,
+      id: content.id,
       comment: content.comment,
     };
 
@@ -486,7 +486,7 @@ export class AuthService {
 
     let body = {
       email: email,
-      id : content.id,
+      id: content.id,
       comment: content.comment,
     };
 
@@ -506,7 +506,7 @@ export class AuthService {
 
     let body = {
       email: content.email,
-      id : content.id,
+      id: content.id,
       comment: content.comment,
     };
 
@@ -526,7 +526,7 @@ export class AuthService {
 
     let body = {
       email: content.email,
-      id : content.id,
+      id: content.id,
       comment: content.comment,
     };
 
@@ -614,6 +614,127 @@ export class AuthService {
 
   }
 
+  public noteImageUpdate(email, content, img) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      select: content.select,
+      title: content.title,
+      contents: content.contents,
+      tags: content.tags,
+    };
+
+    let url = CONFIG.apiUrl + 'beautynote/noteUpdate/' + content._id;
+
+    var targetPath = img;
+    var options: FileUploadOptions = {
+      fileKey: 'image',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: {
+        'email': body.email,
+        'select': body.select,
+        'title': body.title,
+        'contents': body.contents,
+        'tags': JSON.stringify(body.tags),
+      }
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+    return fileTransfer.upload(targetPath, url, options);
+
+  }
+
+
+  public noteNoImgUpdate(email, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      id : content._id,
+      email: email,
+      select: content.select,
+      title: content.title,
+      contents: content.contents,
+      tags: content.tags,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/noteupdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+
+
+
+
+  public qnaImageUpdate(email, content, img) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      select: content.select,
+      title: content.title,
+      contents: content.contents,
+      tags: content.tags,
+    };
+
+    let url = CONFIG.apiUrl + 'skinqna/qnaUpdate/' + content._id;
+
+    var targetPath = img;
+    var options: FileUploadOptions = {
+      fileKey: 'image',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: {
+        'email': body.email,
+        'select': body.select,
+        'title': body.title,
+        'contents': body.contents,
+        'tags': JSON.stringify(body.tags),
+      }
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+    return fileTransfer.upload(targetPath, url, options);
+
+  }
+
+  public skinqnaNoImgUpdate(email, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      id : content._id,
+      email: email,
+      select: content.select,
+      title: content.title,
+      contents: content.contents,
+      tags: content.tags,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/skinqnaupdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+
+  //피부노트 삭제
+  public noteDelete(id) {
+    return this.http.get(CONFIG.apiUrl + 'beautynote/delete/' + id)
+      .map(response => response.json());
+  }
+
+
   public communitySkinQnaSave(email, content) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -634,6 +755,12 @@ export class AuthService {
         console.log(data);
         return data;
       });
+  }
+
+  //피부고민 삭제
+  public skinQnaDelete(id) {
+    return this.http.get(CONFIG.apiUrl + 'skinqna/delete/' + id)
+      .map(response => response.json());
   }
 
   public communitySkinQnaImgSave(email, content, img) {

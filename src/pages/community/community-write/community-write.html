@@ -1,21 +1,21 @@
 <ion-header>
 
   <ion-navbar *ngIf="platform.is('android')" no-lines>
-  	<ion-buttons left no-lines>
-  		<button ion-button icon-only (click)="dissmiss();" >
-          <img no-lines class="android_nav" src="assets/img/beauty/ic-system-close-black@3x.png"/>
-  		</button>
-  	</ion-buttons>
+    <ion-buttons left no-lines>
+      <button ion-button icon-only (click)="dissmiss();">
+        <img no-lines class="android_nav" src="assets/img/beauty/ic-system-close-black@3x.png" />
+      </button>
+    </ion-buttons>
     <!-- 글 쓰기일 떄 타이틀 -->
     <ion-title class="android_title" text-wrap>글쓰기</ion-title>
     <!-- 글 수정일 떄 타이틀 -->
     <ion-title *ngIf="text_edit" class="android_title" text-wrap>글 수정</ion-title>
-    <button ion-button *ngIf="note.select ==='' || note.title ==='' || note.contents ==='' "  class="android_entroll_btn" (click)="registerNote()">등록 </button>
+    <button ion-button *ngIf="note.select ==='' || note.title ==='' || note.contents ==='' " class="android_entroll_btn" (click)="registerNote()">등록 </button>
     <!-- 모든정보 입력시 색상변경 -->
     <!-- 글쓰기일 때 버튼-->
     <button ion-button *ngIf="note.select !=='' && note.title !=='' && note.contents !=='' " style="color: #5c59b6;" class="android_entroll_btn" (click)="registerNote()">등록 </button>
     <!-- 글 수정일 때 버튼-->
-    <button ion-button *ngIf="text_edit" style="color: #5c59b6;" class="android_entroll_btn">완료 </button>
+    <button ion-button *ngIf="text_edit" style="color: #5c59b6;" class="android_entroll_btn" (click)="modify()" >완료 </button>
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
@@ -33,45 +33,141 @@
     <!-- 글쓰기일 때 버튼-->
     <button ion-button *ngIf="note.select !=='' && note.title !=='' && note.contents !=='' " style="color:#5c59b6;" class="ios_entroll_btn" (click)="registerNote()">등록 </button>
     <!-- 글 수정일 때 버튼-->
-    <button ion-button *ngIf="text_edit" style="color: #5c59b6;" class="ios_entroll_btn">완료 </button>
+    <button ion-button *ngIf="text_edit" style="color: #5c59b6;" class="ios_entroll_btn" (click)="modify()">완료 </button>
   </ion-navbar>
 </ion-header>
 
 
 
 <ion-content no-bounce padding>
-
-  <!-- 옵션 미지정 추후변경-->
-  <ion-item>
-    <ion-select class="qna_select" mode="ios" [(ngModel)]="note.select" placeholder="문의사항을 선택하세요.">
-      <ion-option value="배송문의">배송문의</ion-option>
-      <ion-option value="결제문의">결제문의</ion-option>
-      <ion-option value="제품문의">제품문의</ion-option>
-      <ion-option value="피부문의">피부문의</ion-option>
-      <ion-option value="플리닉문의">플리닉문의</ion-option>
-      <ion-option value="기타문의">기타문의</ion-option>
-    </ion-select>
-  </ion-item>
-
-
-  <ion-item>
-    <ion-input class="qna_title" [(ngModel)]="note.title" placeholder="제목"></ion-input>
-  </ion-item>
+  <ng-container *ngIf="!text_edit">
+    <!-- 옵션 미지정 추후변경-->
+    <ion-item>
+      <ion-select class="qna_select" mode="ios" [(ngModel)]="note.select" placeholder="문의사항을 선택하세요.">
+        <ion-option value="배송문의">배송문의</ion-option>
+        <ion-option value="결제문의">결제문의</ion-option>
+        <ion-option value="제품문의">제품문의</ion-option>
+        <ion-option value="피부문의">피부문의</ion-option>
+        <ion-option value="플리닉문의">플리닉문의</ion-option>
+        <ion-option value="기타문의">기타문의</ion-option>
+      </ion-select>
+    </ion-item>
 
 
-
-<!-- <div class="container" > -->
-
-  <ion-item no-lines>
-    <ion-textarea no-lines class="qna_input" [(ngModel)]="note.contents" placeholder="내용을 입력해주세요." (ionFocus)="attache_image_hide()" (ionBlur)="attache_image_view()"
-   (input)="adjustTextarea($event)"></ion-textarea>
-  </ion-item>
+    <ion-item>
+      <ion-input class="qna_title" [(ngModel)]="note.title" placeholder="제목"></ion-input>
+    </ion-item>
 
 
-  <div #image *ngIf="imagePath2" id="attache_image"  class="container">
-  <img class="attache_image" [src]="imagePath2"/>
-  <img class="close_image" (click)="image_close();"src="/assets/img/register/ic-system-clear-grey@3x.png"/>
-  </div>
+
+    <!-- <div class="container" > -->
+
+    <ion-item no-lines>
+      <ion-textarea no-lines class="qna_input" [(ngModel)]="note.contents" placeholder="내용을 입력해주세요." (ionFocus)="attache_image_hide()" (ionBlur)="attache_image_view()" (input)="adjustTextarea($event)"></ion-textarea>
+    </ion-item>
+
+
+    <div #image *ngIf="imagePath2" id="attache_image" class="container">
+      <img class="attache_image" [src]="imagePath2" />
+      <img class="close_image" (click)="image_close();" src="/assets/img/register/ic-system-clear-grey@3x.png" />
+    </div>
+  </ng-container>
+
+
+  <!---------------------------------------------------- 글 수정 모드 일때 ----------------------------------------------------------->
+
+  <ng-container *ngIf="text_edit">
+    <ng-container *ngIf="mode === 'note'">
+      <ng-container *ngIf="beautyNoteOneLoadData">
+        <!-- 옵션 미지정 추후변경-->
+        <ion-item>
+          <ion-select class="qna_select" mode="ios" [(ngModel)]="beautyNoteOneLoadData.select" placeholder="문의사항을 선택하세요.">
+            <ion-option value="배송문의">배송문의</ion-option>
+            <ion-option value="결제문의">결제문의</ion-option>
+            <ion-option value="제품문의">제품문의</ion-option>
+            <ion-option value="피부문의">피부문의</ion-option>
+            <ion-option value="플리닉문의">플리닉문의</ion-option>
+            <ion-option value="기타문의">기타문의</ion-option>
+          </ion-select>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-input class="qna_title" [(ngModel)]="beautyNoteOneLoadData.title" placeholder="제목"></ion-input>
+        </ion-item>
+
+
+
+        <!-- <div class="container" > -->
+
+        <ion-item no-lines>
+          <ion-textarea no-lines class="qna_input" [(ngModel)]="beautyNoteOneLoadData.contents" placeholder="내용을 입력해주세요." (ionFocus)="attache_image_hide()" (ionBlur)="attache_image_view()" (input)="adjustTextarea($event)"></ion-textarea>
+        </ion-item>
+
+
+        <div #image *ngIf="imagePath2" id="attache_image" class="container">
+          <img class="attache_image" [src]="imagePath2" />
+          <img class="close_image" (click)="image_close();" src="/assets/img/register/ic-system-clear-grey@3x.png" />
+        </div>
+
+        <div #image *ngIf="beautyNoteOneLoadData.filename && !imagePath2" id="attache_image" class="container">
+          <img class="attache_image" src="http://plinic.cafe24app.com/beautynoteimage/{{beautyNoteOneLoadData._id}}" />
+          <img class="close_image" (click)="image_close();" src="/assets/img/register/ic-system-clear-grey@3x.png" />
+        </div>
+      </ng-container>
+    </ng-container>
+
+
+
+
+
+    <ng-container *ngIf="mode === 'qna'">
+      <ng-container *ngIf="skinQnaOneLoadData">
+        <!-- 옵션 미지정 추후변경-->
+        <ion-item>
+          <ion-select class="qna_select" mode="ios" [(ngModel)]="skinQnaOneLoadData.select" placeholder="문의사항을 선택하세요.">
+            <ion-option value="배송문의">배송문의</ion-option>
+            <ion-option value="결제문의">결제문의</ion-option>
+            <ion-option value="제품문의">제품문의</ion-option>
+            <ion-option value="피부문의">피부문의</ion-option>
+            <ion-option value="플리닉문의">플리닉문의</ion-option>
+            <ion-option value="기타문의">기타문의</ion-option>
+          </ion-select>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-input class="qna_title" [(ngModel)]="skinQnaOneLoadData.title" placeholder="제목"></ion-input>
+        </ion-item>
+
+
+
+        <!-- <div class="container" > -->
+
+        <ion-item no-lines>
+          <ion-textarea no-lines class="qna_input" [(ngModel)]="skinQnaOneLoadData.contents" placeholder="내용을 입력해주세요." (ionFocus)="attache_image_hide()" (ionBlur)="attache_image_view()" (input)="adjustTextarea($event)"></ion-textarea>
+        </ion-item>
+
+
+        <div #image *ngIf="imagePath2" id="attache_image" class="container">
+          <img class="attache_image" [src]="imagePath2" />
+          <img class="close_image" (click)="image_close();" src="/assets/img/register/ic-system-clear-grey@3x.png" />
+        </div>
+
+        <div #image *ngIf="skinQnaOneLoadData.filename && !imagePath2" id="attache_image" class="container">
+          <img class="attache_image" src="http://plinic.cafe24app.com/beautynoteimage/{{skinQnaOneLoadData._id}}" />
+          <img class="close_image" (click)="image_close();" src="/assets/img/register/ic-system-clear-grey@3x.png" />
+        </div>
+      </ng-container>
+    </ng-container>
+
+
+  </ng-container>
+
+
+
+
+
 
   <!-- 첨부 이미지 영역 -->
   <!-- <img *ngIf="imagePath2" class="attache_image" [src]="imagePath2" /> -->
@@ -80,35 +176,77 @@
 
 
 <ion-footer padding>
+  <ng-container *ngIf="!text_edit">
+    <rl-tag-input *ngIf="platform.is('ios')" class="community_tag_ios" [(ngModel)]="note.tags" [addOnBlur]="false" [autocomplete]="false" [autocompleteItems]="preparedTags" [autocompleteMustMatch]="false" placeholder="#태그를 입력하세요.">
+    </rl-tag-input>
 
-  <rl-tag-input *ngIf="platform.is('ios')" class="community_tag_ios"
-    [(ngModel)]="note.tags"
-    [addOnBlur]="false"
-    [autocomplete]="false"
-    [autocompleteItems]="preparedTags"
-    [autocompleteMustMatch]="false"
-    placeholder="#태그를 입력하세요.">
-  </rl-tag-input>
+    <rl-tag-input *ngIf="platform.is('android')" class="community_tag_android" [(ngModel)]="note.tags" [addOnBlur]="false" [autocomplete]="false" [autocompleteItems]="preparedTags" [autocompleteMustMatch]="false" placeholder="#태그를 입력하세요.">
+    </rl-tag-input>
 
-  <rl-tag-input *ngIf="platform.is('android')" class="community_tag_android"
-    [(ngModel)]="note.tags"
-    [addOnBlur]="false"
-    [autocomplete]="false"
-    [autocompleteItems]="preparedTags"
-    [autocompleteMustMatch]="false"
-    placeholder="#태그를 입력하세요.">
-  </rl-tag-input>
-
-  <!-- <ion-item>
+    <!-- <ion-item>
     <ion-input class="community_tag" [(ngModel)]="note.tags" placeholder="#태그를 입력하세요. (최대 10개)"></ion-input>
   </ion-item> -->
-  <!-- 이미지 등록시 파일명 -->
-  <ion-item *ngIf="image_enroll">
-    <ion-input mode="ios" class="community_attache_image" placeholder="이미지 네임영역" readonly></ion-input>
-  </ion-item>
+    <!-- 이미지 등록시 파일명 -->
+    <ion-item *ngIf="image_enroll">
+      <ion-input mode="ios" class="community_attache_image" placeholder="이미지 네임영역" readonly></ion-input>
+    </ion-item>
 
-  <img class="community_attache_camera" (click)="camera()" src="assets/img/beauty/ic-system-camera@3x.png">
+    <img class="community_attache_camera" (click)="camera()" src="assets/img/beauty/ic-system-camera@3x.png">
 
-  <img class="community_attache_file" src="assets/img/beauty/ic-system-file@3x.png">
+    <img class="community_attache_file" src="assets/img/beauty/ic-system-file@3x.png">
+  </ng-container>
 
+
+
+
+  <!--------------------------------------------------------------- 글수정 모드 일때 --------------------------------------------------------->
+
+
+
+  <ng-container *ngIf="text_edit">
+    <ng-container *ngIf="mode === 'note'">
+      <ng-container *ngIf="beautyNoteOneLoadData">
+        <rl-tag-input *ngIf="platform.is('ios')" class="community_tag_ios" [(ngModel)]="tags" [addOnBlur]="false" [autocomplete]="false" [autocompleteItems]="preparedTags" [autocompleteMustMatch]="false" placeholder="#태그를 입력하세요.">
+        </rl-tag-input>
+
+        <rl-tag-input *ngIf="platform.is('android')" class="community_tag_android" [(ngModel)]="tags" [addOnBlur]="false" [autocomplete]="false" [autocompleteItems]="preparedTags" [autocompleteMustMatch]="false" placeholder="#태그를 입력하세요.">
+        </rl-tag-input>
+
+        <!-- <ion-item>
+    <ion-input class="community_tag" [(ngModel)]="note.tags" placeholder="#태그를 입력하세요. (최대 10개)"></ion-input>
+  </ion-item> -->
+        <!-- 이미지 등록시 파일명 -->
+        <ion-item *ngIf="image_enroll">
+          <ion-input mode="ios" class="community_attache_image" placeholder="이미지 네임영역" readonly></ion-input>
+        </ion-item>
+
+        <img class="community_attache_camera" (click)="camera()" src="assets/img/beauty/ic-system-camera@3x.png">
+
+        <img class="community_attache_file" src="assets/img/beauty/ic-system-file@3x.png">
+      </ng-container>
+    </ng-container>
+
+
+    <ng-container *ngIf="mode === 'qna'">
+      <ng-container *ngIf="skinQnaOneLoadData">
+        <rl-tag-input *ngIf="platform.is('ios')" class="community_tag_ios" [(ngModel)]="tags" [addOnBlur]="false" [autocomplete]="false" [autocompleteItems]="preparedTags" [autocompleteMustMatch]="false" placeholder="#태그를 입력하세요.">
+        </rl-tag-input>
+
+        <rl-tag-input *ngIf="platform.is('android')" class="community_tag_android" [(ngModel)]="tags" [addOnBlur]="false" [autocomplete]="false" [autocompleteItems]="preparedTags" [autocompleteMustMatch]="false" placeholder="#태그를 입력하세요.">
+        </rl-tag-input>
+
+        <!-- <ion-item>
+    <ion-input class="community_tag" [(ngModel)]="note.tags" placeholder="#태그를 입력하세요. (최대 10개)"></ion-input>
+  </ion-item> -->
+        <!-- 이미지 등록시 파일명 -->
+        <ion-item *ngIf="image_enroll">
+          <ion-input mode="ios" class="community_attache_image" placeholder="이미지 네임영역" readonly></ion-input>
+        </ion-item>
+
+        <img class="community_attache_camera" (click)="camera()" src="assets/img/beauty/ic-system-camera@3x.png">
+
+        <img class="community_attache_file" src="assets/img/beauty/ic-system-file@3x.png">
+      </ng-container>
+    </ng-container>
+  </ng-container>
 </ion-footer>

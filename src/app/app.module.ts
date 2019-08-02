@@ -4,7 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 
-// import { Facebook } from '@ionic-native/facebook';
+import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 
 import { GenderFilter } from './../pipes/gender-filter';
@@ -214,6 +214,13 @@ import { RlTagInputModule } from 'angular2-tag-input';
 // import { TimerComponent } from '../pages/skin-measure-start/timer'
 
 
+//인스타그램공유하기
+import { Instagram } from '@ionic-native/instagram';
+
+//각종 소셜 쉐어 기능,,,
+import { SocialSharing } from '@ionic-native/social-sharing';
+
+
 
 
 export function getAuthHttp(http, storage) {
@@ -421,7 +428,7 @@ export function getAuthHttp(http, storage) {
     KakaoCordovaSDK,
     AuthService,
     IonicErrorHandler,
-    // Facebook,
+    Facebook,
     GooglePlus,
     ImagesProvider,
     Transfer,
@@ -437,6 +444,8 @@ export function getAuthHttp(http, storage) {
     //  AdMobFree,
     BLE,
     // TimerComponent,
+    Instagram,
+    SocialSharing,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,

@@ -9,7 +9,8 @@
     <!-- 글 쓰기일 떄 타이틀 -->
     <ion-title class="android_title" text-wrap>피부고민</ion-title>
 
-    <button ion-button class="android_entroll_btn" (click)="select_popover($event);"></button>
+    <button *ngIf="this.userData.email === beautyNoteOneLoadData.email" ion-button class="android_entroll_btn" (click)="select_popover($event);"></button>
+    <button *ngIf="this.userData.email === skinQnaOneLoadData.email" ion-button class="android_entroll_btn" (click)="select_popover($event);"></button>
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
@@ -19,7 +20,9 @@
       </button>
     </ion-buttons>
     <ion-title class="ios_title" text-wrap>피부노트</ion-title>
-    <button ion-button class="ios_entroll_btn" (click)="select_popover($event);"></button>
+    <!-- <button ion-button class="ios_entroll_btn" (click)="select_popover($event);"></button> -->
+    <button *ngIf="this.userData.email === beautyNoteOneLoadData.email" ion-button class="ios_entroll_btn" (click)="select_popover($event);"></button>
+    <button *ngIf="this.userData.email === skinQnaOneLoadData.email" ion-button class="ios_entroll_btn" (click)="select_popover($event);"></button>
   </ion-navbar>
 </ion-header>
 
@@ -39,24 +42,24 @@
 
     <!-- 첨부 이미지 -->
     <!-- 보기 -->
-    <ng-container *ngIf="beautyNoteOneLoadData.originalName && select_popover_option==='보기'">
-    <img  class="attache_image" src="http://plinic.cafe24app.com/beautynoteimage/{{beautyNoteOneLoadData._id}}" />
+    <ng-container *ngIf="beautyNoteOneLoadData.originalName || select_popover_option==='보기'">
+      <img class="attache_image" src="http://plinic.cafe24app.com/beautynoteimage/{{beautyNoteOneLoadData._id}}" />
     </ng-container>
 
     <!-- 파일 네임 -->
     <!-- 보기 -->
-    <ng-container *ngIf="select_popover_option==='보기' && beautyNoteOneLoadData.originalName " >
-    <ion-row  class="file_image_row">
-      <ion-col><img class="file_image" src="assets/img/beauty/ic-system-file-purple@3x.png" /></ion-col>
-      <ion-col class="file_path">{{beautyNoteOneLoadData.originalName}}</ion-col>
-    </ion-row>
+    <ng-container *ngIf="select_popover_option==='보기' || beautyNoteOneLoadData.originalName ">
+      <ion-row class="file_image_row">
+        <ion-col><img class="file_image" src="assets/img/beauty/ic-system-file-purple@3x.png" /></ion-col>
+        <ion-col class="file_path">{{beautyNoteOneLoadData.originalName}}</ion-col>
+      </ion-row>
     </ng-container>
 
     <!-- 태그 배치 for -->
     <ng-container *ngFor="let tag of tags; let i = index">
       <ng-container *ngIf="tag !== ''">
         <!-- 보기 -->
-        <button *ngIf="select_popover_option==='보기'" ion-button class="community_tag_btn">{{tag}}</button>
+        <button *ngIf="beautyNoteOneLoadData || select_popover_option==='보기'" ion-button class="community_tag_btn">{{tag}}</button>
       </ng-container>
     </ng-container>
 
@@ -72,9 +75,10 @@
 
       <ion-row class="sns_row">
 
-        <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" />
-          <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" />
-            <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-band@3x.png" /></ion-col>
+        <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" (click)="kakaolink()" />
+          <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" (click)="share_facebook()" />
+            <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-band@3x.png" (click)="share()" /></ion-col>
+          
           </ion-col>
         </ion-col>
       </ion-row>
@@ -98,24 +102,23 @@
     <!-- <img *ngIf="thumb_image" class="profile_comment" src="{{userData.thumbnail_image}}"> -->
 
     <ng-container *ngIf="comment_popover_option ==='보기' || comment_popover_option ==='삭제'">
-      <img *ngIf="!userData.thumbnail_image && profileimg_url" class="profile_comment" style="margin-top: 7%;" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-      <img *ngIf="userData.thumbnail_image" class="profile_comment" style="margin-top: 7%;" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-      <img *ngIf="!userData.thumbnail_image && !profileimg_url" style="margin-top: 7%;" class="profile_comment" src="./assets/img/register/ic-system-profile-default@3x.png"/>
-    <div class="container">
-      <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300" autoGrow="true" placeholder="댓글 등록"
-      (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea>
-      <button ion-button class="comment_input_enroll" (click)="saveReply()">등록</button>
-    </div>
-    <div style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div>
-   </ng-container>
+      <img *ngIf="!userData.thumbnail_image && profileimg_url" class="profile_comment" style="margin-top: 7%;" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+      <img *ngIf="userData.thumbnail_image" class="profile_comment" style="margin-top: 7%;" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+      <img *ngIf="!userData.thumbnail_image && !profileimg_url" style="margin-top: 7%;" class="profile_comment" src="./assets/img/register/ic-system-profile-default@3x.png" />
+      <div class="container">
+        <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300" autoGrow="true" placeholder="댓글 등록" (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea>
+        <button ion-button class="comment_input_enroll" (click)="saveReply()">등록</button>
+      </div>
+      <div style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div>
+    </ng-container>
 
     <!-- 댓글  -->
     <ng-container *ngIf="beautyNoteOneLoadData">
       <ng-container *ngFor="let registerReply of beautyNoteOneLoadData.comments; let i = index">
 
-        <img *ngIf="userData.email === registerReply.email && profileimg_url" class="profile_comment" [src]="profileimg_url"/>
-        <img class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{registerReply.email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-        <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="./assets/img/register/ic-system-profile-default@3x.png"/>
+        <img *ngIf="userData.email === registerReply.email && profileimg_url" class="profile_comment" [src]="profileimg_url" />
+        <img class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{registerReply.email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+        <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="./assets/img/register/ic-system-profile-default@3x.png" />
 
         <ng-container *ngIf="userData.email === registerReply.email">
           <button ion-button class="comment_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
@@ -131,8 +134,8 @@
           <div class="content_comment" text-wrap>{{registerReply.comment}}</div>
         </ng-container>
         <!-- 수정 -->
-        <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment"
-         (input)="adjustTextareaUpdate($event)" autofocus="true" (focus)="focus($event)" ></textarea>
+        <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment" (input)="adjustTextareaUpdate($event)"
+          autofocus="true" (focus)="focus($event)"></textarea>
 
         <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 2%; background-color:#f1f1f1"></div>
       </ng-container>
@@ -194,11 +197,11 @@
 
     <!-- 첨부 이미지 -->
     <!-- 보기 -->
-    <img *ngIf="skinQnaOneLoadData.originalName && select_popover_option==='보기'" class="attache_image" src="http://plinic.cafe24app.com/skinqnaimage/{{skinQnaOneLoadData._id}}" />
+    <img *ngIf="skinQnaOneLoadData.originalName || select_popover_option==='보기'" class="attache_image" src="http://plinic.cafe24app.com/skinqnaimage/{{skinQnaOneLoadData._id}}" />
 
     <!-- 파일 네임 -->
     <!-- 보기 -->
-    <ion-row *ngIf="skinQnaOneLoadData.originalName && select_popover_option==='보기'" class="file_image_row">
+    <ion-row *ngIf="skinQnaOneLoadData.originalName || select_popover_option==='보기'" class="file_image_row">
       <ion-col><img class="file_image" src="assets/img/beauty/ic-system-file-purple@3x.png" /></ion-col>
       <ion-col class="file_path">{{skinQnaOneLoadData.originalName}}</ion-col>
     </ion-row>
@@ -209,7 +212,7 @@
     <ng-container *ngFor="let tag of tags; let i = index">
       <ng-container *ngIf="tag !== ''">
         <!-- 보기 -->
-        <button *ngIf="select_popover_option==='보기'" ion-button class="community_tag_btn">{{tag}}</button>
+        <button *ngIf="skinQnaOneLoadData || select_popover_option==='보기'" ion-button class="community_tag_btn">{{tag}}</button>
       </ng-container>
     </ng-container>
 
@@ -244,25 +247,24 @@
 <div *ngIf="comment_popover_option==='보기'" style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div> -->
 
     <ng-container *ngIf="comment_popover_option==='보기' || comment_popover_option ==='삭제'">
-      <img *ngIf="!userData.thumbnail_image && profileimg_url" class="profile_comment" style="margin-top: 7%;" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-      <img *ngIf="userData.thumbnail_image" class="profile_comment" style="margin-top: 7%;"[src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-      <img *ngIf="!userData.thumbnail_image && !profileimg_url" style="margin-top: 7%;" class="profile_comment" src="./assets/img/register/ic-system-profile-default@3x.png"/>
-    <div class="container">
-      <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300" autoGrow="true" placeholder="댓글 등록"
-      (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea>
-      <button ion-button class="comment_input_enroll" (click)="saveSkinQnaReply()">등록</button>
-    </div>
-    <div style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div>
-  </ng-container>
+      <img *ngIf="!userData.thumbnail_image && profileimg_url" class="profile_comment" style="margin-top: 7%;" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+      <img *ngIf="userData.thumbnail_image" class="profile_comment" style="margin-top: 7%;" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+      <img *ngIf="!userData.thumbnail_image && !profileimg_url" style="margin-top: 7%;" class="profile_comment" src="./assets/img/register/ic-system-profile-default@3x.png" />
+      <div class="container">
+        <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300" autoGrow="true" placeholder="댓글 등록" (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea>
+        <button ion-button class="comment_input_enroll" (click)="saveSkinQnaReply()">등록</button>
+      </div>
+      <div style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div>
+    </ng-container>
 
 
     <!-- 댓글  -->
     <ng-container *ngIf="skinQnaOneLoadData">
       <ng-container *ngFor="let registerReply of skinQnaOneLoadData.comments; let i = index">
 
-        <img *ngIf="userData.email === registerReply.email && profileimg_url" class="profile_comment" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-        <img class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{registerReply.email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-        <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="./assets/img/register/ic-system-profile-default@3x.png"/>
+        <img *ngIf="userData.email === registerReply.email && profileimg_url" class="profile_comment" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+        <img class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{registerReply.email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+        <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="./assets/img/register/ic-system-profile-default@3x.png" />
 
         <ng-container *ngIf="userData.email === registerReply.email">
           <button ion-button class="comment_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
@@ -278,8 +280,8 @@
           <div class="content_comment" text-wrap>{{registerReply.comment}}</div>
         </ng-container>
         <!-- 수정 -->
-        <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment"
-         (input)="adjustTextareaUpdate($event)" autofocus="true" (focus)="focus($event)" ></textarea>
+        <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment" (input)="adjustTextareaUpdate($event)"
+          autofocus="true" (focus)="focus($event)"></textarea>
 
         <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 2%; background-color:#f1f1f1"></div>
       </ng-container>

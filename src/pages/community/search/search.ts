@@ -407,6 +407,11 @@ export class SearchPage {
   openBrowser_ioslike(url, title, id, user, mode) {
     // https://ionicframework.com/docs/native/themeable-browser/
 
+    this.images.communityBeautyViewsUpdate(id).subscribe(data => {
+      this.communityBeautyLoadData = data;
+    });
+
+
     const options: ThemeableBrowserOptions = {
       toolbar: {
         height: 55,
@@ -520,6 +525,10 @@ export class SearchPage {
 
   openBrowser_androidlike(url, title, id, user, mode) {
     // https://ionicframework.com/docs/native/themeable-browser/
+
+    this.images.communityBeautyViewsUpdate(id).subscribe(data => {
+      this.communityBeautyLoadData = data;
+    });
 
     const options: ThemeableBrowserOptions = {
       toolbar: {

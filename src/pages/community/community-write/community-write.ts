@@ -40,6 +40,14 @@ export class CommunityWritePage {
   profileimg_url: any;
   page_write = "2";
   page_modify = "3";
+  beautyNoteOneLoadData: any;
+  skinQnaOneLoadData: any;
+  tags = [];
+  islike: any;
+
+  load_id: any;
+
+  text_edit: boolean = false;
 
   @ViewChild('image') imageElement: ElementRef;
 
@@ -69,12 +77,30 @@ export class CommunityWritePage {
 
   constructor(private imagesProvider: ImagesProvider, public _camera: Camera, public actionSheetCtrl: ActionSheetController, public nav: NavController,
     public navParams: NavParams, public platform: Platform, private auth: AuthService, public viewCtrl: ViewController, private alertCtrl: AlertController,
-     public app: App, public element: ElementRef, @Inject(DOCUMENT) document) {
+    public app: App, public element: ElementRef, @Inject(DOCUMENT) document) {
 
     this.platform.ready().then((readySource) => {
 
       if (this.navParams.get('qna')) {
         this.skinQna = true;
+      }
+
+      if (this.navParams.get('_id')) {
+        console.log("수정모드");
+        this.text_edit = true;
+        this.load_id = this.navParams.get('_id');
+        this.mode = this.navParams.get('mode');
+
+
+        if (this.navParams.get('mode') === 'note') {
+          this.beautyNoteOneLoadData = this.navParams.get('beautyNoteOneLoadData')
+          this.tags = this.beautyNoteOneLoadData.tags.split(",");
+        }
+
+        if (this.navParams.get('mode') === 'qna') {
+          this.skinQnaOneLoadData = this.navParams.get('skinQnaOneLoadData')
+          this.tags = this.skinQnaOneLoadData.tags.split(",");
+        }
       }
 
       this.platform.registerBackButtonAction(() => {
@@ -105,10 +131,10 @@ export class CommunityWritePage {
   }
 
   // 첨부이미지 삭제
-  image_close(){
-      setTimeout(() => {
+  image_close() {
+    setTimeout(() => {
       this.imageElement.nativeElement.remove();
-      }, 100)
+    }, 100)
   }
 
 
@@ -128,7 +154,7 @@ export class CommunityWritePage {
   }
 
   attache_image_view() {
-    if (this.imagePath2){
+    if (this.imagePath2) {
       document.getElementById("attache_image").style.display = "";
     }
   }
@@ -294,7 +320,7 @@ export class CommunityWritePage {
                         handler: () => {
                           //this.nav.pop();
                           this.viewCtrl.dismiss({
-                            page_modify : this.page_modify
+                            page_modify: this.page_modify
                           });
                         }
                       }
@@ -322,7 +348,7 @@ export class CommunityWritePage {
                             handler: () => {
                               //this.nav.pop();
                               this.viewCtrl.dismiss({
-                                page_write : this.page_write
+                                page_write: this.page_write
                               });
                             }
                           }
@@ -347,7 +373,7 @@ export class CommunityWritePage {
                             handler: () => {
                               //this.nav.pop();
                               this.viewCtrl.dismiss({
-                                page_write : this.page_write
+                                page_write: this.page_write
                               });
                             }
                           }
@@ -376,7 +402,7 @@ export class CommunityWritePage {
                             handler: () => {
                               //this.nav.pop();
                               this.viewCtrl.dismiss({
-                                page_write : this.page_write
+                                page_write: this.page_write
                               });
                             }
                           }
@@ -400,7 +426,7 @@ export class CommunityWritePage {
                             handler: () => {
                               //this.nav.pop();
                               this.viewCtrl.dismiss({
-                                page_write : this.page_write
+                                page_write: this.page_write
                               });
                             }
                           }
@@ -446,6 +472,178 @@ export class CommunityWritePage {
     });
     alert.present();
 
+  }
+
+  public beautyNoteOneLoad(id) {
+    this.imagesProvider.beautyNoteOneLoad(id).subscribe(data => {
+      this.text_edit = true;
+      this.beautyNoteOneLoadData = data;
+      this.tags = data.tags.split(",");
+      for (var i = 0; i < data.likeuser.length; i++) {
+        if (this.userData.email === data.likeuser[i]) {
+          this.islike = true;
+        }
+      }
+    });
+  }
+
+  public skinQnaOneLoad(id) {
+    this.imagesProvider.skinQnaOneLoad(id).subscribe(data => {
+      this.text_edit = true;
+      this.skinQnaOneLoadData = data;
+      this.tags = data.tags.split(",");
+      for (var i = 0; i < data.likeuser.length; i++) {
+        if (this.userData.email === data.likeuser[i]) {
+          this.islike = true;
+        }
+      }
+    });
+  }
+
+  public modify() {
+    if (this.mode === 'note') {
+      this.beautyNoteOneLoadData.tags = this.tags
+
+      let alert = this.alertCtrl.create({
+        cssClass: 'push_alert_cancel',
+        title: "글 작성",
+        message: "글쓰기 수정을 완료 하시겠습니까?",
+        buttons: [
+          {
+            text: '취소',
+            role: 'cancel',
+            handler: () => {
+            }
+          },
+          {
+            text: '확인',
+            handler: () => {
+              if (this.imagePath2) { //이미지 변경없이 저장 할 경우
+                this.auth.noteImageUpdate(this.userData.email, this.beautyNoteOneLoadData, this.imagePath2).then(data => {
+                  if (data) {
+                    let alert2 = this.alertCtrl.create({
+                      cssClass: 'push_alert',
+                      title: '글 작성',
+                      message: "글 작성이 정상적으로 등록 되었습니다.",
+                      buttons: [
+                        {
+                          text: '확인',
+                          handler: () => {
+                            //this.nav.pop();
+                            this.viewCtrl.dismiss({
+                              page_write: this.page_write
+                            });
+                          }
+                        }
+                      ]
+                    });
+                    alert2.present();
+                  }
+                }, error => {
+                  this.showError(JSON.parse(error._body).msg);
+                });
+              } else {
+                this.auth.noteNoImgUpdate(this.userData.email, this.beautyNoteOneLoadData).subscribe(data => {
+                  if (data !== "") {
+                    let alert2 = this.alertCtrl.create({
+                      cssClass: 'push_alert',
+                      title: '글 작성',
+                      message: "글 작성이 정상적으로 등록 되었습니다.",
+                      buttons: [
+                        {
+                          text: '확인',
+                          handler: () => {
+                            //this.nav.pop();
+                            this.viewCtrl.dismiss({
+                              page_write: this.page_write
+                            });
+                          }
+                        }
+                      ]
+                    });
+                    alert2.present();
+                  }
+                }, error => {
+                  this.showError(JSON.parse(error._body).msg);
+                });
+              }
+            }
+          }]
+      });
+      alert.present();
+    }
+
+    if (this.mode === 'qna') {
+      this.skinQnaOneLoadData.tags = this.tags
+
+      let alert = this.alertCtrl.create({
+        cssClass: 'push_alert_cancel',
+        title: "글 작성",
+        message: "글쓰기 수정을 완료 하시겠습니까?",
+        buttons: [
+          {
+            text: '취소',
+            role: 'cancel',
+            handler: () => {
+            }
+          },
+          {
+            text: '확인',
+            handler: () => {
+              if (this.imagePath2) { //이미지 변경없이 저장 할 경우
+                this.auth.qnaImageUpdate(this.userData.email, this.skinQnaOneLoadData, this.imagePath2).then(data => {
+                  if (data) {
+                    let alert2 = this.alertCtrl.create({
+                      cssClass: 'push_alert',
+                      title: '글 작성',
+                      message: "글 작성이 정상적으로 등록 되었습니다.",
+                      buttons: [
+                        {
+                          text: '확인',
+                          handler: () => {
+                            //this.nav.pop();
+                            this.viewCtrl.dismiss({
+                              page_write: this.page_write
+                            });
+                          }
+                        }
+                      ]
+                    });
+                    alert2.present();
+                  }
+                }, error => {
+                  this.showError(JSON.parse(error._body).msg);
+                });
+              } else {
+                this.auth.skinqnaNoImgUpdate(this.userData.email, this.skinQnaOneLoadData).subscribe(data => {
+                  if (data !== "") {
+                    let alert2 = this.alertCtrl.create({
+                      cssClass: 'push_alert',
+                      title: '글 작성',
+                      message: "글 작성이 정상적으로 등록 되었습니다.",
+                      buttons: [
+                        {
+                          text: '확인',
+                          handler: () => {
+                            //this.nav.pop();
+                            this.viewCtrl.dismiss({
+                              page_write: this.page_write
+                            });
+                          }
+                        }
+                      ]
+                    });
+                    alert2.present();
+                  }
+                }, error => {
+                  this.showError(JSON.parse(error._body).msg);
+                });
+              }
+            }
+          }]
+      });
+      alert.present();
+    }
   }
 
 

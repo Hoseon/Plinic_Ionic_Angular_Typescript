@@ -5,6 +5,13 @@ import { ImagesProvider } from '../../../providers/images/images';
 import { CommunityWritePage } from '../community-write/community-write';
 import { AuthService } from '../../../providers/auth-service';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { KakaoCordovaSDK, KLCustomTemplate, KLLinkObject, KLSocialObject, KLButtonObject, KLContentObject, KLFeedTemplate, AuthTypes } from 'kakao-sdk';
+import { Instagram } from '@ionic-native/instagram';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
+
+
 
 
 
@@ -37,17 +44,22 @@ export class CommunityModifyPage {
 
   islike: boolean = false;
 
-  focusvalue : any;
-  updatevalue : any;
+  focusvalue: any;
+  updatevalue: any;
+
+  page_write = "2";
+  page_modify = "3";
 
 
   @ViewChild('myInput') myInput: ElementRef;
 
-  @ViewChild('textarea') mytextarea ;
+  @ViewChild('textarea') mytextarea;
+
+  browserRef: any;
 
 
-  constructor(private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController,
-     public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
+  constructor(private iab: InAppBrowser, private socialSharing: SocialSharing, private fb: Facebook, private instagram: Instagram, public _kakaoCordovaSDK: KakaoCordovaSDK, private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController,
+    public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
     public viewCtrl: ViewController, public popoverCtrl: PopoverController, public element: ElementRef, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
     this.platform.ready().then((readySource) => {
 
@@ -84,16 +96,16 @@ export class CommunityModifyPage {
 
   resize() {
     setTimeout(() => {
-    this.myInput.nativeElement.style.height = 'auto'
-    this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
-  }, 100)
+      this.myInput.nativeElement.style.height = 'auto'
+      this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
+    }, 100)
   }
 
   textareaResize() {
     setTimeout(() => {
-    this.myInput.nativeElement.style.height = '40px'
-    this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
-  }, 100)
+      this.myInput.nativeElement.style.height = '40px'
+      this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
+    }, 100)
   }
 
 
@@ -117,12 +129,123 @@ export class CommunityModifyPage {
         if (this.select_popover_option === "수정") {
           setTimeout(() => {
             console.log('수정');
-            let myModal = this.modalCtrl.create(CommunityWritePage);
-            myModal.present();
+            console.log(JSON.stringify(this.beautyNoteOneLoadData));
+            if (this.mode === 'note') {
+              let myModal = this.modalCtrl.create(CommunityWritePage, {
+                _id: this.beautyNoteOneLoadData._id,
+                beautyNoteOneLoadData: this.beautyNoteOneLoadData,
+                // select : this.beautyNoteOneLoadData.select,
+                // title : this.beautyNoteOneLoadData.title,
+                // contents : this.beautyNoteOneLoadData.contents,
+                // tags : this.beautyNoteOneLoadData.tags,
+                // filename : this.beautyNoteOneLoadData.filename,
+                // originalName : this.beautyNoteOneLoadData.originalName,
+                // views : this.beautyNoteOneLoadData.views,
+                // createdAt : this.beautyNoteOneLoadData.createdAt,
+                // email : this.beautyNoteOneLoadData.email,
+                mode: 'note'
+              });
+              myModal.present();
+            }
+            if (this.mode === 'qna') {
+              let myModal = this.modalCtrl.create(CommunityWritePage, {
+                _id: this.skinQnaOneLoadData._id,
+                skinQnaOneLoadData: this.skinQnaOneLoadData,
+                // _id : this.skinQnaOneLoadData._id,
+                // select : this.skinQnaOneLoadData.select,
+                // title : this.skinQnaOneLoadData.title,
+                // contents : this.skinQnaOneLoadData.contents,
+                // tags : this.skinQnaOneLoadData.tags,
+                // filename : this.skinQnaOneLoadData.filename,
+                // originalName : this.skinQnaOneLoadData.originalName,
+                // views : this.skinQnaOneLoadData.views,
+                // createdAt : this.skinQnaOneLoadData.createdAt,
+                // email : this.skinQnaOneLoadData.email,
+                mode: 'qna'
+              });
+              myModal.present();
+            }
+
+
           }, 100)
         }
         else if (this.select_popover_option === "삭제") {
-          console.log('select_popover_option==========' + this.select_popover_option);
+          let alert = this.alertCtrl.create({
+            cssClass: 'push_alert_cancel',
+            title: "plinic",
+            message: "게시글을 정말로 삭제하시겠습니까?",
+            buttons: [
+              {
+                text: '취소',
+                role: 'cancel',
+                handler: () => {
+                  console.log('취소');
+                }
+              },
+              {
+                text: '확인',
+                handler: () => {
+                  if (this.mode === 'note') {
+                    this.auth.noteDelete(this.beautyNoteOneLoadData._id).subscribe(data => {
+                      if (data) {
+                        let alert2 = this.alertCtrl.create({
+                          cssClass: 'push_alert',
+                          title: '게시글 삭제',
+                          message: "게시글이 정상적으로 삭제 되었습니다.",
+                          buttons: [
+                            {
+                              text: '확인',
+                              handler: () => {
+                                // this.registerReply.comment = '';
+                                // this.comment_popover_option_textarea = -1;
+                                // this.textareaResize();
+                                // this.update();
+                                console.log("피부 노트 삭제");
+                                this.viewCtrl.dismiss({
+                                  page_modify: this.page_modify
+                                });
+                              }
+                            }
+                          ]
+                        });
+                        alert2.present();
+                      }
+                    });
+                  }
+
+                  if (this.mode === 'qna') {
+                    console.log("피부 고민 삭제");
+                    this.auth.skinQnaDelete(this.skinQnaOneLoadData._id).subscribe(data => {
+                      if (data) {
+                        let alert2 = this.alertCtrl.create({
+                          cssClass: 'push_alert',
+                          title: '게시글 삭제',
+                          message: "게시글이 정상적으로 삭제 되었습니다.",
+                          buttons: [
+                            {
+                              text: '확인',
+                              handler: () => {
+                                // this.registerReply.comment = '';
+                                // this.comment_popover_option_textarea = -1;
+                                // this.textareaResize();
+                                // this.update();
+                                console.log("피부 고민 삭제");
+                                this.viewCtrl.dismiss({
+                                  page_modify: this.page_modify
+                                });
+                              }
+                            }
+                          ]
+                        });
+                        alert2.present();
+                      }
+                    });
+                  }
+                }
+              }]
+          });
+          alert.present();
+          console.log('select_popover_option=1=========' + this.select_popover_option);
         }
       });
     }
@@ -145,7 +268,56 @@ export class CommunityModifyPage {
           }, 100)
         }
         else if (this.select_popover_option === "삭제") {
-          console.log('select_popover_option==========' + this.select_popover_option);
+          let alert = this.alertCtrl.create({
+            cssClass: 'push_alert_cancel',
+            title: "plinic",
+            message: "게시글을 정말로 삭제하시겠습니까?",
+            buttons: [
+              {
+                text: '취소',
+                role: 'cancel',
+                handler: () => {
+                  console.log('취소');
+                }
+              },
+              {
+                text: '확인',
+                handler: () => {
+                  if (this.mode === 'note') {
+                    this.auth.noteDelete(this.beautyNoteOneLoadData._id).subscribe(data => {
+                      if (data) {
+                        console.log("안드로이드 피부 노트 삭제");
+                        let alert2 = this.alertCtrl.create({
+                          cssClass: 'push_alert',
+                          title: '게시글 삭제',
+                          message: "게시글이 정상적으로 삭제 되었습니다.",
+                          buttons: [
+                            {
+                              text: '확인',
+                              handler: () => {
+                                // this.registerReply.comment = '';
+                                // this.comment_popover_option_textarea = -1;
+                                // this.textareaResize();
+                                // this.update();
+                                this.viewCtrl.dismiss();
+                              }
+                            }
+                          ]
+                        });
+                        alert2.present();
+                      }
+                    });
+                  }
+
+                  if (this.mode === 'qna') {
+                    console.log("안드로이드 피부 고민 삭제");
+                  }
+                }
+              }]
+          });
+          alert.present();
+          console.log('select_popover_option2==========' + this.select_popover_option);
+
         }
       });
     }
@@ -169,11 +341,11 @@ export class CommunityModifyPage {
         if (popoverData === "수정") {
           this.comment_popover_option_textarea = i;
           setTimeout(() => {
-          console.log('수정');
-          // this.mytextarea.setFocus();
-          this.myInput.nativeElement.focus();
-          // this.presentLoading();
-          this.resize();
+            console.log('수정');
+            // this.mytextarea.setFocus();
+            this.myInput.nativeElement.focus();
+            // this.presentLoading();
+            this.resize();
           }, 100)
         }
         else if (popoverData === "삭제") {
@@ -279,13 +451,13 @@ export class CommunityModifyPage {
         console.log(this.comment_popover_option_textarea)
         if (popoverData === "수정") {
           this.comment_popover_option_textarea = i;
-           setTimeout(() => {
-           console.log('수정');
-           // this.mytextarea.setFocus();
-           this.myInput.nativeElement.focus();
-           // this.presentLoading();
-           this.resize();
-           }, 100)
+          setTimeout(() => {
+            console.log('수정');
+            // this.mytextarea.setFocus();
+            this.myInput.nativeElement.focus();
+            // this.presentLoading();
+            this.resize();
+          }, 100)
         }
         else if (popoverData === "삭제") {
           // console.log('comment_popover_option==========' + this.comment_popover_option);
@@ -416,7 +588,7 @@ export class CommunityModifyPage {
 
   }
 
-  focus(event){
+  focus(event) {
     console.log(event.target.value)
     // this.focusvalue = event.target.value
     this.updatevalue = event.target.value
@@ -439,8 +611,6 @@ export class CommunityModifyPage {
           this.islike = true;
         }
       }
-      console.log("beautyNoteOneLoadDat=====a" + this.beautyNoteOneLoadData);
-      console.log("beautyNoteOneLoadDat=====a" + this.beautyNoteOneLoadData.originalName);
     });
   }
 
@@ -647,7 +817,7 @@ export class CommunityModifyPage {
                     }
                   ]
                 });
-                this.comment_popover_option="보기";
+                this.comment_popover_option = "보기";
                 console.log("comment_popover_option=================" + this.comment_popover_option);
                 alert2.present();
               }
@@ -710,7 +880,7 @@ export class CommunityModifyPage {
       });
     }
 
-    if(this.mode === 'qna'){
+    if (this.mode === 'qna') {
       this.images.skinQnaDisLike(id, user).subscribe(data => {
         if (data !== '') {
           this.islike = false;
@@ -746,6 +916,188 @@ export class CommunityModifyPage {
     });
 
     toastctrl.present();
+  }
+
+
+
+  kakaolink() {
+    //your template id and arguments
+    // let customTemplate: KLCustomTemplate = {
+    //   templateId: '17450',
+    //   arguments: {
+    //     title: '플리닉 링크 테스트',
+    //     description: '플리닉 링크 설명 테스트',
+    //     like: '5000000',
+    //   },
+    // };
+    //
+    // this._kakaoCordovaSDK
+    // .sendLinkCustom(customTemplate)
+    // .then(
+    //   res => {
+    //     console.log(res);
+    //   },
+    //   err => {
+    //     console.log(err);
+    //   }
+    // )
+    // .catch(err => {
+    //   console.log(err);
+    // });
+
+    let feedLink: KLLinkObject = {
+      webURL: 'http://www.naver.com/',
+    };
+
+    let feedSocial: KLSocialObject = {
+      likeCount: 50,
+    };
+
+    let feedButtons1: KLButtonObject = {
+      title: 'button1',
+      link: {
+        mobileWebURL: 'http://plinic.cafe24app.com/',
+      },
+    };
+
+    let feedButtons2: KLButtonObject = {
+      title: 'button2',
+      link: {
+        iosExecutionParams: 'param1=value1&param2=value2',
+        androidExecutionParams: 'param1=value1&param2=value2',
+      },
+    };
+
+    let feedContent: KLContentObject = {
+      title: 'title',
+      link: feedLink,
+      imageURL: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png'
+    };
+
+
+    let feedTemplate: KLFeedTemplate = {
+      content: feedContent,
+      social: feedSocial,
+      buttons: [feedButtons1, feedButtons2]
+    };
+
+
+    this._kakaoCordovaSDK
+      .sendLinkFeed(feedTemplate)
+      .then(
+        res => {
+          console.log(res);
+          console.log("카카오 링크 공유 성공----------------------------------------");
+        },
+        err => {
+          console.log(err);
+          console.log("카카오 링크 공유 실패----------------------------------------");
+
+        }
+      )
+      .catch(err => {
+        console.log(err);
+        console.log("카카오 링크 공유 캐치ㅣㅣㅣㅣㅣ----------------------------------------");
+
+      });
+
+
+
+  }
+
+
+  share_instagram() {
+    this.instagram.share('http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png', '플리닉 공유하기')
+      // this.instagram.share('data:image/png;uhduhf3hfif33', '플리닉 공유하기')
+      .then(() => { console.log('Shared!') })
+      .catch((error: any) => console.error(error));
+
+  }
+
+  share_facebook() {
+    this.socialSharing.shareViaFacebook("Plinic", "https://www.google.co.jp/logos/doodles/2014/doodle-4-google-2014-japan-winner-5109465267306496.2-hp.png", "http://g1p.co.kr").then(() => {
+      console.log("페이스북 쉐어링 통광 ");
+    }).catch(() => {
+      console.log("페이스북 쉐어링 실패 ");
+    })
+
+    // this.fb.showDialog({
+    //   // method: 'share',
+    //   // href: 'http://g1p.co.kr',
+    //   // caption: '플리닉 페이스북 공유하기',
+    //   // description: '플리닉 페이스북 공유하기 설명',
+    //   // message: "Come on man, check out my application.",
+    //   // title: "플리닉 제목 테스트",
+    //   // picture: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png'
+    //   // method: "share",
+    //   // href: 'http://g1p.co.kr',
+    //   // picture: 'https://www.google.co.jp/logos/doodles/2014/doodle-4-google-2014-japan-winner-5109465267306496.2-hp.png',
+    //   // name: 'Test Post',
+    //   // message: 'First photo post',
+    //   // caption: 'Testing using phonegap plugin',
+    //   // description: 'Posting photo using phonegap facebook plugin'
+    //
+    //
+    //   method: "share",
+    //   href: "http://g1p.co.kr",
+    //   caption: "Such caption, very feed.",
+    //   description: "Much description",
+    //   picture: 'https://www.google.co.jp/logos/doodles/2014/doodle-4-google-2014-japan-winner-5109465267306496.2-hp.png',
+    //   hashtag: '#플리닉',
+    //   share_feedWeb: true, // iOS only
+    // }).then(res => {
+    //   console.log("페이스북 공유 성공 : " + res);
+    // }, err => {
+    //   console.log("페이스북 공유 실패 : " + err)
+    // }
+    // )
+  }
+
+  share() {
+    var url = encodeURI(encodeURIComponent("https://g1p.co.kr/company/plinicstory.html"));
+    var title = encodeURI("플라즈마 미용기기 플리닉");
+    // var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
+    var shareURL = "https://band.us/plugin/share?body='플리닉'&route='Plinic'";
+    let successComes: boolean = false;
+    this.browserRef = this.iab.create(shareURL, "_blank");
+    this.browserRef.on("exit").subscribe((event: InAppBrowserEvent) => {
+      // let successComes: boolean = false;
+      console.log("exit comes: " + JSON.stringify(event));
+      //사용자가 done을 눌러야지만 추적이 가능함
+      // setTimeout(() => {
+        // if (!successComes) {
+          // let reason = { stage: "login_err", msg: "no input" };
+        // }
+      // }, 1000); //  1 second. Is it enough?
+
+    });
+    this.browserRef.on("loadstart").subscribe((event:InAppBrowserEvent)=>{
+      console.log("loadstart --------------------------------------- : " + JSON.stringify(event));
+    })
+    // document.location.href = shareURL;
+  }
+
+
+
+  doKakaoLogin() {
+    var url = encodeURI(encodeURIComponent("https://g1p.co.kr/company/plinicstory.html"));
+    var title = encodeURI("플라즈마 미용기기 플리닉");
+    var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
+    let successComes: boolean = false;
+    this.browserRef = this.iab.create(shareURL, "_blank");
+    this.browserRef.on("exit").subscribe((event: InAppBrowserEvent) => {
+      let successComes: boolean = false;
+      console.log("exit comes: " + JSON.stringify(event));
+      setTimeout(() => {
+        if (!successComes) {
+          let reason = { stage: "login_err", msg: "no input" };
+        }
+      }, 1000); //  1 second. Is it enough?
+
+    });
+    this.browserRef.on("loadstart").subscribe((event:InAppBrowserEvent)=>{
+      console.log("loadstart --------------------------------------- : " + event);
+    })
   }
 
 

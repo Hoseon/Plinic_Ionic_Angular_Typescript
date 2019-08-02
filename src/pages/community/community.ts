@@ -1,5 +1,5 @@
 import { Component, ViewChild, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Content, ModalController, Slides, Platform, Loading, LoadingController, ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Content, ModalController, Slides, Platform, Loading, LoadingController, ToastController, ViewController} from 'ionic-angular';
 import { CommunityModifyPage } from './community-modify/community-modify';
 import { CommunityWritePage } from './community-write/community-write';
 import { MyPage } from './my/my';
@@ -62,7 +62,7 @@ export class CommunityPage {
 
   @ViewChild(Slides) slides: Slides;
 
-  constructor(private toastCtrl: ToastController, private authService: AuthService, public loadingCtrl: LoadingController, public nav: NavController,
+  constructor(private view : ViewController, private toastCtrl: ToastController, private authService: AuthService, public loadingCtrl: LoadingController, public nav: NavController,
     public navParams: NavParams, private alertCtrl: AlertController, public modalCtrl: ModalController, private images: ImagesProvider, public platform: Platform
     , private themeableBrowser: ThemeableBrowser, @Inject(DOCUMENT) document) {
 
@@ -82,6 +82,11 @@ export class CommunityPage {
 
   ionViewCanEnter() {
     this.loadItems();
+  }
+
+  update(){
+    this.view._willEnter();
+
   }
 
   ionViewWillEnter() {
@@ -220,6 +225,10 @@ export class CommunityPage {
   }
 
   openBrowser_ioslike(url, title, id, user, mode) {
+    this.images.communityBeautyViewsUpdate(id).subscribe(data => {
+      this.communityBeautyLoadData = data;
+    });
+
     // https://ionicframework.com/docs/native/themeable-browser/
 
     const options: ThemeableBrowserOptions = {
@@ -335,6 +344,9 @@ export class CommunityPage {
 
   openBrowser_androidlike(url, title, id, user, mode) {
     // https://ionicframework.com/docs/native/themeable-browser/
+    this.images.communityBeautyViewsUpdate(id).subscribe(data => {
+      this.communityBeautyLoadData = data;
+    });
 
     const options: ThemeableBrowserOptions = {
       toolbar: {
@@ -484,15 +496,19 @@ export class CommunityPage {
 
   public community_modify(id) {
     let myModal = this.modalCtrl.create(CommunityModifyPage, { id: id, mode: 'note' });
+    myModal.onDidDismiss(data => {
+      this.ionViewWillEnter();
+    });
     myModal.present();
   }
 
   public community_qna_modify(id) {
     let myModal = this.modalCtrl.create(CommunityModifyPage, { id: id, mode: 'qna' });
+    myModal.onDidDismiss(data => {
+      this.ionViewWillEnter();
+    });
     myModal.present();
   }
-
-
 
   public community_qna_write() {
     let myModal = this.modalCtrl.create(CommunityWritePage, { qna: 'qna' });

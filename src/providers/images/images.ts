@@ -105,6 +105,11 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public communityBeautyViewsUpdate(id) {
+    return this.http.get(this.apiURL + 'commubeauty/list/' + id)
+      .map(response => response.json());
+  }
+
   public beautyNoteLoad() {
     return this.http.get(this.apiURL + 'beautynote/main_list')
       .map(response => response.json());
@@ -113,6 +118,9 @@ export class ImagesProvider {
   public beautyNoteMainLoad() {
     return this.http.get(this.apiURL + 'beautynote/editorlist')
       .map(response => response.json());
+
+
+
   }
 
   public beautyNoteOneLoad(id) {

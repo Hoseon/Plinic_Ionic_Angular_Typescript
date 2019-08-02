@@ -118,5 +118,11 @@
     </plugin>
     <plugin name="cordova-plugin-bluetooth-serial" spec="^0.4.7" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
+    <plugin name="cordova-instagram-plugin" spec="^0.5.8" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.7">
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.1+" />
+        <variable name="PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION" value="This app requires photo library access to function properly." />
+        <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="This app requires photo library access to function properly." />
+    </plugin>
     <engine name="ios" spec="5.0.0" />
 </widget>
