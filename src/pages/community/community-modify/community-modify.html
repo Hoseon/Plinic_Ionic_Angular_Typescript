@@ -73,9 +73,9 @@
         </ion-col>
       </ion-row>
 
-      <ion-row class="sns_row">
+      <ion-row *ngIf="beautyNoteOneLoadData" class="sns_row">
 
-        <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" (click)="kakaolink()" />
+        <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" (click)="kakaolink(beautyNoteOneLoadData)" />
           <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" (click)="share_facebook()" />
             <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-band@3x.png" (click)="share()" /></ion-col>
 
@@ -107,7 +107,8 @@
       <img *ngIf="!userData.thumbnail_image && !profileimg_url" style="margin-top: 7%;" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png" />
       <div class="container">
         <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300" autoGrow="true" placeholder="댓글 등록" (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea>
-        <button ion-button class="comment_input_enroll" (click)="saveReply()">등록</button>
+        <button *ngIf="registerReply.comment.length >= 1" ion-button class="comment_input_enroll" (click)="saveReply()">등록</button>
+        <button *ngIf="registerReply.comment.length < 1" ion-button class="comment_input_enroll" disabled (click)="saveReply()">등록</button>
       </div>
       <div style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div>
     </ng-container>
@@ -115,10 +116,9 @@
     <!-- 댓글  -->
     <ng-container *ngIf="beautyNoteOneLoadData">
       <ng-container *ngFor="let registerReply of beautyNoteOneLoadData.comments; let i = index">
-
-        <img *ngIf="userData.email === registerReply.email && profileimg_url" class="profile_comment" [src]="profileimg_url" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'"/>
-        <img class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{registerReply.email}}" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'"/>
-        <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png"/>
+        <img *ngIf="registerReply.img_url" class="profile_comment" [src]="registerReply.img_url" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'"/>
+        <img *ngIf="!registerReply.img_url" class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{registerReply.email}}" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'"/>
+        <!-- <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png"/> -->
 
         <ng-container *ngIf="userData.email === registerReply.email">
           <button ion-button class="comment_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
@@ -252,7 +252,8 @@
       <img *ngIf="!userData.thumbnail_image && !profileimg_url" style="margin-top: 7%;" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png" />
       <div class="container">
         <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300" autoGrow="true" placeholder="댓글 등록" (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea>
-        <button ion-button class="comment_input_enroll" (click)="saveSkinQnaReply()">등록</button>
+        <button *ngIf="registerReply.comment.length >= 1" ion-button class="comment_input_enroll" (click)="saveSkinQnaReply()">등록</button>
+        <button *ngIf="registerReply.comment.length < 1" ion-button class="comment_input_enroll" disabled (click)="saveSkinQnaReply()">등록</button>
       </div>
       <div style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div>
     </ng-container>
@@ -261,10 +262,10 @@
     <!-- 댓글  -->
     <ng-container *ngIf="skinQnaOneLoadData">
       <ng-container *ngFor="let registerReply of skinQnaOneLoadData.comments; let i = index">
+        <img *ngIf="registerReply.img_url" class="profile_comment" [src]="registerReply.img_url" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'"/>
+        <img *ngIf="!registerReply.img_url" class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{registerReply.email}}" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'"/>
 
-        <img *ngIf="userData.email === registerReply.email && profileimg_url" class="profile_comment" [src]="profileimg_url" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
-        <img class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{registerReply.email}}" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
-        <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png" />
+        <!-- <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
 
         <ng-container *ngIf="userData.email === registerReply.email">
           <button ion-button class="comment_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>

@@ -16,8 +16,14 @@ import { Observable } from 'rxjs/Observable';
 //Blue Mod S42
 const PLINIC_SERVICE = 'FEFB';
 const UUID_SERVICE = 'FEFB';
-const SWITCH_CHARACTERISTIC = '00000001-0000-1000-8000-008025000000';
+const SWITCH_CHARACTERISTIC = 'FEFB';
 // const SWITCH_CHARACTERISTIC = 'FF01';
+//
+//
+// UUID:1800  (Generic Access Service)
+// UUID:1801  (Terminal I/O Service, TIO)
+// UUID:180A  (Environmental Sensing Service, ESS)
+// UUID:FEFB  (device Information Service, DIS)
 
 // //HM Soft Bluetooth Mod
 // const PLINIC_SERVICE = 'FFE0';

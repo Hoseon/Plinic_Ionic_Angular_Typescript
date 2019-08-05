@@ -667,29 +667,80 @@ export class CommunityModifyPage {
     console.log(this.id);
     console.log(this.registerReply.comment);
     this.registerReply.id = this.id;
-    this.auth.replySave(this.userData.email, this.registerReply).subscribe(data => {
-      if (data !== "") {
-        let alert2 = this.alertCtrl.create({
-          cssClass: 'push_alert',
-          title: '댓글달기',
-          message: "댓글이 정상적으로 등록되었습니다.",
-          buttons: [
-            {
-              text: '확인',
-              handler: () => {
-                this.registerReply.comment = '';
-                this.textareaResize();
-                this.update();
+
+    if(this.userData.from === 'kakao' || this.userData.from === 'naver' || this.userData.from === 'google'){
+      this.auth.replySnsSave(this.userData, this.registerReply).subscribe(data => {
+        if (data !== "") {
+          let alert2 = this.alertCtrl.create({
+            cssClass: 'push_alert',
+            title: '댓글달기',
+            message: "댓글이 정상적으로 등록되었습니다.",
+            buttons: [
+              {
+                text: '확인',
+                handler: () => {
+                  this.registerReply.comment = '';
+                  this.textareaResize();
+                  this.update();
+                }
               }
-            }
-          ]
-        });
-        alert2.present();
-      }
-      // this.nav.push(CareZoneMissionIngPage, { _id: id });
-    }, error => {
-      this.showError(JSON.parse(error._body).msg);
-    });
+            ]
+          });
+          alert2.present();
+        }
+        // this.nav.push(CareZoneMissionIngPage, { _id: id });
+      }, error => {
+        this.showError(JSON.parse(error._body).msg);
+      });
+    } else {
+      this.auth.replySave(this.userData, this.registerReply).subscribe(data => {
+        if (data !== "") {
+          let alert2 = this.alertCtrl.create({
+            cssClass: 'push_alert',
+            title: '댓글달기',
+            message: "댓글이 정상적으로 등록되었습니다.",
+            buttons: [
+              {
+                text: '확인',
+                handler: () => {
+                  this.registerReply.comment = '';
+                  this.textareaResize();
+                  this.update();
+                }
+              }
+            ]
+          });
+          alert2.present();
+        }
+        // this.nav.push(CareZoneMissionIngPage, { _id: id });
+      }, error => {
+        this.showError(JSON.parse(error._body).msg);
+      });
+    }
+
+    // this.auth.replySave(this.userData, this.registerReply).subscribe(data => {
+    //   if (data !== "") {
+    //     let alert2 = this.alertCtrl.create({
+    //       cssClass: 'push_alert',
+    //       title: '댓글달기',
+    //       message: "댓글이 정상적으로 등록되었습니다.",
+    //       buttons: [
+    //         {
+    //           text: '확인',
+    //           handler: () => {
+    //             this.registerReply.comment = '';
+    //             this.textareaResize();
+    //             this.update();
+    //           }
+    //         }
+    //       ]
+    //     });
+    //     alert2.present();
+    //   }
+    //   // this.nav.push(CareZoneMissionIngPage, { _id: id });
+    // }, error => {
+    //   this.showError(JSON.parse(error._body).msg);
+    // });
   }
 
 
@@ -750,29 +801,57 @@ export class CommunityModifyPage {
     console.log(this.id);
     console.log(this.registerReply.comment);
     this.registerReply.id = this.id;
-    this.auth.replySkinQnaSave(this.userData.email, this.registerReply).subscribe(data => {
-      if (data !== "") {
-        let alert2 = this.alertCtrl.create({
-          cssClass: 'push_alert',
-          title: '댓글달기',
-          message: "댓글이 정상적으로 등록되었습니다.",
-          buttons: [
-            {
-              text: '확인',
-              handler: () => {
-                this.registerReply.comment = '';
-                this.textareaResize();
-                this.update();
+    if(this.userData.from === 'kakao' || this.userData.from === 'naver' || this.userData.from === 'google'){
+      this.auth.replySkinQnaSnsSave(this.userData, this.registerReply).subscribe(data => {
+        if (data !== "") {
+          let alert2 = this.alertCtrl.create({
+            cssClass: 'push_alert',
+            title: '댓글달기',
+            message: "댓글이 정상적으로 등록되었습니다.",
+            buttons: [
+              {
+                text: '확인',
+                handler: () => {
+                  this.registerReply.comment = '';
+                  this.textareaResize();
+                  this.update();
+                }
               }
-            }
-          ]
-        });
-        alert2.present();
-      }
-      // this.nav.push(CareZoneMissionIngPage, { _id: id });
-    }, error => {
-      this.showError(JSON.parse(error._body).msg);
-    });
+            ]
+          });
+          alert2.present();
+        }
+        // this.nav.push(CareZoneMissionIngPage, { _id: id });
+      }, error => {
+        this.showError(JSON.parse(error._body).msg);
+      });
+    } else {
+      this.auth.replySkinQnaSave(this.userData, this.registerReply).subscribe(data => {
+        if (data !== "") {
+          let alert2 = this.alertCtrl.create({
+            cssClass: 'push_alert',
+            title: '댓글달기',
+            message: "댓글이 정상적으로 등록되었습니다.",
+            buttons: [
+              {
+                text: '확인',
+                handler: () => {
+                  this.registerReply.comment = '';
+                  this.textareaResize();
+                  this.update();
+                }
+              }
+            ]
+          });
+          alert2.present();
+        }
+        // this.nav.push(CareZoneMissionIngPage, { _id: id });
+      }, error => {
+        this.showError(JSON.parse(error._body).msg);
+      });
+    }
+
+
   }
 
 
@@ -920,48 +999,24 @@ export class CommunityModifyPage {
 
 
 
-  kakaolink() {
-    //your template id and arguments
-    // let customTemplate: KLCustomTemplate = {
-    //   templateId: '17450',
-    //   arguments: {
-    //     title: '플리닉 링크 테스트',
-    //     description: '플리닉 링크 설명 테스트',
-    //     like: '5000000',
-    //   },
-    // };
-    //
-    // this._kakaoCordovaSDK
-    // .sendLinkCustom(customTemplate)
-    // .then(
-    //   res => {
-    //     console.log(res);
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // )
-    // .catch(err => {
-    //   console.log(err);
-    // });
-
+  kakaolink(beautyNoteOneLoadData) {
     let feedLink: KLLinkObject = {
       webURL: 'http://www.naver.com/',
     };
 
     let feedSocial: KLSocialObject = {
-      likeCount: 50,
+      likeCount: parseInt(beautyNoteOneLoadData.like),
     };
 
     let feedButtons1: KLButtonObject = {
-      title: 'button1',
+      title: '플리닉 바로가기',
       link: {
-        mobileWebURL: 'http://plinic.cafe24app.com/',
+        mobileWebURL: 'http://plinic.co.kr',
       },
     };
 
     let feedButtons2: KLButtonObject = {
-      title: 'button2',
+      title: '앱에서 확인',
       link: {
         iosExecutionParams: 'param1=value1&param2=value2',
         androidExecutionParams: 'param1=value1&param2=value2',
@@ -969,9 +1024,9 @@ export class CommunityModifyPage {
     };
 
     let feedContent: KLContentObject = {
-      title: 'title',
+      title: beautyNoteOneLoadData.title,
       link: feedLink,
-      imageURL: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png'
+      imageURL: 'http://plinic.cafe24app.com/beautynoteimage/' + beautyNoteOneLoadData._id
     };
 
 

@@ -493,6 +493,7 @@ page-community {
         margin-left: 4%;
         padding-bottom: 0px;
 
+
         @supports (-webkit-line-clamp: 2) {
           overflow: hidden;
           text-overflow: ellipsis;
@@ -617,8 +618,8 @@ page-community {
           // position: absolute;
           // top: -25%;
           // right: -120%;
-          transform: translate(39.5vh, -6vh);
-          -ms-transform: translate(-50%, -50%);
+          // transform: translate(39.5vh, -6vh);
+          // -ms-transform: translate(-50%, -50%);
           color: #fff;
           border: none;
           cursor: pointer;
@@ -626,7 +627,9 @@ page-community {
           max-height: 80px;
           border-radius: 5px;
           background-color: #f5f5f5;
-          margin-bottom: -7%;
+          margin-bottom: 2%;
+          margin-left: 74%;
+          margin-top: -14%;
         }
 
         .container .beauty_home_note_img {
@@ -649,8 +652,8 @@ page-community {
           // position: absolute;
           // top: -25%;
           // right: -120%;
-          transform: translate(39.5vh, -6vh);
-          -ms-transform: translate(-50%, -50%);
+          // transform: translate(39.5vh, -6vh);
+          // -ms-transform: translate(-50%, -50%);
           color: #fff;
           border: none;
           cursor: pointer;
@@ -658,7 +661,9 @@ page-community {
           max-height: 80px;
           border-radius: 5px;
           background-color: #f5f5f5;
-          margin-bottom: -7%;
+          margin-bottom: 2%;
+          margin-left: 74%;
+          margin-top: -14%
         }
 
         .container .beauty_worry_img {
@@ -681,8 +686,8 @@ page-community {
           // position: absolute;
           // top: -25%;
           // right: -120%;
-          transform: translate(39.5vh, -6vh);
-          -ms-transform: translate(-50%, -50%);
+          // transform: translate(39.5vh, -6vh);
+          // -ms-transform: translate(-50%, -50%);
           color: #fff;
           border: none;
           cursor: pointer;
@@ -690,7 +695,9 @@ page-community {
           max-height: 80px;
           border-radius: 5px;
           background-color: #f5f5f5;
-          margin-bottom: -7%;
+          margin-bottom: 2%;
+          margin-left: 74%;
+          margin-top: -14%;
         }
 
 
@@ -714,8 +721,8 @@ page-community {
           // position: absolute;
           // top: -25%;
           // right: -120%;
-          transform: translate(39.5vh, -6vh);
-          -ms-transform: translate(-50%, -50%);
+          // transform: translate(39.5vh, -6vh);
+          // -ms-transform: translate(-50%, -50%);
           color: #fff;
           border: none;
           cursor: pointer;
@@ -723,7 +730,9 @@ page-community {
           max-height: 80px;
           border-radius: 5px;
           background-color: #f5f5f5;
-          margin-bottom: -7%;
+          margin-bottom: 2%;
+          margin-left: 74%;
+          margin-top: -14%
         }
 
 

@@ -419,12 +419,33 @@ export class AuthService {
       });
   }
 
-  public replySave(email, content) {
+  public replySave(userData, content) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
 
     let body = {
-      email: email,
+      email: userData.email,
+      id: content.id,
+      comment: content.comment,
+    };
+
+    console.log("ReplySave : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/replysave', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public replySnsSave(userData, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: userData.email,
+      img_url : userData.thumbnail_image,
       id: content.id,
       comment: content.comment,
     };
@@ -480,12 +501,33 @@ export class AuthService {
   }
 
 
-  public replySkinQnaSave(email, content) {
+  public replySkinQnaSave(userData, content) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
 
     let body = {
-      email: email,
+      email: userData.email,
+      id: content.id,
+      comment: content.comment,
+    };
+
+    console.log("ReplySave : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/replyskinqnasave', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public replySkinQnaSnsSave(userData, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: userData.email,
+      img_url : userData.thumbnail_image,
       id: content.id,
       comment: content.comment,
     };
