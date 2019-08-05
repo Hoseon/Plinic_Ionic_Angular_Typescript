@@ -249,7 +249,7 @@
               <ion-row class="beauty_row">
                 <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
               </ion-row>
-              <ion-col *ngIf="skinqna.like >= 0" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+              <ion-col  class="beauty_note_like">좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
 
@@ -265,7 +265,7 @@
               <ion-row class="beauty_row">
                 <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
               </ion-row>
-              <ion-col *ngIf="skinqna.like >= 0" class="beauty_note_count2">좋아요 {{skinqna.like}} ∙
+              <ion-col  class="beauty_note_count2">좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
             </ion-col></ion-item>
@@ -280,9 +280,6 @@
 
 
     </ion-slide>
-
-
-
 
 
     <!-- 뷰티 꿀팁 -->
@@ -396,7 +393,7 @@
           <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
         </ng-container>
       </ng-container>
-      <br><br><br><br><br><br>
+      <br><br><br><br>
     </ion-slide>
 
 
@@ -424,7 +421,7 @@
             <ion-row class="beauty_row">
               <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
             </ion-row>
-            <ion-col *ngIf="skinqna.like >= 0" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+            <ion-col  class="beauty_note_like">좋아요 {{skinqna.like}} ∙
               <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
             </ion-col>
             <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
@@ -439,7 +436,7 @@
             <ion-row class="beauty_row">
               <ion-col class="beauty_note_title"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
             </ion-row>
-            <ion-col *ngIf="skinqna.like >= 0" class="beauty_note_count2">좋아요 {{skinqna.like}} ∙
+            <ion-col  class="beauty_note_count2">좋아요 {{skinqna.like}} ∙
               <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
             </ion-col>
           </ion-col></ion-item>
@@ -451,7 +448,7 @@
       <!-- <button ion-button class="beauty_top_add" > 더보기 > </button>
 
     <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br> -->
-      <br><br><br><br><br><br>
+      <br><br><br><br>
     </ion-slide>
 
 
@@ -492,16 +489,23 @@
     </ion-slide>
   </ion-slides>
 
+  <ion-fab>
+    <button ion-fab class="fab_btn" *ngIf="page==='2'" color="primary" (click)="community_write()">+</button>
+    <button ion-fab class="fab_btn" *ngIf="page==='3'" color="primary" (click)="community_qna_write()">+</button>
+  </ion-fab>
+
 </ion-content>
 
 
-
+<!--
 <ion-footer *ngIf="platform.is('android')">
   <button mode="ios" *ngIf="page==='2'" ion-button class="android_footer_btn" (click)="community_write()"> 노트 작성하기 > </button>
   <button mode="ios" *ngIf="page==='3'" ion-button class="android_footer_btn" (click)="community_qna_write()"> 고민 상담받기 > </button>
+
 </ion-footer>
 
 <ion-footer keyboard-attach no-bounce no-lines *ngIf="platform.is('ios') || platform.is('core')">
+
   <button mode="ios" *ngIf="page==='2'" ion-button class="ios_footer_btn" (click)="community_write()"> 노트 작성하기 > </button>
   <button mode="ios" *ngIf="page==='3'" ion-button class="ios_footer_btn" (click)="community_qna_write()"> 고민 상담받기 > </button>
-</ion-footer>
+</ion-footer> -->
