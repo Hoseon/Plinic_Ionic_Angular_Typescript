@@ -1,5 +1,5 @@
 import { Component, ViewChild, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Content, ModalController, Slides, Platform, Loading, LoadingController, ToastController, ViewController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Content, ModalController, Slides, Platform, Loading, LoadingController, ToastController, ViewController, Events} from 'ionic-angular';
 import { CommunityModifyPage } from './community-modify/community-modify';
 import { CommunityWritePage } from './community-write/community-write';
 import { MyPage } from './my/my';
@@ -58,38 +58,40 @@ export class CommunityPage {
   beauty_data_id4: any;
   beauty_data_url4: any;
   loading: Loading;
-
+  tab3:any;
+  tab1:any;
 
   @ViewChild(Slides) slides: Slides;
 
   constructor(private view : ViewController, private toastCtrl: ToastController, private authService: AuthService, public loadingCtrl: LoadingController, public nav: NavController,
     public navParams: NavParams, private alertCtrl: AlertController, public modalCtrl: ModalController, private images: ImagesProvider, public platform: Platform
-    , private themeableBrowser: ThemeableBrowser, @Inject(DOCUMENT) document) {
+    , private themeableBrowser: ThemeableBrowser, @Inject(DOCUMENT) document, public events: Events) {
 
 
     this.platform.ready().then((readySource) => {
 
       console.log(this.navParams.get('back'));
-      // this.roadbeauty();
-      // this.communityEditorBeautyLoad();
-      // this.communityBeautyLoad();
-      // this.beautyNoteLoad();
-      // this.beautyNoteMainLoad();
-      // this.skinQnaLoad();
-      // this.skinQnaMainLoad();
     });
   }
 
   ionViewCanEnter() {
     this.loadItems();
   }
-
-  update(){
-    this.view._willEnter();
-
+  ionViewDidEnter() {
+    console.log("다시다시");
+    this.content.resize();
   }
 
+
+
+  update(){
+  this.view._willEnter();
+
+}
+
+
   ionViewWillEnter() {
+    //this.selectedTab(0);
     this.showLoading();
     this.roadbeauty();
     this.communityEditorBeautyLoad();
@@ -99,7 +101,9 @@ export class CommunityPage {
     this.skinQnaLoad();
     this.skinQnaMainLoad();
     this.exhibitionLoad();
-    // this.loading.dismiss();
+    //this.loading.dismiss();
+    this.events1();
+    this.events3();
 
     if(this.page === '2' || this.page === '3'){
     let tabs = document.querySelectorAll('.tabbar');
@@ -115,16 +119,44 @@ export class CommunityPage {
   }
 }
 
+events1(){
+this.events.subscribe('tabs1', (data) => {
+  this.tab1 = data;
+  this.selectedTab(0);
+  if(this.tab1=="tabs1"){
+    setTimeout(() => {
+    this.selectedTab(1);
+    this.page="1";
+  }, 100);
+}
+  this.events.unsubscribe('tabs1', this.tab1);
+  console.log("tabs1 subscribe===============" + data);
+});
+}
+
+events3(){
+this.events.subscribe('tabs3', (data) => {
+  this.tab3 = data;
+  this.selectedTab(0);
+  if(this.tab3=="tabs3"){
+      setTimeout(() => {
+      this.selectedTab(3);
+      this.page="3";
+    }, 100);
+  }
+    this.events.unsubscribe('tabs3', this.tab3);
+  console.log("tabs3 subscribe===============" + data);
+});
+}
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommunityPage');
-
   }
 
   selectedTab(tab) {
     this.slides.slideTo(tab);
-
-    console.log('  this.slides.slideTo(tab)===================' + tab);
+    console.log('this.slides.slideTo(tab)===================' + tab);
   }
 
   slideChanged($event) {
@@ -228,8 +260,6 @@ export class CommunityPage {
     this.images.communityBeautyViewsUpdate(id).subscribe(data => {
       this.communityBeautyLoadData = data;
     });
-
-    // https://ionicframework.com/docs/native/themeable-browser/
 
     const options: ThemeableBrowserOptions = {
       toolbar: {
@@ -343,10 +373,9 @@ export class CommunityPage {
 
 
   openBrowser_androidlike(url, title, id, user, mode) {
-    // https://ionicframework.com/docs/native/themeable-browser/
     this.images.communityBeautyViewsUpdate(id).subscribe(data => {
-      this.communityBeautyLoadData = data;
-    });
+       this.communityBeautyLoadData = data;
+     });
 
     const options: ThemeableBrowserOptions = {
       toolbar: {
@@ -456,24 +485,6 @@ export class CommunityPage {
 
 
 
-  ionViewDidEnter() {
-    console.log("다시다시");
-    this.content.resize();
-    // console.log('ionViewDidLoad CommunityPage');
-    //
-    // let alert = this.alertCtrl.create({
-    //   cssClass: 'push_alert',
-    //   title: '커뮤니티',
-    //   message: '추후 업데이트 예정 <br> 감사합니다.',
-    //   buttons: [{
-    //     text: '확인'
-    //   }]
-    // });
-    // alert.present();
-    //  this.admobFree.banner.hide();
-  }
-
-
   public community_my() {
   this.nav.push(MyPage);
   }
@@ -517,6 +528,7 @@ export class CommunityPage {
     });
     myModal.present();
   }
+
 
   public loadItems() {
     this.authService.getUserStorage().then(items => {

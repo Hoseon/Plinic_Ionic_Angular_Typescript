@@ -394,6 +394,17 @@ page-skin-chart {
               position: relative;
           }
 
+          .chartWrapper .chartWrapper_line {
+            position: absolute;
+            top: 35%;
+            left: 12%;
+            height:1px;
+            width:660px;
+            margin:0 auto;
+            display: block;
+            background-color:#00C6ED;
+          }
+
           .chartWrapper > canvas {
               position: absolute;
               left: 0;

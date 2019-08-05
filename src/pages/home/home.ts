@@ -23,7 +23,7 @@
 
 import { IonicPage, App } from 'ionic-angular';
 import { Component, Inject } from '@angular/core';
-import { NavController, Platform, AlertController, ModalController, Loading, LoadingController, ViewController } from 'ionic-angular';
+import { NavController, Platform, AlertController, ModalController, Loading, LoadingController, ViewController, Events   } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
@@ -46,7 +46,8 @@ import { BeautyTipAddPage } from '../beauty-tip-add/beauty-tip-add';
 import { PlinicManualPage } from '../myinfo/details/plinic-manual/plinic-manual';
 import { SkinDiagnoseMoisturePage } from '../skin-diagnose-moisture/skin-diagnose-moisture';
 import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture';
-
+import { CommunityModifyPage } from '../community/community-modify/community-modify';
+import { CommunityPage } from '../community/community';
 
 
 @IonicPage()
@@ -173,12 +174,13 @@ export class HomePage {
 
   total_score: any = 0;
   pre_total_score: any = 0;
+  skinQnaData: any;
 
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController,
     public translateService: TranslateService, public bluetoothle: BluetoothLE, public viewCtrl: ViewController,
     private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, public app: App, private callNumber: CallNumber
-    , @Inject(DOCUMENT) document) {
+    , @Inject(DOCUMENT) document, public events: Events) {
     this.platform.ready().then((readySource) => {
       // this.currentDate = new Date().toISOString();
 
@@ -231,8 +233,6 @@ export class HomePage {
             || activeView.name === 'CareZoneMissionCompletePage'
             || activeView.name === 'MyPage'
             || activeView.name === 'MyCommunityModifyPage'
-
-
           ){
                 console.log("activeView.name===================111111111000000");
                 activeView.dismiss();
@@ -275,7 +275,16 @@ export class HomePage {
     this.skin_moisture_score();
   }
 
+  public community_qna_modify(id) {
+    let myModal = this.modalCtrl.create(CommunityModifyPage, { id: id, mode: 'qna' });
+    myModal.present();
+  }
 
+  public skinQnaLoad() {
+    this.images.skinQnaLoad().subscribe(data => {
+      this.skinQnaData = data;
+    });
+  }
 
   public skin_first_check() {
     this.auth.getUserStoragediagnose_first_check().then(items => {
@@ -508,6 +517,7 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
+    this.skinQnaLoad();
     // console.log("Enter Home");
     //this.nav.parent.select(0);
     //this.loadItems();
@@ -974,12 +984,15 @@ export class HomePage {
     this.nav.parent.select(1);
   }
 
-  public openCommunityTab(): void {
-    // The second tab is the one with the index = 1
-    //this.nav.push(TabsPage, { selectedTab: 1 });
+  public openCommunityTab1(): void {
     this.nav.parent.select(3);
+    this.events.publish('tabs1', "tabs1");
   }
 
+  public openCommunityTab3(): void {
+    this.nav.parent.select(3);
+    this.events.publish('tabs3', "tabs3");
+  }
 
   //20190617 미션 참여중인지 체크 하기
   public chkmission(email) {
