@@ -50,7 +50,7 @@ export class CommunityWritePage {
   text_edit: boolean = false;
 
   @ViewChild('image') imageElement: ElementRef;
-  unregisterBackButtonAction: Function
+  unregisterBackButtonAction: Function;
 
   // ,preparedTags = [
   //   '#Ionic',
@@ -104,21 +104,10 @@ export class CommunityWritePage {
         }
       }
 
-      this.platform.registerBackButtonAction(() => {
-        let nav = app._appRoot._getActivePortal() || app.getActiveNav();
-        let activeView = nav.getActive();
 
-        if (activeView != null) {
-          if (this.nav.canGoBack()) { // CHECK IF THE USER IS IN THE ROOT PAGE.
-            //this.nav.pop(); // IF IT'S NOT THE ROOT, POP A PAGE.
-          }
-          else if (activeView.isOverlay) {
-            activeView.dismiss();
-          }
-          else {
-          }
-        }
-      });
+      this.unregisterBackButtonAction = this.platform.registerBackButtonAction(() => {
+              this.dissmiss();
+          }, 99999);
     });
   }
 

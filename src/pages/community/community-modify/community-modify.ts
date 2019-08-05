@@ -7,7 +7,7 @@ import { AuthService } from '../../../providers/auth-service';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { KakaoCordovaSDK, KLCustomTemplate, KLLinkObject, KLSocialObject, KLButtonObject, KLContentObject, KLFeedTemplate, AuthTypes } from 'kakao-sdk';
 import { Instagram } from '@ionic-native/instagram';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+//import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
 
@@ -58,7 +58,7 @@ export class CommunityModifyPage {
   browserRef: any;
 
 
-  constructor(private iab: InAppBrowser, private socialSharing: SocialSharing, private fb: Facebook, private instagram: Instagram, public _kakaoCordovaSDK: KakaoCordovaSDK, private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController,
+  constructor(private iab: InAppBrowser, private socialSharing: SocialSharing, private instagram: Instagram, public _kakaoCordovaSDK: KakaoCordovaSDK, private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController,
     public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
     public viewCtrl: ViewController, public popoverCtrl: PopoverController, public element: ElementRef, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
     this.platform.ready().then((readySource) => {
