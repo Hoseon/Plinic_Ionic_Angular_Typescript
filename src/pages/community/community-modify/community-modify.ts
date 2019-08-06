@@ -58,7 +58,7 @@ export class CommunityModifyPage {
   browserRef: any;
 
 
-  constructor(private fb : Facebook, private iab: InAppBrowser, private socialSharing: SocialSharing, private instagram: Instagram, public _kakaoCordovaSDK: KakaoCordovaSDK, private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController,
+  constructor(private fb: Facebook, private iab: InAppBrowser, private socialSharing: SocialSharing, private instagram: Instagram, public _kakaoCordovaSDK: KakaoCordovaSDK, private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController,
     public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
     public viewCtrl: ViewController, public popoverCtrl: PopoverController, public element: ElementRef, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
     this.platform.ready().then((readySource) => {
@@ -667,7 +667,7 @@ export class CommunityModifyPage {
     console.log(this.registerReply.comment);
     this.registerReply.id = this.id;
 
-    if(this.userData.from === 'kakao' || this.userData.from === 'naver' || this.userData.from === 'google'){
+    if (this.userData.from === 'kakao' || this.userData.from === 'naver' || this.userData.from === 'google') {
       this.auth.replySnsSave(this.userData, this.registerReply).subscribe(data => {
         if (data !== "") {
           let alert2 = this.alertCtrl.create({
@@ -800,7 +800,7 @@ export class CommunityModifyPage {
     console.log(this.id);
     console.log(this.registerReply.comment);
     this.registerReply.id = this.id;
-    if(this.userData.from === 'kakao' || this.userData.from === 'naver' || this.userData.from === 'google'){
+    if (this.userData.from === 'kakao' || this.userData.from === 'naver' || this.userData.from === 'google') {
       this.auth.replySkinQnaSnsSave(this.userData, this.registerReply).subscribe(data => {
         if (data !== "") {
           let alert2 = this.alertCtrl.create({
@@ -998,13 +998,13 @@ export class CommunityModifyPage {
 
 
 
-  kakaolink(beautyNoteOneLoadData) {
+  kakaolink(loadData, mode) {
     let feedLink: KLLinkObject = {
       webURL: 'http://www.naver.com/',
     };
 
     let feedSocial: KLSocialObject = {
-      likeCount: parseInt(beautyNoteOneLoadData.like),
+      likeCount: parseInt(loadData.like),
     };
 
     let feedButtons1: KLButtonObject = {
@@ -1022,11 +1022,21 @@ export class CommunityModifyPage {
       },
     };
 
-    let feedContent: KLContentObject = {
-      title: beautyNoteOneLoadData.title,
-      link: feedLink,
-      imageURL: 'http://plinic.cafe24app.com/beautynoteimage/' + beautyNoteOneLoadData._id
-    };
+    if (mode === 'note') {
+      var feedContent: KLContentObject = {
+        title: loadData.title,
+        link: feedLink,
+        imageURL: 'http://plinic.cafe24app.com/beautynoteimage/' + loadData._id
+      };
+    }
+
+    if (mode === 'qna'){
+      var feedContent: KLContentObject = {
+        title: loadData.title,
+        link: feedLink,
+        imageURL: 'http://plinic.cafe24app.com/skinqnaimage/' + loadData._id
+      };
+    }
 
 
     let feedTemplate: KLFeedTemplate = {
@@ -1046,17 +1056,12 @@ export class CommunityModifyPage {
         err => {
           console.log(err);
           console.log("카카오 링크 공유 실패----------------------------------------");
-
         }
       )
       .catch(err => {
         console.log(err);
         console.log("카카오 링크 공유 캐치ㅣㅣㅣㅣㅣ----------------------------------------");
-
       });
-
-
-
   }
 
 
@@ -1068,23 +1073,39 @@ export class CommunityModifyPage {
 
   }
 
-  share_facebook(loaddata) {
+  share_facebook(loaddata, mode) {
     // this.socialSharing.shareVia("com.apple.social.facebook", "Hello Plinic", "플리닉을 사용하자", "http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png", "http://g1p.co.kr")
     // .then(()=>{console.log("페이스북 공유 성공")})
     // .catch(()=>{console.log("페이스북 공유 실패")});
-
-    this.socialSharing.shareViaFacebook("Plinic", "http://plinic.cafe24app.com/beautynoteimage/" + loaddata._id, "http://g1p.co.kr").then(res => {
-      console.log("페이스북 공유 성공 : " + res);
-    }, err => {
-      console.log("페이스북 공유 실패 : " + err)
-      if(err === 'cancelled'){
-        console.log("페이스북 공유 하려다가 취소 됨 : " + err);
-      }
-      if(err === 'not available') {
-        console.log("페이스북 공유 성공적으로 됨");
-      }
+    console.log("데이터 Id : " + loaddata._id);
+    if(mode === 'note'){
+      this.socialSharing.shareViaFacebook("Plinic", 'http://plinic.cafe24app.com/beautynoteimage/' + loaddata._id, "http://g1p.co.kr").then(res => {
+        console.log("페이스북 공유 성공 : " + res);
+      }, err => {
+        console.log("페이스북 공유 실패 : " + err)
+        if (err === 'cancelled') {
+          console.log("페이스북 공유 하려다가 취소 됨 : " + err);
+        }
+        if (err === 'not available') {
+          console.log("페이스북 공유 성공적으로 됨");
+        }
+      });
     }
-    )
+    if(mode === 'qna'){
+      this.socialSharing.shareViaFacebook("Plinic", 'http://plinic.cafe24app.com/skinqnaimage/' + loaddata._id, "http://g1p.co.kr").then(res => {
+        console.log("페이스북 공유 성공 : " + res);
+      }, err => {
+        console.log("페이스북 공유 실패 : " + err)
+        if (err === 'cancelled') {
+          console.log("페이스북 공유 하려다가 취소 됨 : " + err);
+        }
+        if (err === 'not available') {
+          console.log("페이스북 공유 성공적으로 됨");
+        }
+      });
+    }
+
+
 
     // this.fb.showDialog({
     // //   // method: 'share',
@@ -1130,13 +1151,13 @@ export class CommunityModifyPage {
       console.log("exit comes: " + JSON.stringify(event));
       //사용자가 done을 눌러야지만 추적이 가능함
       // setTimeout(() => {
-        // if (!successComes) {
-          // let reason = { stage: "login_err", msg: "no input" };
-        // }
+      // if (!successComes) {
+      // let reason = { stage: "login_err", msg: "no input" };
+      // }
       // }, 1000); //  1 second. Is it enough?
 
     });
-    this.browserRef.on("loadstart").subscribe((event:InAppBrowserEvent)=>{
+    this.browserRef.on("loadstart").subscribe((event: InAppBrowserEvent) => {
       console.log("loadstart --------------------------------------- : " + JSON.stringify(event));
     })
     // document.location.href = shareURL;
@@ -1160,7 +1181,7 @@ export class CommunityModifyPage {
       }, 1000); //  1 second. Is it enough?
 
     });
-    this.browserRef.on("loadstart").subscribe((event:InAppBrowserEvent)=>{
+    this.browserRef.on("loadstart").subscribe((event: InAppBrowserEvent) => {
       console.log("loadstart --------------------------------------- : " + event);
     })
   }

@@ -75,8 +75,8 @@
 
       <ion-row *ngIf="beautyNoteOneLoadData" class="sns_row">
 
-        <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" (click)="kakaolink(beautyNoteOneLoadData)" />
-          <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" (click)="share_facebook(beautyNoteOneLoadData)" />
+        <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" (click)="kakaolink(beautyNoteOneLoadData, 'note')" />
+          <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" (click)="share_facebook(beautyNoteOneLoadData, 'note')" />
             <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-band@3x.png" (click)="share()" /></ion-col>
 
           </ion-col>
@@ -225,9 +225,9 @@
           <img *ngIf="islike" class="sns-img" (click)="dislike(beautyNoteOneLoadData._id, this.userData.email)" src="assets/img/like/like2.png" />
         </ion-col>
       </ion-row>
-      <ion-row class="sns_row">
-        <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" />
-          <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" />
+      <ion-row *ngIf="skinQnaOneLoadData" class="sns_row">
+        <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" (click)="kakaolink(skinQnaOneLoadData, 'qna')"/>
+          <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" (click)="share_facebook(skinQnaOneLoadData, 'qna')" />
             <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-band@3x.png" /></ion-col>
           </ion-col>
         </ion-col>
