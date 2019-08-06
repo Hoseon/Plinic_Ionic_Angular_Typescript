@@ -58,12 +58,10 @@ export class CommunityModifyPage {
   browserRef: any;
 
 
-  constructor(private fb : Facebook,
-    private iab: InAppBrowser, private socialSharing: SocialSharing, private instagram: Instagram, public _kakaoCordovaSDK: KakaoCordovaSDK, private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController,
+  constructor(private fb : Facebook, private iab: InAppBrowser, private socialSharing: SocialSharing, private instagram: Instagram, public _kakaoCordovaSDK: KakaoCordovaSDK, private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController,
     public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
     public viewCtrl: ViewController, public popoverCtrl: PopoverController, public element: ElementRef, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
     this.platform.ready().then((readySource) => {
-
       //this.presentLoading();
 
     })
@@ -1071,34 +1069,40 @@ export class CommunityModifyPage {
   }
 
   share_facebook(loaddata) {
+    // this.socialSharing.shareVia("com.apple.social.facebook", "Hello Plinic", "플리닉을 사용하자", "http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png", "http://g1p.co.kr")
+    // .then(()=>{console.log("페이스북 공유 성공")})
+    // .catch(()=>{console.log("페이스북 공유 실패")});
     // this.socialSharing.shareViaFacebook("Plinic", "http://plinic.cafe24app.com/beautynoteimage/" + loaddata._id, "http://g1p.co.kr").then(() => {
     //   console.log("페이스북 쉐어링 통광 ");
-    // }).catch(() => {
+    // });
+    // .catch(() => {
     //   console.log("페이스북 쉐어링 실패 ");
     // })
 
     this.fb.showDialog({
-      // method: 'share',
-      // href: 'http://g1p.co.kr',
-      // caption: '플리닉 페이스북 공유하기',
-      // description: '플리닉 페이스북 공유하기 설명',
-      // message: "Come on man, check out my application.",
-      // title: "플리닉 제목 테스트",
-      // picture: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png'
-      // method: "share",
-      // href: 'http://g1p.co.kr',
-      // picture: 'https://www.google.co.jp/logos/doodles/2014/doodle-4-google-2014-japan-winner-5109465267306496.2-hp.png',
-      // name: 'Test Post',
-      // message: 'First photo post',
-      // caption: 'Testing using phonegap plugin',
-      // description: 'Posting photo using phonegap facebook plugin'
+    //   // method: 'share',
+    //   // href: 'http://g1p.co.kr',
+    //   // caption: '플리닉 페이스북 공유하기',
+    //   // description: '플리닉 페이스북 공유하기 설명',
+    //   // message: "Come on man, check out my application.",
+    //   // title: "플리닉 제목 테스트",
+    //   // picture: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png'
+    //   // method: "share",
+    //   // href: 'http://g1p.co.kr',
+    //   // picture: 'https://www.google.co.jp/logos/doodles/2014/doodle-4-google-2014-japan-winner-5109465267306496.2-hp.png',
+    //   // name: 'Test Post',
+    //   // message: 'First photo post',
+    //   // caption: 'Testing using phonegap plugin',
+    //   // description: 'Posting photo using phonegap facebook plugin'
+    //
+    //
       method: "share",
       href: "http://g1p.co.kr",
       caption: "Such caption, very feed.",
       description: "Much description",
-      picture: "http://plinic.cafe24app.com/beautynoteimage/" + loaddata._id,
+      picture: 'https://www.google.co.jp/logos/doodles/2014/doodle-4-google-2014-japan-winner-5109465267306496.2-hp.png',
       hashtag: '#플리닉',
-      share_feedWeb: true, // iOS only
+      // share_feedWeb: true, // iOS only
     }).then(res => {
       console.log("페이스북 공유 성공 : " + res);
     }, err => {
