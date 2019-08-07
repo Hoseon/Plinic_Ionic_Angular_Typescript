@@ -218,6 +218,8 @@ import { Instagram } from '@ionic-native/instagram';
 //각종 소셜 쉐어 기능,,,
 import { SocialSharing } from '@ionic-native/social-sharing';
 
+import { CustomIconsModule } from 'ionic2-custom-icons'
+
 
 
 
@@ -357,6 +359,7 @@ export function getAuthHttp(http, storage) {
       useFactory: (createTranslateLoader),
       deps: [Http]
     }),
+    CustomIconsModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

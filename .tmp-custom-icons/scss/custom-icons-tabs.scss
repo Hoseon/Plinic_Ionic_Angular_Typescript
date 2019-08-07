@@ -1,0 +1,83 @@
+@font-face {
+  font-family: "custom-icons-tabs";
+  src: url('../assets/fonts/custom-icons-tabs.eot');
+  src: url('../assets/fonts/custom-icons-tabs.eot?#iefix') format('eot'),
+  url('../assets/fonts/custom-icons-tabs.woff2') format('woff2'),
+  url('../assets/fonts/custom-icons-tabs.woff') format('woff'),
+  url('../assets/fonts/custom-icons-tabs.ttf') format('truetype'),
+  url('../assets/fonts/custom-icons-tabs.svg#custom-icons-tabs') format('svg');
+}
+
+%tabs {
+  font-family: "custom-icons-tabs";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  text-decoration: none;
+  text-transform: none;
+}
+
+@function tabs-char($filename) {
+  $char: "";
+  
+    @if $filename == ic-system-tab-cc-off {
+      $char: "\EA01";
+    }
+  
+    @if $filename == ic-system-tab-cc-on {
+      $char: "\EA02";
+    }
+  
+    @if $filename == ic-system-tab-community-off {
+      $char: "\EA03";
+    }
+  
+    @if $filename == ic-system-tab-community-on {
+      $char: "\EA04";
+    }
+  
+    @if $filename == ic-system-tab-home-off {
+      $char: "\EA05";
+    }
+  
+    @if $filename == ic-system-tab-home-on {
+      $char: "\EA06";
+    }
+  
+  @return $char;
+}
+
+@mixin tabs($filename) {
+  &:before {
+    @extend %tabs;
+    content: tabs-char($filename);
+  }
+}
+
+
+  custom-icon.set-tabs.icon-ic-system-tab-cc-off {
+    @include tabs(ic-system-tab-cc-off);
+  }
+
+  custom-icon.set-tabs.icon-ic-system-tab-cc-on {
+    @include tabs(ic-system-tab-cc-on);
+  }
+
+  custom-icon.set-tabs.icon-ic-system-tab-community-off {
+    @include tabs(ic-system-tab-community-off);
+  }
+
+  custom-icon.set-tabs.icon-ic-system-tab-community-on {
+    @include tabs(ic-system-tab-community-on);
+  }
+
+  custom-icon.set-tabs.icon-ic-system-tab-home-off {
+    @include tabs(ic-system-tab-home-off);
+  }
+
+  custom-icon.set-tabs.icon-ic-system-tab-home-on {
+    @include tabs(ic-system-tab-home-on);
+  }
+
