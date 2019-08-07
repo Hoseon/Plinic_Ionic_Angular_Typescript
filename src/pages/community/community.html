@@ -204,7 +204,7 @@
               <ion-row class="beauty_row">
                 <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
               </ion-row>
-              <ion-col *ngIf="beautynote.like >= 0" class="beauty_note_count2">좋아요 {{beautynote.like}} ∙
+              <ion-col *ngIf="beautynote.like >= 0" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
                 <ion-col *ngIf="beautynote.views >= 0" class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
               </ion-col>
             </ion-col></ion-item>
@@ -265,7 +265,7 @@
               <ion-row class="beauty_row">
                 <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
               </ion-row>
-              <ion-col  class="beauty_note_count2">좋아요 {{skinqna.like}} ∙
+              <ion-col  class="beauty_note_like">좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
             </ion-col></ion-item>
@@ -386,7 +386,7 @@
             <ion-row class="beauty_row">
               <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
             </ion-row>
-            <ion-col *ngIf="beautynote.like >= 0" class="beauty_note_count2">좋아요 {{beautynote.like}} ∙
+            <ion-col *ngIf="beautynote.like >= 0" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
               <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
             </ion-col>
           </ion-col></ion-item>
@@ -436,7 +436,7 @@
             <ion-row class="beauty_row">
               <ion-col class="beauty_note_title"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
             </ion-row>
-            <ion-col  class="beauty_note_count2">좋아요 {{skinqna.like}} ∙
+            <ion-col  class="beauty_note_like">좋아요 {{skinqna.like}} ∙
               <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
             </ion-col>
           </ion-col></ion-item>

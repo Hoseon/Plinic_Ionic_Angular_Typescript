@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar *ngIf="platform.is('android')">
-    <ion-title *ngIf="carezoneData" class="android_title" text-wrap> 미션</ion-title>
+    <ion-title *ngIf="carezoneData" class="android_title" text-wrap>케어 챌린지</ion-title>
   </ion-navbar>
 
   <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
@@ -21,14 +21,21 @@
         <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
       </button>
     </ion-buttons>
-    <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> 미션 </ion-title>
+    <ion-title *ngIf="carezoneData" class="ios_title" text-wrap>케어 챌린지</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <br>
+
+  <ion-slides *ngIf="bannerData && bannerData.length" class="img-banner_top_19000501" pager loop=true autoplay=2000>
+    <ion-slide *ngFor="let banner of bannerData">
+      <img src='http://plinic.cafe24app.com/images/{{banner._id}}' />
+    </ion-slide>
+  </ion-slides>
+  <!-- <div style="height:8px; width:100%; margin-top:-1%; margin-bottom:5%; background-color:#f1f1f1"></div> -->
+
   <ion-list *ngIf="carezoneData">
-    <ion-item no-lines>
+    <!-- <ion-item no-lines>
       <img class="goods-img" src="http://plinic.cafe24app.com/carezone_prodimages/{{carezoneData._id}}" /><br><br>
       <ng-container *ngIf="!endchkBtn">
         <button *ngIf="!chkBtn2" ion-button style="height:28px;box-shadow: none;" class="button_outline" outline (click)="mission_complete()">미션</button>
@@ -36,81 +43,93 @@
       </ng-container>
       <button *ngIf="endchkBtn" ion-button style="height:28px;box-shadow: none;" class="button_outline_end" outline (click)="mission_complete()">미션 종료</button>
 
-    </ion-item>
+    </ion-item> -->
     <h1 class="top_text"> {{carezoneData.title}} </h1><br>
+    <div text-wrap class="top_sub" >플리닉으로 매일 1회(최대 9분) 디바이스로 케어하고 사은품을 받으세요.</div>
+    <button ion-button class="top_btn" (click)="satrtMission(carezoneData._id)">참여하기 <img class="top_img" src="assets/img/care-zone/ic-system-trophy/ic-system-trophy@3x.png"/></button>
+
+    <!-- 참가 인원 이미지 추가  -->
+    <ion-row>
+      <ng-container>
+        <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
+        <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+        <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+        <div class="user_sub">253명이 참가 중입니다.</div>
+      </ng-container>
+    </ion-row>
 
 
     <ion-item style="width:97%">
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
-          <ion-col class="event-col4">보상 상품</ion-col>
+          <ion-col class="event-col4">보상 상품명</ion-col>
           <ion-col class="event-col7">{{carezoneData.product}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col4">상품 수량</ion-col>
+          <ion-col class="event-col5">12개</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col4">참여 방법</ion-col>
+          <ion-col class="event-col5">매일 1회(최대 9분) 디바이스로 케어</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%; height:100px;">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col11">보상 조건</ion-col>
+          <ion-col class="event-col9" style="color:#292929">
+                                      챌린지 기간 안에 가장 많은 시간을<br>
+                                      케어한사람 순위 1위~20위까지<br>
+                                      무료 증정 (1일한도 : 9분 이내)</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
     <ion-item style="width:97%;">
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
-          <ion-col class="event-col4">미션목표</ion-col>
-          <ion-col class="event-col5">{{ carezoneData.body }}</ion-col>
+          <ion-col class="event-col4">참여기간</ion-col>
+          <ion-col class="event-col5">19.07.20 ~ 19.08.04 (2주)</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
-    <ion-item style="width:97%">
+    <ion-item style="width:97%;">
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
-          <ion-col class="event-col4">참여인원
-            <img class="info-img" src="assets/img/care-zone/mission-ing/ic-system-infomation@3x.png" /></ion-col>
-          <ion-col class="event-col9">{{missionCounter}}
-            <ion-col class="event-col11">/ {{ carezoneData.maxmember}}</ion-col>
-          </ion-col>
+          <ion-col class="event-col4">남은시간</ion-col>
+          <ion-col class="event-col7">113:47:34</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
-    <ion-item style="width:97%">
+    <ion-item style="width:97%; height:100px;">
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
-          <ion-col class="event-col4">미션 시작</ion-col>
-          <ng-container *ngIf="!endchkBtn">
-            <ion-col class="event-col13">D-{{dday}}</ion-col>
-          </ng-container>
-          <ion-col class="event-col12">{{startDate}}</ion-col>
+          <ion-col class="event-col11">보너스</ion-col>
+          <ion-col class="event-col9">카카오톡 공유하면 +3초/명<br>
+                                      페이스북 공유하면 +30초/회 (1일1회)<br>
+                                      인스타그램 공유하면 +30초/회 (1일1회)</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
-    <ion-item style="width:97%">
-      <ion-grid class="gridtext">
-        <ion-row style="width:89.7%">
-          <ion-col class="event-col4">미션 마감</ion-col>
-          <ion-col class="event-col12">{{endDate}}</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item no-lines>
-      <ion-col class="sub" text-wrap>
-        ※&nbsp;유의사항과 일정 등을 반드시 확인하고 참여해주세요.
 
-      </ion-col>
-    </ion-item>
 
     <ion-item no-lines>
-      <div *ngIf="!maxBtn">
-        <div *ngIf="!chkBtn2">
-          <div *ngIf=readybtn>
-            <button *ngIf="chkBtn" ion-button class="button_start" style="font-size: 14px;box-shadow: none;" outline (click)="satrtMission(carezoneData._id)">미션 참여하기&nbsp;&nbsp;></button>
-            <button *ngIf="!chkBtn" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionError()">참여 불가(다른 미션 참여 중)</button>
-          </div>
-          <button *ngIf="!readybtn" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionError()">미션 준비 중(모집중 참가가능)</button>
 
-        </div>
-      </div>
-      <ng-container *ngIf="!endchkBtn">
-        <button *ngIf="chkBtn2" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionEndError()">모집 마감(미션 진행중)</button>
-        <button *ngIf="maxBtn" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionMaxEndError()">참여 불가(모집 인원 초과)</button>
+      <ng-container>
+        <button ion-button class="button_end" outline (click)="showMissionEndError()">보상 제품 상세정보</button>
+        <button ion-button class="button_detail" style="font-size: 14px;box-shadow: none;" outline (click)="showMissionMaxEndError()">제품 즉시 구매하기</button>
       </ng-container>
-      <button *ngIf="endchkBtn" ion-button class="button_end" style="font-size: 14px;box-shadow: none;" outline>미션 종료</button>
 
-      <button ion-button class="button_detail" style="font-size: 14px;box-shadow: none;" outline outline>제품 상세정보&nbsp;&nbsp;></button>
+
     </ion-item>
   </ion-list>
 
@@ -133,8 +152,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-item>
-
+      </ion-item>
   </ion-list>
 
 
@@ -163,57 +181,6 @@
   </ion-list>
 
   <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
-  <ion-list>
-    <h3 class="bottom_text">다른미션 보기</h3>
 
-    <ng-container *ngIf="moreIngData">
-    <ion-grid class="gridimage">
-      <!-- {{moreIng.title}} -->
-      <ion-row>
-        <ng-container *ngFor="let moreIng of moreIngData">
-        <ion-col (click)="mission_start(moreIng._id)" class="container">
-          <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{moreIng._id}}'  />
-          <!-- <img class="imagealign" src="assets/img/home/carezone1.png" /> -->
-          <button class="ing_btn" style="box-shadow: none; background-color: #FFC3C3;" ion-button>모집 중</button>
-        </ion-col>
-        </ng-container>
-        <ng-container *ngIf="dday_id">
-        <ion-col (click)="mission_start(dday_id)" class="container">
-          <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{dday_id}}'  />
-          <!-- <img class="imagealign" src="assets/img/home/carezone2.png" /> -->
-          <button class="ing_btn" style="box-shadow: none; background-color: #C4E2FF;" ion-button>D-{{dday2}}</button>
-        </ion-col>
-        </ng-container>
-      </ion-row>
-    </ion-grid>
-    </ng-container>
-
-    <ng-container *ngIf="!moreIngData">
-    <ion-grid class="gridimage">
-      <!-- {{moreIng.title}} -->
-      <ion-row>
-        <ng-container *ngIf="dday_id">
-        <ion-col (click)="mission_start(dday_id)" class="container">
-          <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{dday_id}}'  />
-          <!-- <img class="imagealign" src="assets/img/home/carezone2.png" /> -->
-          <button class="ing_btn" style="box-shadow: none; background-color: #C4E2FF;" ion-button>D-{{dday2}}</button>
-        </ion-col>
-        </ng-container>
-        <ng-container *ngIf="dday_id2">
-        <ion-col (click)="mission_start(dday_id2)" class="container">
-          <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{dday_id2}}'  />
-          <!-- <img class="imagealign" src="assets/img/home/carezone2.png" /> -->
-          <button class="ing_btn" style="box-shadow: none; background-color: #94A3FF;" ion-button>D-{{dday3}}</button>
-        </ion-col>
-        </ng-container>
-      </ion-row>
-    </ion-grid>
-    </ng-container>
-
-
-    <ion-item no-lines>
-      <button ion-button class="button_add" style="font-size: 14px; box-shadow: none;" (click)="openCareZoneTab()" outline>미션 더보기&nbsp;&nbsp;></button>
-    </ion-item>
-  </ion-list>
 
 </ion-content>

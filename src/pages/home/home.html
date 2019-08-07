@@ -77,9 +77,9 @@
       <ion-row>
         <ion-col *ngIf="secondCarezone._id" class="img_carezone_background2" style="text-align: center" (click)="mission_start(secondCarezone._id)">
           <!-- 모집중, 모집마감 -->
-          <button class="carezon_btn1_1" style="box-shadow: none; background-color: #FFC3C3;" ion-button>모집 중</button>
+          <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #FFC3C3;" ion-button>모집 중</button>
           <button *ngIf="ingmdchuchun[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>MD추천</button>
-          <button *ngIf="ingapproaching[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #87B5FF;" ion-button>마감임박</button>
+          <button *ngIf="ingapproaching[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #87B5FF;" ion-button>마감임박</button> -->
           <img class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{secondCarezone._id}}" />
         </ion-col>
       </ion-row>
@@ -259,14 +259,14 @@
             <ion-row class="beauty_row">
               <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
             </ion-row>
-            <ion-col *ngIf="skinqna.like >= 0" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+            <ion-col  class="beauty_note_like">좋아요 {{skinqna.like}} ∙
               <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
             </ion-col>
 
             <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
             <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
           </ion-col></ion-item>
-          <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+          <div style="height:1px; width:100%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
         </ng-container>
         <ng-container *ngIf="!skinqna.filename">
           <!-- 피부 고민 이미지가 없을 때  -->
@@ -275,11 +275,11 @@
             <ion-row class="beauty_row">
               <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
             </ion-row>
-            <ion-col *ngIf="skinqna.like >= 0" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+            <ion-col  class="beauty_note_like">좋아요 {{skinqna.like}} ∙
               <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
             </ion-col>
           </ion-col></ion-item>
-          <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+          <div style="height:1px; width:100%; margin:0 auto; margin-top:2%; display: block; background-color:#f1f1f1"></div>
         </ng-container>
       </ng-container>
     </ng-container>

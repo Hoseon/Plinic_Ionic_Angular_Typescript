@@ -66,21 +66,18 @@ export class CareZoneMissionStartPage {
   getday3: any;
   dday3: any;
   chkDay3: any;
+  bannerData: any;
 
   constructor(public nav: NavController, public navParams: NavParams, private images: ImagesProvider,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform, private auth: AuthService,
   ) {
     this.platform.ready().then((readySource) => {
-      // this.loadItems();
-      // this._id = this.navParams.get('_id');
-      // this.roadmission(this._id);
-      // this.getDday();
+
+      this.bannerData = this.roadbanner();
     });
 
-
-    //this._id = this.navParams.get('_id');
-    //this.carezoneData = this.roadmission(this._id);
   }
+
 
 
   ionViewWillEnter() {
@@ -96,6 +93,13 @@ export class CareZoneMissionStartPage {
     // console.log("End Mission Start");
   }
   ionViewDidLoad() {
+  }
+
+
+  public roadbanner() {
+    this.images.bannerRoad().subscribe(data => {
+      this.bannerData = data;
+    });
   }
 
   public loadItems() {
@@ -395,13 +399,15 @@ export class CareZoneMissionStartPage {
         {
           text: '확인',
           handler: () => {
+            //this.nav.push(CareZoneMissionIngPage);
             // console.log("맥스멤버: "+ this.carezoneData.maxmember)
             this.auth.missionSave(id, this.userData.email, this.userData.thumbnail_image,
               this.carezoneData.startmission, this.carezoneData.endmission, this.carezoneData.title,
               this.carezoneData.body, this.carezoneData.maxmember).subscribe(data => {
                 this.nav.push(CareZoneMissionIngPage, { _id: id });
               }, error => {
-                this.showError(JSON.parse(error._body).msg);
+                // this.showError(JSON.parse(error._body).msg);
+                  this.nav.push(CareZoneMissionIngPage, { _id: id });
               });
 
           }
