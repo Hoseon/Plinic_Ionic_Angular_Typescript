@@ -465,7 +465,7 @@ page-home {
     .beauty_tip {
       position: relative;
       width: auto;
-      height: 650px;
+      height: 670px;
       background-color: #ffffff;
       // margin-bottom: 8px;
       margin-top: 0%;
@@ -924,6 +924,7 @@ page-home {
       // right: 0;
       left: 25%;
       transform: translateX(-50%);
+      // padding: 5px 5px 0 2px;
     }
 
     .beauty_grid2 {
@@ -937,24 +938,27 @@ page-home {
       // right: 0;
       left: 75%;
       transform: translateX(-50%);
+      // padding: 5px 2px 0 5px;
     }
 
     .beauty_grid3 {
       position: absolute;
-      top: 61%;
+      top: 70%;
       width: 95%;
       height: 95%;
       left: 25%;
       transform: translateX(-50%);
+      // padding: 5px 5px 0 2px;
     }
 
     .beauty_grid4 {
       position: absolute;
-      top: 61%;
+      top: 70%;
       width: 95%;
       height: 95%;
       left: 75%;
       transform: translateX(-50%);
+      // padding: 5px 2px 0 5px;
     }
 
     .beauty_img {
@@ -994,11 +998,12 @@ page-home {
       color: #292929;
       text-align: left;
       z-index: 5;
+      margin-top: 3%;
     }
 
     .beauty_btn {
       position: absolute;
-      top: 2428%;
+      top: 2435%;
       width: 91%;
       height: 50px;
       border: solid 0.5px #c7c7c7;
@@ -1031,7 +1036,6 @@ page-home {
       letter-spacing: normal;
       color: #b6b6b6;
       text-align: left;
-      margin-top: 2%;
     }
 
 
@@ -1178,12 +1182,11 @@ page-home {
             line-height: normal;
             letter-spacing: normal;
             color: #b6b6b6;
-            position: absolute;
             display: inline-table;
             width: 100%;
             text-align: left;
             padding-left: 5%;
-            position: fixed;
+            position: absolute;
             top: 65%;
           }
 
@@ -1196,8 +1199,8 @@ page-home {
             border-radius: 5px;
             background-color: #f5f5f5;
             margin-bottom: -7%;
-            position: fixed;
-            right: 5%;
+            position: absolute;
+            right: 6%;
             top: 15%;
             border: 1px solid #f1f1f1;
           }
@@ -1210,9 +1213,11 @@ page-home {
             max-height: 80px;
             border-radius: 5px;
             background-color: #f5f5f5;
-            margin-bottom: 2%;
-            margin-left: 74%;
-            //margin-top: -14%;
+            margin-bottom: -7%;
+            position: absolute;
+            right: 6%;
+            top: 15%;
+            border: 1px solid #f1f1f1;
           }
 
           .beauty_note_title_img{
@@ -1228,7 +1233,7 @@ page-home {
             text-align: left;
             margin-left: 4%;
             padding-bottom: 0px;
-            position: fixed;
+            position: absolute;
             top: 15%;
 
             @supports (-webkit-line-clamp: 2) {

@@ -76,35 +76,35 @@ ion-icon {
         height: $sz;
     } // custom icons
     &[class*="home"][ng-reflect-is-active="true"] {
-        background: url("../assets/img/tabs/ic-system-tab-home-on.svg") no-repeat 50% 50%;
+        background: url(../assets/img/tabs/ic-system-tab-home-on.svg) no-repeat 50% 50%;
         background-size: 20px;
     }//in case of active
     &[class*="home"][ng-reflect-is-active="false"] {
-        background: url("../assets/img/tabs/ic-system-tab-home-off.svg") no-repeat 50% 50%;
+        background: url(../assets/img/tabs/ic-system-tab-home-off.svg) no-repeat 50% 50%;
         background-size: 20px;
     }
     &[class*="carezone"][ng-reflect-is-active="true"] {
-        background: url("../assets/img/tabs/ic-system-tab-cc-on.svg") no-repeat 50% 50%;
+        background: url(../assets/img/tabs/ic-system-tab-cc-on.svg) no-repeat 50% 50%;
         background-size: 20px;
     }//in case of active
     &[class*="carezone"][ng-reflect-is-active="false"] {
-        background: url("../assets/img/tabs/ic-system-tab-cc-off.svg") no-repeat 50% 50%;
+        background: url(../assets/img/tabs/ic-system-tab-cc-off.svg) no-repeat 50% 50%;
         background-size: 20px;
     }
     &[class*="cummunity"][ng-reflect-is-active="true"] {
-        background: url("../assets/img/tabs/ic-system-tab-community-on.svg") no-repeat 50% 50%;
+        background: url(../assets/img/tabs/ic-system-tab-community-on.svg) no-repeat 50% 50%;
         background-size: 20px;
     }//in case of active
     &[class*="cummunity"][ng-reflect-is-active="false"] {
-        background: url("../assets/img/tabs/ic-system-tab-community-off.svg") no-repeat 50% 50%;
+        background: url(../assets/img/tabs/ic-system-tab-community-off.svg) no-repeat 50% 50%;
         background-size: 20px;
     }
     &[class*="my"][ng-reflect-is-active="true"] {
-        background: url("../assets/img/tabs/ic-system-profile-default@3x.png") no-repeat 50% 50%;
+        background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
         background-size: 20px;
     }//in case of active
     &[class*="my"][ng-reflect-is-active="false"] {
-        background: url("../assets/img/tabs/ic-system-profile-default@3x.png") no-repeat 50% 50%;
+        background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
         background-size: 20px;
     }
 }
