@@ -431,7 +431,7 @@ page-community {
         }
 
         .beauty_tip_title_img{
-          //max-width: 50%;
+          max-width: 65%;
           font-family: NotoSansCJKkr;
           font-size: 15px;
           font-weight: bold;
@@ -443,6 +443,8 @@ page-community {
           text-align: left;
           margin-left: 4%;
           padding-bottom: 0px;
+          position: fixed;
+          top: 15%;
 
           @supports (-webkit-line-clamp: 2) {
             overflow: hidden;
@@ -456,7 +458,6 @@ page-community {
 
         .beauty_note_title_img{
           max-width: 65%;
-          height: 7vh;
           font-family: NotoSansCJKkr;
           font-size: 15px;
           font-weight: bold;
@@ -468,6 +469,8 @@ page-community {
           text-align: left;
           margin-left: 4%;
           padding-bottom: 0px;
+          position: fixed;
+          top: 15%;
 
           @supports (-webkit-line-clamp: 2) {
             overflow: hidden;
@@ -542,6 +545,7 @@ page-community {
           line-height: normal;
           letter-spacing: normal;
           color: #b6b6b6;
+
         }
 
         .beauty_note_answer{
@@ -555,23 +559,17 @@ page-community {
           color: #5c59b6;
         }
 
-        .beauty_note_count2{
-          font-family: NotoSansCJKkr;
-          font-size: 13px;
-          font-weight: normal;
-          font-style: normal;
-          font-stretch: normal;
-          line-height: normal;
-          letter-spacing: normal;
-          color: #b6b6b6;
-          padding-left: 5%;
-        }
-
           .container {
-            position: relative;
-            width: 100%;
+            position: inherit;
+            // width: 100%;
           }
 
+          .line_item{
+            width: 100%;
+            height: 120px;
+            padding: 0px;
+            margin: 0px;
+          }
 
                 .container .beauty_note_like{
                   font-family: NotoSansCJKkr;
@@ -587,7 +585,8 @@ page-community {
                   width: 100%;
                   text-align: left;
                   padding-left: 5%;
-                  margin-bottom: 5%;
+                  position: fixed;
+                  top: 65%;
                 }
 
                 .beauty_note_answer{
@@ -601,11 +600,6 @@ page-community {
                   color: #5c59b6;
                 }
           .container .beauty_home_img {
-            // position: absolute;
-            // top: -25%;
-            // right: -120%;
-            transform: translate(39.5vh, -6vh);
-            -ms-transform: translate(-50%, -50%);
             color: #fff;
             border: none;
             cursor: pointer;
@@ -614,14 +608,13 @@ page-community {
             border-radius: 5px;
             background-color: #f5f5f5;
             margin-bottom: -7%;
+            position: fixed;
+            right: 5%;
+            top: 15%;
+            border: 1px solid #f1f1f1;
           }
 
           .container .beauty_home_img_ios {
-            // position: absolute;
-            // top: -25%;
-            // right: -120%;
-            // transform: translate(39.5vh, -6vh);
-            // -ms-transform: translate(-50%, -50%);
             color: #fff;
             border: none;
             cursor: pointer;
@@ -631,15 +624,10 @@ page-community {
             background-color: #f5f5f5;
             margin-bottom: 2%;
             margin-left: 74%;
-            margin-top: -14%;
+            //margin-top: -14%;
           }
 
           .container .beauty_home_note_img {
-            // position: absolute;
-            // top: -25%;
-            // right: -120%;
-            transform: translate(39.5vh, -6vh);
-            -ms-transform: translate(-50%, -50%);
             color: #fff;
             border: none;
             cursor: pointer;
@@ -648,14 +636,13 @@ page-community {
             border-radius: 5px;
             background-color: #f5f5f5;
             margin-bottom: -7%;
+            position: fixed;
+            right: 5%;
+            top: 15%;
+            border: 1px solid #f1f1f1;
           }
 
           .container .beauty_home_note_img_ios {
-            // position: absolute;
-            // top: -25%;
-            // right: -120%;
-            // transform: translate(39.5vh, -6vh);
-            // -ms-transform: translate(-50%, -50%);
             color: #fff;
             border: none;
             cursor: pointer;
@@ -665,15 +652,10 @@ page-community {
             background-color: #f5f5f5;
             margin-bottom: 2%;
             margin-left: 74%;
-            margin-top: -14%
+            //margin-top: -14%;
           }
 
           .container .beauty_worry_img {
-            // position: absolute;
-            // top: -25%;
-            // right: -120%;
-            transform: translate(39.5vh, -6vh);
-            -ms-transform: translate(-50%, -50%);
             color: #fff;
             border: none;
             cursor: pointer;
@@ -682,14 +664,13 @@ page-community {
             border-radius: 5px;
             background-color: #f5f5f5;
             margin-bottom: -7%;
+            position: fixed;
+            right: 5%;
+            top: 15%;
+            border: 1px solid #f1f1f1;
           }
 
           .container .beauty_worry_img_ios {
-            // position: absolute;
-            // top: -25%;
-            // right: -120%;
-            // transform: translate(39.5vh, -6vh);
-            // -ms-transform: translate(-50%, -50%);
             color: #fff;
             border: none;
             cursor: pointer;
@@ -699,16 +680,11 @@ page-community {
             background-color: #f5f5f5;
             margin-bottom: 2%;
             margin-left: 74%;
-            margin-top: -14%;
+            //margin-top: -14%;
           }
 
 
           .container .beauty_note_img {
-            // position: absolute;
-            // top: -25%;
-            // right: -120%;
-            transform: translate(39.5vh, -6vh);
-            -ms-transform: translate(-50%, -50%);
             color: #fff;
             border: none;
             cursor: pointer;
@@ -717,14 +693,13 @@ page-community {
             border-radius: 5px;
             background-color: #f5f5f5;
             margin-bottom: -7%;
+            position: fixed;
+            right: 5%;
+            top: 15%;
+            border: 1px solid #f1f1f1;
           }
 
           .container .beauty_note_img_ios {
-            // position: absolute;
-            // top: -25%;
-            // right: -120%;
-            // transform: translate(39.5vh, -6vh);
-            // -ms-transform: translate(-50%, -50%);
             color: #fff;
             border: none;
             cursor: pointer;
@@ -734,17 +709,12 @@ page-community {
             background-color: #f5f5f5;
             margin-bottom: 2%;
             margin-left: 74%;
-            margin-top: -14%
+          //  margin-top: -14%;
           }
 
 
 
-          .line_item{
-          width: 100%;
-          height: auto;
-          padding: 0px;
-          margin: 0px;
-          }
+
 
           .item-md.item-block .item-inner{
             border-bottom: 1px solid #f1f1f1 !important;

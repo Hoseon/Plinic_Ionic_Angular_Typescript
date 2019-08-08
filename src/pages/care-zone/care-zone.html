@@ -1,19 +1,28 @@
-ㅅ<!--
-  Generated template for the CareZonePage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <ion-title style="font-size: 17px"class="title" text-wrap>케어존</ion-title>
+
+<ion-header no-lines>
+
+  <ion-navbar *ngIf="platform.is('android')" no-lines>
+    <button class="guide_android" ion-button >이용안내</button>
+    <ion-title class="android_title" text-wrap>케어 챌린지</ion-title>
+    <img class="android_search" style="right: 5%;" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
+
   </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
+    <button class="guide_ios" ion-button >이용안내</button>
+    <ion-title class="ios_title" text-wrap>케어 챌린지</ion-title>
+    <img class="ios_search" style="right: 5%;" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
+
+
+  </ion-navbar>
+
 </ion-header>
 
 
 <ion-content padding>
 
-  <ion-list no-lines>
+  <!-- <ion-list no-lines>
 
     <ion-item no-lines>
       <div *ngIf="userData">
@@ -22,56 +31,14 @@
       <img *ngIf="thumb_image" class="profile-img" src="{{userData.thumbnail_image}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
     </ion-item>
 
-    <!-- <ion-item  *ngIf="platform.is('android') && from !=='plinic'" no-lines>
-      <div *ngIf="userData">
-      <img *ngIf="!thumb_image" class="profile-img" src="{{profileimg_url}}" />
-      </div>
-      <img *ngIf="thumb_image" class="profile-img" src="{{userData.thumbnail_image}}" />
-    </ion-item>
-
-    <ion-item  *ngIf="platform.is('android') && from ==='plinic'" no-lines>
-      <div *ngIf="userData">
-      <img *ngIf="imagePath" class="profile-img" [src]="imagePath" />
-      </div>
-      <img *ngIf="!imagePath" class="profile-img" src="assets/img/register/ic-system-profile-default@3x.png" />
-    </ion-item> -->
 
 
       <div *ngIf="userData" style="text-align:center"><p class="top-text">{{ userData.nickname }}</p><p class="top-text2">님 피부관리를 위한<br> 미션을 선택해주세요.</p></div><br>
       <button *ngIf="!ingBtn" ion-button style="font-size: 14px" class="button_outline" outline (click)="carezone_ing()">케어존이란?&nbsp;&nbsp;></button>
       <button *ngIf="ingBtn" ion-button class="button_outline" outline style="font-size: 14px" (click)="mission_ing(missionData.missionID)">진행중인 미션
         <img class="inglogo" src="assets/img/care-zone/ing/ic-system-step-01@3x.png" /></button>
-  </ion-list>
-
-
-  <!-- <ion-list *ngIf="missionData">
-    <ion-row class="row">
-      <ion-col class="container" (click)="mission_start(missionData.missionID)">
-        <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{missionData.missionID}}'  />
-
-        <button *ngIf="recruiting[i]" class="carezon_btn1_1" style="box-shadow: none;" ion-button>모집 중</button>
-        <button class="carezon_btn1_1" style="box-shadow: none; background-color: #656200;" ion-button>진행 중</button>
-        <button *ngIf="d3[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #d2d4d8;" ion-button>D-3</button>
-        <button *ngIf="d2[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #47C83E;" ion-button>D-2</button>
-        <button *ngIf="d1[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #FF00DD;" ion-button>D-1</button>
-        <button *ngIf="approaching[i]" class="carezon_btn1_1" style="box-shadow: none;" ion-button>진행중</button>
-
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-9 class="imagetitle">
-        {{missionData.title}}
-      </ion-col>
-      <ion-col class="right_align">
-        {{ingmissionCounter}}/{{missionData.maxmember}}
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="sub">
-      {{missionData.body}}
-      </ion-col>
-    </ion-row><br><br>
   </ion-list> -->
+
 
   <ion-list *ngFor="let carezone of carezoneData; let i = index">
     <ng-container *ngIf="endmission[i] > currentDate">
@@ -98,7 +65,8 @@
         {{carezone.title}}
       </ion-col>
       <ion-col class="right_align">
-        {{missionCounter[i]}}/{{carezone.maxmember}}
+        <!-- {{missionCounter[i]}}/{{carezone.maxmember}} -->
+          113:47:34
       </ion-col>
     </ion-row>
     <ion-row>
@@ -129,14 +97,24 @@
         {{carezone.title}}
       </ion-col>
       <ion-col class="right_align">
-        {{missionCounter[i]}}/{{carezone.maxmember}}
+        <!-- {{missionCounter[i]}}/{{carezone.maxmember}} -->
+        113:47:34
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="sub">
       {{carezone.body}}
       </ion-col>
-    </ion-row><br><br>
+    </ion-row>
+    <!-- 참가 인원 이미지 추가  -->
+    <br><ion-row>
+      <ng-container>
+        <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
+        <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+        <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+        <div class="user_sub"><span class="user_name">253</span>명이 참가 중입니다.</div>
+      </ng-container>
+    </ion-row>
     </ng-container>
   </ion-list>
 

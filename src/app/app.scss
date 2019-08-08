@@ -67,7 +67,47 @@
 // }
 
 
-
+ion-icon {
+    &[class*="custom-"] {
+        margin: 0 0 0 0;
+        vertical-align: middle;
+        $sz: 24px;
+        width: $sz;
+        height: $sz;
+    } // custom icons
+    &[class*="home"][ng-reflect-is-active="true"] {
+        background: url(../assets/img/tabs/ic-system-tab-home-on.svg) no-repeat 50% 50%;
+        background-size: 20px;
+    }//in case of active
+    &[class*="home"][ng-reflect-is-active="false"] {
+        background: url(../assets/img/tabs/ic-system-tab-home-off.svg) no-repeat 50% 50%;
+        background-size: 20px;
+    }
+    &[class*="carezone"][ng-reflect-is-active="true"] {
+        background: url(../assets/img/tabs/ic-system-tab-cc-on.svg) no-repeat 50% 50%;
+        background-size: 20px;
+    }//in case of active
+    &[class*="carezone"][ng-reflect-is-active="false"] {
+        background: url(../assets/img/tabs/ic-system-tab-cc-off.svg) no-repeat 50% 50%;
+        background-size: 20px;
+    }
+    &[class*="cummunity"][ng-reflect-is-active="true"] {
+        background: url(../assets/img/tabs/ic-system-tab-community-on.svg) no-repeat 50% 50%;
+        background-size: 20px;
+    }//in case of active
+    &[class*="cummunity"][ng-reflect-is-active="false"] {
+        background: url(../assets/img/tabs/ic-system-tab-community-off.svg) no-repeat 50% 50%;
+        background-size: 20px;
+    }
+    &[class*="my"][ng-reflect-is-active="true"] {
+        background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+    }//in case of active
+    &[class*="my"][ng-reflect-is-active="false"] {
+        background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+    }
+}
 
 
 
@@ -434,8 +474,206 @@ scroll-content {
     }
 }
 
+.mission_alert_fail{
+  background-color: rgba(0, 0, 0, 0.4);
+    .alert-wrapper{
+      border-radius: 4px;
+      box-shadow: none !important;
+      width: 100%;
+      max-width: 300px;
+        .alert-head{
+          padding-top: 10px;
+          padding-right: 24px;
+          padding-bottom: 10px;
+          padding-left: 24px;
+          border-style: solid;
+          border-width: 0px 0px 0px 0px;
+          border-color: #e5e5e5;
+
+          .alert-title{
+            height: 34px;
+            font-family: NotoSansCJKkr;
+            font-size: 13px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #b6b6b6;
+            width: 105px;
+            border-radius: 50px;
+            margin: auto;
+            padding-top: 7px;
+            margin-top: 15%;
+            border: 0px;
+          }
+        }
+        .alert-sub-title{
+          font-family: NotoSansCJKkr;
+          font-size: 20px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #292929;
+          margin-top: 10%;
+        }
+
+        .alert-message {
+          font-family: NotoSansCJKkr;
+          font-size: 14px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #858585;
+          display: inline-table;
+        }
+        .button-inner{
+          justify-content:center;
+        }
+        .alert-button-group{
+           padding: 0px;
+
+        .alert-button{
+          background-color: #d2d4d6;
+          max-width: 91%;
+          width: 91%;
+          height: 50px;
+          margin: 0 auto;
+          margin-top: 5%;
+          margin-bottom: 5%;
+          border-radius: 5px;
+          font-family: NotoSansCJKkr;
+          font-size: 15px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #ffffff;
+           }
+        .cancle_btn{
+           background-image: url(../assets/img/login/ic-dialog-close-black@3x.png);
+           background-repeat: no-repeat;
+           background-color: transparent !important;
+           box-shadow: none !important;
+           border: 0px;
+           position: absolute;
+           right: -75%;
+           top: -2%;
+           background-size: 40px;
+           }
+        }
+    }
+}
 
 
+.mission_alert_success{
+  background-color: rgba(0, 0, 0, 0.4);
+    .alert-wrapper{
+      border-radius: 4px;
+      box-shadow: none !important;
+      width: 100%;
+      max-width: 300px;
+        .alert-head{
+          padding-top: 10px;
+          padding-right: 24px;
+          padding-bottom: 10px;
+          padding-left: 24px;
+          border-style: solid;
+          border-width: 0px 0px 0px 0px;
+          border-color: #e5e5e5;
+
+          .alert-title{
+            height: 34px;
+            font-family: NotoSansCJKkr;
+            font-size: 13px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #00af66;
+            width: 105px;
+            border-radius: 50px;
+            margin: auto;
+            padding-top: 7px;
+            margin-top: 15%;
+            border: solid 1px #00af66;
+          }
+        }
+        .alert-sub-title{
+          font-family: NotoSansCJKkr;
+          font-size: 20px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #292929;
+          margin-top: 10%;
+        }
+
+        .alert-message {
+          font-family: NotoSansCJKkr;
+          font-size: 14px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #858585;
+          display: inline-table;
+        }
+        .button-inner{
+          justify-content:center;
+        }
+        .alert-button-group{
+           padding: 0px;
+
+        .alert-button{
+          background-color: #6562b9;
+          max-width: 91%;
+          width: 91%;
+          height: 50px;
+          margin: 0 auto;
+          margin-top: 5%;
+          margin-bottom: 5%;
+          border-radius: 5px;
+          font-family: NotoSansCJKkr;
+          font-size: 15px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #ffffff;
+           }
+        .cancle_btn{
+           background-image: url(../assets/img/login/ic-dialog-close-black@3x.png);
+           background-repeat: no-repeat;
+           background-color: transparent !important;
+           box-shadow: none !important;
+           border: 0px;
+           position: absolute;
+           right: -75%;
+           top: -2%;
+           background-size: 40px;
+           }
+        }
+    }
+}
 
 
 
