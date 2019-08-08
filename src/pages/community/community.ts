@@ -66,13 +66,14 @@ export class CommunityPage {
   constructor(private view : ViewController, private toastCtrl: ToastController, private authService: AuthService, public loadingCtrl: LoadingController, public nav: NavController,
     public navParams: NavParams, private alertCtrl: AlertController, public modalCtrl: ModalController, private images: ImagesProvider, public platform: Platform
     , private themeableBrowser: ThemeableBrowser, @Inject(DOCUMENT) document, public events: Events) {
-      this.tabs_check();
-      this.events1();
-      this.events3();
+
 
     this.platform.ready().then((readySource) => {
 
       console.log(this.navParams.get('back'));
+      this.tabs_check();
+      this.events1();
+      this.events3();
     });
   }
 
