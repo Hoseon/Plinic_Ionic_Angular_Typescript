@@ -138,6 +138,7 @@ public tabs_check() {
       this.page="3";
     }, 100);
     }
+    this.authService.setUserStoragetab(0);
   });
 }
 
