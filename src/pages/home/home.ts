@@ -972,11 +972,13 @@ export class HomePage {
   public openCommunityTab1(): void {
     this.nav.parent.select(3);
     this.events.publish('tabs1', "tabs1");
+    this.auth.setUserStoragetab(true);
   }
 
   public openCommunityTab3(): void {
     this.nav.parent.select(3);
     this.events.publish('tabs3', "tabs3");
+    this.auth.setUserStoragetab(false);
   }
 
   //20190617 미션 참여중인지 체크 하기

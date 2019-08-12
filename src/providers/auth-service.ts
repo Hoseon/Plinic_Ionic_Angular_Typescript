@@ -105,6 +105,14 @@ export class AuthService {
     ];
   }
 
+  // 최초 탭스이벤트 처리
+  public setUserStoragetab(check) {
+    this.storage.set('check', check);
+  }
+
+  public getUserStoragetab() {
+    return this.storage.get('check');
+  }
 
   //최초 실행검사인지 체크
   public setUserStoragediagnose_first_check(check) {

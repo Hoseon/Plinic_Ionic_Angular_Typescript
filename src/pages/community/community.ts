@@ -60,7 +60,7 @@ export class CommunityPage {
   loading: Loading;
   tab3:any;
   tab1:any;
-
+  tabs_boolean: boolean;
   @ViewChild(Slides) slides: Slides;
 
   constructor(private view : ViewController, private toastCtrl: ToastController, private authService: AuthService, public loadingCtrl: LoadingController, public nav: NavController,
@@ -71,6 +71,9 @@ export class CommunityPage {
     this.platform.ready().then((readySource) => {
 
       console.log(this.navParams.get('back'));
+      this.tabs_check();
+      this.events1();
+      this.events3();
     });
   }
 
@@ -102,8 +105,7 @@ export class CommunityPage {
     this.skinQnaMainLoad();
     this.exhibitionLoad();
     //this.loading.dismiss();
-    this.events1();
-    this.events3();
+
 
     if(this.page === '2' || this.page === '3'){
     let tabs = document.querySelectorAll('.tabbar');
@@ -119,6 +121,28 @@ export class CommunityPage {
   }
 }
 
+
+public tabs_check() {
+  this.authService.getUserStoragetab().then(items => {
+    this.tabs_boolean = items;
+    console.log("tabs_boolean=======" + this.tabs_boolean);
+    if(this.tabs_boolean===true){
+      setTimeout(() => {
+      this.selectedTab(1);
+      this.page="1";
+    }, 100);
+    }
+    else if(this.tabs_boolean===false){
+      setTimeout(() => {
+      this.selectedTab(3);
+      this.page="3";
+    }, 100);
+    }
+    this.authService.setUserStoragetab(0);
+  });
+}
+
+
 events1(){
 this.events.subscribe('tabs1', (data) => {
   this.tab1 = data;
@@ -129,7 +153,8 @@ this.events.subscribe('tabs1', (data) => {
     this.page="1";
   }, 100);
 }
-  this.events.unsubscribe('tabs1', this.tab1);
+this.events.unsubscribe('tabs1', this.tab1 )
+this.tab1 = undefined;
   console.log("tabs1 subscribe===============" + data);
 });
 }
@@ -144,7 +169,8 @@ this.events.subscribe('tabs3', (data) => {
       this.page="3";
     }, 100);
   }
-    this.events.unsubscribe('tabs3', this.tab3);
+  this.events.unsubscribe('tabs3', this.tab3 )
+  this.tab3 = undefined;
   console.log("tabs3 subscribe===============" + data);
 });
 }
