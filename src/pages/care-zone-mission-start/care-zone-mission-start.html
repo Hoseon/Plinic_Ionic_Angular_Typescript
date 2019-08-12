@@ -27,10 +27,30 @@
 
 <ion-content>
 
-  <ion-slides *ngIf="bannerData && bannerData.length" class="img-banner_top_19000501" pager loop=true autoplay=2000>
-    <ion-slide *ngFor="let banner of bannerData">
+  <ion-slides *ngIf="carezoneData" class="img-banner_top_19000501" pager loop=true autoplay=2000>
+    <!-- <ion-slide *ngFor="let banner of bannerData">
       <img src='http://plinic.cafe24app.com/images/{{banner._id}}' />
+    </ion-slide> -->
+    <ion-slide *ngIf="carezoneData.challenge_image1_filename">
+      <img src='http://plinic.cafe24app.com/challenge_image1/{{carezoneData._id}}' />
     </ion-slide>
+
+    <ion-slide *ngIf="carezoneData.challenge_image2_filename">
+      <img src='http://plinic.cafe24app.com/challenge_image2/{{carezoneData._id}}' />
+    </ion-slide>
+
+    <ion-slide *ngIf="carezoneData.challenge_image3_filename">
+      <img src='http://plinic.cafe24app.com/challenge_image3/{{carezoneData._id}}' />
+    </ion-slide>
+
+    <ion-slide *ngIf="carezoneData.challenge_image4_filename">
+      <img src='http://plinic.cafe24app.com/challenge_image4/{{carezoneData._id}}' />
+    </ion-slide>
+
+    <ion-slide *ngIf="carezoneData.challenge_image5_filename">
+      <img src='http://plinic.cafe24app.com/challenge_image5/{{carezoneData._id}}' />
+    </ion-slide>
+
   </ion-slides>
   <!-- <div style="height:8px; width:100%; margin-top:-1%; margin-bottom:5%; background-color:#f1f1f1"></div> -->
 

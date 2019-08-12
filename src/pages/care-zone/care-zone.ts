@@ -7,6 +7,8 @@ import { CareZoneMissionStartPage } from '../care-zone-mission-start/care-zone-m
 import { CareZoneMissionDeadlineEndPage } from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end'
 import { AuthService } from '../../providers/auth-service';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { TimerObservable } from "rxjs/observable/TimerObservable";
+import { Observable } from 'rxjs/Rx';
 
 
 /**
@@ -71,6 +73,16 @@ export class CareZonePage {
   endmaxmember: Array<any> = new Array<any>();
   endbody: Array<any> = new Array<any>();
 
+  timeremaining: Array<any> = new Array<any>();
+  displayTime: Array<any> = new Array<any>();
+
+
+  tickFourth : any;
+  tickThree : any;
+  subscriptionFourth : any;
+  subscriptionThree : any;
+
+
 
 
   constructor(public platform: Platform, public nav: NavController,
@@ -88,14 +100,26 @@ export class CareZonePage {
   ionViewWillEnter() {
     this.carezoneData = this.roadcareZone();
     this.loadItems();
-    this.loadimagePath();
+    // this.loadimagePath();
+    this.timerTick();
+  }
+
+  ionViewWillLeave() {
+    this.subscriptionFourth.complete();
+    console.log("Timer Clear!");
+  }
+
+  ionViewDidLeave(){
+    this.subscriptionFourth.complete();
+    console.log("ionViewDidLeave Timer Clear!");
+
   }
 
 
   public loadimagePath() {
-    this.authService.getUserStorageimagePath().then(items => {
-      this.imagePath = items;
-    });
+    // this.authService.getUserStorageimagePath().then(items => {
+    //   this.imagePath = items;
+    // });
   }
 
 
@@ -250,20 +274,20 @@ export class CareZonePage {
         for (let i = 0; i < data.length; i++) {
 
           // if (new Date(data[i].endmission) > this.currentDate) {
-          // console.log("날짜 계산 하자");
 
           this.endcarezone_id[i] = data[i]._id;
           this.title[i] = data[i].title;
           this.maxmember[i] = data[i].maxmember;
           this.body[i] = data[i].body;
 
-
-
           this.images.missionCount(data[i]._id).subscribe(data2 => {
             this.missionCounter[i] = data2;
           });
+
           data[i].startmission = new Date(data[i].startmission);
+          this.timeremaining[i] = (data[i].startmission.getTime() - this.currentDate.getTime()) / 1000;
           this.endmission[i] = new Date(data[i].endmission);
+
           // console.log("end Date : " + data[i].endmission);
           this.new[i] = false;
           this.recruiting[i] = false;
@@ -282,7 +306,7 @@ export class CareZonePage {
           //console.log(this.dday);
           if (this.diffdate(this.currentDate, data[i].startmission) < -10) {
             this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday)+2);
+            this.dday[i] = (parseInt(this.origindday) + 2);
             this.new[i] = true;
             this.recruiting[i] = true;
             this.mdchuchun[i] = false;
@@ -291,7 +315,7 @@ export class CareZonePage {
             this.d5[i] = true;
           } else if (this.diffdate(this.currentDate, data[i].startmission) < -7) {
             this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday)+2);
+            this.dday[i] = (parseInt(this.origindday) + 2);
             this.new[i] = false;
             this.recruiting[i] = true;
             this.mdchuchun[i] = true;
@@ -300,7 +324,7 @@ export class CareZonePage {
             this.d5[i] = true;
           } else if (this.diffdate(this.currentDate, data[i].startmission) > -6 && this.diffdate(this.currentDate, data[i].startmission) < -5) {
             this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday)+2);
+            this.dday[i] = (parseInt(this.origindday) + 2);
             this.new[i] = false;
             this.recruiting[i] = false;
             this.mdchuchun[i] = false;
@@ -309,7 +333,7 @@ export class CareZonePage {
             this.d5[i] = true;
           } else if (this.diffdate(this.currentDate, data[i].startmission) > -5 && this.diffdate(this.currentDate, data[i].startmission) < -4) {
             this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday)+2);
+            this.dday[i] = (parseInt(this.origindday) + 2);
             this.new[i] = false;
             this.recruiting[i] = false;
             this.mdchuchun[i] = false;
@@ -321,7 +345,7 @@ export class CareZonePage {
             this.d1[i] = false;
           } else if (this.diffdate(this.currentDate, data[i].startmission) > -4 && this.diffdate(this.currentDate, data[i].startmission) < -3) {
             this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday)+2);
+            this.dday[i] = (parseInt(this.origindday) + 2);
             this.new[i] = false;
             this.recruiting[i] = false;
             this.mdchuchun[i] = false;
@@ -346,11 +370,11 @@ export class CareZonePage {
               this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
               //console.log(this.percent[i])
 
-              if(this.percent[i] <= 50){
+              if (this.percent[i] <= 50) {
                 this.ingmdchuchun[i] = true;
                 this.ingapproaching[i] = false;
               }
-              if(this.percent[i] > 50){
+              if (this.percent[i] > 50) {
                 this.ingmdchuchun[i] = false;
                 this.ingapproaching[i] = true;
               }
@@ -372,20 +396,20 @@ export class CareZonePage {
               this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
               //console.log(this.percent[i])
 
-              if(this.percent[i] <= 50){
+              if (this.percent[i] <= 50) {
                 //console.log("MD추천");
                 this.ingmdchuchun[i] = true;
                 this.ingapproaching[i] = false;
               }
-              if(this.percent[i] > 50){
+              if (this.percent[i] > 50) {
                 //console.log("마감임박");
                 this.ingmdchuchun[i] = false;
                 this.ingapproaching[i] = true;
               }
             });
           } else if (this.diffdate(this.currentDate, data[i].startmission) > -3 && this.diffdate(this.currentDate, data[i].startmission) <= 0) {
-           // console.log("모집중 ");
-           this.d1[i] = true;
+            // console.log("모집중 ");
+            this.d1[i] = true;
             this.images.missionCount(data[i]._id).subscribe(data2 => {
               this.missionCounter2[i] = data2;
               // console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
@@ -393,12 +417,12 @@ export class CareZonePage {
               this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
               // console.log(this.percent[i])
 
-              if(this.percent[i] <= 50){
+              if (this.percent[i] <= 50) {
                 // console.log("MD추천");
                 this.ingmdchuchun[i] = true;
                 this.ingapproaching[i] = false;
               }
-              if(this.percent[i] > 50){
+              if (this.percent[i] > 50) {
                 // console.log("마감임박");
                 this.ingmdchuchun[i] = false;
                 this.ingapproaching[i] = true;
@@ -519,6 +543,72 @@ export class CareZonePage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  timerTick() {
+    // setTimeout(() => {
+    //   // if (!this.runTimer) {
+    //   //   clearTimeout(timer);
+    //   //   console.log("Clear Timeout");
+    //   //   return;
+    //   // }
+    //
+    //   // this.secondsRemaining--;
+    //   for (var i = 0; this.timeremaining.length; i++) {
+    //     // console.log(i);
+    //     // this.timeremaining[i]--;
+    //     this.getSecondsAsDigitalClock(this.timeremaining[i], i);
+    //   }
+    //
+    //   // if(this.secondsRemaining > 0) {
+    //   this.timerTick();
+    //   // } else {
+    //   //   // this.hasFinished = true;
+    //   // }
+    //
+    // }, 1000);
+    // // if (!this.runTimer) {
+    // //   clearTimeout(timer);
+    // //   console.log("Clear Timeout");
+    // //   return;
+    // // }
+
+    // Set the inital tick to 0
+    this.subscriptionFourth = Observable.interval(1000).subscribe(x => {
+        // 1000 implies miliseconds = 1 second
+        // Basically run the following code per second
+        for(var i= 0; i < this.timeremaining.length; i++){
+          this.timeremaining[i]--;
+          // console.log(this.timeremaining[i]--);
+          this.displayTime[i] = this.getSecondsAsDigitalClock(this.timeremaining[i]);
+        }
+       this.tickFourth--;
+       this.tickThree--;
+       let time = this.getSecondsAsDigitalClock(this.tickFourth);
+       let time2 = this.getSecondsAsDigitalClock(this.tickThree);
+       // console.log(time);
+       // console.log(time2);
+       // console.log(this.tickFourth);
+       // console.log("this" + JSON.stringify(this.subscriptionFourth));
+
+    });
+
+
+  }
+
+  getSecondsAsDigitalClock(inputSeconds: number) {
+    var sec_num = parseInt(inputSeconds.toString(), 10); // don't forget the second param
+    var hours = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+    var hoursString = '';
+    var minutesString = '';
+    var secondsString = '';
+    hoursString = (hours < 10) ? "0" + hours : hours.toString();
+    minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
+    secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
+    return hoursString + ':' + minutesString + ':' + secondsString;
+    // console.log("displaytime : " + index + " : " + this.displayTime[index]);
   }
 
 }
