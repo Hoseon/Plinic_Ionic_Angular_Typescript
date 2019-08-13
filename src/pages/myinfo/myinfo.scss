@@ -536,6 +536,74 @@ page-myinfo {
           border-bottom: 1px solid #f1f1f1 !important;
         }
 
+
+        .beautynote{
+          height: 23.5px;
+          font-family: NotoSansCJKkr;
+          font-size: 16px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #292929;
+          text-align: left;
+          margin-left: 5%;
+          margin-top: 7%;
+        }
+
+        .skinqna{
+          height: 23.5px;
+          font-family: NotoSansCJKkr;
+          font-size: 16px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #292929;
+          text-align: left;
+          margin-left: 5%;
+          margin-top: 7%;
+        }
+
+
+        .beautynote_add{
+          width: 91%;
+          height: 50px;
+          border: solid 0.5px #c7c7c7;
+          font-family: AppleSDGothicNeo;
+          font-size: 15px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #292929;
+          box-shadow: none !important;
+          background-color: #FFF !important;
+          margin-top: 5%;
+        }
+
+        .skinqna_add{
+          width: 91%;
+          height: 50px;
+          border: solid 0.5px #c7c7c7;
+          font-family: AppleSDGothicNeo;
+          font-size: 15px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #292929;
+          box-shadow: none !important;
+          background-color: #FFF !important;
+          margin-top: 5%;
+        }
+
         .beauty_note_tag{
           font-family: NotoSansCJKkr;
           font-size: 15px;
@@ -620,7 +688,7 @@ page-myinfo {
             font-stretch: normal;
             line-height: normal;
             letter-spacing: normal;
-            color: #b6b6b6;
+            color: #b6b6b6 ;
             position: absolute;
             display: inline-table;
             width: 100%;
@@ -856,6 +924,7 @@ page-myinfo {
                 text-align: right;
                 color: #b6b6b6;
                 padding-right: 5%;
+                margin-bottom: 3%;
               }
 
 
@@ -1264,5 +1333,32 @@ page-myinfo {
 
 
 
+                      .solution_no_data{
+                        height: 38px;
+                        font-family: NotoSansCJKkr;
+                        font-size: 13px;
+                        font-weight: normal;
+                        font-style: normal;
+                        font-stretch: normal;
+                        line-height: normal;
+                        letter-spacing: normal;
+                        text-align: center;
+                        color: #b6b6b6;
+                      }
+
+
+                      .carezone_no_data{
+                        height: 20.5px;
+                        font-family: NotoSansCJKkr;
+                        font-size: 14px;
+                        font-weight: normal;
+                        font-style: normal;
+                        font-stretch: normal;
+                        line-height: normal;
+                        letter-spacing: normal;
+                        text-align: center;
+                        color: #b6b6b6;
+                        margin-top: 15%;
+                      }
 
 }

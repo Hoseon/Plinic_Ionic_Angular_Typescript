@@ -123,8 +123,18 @@
 
       <h3 class="solution_title">솔루션</h3>
 
-      <ion-item no-lines>
+      <!-- 데이터가 없을 때 -->
+      <ng-container>
+      <br><br><div class="solution_no_data">솔루션 정보가 없습니다.<br> 피부를 측정하여 맞춤 솔루션을 받아보세요. </div><br><br><br>
+      </ng-container>
+
+
+      <!-- 데이터가 있을 때 -->
+      <!-- <ion-item no-lines>
+      <!-- 수분지수가 낮을 때 -->
       <h1 class="solution_care">당신의 피부는<br> <span style="color:#5c59b6">"수분개선" </span> 맞춤 케어가 필요합니다. </h1>
+      <!-- 유분지수가 낮을 때  -->
+      <!-- <h1 class="solution_care">당신의 피부는<br> <span style="color:#5c59b6">"유분개선" </span> 맞춤 케어가 필요합니다. </h1> -->
 
       <ng-container *ngIf="communityEditorBeautyLoadData">
         <ion-grid class="beauty_tip">
@@ -148,15 +158,12 @@
         </ion-grid>
       </ng-container>
 
-
+      <!-- 수분지수가 낮을 때  -->
       <button ion-button style="font-size:14px" class="button_outline" outline> <span style="color:#5c59b6; padding-right:1%;">수분개선 </span>추천상품 보기</button>
-      </ion-item>
 
+      <!-- 유분지수가 낮을 때 -->
+      <!-- <button ion-button style="font-size:14px" class="button_outline" outline> <span style="color:#5c59b6; padding-right:1%;">유분개선 </span>추천상품 보기</button> -->
 
-      <!-- <ion-item>
-        <h1 class="solution_care">당신의 피부는<br> <span style="color:#5c59b6">"유분개선" </span> 맞춤 케어가 필요합니다. </h1><br><br>
-        <br><button ion-button style="font-size:14px" class="button_outline" outline> <span style="color:#5c59b6; padding-right:1%;">유분개선 </span>추천상품 보기</button>
-      </ion-item> -->
     <br>
     </ion-slide>
 
@@ -166,6 +173,14 @@
 
     <!-- 참여 챌린지 -->
     <ion-slide>
+
+      <!-- 챌린지 참여 이력이 없을떄  -->
+      <ng-container>
+      <div class="carezone_no_data">활동 이력이 없습니다.</div>
+      </ng-container>
+
+      <!-- 챌린지 참여 이력이 있을떄  -->
+
       <ion-list *ngFor="let carezone of carezoneData; let i = index">
         <ng-container *ngIf="endmission[i] > currentDate">
         <ion-row class="row">
@@ -234,12 +249,15 @@
 
     </ion-slide>
 
+
+
     <!-- 활동 -->
     <ion-slide>
 
+      <div class="beautynote">뷰티노트</div>
       <ng-container *ngFor="let beautynote of beautyNoteData; let i = index">
         <ng-container *ngIf="userData.email === beautynote.email">
-          <!-- 뷰트꿀팁 이미지가 있을 때  -->
+          <!-- 뷰트노트 이미지가 있을 때  -->
           <ng-container *ngIf="beautynote.filename">
             <ion-item class="line_item">
               <ion-col (click)="community_modify(beautynote._id)" class="container">
@@ -272,8 +290,9 @@
           </ng-container>
         </ng-container>
       </ng-container>
+      <button ion-button  class="beautynote_add">더보기</button>
 
-
+      <div class="skinqna">피부고민</div>
       <ng-container *ngFor="let skinqna of skinQnaData; let i = index">
         <ng-container *ngIf="userData.email === skinqna.email">
           <ng-container *ngIf="skinqna.filename">
@@ -300,7 +319,7 @@
                 <ion-row class="beauty_row">
                   <ion-col class="beauty_note_title"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
                 </ion-row>
-                <ion-col *ngIf="skinqna.like || skinqna.like===0" class="beauty_note_answer2">좋아요 {{skinqna.like}} ∙
+                <ion-col *ngIf="skinqna.like || skinqna.like===0" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
                   <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
                 </ion-col>
               </ion-col>
@@ -309,6 +328,7 @@
           </ng-container>
         </ng-container>
       </ng-container>
+      <button ion-button  class="skinqna_add">더보기</button>
     </ion-slide>
   </ion-slides>
 

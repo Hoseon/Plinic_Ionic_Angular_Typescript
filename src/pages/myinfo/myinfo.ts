@@ -132,11 +132,11 @@ export class MyinfoPage {
         this.showLoading();
         setTimeout(() => {
         this.selectedTab(1);
-      }, 500)
+      }, 300)
         setTimeout(() => {
         this.selectedTab(0);
-      }, 500)
-    }
+      }, 300)
+  }
 
       public selectclick() {
         console.log('ionViewDidLoad selectclick');
@@ -157,6 +157,7 @@ export class MyinfoPage {
         this.beautyNoteLoad();
         this.communityEditorBeautyLoad();
         this.carezoneData = this.roadcareZone();
+
 
         // let tabs = document.querySelectorAll('.tabbar');
         // if (tabs !== null) {
@@ -418,9 +419,9 @@ export class MyinfoPage {
 
             }
             this.carezoneData = data;
-            // setTimeout(() => {
-            //   this.loading.dismiss();
-            // }, 1000);
+            setTimeout(() => {
+              this.loading.dismiss();
+            }, 1000);
           } else {
             this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
           }
@@ -877,11 +878,12 @@ export class MyinfoPage {
           cssClass: 'sk-rotating-plane'
         });
         this.loading.present();
+        setTimeout(() => {
+          this.loading.dismiss();
+        }, 3000);
       }
 
       showAlert(text) {
-        //this.loading.dismiss();
-
         let alert = this.alertCtrl.create({
           cssClass: 'push_alert',
           title: 'Plinic',
@@ -892,7 +894,7 @@ export class MyinfoPage {
       }
 
       showError(text) {
-      //  this.loading.dismiss();
+        this.loading.dismiss();
 
         let alert = this.alertCtrl.create({
           cssClass: 'push_alert',
