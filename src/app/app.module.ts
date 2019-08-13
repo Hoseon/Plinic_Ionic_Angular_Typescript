@@ -17,7 +17,8 @@ import { GenderFilter } from './../pipes/gender-filter';
 import { AboutPage } from '../pages/about/about';
 // import { HomePage } from '../pages/home/home';
 // //import {SuccessHomePage} from '../pages/success-home/success-home';
-// import { MyinfoPage } from '../pages/myinfo/myinfo';
+import { MyinfoPage } from '../pages/myinfo/myinfo';
+import {SettingPage} from '../pages/myinfo/setting/setting';
 // import { TabsPage } from '../pages/tabs/tabs';
 // import { AgreementPage } from '../pages/agreement/agreement';
 // import { LoginpagePage } from '../pages/login/loginpage/loginpage';
@@ -84,7 +85,7 @@ import { CommunityPageModule } from '../pages/community/community.module';
 //
 import { HomePageModule } from '../pages/home/home.module';
 //import {SuccessHomePage} from '../pages/success-home/success-home';
-import { MyinfoPageModule } from '../pages/myinfo/myinfo.module';
+//import { MyinfoPageModule } from '../pages/myinfo/myinfo.module';
 import { TabsPageModule } from '../pages/tabs/tabs.module';
 import { AgreementPageModule } from '../pages/agreement/agreement.module';
 import { LoginPageModule } from '../pages/login/login.module';
@@ -219,8 +220,6 @@ import { Instagram } from '@ionic-native/instagram';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 
-
-
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
     headerPrefix: '',
@@ -240,7 +239,7 @@ export function getAuthHttp(http, storage) {
     AddinfoPage,
     //    LoginplinicPage,
     AboutPage,
-    // MyinfoPage,
+     MyinfoPage,
     // TabsPage,
     // HomePage,
     //SuccessHomePage,
@@ -289,11 +288,12 @@ export function getAuthHttp(http, storage) {
     SearchPage,
     AlignPopoverPage,
     MyCommunityModifyPage,
+    SettingPage,
   ],
   imports: [
     HttpModule,
     HomePageModule,
-    MyinfoPageModule,
+    //MyinfoPageModule,
     TabsPageModule,
     AgreementPageModule,
     LoginpagePageModule,
@@ -370,7 +370,7 @@ export function getAuthHttp(http, storage) {
     // PasswordfindPage,
     AddinfoPage,
     // AboutPage,
-    // MyinfoPage,
+     MyinfoPage,
     //    TabsPage,
     // HomePage,
     //SuccessHomePage,
@@ -416,6 +416,7 @@ export function getAuthHttp(http, storage) {
     SearchPage,
     AlignPopoverPage,
     MyCommunityModifyPage,
+    SettingPage,
   ],
   providers: [
     StatusBar,
