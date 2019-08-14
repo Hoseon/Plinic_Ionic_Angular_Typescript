@@ -1,26 +1,3 @@
-// import { IonicPage } from 'ionic-angular';
-// import { Component } from '@angular/core';
-// import { NavController, Platform, AlertController, ModalController, Loading, LoadingController } from 'ionic-angular';
-// import { AuthService } from '../../providers/auth-service';
-// import { ImagesProvider } from '../../providers/images/images';
-// import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
-// import { SkinChartPage } from '../skin-chart/skin-chart';
-// import { CareZonePage } from '../care-zone/care-zone';
-// import { SkinMeasureStartPage } from '../skin-measure-start/skin-measure-start';
-// import { BluetoothLE } from '@ionic-native/bluetooth-le';
-// import { TranslateService } from 'ng2-translate/ng2-translate';
-// import { TabsPage } from '../tabs/tabs';
-// import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-mission-ing';
-// import { CareZoneMissionStartPage } from '../care-zone-mission-start/care-zone-mission-start';
-// import { CareZoneMissionDeadlineEndPage } from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end';
-// import { CareZoneMissionDeadlinePage} from '../care-zone-mission-deadline/care-zone-mission-deadline';
-// import { CareZoneMissionCompletePage} from '../care-zone-mission-complete/care-zone-mission-complete';
-//
-// import { ImageLoader } from 'ionic-image-loader';
-// import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
-// import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
-
-
 import { IonicPage, App } from 'ionic-angular';
 import { Component, Inject } from '@angular/core';
 import { NavController, Platform, AlertController, ModalController, Loading, LoadingController, ViewController, Events   } from 'ionic-angular';
@@ -233,9 +210,18 @@ export class HomePage {
             || activeView.name === 'CareZoneMissionCompletePage'
             || activeView.name === 'MyPage'
             || activeView.name === 'MyCommunityModifyPage'
+            || activeView.name === 'SettingPage'
           ){
-                console.log("activeView.name===================111111111000000");
-                activeView.dismiss();
+            console.log("activeView.name===================111111111000000");
+            activeView.dismiss();
+            }
+            else if(
+            activeView.name === 'CareZonePage'
+            || activeView.name === 'CommunityPage'
+            || activeView.name === 'MyinfoPage'
+            ){
+            console.log("activeView.name===================22222222000000");
+            this.nav.parent.select(0);
             }
             else{
             let alert = this.alertCtrl.create({

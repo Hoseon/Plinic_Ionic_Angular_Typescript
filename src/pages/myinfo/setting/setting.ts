@@ -221,6 +221,10 @@ public noti() {
   this.navCtrl.push(NoticePage);
 }
 
+public plinic_FAQ() {
+
+}
+
 public loadItems() {
   this.authService.getUserStorage().then(items => {
 
@@ -281,18 +285,6 @@ showAlert(text) {
   });
   alert.present();
 }
-
-public openCareZoneTab(): void {
-  // The second tab is the one with the index = 1
-  //this.nav.push(TabsPage, { selectedTab: 1 });
-  this.navCtrl.parent.select(1);
-}
-
-
-
-
-
-
 
 
 

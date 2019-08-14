@@ -132,10 +132,10 @@ export class MyinfoPage {
         this.showLoading();
         setTimeout(() => {
         this.selectedTab(1);
-      }, 300)
+      }, 500)
         setTimeout(() => {
         this.selectedTab(0);
-      }, 300)
+      }, 500)
   }
 
       public selectclick() {
@@ -880,7 +880,7 @@ export class MyinfoPage {
         this.loading.present();
         setTimeout(() => {
           this.loading.dismiss();
-        }, 3000);
+        }, 1000);
       }
 
       showAlert(text) {

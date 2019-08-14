@@ -1,5 +1,111 @@
 page-setting {
 
+
+
+
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+      height: 1px;
+      margin-bottom: 5px;
+      background-color: #f1f1f1;
+      opacity: 0.3;
+    }
+    .item-md.item-block .item-inner{
+      padding-right: 12px;
+    }
+    .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+      height: 1px;
+      margin-bottom: 5px;
+      background-color: #f1f1f1;
+      opacity: 0.3;
+    }
+    .item-ios.item-block .item-inner{
+      padding-right: 12px;
+    }
+
+    .toolbar-title-md{
+      // width: auto;
+      // margin: 0 auto;
+      font-weight: bold;
+      font-size: 17px;
+      background-color: #FFF;
+      font-family: NotoSansCJKkr;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      margin-right: 14%;
+      margin-top: -14%;
+    }
+    .toolbar-title-ios{
+      // width: auto;
+      // margin: 0 auto;
+      font-weight: bold;
+      font-size: 17px;
+      background-color: #FFF;
+      font-family: NotoSansCJKkr;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: #292929;
+      margin-right: 17%;
+      margin-top: -36%;
+    }
+
+    .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+      margin-left: -15%;
+      margin-top: -15%;
+      color: transparent;
+    }
+
+    .ios_nav{
+      background-color: transparent;
+      width: 140px !important;
+      height: 25px !important;
+      object-fit: contain;
+    }
+
+    .toolbar-background {
+      background-color: #FFF;
+    }
+
+    .ion-md-arrow-back:before {
+      position: absolute;
+      content: "\f27d";
+      left: 10%;
+      top: 2px;
+      width: 25px;
+      height: 25px;
+  }
+
+     .toolbar-ios{
+       margin-top: 8%;
+     }
+
+    .back-button-text-ios{
+      font-size: 0px;
+    }
+    .android_title{
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 70%;
+      color: #292929;
+    }
+    .ios_title{
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 120%;
+      color: #292929;
+    }
+
     .info_text{
       height: 29px;
       font-family: NotoSansCJKkr;
@@ -20,7 +126,7 @@ page-setting {
     width: 65px;
     height: 35.5px !important;
     margin-top: -5% !important;
-    background-color: #FFF;
+    background-color: #FFF !important;
     border-radius: 3px;
     border: solid 1px #dddddd;
     font-family: NotoSansCJKkr;
@@ -91,7 +197,7 @@ page-setting {
     font-stretch: normal;
     line-height: normal;
     letter-spacing: normal;
-    text-align: right;
+    // text-align: right;
     color: #5c59b6;
    }
 
@@ -132,7 +238,7 @@ page-setting {
     }
 
      .care_zone{
-       margin-top: 3%;
+      // margin-top: 3%;
        height: 22.5px;
        font-family: NotoSansCJKkr;
        font-size: 15px;
@@ -144,7 +250,7 @@ page-setting {
        color: #292929;
      }
    .inquiry{
-     margin-top: 2%;
+    // margin-top: 2%;
      font-family: NotoSansCJKkr;
      font-size: 15px;
      font-weight: normal;
@@ -156,7 +262,7 @@ page-setting {
    }
 
      .terms{
-       margin-top: 5%;
+      // margin-top: 5%;
        font-family: NotoSansCJKkr;
       font-size: 15px;
       font-weight: normal;
@@ -168,13 +274,40 @@ page-setting {
      }
 
   .img-radius {
-    width: 60px !important;
-    height: 60px !important;
-    border-radius: 50% !important;
+    width: 30px !important;
+    height: 30px !important;
     object-fit: contain;
-
+    border-radius: 50% !important;
+    position: absolute;
+    right: 12%;
+    top: 20%;
     }
 
+    .title{
+      height: 19px;
+      font-family: NotoSansCJKkr;
+      font-size: 13px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #b6b6b6;
+      margin-left: 16px;
+      margin-top: 10%;
+    }
+
+    .title2{
+      height: 19px;
+      font-family: NotoSansCJKkr;
+      font-size: 13px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #b6b6b6;
+    }
 
     .note-md{
       margin-right: 1%;

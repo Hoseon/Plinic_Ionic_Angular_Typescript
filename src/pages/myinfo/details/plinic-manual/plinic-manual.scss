@@ -3,6 +3,8 @@ page-plinic-manual {
   .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
     height: 1px;
     margin-bottom: 5px;
+    background-color: #f1f1f1;
+    opacity: 0.3;
   }
   .item-md.item-block .item-inner{
     padding-right: 12px;
@@ -10,6 +12,8 @@ page-plinic-manual {
   .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
     height: 1px;
     margin-bottom: 5px;
+    background-color: #f1f1f1;
+    opacity: 0.3;
   }
   .item-ios.item-block .item-inner{
     padding-right: 12px;
