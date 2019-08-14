@@ -1,6 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, AlertController, ToastController, ViewController } from 'ionic-angular';
 import { DeviceConnectCompletePage } from '../device-connect-complete/device-connect-complete';
+import { DeviceSkinIngPage } from '../device-skin-ing/device-skin-ing';
 import { DeviceConnectFailPage } from '../device-connect-fail/device-connect-fail';
 import { TabsPage } from '../tabs/tabs';
 import { AuthService } from '../../providers/auth-service';
@@ -18,9 +19,9 @@ import { BLE } from '@ionic-native/ble';
  */
 
 //Blue Mod S42
-const PLINIC_SERVICE = 'FEFB';
-const UUID_SERVICE = 'FEFB';
-const SWITCH_CHARACTERISTIC = 'FEFB';
+// const PLINIC_SERVICE = 'FEFB';
+// const UUID_SERVICE = 'FEFB';
+// const SWITCH_CHARACTERISTIC = 'FEFB';
 
 //
 //
@@ -31,9 +32,9 @@ const SWITCH_CHARACTERISTIC = 'FEFB';
 // const SWITCH_CHARACTERISTIC = 'FF01';
 
 // //HM Soft Bluetooth Mod
-// const PLINIC_SERVICE = 'FFE0';
-// const UUID_SERVICE = 'FFE0';
-// const SWITCH_CHARACTERISTIC = 'FFE1';
+const PLINIC_SERVICE = 'FFE0';
+const UUID_SERVICE = 'FFE0';
+const SWITCH_CHARACTERISTIC = 'FFE1';
 
 
 @IonicPage()
@@ -53,6 +54,8 @@ export class DeviceConnectIngPage {
   pairedDevices: any;
   gettingDevices: Boolean;
 
+  carezoneData: any;
+
 
   peripheral: any = {};
 
@@ -64,6 +67,11 @@ export class DeviceConnectIngPage {
     public platform: Platform, private alertCtrl: AlertController
   ) {
     this.platform.ready().then((readySource) => {
+
+      if (this.navParams.get('carezoneData')) {
+        this.carezoneData = this.navParams.get('carezoneData');
+        console.log("데이터 데리고 옴 : " + JSON.stringify(this.navParams.get('carezoneData')));
+      }
 
       // setTimeout(() => {
       this.spintime = 1;
@@ -78,7 +86,8 @@ export class DeviceConnectIngPage {
         //   }
         // });
       } else {  // 웹 개발 시에는 무조건 성공페이지로 넘어가 데이터를 강제적으로 보여준다
-        this.navCtrl.push(DeviceConnectCompletePage);
+        // this.navCtrl.push(DeviceConnectCompletePage); //20190813 플리닉 사용 시간을 위해서 바로 타임 측정 페이지로 넘어간다
+        this.navCtrl.push(DeviceSkinIngPage, {'carezoneData' : this.carezoneData});
       }
       // }, 3500);
 
@@ -124,56 +133,58 @@ export class DeviceConnectIngPage {
 
   }
 
-    showAlert(text) {
-      let alert = this.alertCtrl.create({
-        title: 'Alert',
-        message: text,
-        buttons: ['OK']
-      });
-      alert.present();
-    }
+  showAlert(text) {
+    let alert = this.alertCtrl.create({
+      title: 'Alert',
+      message: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
-    scan() {
-       this.setStatus('Scanning for Bluetooth LE Devices');
-       this.devices = [];  // clear list
-       // 시간내로 스캔 하는 방법
-       // this.ble.scan([PLINIC_SERVICE], 10).subscribe(
-       //   device => {
-       //     console.log("aaaaa :" + device);
-       //     this.onDeviceDiscovered(device);
-       //     this.deviceSelected(device);
-       //     this.navCtrl.push(DeviceConnectCompletePage, { device: device });
-       //   },
-       //   error => {
-       //     console.log("bbbbb" + error);
-       //     this.scanError(error);
-       //     this.navCtrl.push(DeviceConnectFailPage);
-       //   }
-       // );
-       // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
+  scan() {
+    this.setStatus('Scanning for Bluetooth LE Devices');
+    this.devices = [];  // clear list
+    // 시간내로 스캔 하는 방법
+    // this.ble.scan([PLINIC_SERVICE], 10).subscribe(
+    //   device => {
+    //     console.log("aaaaa :" + device);
+    //     this.onDeviceDiscovered(device);
+    //     this.deviceSelected(device);
+    //     this.navCtrl.push(DeviceConnectCompletePage, { device: device });
+    //   },
+    //   error => {
+    //     console.log("bbbbb" + error);
+    //     this.scanError(error);
+    //     this.navCtrl.push(DeviceConnectFailPage);
+    //   }
+    // );
+    // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
 
-       //잡힐떄 까지 계속 스캔하는 방법
-       this.ble.startScan([PLINIC_SERVICE]).subscribe(
-         device => {
-           console.log("aaaaa :" + device);
-           this.onDeviceDiscovered(device);
-           // this.deviceSelected(device);
-           this.ble.stopScan();
-           this.navCtrl.push(DeviceConnectCompletePage, { device: device });
-         },
-         error => {
-           console.log("bbbbb" + error);
-           this.scanError(error);
-           this.ble.stopScan();
-           this.navCtrl.push(DeviceConnectFailPage);
-         }
-       );
-       setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
+    //잡힐떄 까지 계속 스캔하는 방법
+    this.ble.startScan([PLINIC_SERVICE]).subscribe(
+      device => {
+        console.log("aaaaa :" + device);
+        this.onDeviceDiscovered(device);
+        // this.deviceSelected(device);
+        this.ble.stopScan();
+        // this.navCtrl.push(DeviceConnectCompletePage, { device: device }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
+        this.navCtrl.push(DeviceSkinIngPage, { device: device,  'carezoneData':this.carezoneData }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
+
+      },
+      error => {
+        console.log("bbbbb" + error);
+        this.scanError(error);
+        this.ble.stopScan();
+        this.navCtrl.push(DeviceConnectFailPage);
+      }
+    );
+    setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
 
 
-     }
+  }
 
-     onDeviceDiscovered(device) {
+  onDeviceDiscovered(device) {
     console.log('Discovered ' + JSON.stringify(device, null, 2));
     this.ngZone.run(() => {
       this.devices.push(device);
@@ -246,7 +257,7 @@ export class DeviceConnectIngPage {
         // console.log('switch characteristic 5' + data[5]);
 
 
-        for( var i = 0; i < data.length; i ++){
+        for (var i = 0; i < data.length; i++) {
           console.log("data" + i + "--- :" + data[i]);
         }
         // var array = new Uint8Array(string.length);

@@ -218,7 +218,7 @@ page-care-zone-mission-start {
     width: 25px;
     height: 25px;
     object-fit: contain;
-    position: fixed;
+    position: absolute;
     left: 35%;
   }
 
@@ -641,5 +641,10 @@ page-care-zone-mission-start {
     text-align: center;
     margin-top: 2%;
     color: #ffffff;
+  }
+
+  textarea{
+    border: none !important;
+    overflow: hidden !important;
   }
 }

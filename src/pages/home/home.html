@@ -38,7 +38,7 @@
 
     <div *ngFor="let firstCarezone of firstCarezoneData">
       <ion-row>
-        <ion-col *ngIf="firstCarezone._id" class="img_carezone_background" style="text-align: center" (click)="mission_start(firstCarezone._id)">
+        <ion-col *ngIf="firstCarezone._id" class="img_carezone_background" style="text-align: center" (click)="mission_start(firstCarezone)">
           <img class="img_carezone" src="http://plinic.cafe24app.com/carezone_images/{{firstCarezone._id}}" />
           <!-- 모집중, 모집마감 -->
           <button class="carezon_btn1_1" style="box-shadow: none; background-color: #B7C9AF;" ion-button>진행 중</button>
@@ -75,7 +75,7 @@
 
     <div *ngFor="let secondCarezone of secondCarezoneData let i = index">
       <ion-row>
-        <ion-col *ngIf="secondCarezone._id" class="img_carezone_background2" style="text-align: center" (click)="mission_start(secondCarezone._id)">
+        <ion-col *ngIf="secondCarezone._id" class="img_carezone_background2" style="text-align: center" (click)="mission_start(secondCarezone)">
           <!-- 모집중, 모집마감 -->
           <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #FFC3C3;" ion-button>모집 중</button>
           <button *ngIf="ingmdchuchun[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>MD추천</button>
@@ -113,7 +113,7 @@
 
     <div *ngFor="let thirdCarezone of thirdCarezoneData">
       <ion-row>
-        <ion-col *ngIf="thirdCarezone._id" class="img_carezone_background3" style="text-align: center" (click)="mission_start(thirdCarezone._id)">
+        <ion-col *ngIf="thirdCarezone._id" class="img_carezone_background3" style="text-align: center" (click)="mission_start(thirdCarezone)">
           <!-- 모집중, 모집마감 -->
           <button class="carezon_btn1_1" style="box-shadow: none; background-color: #644A99;" ion-button>모집 D-{{dday}}</button>
 

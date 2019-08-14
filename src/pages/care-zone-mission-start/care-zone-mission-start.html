@@ -65,8 +65,8 @@
 
     </ion-item> -->
     <h1 class="top_text"> {{carezoneData.title}} </h1><br>
-    <div text-wrap class="top_sub" >플리닉으로 매일 1회(최대 9분) 디바이스로 케어하고 사은품을 받으세요.</div>
-    <button ion-button class="top_btn" (click)="satrtMission(carezoneData._id)">참여하기 <img class="top_img" src="assets/img/care-zone/ic-system-trophy/ic-system-trophy@3x.png"/></button>
+    <!-- <div text-wrap class="top_sub" >{{carezoneData.body}}</div> -->
+    <button ion-button class="top_btn" (click)="satrtMission(carezoneData)">참여하기 <img class="top_img" src="assets/img/care-zone/ic-system-trophy/ic-system-trophy@3x.png"/></button>
 
     <!-- 참가 인원 이미지 추가  -->
     <ion-row>
@@ -74,7 +74,7 @@
         <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
         <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
         <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-        <div class="user_sub">253명이 참가 중입니다.</div>
+        <div *ngIf="missionCounter" class="user_sub">{{missionCounter}}명이 참가 중입니다.</div>
       </ng-container>
     </ion-row>
 
@@ -91,7 +91,7 @@
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
           <ion-col class="event-col4">상품 수량</ion-col>
-          <ion-col class="event-col5">12개</ion-col>
+          <ion-col class="event-col5">{{carezoneData.productcount}}</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -99,7 +99,7 @@
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
           <ion-col class="event-col4">참여 방법</ion-col>
-          <ion-col class="event-col5">매일 1회(최대 9분) 디바이스로 케어</ion-col>
+          <ion-col class="event-col5">{{carezoneData.howtojoin}}</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -107,10 +107,13 @@
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
           <ion-col class="event-col11">보상 조건</ion-col>
-          <ion-col class="event-col9" style="color:#292929">
-                                      챌린지 기간 안에 가장 많은 시간을<br>
-                                      케어한사람 순위 1위~20위까지<br>
-                                      무료 증정 (1일한도 : 9분 이내)</ion-col>
+          <ion-col class="event-col9" >
+            <textarea style="color:#292929" readonly style="text-align: right" rows="3" cols="30">{{carezoneData.condition}}</textarea>
+          </ion-col>
+                                      <!-- <ion-col class="event-col9" style="color:#292929">
+                                                                  챌린지 기간 안에 가장 많은 시간을<br>
+                                                                  케어한사람 순위 1위~20위까지<br>
+                                                                  무료 증정 (1일한도 : 9분 이내)</ion-col> -->
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -118,7 +121,7 @@
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
           <ion-col class="event-col4">참여기간</ion-col>
-          <ion-col class="event-col5">19.07.20 ~ 19.08.04 (2주)</ion-col>
+          <ion-col class="event-col5">{{carezoneData.startmission.substr(0,10)}} ~ {{carezoneData.endmission.substr(0,10)}} (x주)</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -126,7 +129,8 @@
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
           <ion-col class="event-col4">남은시간</ion-col>
-          <ion-col class="event-col7">113:47:34</ion-col>
+          <ion-col *ngIf="timeremaining >= 0" class="event-col7">{{displayTime}}</ion-col>
+          <ion-col *ngIf="timeremaining < 0" class="event-col7">진행중</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -134,9 +138,7 @@
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
           <ion-col class="event-col11">보너스</ion-col>
-          <ion-col class="event-col9">카카오톡 공유하면 +3초/명<br>
-                                      페이스북 공유하면 +30초/회 (1일1회)<br>
-                                      인스타그램 공유하면 +30초/회 (1일1회)</ion-col>
+          <ion-col class="event-col9"><textarea readonly style="color:#292929" style="text-align: right" rows="3" cols="30">{{carezoneData.bonus}}</textarea></ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -162,11 +164,11 @@
       <ion-grid>
         <ion-row class="sns_row">
           <ion-col>
-            <ion-img class="mission-img" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" srcset="assets/img/sns/ic-sns-kakao@2x.png, assets/img/sns/ic-sns-kakao@3x.png"></ion-img>
+            <ion-img class="mission-img" (click)="kakaoLink(carezoneData)" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" srcset="assets/img/sns/ic-sns-kakao@2x.png, assets/img/sns/ic-sns-kakao@3x.png"></ion-img>
             <ion-col>
-              <ion-img class="mission-img" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" srcset="assets/img/sns/ic-sns-fb@2x.png, assets/img/sns/ic-sns-fb@3x.png"></ion-img>
+              <ion-img class="mission-img" (click)="share_facebook(carezoneData)" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" srcset="assets/img/sns/ic-sns-fb@2x.png, assets/img/sns/ic-sns-fb@3x.png"></ion-img>
               <ion-col>
-                <ion-img class="mission-img" src="assets/img/care-zone/sns/ic-sns-band@3x.png" srcset="assets/img/sns/ic-sns-band@2x.png, assets/img/sns/ic-sns-band@3x.png"></ion-img>
+                <ion-img class="mission-img" (click)="share()" src="assets/img/care-zone/sns/ic-sns-band@3x.png" srcset="assets/img/sns/ic-sns-band@2x.png, assets/img/sns/ic-sns-band@3x.png"></ion-img>
               </ion-col>
             </ion-col>
           </ion-col>

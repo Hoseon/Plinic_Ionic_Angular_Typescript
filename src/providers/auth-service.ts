@@ -453,7 +453,7 @@ export class AuthService {
 
     let body = {
       email: userData.email,
-      img_url : userData.thumbnail_image,
+      img_url: userData.thumbnail_image,
       id: content.id,
       comment: content.comment,
     };
@@ -535,7 +535,7 @@ export class AuthService {
 
     let body = {
       email: userData.email,
-      img_url : userData.thumbnail_image,
+      img_url: userData.thumbnail_image,
       id: content.id,
       comment: content.comment,
     };
@@ -703,7 +703,7 @@ export class AuthService {
     headers.append("Content-Type", "application/json");
 
     let body = {
-      id : content._id,
+      id: content._id,
       email: email,
       select: content.select,
       title: content.title,
@@ -761,7 +761,7 @@ export class AuthService {
     headers.append("Content-Type", "application/json");
 
     let body = {
-      id : content._id,
+      id: content._id,
       email: email,
       select: content.select,
       title: content.title,
@@ -902,7 +902,6 @@ export class AuthService {
     return this.http.post(CONFIG.apiUrl + 'api/missionsave', JSON.stringify(body), { headers: headers })
       .map(res => res.json())
       .map(data => {
-        console.log(data);
         return data;
       });
   }
@@ -1167,6 +1166,36 @@ export class AuthService {
     });
     alert.present();
   }
+
+
+
+  public missionPointUpdate(id, email, points) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      id: id,
+      points: points,
+    };
+
+    // console.log("missionPointUpdate : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/pointupdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+
+  public getmissionPoint(id, email) {
+    return this.http.get(CONFIG.apiUrl + 'carezone/getmissionpoint/' + id + '/' + email)
+      .map(response => response.json());
+  }
+
+
 
 
 

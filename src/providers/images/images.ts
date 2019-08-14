@@ -65,6 +65,18 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public missionUseTime(id, email) {
+    return this.http.get(this.apiURL + 'carezone/missionusetime/' + id + '/' + email)
+      .map(response => response.json());
+  }
+
+  // public missionPointUpdate(id, email, point) {
+  //   return this.http.get(this.apiURL + 'carezone/missionpointupdate/' + id + '/' + email + '/' + point)
+  //     .map(response => response.json());
+  // }
+
+
+
   public getMissionMember(id) {
     return this.http.get(this.apiURL + 'carezone/getmissionmember/' + id)
       .map(response => response.json());

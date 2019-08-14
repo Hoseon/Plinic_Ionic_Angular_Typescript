@@ -167,15 +167,15 @@ export class HomePage {
     this.platform.ready().then((readySource) => {
       // this.currentDate = new Date().toISOString();
 
-      this.loadItems();
+      // this.loadItems();
       this.bannerData = this.roadbanner();
       //this.roadcareZone();
-      this.firstCarezoneData = this.firstLoadCareZone();
-      this.secondCarezoneData = this.secondLoadCareZone();
-      this.thirdCarezoneData = this.thirdLoadCareZone();
-      this.roadbeauty();
-      this.timerTick();
-      this.timerTick2();
+      // this.firstCarezoneData = this.firstLoadCareZone();
+      // this.secondCarezoneData = this.secondLoadCareZone();
+      // this.thirdCarezoneData = this.thirdLoadCareZone();
+      // this.roadbeauty();
+      // this.timerTick();
+      // this.timerTick2();
 
 
       if (this.skin_diagnose_first_check === null || false) {
@@ -502,7 +502,14 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
+    this.loadItems();
     this.skinQnaLoad();
+    this.firstCarezoneData = this.firstLoadCareZone();
+    this.secondCarezoneData = this.secondLoadCareZone();
+    this.thirdCarezoneData = this.thirdLoadCareZone();
+    this.roadbeauty();
+    this.timerTick();
+    this.timerTick2();
     // console.log("Enter Home");
     //this.nav.parent.select(0);
     //this.loadItems();
@@ -936,15 +943,15 @@ export class HomePage {
   public mission_ing() {
     this.nav.push(CareZoneMissionIngPage);
   }
-  public mission_start(_id) {
+  public mission_start(carezoneData) {
     //console.log(_id);
 
     if (this.missionData === null || this.missionData === undefined) {
-      this.nav.push(CareZoneMissionStartPage, { _id: _id });
-    } else if (_id === this.missionData.missionID) {
-      this.nav.push(CareZoneMissionIngPage, { _id: _id });
+      this.nav.push(CareZoneMissionStartPage, { carezoneData: carezoneData });
+    } else if (carezoneData._id === this.missionData.missionID) {
+      this.nav.push(CareZoneMissionIngPage, { carezoneData: carezoneData });
     } else {
-      this.nav.push(CareZoneMissionStartPage, { _id: _id });
+      this.nav.push(CareZoneMissionStartPage, { carezoneData: carezoneData });
     }
   }
   public mission_deadline_end(id) {
