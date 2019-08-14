@@ -136,8 +136,11 @@ ion-icon {
       }
 
       ion-backdrop.backdrop-no-tappable{
-      background: #000 !important;
-      opacity: 0.4 !important;
+      // background: #000 !important;
+      // opacity: 0.4 !important;
+      background: #FFF !important;
+      opacity: 1 !important;
+      top: 60px;
       height: 100%;
       // margin-top: 16%;
       }

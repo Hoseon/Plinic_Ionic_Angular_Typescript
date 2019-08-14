@@ -1,127 +1,341 @@
-<!-- <ion-header>
-  <ion-navbar>
-    <ion-title>내 정보</ion-title>
+<!--
+  Generated template for the MyPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android')">
+    <ion-title class="android_title" text-wrap> MY </ion-title>
+    <img class="android_setting" (click)="setting_page();" src="assets/img/myinfo/ic-system-setting@3x.png" />
   </ion-navbar>
-</ion-header> -->
 
-<ion-content>
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+    <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  </ion-navbar> -->
 
-  <ion-list class="top_list" no-lines>
-    <ion-item class="info_text">
-      내정보
-    </ion-item>
-    <ion-item *ngIf="userData">
-      <ion-thumbnail item-start>
-        <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-        <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-      </ion-thumbnail>
+  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')">
+    <ion-title class="ios_title" text-wrap> MY </ion-title>
+    <img class="ios_setting" (click)="setting_page();" src="assets/img/myinfo/ic-system-setting@3x.png" />
+  </ion-navbar>
 
-      <!-- <ion-thumbnail *ngIf="platform.is('android') && userData.from ==='plinic'" item-start>
-        <img *ngIf="imagePath" class="img-radius" [src]="imagePath" />
-        <img *ngIf="!imagePath" class="img-radius" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
-                      assets/img\register/ic-system-profile-default@3x.png" />
-      </ion-thumbnail>
-
-      <ion-thumbnail *ngIf="platform.is('android') && userData.from !=='plinic'" item-start>
-        <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image"/>
-        <img *ngIf="!userData.thumbnail_image" class="img-radius" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
-                      assets/img\register/ic-system-profile-default@3x.png" />
-      </ion-thumbnail> -->
-
-      <h2 class="nickname"> {{userData.nickname}}</h2>
-      <p class="email"> {{userData.email}}</p>
-      <button class="info_change" *ngIf="platform.is('ios') && platform.is('mobile')" ion-button (click)="Reregiter()">내&nbsp;정보</button>
-      <button class="info_change" *ngIf="platform.is('android') && platform.is('mobile')" style="bottom:35%;" ion-button (click)="Reregiter()">내&nbsp;정보</button>
-
-    </ion-item>
-
-    <div *ngIf="platform.is('ios')" style="margin-top: 6%; height:1px; width:100%; background-color:#f1f1f1"></div>
-    <div *ngIf="platform.is('android')" style="position:absolute; margin-top: -1%; height:1px; width:100%; background-color:#f1f1f1"></div>
-
-  </ion-list>
-
-  <ion-list no-lines>
-    <button mode="ios" style="font-weight:bold" no-lines ion-item icon-start (click)="noti()">공지사항</button>
-    <ion-item class="noti_text" *ngFor="let notice of noticeData" (click)="noti()" no-lines>
-      {{[notice.category]}} {{notice.title}}</ion-item>
-    <ion-item></ion-item>
-  </ion-list>
-
-  <div *ngIf="platform.is('ios')" style="position: absolute; height: 1px;width: 100%; margin-top: -16%; background-color: #f1f1f1;"></div>
-  <div *ngIf="platform.is('android')" style="position: absolute; height: 1px;width: 100%; margin-top: -12%; background-color: #f1f1f1;"></div>
+</ion-header>
 
 
-  <ion-list no-lines>
-    <ion-item class="connect_status" mode="ios" no-lines>연동상태
-      <!-- <button mode="ios" *ngIf="blu_connect" class="blue_status" no-lines ion-item (click)="blue_connect()">연동 중</button> -->
-      <!-- <button mode="ios" *ngIf="!blu_connect" class="blue_status" no-lines ion-item (click)="blue_disconnect()">연동 해제</button> -->
-      <button mode="ios" *ngIf="blu_connect" class="blue_status" no-lines ion-item (click)="blue_disconnect()">연동 해제</button>
-    </ion-item>
-    <button class="plinic_use" mode="ios" no-lines ion-item (click)="plinic_manual()" icon-start>플리닉 사용법</button>
-    <button class="care_zone" mode="ios" no-lines ion-item (click)="openCareZoneTab()" icon-start>케어존</button>
-    <button class="inquiry" mode="ios" no-lines ion-item (click)="plinic_qna()" icon-start>문의하기</button>
-    <ion-item no-lines>
-      <ion-toggle mode="md" [(ngModel)]="push_check" (ionChange)="push_change()"></ion-toggle>
-      <ion-label class="text">추천 알림</ion-label>
-    </ion-item>
-  </ion-list>
+
+<ion-content no-padding>
+
+  <ng-container *ngIf="userData">
+  <img *ngIf="userData.thumbnail_image" class="profile_image" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
+  <img *ngIf="!userData.thumbnail_image" class="profile_image" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
+  <div class="profile_name" >{{userData.nickname}}</div>
+  <div class="profile_email" >{{userData.email}}</div>
+  </ng-container>
+
+  <ion-segment class="profile_segment" mode="md" [(ngModel)]="page" color="#5c59b6">
+    <ion-segment-button value="0" (click)="selectedTab(0)">
+      케어존
+    </ion-segment-button>
+    <ion-segment-button value="1" (click)="selectedTab(1)">
+      참여 챌린지
+    </ion-segment-button>
+    <ion-segment-button value="2" (click)="selectedTab(2)">
+      활동
+    </ion-segment-button>
+  </ion-segment>
 
 
-  <div *ngIf="platform.is('ios')" style="position:absolute; height:1px; width:100%; margin-top:-4%; background-color:#f1f1f1"></div>
-  <div *ngIf="platform.is('android')" style="position:absolute; height:1px; width:100%; margin-top:-1%; background-color:#f1f1f1"></div>
+  <ion-slides mode="ios" #Slides [options]="{autoHeight: true}" (ionSlideWillChange)="slideChanged($event)">
+
+    <!-- 케어존 -->
+    <ion-slide class="slide_1">
+      <ion-row>
+        <ion-col class="care_chart_title">케어차트</ion-col>
+        <ion-col><ion-select (ionChange)="yearmonthselect($event)" placeholder="7월" interface="popover" [(ngModel)]="valueday.day"
+                              multiple="false" class="care_chart_date">
+        <ion-option *ngFor="let days of monthdate2" >{{days.day}}</ion-option></ion-select></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="care_chart_time">68분 35초</ion-col>
+        <ion-col class="care_chart_month">월별 자동계산</ion-col>
+      </ion-row>
+
+      <progress-bar [color]="mycolor"[progress]="loadProgress"></progress-bar><br><br>
+
+      <ion-row>
+        <ion-col class="care_chart_all_rank">월간 전체 순위</ion-col>
+        <ion-col class="care_chart_rank">136위</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="care_chart_all_rank">30대 여성 순위</ion-col>
+        <ion-col class="care_chart_rank">27위</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="care_chart_all_rank">총 누적 사용 시간</ion-col>
+        <ion-col class="care_chart_all_time">168분 35초 </ion-col>
+      </ion-row>
+
+      <ion-item>
+      <button ion-button  class="care_chart_btn"> 케어하기</button>
+      </ion-item>
+
+      <ion-row>
+        <ion-col class="skin_chart">스킨 차트</ion-col>
+        <ion-col><ion-select (ionChange)="yearmonthselect($event)" placeholder="2019년7월" interface="popover" [(ngModel)]="valueday.day"
+                              multiple="false" class="linechart_btn">
+        <ion-option *ngFor="let days of monthdate" >{{days.day}}</ion-option></ion-select></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="skin_chart_moisture">수분 지수</ion-col>
+        <ion-col class="skin_chart_moisture_score">{{circle_moisture}}점</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="skin_chart_oil">유분 지수</ion-col>
+        <ion-col class="skin_chart_oil_score">{{circle_oil}}점</ion-col>
+      </ion-row>
+
+      <!-- Default Segment -->
+    <ion-segment class="segment_status" mode="ios" [(ngModel)]="segment_moisture" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="수분">
+        <ion-label >수분</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="유분">
+        <ion-label>유분</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-scroll class="segment_scroll swiper-no-swiping" scrollX="true" scrollY="true">
+    <div class="chartWrapper">
+        <div class="chartAreaWrapper">
+    <canvas class="chart_js" id="moisture" #lineCanvas ></canvas>
+    <canvas class="chart_js" id="oil" #lineCanvas2 ></canvas>
+    <div class="chartWrapper_line"></div>
+    </div>
+    </div>
+    </ion-scroll>
+
+        <ion-col class="square_col"><div class="square"></div><div class="square_text">내 점수</div><div class="square2"></div><div class="square_text2">20대 평균 점수</div></ion-col>
+
+        <p class="data">※&nbsp;2019.08.01 ~ 2019.08.31 까지 데이터 분석입니다.</p>
+
+      <ion-item>
+      <button ion-button class="care_diagnose_btn" (click)="skin_measure()">측정하기</button>
+      </ion-item>
 
 
-  <ion-list no-lines>
-    <button class="terms" mode="ios" ion-item (click)="terms()" icon-start>이용약관</button>
-    <button class="text" mode="ios" ion-item (click)="personalinfo()" icon-start>개인정보처리방침</button>
-    <ion-item class="current_version" no-lines>현재 버전 <ion-note item-end>1.0</ion-note>
-    </ion-item>
-    <button class="logout" mode="md" ion-item (click)="logout()" icon-start>로그아웃</button>
-  </ion-list>
+      <h3 class="solution_title">솔루션</h3>
 
-  <!-- <ion-item no-lines>
-      펌웨어
-      <ion-note item-end>
-        1.0
-      </ion-note>
-    </ion-item> -->
-
-  <!-- <button no-lines ion-item icon-start>피부 유형진단</button>
+      <!-- 데이터가 없을 때 -->
+      <ng-container>
+      <br><br><div class="solution_no_data">솔루션 정보가 없습니다.<br> 피부를 측정하여 맞춤 솔루션을 받아보세요. </div><br><br><br>
+      </ng-container>
 
 
-    <ion-item>
-      <ion-note>
-        <p>피부 유형 재진단 시 이전 데이터는 초기화 됩니다.</p>
+      <!-- 데이터가 있을 때 -->
+      <!-- 수분지수가 낮을 때 -->
+      <h1 class="solution_care">당신의 피부는<br> <span style="color:#5c59b6">"수분개선" </span> 맞춤 케어가 필요합니다. </h1>
+      <!-- 유분지수가 낮을 때  -->
+      <!-- <h1 class="solution_care">당신의 피부는<br> <span style="color:#5c59b6">"유분개선" </span> 맞춤 케어가 필요합니다. </h1> -->
 
-      </ion-note>
-    </ion-item> -->
+      <ng-container *ngIf="communityEditorBeautyLoadData">
+        <ion-grid class="beauty_tip">
+          <ion-row>
+            <ng-container *ngIf="platform.is('android')">
+              <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData" (click)="openBrowser_android(editor.posturl, editor.body)">
+                <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{editor._id}}" />
+                <div class="beauty_desc">{{editor.body}}</div>
+                <div class="beauty_count">조회 {{editor.views}}</div>
+              </ion-col>
+            </ng-container>
 
-  <!-- <button ion-item icon-start>주문/배송</button>
+            <ng-container *ngIf="platform.is('ios') || platform.is('core')">
+              <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData" (click)="openBrowser_ios(editor.posturl, editor.body)">
+                <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{editor._id}}" />
+                <div class="beauty_desc">{{editor.body}}</div>
+                <div class="beauty_count">조회 {{editor.views}}</div>
+              </ion-col>
+            </ng-container>
+          </ion-row>
+        </ion-grid>
+      </ng-container>
 
-    <button ion-item icon-start>배송지 정보</button> -->
+      <!-- 수분지수가 낮을 때  -->
+      <button ion-button style="font-size:14px" class="button_outline" outline> <span style="color:#5c59b6; padding-right:1%;">수분개선 </span>추천상품 보기</button>
 
-  <!-- <button ion-item (click)="plinic_qna()" icon-start>문의하기</button>
+      <!-- 유분지수가 낮을 때 -->
+      <!-- <button ion-button style="font-size:14px" class="button_outline" outline> <span style="color:#5c59b6; padding-right:1%;">유분개선 </span>추천상품 보기</button> -->
 
-    <ion-item>
-      <ion-toggle [(ngModel)]="push_check" (ionChange)="push_change()"></ion-toggle>
-      <ion-label>
-        추천 알림
-      </ion-label>
-    </ion-item> -->
+    <br>
+    </ion-slide>
 
-  <!-- <ion-item>
-      <ion-note>
-        <p>추천 알림을 설정하시면</p>
-        <p>다양한 스킨 케어 정보 및 제품을 추천해드려요.</p>
-      </ion-note>
-    </ion-item> -->
 
-  <!-- <button ion-item icon-start>자주하는 질문</button> -->
 
-  <!-- <ion-item> -->
-  <!-- <ion-note> -->
-  <!-- <p>플리닉을 탈퇴하려면 <button ion-button small clear (click)="leave()"><u>여기를</u></button> 눌러주세요.<p> -->
-  <!-- <p>플리닉을 탈퇴하려면 <u>여기를</u> 눌러주세요.<p> -->
-  <!-- </ion-note>
-  </ion-item> -->
+
+
+    <!-- 참여 챌린지 -->
+    <ion-slide>
+
+      <!-- 챌린지 참여 이력이 없을떄  -->
+      <ng-container>
+      <div class="carezone_no_data">활동 이력이 없습니다.</div>
+      </ng-container>
+
+      <!-- 챌린지 참여 이력이 있을떄  -->
+
+      <ion-list *ngFor="let carezone of carezoneData; let i = index">
+        <ng-container *ngIf="endmission[i] > currentDate">
+        <ion-row class="row">
+          <ion-col class="container2" (click)="mission_start(carezone._id)">
+            <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}'  />
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-9 class="imagetitle">
+            {{carezone.title}}
+          </ion-col>
+          <ion-col class="right_align">
+            <!-- {{missionCounter[i]}}/{{carezone.maxmember}} -->
+              113:47:34
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="sub">
+          {{carezone.body}}
+          </ion-col>
+        </ion-row>
+         <!-- 참가 인원 이미지 추가  -->
+        <br><ion-row class="user_image">
+          <ng-container>
+            <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
+            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+            <div class="user_sub"><span class="user_name">253</span>명이 참가 중입니다.</div>
+          </ng-container>
+        </ion-row>
+        </ng-container>
+      </ion-list>
+
+      <ion-list *ngFor="let carezone of carezoneData; let i = index">
+        <ng-container *ngIf="endmission[i] < currentDate">
+        <ion-row class="row">
+          <ion-col class="container2" (click)="mission_start(carezone._id)">
+            <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}'  />
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-9 class="imagetitle">
+            {{carezone.title}}
+          </ion-col>
+          <ion-col class="right_align">
+            <!-- {{missionCounter[i]}}/{{carezone.maxmember}} -->
+            113:47:34
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="sub">
+          {{carezone.body}}
+          </ion-col>
+        </ion-row>
+        <!-- 참가 인원 이미지 추가  -->
+        <br><ion-row class="user_image">
+          <ng-container>
+            <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
+            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+            <div class="user_sub"><span class="user_name">253</span>명이 참가 중입니다.</div>
+          </ng-container>
+        </ion-row>
+        </ng-container>
+      </ion-list>
+
+    </ion-slide>
+
+
+
+    <!-- 활동 -->
+    <ion-slide>
+
+      <div class="beautynote">뷰티노트</div>
+      <ng-container *ngFor="let beautynote of beautyNoteData; let i = index">
+        <ng-container *ngIf="userData.email === beautynote.email && i < 6 ">
+          <!-- 뷰트노트 이미지가 있을 때  -->
+          <ng-container *ngIf="beautynote.filename">
+            <ion-item class="line_item">
+              <ion-col (click)="community_modify(beautynote._id)" class="container">
+                <ion-row class="beauty_row">
+                  <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
+                </ion-row>
+                <ion-col *ngIf="beautynote.like || beautynote.like===0" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
+                  <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
+                </ion-col>
+                <img *ngIf="platform.is('android')" class="beauty_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
+                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_note_img_ios" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
+              </ion-col>
+            </ion-item>
+            <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+          </ng-container>
+
+          <ng-container *ngIf="!beautynote.filename">
+            <!-- 뷰트노트 이미지가 없을 때  -->
+            <ion-item class="line_item">
+              <ion-col (click)="community_modify(beautynote._id)" class="container">
+                <ion-row class="beauty_row">
+                  <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
+                </ion-row>
+                <ion-col *ngIf="beautynote.like || beautynote.like===0" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
+                  <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
+                </ion-col>
+              </ion-col>
+            </ion-item>
+            <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="userData.email === beautynote.email && beautynote.length > 4">
+        <button ion-button  class="beautynote_add">더보기</button>
+        </ng-container>
+      </ng-container>
+
+
+      <div class="skinqna">피부고민</div>
+      <ng-container *ngFor="let skinqna of skinQnaData; let i = index">
+        <ng-container *ngIf="userData.email === skinqna.email && i < 6">
+          <ng-container *ngIf="skinqna.filename">
+            <!-- 피부 고민 이미지가 있을 때  -->
+            <ion-item class="line_item">
+              <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
+                <ion-row class="beauty_row">
+                  <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
+                </ion-row>
+                <ion-col *ngIf="skinqna.like || skinqna.like===0" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+                  <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
+                </ion-col>
+                <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+              </ion-col>
+            </ion-item>
+            <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+          </ng-container>
+
+          <ng-container *ngIf="!skinqna.filename">
+            <!-- 피부 고민 이미지가 없을 때  -->
+            <ion-item class="line_item">
+              <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
+                <ion-row class="beauty_row">
+                  <ion-col class="beauty_note_title"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
+                </ion-row>
+                <ion-col *ngIf="skinqna.like || skinqna.like===0" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+                  <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
+                </ion-col>
+              </ion-col>
+            </ion-item>
+            <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="userData.email === skinqna.email && skinqna.length > 4">
+        <button ion-button class="skinqna_add">더보기</button>
+        </ng-container>
+      </ng-container>
+    </ion-slide>
+  </ion-slides>
+
 </ion-content>

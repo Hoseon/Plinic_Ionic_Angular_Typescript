@@ -1,0 +1,81 @@
+
+
+
+<ion-header>
+
+  <ion-navbar  *ngIf="platform.is('android')" no-lines>
+    <ion-title class="android_title" text-wrap >설정</ion-title>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+  	<ion-buttons left no-lines>
+  		<button ion-button navPop icon-only>
+        <img no-lines class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
+  		</button>
+  	</ion-buttons>
+    <ion-title class="ios_title" text-wrap>설정</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content>
+
+  <ion-list *ngIf="userData" class="top_list">
+
+    <div class="title">계정정보</div>
+    <button class="terms" mode="ios" ion-item icon-start (click)="Reregiter()">{{userData.nickname}}
+      <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
+      <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
+    </button>
+
+    <!-- <div *ngIf="platform.is('ios')" style="margin-top: 6%; height:1px; width:100%; background-color:#f1f1f1"></div>
+    <div *ngIf="platform.is('android')" style="position:absolute; margin-top: -1%; height:1px; width:100%; background-color:#f1f1f1"></div> -->
+
+  </ion-list>
+
+
+  <div *ngIf="platform.is('ios')" style="position: absolute; height: 1px;width: 100%; background-color: #f1f1f1;"></div>
+  <div *ngIf="platform.is('android')" style="position: absolute; height: 1px;width: 100%; background-color: #f1f1f1;"></div>
+
+
+  <ion-list no-lines>
+    <ion-item mode="ios" class="title2">디바이스</ion-item><br>
+    <ion-item class="connect_status" mode="ios" no-lines>연동상태
+      <button mode="ios" *ngIf="blu_connect" style="width: 115px;" class="blue_status" no-lines ion-item (click)="blue_connect()">연동 중</button>
+      <button mode="ios" *ngIf="!blu_connect" class="blue_status" no-lines ion-item (click)="blue_disconnect()">연동 해제</button>
+      <!-- <button mode="ios" *ngIf="blu_connect" class="blue_status" no-lines ion-item (click)="blue_disconnect()">연동 해제</button> -->
+    </ion-item>
+    <button class="plinic_use" mode="ios" no-lines ion-item (click)="plinic_manual()" icon-start>플리닉 사용법</button>
+    <button class="care_zone" mode="ios" no-lines ion-item (click)="plinic_FAQ()" icon-start>FAQ</button>
+    <button class="inquiry" mode="ios" no-lines ion-item (click)="plinic_qna()" icon-start>문의하기</button>
+    <ion-item no-lines>
+      <ion-toggle mode="md" [(ngModel)]="push_check" (ionChange)="push_change()"></ion-toggle>
+      <ion-label class="text">추천 알림</ion-label>
+    </ion-item>
+  </ion-list>
+
+
+  <div *ngIf="platform.is('ios')" style="position:absolute; height:1px; width:100%; margin-top:-4%; background-color:#f1f1f1"></div>
+  <div *ngIf="platform.is('android')" style="position:absolute; height:1px; width:100%; margin-top:-1%; background-color:#f1f1f1"></div>
+
+
+  <ion-list no-lines>
+    <div class="title">일반</div>
+    <button class="terms" mode="ios" ion-item icon-start (click)="noti()">공지사항</button>
+    <button class="terms" mode="ios" ion-item (click)="terms()" icon-start>이용약관</button>
+    <button class="text" mode="ios" ion-item (click)="personalinfo()" icon-start>개인정보처리방침</button>
+    <ion-item class="current_version" no-lines>현재 버전 <ion-note item-end>1.0</ion-note>
+    </ion-item>
+    <button class="logout" mode="md" ion-item (click)="logout()" icon-start>로그아웃</button>
+  </ion-list>
+
+
+
+
+
+
+
+
+
+</ion-content>

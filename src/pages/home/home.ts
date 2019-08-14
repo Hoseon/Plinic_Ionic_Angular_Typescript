@@ -218,9 +218,18 @@ export class HomePage {
             || activeView.name === 'CareZoneMissionCompletePage'
             || activeView.name === 'MyPage'
             || activeView.name === 'MyCommunityModifyPage'
+            || activeView.name === 'SettingPage'
           ){
-                console.log("activeView.name===================111111111000000");
-                activeView.dismiss();
+            console.log("activeView.name===================111111111000000");
+            activeView.dismiss();
+            }
+            else if(
+            activeView.name === 'CareZonePage'
+            || activeView.name === 'CommunityPage'
+            || activeView.name === 'MyinfoPage'
+            ){
+            console.log("activeView.name===================22222222000000");
+            this.nav.parent.select(0);
             }
             else{
             let alert = this.alertCtrl.create({

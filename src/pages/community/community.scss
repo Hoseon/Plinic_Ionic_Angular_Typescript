@@ -523,7 +523,8 @@ page-community {
           color: #292929;
           text-align: left;
           margin-left: 4%;
-          margin-bottom: 5%;
+          margin-bottom: 10%;
+          padding-bottom: 0px;
 
           @supports (-webkit-line-clamp: 2) {
             overflow: hidden;
