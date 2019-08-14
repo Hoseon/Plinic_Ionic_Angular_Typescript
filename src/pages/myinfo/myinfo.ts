@@ -70,7 +70,7 @@ export class MyinfoPage {
       userData: any;
       nickname: string;
       currentDate: Date = new Date();
-      today: any = new Date().toISOString();
+      today: any = new Date();
       new: Array<boolean> = new Array<boolean>();
       recruiting: Array<boolean> = new Array<boolean>();
       mdchuchun: Array<boolean> = new Array<boolean>();
@@ -115,9 +115,8 @@ export class MyinfoPage {
       skinbtnYear = format(this.today, 'YYYY');
       skinbtnMonth = format(this.today, 'MM');
       @ViewChild(Content) content: Content;
-      skin_diagnose_first_check = false;
       communityEditorBeautyLoadData: any;
-
+      skin_diagnose_first_check: boolean;
 
       constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider, public modalCtrl: ModalController, public alertCtrl: AlertController,
                   public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController) {
@@ -132,10 +131,11 @@ export class MyinfoPage {
         this.showLoading();
         setTimeout(() => {
         this.selectedTab(1);
-      }, 500)
+      }, 600)
         setTimeout(() => {
         this.selectedTab(0);
-      }, 500)
+      }, 600)
+       this.loading.dismiss();
   }
 
       public selectclick() {
@@ -144,13 +144,8 @@ export class MyinfoPage {
       }
 
       ionViewCanEnter() {
-        this.loadItems();
+      this.loadItems();
       }
-
-      ionViewWillLeave(){
-
-      }
-
 
       ionViewWillEnter() {
         this.skinQnaLoad();
@@ -166,6 +161,9 @@ export class MyinfoPage {
         //     tabs[key].style.display = 'none';
         //   });
         // }
+        setTimeout(() => {
+          this.loading.dismiss();
+        }, 1000);
       }
 
       public setting_page(){
@@ -180,14 +178,14 @@ export class MyinfoPage {
       this.slides.autoHeight = true;
       }
 
-
       public skin_first_check() {
         this.auth.getUserStoragediagnose_first_check().then(items => {
           this.skin_diagnose_first_check = items;
-          // console.log("skin_diagnose_first_check========" + this.skin_diagnose_first_check);
+          console.log("skin_diagnose_first_check" + this.skin_diagnose_first_check);
           //console.log("items" + items);
         });
       }
+
 
       public skin_measure() {
         // let alert = this.alertCtrl.create({
@@ -419,9 +417,9 @@ export class MyinfoPage {
 
             }
             this.carezoneData = data;
-            setTimeout(() => {
-              this.loading.dismiss();
-            }, 1000);
+            // setTimeout(() => {
+            //   this.loading.dismiss();
+            // }, 1000);
           } else {
             this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
           }
@@ -524,6 +522,9 @@ export class MyinfoPage {
       });
     }
 
+    onChange(e){
+      console.log("e============="+e);
+    }
     segmentChanged(ev: any) {
       if (ev.value === '수분') {
         // console.log('Segment changed111111111==============', ev.value);
@@ -566,9 +567,7 @@ export class MyinfoPage {
         console.log(this.chartMoistureData);
         console.log(this.chartOilData);
       } else {
-        setTimeout(() => {
         this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
-        }, 3000)
       }
 
       // console.log("yearmonthselect===============" + e);
@@ -878,9 +877,6 @@ export class MyinfoPage {
           cssClass: 'sk-rotating-plane'
         });
         this.loading.present();
-        setTimeout(() => {
-          this.loading.dismiss();
-        }, 1000);
       }
 
       showAlert(text) {
@@ -894,7 +890,7 @@ export class MyinfoPage {
       }
 
       showError(text) {
-        this.loading.dismiss();
+        //this.loading.dismiss();
 
         let alert = this.alertCtrl.create({
           cssClass: 'push_alert',

@@ -274,7 +274,7 @@ export class SkinChartPage {
   }
 
   ionViewDidEnter() {
-    this.skin_moisture_score();
+    //this.skin_moisture_score();
     // console.log('ionViewDidLoad SkinChartPage');
     // console.log('all_moisture_score=====================' + this.all_moisture_score);
     document.getElementById("moisture").style.display = "block";
