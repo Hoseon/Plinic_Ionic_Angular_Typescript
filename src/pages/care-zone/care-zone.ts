@@ -450,9 +450,6 @@ export class CareZonePage {
 
         }
         this.carezoneData = data;
-        setTimeout(() => {
-          this.loading.dismiss();
-        }, 1000);
       } else {
         this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
       }
@@ -514,12 +511,12 @@ export class CareZonePage {
   }
 
   showLoading() {
-    this.loading = this.loadingCtrl.create({
+    let loading = this.loadingCtrl.create({
       spinner: 'hide',
       duration: 1000,
       cssClass: 'sk-rotating-plane'
     });
-    this.loading.present();
+    loading.present();
   }
 
   showAlert(text) {
@@ -534,7 +531,7 @@ export class CareZonePage {
     alert.present();
   }
   showError(text) {
-    this.loading.dismiss();
+    //this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
