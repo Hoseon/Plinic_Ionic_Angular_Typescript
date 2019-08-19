@@ -14,6 +14,9 @@ import { CareZoneMissionStartPage } from '../care-zone-mission-start/care-zone-m
 import { SkinDiagnoseMoisturePage } from '../skin-diagnose-moisture/skin-diagnose-moisture';
 import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture';
 import { SettingPage } from './setting/setting';
+import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
+
+
 
 /**
  * Generated class for the MyinfoPage page.
@@ -66,7 +69,6 @@ export class MyinfoPage {
 
       carezoneData: any;
       missionData: any;
-      loading: Loading;
       userData: any;
       nickname: string;
       currentDate: Date = new Date();
@@ -119,7 +121,7 @@ export class MyinfoPage {
       skin_diagnose_first_check: boolean;
 
       constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider, public modalCtrl: ModalController, public alertCtrl: AlertController,
-                  public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController) {
+                  public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController, private themeableBrowser: ThemeableBrowser) {
       this.segment_moisture = "수분"
 
       }
@@ -128,14 +130,6 @@ export class MyinfoPage {
         console.log('ionViewDidLoad MyPage');
         this.id = this.navParams.get('id');
         this.mode = this.navParams.get('mode');
-        this.showLoading();
-        setTimeout(() => {
-        this.selectedTab(1);
-      }, 600)
-        setTimeout(() => {
-        this.selectedTab(0);
-      }, 600)
-       this.loading.dismiss();
   }
 
       public selectclick() {
@@ -152,7 +146,13 @@ export class MyinfoPage {
         this.beautyNoteLoad();
         this.communityEditorBeautyLoad();
         this.carezoneData = this.roadcareZone();
-
+        this.showLoading();
+        setTimeout(() => {
+        this.selectedTab(1);
+      }, 500)
+        setTimeout(() => {
+        this.selectedTab(0);
+      }, 500)
 
         // let tabs = document.querySelectorAll('.tabbar');
         // if (tabs !== null) {
@@ -161,9 +161,6 @@ export class MyinfoPage {
         //     tabs[key].style.display = 'none';
         //   });
         // }
-        setTimeout(() => {
-          this.loading.dismiss();
-        }, 1000);
       }
 
       public setting_page(){
@@ -412,14 +409,8 @@ export class MyinfoPage {
               }
 
               this.endcarezoneData = data[i];
-              // }
-
-
             }
             this.carezoneData = data;
-            // setTimeout(() => {
-            //   this.loading.dismiss();
-            // }, 1000);
           } else {
             this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
           }
@@ -784,7 +775,10 @@ export class MyinfoPage {
       this.skinbtnYear = format(new Date(), 'YYYY');
       this.skinbtnMonth = format(new Date(), 'MM');
       var e = this.skinbtnYear + "년" + this.skinbtnMonth;
+
+      setTimeout(() => {
       this.yearmonthselect(e);
+    }, 500)
     }
 
 
@@ -869,14 +863,100 @@ export class MyinfoPage {
         });
       }
 
+      openBrowser_ios(url, title) {
+        // https://ionicframework.com/docs/native/themeable-browser/
+
+        const options: ThemeableBrowserOptions = {
+          toolbar: {
+            height: 55,
+            color: '#6562b9'
+          },
+          title: {
+            color: '#ffffffff',
+            showPageTitle: false,
+            staticText: title
+          },
+          closeButton: {
+            wwwImage: 'assets/img/close.png',
+            align: 'left',
+            event: 'closePressed'
+          },
+          customButtons: [
+            {
+              wwwImage: 'assets/img/like/like.png',
+              imagePressed: 'assets/img/like/dislike.png',
+              align: 'right',
+              event: 'sharePressed'
+            }
+          ],
+        };
+
+        const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
+        browser.insertCss({
+          file: 'assets/img/close.png',
+          code: '.navbar-fixed-top {display: block !important;}'
+        });
+        browser.reload();
+        browser.on('closePressed').subscribe(data => {
+          browser.close();
+        })
+
+        browser.on('sharePressed').subscribe(data => {
+          console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+        })
+
+
+      }
+
+
+      openBrowser_android(url, title) {
+        // https://ionicframework.com/docs/native/themeable-browser/
+
+        const options: ThemeableBrowserOptions = {
+          toolbar: {
+            height: 55,
+            color: '#6562b9'
+          },
+          title: {
+            color: '#ffffffff',
+            showPageTitle: false,
+            staticText: title
+          },
+          customButtons: [
+            {
+              wwwImage: 'assets/img/like/like.png',
+              imagePressed: 'assets/img/like/dislike.png',
+              align: 'right',
+              event: 'sharePressed'
+            }
+          ],
+        };
+
+        const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
+        browser.insertCss({
+          file: 'assets/img/close.png',
+          code: '.navbar-fixed-top {display: block !important;}'
+        });
+        browser.reload();
+        browser.on('closePressed').subscribe(data => {
+          browser.close();
+        })
+
+        browser.on('sharePressed').subscribe(data => {
+          console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+        })
+
+      }
+
+
 
       showLoading() {
-        this.loading = this.loadingCtrl.create({
+        let loading = this.loadingCtrl.create({
           spinner: 'hide',
           duration: 100,
           cssClass: 'sk-rotating-plane'
         });
-        this.loading.present();
+        loading.present();
       }
 
       showAlert(text) {
@@ -890,8 +970,6 @@ export class MyinfoPage {
       }
 
       showError(text) {
-        //this.loading.dismiss();
-
         let alert = this.alertCtrl.create({
           cssClass: 'push_alert',
           title: 'Plinic',

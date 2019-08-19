@@ -23,13 +23,10 @@
       챌린지 알림
     </ion-col>
  </ion-item>
-<<<<<<< HEAD
- <div class="user_text"><span class="user_name">이성균</span>님 참여한 챌린지가 있습니다. </div>
-  <button ion-button class="skin_btn" (click)="skin_measure()">바로가기 > </button>
-=======
+
  <div class="user_text"><span class="user_name">이성균</span>님 참여한 챌린저가 있습니다. </div>
   <button ion-button class="skin_btn" (click)="skin_chart()">바로가기 > </button>
->>>>>>> 603c468c2b6fec6f1d18745e09e0487655e1db20
+
 
   <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
 
@@ -46,7 +43,7 @@
         <ion-col *ngIf="firstCarezone._id" class="img_carezone_background" style="text-align: center" (click)="mission_start(firstCarezone)">
           <img class="img_carezone" src="http://plinic.cafe24app.com/carezone_images/{{firstCarezone._id}}" />
           <!-- 모집중, 모집마감 -->
-          <button class="carezon_btn1_1" style="box-shadow: none; background-color: #B7C9AF;" ion-button>진행 중</button>
+          <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #B7C9AF;" ion-button>진행 중</button> -->
         </ion-col>
       </ion-row>
       <ion-row>
@@ -120,10 +117,10 @@
       <ion-row>
         <ion-col *ngIf="thirdCarezone._id" class="img_carezone_background3" style="text-align: center" (click)="mission_start(thirdCarezone)">
           <!-- 모집중, 모집마감 -->
-          <button class="carezon_btn1_1" style="box-shadow: none; background-color: #644A99;" ion-button>모집 D-{{dday}}</button>
+          <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #644A99;" ion-button>모집 D-{{dday}}</button>
 
           <button *ngIf="ingmdchuchun[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>MD추천</button>
-          <button *ngIf="ingapproaching[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>마감임박</button>
+          <button *ngIf="ingapproaching[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>마감임박</button> -->
 
           <img *ngIf="thirdCarezone._id" class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{thirdCarezone._id}}" />
         </ion-col>
@@ -271,7 +268,7 @@
             <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
             <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
           </ion-col></ion-item>
-          <div style="height:1px; width:100%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+          <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
         </ng-container>
         <ng-container *ngIf="!skinqna.filename">
           <!-- 피부 고민 이미지가 없을 때  -->
@@ -284,7 +281,7 @@
               <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
             </ion-col>
           </ion-col></ion-item>
-          <div style="height:1px; width:100%; margin:0 auto; margin-top:2%; display: block; background-color:#f1f1f1"></div>
+          <div style="height:1px; width:90%; margin:0 auto; margin-top:2%; display: block; background-color:#f1f1f1"></div>
         </ng-container>
       </ng-container>
     </ng-container>
