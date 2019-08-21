@@ -128,14 +128,26 @@
       <!-- 참가 인원 이미지 추가  -->
       <br>
       <ion-row>
-        <ng-container>
-          <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <!-- <div class="user_sub"><span class="user_name">253</span>명이 참가 중입니다.</div> -->
-          <div *ngIf="missionCounter[i]" class="user_sub"><span class="user_name">{{missionCounter[i]}}</span>명이 참가 중입니다.</div>
-
+        <ng-container *ngFor="let mission of missionmember; let i = index">
+          <ng-container *ngIf="i <= 3">
+            <!-- <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
+            <ng-container *ngIf="i === 0">
+              <img *ngIf="!memberRanking[i].image_url" class="font_carezone2_img" style="margin-left:2%;" src="http://plinic.cafe24app.com/userimages/{{memberRanking[i].email}}"
+                onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+              <img *ngIf="memberRanking[i].image_url" class="font_carezone2_img" style="margin-left: 2%;" src="{{memberRanking[i].image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            </ng-container>
+            <ng-container *ngIf="i > 0">
+              <img *ngIf="!memberRanking[i].image_url" class="font_carezone2_img" style="margin-left:-2%;" src="http://plinic.cafe24app.com/userimages/{{memberRanking[i].email}}"
+                onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+              <img *ngIf="memberRanking[i].image_url" class="font_carezone2_img" style="margin-left: -2%;" src="{{memberRanking[i].image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            </ng-container>
+          </ng-container>
+          <!-- <ion-col *ngIf="!memberRanking[i].image_url"><img class="profile-img" src="http://plinic.cafe24app.com/userimages/{{mission.email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" /></ion-col> -->
+          <!-- <ion-col *ngIf="memberRanking[i].image_url"><img class="profile-img" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" /></ion-col> -->
         </ng-container>
+        <div *ngIf="missionCounter[i]" class="user_sub"><span class="user_name">{{missionCounter[i]}}</span>명이 참가 중입니다.</div>
+
+
       </ion-row>
     </ng-container>
   </ion-list>

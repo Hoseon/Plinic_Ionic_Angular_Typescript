@@ -51,7 +51,7 @@
     <ion-slide class="slide_1">
       <ion-row>
         <ion-col class="care_chart_title">케어차트</ion-col>
-        <ion-col><ion-select (ionChange)="yearmonthselect($event)" placeholder="7월" interface="popover" [(ngModel)]="valueday.day"
+        <ion-col><ion-select placeholder="7월" interface="popover"
                               multiple="false" class="care_chart_date">
         <ion-option *ngFor="let days of monthdate2" >{{days.day}}</ion-option></ion-select></ion-col>
       </ion-row>
@@ -104,7 +104,7 @@
       </ion-segment-button>
     </ion-segment>
 
-    <ion-scroll class="segment_scroll swiper-no-swiping" scrollX="true" scrollY="true">
+    <ion-scroll class="segment_scroll swiper-no-swiping" scrollX="true">
     <div class="chartWrapper">
         <div class="chartAreaWrapper">
     <canvas class="chart_js" id="moisture" #lineCanvas ></canvas>

@@ -588,7 +588,7 @@ export class CareZoneMissionIngPage {
   }
 
   //20190617 미션 참여자 인원 count
-  public missionMember(id) {
+  missionMember(id) {
     // this.showLoading();
     this.images.getMissionMember(id).subscribe(data => {
       if (data !== '') {

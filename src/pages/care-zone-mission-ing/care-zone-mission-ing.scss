@@ -184,7 +184,7 @@ page-care-zone-mission-ing {
     color: #5c59b6;
     position: absolute;
     left: 10%;
-    margin-top: 4%;
+    margin-top: 8%;
   }
 
   .top_rank{
@@ -233,45 +233,45 @@ page-care-zone-mission-ing {
     border-top-left-radius: 5px;
   }
 
-  .progress-outer[_ngcontent-c1] {
-    margin-left: auto;
-    margin-right: auto;
-    border: 0;
-    width: 75%;
-    background-color: #f1f1f1;
-    padding: 0;
-    font-size: 0px;
-  }
-
-  .progress-inner[_ngcontent-c1] {
-    background-color: #5c59b6;
-    color: #FFF;
-    height: 6px;
-    border-radius: 0;
-    margin-bottom: -20px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-  }
-
-  .progress-outer[_ngcontent-c2] {
-    margin-left: auto;
-    margin-right: auto;
-    border: 0;
-    width: 75%;
-    background-color: #f1f1f1;
-    padding: 0;
-    font-size: 0px;
-  }
-
-  .progress-inner[_ngcontent-c2] {
-    background-color: #5c59b6;
-    color: #FFF;
-    height: 6px;
-    border-radius: 0;
-    margin-bottom: -20px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-}
+//   .progress-outer[_ngcontent-c1] {
+//     margin-left: auto;
+//     margin-right: auto;
+//     border: 0;
+//     width: 75%;
+//     background-color: #f1f1f1;
+//     padding: 0;
+//     font-size: 0px;
+//   }
+//
+//   .progress-inner[_ngcontent-c1] {
+//     background-color: #5c59b6;
+//     color: #FFF;
+//     height: 6px;
+//     border-radius: 0;
+//     margin-bottom: -20px;
+//     border-bottom-left-radius: 5px;
+//     border-top-left-radius: 5px;
+//   }
+//
+//   .progress-outer[_ngcontent-c2] {
+//     margin-left: auto;
+//     margin-right: auto;
+//     border: 0;
+//     width: 75%;
+//     background-color: #f1f1f1;
+//     padding: 0;
+//     font-size: 0px;
+//   }
+//
+//   .progress-inner[_ngcontent-c2] {
+//     background-color: #5c59b6;
+//     color: #FFF;
+//     height: 6px;
+//     border-radius: 0;
+//     margin-bottom: -20px;
+//     border-bottom-left-radius: 5px;
+//     border-top-left-radius: 5px;
+// }
 
 
   .event-col {
@@ -575,7 +575,7 @@ page-care-zone-mission-ing {
   //  margin: 0px;
   // }
   .profile-img {
-    position: fixed;
+    position: absolute;
     left: 50px;
     width: 38px;
     height: 38px;

@@ -24,19 +24,19 @@
   <ion-list *ngIf="userData" class="top_list">
 
     <div class="title">계정정보</div>
-    <button class="terms" mode="ios" ion-item icon-start (click)="Reregiter()">{{userData.nickname}}
+    <button class="terms" mode="ios" no-lines ion-item icon-start (click)="Reregiter()">{{userData.nickname}}
       <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
       <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
     </button>
 
-    <!-- <div *ngIf="platform.is('ios')" style="margin-top: 6%; height:1px; width:100%; background-color:#f1f1f1"></div>
-    <div *ngIf="platform.is('android')" style="position:absolute; margin-top: -1%; height:1px; width:100%; background-color:#f1f1f1"></div> -->
+    <div *ngIf="platform.is('ios')" style="height: 1px;width: 92%;margin: 0 auto; margin-top: 4%; background-color:#f1f1f1"></div>
+    <div *ngIf="platform.is('android')" style="height: 1px;width: 92%; margin: 0 auto; margin-top: 4%; background-color:#f1f1f1"></div>
 
   </ion-list>
 
 
-  <div *ngIf="platform.is('ios')" style="position: absolute; height: 1px;width: 100%; background-color: #f1f1f1;"></div>
-  <div *ngIf="platform.is('android')" style="position: absolute; height: 1px;width: 100%; background-color: #f1f1f1;"></div>
+  <!-- <div *ngIf="platform.is('ios')" style="height: 1px;width: 91%;margin-top: 2%;margin: 0 auto; background-color:#000"></div>
+  <div *ngIf="platform.is('android')" style="height: 1px;width: 91%;margin-top: 2%;margin: 0 auto; background-color:#000"></div> -->
 
 
   <ion-list no-lines>
@@ -56,8 +56,8 @@
   </ion-list>
 
 
-  <div *ngIf="platform.is('ios')" style="position:absolute; height:1px; width:100%; margin-top:-4%; background-color:#f1f1f1"></div>
-  <div *ngIf="platform.is('android')" style="position:absolute; height:1px; width:100%; margin-top:-1%; background-color:#f1f1f1"></div>
+  <div *ngIf="platform.is('ios')" style=" height: 1px; width: 92%; margin: 0 auto; margin-top: -4%; background-color:#f1f1f1"></div>
+  <div *ngIf="platform.is('android')" style=" height: 1px; width: 92%; margin: 0 auto; margin-top: 0%; background-color:#f1f1f1"></div>
 
 
   <ion-list no-lines>

@@ -158,8 +158,8 @@
         <ion-grid class="eventgrid">
           <ion-row>
             <ion-col class="event-col0">{{i}}</ion-col>
-            <ion-col *ngIf="!mission.image_url"><img class="profile-img" src="http://plinic.cafe24app.com/userimages/{{mission.email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" /></ion-col>
-            <ion-col *ngIf="mission.image_url"><img class="profile-img" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" /></ion-col>
+            <img *ngIf="!memberRanking[i].image_url" class="profile-img" src="http://plinic.cafe24app.com/userimages/{{memberRanking[i].email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            <img *ngIf="memberRanking[i].image_url" class="profile-img" src="{{memberRanking[i].image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
             <ion-col class="event-col8">{{mission.email}}</ion-col>
             <ion-col class="event-col6">{{displayUseTimeList[i]}}</ion-col>
           </ion-row>
