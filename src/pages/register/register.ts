@@ -1,6 +1,6 @@
 import { IonicPage } from 'ionic-angular';
 import { Component} from '@angular/core';
-import { NavController, AlertController, Platform, ActionSheetController, ModalController, normalizeURL } from 'ionic-angular';
+import { NavController, AlertController, Platform, ActionSheetController, ModalController, normalizeURL, ViewController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from './../../providers/images/images';
 import {AgreementPage } from '../agreement/agreement';
@@ -31,9 +31,52 @@ export class RegisterPage {
   cameraPhoto: any;
   imagePath: any;
   imagePath2 : any;
+  unregisterBackButtonAction: Function;
+
 
   constructor(private _camera: Camera, private imagesProvider: ImagesProvider, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController,
-    private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public platform: Platform) {}
+    private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public platform: Platform, public viewCtrl: ViewController) {
+
+
+    this.platform.ready().then((readySource) => {
+
+    });
+
+  }
+
+  public dissmiss() {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "plinic",
+      message: "회원가입을 취소하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+            console.log('취소');
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            console.log('확인'),
+              this.viewCtrl.dismiss();
+          }
+        }]
+    });
+    alert.present();
+  }
+
+  ionViewWillEnter(){
+    this.unregisterBackButtonAction = this.platform.registerBackButtonAction(() => {
+            this.dissmiss();
+        }, 99999);
+  }
+
+  ionViewWillLeave(){
+    this.unregisterBackButtonAction();
+  }
 
 
   ionViewDidLoad() {

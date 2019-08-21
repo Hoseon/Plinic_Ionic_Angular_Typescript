@@ -60,7 +60,7 @@
         <ion-col class="care_chart_month">월별 자동계산</ion-col>
       </ion-row>
 
-      <progress-bar [color]="mycolor"[progress]="loadProgress"></progress-bar><br><br>
+      <progress-bar [color]="mycolor" [progress]="loadProgress"></progress-bar><br><br>
 
       <ion-row>
         <ion-col class="care_chart_all_rank">월간 전체 순위</ion-col>
@@ -160,10 +160,10 @@
       </ng-container>
 
       <!-- 수분지수가 낮을 때  -->
-      <button ion-button style="font-size:14px" class="button_outline" outline> <span style="color:#5c59b6; padding-right:1%;">수분개선 </span>추천상품 보기</button>
+      <button ion-button style="font-size:14px" class="button_outline" outline> <span style="color:#5c59b6; padding-right:1%;">수분개선 </span> 추천상품 보기</button>
 
       <!-- 유분지수가 낮을 때 -->
-      <!-- <button ion-button style="font-size:14px" class="button_outline" outline> <span style="color:#5c59b6; padding-right:1%;">유분개선 </span>추천상품 보기</button> -->
+      <!-- <button ion-button style="font-size:14px" class="button_outline" outline> <span style="color:#5c59b6; padding-right:1%;">유분개선 </span> 추천상품 보기</button> -->
 
     <br>
     </ion-slide>
@@ -257,10 +257,10 @@
 
       <div class="beautynote">뷰티노트</div>
       <ng-container *ngFor="let beautynote of beautyNoteData; let i = index">
-        <ng-container *ngIf="userData.email === beautynote.email && i < 6 ">
+        <ng-container *ngIf="userData.email === beautynote.email && i < 6">
           <!-- 뷰트노트 이미지가 있을 때  -->
           <ng-container *ngIf="beautynote.filename">
-            <ion-item class="line_item">
+            <ion-item class="line_item" no-lines>
               <ion-col (click)="community_modify(beautynote._id)" class="container">
                 <ion-row class="beauty_row">
                   <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
@@ -272,12 +272,12 @@
                 <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_note_img_ios" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
               </ion-col>
             </ion-item>
-            <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+            <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
           </ng-container>
 
           <ng-container *ngIf="!beautynote.filename">
             <!-- 뷰트노트 이미지가 없을 때  -->
-            <ion-item class="line_item">
+            <ion-item class="line_item" no-lines>
               <ion-col (click)="community_modify(beautynote._id)" class="container">
                 <ion-row class="beauty_row">
                   <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
@@ -287,10 +287,10 @@
                 </ion-col>
               </ion-col>
             </ion-item>
-            <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+            <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
           </ng-container>
         </ng-container>
-        <ng-container *ngIf="userData.email === beautynote.email && beautynote.length > 4">
+        <ng-container *ngIf="userData.email === beautynote.email && i === 5">
         <button ion-button  class="beautynote_add">더보기</button>
         </ng-container>
       </ng-container>
@@ -298,10 +298,10 @@
 
       <div class="skinqna">피부고민</div>
       <ng-container *ngFor="let skinqna of skinQnaData; let i = index">
-        <ng-container *ngIf="userData.email === skinqna.email && i < 6">
+        <ng-container *ngIf="userData.email === skinqna.email && i < 6 ">
           <ng-container *ngIf="skinqna.filename">
             <!-- 피부 고민 이미지가 있을 때  -->
-            <ion-item class="line_item">
+            <ion-item class="line_item" no-lines>
               <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
                 <ion-row class="beauty_row">
                   <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
@@ -313,12 +313,12 @@
                 <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
               </ion-col>
             </ion-item>
-            <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+            <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
           </ng-container>
 
           <ng-container *ngIf="!skinqna.filename">
             <!-- 피부 고민 이미지가 없을 때  -->
-            <ion-item class="line_item">
+            <ion-item class="line_item" no-lines>
               <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
                 <ion-row class="beauty_row">
                   <ion-col class="beauty_note_title"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
@@ -328,10 +328,10 @@
                 </ion-col>
               </ion-col>
             </ion-item>
-            <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+            <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
           </ng-container>
         </ng-container>
-        <ng-container *ngIf="userData.email === skinqna.email && skinqna.length > 4">
+        <ng-container *ngIf="userData.email === skinqna.email && i === 5">
         <button ion-button class="skinqna_add">더보기</button>
         </ng-container>
       </ng-container>
