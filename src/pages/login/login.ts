@@ -31,6 +31,8 @@ export class LoginPage {
         let nav = app._appRoot._getActivePortal() || app.getActiveNav();
         let activeView = nav.getActive();
 
+        console.log("activeView.name===================" + activeView.name);
+
         if (activeView != null) {
           if (this.nav.canGoBack()) { // CHECK IF THE USER IS IN THE ROOT PAGE.
             this.nav.pop(); // IF IT'S NOT THE ROOT, POP A PAGE.
@@ -39,7 +41,16 @@ export class LoginPage {
             activeView.dismiss();
           }
           else {
-            // backgroundMode.moveToBackground();
+            if(activeView.name === 'AddinfoPage'
+                || activeView.name === 'PasswordfindPage'
+                || activeView.name === 'AgreementPage'
+                || activeView.name === 'LoginpagePage'
+
+          ){
+            console.log("activeView.name===================111111111000000");
+            activeView.dismiss();
+            }
+            else{
             let alert = this.alertCtrl.create({
               cssClass: 'push_alert_cancel',
               title: "plinic",
@@ -63,6 +74,7 @@ export class LoginPage {
             alert.present();
           }
         }
+      }
       });
   });
 }

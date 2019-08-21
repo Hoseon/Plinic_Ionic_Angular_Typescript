@@ -41,7 +41,6 @@ export class MyinfoPage {
      jwtHelper: JwtHelper = new JwtHelper();
       id: any;
       mode: any;
-      public loadProgress: number = 0;
       valueday = { "day": "1" }
       @ViewChild('lineCanvas') lineCanvas;
       @ViewChild('lineCanvas2') lineCanvas2;
@@ -119,10 +118,14 @@ export class MyinfoPage {
       @ViewChild(Content) content: Content;
       communityEditorBeautyLoadData: any;
       skin_diagnose_first_check: boolean;
+      loadProgress: number = 0;
 
       constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider, public modalCtrl: ModalController, public alertCtrl: AlertController,
                   public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController, private themeableBrowser: ThemeableBrowser) {
-      this.segment_moisture = "수분"
+
+      this.platform.ready().then((readySource) => {
+        this.segment_moisture = "수분"
+      });
 
       }
 
@@ -130,7 +133,16 @@ export class MyinfoPage {
         console.log('ionViewDidLoad MyPage');
         this.id = this.navParams.get('id');
         this.mode = this.navParams.get('mode');
+
+        setTimeout(() => {
+        this.selectedTab(-1);
+      }, 500)
+        setTimeout(() => {
+        this.selectedTab(0);
+      }, 500)
   }
+
+
 
       public selectclick() {
         console.log('ionViewDidLoad selectclick');
@@ -142,17 +154,12 @@ export class MyinfoPage {
       }
 
       ionViewWillEnter() {
+        //this.showLoading();
         this.skinQnaLoad();
         this.beautyNoteLoad();
         this.communityEditorBeautyLoad();
         this.carezoneData = this.roadcareZone();
-        this.showLoading();
-        setTimeout(() => {
-        this.selectedTab(1);
-      }, 500)
-        setTimeout(() => {
-        this.selectedTab(0);
-      }, 500)
+
 
         // let tabs = document.querySelectorAll('.tabbar');
         // if (tabs !== null) {
@@ -169,6 +176,14 @@ export class MyinfoPage {
 
       ngOnInit(){
       this.slides.autoHeight = true;
+
+      setInterval(() => {
+        if (this.loadProgress < 50)
+          this.loadProgress += 1;
+        else
+          clearInterval(this.loadProgress);
+      }, 30);
+
       }
 
       ngAfterViewInit() {
@@ -488,8 +503,8 @@ export class MyinfoPage {
 
 
       slideChanged($event) {
-        this.showLoading();
-        this.content.scrollToTop();
+        //this.showLoading();
+      //  this.content.scrollToTop();
         this.page = $event._snapIndex.toString();
         console.log(this.page);
 
@@ -953,11 +968,16 @@ export class MyinfoPage {
       showLoading() {
         let loading = this.loadingCtrl.create({
           spinner: 'hide',
-          duration: 100,
+          duration: 500,
           cssClass: 'sk-rotating-plane'
         });
-        loading.present();
-      }
+         loading.present();
+
+        setTimeout(() => {
+          loading.dismiss();
+        }, 3000);
+
+    }
 
       showAlert(text) {
         let alert = this.alertCtrl.create({
