@@ -47,7 +47,11 @@
       <ion-col *ngIf="missionuseTime.usetime > 0" class="top_time">{{displayUseTime}}</ion-col>
       <ion-col *ngIf="missionuseTime.usetime <= 0" class="top_time">0초</ion-col>
     </ng-container>
-    <ion-col class="top_rank">현재 등수 3위</ion-col><br><br>
+    <ng-container *ngIf="memberRanking">
+      <ng-container *ngFor="let ranking of memberRanking; let i = index">
+        <ion-col *ngIf="ranking.email === userData.email" class="top_rank">현재 등수 {{ranking.rank}}위</ion-col><br><br>
+      </ng-container>
+    </ng-container>
     <progress-bar [color]="mycolor" [progress]="loadProgress"></progress-bar><br><br><br>
 
 

@@ -82,6 +82,9 @@ export class CareZonePage {
   subscriptionFourth : any;
   subscriptionThree : any;
 
+  missionmember : Array<any> = new Array<any>();
+  memberRanking : Array<any> = new Array<any>();
+
 
 
 
@@ -98,7 +101,7 @@ export class CareZonePage {
   }
 
   ionViewWillEnter() {
-    this.carezoneData = this.roadcareZone();
+    this.roadcareZone();
     this.loadItems();
     // this.loadimagePath();
     this.timerTick();
@@ -178,18 +181,18 @@ export class CareZonePage {
     //this.nav.push(CareZoneMissionIngPage);
     this.nav.push(CareZoneMissionIngPage, { _id: id });
   }
-  public mission_start(id) {
+  public mission_start(carezone) {
     //console.log(id);
     //console.log("missiondata" + this.missionData.missionID);
 
     if (this.missionData === null || this.missionData === undefined) {
       //this.nav.push(CareZoneMissionIngPage);
-      this.nav.push(CareZoneMissionStartPage, { _id: id });
-    } else if (id === this.missionData.missionID) {
-      this.nav.push(CareZoneMissionIngPage, { _id: id });
+      this.nav.push(CareZoneMissionStartPage, { carezoneData : carezone });
+    } else if (carezone._id === this.missionData.missionID) {
+      this.nav.push(CareZoneMissionIngPage, { carezoneData: carezone });
 
     } else {
-      this.nav.push(CareZoneMissionStartPage, { _id: id });
+      this.nav.push(CareZoneMissionStartPage, { carezoneData: carezone });
     }
   }
 
@@ -279,13 +282,33 @@ export class CareZonePage {
           this.title[i] = data[i].title;
           this.maxmember[i] = data[i].maxmember;
           this.body[i] = data[i].body;
+          console.log("1 : " + new Date(data[i].endmission).getTime());
+          console.log("2 : " + new Date().getTime());
+
+          this.timeremaining[i] = (new Date(data[i].endmission).getTime() - new Date().getTime()) / 1000;
 
           this.images.missionCount(data[i]._id).subscribe(data2 => {
+            console.log("미션 카운트 :" + i + data2);
             this.missionCounter[i] = data2;
           });
 
-          data[i].startmission = new Date(data[i].startmission);
-          this.timeremaining[i] = (data[i].startmission.getTime() - this.currentDate.getTime()) / 1000;
+
+
+          this.images.getMissionMember(data[i]._id).subscribe(data3 => {
+            if (data3 !== '') {
+              this.missionmember = data3;
+              for (var i = 0; i < data3.length; i++) {
+                this.memberRanking[i] = {
+                  email: data3[i].email,
+                  usetime: data3[i].usetime,
+                  rank: i + 1,
+                  image_url : data3[i].image_url
+                }
+              }
+            }
+          });
+
+          // data[i].startmission = new Date(data[i].startmission);
           this.endmission[i] = new Date(data[i].endmission);
 
           // console.log("end Date : " + data[i].endmission);
@@ -304,145 +327,145 @@ export class CareZonePage {
           // this.dday = this.diffdate(this.currentDate, data[i].startmission);
           // this.dday = parseFloat(this.dday);
           //console.log(this.dday);
-          if (this.diffdate(this.currentDate, data[i].startmission) < -10) {
-            this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday) + 2);
-            this.new[i] = true;
-            this.recruiting[i] = true;
-            this.mdchuchun[i] = false;
-            this.approaching[i] = false;
-            this.endrecruit[i] = false;
-            this.d5[i] = true;
-          } else if (this.diffdate(this.currentDate, data[i].startmission) < -7) {
-            this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday) + 2);
-            this.new[i] = false;
-            this.recruiting[i] = true;
-            this.mdchuchun[i] = true;
-            this.approaching[i] = false;
-            this.endrecruit[i] = false;
-            this.d5[i] = true;
-          } else if (this.diffdate(this.currentDate, data[i].startmission) > -6 && this.diffdate(this.currentDate, data[i].startmission) < -5) {
-            this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday) + 2);
-            this.new[i] = false;
-            this.recruiting[i] = false;
-            this.mdchuchun[i] = false;
-            this.approaching[i] = false;
-            this.endrecruit[i] = false;
-            this.d5[i] = true;
-          } else if (this.diffdate(this.currentDate, data[i].startmission) > -5 && this.diffdate(this.currentDate, data[i].startmission) < -4) {
-            this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday) + 2);
-            this.new[i] = false;
-            this.recruiting[i] = false;
-            this.mdchuchun[i] = false;
-            this.approaching[i] = false;
-            this.endrecruit[i] = false;
-            this.d4[i] = true;
-            this.d3[i] = false;
-            this.d2[i] = false;
-            this.d1[i] = false;
-          } else if (this.diffdate(this.currentDate, data[i].startmission) > -4 && this.diffdate(this.currentDate, data[i].startmission) < -3) {
-            this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday) + 2);
-            this.new[i] = false;
-            this.recruiting[i] = false;
-            this.mdchuchun[i] = false;
-            this.approaching[i] = false;
-            this.endrecruit[i] = false;
-            this.d3[i] = true;
-            this.d2[i] = false;
-            this.d1[i] = false;
-          } else if (this.diffdate(this.currentDate, data[i].startmission) > -3 && this.diffdate(this.currentDate, data[i].startmission) < -2) {
-            // this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            // this.dday[i] = parseFloat(this.origindday);
-            this.new[i] = false;
-            this.recruiting[i] = false;
-            this.mdchuchun[i] = false;
-            this.approaching[i] = false;
-            this.endrecruit[i] = false;
-            this.d3[i] = false;
-            this.d2[i] = true;
-            this.d1[i] = false;
-            this.images.missionCount(data[i]._id).subscribe(data2 => {
-              this.missionCounter2[i] = data2;
-              this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
-              //console.log(this.percent[i])
-
-              if (this.percent[i] <= 50) {
-                this.ingmdchuchun[i] = true;
-                this.ingapproaching[i] = false;
-              }
-              if (this.percent[i] > 50) {
-                this.ingmdchuchun[i] = false;
-                this.ingapproaching[i] = true;
-              }
-            });
-          } else if (this.diffdate(this.currentDate, data[i].startmission) > -2 && this.diffdate(this.currentDate, data[i].startmission) < -1) {
-            //console.log("D-111111111");
-            this.new[i] = false;
-            this.recruiting[i] = false;
-            this.mdchuchun[i] = false;
-            this.approaching[i] = false;
-            this.endrecruit[i] = false;
-            this.d3[i] = false;
-            this.d2[i] = false;
-            this.d1[i] = true;
-            this.images.missionCount(data[i]._id).subscribe(data2 => {
-              this.missionCounter2[i] = data2;
-              //console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
-              //console.log("참여인원 백분율 구하기 : " + parseInt(this.missionCounter[i]));
-              this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
-              //console.log(this.percent[i])
-
-              if (this.percent[i] <= 50) {
-                //console.log("MD추천");
-                this.ingmdchuchun[i] = true;
-                this.ingapproaching[i] = false;
-              }
-              if (this.percent[i] > 50) {
-                //console.log("마감임박");
-                this.ingmdchuchun[i] = false;
-                this.ingapproaching[i] = true;
-              }
-            });
-          } else if (this.diffdate(this.currentDate, data[i].startmission) > -3 && this.diffdate(this.currentDate, data[i].startmission) <= 0) {
-            // console.log("모집중 ");
-            this.d1[i] = true;
-            this.images.missionCount(data[i]._id).subscribe(data2 => {
-              this.missionCounter2[i] = data2;
-              // console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
-              // console.log("참여인원 백분율 구하기 : " + parseInt(this.missionCounter[i]));
-              this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
-              // console.log(this.percent[i])
-
-              if (this.percent[i] <= 50) {
-                // console.log("MD추천");
-                this.ingmdchuchun[i] = true;
-                this.ingapproaching[i] = false;
-              }
-              if (this.percent[i] > 50) {
-                // console.log("마감임박");
-                this.ingmdchuchun[i] = false;
-                this.ingapproaching[i] = true;
-              }
-            });
-
-          } else if (this.diffdate(this.currentDate, data[i].startmission) >= 0) {
-            // console.log("진행중 + 모집마감 ");
-            this.new[i] = false;
-            this.recruiting[i] = false;
-            this.mdchuchun[i] = false;
-            this.approaching[i] = true;
-            this.endrecruit[i] = true;
-          } else {
-            this.new[i] = false;
-            this.recruiting[i] = true;
-            this.mdchuchun[i] = false;
-            this.approaching[i] = false;
-            this.endrecruit[i] = false;
-          }
+          // if (this.diffdate(this.currentDate, data[i].startmission) < -10) {
+          //   this.origindday = this.diffdate(this.currentDate, data[i].startmission);
+          //   this.dday[i] = (parseInt(this.origindday) + 2);
+          //   this.new[i] = true;
+          //   this.recruiting[i] = true;
+          //   this.mdchuchun[i] = false;
+          //   this.approaching[i] = false;
+          //   this.endrecruit[i] = false;
+          //   this.d5[i] = true;
+          // } else if (this.diffdate(this.currentDate, data[i].startmission) < -7) {
+          //   this.origindday = this.diffdate(this.currentDate, data[i].startmission);
+          //   this.dday[i] = (parseInt(this.origindday) + 2);
+          //   this.new[i] = false;
+          //   this.recruiting[i] = true;
+          //   this.mdchuchun[i] = true;
+          //   this.approaching[i] = false;
+          //   this.endrecruit[i] = false;
+          //   this.d5[i] = true;
+          // } else if (this.diffdate(this.currentDate, data[i].startmission) > -6 && this.diffdate(this.currentDate, data[i].startmission) < -5) {
+          //   this.origindday = this.diffdate(this.currentDate, data[i].startmission);
+          //   this.dday[i] = (parseInt(this.origindday) + 2);
+          //   this.new[i] = false;
+          //   this.recruiting[i] = false;
+          //   this.mdchuchun[i] = false;
+          //   this.approaching[i] = false;
+          //   this.endrecruit[i] = false;
+          //   this.d5[i] = true;
+          // } else if (this.diffdate(this.currentDate, data[i].startmission) > -5 && this.diffdate(this.currentDate, data[i].startmission) < -4) {
+          //   this.origindday = this.diffdate(this.currentDate, data[i].startmission);
+          //   this.dday[i] = (parseInt(this.origindday) + 2);
+          //   this.new[i] = false;
+          //   this.recruiting[i] = false;
+          //   this.mdchuchun[i] = false;
+          //   this.approaching[i] = false;
+          //   this.endrecruit[i] = false;
+          //   this.d4[i] = true;
+          //   this.d3[i] = false;
+          //   this.d2[i] = false;
+          //   this.d1[i] = false;
+          // } else if (this.diffdate(this.currentDate, data[i].startmission) > -4 && this.diffdate(this.currentDate, data[i].startmission) < -3) {
+          //   this.origindday = this.diffdate(this.currentDate, data[i].startmission);
+          //   this.dday[i] = (parseInt(this.origindday) + 2);
+          //   this.new[i] = false;
+          //   this.recruiting[i] = false;
+          //   this.mdchuchun[i] = false;
+          //   this.approaching[i] = false;
+          //   this.endrecruit[i] = false;
+          //   this.d3[i] = true;
+          //   this.d2[i] = false;
+          //   this.d1[i] = false;
+          // } else if (this.diffdate(this.currentDate, data[i].startmission) > -3 && this.diffdate(this.currentDate, data[i].startmission) < -2) {
+          //   // this.origindday = this.diffdate(this.currentDate, data[i].startmission);
+          //   // this.dday[i] = parseFloat(this.origindday);
+          //   this.new[i] = false;
+          //   this.recruiting[i] = false;
+          //   this.mdchuchun[i] = false;
+          //   this.approaching[i] = false;
+          //   this.endrecruit[i] = false;
+          //   this.d3[i] = false;
+          //   this.d2[i] = true;
+          //   this.d1[i] = false;
+          //   this.images.missionCount(data[i]._id).subscribe(data2 => {
+          //     this.missionCounter2[i] = data2;
+          //     this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
+          //     //console.log(this.percent[i])
+          //
+          //     if (this.percent[i] <= 50) {
+          //       this.ingmdchuchun[i] = true;
+          //       this.ingapproaching[i] = false;
+          //     }
+          //     if (this.percent[i] > 50) {
+          //       this.ingmdchuchun[i] = false;
+          //       this.ingapproaching[i] = true;
+          //     }
+          //   });
+          // } else if (this.diffdate(this.currentDate, data[i].startmission) > -2 && this.diffdate(this.currentDate, data[i].startmission) < -1) {
+          //   //console.log("D-111111111");
+          //   this.new[i] = false;
+          //   this.recruiting[i] = false;
+          //   this.mdchuchun[i] = false;
+          //   this.approaching[i] = false;
+          //   this.endrecruit[i] = false;
+          //   this.d3[i] = false;
+          //   this.d2[i] = false;
+          //   this.d1[i] = true;
+          //   this.images.missionCount(data[i]._id).subscribe(data2 => {
+          //     this.missionCounter2[i] = data2;
+          //     //console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
+          //     //console.log("참여인원 백분율 구하기 : " + parseInt(this.missionCounter[i]));
+          //     this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
+          //     //console.log(this.percent[i])
+          //
+          //     if (this.percent[i] <= 50) {
+          //       //console.log("MD추천");
+          //       this.ingmdchuchun[i] = true;
+          //       this.ingapproaching[i] = false;
+          //     }
+          //     if (this.percent[i] > 50) {
+          //       //console.log("마감임박");
+          //       this.ingmdchuchun[i] = false;
+          //       this.ingapproaching[i] = true;
+          //     }
+          //   });
+          // } else if (this.diffdate(this.currentDate, data[i].startmission) > -3 && this.diffdate(this.currentDate, data[i].startmission) <= 0) {
+          //   // console.log("모집중 ");
+          //   this.d1[i] = true;
+          //   this.images.missionCount(data[i]._id).subscribe(data2 => {
+          //     this.missionCounter2[i] = data2;
+          //     // console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
+          //     // console.log("참여인원 백분율 구하기 : " + parseInt(this.missionCounter[i]));
+          //     this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
+          //     // console.log(this.percent[i])
+          //
+          //     if (this.percent[i] <= 50) {
+          //       // console.log("MD추천");
+          //       this.ingmdchuchun[i] = true;
+          //       this.ingapproaching[i] = false;
+          //     }
+          //     if (this.percent[i] > 50) {
+          //       // console.log("마감임박");
+          //       this.ingmdchuchun[i] = false;
+          //       this.ingapproaching[i] = true;
+          //     }
+          //   });
+          //
+          // } else if (this.diffdate(this.currentDate, data[i].startmission) >= 0) {
+          //   // console.log("진행중 + 모집마감 ");
+          //   this.new[i] = false;
+          //   this.recruiting[i] = false;
+          //   this.mdchuchun[i] = false;
+          //   this.approaching[i] = true;
+          //   this.endrecruit[i] = true;
+          // } else {
+          //   this.new[i] = false;
+          //   this.recruiting[i] = true;
+          //   this.mdchuchun[i] = false;
+          //   this.approaching[i] = false;
+          //   this.endrecruit[i] = false;
+          // }
 
           this.endcarezoneData = data[i];
           // }

@@ -60,6 +60,9 @@ export class CareZoneMissionIngPage {
   displayUseTime: any;
   displayUseTimeList: Array<any> = new Array<any>();
 
+  memberRanking: Array<any> = new Array<any>();
+
+
 
   missionuseTime: any;
 
@@ -67,13 +70,14 @@ export class CareZoneMissionIngPage {
     private images: ImagesProvider, public element: ElementRef,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform, private auth: AuthService, public popoverCtrl: PopoverController) {
 
-
     this.carezoneData2 = this.navParams.get('carezoneData');
-    // console.log(JSON.stringify(this.carezoneData2));
+    console.log(this.carezoneData2);
+    console.log(this.carezoneData2);
 
-    this.timeremaining = (new Date(this.carezoneData2.startmission).getTime() - this.currentDate.getTime()) / 1000;
+    this.timeremaining = (new Date(this.carezoneData2.endmission).getTime() - new Date().getTime()) / 1000;
     this.timerTick();
     this.missionCount(this.carezoneData2._id);
+
 
     // this.missionUseTime(this.carezoneData2);
     // this.roadmission(this.carezoneData2._id);
@@ -479,7 +483,7 @@ export class CareZoneMissionIngPage {
     // this.nav.push(MissionStartPage);
 
     //20190813 미션 시작이 블루투스 사용하는 기기 사용시간 만큼 축적 시킨다.
-    this.nav.push(DeviceConnectIngPage, {'carezoneData' : this.carezoneData2});
+    this.nav.push(DeviceConnectIngPage, { 'carezoneData': this.carezoneData2 });
   }
 
   public roadmission(id) {
@@ -587,9 +591,19 @@ export class CareZoneMissionIngPage {
   public missionMember(id) {
     // this.showLoading();
     this.images.getMissionMember(id).subscribe(data => {
-      this.missionmember = data;
-      for(var i =0; i < data.length; i++){
-        this.displayUseTimeList[i] = this.getSecondsAsDigitalClock3(Number(data[i].usetime));
+      if (data !== '') {
+        this.missionmember = data;
+        for (var i = 0; i < data.length; i++) {
+          this.memberRanking[i] = {
+            email: data[i].email,
+            usetime: data[i].usetime,
+            rank: i + 1,
+            image_url : data[i].image_url
+          }
+          // this.memberRanking[i].rank = i;
+          console.log("this.memberRanking : " + JSON.stringify(this.memberRanking[i]));
+          this.displayUseTimeList[i] = this.getSecondsAsDigitalClock3(Number(data[i].usetime));
+        }
       }
     });
   }

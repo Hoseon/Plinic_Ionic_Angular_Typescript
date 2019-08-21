@@ -215,7 +215,7 @@ export class CareZoneMissionStartPage {
       // this.getday = new Date(this.carezoneData.startmission);
       // this.dday = this.diffdate(this.getday, this.currentDate);
       // this.starttimeremaining =
-      this.timeremaining = (new Date(data.startmission).getTime() - this.currentDate.getTime()) / 1000;
+      this.timeremaining = (new Date(data.endmission).getTime() - new Date().getTime()) / 1000;
       // console.log("this.timeremaining" + this.timeremaining);
 
       // this.chkDay = this.dday

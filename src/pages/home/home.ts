@@ -25,6 +25,8 @@ import { SkinDiagnoseMoisturePage } from '../skin-diagnose-moisture/skin-diagnos
 import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture';
 import { CommunityModifyPage } from '../community/community-modify/community-modify';
 import { CommunityPage } from '../community/community';
+import { Observable } from 'rxjs/Rx';
+
 
 
 @IonicPage()
@@ -159,6 +161,11 @@ export class HomePage {
   secondsRemaining2 : any = 2000000;
   runTimer: boolean = true;
 
+  subscriptionTimer : any;
+  subscriptionTimer2 : any;
+  timeremaining: any;
+  timeremaining2: any;
+
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController,
     public translateService: TranslateService, public bluetoothle: BluetoothLE, public viewCtrl: ViewController,
@@ -267,6 +274,12 @@ export class HomePage {
     this.skin_first_oil_score();
     this.skin_oil_score();
     this.skin_moisture_score();
+  }
+
+  ionViewWillLeave() {
+    this.subscriptionTimer.complete();
+    this.subscriptionTimer2.complete();
+    console.log("Timer Clear!");
   }
 
   public community_qna_modify(id) {
@@ -634,6 +647,7 @@ export class HomePage {
   public firstLoadCareZone() {
     this.images.first_carezoneRoad().subscribe(data => {
       this.firstCarezoneData = data;
+      this.timeremaining = (new Date(data[0].endmission).getTime() - new Date().getTime()) / 1000;
       this.first_missionCount(data[0]._id);
     });
   }
@@ -644,6 +658,7 @@ export class HomePage {
       for (let i = 0; i < data.length; i++) {
         this.second_missionCount(data[i]._id);
         this.getthirdday[i] = new Date(data[i].startmission)
+        this.timeremaining2 = (new Date(data[i].endmission).getTime() - new Date().getTime()) / 1000;
         if (this.diffdate(this.currentDate, this.getthirdday[i]) > -3 && this.diffdate(this.currentDate, this.getthirdday[i]) < -2) {
           this.images.missionCount(data[i]._id).subscribe(data2 => {
             this.missionCounter2[i] = data2;
@@ -1049,7 +1064,7 @@ export class HomePage {
     hoursString = (hours < 10) ? "0" + hours : hours.toString();
     minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
     secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
-    this.displayTime = hoursString + ':' + minutesString + ':' + secondsString;
+    return hoursString + ':' + minutesString + ':' + secondsString;
   }
 
   getSecondsAsDigitalClock2(inputSeconds: number) {
@@ -1063,58 +1078,71 @@ export class HomePage {
     hoursString = (hours < 10) ? "0" + hours : hours.toString();
     minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
     secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
-    this.displayTime2 = hoursString + ':' + minutesString + ':' + secondsString;
+    return hoursString + ':' + minutesString + ':' + secondsString;
   }
 
 
   timerTick() {
-    var timer = setTimeout(() => {
-      if (!this.runTimer) {
-        clearTimeout(timer);
-        console.log("Clear Timeout");
-        return;
-      }
-      this.secondsRemaining--;
-      this.getSecondsAsDigitalClock(this.secondsRemaining);
+    this.subscriptionTimer = Observable.interval(1000).subscribe(x => {
+      this.timeremaining--;
+      this.displayTime = this.getSecondsAsDigitalClock(this.timeremaining);
 
-      if(this.secondsRemaining > 0) {
-        this.timerTick();
-      } else {
-        // this.hasFinished = true;
-      }
+    });
 
-    }, 1000);
 
-    if (!this.runTimer) {
-      clearTimeout(timer);
-      console.log("Clear Timeout");
-      return;
-    }
+    // var timer = setTimeout(() => {
+    //   if (!this.runTimer) {
+    //     clearTimeout(timer);
+    //     console.log("Clear Timeout");
+    //     return;
+    //   }
+    //   this.secondsRemaining--;
+    //   this.getSecondsAsDigitalClock(this.secondsRemaining);
+    //
+    //   if(this.secondsRemaining > 0) {
+    //     this.timerTick();
+    //   } else {
+    //     // this.hasFinished = true;
+    //   }
+    //
+    // }, 1000);
+    //
+    // if (!this.runTimer) {
+    //   clearTimeout(timer);
+    //   console.log("Clear Timeout");
+    //   return;
+    // }
   }
 
   timerTick2() {
-    var timer2 = setTimeout(() => {
-      if (!this.runTimer) {
-        clearTimeout(timer2);
-        console.log("Clear Timeout");
-        return;
-      }
-      this.secondsRemaining2--;
-      this.getSecondsAsDigitalClock2(this.secondsRemaining2);
+    this.subscriptionTimer2 = Observable.interval(1000).subscribe(x => {
+      this.timeremaining2--;
+      this.displayTime2 = this.getSecondsAsDigitalClock(this.timeremaining2);
 
-      if(this.secondsRemaining2 > 0) {
-        this.timerTick2();
-      } else {
-        // this.hasFinished = true;
-      }
+    });
 
-    }, 1000);
-
-    if (!this.runTimer) {
-      clearTimeout(timer2);
-      console.log("Clear Timeout");
-      return;
-    }
+    // var timer2 = setTimeout(() => {
+    //   if (!this.runTimer) {
+    //     clearTimeout(timer2);
+    //     console.log("Clear Timeout");
+    //     return;
+    //   }
+    //   this.secondsRemaining2--;
+    //   this.getSecondsAsDigitalClock2(this.secondsRemaining2);
+    //
+    //   if(this.secondsRemaining2 > 0) {
+    //     this.timerTick2();
+    //   } else {
+    //     // this.hasFinished = true;
+    //   }
+    //
+    // }, 1000);
+    //
+    // if (!this.runTimer) {
+    //   clearTimeout(timer2);
+    //   console.log("Clear Timeout");
+    //   return;
+    // }
   }
 
 
