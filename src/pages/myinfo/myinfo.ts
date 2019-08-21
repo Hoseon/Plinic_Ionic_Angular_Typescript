@@ -154,7 +154,7 @@ export class MyinfoPage {
       }
 
       ionViewWillEnter() {
-        this.showLoading();
+        //this.showLoading();
         this.skinQnaLoad();
         this.beautyNoteLoad();
         this.communityEditorBeautyLoad();
@@ -968,13 +968,14 @@ export class MyinfoPage {
       showLoading() {
         let loading = this.loadingCtrl.create({
           spinner: 'hide',
-          duration: 1000,
+          duration: 500,
           cssClass: 'sk-rotating-plane'
         });
-        loading.present().then(() => {
-            loading.dismiss();
-		    });;
+         loading.present();
 
+        setTimeout(() => {
+          loading.dismiss();
+        }, 3000);
 
     }
 
