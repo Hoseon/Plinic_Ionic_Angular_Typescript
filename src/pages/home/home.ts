@@ -1,6 +1,6 @@
 import { IonicPage, App } from 'ionic-angular';
 import { Component, Inject } from '@angular/core';
-import { NavController, Platform, AlertController, ModalController, Loading, LoadingController, ViewController, Events   } from 'ionic-angular';
+import { NavController, Platform, AlertController, ModalController, Loading, LoadingController, ViewController, Events } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
@@ -157,12 +157,12 @@ export class HomePage {
 
   displayTime: any;
   displayTime2: any;
-  secondsRemaining : any = 1000000;
-  secondsRemaining2 : any = 2000000;
+  secondsRemaining: any = 1000000;
+  secondsRemaining2: any = 2000000;
   runTimer: boolean = true;
 
-  subscriptionTimer : any;
-  subscriptionTimer2 : any;
+  subscriptionTimer: any;
+  subscriptionTimer2: any;
   timeremaining: any;
   timeremaining2: any;
 
@@ -202,64 +202,64 @@ export class HomePage {
 
         if (activeView != null) {
           if (this.nav.canGoBack()) {
-             this.nav.pop();
+            this.nav.pop();
           }
           else if (activeView.isOverlay) {
-              activeView.dismiss();
+            activeView.dismiss();
           }
           else {
             // backgroundMode.moveToBackground();
-            if(activeView.name === 'QnaPage'
-            || activeView.name === 'QnaReadPage'
-            || activeView.name === 'PersonalinfoPage'
-            || activeView.name === 'PlinicManualPage'
-            || activeView.name === 'MarketingPage'
-            || activeView.name === 'BluetoothConnectIngPage'
-            || activeView.name === 'BluetoothDisconnectPage'
-            || activeView.name === 'TermsPage'
-            || activeView.name === 'NoticePage'
-            || activeView.name === 'CareZoneMissionStartPage'
-            || activeView.name === 'CareZoneMissionIngPage'
-            || activeView.name === 'CareZoneMissionDeadlineEndPage'
-            || activeView.name === 'CareZoneMissionDeadlinePage'
-            || activeView.name === 'CareZoneMissionCompletePage'
-            || activeView.name === 'MyPage'
-            || activeView.name === 'MyCommunityModifyPage'
-            || activeView.name === 'SettingPage'
-          ){
-            console.log("activeView.name===================111111111000000");
-            activeView.dismiss();
+            if (activeView.name === 'QnaPage'
+              || activeView.name === 'QnaReadPage'
+              || activeView.name === 'PersonalinfoPage'
+              || activeView.name === 'PlinicManualPage'
+              || activeView.name === 'MarketingPage'
+              || activeView.name === 'BluetoothConnectIngPage'
+              || activeView.name === 'BluetoothDisconnectPage'
+              || activeView.name === 'TermsPage'
+              || activeView.name === 'NoticePage'
+              || activeView.name === 'CareZoneMissionStartPage'
+              || activeView.name === 'CareZoneMissionIngPage'
+              || activeView.name === 'CareZoneMissionDeadlineEndPage'
+              || activeView.name === 'CareZoneMissionDeadlinePage'
+              || activeView.name === 'CareZoneMissionCompletePage'
+              || activeView.name === 'MyPage'
+              || activeView.name === 'MyCommunityModifyPage'
+              || activeView.name === 'SettingPage'
+            ) {
+              console.log("activeView.name===================111111111000000");
+              activeView.dismiss();
             }
-            else if(
-            activeView.name === 'CareZonePage'
-            || activeView.name === 'CommunityPage'
-            || activeView.name === 'MyinfoPage'
-            ){
-            console.log("activeView.name===================22222222000000");
-            this.nav.parent.select(0);
+            else if (
+              activeView.name === 'CareZonePage'
+              || activeView.name === 'CommunityPage'
+              || activeView.name === 'MyinfoPage'
+            ) {
+              console.log("activeView.name===================22222222000000");
+              this.nav.parent.select(0);
             }
-            else{
-            let alert = this.alertCtrl.create({
-              cssClass: 'push_alert_cancel',
-              title: "plinic",
-              message: "앱을 종료하시겠습니까?",
-              buttons: [
-                {
-                  text: '취소',
-                  role: 'cancel',
-                  handler: () => {
-                    console.log('취소');
-                  }
-                },
-                {
-                  text: '확인',
-                  handler: () => {
-                    console.log('확인'),
-                    this.platform.exitApp(); // IF IT'S THE ROOT, EXIT THE APP.
-                  }
-                }]
-            });
-            alert.present();
+            else {
+              let alert = this.alertCtrl.create({
+                cssClass: 'push_alert_cancel',
+                title: "plinic",
+                message: "앱을 종료하시겠습니까?",
+                buttons: [
+                  {
+                    text: '취소',
+                    role: 'cancel',
+                    handler: () => {
+                      console.log('취소');
+                    }
+                  },
+                  {
+                    text: '확인',
+                    handler: () => {
+                      console.log('확인'),
+                        this.platform.exitApp(); // IF IT'S THE ROOT, EXIT THE APP.
+                    }
+                  }]
+              });
+              alert.present();
             }
           }
         }
@@ -528,7 +528,7 @@ export class HomePage {
     this.skinQnaLoad();
     this.firstCarezoneData = this.firstLoadCareZone();
     this.secondCarezoneData = this.secondLoadCareZone();
-    this.thirdCarezoneData = this.thirdLoadCareZone();
+    // this.thirdCarezoneData = this.thirdLoadCareZone();
     this.roadbeauty();
     this.timerTick();
     this.timerTick2();
@@ -730,7 +730,7 @@ export class HomePage {
   public thirdLoadCareZone() {
     this.images.third_carezoneRoad().subscribe(data => {
       this.thirdCarezoneData = data;
-      // if (data.length !== 0) {
+      if (data !== '') {
         if (data[0]._id !== "" || data[0]._id !== undefined || data[0].id !== null) {
           this.third_missionCount(data[0]._id);
           this.getday = new Date(data[0].startmission);
@@ -738,7 +738,7 @@ export class HomePage {
           // this.chkDay = this.dday
           this.dday = (parseInt(this.dday) - 2)
         }
-      // }
+      }
 
     });
   }
@@ -1120,29 +1120,10 @@ export class HomePage {
       this.displayTime2 = this.getSecondsAsDigitalClock(this.timeremaining2);
 
     });
+  }
 
-    // var timer2 = setTimeout(() => {
-    //   if (!this.runTimer) {
-    //     clearTimeout(timer2);
-    //     console.log("Clear Timeout");
-    //     return;
-    //   }
-    //   this.secondsRemaining2--;
-    //   this.getSecondsAsDigitalClock2(this.secondsRemaining2);
-    //
-    //   if(this.secondsRemaining2 > 0) {
-    //     this.timerTick2();
-    //   } else {
-    //     // this.hasFinished = true;
-    //   }
-    //
-    // }, 1000);
-    //
-    // if (!this.runTimer) {
-    //   clearTimeout(timer2);
-    //   console.log("Clear Timeout");
-    //   return;
-    // }
+  ingCarezone(missionId) {
+    this.nav.push(CareZoneMissionIngPage, { carezoeId: missionId })
   }
 
 

@@ -52,7 +52,7 @@ export class User {
 const TOKEN_KEY = 'userData';
 const CONFIG = {
   apiUrl: 'http://plinic.cafe24app.com/',
-  //apiUrl: 'http://localhost:8001/',
+  // apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
@@ -1193,6 +1193,67 @@ export class AuthService {
   public getmissionPoint(id, email) {
     return this.http.get(CONFIG.apiUrl + 'carezone/getmissionpoint/' + id + '/' + email)
       .map(response => response.json());
+  }
+
+  public replyCareZoneSave(userData, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: userData.email,
+      img_url: userData.thumbnail_image,
+      id: content.id,
+      comment: content.comment,
+    };
+
+    console.log("ReplySave : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/replycarezonesave', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public replyCareZoneUpdate(content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: content.email,
+      id: content.id,
+      comment: content.comment,
+    };
+
+    console.log("Replyupdate : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/replycarezoneupdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public replyCareZoneDelete(content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: content.email,
+      id: content.id,
+      comment: content.comment,
+    };
+
+    console.log("Replydelete : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/replycarezonedelete', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
   }
 
 

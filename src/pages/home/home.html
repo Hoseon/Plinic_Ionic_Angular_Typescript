@@ -1,8 +1,8 @@
 <ion-content class="page_home" no-padding>
 
   <ion-item style="padding-left:0px;" *ngIf="platform.is('android') || platform.is('core')">
-   <img class="android_plinic_logo" src="assets/img/ic-system-logo-word/ic-system-logo-word@3x.png" />
-   <img class="android_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
+    <img class="android_plinic_logo" src="assets/img/ic-system-logo-word/ic-system-logo-word@3x.png" />
+    <img class="android_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
   </ion-item>
 
   <ion-item style="padding-left:0px;" *ngIf="platform.is('ios')">
@@ -18,15 +18,25 @@
   <div style="height:8px; width:100%; margin-top:-1%; margin-bottom:5%; background-color:#f1f1f1"></div>
 
 
- <ion-item no-lines>
+  <ion-item no-lines>
     <ion-col class="font_skin_chart">
       챌린지 알림
     </ion-col>
- </ion-item>
+  </ion-item>
+  <ng-container *ngIf="missionData">
+    <ng-container *ngIf="userData">
+      <div class="user_text"><span class="user_name">{{userData.nickname}}</span>님 참여한 챌린지가 있습니다. </div>
+      <!-- <button ion-button class="skin_btn" (click)="skin_chart()">참여한 챌린지 바로가기 > </button> -->
+      <button ion-button class="skin_btn" (click)="ingCarezone(missionData.missionID)">참여한 챌린지 바로가기 > </button>
+    </ng-container>
+  </ng-container>
 
- <div class="user_text"><span class="user_name">이성균</span>님 참여한 챌린저가 있습니다. </div>
-  <button ion-button class="skin_btn" (click)="skin_chart()">바로가기 > </button>
-
+  <ng-container *ngIf="!missionData">
+    <ng-container *ngIf="userData">
+      <div class="user_text"><span class="user_name">{{userData.nickname}}</span>님 챌린지에 도전하세요. </div>
+      <button ion-button class="skin_btn" (click)="openCareZoneTab()">챌린지 바로가기 > </button>
+    </ng-container>
+  </ng-container>
 
   <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
 
@@ -51,12 +61,12 @@
           <!-- {{first_carezone_title}} -->
           {{firstCarezone.title}}
         </ion-col>
-      <!-- 타이머 추가 -->
+        <!-- 타이머 추가 -->
         <ion-col class="font_carezone2_page right-margin">
-            {{displayTime}}
+          {{displayTime}}
         </ion-col>
       </ion-row>
-      <ion-row >
+      <ion-row>
         <ion-col *ngIf="firstCarezoneData" class="font_carezone2_sub left-margin">
           <!-- {{first_carezone_body}} -->
           {{firstCarezone.body}}
@@ -89,9 +99,9 @@
         <ion-col class="font_carezone3 left-margin">
           {{secondCarezone.title}}
         </ion-col>
-          <!-- 타이머 추가 -->
+        <!-- 타이머 추가 -->
         <ion-col class="font_carezone3_page right-margin">
-            {{displayTime2}}
+          {{displayTime2}}
         </ion-col>
       </ion-row>
       <ion-row>
@@ -131,7 +141,7 @@
           {{thirdCarezone.title}}
         </ion-col>
         <ion-col class="font_carezone4_page right-margin">
-            113:47:34
+          113:47:34
         </ion-col>
       </ion-row>
       <ion-row>
@@ -257,30 +267,32 @@
         <ng-container *ngIf="skinqna.filename">
           <!-- 피부 고민 이미지가 있을 때  -->
           <ion-item class="line_item" no-lines>
-          <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
-            <ion-row class="beauty_row">
-              <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
-            </ion-row>
-            <ion-col  class="beauty_note_like">좋아요 {{skinqna.like}} ∙
-              <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
-            </ion-col>
+            <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
+              <ion-row class="beauty_row">
+                <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
+              </ion-row>
+              <ion-col class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+                <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
+              </ion-col>
 
-            <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
-            <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
-          </ion-col></ion-item>
+              <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+              <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+            </ion-col>
+          </ion-item>
           <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
         </ng-container>
         <ng-container *ngIf="!skinqna.filename">
           <!-- 피부 고민 이미지가 없을 때  -->
-          <ion-item class="line_item" no-lines >
-          <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
-            <ion-row class="beauty_row">
-              <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
-            </ion-row>
-            <ion-col class="beauty_note_like">좋아요 {{skinqna.like}} ∙
-              <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
+          <ion-item class="line_item" no-lines>
+            <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
+              <ion-row class="beauty_row">
+                <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
+              </ion-row>
+              <ion-col class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+                <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
+              </ion-col>
             </ion-col>
-          </ion-col></ion-item>
+          </ion-item>
           <div style="height:1px; width:90%; margin:0 auto; margin-top:2%; display: block; background-color:#f1f1f1"></div>
         </ng-container>
       </ng-container>

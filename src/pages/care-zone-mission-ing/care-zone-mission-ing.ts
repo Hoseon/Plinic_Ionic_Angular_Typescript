@@ -70,13 +70,12 @@ export class CareZoneMissionIngPage {
     private images: ImagesProvider, public element: ElementRef,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform, private auth: AuthService, public popoverCtrl: PopoverController) {
 
-    this.carezoneData2 = this.navParams.get('carezoneData');
-    console.log(this.carezoneData2);
-    console.log(this.carezoneData2);
 
-    this.timeremaining = (new Date(this.carezoneData2.endmission).getTime() - new Date().getTime()) / 1000;
-    this.timerTick();
-    this.missionCount(this.carezoneData2._id);
+
+
+
+
+
 
 
     // this.missionUseTime(this.carezoneData2);
@@ -91,6 +90,19 @@ export class CareZoneMissionIngPage {
   }
 
   ionViewDidLoad() {
+    if (this.navParams.get('carezoeId')) {
+      this.carezoneData2 = this.roadmission(this.navParams.get('carezoeId'));
+      console.log(this.carezoneData2);
+      console.log(this.carezoneData2);
+    }
+
+    if (this.navParams.get('carezoneData')) {
+      this.carezoneData2 = this.navParams.get('carezoneData');
+    }
+
+    this.missionCount(this.carezoneData2._id);
+
+
     // this.showMissionfail();
     // this.showMissionsuccess();
   }
@@ -98,6 +110,8 @@ export class CareZoneMissionIngPage {
   ionViewDidEnter() {
     this.missionUseTime(this.carezoneData2, this.userData.email);
     this.missionMember(this.carezoneData2._id);
+    this.timeremaining = (new Date(this.carezoneData2.endmission).getTime() - new Date().getTime()) / 1000;
+    this.timerTick();
 
   }
 
@@ -171,7 +185,9 @@ export class CareZoneMissionIngPage {
   }
 
   update() {
-    this.viewCtrl._didLoad();
+    // this.viewCtrl._didLoad();
+    // this.viewCtrl._didEnter();
+    this.roadmission(this.carezoneData2._id);
     // this.nav.setRoot(this.nav.getActive().component);
   }
 
@@ -238,64 +254,30 @@ export class CareZoneMissionIngPage {
               {
                 text: '확인',
                 handler: () => {
-                  if (this.mode === 'note') {
-                    this.auth.replyDelete(this.reply).subscribe(data => {
-                      if (data !== "") {
-                        let alert2 = this.alertCtrl.create({
-                          cssClass: 'push_alert',
-                          title: '댓글삭제',
-                          message: "댓글이 정상적으로 삭제 되었습니다.",
-                          buttons: [
-                            {
-                              text: '확인',
-                              handler: () => {
-                                // this.registerReply.comment = '';
-                                this.comment_popover_option_textarea = -1;
-                                // this.textareaResize();
-                                this.update();
-                              }
+                  this.auth.replyCareZoneDelete(this.reply).subscribe(data => {
+                    if (data !== "") {
+                      let alert2 = this.alertCtrl.create({
+                        cssClass: 'push_alert',
+                        title: '댓글삭제',
+                        message: "댓글이 정상적으로 삭제 되었습니다.",
+                        buttons: [
+                          {
+                            text: '확인',
+                            handler: () => {
+                              // this.registerReply.comment = '';
+                              this.comment_popover_option_textarea = -1;
+                              // this.textareaResize();
+                              this.update();
                             }
-                          ]
-                        });
-                        alert2.present();
-                      }
-                      // this.nav.push(CareZoneMissionIngPage, { _id: id });
-                    }, error => {
-                      this.showError(JSON.parse(error._body).msg);
-                    });
-
-                  }
-
-                  if (this.mode === 'qna') {
-                    this.auth.replySkinQnaDelete(this.reply).subscribe(data => {
-                      if (data !== "") {
-                        let alert2 = this.alertCtrl.create({
-                          cssClass: 'push_alert',
-                          title: '댓글삭제',
-                          message: "댓글이 정상적으로 삭제 되었습니다.",
-                          buttons: [
-                            {
-                              text: '확인',
-                              handler: () => {
-                                // this.registerReply.comment = '';
-                                this.comment_popover_option_textarea = -1;
-                                // this.textareaResize();
-                                this.update();
-                              }
-                            }
-                          ]
-                        });
-                        alert2.present();
-                      }
-                      // this.nav.push(CareZoneMissionIngPage, { _id: id });
-                    }, error => {
-                      this.showError(JSON.parse(error._body).msg);
-                    });
-
-                  }
-
-
-
+                          }
+                        ]
+                      });
+                      alert2.present();
+                    }
+                    // this.nav.push(CareZoneMissionIngPage, { _id: id });
+                  }, error => {
+                    this.showError(JSON.parse(error._body).msg);
+                  });
                 }
               }]
           });
@@ -491,6 +473,7 @@ export class CareZoneMissionIngPage {
     this.images.missionRoad(id).subscribe(data => {
       if (data !== '') {
         this.carezoneData = data;
+        this.carezoneData2 = data;
         this.startDate = data.startmission.substr(0, 10);
         this.endDate = data.endmission.substr(0, 10);
         this.imgUrl = "http://plinic.cafe24app.com/carezone_prodimages/".concat(data._id);
@@ -510,35 +493,11 @@ export class CareZoneMissionIngPage {
   }
 
   saveSkinQnaReply() {
-    console.log(this._id);
+    console.log(this.carezoneData2._id);
     console.log(this.registerReply.comment);
-    this.registerReply.id = this._id;
+    this.registerReply.id = this.carezoneData2._id;
     if (this.userData.from === 'kakao' || this.userData.from === 'naver' || this.userData.from === 'google') {
-      this.auth.replySkinQnaSnsSave(this.userData, this.registerReply).subscribe(data => {
-        if (data !== "") {
-          let alert2 = this.alertCtrl.create({
-            cssClass: 'push_alert',
-            title: '댓글달기',
-            message: "댓글이 정상적으로 등록되었습니다.",
-            buttons: [
-              {
-                text: '확인',
-                handler: () => {
-                  this.registerReply.comment = '';
-                  this.textareaResize();
-                  this.update();
-                }
-              }
-            ]
-          });
-          alert2.present();
-        }
-        // this.nav.push(CareZoneMissionIngPage, { _id: id });
-      }, error => {
-        this.showError(JSON.parse(error._body).msg);
-      });
-    } else {
-      this.auth.replySkinQnaSave(this.userData, this.registerReply).subscribe(data => {
+      this.auth.replyCareZoneSave(this.userData, this.registerReply).subscribe(data => {
         if (data !== "") {
           let alert2 = this.alertCtrl.create({
             cssClass: 'push_alert',
@@ -562,9 +521,90 @@ export class CareZoneMissionIngPage {
         this.showError(JSON.parse(error._body).msg);
       });
     }
-
-
+    else {
+      this.auth.replyCareZoneSave(this.userData, this.registerReply).subscribe(data => {
+        if (data !== "") {
+          let alert2 = this.alertCtrl.create({
+            cssClass: 'push_alert',
+            title: '댓글달기',
+            message: "댓글이 정상적으로 등록되었습니다.",
+            buttons: [
+              {
+                text: '확인',
+                handler: () => {
+                  this.registerReply.comment = '';
+                  this.textareaResize();
+                  this.update();
+                }
+              }
+            ]
+          });
+          alert2.present();
+        }
+        // this.nav.push(CareZoneMissionIngPage, { _id: id });
+      }, error => {
+        this.showError(JSON.parse(error._body).msg);
+      });
+    }
   }
+
+  replySkinQnaUpdate(email, id) {
+    this.reply.email = email;
+    this.reply.id = id;
+    // this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
+    this.reply.comment = this.updatevalue;
+    console.log(this.registerReply.comment);
+    console.log("comment_popover_option=================" + this.comment_popover_option);
+
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "plinic",
+      message: "댓글을 수정 하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+            console.log('취소');
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            this.auth.replyCareZoneUpdate(this.reply).subscribe(data => {
+              if (data !== "") {
+                let alert2 = this.alertCtrl.create({
+                  cssClass: 'push_alert',
+                  title: '댓글삭제',
+                  message: "댓글이 정상적으로 수정 되었습니다.",
+                  buttons: [
+                    {
+                      text: '확인',
+                      handler: () => {
+                        // this.registerReply.comment = '';
+                        this.comment_popover_option_textarea = -1;
+                        this.textareaResize();
+                        this.update();
+                      }
+                    }
+                  ]
+                });
+                this.comment_popover_option = "보기";
+                console.log("comment_popover_option=================" + this.comment_popover_option);
+                alert2.present();
+              }
+              // this.nav.push(CareZoneMissionIngPage, { _id: id });
+            }, error => {
+              this.showError(JSON.parse(error._body).msg);
+            });
+          }
+        }]
+    });
+    alert.present();
+  }
+
+
+
 
   //20190812 미션 참여자 플리닉 사용시간 Get
   public missionUseTime(carezoneData, email) {
@@ -598,7 +638,7 @@ export class CareZoneMissionIngPage {
             email: data[i].email,
             usetime: data[i].usetime,
             rank: i + 1,
-            image_url : data[i].image_url
+            image_url: data[i].image_url
           }
           // this.memberRanking[i].rank = i;
           console.log("this.memberRanking : " + JSON.stringify(this.memberRanking[i]));
@@ -730,6 +770,14 @@ export class CareZoneMissionIngPage {
     secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
     return hoursString + '시간 ' + minutesString + '분 ' + secondsString + '초';
     // console.log("displaytime : " + index + " : " + this.displayTime[index]);
+  }
+
+  focus(event) {
+    console.log(event.target.value)
+    // this.focusvalue = event.target.value
+    this.updatevalue = event.target.value
+    console.log(event)
+    console.log("focus focus")
   }
 
 

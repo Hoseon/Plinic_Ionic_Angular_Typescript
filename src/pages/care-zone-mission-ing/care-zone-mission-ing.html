@@ -190,15 +190,16 @@
 
 
   <!-- 댓글  -->
-  <ng-container *ngIf="skinQnaOneLoadData">
-    <ng-container *ngFor="let registerReply of skinQnaOneLoadData.comments; let i = index">
+  <ng-container *ngIf="carezoneData2">
+    <ng-container *ngFor="let registerReply of carezoneData2.comments; let i = index">
       <img *ngIf="registerReply.img_url" class="profile_comment" [src]="registerReply.img_url" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
       <img *ngIf="!registerReply.img_url" class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{registerReply.email}}" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
 
       <!-- <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
-
-      <ng-container *ngIf="userData.email === registerReply.email">
-        <button ion-button class="comment_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
+      <ng-container *ngIf="userData">
+        <ng-container *ngIf="userData.email === registerReply.email">
+          <button ion-button class="comment_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
+        </ng-container>
       </ng-container>
       <div class="container">
         <div class="nickname_comment">{{registerReply.email}}</div>
@@ -211,8 +212,8 @@
         <div class="content_comment" text-wrap>{{registerReply.comment}}</div>
       </ng-container>
       <!-- 수정 -->
-      <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment" (input)="adjustTextareaUpdate($event)" autofocus="true"
-        (focus)="focus($event)"></textarea>
+      <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment" (input)="adjustTextareaUpdate($event)"
+        autofocus="true"></textarea>
 
       <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 2%; background-color:#f1f1f1"></div>
     </ng-container>

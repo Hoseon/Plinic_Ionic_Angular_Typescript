@@ -15,7 +15,7 @@ import { Transfer, TransferObject, FileUploadOptions } from '@ionic-native/trans
 export class ImagesProvider {
 
   apiURL = 'http://plinic.cafe24app.com/';
-  //apiURL = 'http://localhost:8001/';
+  // apiURL = 'http://localhost:8001/';
 
   constructor(public http: Http, private transfer: Transfer, private alertCtrl: AlertController) { }
 
