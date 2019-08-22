@@ -81,8 +81,8 @@ export class CareZoneMissionIngPage {
     // this.missionUseTime(this.carezoneData2);
     // this.roadmission(this.carezoneData2._id);
     // this.missionCount(this.carezoneData2._id);
-    // this.bannerData = this.roadbanner();
     // this.skinQnaOneLoad(this.carezoneData2._id);
+    this.bannerData = this.roadbanner();
   }
 
   ionViewCanEnter() {
@@ -100,7 +100,6 @@ export class CareZoneMissionIngPage {
       this.carezoneData2 = this.navParams.get('carezoneData');
     }
 
-    this.missionCount(this.carezoneData2._id);
 
 
     // this.showMissionfail();
@@ -112,7 +111,20 @@ export class CareZoneMissionIngPage {
     this.missionMember(this.carezoneData2._id);
     this.timeremaining = (new Date(this.carezoneData2.endmission).getTime() - new Date().getTime()) / 1000;
     this.timerTick();
+    this.missionCount(this.carezoneData2._id);
 
+
+  }
+
+  ionViewWillEnter() {
+
+    let tabs = document.querySelectorAll('.tabbar');
+    if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+        // tabs[ key ].style.transform = 'translateY(56px)';
+        tabs[key].style.display = '';
+      });
+    } // end if
   }
 
   public roadbanner() {
@@ -454,7 +466,7 @@ export class CareZoneMissionIngPage {
 
   ngOnInit() {
     // setInterval(() => {
-    //   if (this.loadProgress < 10)
+    //   if (this.loadProgress < 50)
     //     this.loadProgress += 1;
     //   else
     //     clearInterval(this.loadProgress);

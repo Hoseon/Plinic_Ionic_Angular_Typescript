@@ -145,14 +145,19 @@
 
     <!-- 참여자만큼 반복문 -->
     <!-- 내 리스트 -->
-    <!-- <ion-grid class="eventgrid">
+    <ng-container *ngIf="missionmember">
+      <ng-container *ngFor="let mission of missionmember; let i = index">
+    <ion-grid *ngIf="mission.email===userData.email" class="eventgrid">
       <ion-row class="my_list">
-        <ion-col class="event-col12">{{index}}00</ion-col>
-        <ion-col><img class="profile-img" style="margin-top:-3%;" src="assets/img/register/ic-system-profile-default@3x.png" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" /></ion-col>
-        <ion-col class="event-col13">{{id}}wjddn0313@naver.com(나)</ion-col>
-        <ion-col class="event-col14" style="color:#5c59b6;">{{count}}16분 12초</ion-col>
+        <ion-col class="event-col12">{{i}}</ion-col>
+        <img *ngIf="!memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img" src="http://plinic.cafe24app.com/userimages/{{memberRanking[i].email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+        <img *ngIf="memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img" src="{{memberRanking[i].image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+        <ion-col class="event-col13">{{mission.email}}(나)</ion-col>
+        <ion-col class="event-col14" style="color:#5c59b6;">{{displayUseTimeList[i]}}</ion-col>
       </ion-row>
-    </ion-grid> -->
+    </ion-grid>
+  </ng-container>
+</ng-container>
     <ng-container *ngIf="missionmember">
       <ion-item *ngFor="let mission of missionmember; let i = index" no-lines>
         <ion-grid class="eventgrid">
