@@ -82,8 +82,8 @@ export class CareZoneMissionIngPage {
     // this.missionUseTime(this.carezoneData2);
     // this.roadmission(this.carezoneData2._id);
     // this.missionCount(this.carezoneData2._id);
-    // this.bannerData = this.roadbanner();
     // this.skinQnaOneLoad(this.carezoneData2._id);
+    this.bannerData = this.roadbanner();
   }
 
   ionViewCanEnter() {
@@ -98,7 +98,6 @@ export class CareZoneMissionIngPage {
   ionViewDidEnter() {
     this.missionUseTime(this.carezoneData2, this.userData.email);
     this.missionMember(this.carezoneData2._id);
-
   }
 
   public roadbanner() {
@@ -472,7 +471,7 @@ export class CareZoneMissionIngPage {
 
   ngOnInit() {
     // setInterval(() => {
-    //   if (this.loadProgress < 10)
+    //   if (this.loadProgress < 50)
     //     this.loadProgress += 1;
     //   else
     //     clearInterval(this.loadProgress);
