@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, Platform, ModalController, ViewCon
 // import { SuccessHomePage } from '../success-home/success-home';
 import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
+import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-mission-ing';
+
 import { BLE } from '@ionic-native/ble';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
@@ -281,7 +283,10 @@ export class DeviceSkinIngPage {
     });
     alert.present();
     // this.viewCtrl.dismiss();
-    this.navCtrl.setRoot(TabsPage);
+    // this.navCtrl.setRoot(CareZoneMissionIngPage);
+    // this.navCtrl.parent.select(1);
+    this.navCtrl.pop().then(() => this.navCtrl.pop())
+    // this.navCtrl.remove(0, 5);
 
   }
 
@@ -295,7 +300,11 @@ export class DeviceSkinIngPage {
     });
     alert.present();
     // this.viewCtrl.dismiss();
-    this.navCtrl.setRoot(TabsPage);
+    // this.navCtrl.setRoot(CareZoneMissionIngPage);
+    // this.navCtrl.parent.select(1);
+    this.navCtrl.pop().then(() => this.navCtrl.pop())
+    // this.navCtrl.remove(0, 5);
+
 
   }
 

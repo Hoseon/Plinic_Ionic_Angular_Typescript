@@ -49,7 +49,7 @@
     </ng-container>
     <ng-container *ngIf="memberRanking">
       <ng-container *ngFor="let ranking of memberRanking; let i = index">
-        <ion-col *ngIf="ranking.email === userData.email" class="top_rank">현재 등수 {{ranking.rank}}위</ion-col><br><br>
+        <ion-col *ngIf="ranking.email === userData.email" class="top_rank">현재 등수 {{ranking.rank}}위</ion-col>
       </ng-container>
     </ng-container>
     <progress-bar [color]="mycolor" [progress]="loadProgress"></progress-bar><br><br><br>
