@@ -100,6 +100,18 @@ export class CareZoneMissionIngPage {
     this.missionMember(this.carezoneData2._id);
   }
 
+
+  ionViewWillEnter() {
+
+    let tabs = document.querySelectorAll('.tabbar');
+    if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+        // tabs[ key ].style.transform = 'translateY(56px)';
+        tabs[key].style.display = '';
+      });
+    } // end if
+  }
+
   public roadbanner() {
     this.images.bannerRoad().subscribe(data => {
       this.bannerData = data;

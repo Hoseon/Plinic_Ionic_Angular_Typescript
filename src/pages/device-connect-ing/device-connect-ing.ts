@@ -68,6 +68,10 @@ export class DeviceConnectIngPage {
   ) {
     this.platform.ready().then((readySource) => {
 
+      if(this.platform.is('android')){
+      this.enableBluetooth();
+      }
+
       if (this.navParams.get('carezoneData')) {
         this.carezoneData = this.navParams.get('carezoneData');
         console.log("데이터 데리고 옴 : " + JSON.stringify(this.navParams.get('carezoneData')));
@@ -108,6 +112,20 @@ export class DeviceConnectIngPage {
       //   }
       // }, 3500);
     });
+
+  }
+
+  ionViewWillEnter() {
+
+    let tabs = document.querySelectorAll('.tabbar');
+    if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+        // tabs[ key ].style.transform = 'translateY(56px)';
+        tabs[key].style.display = 'none';
+      });
+    } // end if
+
+
   }
 
   ionViewDidLoad() {
@@ -128,10 +146,23 @@ export class DeviceConnectIngPage {
 
   public deviceFail() {
     // this.navCtrl.push(DeviceConnectFailPage);
-    this.navCtrl.setRoot(TabsPage);
-    // this.viewCtrl.dismiss();
+    //this.navCtrl.setRoot(TabsPage);
+   this.viewCtrl.dismiss();
 
   }
+
+
+  public enableBluetooth() {
+      this.ble.enable().then(
+        success => {
+          console.log("Bluetooth is enabled");
+        },
+        error => {
+          console.log("The user did *not* enable Bluetooth");
+        }
+      );
+    }
+
 
   showAlert(text) {
     let alert = this.alertCtrl.create({
