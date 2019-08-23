@@ -92,8 +92,6 @@ export class CareZoneMissionIngPage {
   ionViewDidLoad() {
     if (this.navParams.get('carezoeId')) {
       this.carezoneData2 = this.roadmission(this.navParams.get('carezoeId'));
-      console.log(this.carezoneData2);
-      console.log(this.carezoneData2);
     }
 
     if (this.navParams.get('carezoneData')) {
@@ -230,13 +228,10 @@ export class CareZoneMissionIngPage {
         ev: event
       });
       popover.onDidDismiss(popoverData => {
-        console.log("popoverData : " + popoverData);
         this.comment_popover_option = popoverData;
-        console.log(this.comment_popover_option_textarea)
         if (popoverData === "수정") {
           this.comment_popover_option_textarea = i;
           setTimeout(() => {
-            console.log('수정');
             // this.mytextarea.setFocus();
             this.myInput.nativeElement.focus();
             // this.presentLoading();
@@ -247,7 +242,6 @@ export class CareZoneMissionIngPage {
           // console.log('comment_popover_option==========' + this.comment_popover_option);
           this.reply.email = email;
           this.reply.id = id;
-          console.log("mode : " + this.mode);
 
           // this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
 
@@ -307,13 +301,10 @@ export class CareZoneMissionIngPage {
       });
 
       popover.onDidDismiss(popoverData => {
-        console.log("popoverData : " + popoverData);
         this.comment_popover_option = popoverData;
-        console.log(this.comment_popover_option_textarea)
         if (popoverData === "수정") {
           this.comment_popover_option_textarea = i;
           setTimeout(() => {
-            console.log('수정');
             // this.mytextarea.setFocus();
             this.myInput.nativeElement.focus();
             // this.presentLoading();
@@ -335,7 +326,6 @@ export class CareZoneMissionIngPage {
                 text: '취소',
                 role: 'cancel',
                 handler: () => {
-                  console.log('취소');
                 }
               },
               {
@@ -419,8 +409,6 @@ export class CareZoneMissionIngPage {
     textArea.style.height = 'auto';
     textArea.style.height = textArea.scrollHeight + 'px';
     textArea.style.cursor = 'pointer';
-    console.log("-------------------updatecomment");
-    console.log(event.target.value);
     this.updatevalue = event.target.value;
     return;
   }
@@ -505,8 +493,6 @@ export class CareZoneMissionIngPage {
   }
 
   saveSkinQnaReply() {
-    console.log(this.carezoneData2._id);
-    console.log(this.registerReply.comment);
     this.registerReply.id = this.carezoneData2._id;
     if (this.userData.from === 'kakao' || this.userData.from === 'naver' || this.userData.from === 'google') {
       this.auth.replyCareZoneSave(this.userData, this.registerReply).subscribe(data => {
@@ -565,8 +551,6 @@ export class CareZoneMissionIngPage {
     this.reply.id = id;
     // this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
     this.reply.comment = this.updatevalue;
-    console.log(this.registerReply.comment);
-    console.log("comment_popover_option=================" + this.comment_popover_option);
 
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert_cancel',
@@ -577,7 +561,6 @@ export class CareZoneMissionIngPage {
           text: '취소',
           role: 'cancel',
           handler: () => {
-            console.log('취소');
           }
         },
         {
@@ -602,7 +585,6 @@ export class CareZoneMissionIngPage {
                   ]
                 });
                 this.comment_popover_option = "보기";
-                console.log("comment_popover_option=================" + this.comment_popover_option);
                 alert2.present();
               }
               // this.nav.push(CareZoneMissionIngPage, { _id: id });
@@ -624,9 +606,7 @@ export class CareZoneMissionIngPage {
     this.images.missionUseTime(carezoneData._id, email).subscribe(data => {
       this.missionuseTime = data;
       this.loadProgress = (Number(data.usetime) / 7560) * 100;
-      console.log("this.loadProgress : " + this.loadProgress);
-      this.displayUseTime = this.getSecondsAsDigitalClock2(this.loadProgress);
-      console.log(JSON.stringify(this.missionuseTime));
+      this.displayUseTime = this.getSecondsAsDigitalClock2(data.usetime);
     });
   }
 
@@ -653,7 +633,6 @@ export class CareZoneMissionIngPage {
             image_url: data[i].image_url
           }
           // this.memberRanking[i].rank = i;
-          console.log("this.memberRanking : " + JSON.stringify(this.memberRanking[i]));
           this.displayUseTimeList[i] = this.getSecondsAsDigitalClock3(Number(data[i].usetime));
         }
       }
@@ -757,30 +736,39 @@ export class CareZoneMissionIngPage {
     var sec_num = parseInt(inputSeconds.toString(), 10); // don't forget the second param
     var hours = Math.floor(sec_num / 3600);
     var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var minutes2 = Math.floor((sec_num / 3600) * 60);
+    console.log("sec_num" + sec_num);
+    console.log("minutes2" + minutes2);
     var seconds = sec_num - (hours * 3600) - (minutes * 60);
     var hoursString = '';
     var minutesString = '';
+    var minutesString2 = '';
     var secondsString = '';
     hoursString = (hours < 10) ? "0" + hours : hours.toString();
     minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
+    minutesString2 = (minutes < 10) ? "0" + minutes2 : minutes2.toString();
     secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
-    return hoursString + '시간 ' + minutesString + '분 ' + secondsString + '초';
+    console.log("minutesString2" + minutesString2);
+    return minutesString2 + '분 ' + secondsString + '초';
     // console.log("displaytime : " + index + " : " + this.displayTime[index]);
   }
 
 
-  getSecondsAsDigitalClock3(inputSeconds: number) {
-    var sec_num = parseInt(inputSeconds.toString(), 10); // don't forget the second param
+  getSecondsAsDigitalClock3(inputSeconds: number) {  // 분까지만 표시 하기 위한 함수
+    var sec_num = parseInt(inputSeconds.toString(), 10);
     var hours = Math.floor(sec_num / 3600);
+    var minutes2 = Math.floor((sec_num / 3600) * 60);
     var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
     var seconds = sec_num - (hours * 3600) - (minutes * 60);
     var hoursString = '';
     var minutesString = '';
+    var minutesString2 = '';
     var secondsString = '';
     hoursString = (hours < 10) ? "0" + hours : hours.toString();
     minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
+    minutesString2 = (minutes < 10) ? "0" + minutes2 : minutes2.toString();
     secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
-    return hoursString + '시간 ' + minutesString + '분 ' + secondsString + '초';
+    return minutesString2 + '분 ' + secondsString + '초';
     // console.log("displaytime : " + index + " : " + this.displayTime[index]);
   }
 
