@@ -51,7 +51,7 @@ export class DeviceSkinIngPage {
   home: any;
   device: any;
   seconds: number;
-  secondsRemaining: number = 2;
+  secondsRemaining: number = 1;
   runTimer: boolean;
   hasStarted: boolean;
   hasFinished: boolean;

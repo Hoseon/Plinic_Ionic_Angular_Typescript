@@ -83,7 +83,7 @@
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
           <ion-col class="event-col11">보상 조건</ion-col>
-          <ion-col class="event-col9" style="color:#292929">
+          <ion-col class="event-col9">
             <textarea style="color:#292929" readonly style="text-align: right" rows="3" cols="30">{{carezoneData2.condition}}</textarea>
           </ion-col>
         </ion-row>
@@ -102,7 +102,7 @@
         <ion-row style="width:89.7%">
           <ion-col class="event-col4">남은시간</ion-col>
           <ion-col *ngIf="timeremaining >= 0" class="event-col7">{{displayTime}}</ion-col>
-          <ion-col *ngIf="timeremaining < 0" class="event-col7">진행중</ion-col>
+          <ion-col *ngIf="timeremaining < 0" class="event-col7">챌린지 종료</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -123,14 +123,22 @@
     </ion-item>
 
     <ion-item no-lines>
-      <!-- 미션 진행중일 때 -->
-      <button ion-button class="button_start" text-align="center" outline (click)="mission_start()">시작하기</button>
-      <button ion-button class="button_giveup" text-align="center" outline (click)="mission_giveup()">포기하기</button>
-      <!-- 미션 완료일 떄 -->
-      <!-- <button ion-button class="button_start" text-align="center" outline (click)="mission_start()" >보상받기</button> -->
-      <!-- 미션 종료일 때 -->
-      <!-- <button ion-button class="button_end" text-align="center" outline (click)="mission_start()">챌린지 종료</button>
-     <button ion-button class="button_detail" text-align="center" outline (click)="mission_giveup()">보상 제품 상세정보</button> -->
+      <ng-container *ngIf="endCheck === false">
+        <!-- 미션 진행중일 때 -->
+        <button ion-button class="button_start" text-align="center" outline (click)="mission_start()">시작하기</button>
+        <button ion-button class="button_giveup" text-align="center" outline (click)="mission_giveup()">포기하기</button>
+      </ng-container>
+      <ng-container *ngIf="endCheck === true">
+        <ng-container *ngIf="carezoneData2.productcount >= rank">
+          <!-- 미션 완료일 떄 -->
+          <button ion-button class="button_start" text-align="center" outline (click)="showMissionsuccess()">보상받기</button>
+        </ng-container>
+        <ng-container *ngIf="carezoneData2.productcount < rank">
+          <!-- 미션 종료일 때 -->
+          <button ion-button class="button_end" text-align="center" outline (click)="showMissionfail()">챌린지 종료</button>
+          <button ion-button class="button_detail" text-align="center" outline (click)="showMissionfail()">보상 제품 상세정보</button>
+        </ng-container>
+      </ng-container>
 
     </ion-item>
   </ion-list>
@@ -147,17 +155,17 @@
     <!-- 내 리스트 -->
     <ng-container *ngIf="missionmember">
       <ng-container *ngFor="let mission of missionmember; let i = index">
-    <ion-grid *ngIf="mission.email===userData.email" class="eventgrid">
-      <ion-row class="my_list">
-        <ion-col class="event-col12">{{i}}</ion-col>
-        <img *ngIf="!memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img" src="http://plinic.cafe24app.com/userimages/{{memberRanking[i].email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
-        <img *ngIf="memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img" src="{{memberRanking[i].image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
-        <ion-col class="event-col13">{{mission.email}}(나)</ion-col>
-        <ion-col class="event-col14" style="color:#5c59b6;">{{displayUseTimeList[i]}}</ion-col>
-      </ion-row>
-    </ion-grid>
-  </ng-container>
-</ng-container>
+        <ion-grid *ngIf="mission.email===userData.email" class="eventgrid">
+          <ion-row class="my_list">
+            <ion-col class="event-col12">{{i}}</ion-col>
+            <img *ngIf="!memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img" src="http://plinic.cafe24app.com/userimages/{{memberRanking[i].email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            <img *ngIf="memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img" src="{{memberRanking[i].image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            <ion-col class="event-col13">{{mission.email}}(나)</ion-col>
+            <ion-col class="event-col14" style="color:#5c59b6;">{{displayUseTimeList[i]}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ng-container>
+    </ng-container>
     <ng-container *ngIf="missionmember">
       <ion-item *ngFor="let mission of missionmember; let i = index" no-lines>
         <ion-grid class="eventgrid">

@@ -42,7 +42,7 @@ export class CareZoneMissionIngPage {
   dday: any;
   getday: any;
   currentDate: Date = new Date();
-  rank: any = "19위";
+  rank: any = "";
   bannerData: any;
   comment_popover_option: any = "보기";
   comment_popover_option_textarea: any;
@@ -62,21 +62,12 @@ export class CareZoneMissionIngPage {
 
   memberRanking: Array<any> = new Array<any>();
 
-
-
+  endCheck : boolean = false;
   missionuseTime: any;
 
   constructor(public nav: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     private images: ImagesProvider, public element: ElementRef,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform, private auth: AuthService, public popoverCtrl: PopoverController) {
-
-
-
-
-
-
-
-
 
     // this.missionUseTime(this.carezoneData2);
     // this.roadmission(this.carezoneData2._id);
@@ -108,13 +99,18 @@ export class CareZoneMissionIngPage {
     this.missionUseTime(this.carezoneData2, this.userData.email);
     this.missionMember(this.carezoneData2._id);
     this.timeremaining = (new Date(this.carezoneData2.endmission).getTime() - new Date().getTime()) / 1000;
+    (new Date(this.carezoneData2.endmission).getTime() < new Date().getTime()) ? this.endCheck = true : this.endCheck = false;
+    console.log("this.endCheck : " + this.endCheck);
+    console.log("Your Ranking : " + this.rank);
     this.timerTick();
     this.missionCount(this.carezoneData2._id);
+
 
 
   }
 
   ionViewWillEnter() {
+
 
     let tabs = document.querySelectorAll('.tabbar');
     if (tabs !== null) {
@@ -148,7 +144,7 @@ export class CareZoneMissionIngPage {
     //this.loading.dismiss();
     let alert = this.alertCtrl.create({
       cssClass: 'mission_alert_fail',
-      title: '최종 순위 ' + this.rank,
+      title: '최종 순위 ' + this.rank + '위',
       subTitle: '당신의 피부가 <br /> 좋아지는 중입니다.',
       message: '피부가 좋아지는 그날까지 <br />챌린지에 참여하세요.',
       buttons: [
@@ -173,7 +169,7 @@ export class CareZoneMissionIngPage {
     //this.loading.dismiss();
     let alert = this.alertCtrl.create({
       cssClass: 'mission_alert_success',
-      title: '최종 순위 ' + this.rank,
+      title: '최종 순위 ' + this.rank  + '위',
       subTitle: '축하합니다.',
       message: '보상상품 받으시고 <br /> 피부관리에 더욱 매진하세요.',
       buttons: [
@@ -626,6 +622,11 @@ export class CareZoneMissionIngPage {
       if (data !== '') {
         this.missionmember = data;
         for (var i = 0; i < data.length; i++) {
+          if (data[i].email === this.userData.email) {  // 미션 성공, 실패시 랭킹 정보 가져오기
+            this.rank = i + 1;
+            console.log("this ranking :" + this.rank);
+          }
+
           this.memberRanking[i] = {
             email: data[i].email,
             usetime: data[i].usetime,
@@ -737,8 +738,6 @@ export class CareZoneMissionIngPage {
     var hours = Math.floor(sec_num / 3600);
     var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
     var minutes2 = Math.floor((sec_num / 3600) * 60);
-    console.log("sec_num" + sec_num);
-    console.log("minutes2" + minutes2);
     var seconds = sec_num - (hours * 3600) - (minutes * 60);
     var hoursString = '';
     var minutesString = '';
@@ -748,7 +747,6 @@ export class CareZoneMissionIngPage {
     minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
     minutesString2 = (minutes < 10) ? "0" + minutes2 : minutes2.toString();
     secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
-    console.log("minutesString2" + minutesString2);
     return minutesString2 + '분 ' + secondsString + '초';
     // console.log("displaytime : " + index + " : " + this.displayTime[index]);
   }
@@ -773,11 +771,11 @@ export class CareZoneMissionIngPage {
   }
 
   focus(event) {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     // this.focusvalue = event.target.value
     this.updatevalue = event.target.value
-    console.log(event)
-    console.log("focus focus")
+    // console.log(event)
+    // console.log("focus focus")
   }
 
 
