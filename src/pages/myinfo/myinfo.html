@@ -23,7 +23,7 @@
 
 
 
-<ion-content no-padding>
+<ion-content #content no-padding>
 
   <ng-container *ngIf="userData">
   <img *ngIf="userData.thumbnail_image" class="profile_image" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
@@ -107,8 +107,8 @@
     <ion-scroll class="segment_scroll swiper-no-swiping" scrollX="true">
     <div class="chartWrapper">
         <div class="chartAreaWrapper">
-    <canvas class="chart_js" id="moisture" #lineCanvas ></canvas>
-    <canvas class="chart_js" id="oil" #lineCanvas2 ></canvas>
+    <canvas class="chart_js" [hidden]="segment_moisture === '유분'" id="moisture" #lineCanvas ></canvas>
+    <canvas class="chart_js" [hidden]="segment_moisture === '수분'" id="oil" #lineCanvas2 ></canvas>
     <div class="chartWrapper_line"></div>
     </div>
     </div>
