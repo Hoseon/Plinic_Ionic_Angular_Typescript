@@ -123,6 +123,7 @@ export class MyinfoPage {
   constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider, public modalCtrl: ModalController, public alertCtrl: AlertController,
     public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController, private themeableBrowser: ThemeableBrowser) {
 
+    this.userData = this.loadItems();
     this.platform.ready().then((readySource) => {
       this.segment_moisture = "수분"
     });
@@ -131,25 +132,66 @@ export class MyinfoPage {
 
   ionViewCanEnter() {
     console.log("ionViewCanEnter");
-    this.loadItems();
   }
 
   ionViewDidLoad() {
+
     console.log('ionViewDidLoad MyPage');
     this.id = this.navParams.get('id');
     this.mode = this.navParams.get('mode');
 
+
     setTimeout(() => {
       this.selectedTab(-1);
-    }, 500)
+      this.getskinScore();
+      this.initChart();
+    }, 500);
+
     setTimeout(() => {
       this.selectedTab(0);
-    }, 500)
+    }, 500);
+
+
   }
 
   ionViewDidEnter() {
-    // console.log('ionViewDidLoad SkinChartPage');
-    // console.log('all_moisture_score=====================' + this.all_moisture_score);
+  }
+
+  ionViewWillEnter() {
+    console.log("ionViewWillEnter");
+    //this.showLoading();
+    this.skinQnaLoad();
+    this.beautyNoteLoad();
+    this.communityEditorBeautyLoad();
+    this.carezoneData = this.roadcareZone();
+
+
+
+
+
+    // let tabs = document.querySelectorAll('.tabbar');
+    // if (tabs !== null) {
+    //   Object.keys(tabs).map((key) => {
+    //     //tabs[ key ].style.transform = 'translateY(0)';
+    //     tabs[key].style.display = 'none';
+    //   });
+    // }
+  }
+
+  public initChart() {
+
+    ////처음 진입시 현재 월로 조회 되도록
+    this.skinbtnYear = format(new Date(), 'YYYY');
+    this.skinbtnMonth = format(new Date(), 'MM');
+    var e = this.skinbtnYear + "년" + this.skinbtnMonth;
+
+    setTimeout(() => {
+      this.yearmonthselect(e);
+    }, 500)
+
+
+    console.log('ionViewDidLoad SkinChartPage');
+    console.log('all_moisture_score=====================' + this.all_moisture_score);
     document.getElementById("moisture").style.display = "block";
     document.getElementById("oil").style.display = "none";
 
@@ -354,32 +396,7 @@ export class MyinfoPage {
       }
     });
 
-    ////처음 진입시 현재 월로 조회 되도록
-    this.skinbtnYear = format(new Date(), 'YYYY');
-    this.skinbtnMonth = format(new Date(), 'MM');
-    var e = this.skinbtnYear + "년" + this.skinbtnMonth;
 
-    setTimeout(() => {
-      this.yearmonthselect(e);
-    }, 500)
-  }
-
-  ionViewWillEnter() {
-    console.log("ionViewWillEnter");
-    //this.showLoading();
-    this.skinQnaLoad();
-    this.beautyNoteLoad();
-    this.communityEditorBeautyLoad();
-    this.carezoneData = this.roadcareZone();
-
-
-    // let tabs = document.querySelectorAll('.tabbar');
-    // if (tabs !== null) {
-    //   Object.keys(tabs).map((key) => {
-    //     //tabs[ key ].style.transform = 'translateY(0)';
-    //     tabs[key].style.display = 'none';
-    //   });
-    // }
   }
 
   public selectclick() {
@@ -764,10 +781,15 @@ export class MyinfoPage {
     }
   }
   yearmonthselect(e) {
+    console.log("eeeeeeeee" + e);
     var year = e.substr(0, 4);
+    console.log("year" + year);
     var month = e.substr(5, 2);
+    // month = (month < 10) ? "0" + month : month.toString();
+    console.log("month" + month);
     var date = year + "-" + month;
-    console.log(this.skinScoreData);
+    console.log("date" + date);
+    console.log(JSON.stringify(this.skinScoreData));
     this.chartDateData = [];
     this.chartOilData = [];
     this.chartMoistureData = [];
@@ -794,7 +816,7 @@ export class MyinfoPage {
       this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
     }
 
-    // console.log("yearmonthselect===============" + e);
+    console.log("yearmonthselect===============" + e);
   }
 
 
@@ -836,8 +858,17 @@ export class MyinfoPage {
           from: 'plinic',
         };
       }
+
+      // this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
+      // this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
+    });
+  }
+
+  getskinScore() {
+    if (this.userData !=='') {
       this.auth.getSkinScore(this.userData.email).subscribe(items => {
         this.skinScoreData = items;
+        console.log("this.skinScoreData " + JSON.stringify(this.skinScoreData));
         // let array1 = [];
         for (let i = 0; i < items.score.length; i++) {
           // this.chartDateData.push({date : items.score[i].saveDate.substr(0,10) });
@@ -877,9 +908,7 @@ export class MyinfoPage {
           // console.log("oil:::::::" + (parseInt(this.skinScoreData.score.length) - 1));
         }
       });
-      // this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
-      // this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
-    });
+    }
   }
 
   openBrowser_ios(url, title) {
@@ -1005,31 +1034,31 @@ export class MyinfoPage {
 
   monthdate: any[] = [
     {
-      "day": "2019년1월"
+      "day": "2019년01월"
     },
     {
-      "day": "2019년2월"
+      "day": "2019년02월"
     },
     {
-      "day": "2019년3월"
+      "day": "2019년03월"
     },
     {
-      "day": "2019년4월"
+      "day": "2019년04월"
     },
     {
-      "day": "2019년5월"
+      "day": "2019년05월"
     },
     {
-      "day": "2019년6월"
+      "day": "2019년06월"
     },
     {
-      "day": "2019년7월"
+      "day": "2019년07월"
     },
     {
-      "day": "2019년8월"
+      "day": "2019년08월"
     },
     {
-      "day": "2019년9월"
+      "day": "2019년09월"
     },
     {
       "day": "2019년10월"

@@ -51,7 +51,7 @@
     <ion-slide class="slide_1">
       <ion-row>
         <ion-col class="care_chart_title">케어차트</ion-col>
-        <ion-col><ion-select placeholder="7월" interface="popover"
+        <ion-col><ion-select placeholder="{{skinbtnMonth}}월" interface="popover"
                               multiple="false" class="care_chart_date">
         <ion-option *ngFor="let days of monthdate2" >{{days.day}}</ion-option></ion-select></ion-col>
       </ion-row>
@@ -81,7 +81,7 @@
 
       <ion-row>
         <ion-col class="skin_chart">스킨 차트</ion-col>
-        <ion-col><ion-select (ionChange)="yearmonthselect($event)" placeholder="2019년7월" interface="popover" [(ngModel)]="valueday.day"
+        <ion-col><ion-select (ionChange)="yearmonthselect($event)" placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover" [(ngModel)]="valueday.day"
                               multiple="false" class="linechart_btn">
         <ion-option *ngFor="let days of monthdate" >{{days.day}}</ion-option></ion-select></ion-col>
       </ion-row>
