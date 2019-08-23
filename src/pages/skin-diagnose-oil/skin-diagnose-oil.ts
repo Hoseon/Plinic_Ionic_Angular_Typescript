@@ -305,11 +305,13 @@ export class SkinDiagnoseOilPage {
           });
           toast.present();
         }
-        this.navCtrl.setRoot(TabsPage);
+        // this.navCtrl.setRoot(TabsPage);
+        this.navCtrl.parent.select(4);
         console.log("데이터 등록 성공");
       } else {
         console.log("데이터 등록 실패");
-        this.navCtrl.setRoot(TabsPage);
+        // this.navCtrl.setRoot(TabsPage);
+        this.navCtrl.parent.select(4);
       }
     })
 

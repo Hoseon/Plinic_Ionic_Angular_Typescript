@@ -1,6 +1,6 @@
 import { IonicPage, App } from 'ionic-angular';
 import { Component, Inject } from '@angular/core';
-import { NavController, Platform, AlertController, ModalController, Loading, LoadingController, ViewController, Events } from 'ionic-angular';
+import { NavController, Platform, AlertController, ModalController, Loading, LoadingController, ViewController, Events , Tabs} from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
@@ -35,6 +35,7 @@ import { Observable } from 'rxjs/Rx';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  tab : Tabs;
   userData: any;
   bannerData: any;
   imageUrl: any;
@@ -172,6 +173,7 @@ export class HomePage {
     private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, public app: App, private callNumber: CallNumber
     , @Inject(DOCUMENT) document, public events: Events) {
     this.platform.ready().then((readySource) => {
+      this.tab = this.nav.parent;
       // this.currentDate = new Date().toISOString();
 
       // this.loadItems();

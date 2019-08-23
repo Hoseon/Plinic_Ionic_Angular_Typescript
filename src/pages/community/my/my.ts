@@ -1,5 +1,5 @@
-import { Component, ViewChild , Inject} from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, Slides, ModalController, AlertController, Loading, LoadingController, Content  } from 'ionic-angular';
+import { Component, ViewChild, Inject } from '@angular/core';
+import { IonicPage, NavController, NavParams, Platform, Slides, ModalController, AlertController, Loading, LoadingController, Content } from 'ionic-angular';
 import { ImagesProvider } from '../../../providers/images/images';
 import { MyCommunityModifyPage } from './my-community-modify/my-community-modify';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
@@ -28,111 +28,100 @@ import { SkinDiagnoseFirstMoisturePage } from '../../skin-diagnose-first-moistur
 })
 export class MyPage {
 
-   page = "0";
-   skinQnaData: any;
-   beautyNoteData: any;
-   @ViewChild(Slides) slides: Slides;
-   jwtHelper: JwtHelper = new JwtHelper();
-    id: any;
-    mode: any;
-    public loadProgress: number = 0;
-    valueday = { "day": "1" }
-    @ViewChild('lineCanvas') lineCanvas;
-    @ViewChild('lineCanvas2') lineCanvas2;
-    //문진표
-    all_moisture_score: number = 0;
-    all_oil_score: number = 0;
-    all_first_moisture_score: number = 0;
-    all_first_oil_score: number = 0;
+  page = "0";
+  skinQnaData: any;
+  beautyNoteData: any;
+  @ViewChild(Slides) slides: Slides;
+  jwtHelper: JwtHelper = new JwtHelper();
+  id: any;
+  mode: any;
+  public loadProgress: number = 0;
+  valueday = { "day": "1" }
+  @ViewChild('lineCanvas') lineCanvas;
+  @ViewChild('lineCanvas2') lineCanvas2;
+  //문진표
+  all_moisture_score: number = 0;
+  all_oil_score: number = 0;
+  all_first_moisture_score: number = 0;
+  all_first_oil_score: number = 0;
 
-    skinScoreData: any;
-    circle_moisture: any;
-    circle_oil: any;
+  skinScoreData: any;
+  circle_moisture: any;
+  circle_oil: any;
 
-    pre_circle_moisture: any;
-    pre_circle_oil: any;
+  pre_circle_moisture: any;
+  pre_circle_oil: any;
 
-    chartDateData = [];
-    chartOilData = [];
-    chartMoistureData = [];
-    array1 = [];
-    chartDateData2: Array<any>;
-    lineChart: any;
-    segment_status: any;
-    segment_moisture: any;
+  chartDateData = [];
+  chartOilData = [];
+  chartMoistureData = [];
+  array1 = [];
+  chartDateData2: Array<any>;
+  lineChart: any;
+  segment_status: any;
+  segment_moisture: any;
 
-    carezoneData: any;
-    missionData: any;
-    loading: Loading;
-    userData: any;
-    nickname: string;
-    currentDate: Date = new Date();
-    today: any = new Date().toISOString();
-    new: Array<boolean> = new Array<boolean>();
-    recruiting: Array<boolean> = new Array<boolean>();
-    mdchuchun: Array<boolean> = new Array<boolean>();
-    ingmdchuchun: Array<boolean> = new Array<boolean>();
-    ingapproaching: Array<boolean> = new Array<boolean>();
-    approaching: Array<boolean> = new Array<boolean>();
-    endrecruit: Array<boolean> = new Array<boolean>();
-    missionCounter: Array<any> = new Array<any>();
-    missionCounter2: Array<any> = new Array<any>();
-    endcarezoneData: Array<any> = new Array<any>();
-    d5: Array<any> = new Array<any>();
-    d4: Array<any> = new Array<any>();
-    d3: Array<any> = new Array<any>();
-    d2: Array<any> = new Array<any>();
-    d1: Array<any> = new Array<any>();
-    endmission: Array<any> = new Array<any>();
-    ingmissionCounter: any;
+  carezoneData: any;
+  missionData: any;
+  loading: Loading;
+  userData: any;
+  nickname: string;
+  currentDate: Date = new Date();
+  today: any = new Date().toISOString();
+  new: Array<boolean> = new Array<boolean>();
+  recruiting: Array<boolean> = new Array<boolean>();
+  mdchuchun: Array<boolean> = new Array<boolean>();
+  ingmdchuchun: Array<boolean> = new Array<boolean>();
+  ingapproaching: Array<boolean> = new Array<boolean>();
+  approaching: Array<boolean> = new Array<boolean>();
+  endrecruit: Array<boolean> = new Array<boolean>();
+  missionCounter: Array<any> = new Array<any>();
+  missionCounter2: Array<any> = new Array<any>();
+  endcarezoneData: Array<any> = new Array<any>();
+  d5: Array<any> = new Array<any>();
+  d4: Array<any> = new Array<any>();
+  d3: Array<any> = new Array<any>();
+  d2: Array<any> = new Array<any>();
+  d1: Array<any> = new Array<any>();
+  endmission: Array<any> = new Array<any>();
+  ingmissionCounter: any;
 
-    thumb_image: any;
-    ingBtn: any = false;
-    profileimg_url: any;
-    imagePath: any;
-    from: any;
-    origindday: any;
-    dday: Array<any> = new Array<any>();
-
-
-    percent: Array<any> = new Array<any>();
+  thumb_image: any;
+  ingBtn: any = false;
+  profileimg_url: any;
+  imagePath: any;
+  from: any;
+  origindday: any;
+  dday: Array<any> = new Array<any>();
 
 
-    //mission 정보
-    carezone_id: Array<any> = new Array<any>();
-    title: Array<any> = new Array<any>();
-    maxmember: Array<any> = new Array<any>();
-    body: Array<any> = new Array<any>();
+  percent: Array<any> = new Array<any>();
 
-    endcarezone_id: Array<any> = new Array<any>();
-    endtitle: Array<any> = new Array<any>();
-    endmaxmember: Array<any> = new Array<any>();
-    endbody: Array<any> = new Array<any>();
 
-    skinbtnYear = format(this.today, 'YYYY');
-    skinbtnMonth = format(this.today, 'MM');
-    @ViewChild(Content) content: Content;
-    skin_diagnose_first_check = false;
-    communityEditorBeautyLoadData: any;
+  //mission 정보
+  carezone_id: Array<any> = new Array<any>();
+  title: Array<any> = new Array<any>();
+  maxmember: Array<any> = new Array<any>();
+  body: Array<any> = new Array<any>();
+
+  endcarezone_id: Array<any> = new Array<any>();
+  endtitle: Array<any> = new Array<any>();
+  endmaxmember: Array<any> = new Array<any>();
+  endbody: Array<any> = new Array<any>();
+
+  skinbtnYear = format(this.today, 'YYYY');
+  skinbtnMonth = format(this.today, 'MM');
+  @ViewChild(Content) content: Content;
+  skin_diagnose_first_check = false;
+  communityEditorBeautyLoadData: any;
 
   constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider, public modalCtrl: ModalController, public alertCtrl: AlertController,
-              public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController) {
-  this.segment_moisture = "수분"
+    public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController) {
+    this.segment_moisture = "수분"
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MyPage');
-    this.id = this.navParams.get('id');
-    this.mode = this.navParams.get('mode');
-    this.showLoading();
-    setTimeout(() => {
-    this.selectedTab(1);
-  }, 500)
-    setTimeout(() => {
-    this.selectedTab(0);
-  }, 500)
-  }
+
 
   public selectclick() {
     console.log('ionViewDidLoad selectclick');
@@ -143,8 +132,235 @@ export class MyPage {
     this.loadItems();
   }
 
-  ionViewWillLeave(){
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad MyPage');
+    this.id = this.navParams.get('id');
+    this.mode = this.navParams.get('mode');
+    this.showLoading();
+    setTimeout(() => {
+      this.selectedTab(1);
+    }, 500)
+    setTimeout(() => {
+      this.selectedTab(0);
+    }, 500)
+  }
 
+  ionViewWillLeave() {
+
+  }
+
+  ionViewDidEnter() {
+    // console.log('ionViewDidLoad SkinChartPage');
+    // console.log('all_moisture_score=====================' + this.all_moisture_score);
+    document.getElementById("moisture").style.display = "block";
+    document.getElementById("oil").style.display = "none";
+
+
+    this.today = format(this.today, 'DD');
+
+    this.lineCanvas = new Chart(this.lineCanvas.nativeElement, {
+
+
+      type: 'line',
+      data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
+        labels: this.chartDateData,
+        datasets: [{
+          // label: format(this.today, 'MM/DD', '유분'),
+          label: '내 수분 점수',
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "#368AFF",
+          borderColor: "#368AFF",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "#368AFF",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5, //클릭시 원크기
+          pointHoverBackgroundColor: "#368AFF",
+          pointHoverBorderColor: "#368AFF",
+          pointHoverBorderWidth: 2, //데이터 호버크기
+          pointRadius: 3,  //데이터 포인트크기
+          pointHitRadius: 100,
+          // data: [this.data1, this.data2, this.data3, this.data4],
+          data: this.chartMoistureData,
+          spanGaps: false,
+        },
+        {
+          // label: format(this.today, 'MM/DD', '유분'),
+          label: '20대 평균 수분 점수',
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "#00C6ED",
+          borderColor: "#00C6ED",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "#00C6ED",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "#00C6ED",
+          pointHoverBorderColor: "#00C6ED",
+          pointHoverBorderWidth: 2,
+          pointRadius: 3,
+          pointHitRadius: 20,
+          data: [
+            // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
+            // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
+            //DB데이터 출력
+
+          ],
+          spanGaps: false,
+          // 수분은 하늘이랑 파랑
+          // 유분은 노랑이랑 주황!!
+          // label: format(this.today, 'MM/DD', '유분'),
+        }],
+      },
+      options: {
+        animation: {
+          duration: 3000 // general animation time
+        },
+        responsive: true,
+        legend: {
+          display: false,     //라벨표시
+        },
+        scales: {
+          xAxes: [{
+            display: true,
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0
+            }
+          }],
+          yAxes: [{
+            display: true,
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0
+            }
+          }]
+        },
+        // plugins: {
+        //     labels: {
+        //           render: this.percentage,
+        //           precision: 0,
+        //           fontSize: 15,
+        //           fontStyle: 'normal',
+        //           textShadow: true,
+        //           showActualPercentages: true
+        //       }
+        //   }
+      }
+    });
+
+    this.lineCanvas2 = new Chart(this.lineCanvas2.nativeElement, {
+
+
+      type: 'line',
+      data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
+        labels: this.chartDateData,
+        datasets: [{
+          // 수분은 하늘이랑 파랑
+          // 유분은 노랑이랑 주황!!
+          // label: format(this.today, 'MM/DD', '유분'),
+          label: '내 유분 점수',
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: "#368AFF",
+          borderColor: "#368AFF",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "#368AFF",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "#368AFF",
+          pointHoverBorderColor: "#368AFF",
+          pointHoverBorderWidth: 2,
+          pointRadius: 3,
+          pointHitRadius: 10,
+          data: this.chartOilData,
+          spanGaps: false,
+        },
+        {
+          // label: format(this.today, 'MM/DD', '유분'),
+          label: '20대 평균 유분 점수',
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: "#00C6ED",
+          borderColor: "#00C6ED",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "#00C6ED",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "#00C6ED",
+          pointHoverBorderColor: "#00C6ED",
+          pointHoverBorderWidth: 2,
+          pointRadius: 3,
+          pointHitRadius: 10,
+          data: [
+            // this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
+            // this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
+          ],
+          spanGaps: false,
+        }],
+      },
+      options: {
+        animation: {
+          duration: 3000 // general animation time
+        },
+        responsive: true,
+        legend: {
+          display: false,     //라벨표시
+        },
+        scales: {
+          xAxes: [{
+            display: true,
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0
+            }
+          }],
+          yAxes: [{
+            display: true,
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0
+            }
+          }]
+        },
+        // plugins: {
+        //     labels: {
+        //           render: this.percentage,
+        //           precision: 0,
+        //           fontSize: 15,
+        //           fontStyle: 'normal',
+        //           textShadow: true,
+        //           showActualPercentages: true
+        //       }
+        //   }
+      }
+    });
+
+    ////처음 진입시 현재 월로 조회 되도록
+    this.skinbtnYear = format(new Date(), 'YYYY');
+    this.skinbtnMonth = format(new Date(), 'MM');
+    var e = this.skinbtnYear + "년" + this.skinbtnMonth;
+    this.yearmonthselect(e);
   }
 
 
@@ -163,12 +379,12 @@ export class MyPage {
     }
   }
 
-  ngOnInit(){
-  this.slides.autoHeight = true;
+  ngOnInit() {
+    this.slides.autoHeight = true;
   }
 
   ngAfterViewInit() {
-  this.slides.autoHeight = true;
+    this.slides.autoHeight = true;
   }
 
 
@@ -266,7 +482,7 @@ export class MyPage {
           //console.log(this.dday);
           if (this.diffdate(this.currentDate, data[i].startmission) < -10) {
             this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday)+2);
+            this.dday[i] = (parseInt(this.origindday) + 2);
             this.new[i] = true;
             this.recruiting[i] = true;
             this.mdchuchun[i] = false;
@@ -275,7 +491,7 @@ export class MyPage {
             this.d5[i] = true;
           } else if (this.diffdate(this.currentDate, data[i].startmission) < -7) {
             this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday)+2);
+            this.dday[i] = (parseInt(this.origindday) + 2);
             this.new[i] = false;
             this.recruiting[i] = true;
             this.mdchuchun[i] = true;
@@ -284,7 +500,7 @@ export class MyPage {
             this.d5[i] = true;
           } else if (this.diffdate(this.currentDate, data[i].startmission) > -6 && this.diffdate(this.currentDate, data[i].startmission) < -5) {
             this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday)+2);
+            this.dday[i] = (parseInt(this.origindday) + 2);
             this.new[i] = false;
             this.recruiting[i] = false;
             this.mdchuchun[i] = false;
@@ -293,7 +509,7 @@ export class MyPage {
             this.d5[i] = true;
           } else if (this.diffdate(this.currentDate, data[i].startmission) > -5 && this.diffdate(this.currentDate, data[i].startmission) < -4) {
             this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday)+2);
+            this.dday[i] = (parseInt(this.origindday) + 2);
             this.new[i] = false;
             this.recruiting[i] = false;
             this.mdchuchun[i] = false;
@@ -305,7 +521,7 @@ export class MyPage {
             this.d1[i] = false;
           } else if (this.diffdate(this.currentDate, data[i].startmission) > -4 && this.diffdate(this.currentDate, data[i].startmission) < -3) {
             this.origindday = this.diffdate(this.currentDate, data[i].startmission);
-            this.dday[i] = (parseInt(this.origindday)+2);
+            this.dday[i] = (parseInt(this.origindday) + 2);
             this.new[i] = false;
             this.recruiting[i] = false;
             this.mdchuchun[i] = false;
@@ -330,11 +546,11 @@ export class MyPage {
               this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
               //console.log(this.percent[i])
 
-              if(this.percent[i] <= 50){
+              if (this.percent[i] <= 50) {
                 this.ingmdchuchun[i] = true;
                 this.ingapproaching[i] = false;
               }
-              if(this.percent[i] > 50){
+              if (this.percent[i] > 50) {
                 this.ingmdchuchun[i] = false;
                 this.ingapproaching[i] = true;
               }
@@ -356,20 +572,20 @@ export class MyPage {
               this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
               //console.log(this.percent[i])
 
-              if(this.percent[i] <= 50){
+              if (this.percent[i] <= 50) {
                 //console.log("MD추천");
                 this.ingmdchuchun[i] = true;
                 this.ingapproaching[i] = false;
               }
-              if(this.percent[i] > 50){
+              if (this.percent[i] > 50) {
                 //console.log("마감임박");
                 this.ingmdchuchun[i] = false;
                 this.ingapproaching[i] = true;
               }
             });
           } else if (this.diffdate(this.currentDate, data[i].startmission) > -3 && this.diffdate(this.currentDate, data[i].startmission) <= 0) {
-           // console.log("모집중 ");
-           this.d1[i] = true;
+            // console.log("모집중 ");
+            this.d1[i] = true;
             this.images.missionCount(data[i]._id).subscribe(data2 => {
               this.missionCounter2[i] = data2;
               // console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
@@ -377,12 +593,12 @@ export class MyPage {
               this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
               // console.log(this.percent[i])
 
-              if(this.percent[i] <= 50){
+              if (this.percent[i] <= 50) {
                 // console.log("MD추천");
                 this.ingmdchuchun[i] = true;
                 this.ingapproaching[i] = false;
               }
-              if(this.percent[i] > 50){
+              if (this.percent[i] > 50) {
                 // console.log("마감임박");
                 this.ingmdchuchun[i] = false;
                 this.ingapproaching[i] = true;
@@ -482,10 +698,10 @@ export class MyPage {
   }
 
 
-  selectedTab(tab){
+  selectedTab(tab) {
     this.slides.slideTo(tab);
 
-    console.log('  this.slides.slideTo(tab)==================='+   this.slides.slideTo(tab));
+    console.log('  this.slides.slideTo(tab)===================' + this.slides.slideTo(tab));
   }
 
 
@@ -495,289 +711,77 @@ export class MyPage {
     this.page = $event._snapIndex.toString();
     console.log(this.page);
 
-    if(this.page!=='0' && this.page!=='1' && this.page!=='2'){
+    if (this.page !== '0' && this.page !== '1' && this.page !== '2') {
       setTimeout(() => {
-      this.slides.slideTo(0, 0);
-  }, 100)
-  }
-}
-
-
-public beautyNoteLoad() {
-  this.images.beautyNoteLoad().subscribe(data => {
-    this.beautyNoteData = data;
-  });
-}
-
-public skinQnaLoad() {
-  this.images.skinQnaLoad().subscribe(data => {
-    this.skinQnaData = data;
-  });
-}
-
-segmentChanged(ev: any) {
-  if (ev.value === '수분') {
-    // console.log('Segment changed111111111==============', ev.value);
-    this.segment_status == true;
-    document.getElementById("moisture").style.display = "block";
-    document.getElementById("oil").style.display = "none";
-  }
-  else {
-    // console.log('Segment changed2222222222==============', ev.value);
-    this.segment_status == false;
-    document.getElementById("oil").style.display = "block";
-    document.getElementById("moisture").style.display = "none";
-  }
-}
-yearmonthselect(e) {
-  var year = e.substr(0, 4);
-  var month = e.substr(5, 2);
-  var date = year + "-" + month;
-  console.log(this.skinScoreData);
-  this.chartDateData = [];
-  this.chartOilData = [];
-  this.chartMoistureData = [];
-  for (let i = 0; i < this.skinScoreData.score.length; i++) {
-    if (this.skinScoreData.score[i].saveDate.indexOf(date) !== -1) {
-      this.chartDateData.push(this.skinScoreData.score[i].saveDate.substr(5, 5));
-      this.chartOilData.push(this.skinScoreData.score[i].oil);
-      this.chartMoistureData.push(this.skinScoreData.score[i].moisture);
+        this.slides.slideTo(0, 0);
+      }, 100)
     }
   }
-  console.log("데이터 길이 : " + this.chartDateData.length)
-  if (this.chartDateData.length > 0) {
-    this.lineCanvas.data.labels = this.chartDateData;
-    this.lineCanvas2.data.labels = this.chartDateData;
-    this.lineCanvas.data.datasets[0].data = this.chartMoistureData;
-    this.lineCanvas2.data.datasets[0].data = this.chartOilData;
-    this.lineCanvas.update();
-    this.lineCanvas2.update();
 
-    console.log(this.chartDateData);
-    console.log(this.chartMoistureData);
-    console.log(this.chartOilData);
-  } else {
-    setTimeout(() => {
-    this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
-    }, 3000)
+
+  public beautyNoteLoad() {
+    this.images.beautyNoteLoad().subscribe(data => {
+      this.beautyNoteData = data;
+    });
   }
 
-  // console.log("yearmonthselect===============" + e);
-}
+  public skinQnaLoad() {
+    this.images.skinQnaLoad().subscribe(data => {
+      this.skinQnaData = data;
+    });
+  }
 
-ionViewDidEnter() {
-  // console.log('ionViewDidLoad SkinChartPage');
-  // console.log('all_moisture_score=====================' + this.all_moisture_score);
-  document.getElementById("moisture").style.display = "block";
-  document.getElementById("oil").style.display = "none";
-
-
-  this.today = format(this.today, 'DD');
-
-  this.lineCanvas = new Chart(this.lineCanvas.nativeElement, {
-
-
-    type: 'line',
-    data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
-      labels: this.chartDateData,
-      datasets: [{
-        // label: format(this.today, 'MM/DD', '유분'),
-        label: '내 수분 점수',
-        fill: false,
-        lineTension: 0,
-        backgroundColor: "#368AFF",
-        borderColor: "#368AFF",
-        borderCapStyle: 'butt',
-        borderDash: [],
-        borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
-        pointBorderColor: "#368AFF",
-        pointBackgroundColor: "#fff",
-        pointBorderWidth: 1,
-        pointHoverRadius: 5, //클릭시 원크기
-        pointHoverBackgroundColor: "#368AFF",
-        pointHoverBorderColor: "#368AFF",
-        pointHoverBorderWidth: 2, //데이터 호버크기
-        pointRadius: 3,  //데이터 포인트크기
-        pointHitRadius: 100,
-        // data: [this.data1, this.data2, this.data3, this.data4],
-        data: this.chartMoistureData,
-        spanGaps: false,
-      },
-      {
-        // label: format(this.today, 'MM/DD', '유분'),
-        label: '20대 평균 수분 점수',
-        fill: false,
-        lineTension: 0,
-        backgroundColor: "#00C6ED",
-        borderColor: "#00C6ED",
-        borderCapStyle: 'butt',
-        borderDash: [],
-        borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
-        pointBorderColor: "#00C6ED",
-        pointBackgroundColor: "#fff",
-        pointBorderWidth: 1,
-        pointHoverRadius: 5,
-        pointHoverBackgroundColor: "#00C6ED",
-        pointHoverBorderColor: "#00C6ED",
-        pointHoverBorderWidth: 2,
-        pointRadius: 3,
-        pointHitRadius: 20,
-        data: [
-          // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
-          // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
-          //DB데이터 출력
-
-        ],
-        spanGaps: false,
-        // 수분은 하늘이랑 파랑
-        // 유분은 노랑이랑 주황!!
-        // label: format(this.today, 'MM/DD', '유분'),
-      }],
-    },
-    options: {
-      animation: {
-        duration: 3000 // general animation time
-      },
-      responsive: true,
-      legend: {
-        display: false,     //라벨표시
-      },
-      scales: {
-        xAxes: [{
-          display: true,
-          ticks: {
-            beginAtZero: true,
-            max: 100,
-            min: 0
-          }
-        }],
-        yAxes: [{
-          display: true,
-          ticks: {
-            beginAtZero: true,
-            max: 100,
-            min: 0
-          }
-        }]
-      },
-      // plugins: {
-      //     labels: {
-      //           render: this.percentage,
-      //           precision: 0,
-      //           fontSize: 15,
-      //           fontStyle: 'normal',
-      //           textShadow: true,
-      //           showActualPercentages: true
-      //       }
-      //   }
+  segmentChanged(ev: any) {
+    if (ev.value === '수분') {
+      // console.log('Segment changed111111111==============', ev.value);
+      this.segment_status == true;
+      document.getElementById("moisture").style.display = "block";
+      document.getElementById("oil").style.display = "none";
     }
-  });
-
-  this.lineCanvas2 = new Chart(this.lineCanvas2.nativeElement, {
-
-
-    type: 'line',
-    data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
-      labels: this.chartDateData,
-      datasets: [{
-        // 수분은 하늘이랑 파랑
-        // 유분은 노랑이랑 주황!!
-        // label: format(this.today, 'MM/DD', '유분'),
-        label: '내 유분 점수',
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: "#368AFF",
-        borderColor: "#368AFF",
-        borderCapStyle: 'butt',
-        borderDash: [],
-        borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
-        pointBorderColor: "#368AFF",
-        pointBackgroundColor: "#fff",
-        pointBorderWidth: 1,
-        pointHoverRadius: 5,
-        pointHoverBackgroundColor: "#368AFF",
-        pointHoverBorderColor: "#368AFF",
-        pointHoverBorderWidth: 2,
-        pointRadius: 3,
-        pointHitRadius: 10,
-        data: this.chartOilData,
-        spanGaps: false,
-      },
-      {
-        // label: format(this.today, 'MM/DD', '유분'),
-        label: '20대 평균 유분 점수',
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: "#00C6ED",
-        borderColor: "#00C6ED",
-        borderCapStyle: 'butt',
-        borderDash: [],
-        borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
-        pointBorderColor: "#00C6ED",
-        pointBackgroundColor: "#fff",
-        pointBorderWidth: 1,
-        pointHoverRadius: 5,
-        pointHoverBackgroundColor: "#00C6ED",
-        pointHoverBorderColor: "#00C6ED",
-        pointHoverBorderWidth: 2,
-        pointRadius: 3,
-        pointHitRadius: 10,
-        data: [
-          // this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
-          // this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
-        ],
-        spanGaps: false,
-      }],
-    },
-    options: {
-      animation: {
-        duration: 3000 // general animation time
-      },
-      responsive: true,
-      legend: {
-        display: false,     //라벨표시
-      },
-      scales: {
-        xAxes: [{
-          display: true,
-          ticks: {
-            beginAtZero: true,
-            max: 100,
-            min: 0
-          }
-        }],
-        yAxes: [{
-          display: true,
-          ticks: {
-            beginAtZero: true,
-            max: 100,
-            min: 0
-          }
-        }]
-      },
-      // plugins: {
-      //     labels: {
-      //           render: this.percentage,
-      //           precision: 0,
-      //           fontSize: 15,
-      //           fontStyle: 'normal',
-      //           textShadow: true,
-      //           showActualPercentages: true
-      //       }
-      //   }
+    else {
+      // console.log('Segment changed2222222222==============', ev.value);
+      this.segment_status == false;
+      document.getElementById("oil").style.display = "block";
+      document.getElementById("moisture").style.display = "none";
     }
-  });
+  }
+  yearmonthselect(e) {
+    var year = e.substr(0, 4);
+    var month = e.substr(5, 2);
+    var date = year + "-" + month;
+    console.log(this.skinScoreData);
+    this.chartDateData = [];
+    this.chartOilData = [];
+    this.chartMoistureData = [];
+    for (let i = 0; i < this.skinScoreData.score.length; i++) {
+      if (this.skinScoreData.score[i].saveDate.indexOf(date) !== -1) {
+        this.chartDateData.push(this.skinScoreData.score[i].saveDate.substr(5, 5));
+        this.chartOilData.push(this.skinScoreData.score[i].oil);
+        this.chartMoistureData.push(this.skinScoreData.score[i].moisture);
+      }
+    }
+    console.log("데이터 길이 : " + this.chartDateData.length)
+    if (this.chartDateData.length > 0) {
+      this.lineCanvas.data.labels = this.chartDateData;
+      this.lineCanvas2.data.labels = this.chartDateData;
+      this.lineCanvas.data.datasets[0].data = this.chartMoistureData;
+      this.lineCanvas2.data.datasets[0].data = this.chartOilData;
+      this.lineCanvas.update();
+      this.lineCanvas2.update();
 
-  ////처음 진입시 현재 월로 조회 되도록
-  this.skinbtnYear = format(new Date(), 'YYYY');
-  this.skinbtnMonth = format(new Date(), 'MM');
-  var e = this.skinbtnYear + "년" + this.skinbtnMonth;
-  this.yearmonthselect(e);
-}
+      console.log(this.chartDateData);
+      console.log(this.chartMoistureData);
+      console.log(this.chartOilData);
+    } else {
+      setTimeout(() => {
+        this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
+      }, 3000)
+    }
+
+    // console.log("yearmonthselect===============" + e);
+  }
+
+
 
 
   public loadItems() {
@@ -884,7 +888,7 @@ ionViewDidEnter() {
   }
 
   showError(text) {
-  //  this.loading.dismiss();
+    //  this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
