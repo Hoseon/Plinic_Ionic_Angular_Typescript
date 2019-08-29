@@ -445,11 +445,11 @@ export class MyinfoPage {
     // });
     // alert.present();
     if (this.skin_diagnose_first_check) {
-      let myModal = this.modalCtrl.create(SkinDiagnoseMoisturePage);
+      let myModal = this.modalCtrl.create(SkinDiagnoseMoisturePage, { "parentPage": this });
       myModal.present();
     }
     else {
-      let myModal = this.modalCtrl.create(SkinDiagnoseFirstMoisturePage);
+      let myModal = this.modalCtrl.create(SkinDiagnoseFirstMoisturePage, { "parentPage": this });
       myModal.present();
     }
   }
@@ -1030,6 +1030,19 @@ export class MyinfoPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  testFunction(){
+    console.log("호출되었음");
+    this.skinQnaLoad();
+    this.beautyNoteLoad();
+    this.communityEditorBeautyLoad();
+    this.carezoneData = this.roadcareZone();
+    this.lineCanvas.update();
+    this.lineCanvas2.update();
+    // this.lineChart.update();
+    console.log("호출끝났음");
+
   }
 
   monthdate: any[] = [

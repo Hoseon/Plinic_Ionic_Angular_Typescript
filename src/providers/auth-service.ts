@@ -853,7 +853,7 @@ export class AuthService {
       saveDate: this.currentDate,
     };
 
-    console.log("skinChartSave Data : " + JSON.stringify(body));
+    // console.log("skinChartSave Data : " + JSON.stringify(body));
 
     return this.http.post(CONFIG.apiUrl + 'api/skinchartsave', JSON.stringify(body), { headers: headers })
       .map(res => res.json())

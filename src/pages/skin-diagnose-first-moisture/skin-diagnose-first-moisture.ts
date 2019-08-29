@@ -44,6 +44,7 @@ export class SkinDiagnoseFirstMoisturePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SkinDiagnoseFirstMoisturePage');
+    console.log(this.navParams.get("parentPage"));
     this.loadItems();
 
   }
@@ -204,7 +205,7 @@ export class SkinDiagnoseFirstMoisturePage {
             //     this.nav.pop();
             //   }
             // })
-            this.nav.push(SkinDiagnoseFirstOilPage, { score: this.scoreData });
+            this.nav.push(SkinDiagnoseFirstOilPage, { score: this.scoreData, "parentPage": this.navParams.get("parentPage")});
             // this.nav.push(SkinDiagnoseFirstOilPage);
           }
         }]

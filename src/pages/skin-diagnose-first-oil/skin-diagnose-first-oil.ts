@@ -218,7 +218,13 @@ export class SkinDiagnoseFirstOilPage {
         // this.navCtrl.pop().then(() => this.navCtrl.pop())
         // this.navCtrl.pop().then(() => this.navCtrl.pop().then(() => this.navCtrl.popAll()));
         // this.navCtrl.setRoot(MyinfoPage);
-        this.navCtrl.popAll()
+        // this.navParams.get("parentPage").ionViewCanEnter();
+        // this.navParams.get("parentPage").ionViewDidEnter();
+        // this.navParams.get("parentPage").ionViewDidLoad();
+        // this.navParams.get("parentPage").ionViewWillEnter();
+        this.navCtrl.popAll().then(() => {
+          this.navParams.get("parentPage").testFunction();
+        });
 
 
         // this.viewCtrl.dismiss().then(() => this.viewCtrl.dismiss());
@@ -232,7 +238,10 @@ export class SkinDiagnoseFirstOilPage {
         // this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-3));
         // this.navCtrl.popTo(this.navCtrl.getby);
         // this.navCtrl.pop().then(() => this.navCtrl.pop().then(() => this.viewCtrl._didLoad()));
-        this.navCtrl.popAll()
+        console.log("aaaaaaa");
+        this.navParams.get("parentPage").testFunction();
+        console.log("bbbbbbb");
+        this.navCtrl.popAll();
 
         // this.navCtrl.parent.select(1);
 
