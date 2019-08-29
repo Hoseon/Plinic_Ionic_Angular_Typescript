@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, Platform, ModalCo
 import { AuthService } from '../../../providers/auth-service';
 import { PlinicManualPage } from '../details/plinic-manual/plinic-manual';
 import { QnaPage } from '../details/qna/qna';
+import { FaqPage } from '../details/faq/faq';
 import { TermsPage } from '../details/terms/terms';
 import { ReRegisterPage } from '../../re-register/re-register';
 import { NoticePage } from '../details/notice/notice';
@@ -222,7 +223,7 @@ public noti() {
 }
 
 public plinic_FAQ() {
-
+  this.navCtrl.push(FaqPage);
 }
 
 public loadItems() {

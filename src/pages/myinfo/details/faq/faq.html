@@ -1,0 +1,63 @@
+
+<ion-header no-lines>
+
+  <ion-navbar  *ngIf="platform.is('android')" no-lines>
+    <ion-title class="android_title" text-wrap > FAQ </ion-title>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+  	<ion-buttons left no-lines>
+  		<button ion-button navPop icon-only>
+        <img no-lines class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
+  		</button>
+  	</ion-buttons>
+    <ion-title class="ios_title" text-wrap> FAQ</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-lines>
+  <ion-list class="accordion-list">
+    <!-- First Level -->
+    <ion-list-header *ngFor="let item of noticeData; let i = index" no-lines no-padding>
+      <!-- Toggle Button -->
+      <button no-lines class="notice_title" ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
+        <ion-icon class="arrow-forward" item-end name="ios-arrow-forward" *ngIf="!item.open"></ion-icon>
+        <ion-icon class="arrow-down" item-end name="ios-arrow-down" *ngIf="item.open"></ion-icon>
+          {{ item.category }} {{item.title}}
+      </button>
+
+      <ion-list *ngIf="item.title && item.open" no-lines>
+        <ion-list-header no-padding no-lines>
+          <ion-list *ngIf="item.title && item.open" no-lines>
+            <ion-item style="background-color:#fafafa; height:auto;" detail-none text-wrap no-lines>
+              <p class="notice_sub" text-lowercase>{{ item.body }}</p>
+            </ion-item>
+          </ion-list>
+        </ion-list-header>
+      </ion-list>
+      <div style="height:1px; width:100%; background-color:#f5f5f5"></div>
+    </ion-list-header>
+  </ion-list>
+</ion-content>
+
+
+
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-title>
+      플리닉 공지사항
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <user-card *ngFor="let usr of userResults | async | genderFilter:selectedFilter" [user]="usr" (click)="presentPopover($event)"></user-card>
+  </ion-list>
+</ion-content> -->
