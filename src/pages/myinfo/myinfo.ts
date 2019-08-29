@@ -132,12 +132,6 @@ export class MyinfoPage {
 
       ionViewCanEnter() {
         console.log("ionViewCanEnter");
-      }
-
-      ionViewDidLoad() {
-        console.log('ionViewDidLoad MyPage');
-        this.id = this.navParams.get('id');
-        this.mode = this.navParams.get('mode');
         setTimeout(() => {
           this.selectedTab(-1);
           this.getskinScore();
@@ -146,18 +140,15 @@ export class MyinfoPage {
         setTimeout(() => {
         this.selectedTab(0);
       }, 500)
+      }
+
+      ionViewDidLoad() {
+        console.log('ionViewDidLoad MyPage');
+        this.id = this.navParams.get('id');
+        this.mode = this.navParams.get('mode');
   }
 
   public initChart() {
-
-     ////처음 진입시 현재 월로 조회 되도록
-     this.skinbtnYear = format(new Date(), 'YYYY');
-     this.skinbtnMonth = format(new Date(), 'MM');
-     var e = this.skinbtnYear + "년" + this.skinbtnMonth;
-
-     setTimeout(() => {
-       this.yearmonthselect(e);
-     }, 500)
 
 
      console.log('ionViewDidLoad SkinChartPage');
@@ -366,7 +357,14 @@ export class MyinfoPage {
        }
      });
 
+     ////처음 진입시 현재 월로 조회 되도록
+     this.skinbtnYear = format(new Date(), 'YYYY');
+     this.skinbtnMonth = format(new Date(), 'MM');
+     var e = this.skinbtnYear + "년" + this.skinbtnMonth;
 
+     setTimeout(() => {
+       this.yearmonthselect(e);
+     }, 500)
    }
 
       public selectclick() {
