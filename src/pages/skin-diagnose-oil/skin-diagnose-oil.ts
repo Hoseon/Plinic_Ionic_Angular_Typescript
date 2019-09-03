@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ViewController, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ViewController, AlertController, ToastController, IonicApp } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { SkinDiagnoseMoisturePage } from '../skin-diagnose-moisture/skin-diagnose-moisture';
 import { TabsPage } from '../tabs/tabs';
@@ -46,7 +46,7 @@ export class SkinDiagnoseOilPage {
   jwtHelper: JwtHelper = new JwtHelper();
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, private alertCtrl: AlertController,
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, private alertCtrl: AlertController,  public ionicApp: IonicApp,
     public auth: AuthService, public toastCtrl: ToastController) {
 
     this.score = navParams.get('score');
@@ -305,18 +305,30 @@ export class SkinDiagnoseOilPage {
           });
           toast.present();
         }
-        // this.navCtrl.setRoot(TabsPage);
-        this.navCtrl.parent.select(4);
+        //this.navCtrl.setRoot(TabsPage);
+        this.viewCtrl.dismiss().then(_ => {
+             this.dismissAllModal();
+         })
         console.log("데이터 등록 성공");
       } else {
         console.log("데이터 등록 실패");
-        // this.navCtrl.setRoot(TabsPage);
-        this.navCtrl.parent.select(4);
+        //this.navCtrl.setRoot(TabsPage);
+        this.viewCtrl.dismiss().then(_ => {
+             this.dismissAllModal();
+         })
       }
     })
 
   }
 
+  public dismissAllModal () {
+          let activeModal = this.ionicApp._modalPortal.getActive();
+          if (activeModal) {
+              activeModal.dismiss().then(() => {
+                  this.dismissAllModal()
+              });
+          }
+      }
 
   public dissmiss() {
     this.navCtrl.popTo(SkinDiagnoseMoisturePage);

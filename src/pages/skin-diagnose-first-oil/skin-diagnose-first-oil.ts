@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ViewController, AlertController, ToastController, Tabs } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ViewController, AlertController, ToastController, IonicApp } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture';
 import { TabsPage } from '../tabs/tabs';
-import { MyinfoPage } from '../myinfo/myinfo';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 
 /**
@@ -38,13 +37,11 @@ export class SkinDiagnoseFirstOilPage {
   userData: any;
   jwtHelper: JwtHelper = new JwtHelper();
 
-  tab:Tabs;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, private alertCtrl: AlertController,
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, private alertCtrl: AlertController, public ionicApp: IonicApp,
     public auth: AuthService, public toastCtrl: ToastController) {
     this.score = navParams.get('score');
     this.moisture = this.score.moisture;
-    this.tab = this.navCtrl.parent;
 
   }
 
@@ -211,45 +208,34 @@ export class SkinDiagnoseFirstOilPage {
           toast.present();
         }
         // this.navCtrl.setRoot(TabsPage);
-        // console.log(this.navCtrl.getByIndex(this.navCtrl.length()));
-        // this.navCtrl.popTo(this.navCtrl.getByIndex(-1));
-        // this.navCtrl.getPrevious().data.thing1 = "Hello";
-        // console.log(this.navCtrl.getByIndex(1));
-        // this.navCtrl.pop().then(() => this.navCtrl.pop())
-        // this.navCtrl.pop().then(() => this.navCtrl.pop().then(() => this.navCtrl.popAll()));
-        // this.navCtrl.setRoot(MyinfoPage);
-        // this.navParams.get("parentPage").ionViewCanEnter();
-        // this.navParams.get("parentPage").ionViewDidEnter();
-        // this.navParams.get("parentPage").ionViewDidLoad();
-        // this.navParams.get("parentPage").ionViewWillEnter();
-        this.navCtrl.popAll().then(() => {
-          this.navParams.get("parentPage").testFunction();
-        });
-
-
-        // this.viewCtrl.dismiss().then(() => this.viewCtrl.dismiss());
-        // this.navCtrl.parent.select(1);
+        this.viewCtrl.dismiss().then(_ => {
+             this.dismissAllModal();
+         })
 
         // console.log("데이터 등록 성공");
       } else {
         // console.log("데이터 등록 실패");
         // this.navCtrl.setRoot(TabsPage);
-        // this.viewCtrl.dismiss().then(() => this.viewCtrl.dismiss());
-        // this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-3));
-        // this.navCtrl.popTo(this.navCtrl.getby);
-        // this.navCtrl.pop().then(() => this.navCtrl.pop().then(() => this.viewCtrl._didLoad()));
-        console.log("aaaaaaa");
-        this.navParams.get("parentPage").testFunction();
-        console.log("bbbbbbb");
-        this.navCtrl.popAll();
-
-        // this.navCtrl.parent.select(1);
-
+        this.viewCtrl.dismiss().then(_ => {
+             this.dismissAllModal();
+         })
       }
     })
     // this.auth.setUserStoragediagnose_first_oil(this.all_oil_score*20);
 
   }
+
+
+
+  public dismissAllModal () {
+          let activeModal = this.ionicApp._modalPortal.getActive();
+          if (activeModal) {
+              activeModal.dismiss().then(() => {
+                  this.dismissAllModal()
+              });
+          }
+      }
+
 
 
   public dissmiss() {

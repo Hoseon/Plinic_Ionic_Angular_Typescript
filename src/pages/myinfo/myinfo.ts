@@ -1,5 +1,5 @@
 import { Component, ViewChild, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, Slides, ModalController, AlertController, Loading, LoadingController, Content } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, Slides, ModalController, AlertController, Loading, LoadingController, Content, ViewController } from 'ionic-angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { MyCommunityModifyPage } from '../community/my/my-community-modify/my-community-modify';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
@@ -63,7 +63,7 @@ export class MyinfoPage {
   array1 = [];
   chartDateData2: Array<any>;
   lineChart: any;
-  segment_status: any;
+  segment_status: boolean;
   segment_moisture: any;
 
   carezoneData: any;
@@ -121,11 +121,11 @@ export class MyinfoPage {
   loadProgress: number = 0;
 
   constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider, public modalCtrl: ModalController, public alertCtrl: AlertController,
-    public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController, private themeableBrowser: ThemeableBrowser) {
+    public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController, private themeableBrowser: ThemeableBrowser, public viewCtrl: ViewController) {
 
     this.userData = this.loadItems();
     this.platform.ready().then((readySource) => {
-      this.segment_moisture = "수분"
+      this.segment_moisture = "수분";
     });
 
   }
@@ -135,47 +135,18 @@ export class MyinfoPage {
   }
 
   ionViewDidLoad() {
-
     console.log('ionViewDidLoad MyPage');
     this.id = this.navParams.get('id');
     this.mode = this.navParams.get('mode');
-
-
     setTimeout(() => {
       this.selectedTab(-1);
+      this.getchartScore();
       this.getskinScore();
       this.initChart();
     }, 500);
-
     setTimeout(() => {
       this.selectedTab(0);
-    }, 500);
-
-
-  }
-
-  ionViewDidEnter() {
-  }
-
-  ionViewWillEnter() {
-    console.log("ionViewWillEnter");
-    //this.showLoading();
-    this.skinQnaLoad();
-    this.beautyNoteLoad();
-    this.communityEditorBeautyLoad();
-    this.carezoneData = this.roadcareZone();
-
-
-
-
-
-    // let tabs = document.querySelectorAll('.tabbar');
-    // if (tabs !== null) {
-    //   Object.keys(tabs).map((key) => {
-    //     //tabs[ key ].style.transform = 'translateY(0)';
-    //     tabs[key].style.display = 'none';
-    //   });
-    // }
+    }, 500)
   }
 
   public initChart() {
@@ -405,6 +376,22 @@ export class MyinfoPage {
   }
 
 
+  ionViewWillEnter() {
+    //this.showLoading();
+    this.skinQnaLoad();
+    this.beautyNoteLoad();
+    this.communityEditorBeautyLoad();
+    this.carezoneData = this.roadcareZone();
+
+    // let tabs = document.querySelectorAll('.tabbar');
+    // if (tabs !== null) {
+    //   Object.keys(tabs).map((key) => {
+    //     //tabs[ key ].style.transform = 'translateY(0)';
+    //     tabs[key].style.display = 'none';
+    //   });
+    // }
+  }
+
   public setting_page() {
     this.nav.push(SettingPage);
   }
@@ -433,6 +420,25 @@ export class MyinfoPage {
     });
   }
 
+  // public skin_measure() {
+  //   // let alert = this.alertCtrl.create({
+  //   //   cssClass: 'push_alert',
+  //   //   title: "plinic",
+  //   //   message: "준비중입니다.",
+  //   //   buttons: [{
+  //   //     text: '확인'
+  //   //   }]
+  //   // });
+  //   // alert.present();
+  //   if (this.skin_diagnose_first_check) {
+  //     let myModal = this.modalCtrl.create(SkinDiagnoseMoisturePage, { "parentPage": this });
+  //     myModal.present();
+  //   }
+  //   else {
+  //     let myModal = this.modalCtrl.create(SkinDiagnoseFirstMoisturePage, { "parentPage": this });
+  //     myModal.present();
+  //   }
+  // }
 
   public skin_measure() {
     // let alert = this.alertCtrl.create({
@@ -445,15 +451,40 @@ export class MyinfoPage {
     // });
     // alert.present();
     if (this.skin_diagnose_first_check) {
-      let myModal = this.modalCtrl.create(SkinDiagnoseMoisturePage, { "parentPage": this });
+      let myModal = this.modalCtrl.create(SkinDiagnoseMoisturePage);
+      myModal.onDidDismiss(data => {
+
+        this.update();
+      });
       myModal.present();
     }
     else {
-      let myModal = this.modalCtrl.create(SkinDiagnoseFirstMoisturePage, { "parentPage": this });
+      let myModal = this.modalCtrl.create(SkinDiagnoseFirstMoisturePage);
+      myModal.onDidDismiss(data => {
+
+        this.update();
+      });
       myModal.present();
     }
   }
 
+
+  public update() {
+    this.nav.setRoot(this.nav.getActive().component).then(() => {
+      setTimeout(() => {
+        this.segment_moisture = "유분";
+        console.log("유분================" + this.segment_moisture);
+      }, 500)
+      setTimeout(() => {
+        this.segment_moisture = "수분";
+        console.log("수분================" + this.segment_moisture);
+      }, 500)
+    });
+  }
+
+  public reload() {
+    window.location.reload(true);
+  }
 
   public communityEditorBeautyLoad() {
     this.images.communityEditorBeautyLoad().subscribe(data => {
@@ -739,7 +770,7 @@ export class MyinfoPage {
 
   slideChanged($event) {
     //this.showLoading();
-    //  this.content.scrollToTop();
+    //this.content.scrollToTop();
     this.page = $event._snapIndex.toString();
     console.log(this.page);
 
@@ -767,17 +798,26 @@ export class MyinfoPage {
     console.log("e=============" + e);
   }
   segmentChanged(ev: any) {
+    console.log("ev==============" + ev);
     if (ev.value === '수분') {
-      // console.log('Segment changed111111111==============', ev.value);
-      this.segment_status == true;
+      this.segment_status = true;
+      this.segment_moisture = ev.value;
       document.getElementById("moisture").style.display = "block";
+      document.getElementById("moisture").style.display = "";
       document.getElementById("oil").style.display = "none";
+
+      console.log('Segment changed111111111==============', this.segment_moisture);
     }
     else {
-      // console.log('Segment changed2222222222==============', ev.value);
-      this.segment_status == false;
+
+      this.segment_status = false;
+      this.segment_moisture = ev.value;
       document.getElementById("oil").style.display = "block";
+      document.getElementById("oil").style.display = "";
       document.getElementById("moisture").style.display = "none";
+
+      console.log('Segment changed2222222222==============', this.segment_moisture);
+
     }
   }
   yearmonthselect(e) {
@@ -819,8 +859,28 @@ export class MyinfoPage {
     console.log("yearmonthselect===============" + e);
   }
 
+  yearmonthselect2(e) {
+    var year = format(new Date(), 'YYYY');
+    var month = e.substr(0, 2);
+    var date = year + "-" + month;
+// this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
+    this.auth.getChartScore(this.userData.email, date).subscribe(items => {
+      if (items.length > 0) {
+        console.log(JSON.stringify("chage Select : " + items));
+        this.update();
+      }
+      else {
+        this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
+      }
+
+    });
 
 
+  }
+
+  ionViewDidEnter() {
+
+  }
 
 
   public loadItems() {
@@ -864,8 +924,16 @@ export class MyinfoPage {
     });
   }
 
+  getchartScore() {
+    if (this.userData !== '') {
+      this.auth.getChartScore(this.userData.email, format(new Date(), 'YYYY') + '-' + format(new Date(), 'MM')).subscribe(items => {
+        console.log("chart Scroe : " + JSON.stringify(items));
+      })
+    }
+  }
+
   getskinScore() {
-    if (this.userData !=='') {
+    if (this.userData !== '') {
       this.auth.getSkinScore(this.userData.email).subscribe(items => {
         this.skinScoreData = items;
         console.log("this.skinScoreData " + JSON.stringify(this.skinScoreData));
@@ -1009,30 +1077,9 @@ export class MyinfoPage {
     setTimeout(() => {
       loading.dismiss();
     }, 3000);
-
   }
 
-  showAlert(text) {
-    let alert = this.alertCtrl.create({
-      cssClass: 'push_alert',
-      title: 'Plinic',
-      message: text,
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  showError(text) {
-    let alert = this.alertCtrl.create({
-      cssClass: 'push_alert',
-      title: 'Plinic',
-      message: text,
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  testFunction(){
+  testFunction() {
     console.log("호출되었음");
     this.skinQnaLoad();
     this.beautyNoteLoad();
@@ -1086,31 +1133,31 @@ export class MyinfoPage {
 
   monthdate2: any[] = [
     {
-      "day": "1월"
+      "day": "01월"
     },
     {
-      "day": "2월"
+      "day": "02월"
     },
     {
-      "day": "3월"
+      "day": "03월"
     },
     {
-      "day": "4월"
+      "day": "04월"
     },
     {
-      "day": "5월"
+      "day": "05월"
     },
     {
-      "day": "6월"
+      "day": "06월"
     },
     {
-      "day": "7월"
+      "day": "07월"
     },
     {
-      "day": "8월"
+      "day": "08월"
     },
     {
-      "day": "9월"
+      "day": "09월"
     },
     {
       "day": "10월"
@@ -1120,7 +1167,27 @@ export class MyinfoPage {
     },
     {
       "day": "12월"
-    }
-  ];
+    }]
+
+
+  showAlert(text) {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: 'Plinic',
+      message: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  showError(text) {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: 'Plinic',
+      message: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
 }
