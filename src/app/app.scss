@@ -91,6 +91,14 @@ ion-icon {
         background: url(../assets/img/tabs/ic-system-tab-cc-off.svg) no-repeat 50% 50%;
         background-size: 20px;
     }
+    &[class*="shopping"][ng-reflect-is-active="true"] {
+        background: url(../assets/img/tabs/ic-system-tab-shop-on.svg) no-repeat 50% 50%;
+        background-size: 20px;
+    }//in case of active
+    &[class*="shopping"][ng-reflect-is-active="false"] {
+        background: url(../assets/img/tabs/ic-system-tab-shop-off.svg) no-repeat 50% 50%;
+        background-size: 20px;
+    }
     &[class*="cummunity"][ng-reflect-is-active="true"] {
         background: url(../assets/img/tabs/ic-system-tab-community-on.svg) no-repeat 50% 50%;
         background-size: 20px;
@@ -535,7 +543,7 @@ scroll-content {
           letter-spacing: normal;
           text-align: center;
           color: #858585;
-          // display: inline-table;
+          //display: inline-table;
         }
         .button-inner{
           justify-content:center;
@@ -636,7 +644,7 @@ scroll-content {
           letter-spacing: normal;
           text-align: center;
           color: #858585;
-          // display: inline-table;
+          //display: inline-table;
         }
         .button-inner{
           justify-content:center;

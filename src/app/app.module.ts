@@ -95,6 +95,7 @@ import { PasswordfindPageModule } from '../pages/login/passwordfind/passwordfind
 import { PlinicManualPageModule } from '../pages/myinfo/details/plinic-manual/plinic-manual.module';
 import { QnaPageModule } from '../pages/myinfo/details/qna/qna.module';
 import { TermsPageModule } from '../pages/myinfo/details/terms/terms.module';
+import { FaqPage } from '../pages/myinfo/details/faq/faq';
 import { PersonalinfoPageModule } from '../pages/myinfo/details/personalinfo/personalinfo.module';
 import { MarketingPageModule } from '../pages/myinfo/details/marketing/marketing.module';
 import { BluetoothConnectIngPageModule } from '../pages/myinfo/details/bluetooth-connect-ing/bluetooth-connect-ing.module';
@@ -291,6 +292,7 @@ export function getAuthHttp(http, storage) {
     AlignPopoverPage,
     MyCommunityModifyPage,
     SettingPage,
+    FaqPage,
   ],
   imports: [
     HttpModule,
@@ -420,6 +422,7 @@ export function getAuthHttp(http, storage) {
     AlignPopoverPage,
     MyCommunityModifyPage,
     SettingPage,
+    FaqPage,
   ],
   providers: [
     StatusBar,
