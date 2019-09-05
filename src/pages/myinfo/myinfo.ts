@@ -120,10 +120,13 @@ export class MyinfoPage {
   skin_diagnose_first_check: boolean;
   loadProgress: number = 0;
 
+  totalusetime: any; //월 사용시간
+  allusetime: any; //총 누적 사용시간
+
+
   constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider, public modalCtrl: ModalController, public alertCtrl: AlertController,
     public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController, private themeableBrowser: ThemeableBrowser, public viewCtrl: ViewController) {
 
-    this.userData = this.loadItems();
     this.platform.ready().then((readySource) => {
       this.segment_moisture = "수분";
     });
@@ -131,11 +134,10 @@ export class MyinfoPage {
   }
 
   ionViewCanEnter() {
-    console.log("ionViewCanEnter");
+    this.userData = this.loadItems();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MyPage');
     this.id = this.navParams.get('id');
     this.mode = this.navParams.get('mode');
     setTimeout(() => {
@@ -155,14 +157,17 @@ export class MyinfoPage {
     this.skinbtnYear = format(new Date(), 'YYYY');
     this.skinbtnMonth = format(new Date(), 'MM');
     var e = this.skinbtnYear + "년" + this.skinbtnMonth;
+    var e2 = this.skinbtnMonth;
 
     setTimeout(() => {
       this.yearmonthselect(e);
+      this.yearmonthselect2(e2);
+      this.getAllUseTime();
     }, 500)
 
 
-    console.log('ionViewDidLoad SkinChartPage');
-    console.log('all_moisture_score=====================' + this.all_moisture_score);
+    // console.log('ionViewDidLoad SkinChartPage');
+    // console.log('all_moisture_score=====================' + this.all_moisture_score);
     document.getElementById("moisture").style.display = "block";
     document.getElementById("oil").style.display = "none";
 
@@ -371,7 +376,7 @@ export class MyinfoPage {
   }
 
   public selectclick() {
-    console.log('ionViewDidLoad selectclick');
+    // console.log('ionViewDidLoad selectclick');
     this.lineChart.update();
   }
 
@@ -397,14 +402,14 @@ export class MyinfoPage {
   }
 
   ngOnInit() {
-    this.slides.autoHeight = true;
-
-    setInterval(() => {
-      if (this.loadProgress < 50)
-        this.loadProgress += 1;
-      else
-        clearInterval(this.loadProgress);
-    }, 30);
+    // this.slides.autoHeight = true;
+    //
+    // setInterval(() => {
+    //   if (this.loadProgress < 50)
+    //     this.loadProgress += 1;
+    //   else
+    //     clearInterval(this.loadProgress);
+    // }, 30);
 
   }
 
@@ -415,7 +420,7 @@ export class MyinfoPage {
   public skin_first_check() {
     this.auth.getUserStoragediagnose_first_check().then(items => {
       this.skin_diagnose_first_check = items;
-      console.log("skin_diagnose_first_check" + this.skin_diagnose_first_check);
+      // console.log("skin_diagnose_first_check" + this.skin_diagnose_first_check);
       //console.log("items" + items);
     });
   }
@@ -473,11 +478,11 @@ export class MyinfoPage {
     this.nav.setRoot(this.nav.getActive().component).then(() => {
       setTimeout(() => {
         this.segment_moisture = "유분";
-        console.log("유분================" + this.segment_moisture);
+        // console.log("유분================" + this.segment_moisture);
       }, 500)
       setTimeout(() => {
         this.segment_moisture = "수분";
-        console.log("수분================" + this.segment_moisture);
+        // console.log("수분================" + this.segment_moisture);
       }, 500)
     });
   }
@@ -734,7 +739,7 @@ export class MyinfoPage {
         //this.chkBtn = true;
         this.missionData = data;
         // console.log("미션데이터 : " + JSON.stringify(this.missionData));
-        console.log("미션데이터 : " + this.missionData.missionID);
+        // console.log("미션데이터 : " + this.missionData.missionID);
         // this.images.missionCount(this.missionData.missionID).subscribe(data2 => {
         //   this.ingmissionCounter = data2;
         // });
@@ -764,7 +769,7 @@ export class MyinfoPage {
   selectedTab(tab) {
     this.slides.slideTo(tab);
 
-    console.log('  this.slides.slideTo(tab)===================' + this.slides.slideTo(tab));
+    // console.log('  this.slides.slideTo(tab)===================' + this.slides.slideTo(tab));
   }
 
 
@@ -772,7 +777,7 @@ export class MyinfoPage {
     //this.showLoading();
     //this.content.scrollToTop();
     this.page = $event._snapIndex.toString();
-    console.log(this.page);
+    // console.log(this.page);
 
     if (this.page !== '0' && this.page !== '1' && this.page !== '2') {
       setTimeout(() => {
@@ -795,52 +800,42 @@ export class MyinfoPage {
   }
 
   onChange(e) {
-    console.log("e=============" + e);
+    // console.log("e=============" + e);
   }
   segmentChanged(ev: any) {
-    console.log("ev==============" + ev);
+    // console.log("ev==============" + ev);
     if (ev.value === '수분') {
       this.segment_status = true;
       this.segment_moisture = ev.value;
       document.getElementById("moisture").style.display = "block";
       document.getElementById("moisture").style.display = "";
       document.getElementById("oil").style.display = "none";
-
-      console.log('Segment changed111111111==============', this.segment_moisture);
     }
     else {
-
       this.segment_status = false;
       this.segment_moisture = ev.value;
       document.getElementById("oil").style.display = "block";
       document.getElementById("oil").style.display = "";
       document.getElementById("moisture").style.display = "none";
-
-      console.log('Segment changed2222222222==============', this.segment_moisture);
-
     }
   }
   yearmonthselect(e) {
-    console.log("eeeeeeeee" + e);
     var year = e.substr(0, 4);
-    console.log("year" + year);
     var month = e.substr(5, 2);
     // month = (month < 10) ? "0" + month : month.toString();
-    console.log("month" + month);
     var date = year + "-" + month;
-    console.log("date" + date);
-    console.log(JSON.stringify(this.skinScoreData));
     this.chartDateData = [];
     this.chartOilData = [];
     this.chartMoistureData = [];
-    for (let i = 0; i < this.skinScoreData.score.length; i++) {
-      if (this.skinScoreData.score[i].saveDate.indexOf(date) !== -1) {
-        this.chartDateData.push(this.skinScoreData.score[i].saveDate.substr(5, 5));
-        this.chartOilData.push(this.skinScoreData.score[i].oil);
-        this.chartMoistureData.push(this.skinScoreData.score[i].moisture);
+    if (this.skinScoreData) {
+      for (let i = 0; i < this.skinScoreData.score.length; i++) {
+        if (this.skinScoreData.score[i].saveDate.indexOf(date) !== -1) {
+          this.chartDateData.push(this.skinScoreData.score[i].saveDate.substr(5, 5));
+          this.chartOilData.push(this.skinScoreData.score[i].oil);
+          this.chartMoistureData.push(this.skinScoreData.score[i].moisture);
+        }
       }
     }
-    console.log("데이터 길이 : " + this.chartDateData.length)
     if (this.chartDateData.length > 0) {
       this.lineCanvas.data.labels = this.chartDateData;
       this.lineCanvas2.data.labels = this.chartDateData;
@@ -855,22 +850,22 @@ export class MyinfoPage {
     } else {
       this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
     }
-
-    console.log("yearmonthselect===============" + e);
   }
 
   yearmonthselect2(e) {
     var year = format(new Date(), 'YYYY');
     var month = e.substr(0, 2);
     var date = year + "-" + month;
-// this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
+    // this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
     this.auth.getChartScore(this.userData.email, date).subscribe(items => {
       if (items.length > 0) {
-        console.log(JSON.stringify("chage Select : " + items));
-        this.update();
+        // this.update();
+        this.totalusetime = this.getSecondsAsDigitalClock(items[0].sum);
+        this.loadProgress = (Number(items[0].sum) / 16200) * 100;
       }
       else {
-        this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
+        this.totalusetime = false;
+        // this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
       }
 
     });
@@ -927,7 +922,6 @@ export class MyinfoPage {
   getchartScore() {
     if (this.userData !== '') {
       this.auth.getChartScore(this.userData.email, format(new Date(), 'YYYY') + '-' + format(new Date(), 'MM')).subscribe(items => {
-        console.log("chart Scroe : " + JSON.stringify(items));
       })
     }
   }
@@ -936,7 +930,7 @@ export class MyinfoPage {
     if (this.userData !== '') {
       this.auth.getSkinScore(this.userData.email).subscribe(items => {
         this.skinScoreData = items;
-        console.log("this.skinScoreData " + JSON.stringify(this.skinScoreData));
+        // console.log("this.skinScoreData " + JSON.stringify(this.skinScoreData));
         // let array1 = [];
         for (let i = 0; i < items.score.length; i++) {
           // this.chartDateData.push({date : items.score[i].saveDate.substr(0,10) });
@@ -955,7 +949,6 @@ export class MyinfoPage {
         // console.log(this.array1);
 
         if (items !== '') {
-          console.log("abcsdasd");
           var i = (parseInt(this.skinScoreData.score.length) - 1);
           // console.log("ii" + i);
           var k = (parseInt(this.skinScoreData.score.length) - 2);
@@ -1018,7 +1011,7 @@ export class MyinfoPage {
     })
 
     browser.on('sharePressed').subscribe(data => {
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+      // console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
     })
 
 
@@ -1059,7 +1052,7 @@ export class MyinfoPage {
     })
 
     browser.on('sharePressed').subscribe(data => {
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+      // console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
     })
 
   }
@@ -1080,7 +1073,7 @@ export class MyinfoPage {
   }
 
   testFunction() {
-    console.log("호출되었음");
+    // console.log("호출되었음");
     this.skinQnaLoad();
     this.beautyNoteLoad();
     this.communityEditorBeautyLoad();
@@ -1088,7 +1081,7 @@ export class MyinfoPage {
     this.lineCanvas.update();
     this.lineCanvas2.update();
     // this.lineChart.update();
-    console.log("호출끝났음");
+    // console.log("호출끝났음");
 
   }
 
@@ -1188,6 +1181,32 @@ export class MyinfoPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  getSecondsAsDigitalClock(inputSeconds: number) {  // 분까지만 표시 하기 위한 함수
+    var sec_num = parseInt(inputSeconds.toString(), 10);
+    var hours = Math.floor(sec_num / 3600);
+    var minutes2 = Math.floor((sec_num / 3600) * 60);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+    var hoursString = '';
+    var minutesString = '';
+    var minutesString2 = '';
+    var secondsString = '';
+    hoursString = (hours < 10) ? "0" + hours : hours.toString();
+    minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
+    minutesString2 = (minutes < 10) ? "0" + minutes2 : minutes2.toString();
+    secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
+    return minutesString2 + '분 ' + secondsString + '초';
+  }
+
+
+
+  //20190905 사용자의 플리닉 블루투스 총 사용 시간
+  getAllUseTime() {
+    this.auth.getChartAllScore(this.userData.email).subscribe(items => {
+      this.allusetime = this.getSecondsAsDigitalClock(items[0].sum)
+    });
   }
 
 }

@@ -56,7 +56,13 @@
         <ion-option *ngFor="let days of monthdate2" >{{days.day}}</ion-option></ion-select></ion-col>
       </ion-row>
       <ion-row>
-        <ion-col class="care_chart_time">68분 35초</ion-col>
+        <ng-container *ngIf="totalusetime">
+          <ion-col class="care_chart_time">{{totalusetime}}</ion-col>
+        </ng-container>
+        <ng-container *ngIf="!totalusetime">
+          <ion-col class="care_chart_time">0초</ion-col>
+        </ng-container>
+
         <ion-col class="care_chart_month">월별 자동계산</ion-col>
       </ion-row>
 
@@ -72,7 +78,12 @@
       </ion-row>
       <ion-row>
         <ion-col class="care_chart_all_rank">총 누적 사용 시간</ion-col>
-        <ion-col class="care_chart_all_time">168분 35초 </ion-col>
+        <ng-container *ngIf="allusetime">
+        <ion-col class="care_chart_all_time">{{allusetime}}</ion-col>
+        </ng-container>
+        <ng-container *ngIf="!allusetime">
+        <ion-col class="care_chart_all_time">사용기록 없음</ion-col>
+        </ng-container>
       </ion-row>
 
       <ion-item>

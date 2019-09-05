@@ -51,8 +51,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  // apiUrl: 'http://plinic.cafe24app.com/',
-  apiUrl: 'http://localhost:8001/',
+  apiUrl: 'http://plinic.cafe24app.com/',
+  // apiUrl: 'http://localhost:8001/',
 };
 
 @Injectable()
@@ -1028,6 +1028,11 @@ export class AuthService {
 
   public getChartScore(email, date){
     return this.http.get(CONFIG.apiUrl + 'carezone/totalusetime/' + email + '/' + date)
+      .map(response => response.json());
+  }
+
+  public getChartAllScore(email){
+    return this.http.get(CONFIG.apiUrl + 'carezone/totalallusetime/' + email)
       .map(response => response.json());
   }
 
