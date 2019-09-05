@@ -123,6 +123,8 @@ export class MyinfoPage {
   totalusetime: any; //월 사용시간
   allusetime: any; //총 누적 사용시간
 
+  memberRanking: Array<any> = new Array<any>();
+
 
   constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider, public modalCtrl: ModalController, public alertCtrl: AlertController,
     public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController, private themeableBrowser: ThemeableBrowser, public viewCtrl: ViewController) {
@@ -867,7 +869,25 @@ export class MyinfoPage {
         this.totalusetime = false;
         // this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
       }
+    });
 
+    this.auth.getRankTotalUseTime(date).subscribe(items => {
+      if (items.length > 0) {
+        // this.update();
+        this.memberRanking = new Array<any>();
+        console.log(JSON.stringify(items));
+        for(let i = 0; i < items.length; i ++){
+            this.memberRanking[i] ={
+              email : items[i]._id,
+              sum : items[i].sum,
+              rank : i + 1
+            }
+        }
+        console.log(this.memberRanking);
+      }
+      else {
+        // this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
+      }
     });
 
 

@@ -26,10 +26,10 @@
 <ion-content #content no-padding>
 
   <ng-container *ngIf="userData">
-  <img *ngIf="userData.thumbnail_image" class="profile_image" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-  <img *ngIf="!userData.thumbnail_image" class="profile_image" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-  <div class="profile_name" >{{userData.nickname}}</div>
-  <div class="profile_email" >{{userData.email}}</div>
+    <img *ngIf="userData.thumbnail_image" class="profile_image" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+    <img *ngIf="!userData.thumbnail_image" class="profile_image" src="http://plinic.cafe24app.com/userimages/{{userData.email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+    <div class="profile_name">{{userData.nickname}}</div>
+    <div class="profile_email">{{userData.email}}</div>
   </ng-container>
 
   <ion-segment class="profile_segment" mode="md" [(ngModel)]="page" color="#5c59b6">
@@ -51,9 +51,11 @@
     <ion-slide class="slide_1">
       <ion-row>
         <ion-col class="care_chart_title">케어차트</ion-col>
-        <ion-col><ion-select (ionChange)="yearmonthselect2($event)" placeholder="{{skinbtnMonth}}월" interface="popover"
-                              multiple="false" class="care_chart_date">
-        <ion-option *ngFor="let days of monthdate2" >{{days.day}}</ion-option></ion-select></ion-col>
+        <ion-col>
+          <ion-select (ionChange)="yearmonthselect2($event)" placeholder="{{skinbtnMonth}}월" interface="popover" multiple="false" class="care_chart_date">
+            <ion-option *ngFor="let days of monthdate2">{{days.day}}</ion-option>
+          </ion-select>
+        </ion-col>
       </ion-row>
       <ion-row>
         <ng-container *ngIf="totalusetime">
@@ -70,31 +72,42 @@
 
       <ion-row>
         <ion-col class="care_chart_all_rank">월간 전체 순위</ion-col>
-        <ion-col class="care_chart_rank">136위</ion-col>
+        <ng-container *ngIf="memberRanking">
+          <ng-container *ngFor="let rank of memberRanking">
+            <ng-container *ngIf="userData.email === rank.email">
+              <ion-col class="care_chart_rank">{{rank.rank}}위</ion-col>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!memberRanking">
+          <ion-col class="care_chart_rank">순위 없음</ion-col>
+        </ng-container>
       </ion-row>
       <ion-row>
         <ion-col class="care_chart_all_rank">30대 여성 순위</ion-col>
-        <ion-col class="care_chart_rank">27위</ion-col>
+        <ion-col class="care_chart_rank">알수 없음</ion-col>
       </ion-row>
       <ion-row>
         <ion-col class="care_chart_all_rank">총 누적 사용 시간</ion-col>
         <ng-container *ngIf="allusetime">
-        <ion-col class="care_chart_all_time">{{allusetime}}</ion-col>
+          <ion-col class="care_chart_all_time">{{allusetime}}</ion-col>
         </ng-container>
         <ng-container *ngIf="!allusetime">
-        <ion-col class="care_chart_all_time">사용기록 없음</ion-col>
+          <ion-col class="care_chart_all_time">사용기록 없음</ion-col>
         </ng-container>
       </ion-row>
 
       <ion-item>
-      <button ion-button  class="care_chart_btn"> 케어하기</button>
+        <button ion-button class="care_chart_btn"> 케어하기</button>
       </ion-item>
 
       <ion-row>
         <ion-col class="skin_chart">스킨 차트</ion-col>
-        <ion-col><ion-select (ionChange)="yearmonthselect($event)" placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover" [(ngModel)]="valueday.day"
-                              multiple="false" class="linechart_btn">
-        <ion-option *ngFor="let days of monthdate" >{{days.day}}</ion-option></ion-select></ion-col>
+        <ion-col>
+          <ion-select (ionChange)="yearmonthselect($event)" placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover" [(ngModel)]="valueday.day" multiple="false" class="linechart_btn">
+            <ion-option *ngFor="let days of monthdate">{{days.day}}</ion-option>
+          </ion-select>
+        </ion-col>
       </ion-row>
       <ion-row>
         <ion-col class="skin_chart_moisture">수분 지수</ion-col>
@@ -106,31 +119,36 @@
       </ion-row>
 
       <!-- Default Segment -->
-    <ion-segment class="segment_status" mode="ios" [(ngModel)]="segment_moisture" (ionChange)="segmentChanged($event)">
-      <ion-segment-button value="수분">
-        <ion-label >수분</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="유분">
-        <ion-label>유분</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+      <ion-segment class="segment_status" mode="ios" [(ngModel)]="segment_moisture" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="수분">
+          <ion-label>수분</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="유분">
+          <ion-label>유분</ion-label>
+        </ion-segment-button>
+      </ion-segment>
 
-    <ion-scroll class="segment_scroll swiper-no-swiping" scrollX="true">
-    <div class="chartWrapper">
-        <div class="chartAreaWrapper">
-    <canvas class="chart_js" [hidden]="segment_moisture === '유분'" id="moisture" #lineCanvas ></canvas>
-    <canvas class="chart_js" [hidden]="segment_moisture === '수분'" id="oil" #lineCanvas2 ></canvas>
-    <div class="chartWrapper_line"></div>
-    </div>
-    </div>
-    </ion-scroll>
+      <ion-scroll class="segment_scroll swiper-no-swiping" scrollX="true">
+        <div class="chartWrapper">
+          <div class="chartAreaWrapper">
+            <canvas class="chart_js" [hidden]="segment_moisture === '유분'" id="moisture" #lineCanvas></canvas>
+            <canvas class="chart_js" [hidden]="segment_moisture === '수분'" id="oil" #lineCanvas2></canvas>
+            <div class="chartWrapper_line"></div>
+          </div>
+        </div>
+      </ion-scroll>
 
-        <ion-col class="square_col"><div class="square"></div><div class="square_text">내 점수</div><div class="square2"></div><div class="square_text2">20대 평균 점수</div></ion-col>
+      <ion-col class="square_col">
+        <div class="square"></div>
+        <div class="square_text">내 점수</div>
+        <div class="square2"></div>
+        <div class="square_text2">20대 평균 점수</div>
+      </ion-col>
 
-        <p class="data">※&nbsp;2019.08.01 ~ 2019.08.31 까지 데이터 분석입니다.</p>
+      <p class="data">※&nbsp;2019.08.01 ~ 2019.08.31 까지 데이터 분석입니다.</p>
 
       <ion-item>
-      <button ion-button class="care_diagnose_btn" (click)="skin_measure()">측정하기</button>
+        <button ion-button class="care_diagnose_btn" (click)="skin_measure()">측정하기</button>
       </ion-item>
 
 
@@ -138,7 +156,8 @@
 
       <!-- 데이터가 없을 때 -->
       <ng-container>
-      <br><br><div class="solution_no_data">솔루션 정보가 없습니다.<br> 피부를 측정하여 맞춤 솔루션을 받아보세요. </div><br><br><br>
+        <br><br>
+        <div class="solution_no_data">솔루션 정보가 없습니다.<br> 피부를 측정하여 맞춤 솔루션을 받아보세요. </div><br><br><br>
       </ng-container>
 
 
@@ -176,7 +195,7 @@
       <!-- 유분지수가 낮을 때 -->
       <!-- <button ion-button style="font-size:14px" class="button_outline" outline> <span style="color:#5c59b6; padding-right:1%;">유분개선 </span> 추천상품 보기</button> -->
 
-    <br>
+      <br>
     </ion-slide>
 
 
@@ -188,74 +207,76 @@
 
       <!-- 챌린지 참여 이력이 없을떄  -->
       <ng-container>
-      <div class="carezone_no_data">활동 이력이 없습니다.</div>
+        <div class="carezone_no_data">활동 이력이 없습니다.</div>
       </ng-container>
 
       <!-- 챌린지 참여 이력이 있을떄  -->
 
       <ion-list *ngFor="let carezone of carezoneData; let i = index">
         <ng-container *ngIf="endmission[i] > currentDate">
-        <ion-row class="row">
-          <ion-col class="container2" (click)="mission_start(carezone._id)">
-            <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}'  />
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-9 class="imagetitle">
-            {{carezone.title}}
-          </ion-col>
-          <ion-col class="right_align">
-            <!-- {{missionCounter[i]}}/{{carezone.maxmember}} -->
+          <ion-row class="row">
+            <ion-col class="container2" (click)="mission_start(carezone._id)">
+              <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}' />
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-9 class="imagetitle">
+              {{carezone.title}}
+            </ion-col>
+            <ion-col class="right_align">
+              <!-- {{missionCounter[i]}}/{{carezone.maxmember}} -->
               113:47:34
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col class="sub">
-          {{carezone.body}}
-          </ion-col>
-        </ion-row>
-         <!-- 참가 인원 이미지 추가  -->
-        <br><ion-row class="user_image">
-          <ng-container>
-            <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
-            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-            <div class="user_sub"><span class="user_name">253</span>명이 참가 중입니다.</div>
-          </ng-container>
-        </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="sub">
+              {{carezone.body}}
+            </ion-col>
+          </ion-row>
+          <!-- 참가 인원 이미지 추가  -->
+          <br>
+          <ion-row class="user_image">
+            <ng-container>
+              <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
+              <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+              <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+              <div class="user_sub"><span class="user_name">253</span>명이 참가 중입니다.</div>
+            </ng-container>
+          </ion-row>
         </ng-container>
       </ion-list>
 
       <ion-list *ngFor="let carezone of carezoneData; let i = index">
         <ng-container *ngIf="endmission[i] < currentDate">
-        <ion-row class="row">
-          <ion-col class="container2" (click)="mission_start(carezone._id)">
-            <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}'  />
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-9 class="imagetitle">
-            {{carezone.title}}
-          </ion-col>
-          <ion-col class="right_align">
-            <!-- {{missionCounter[i]}}/{{carezone.maxmember}} -->
-            113:47:34
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col class="sub">
-          {{carezone.body}}
-          </ion-col>
-        </ion-row>
-        <!-- 참가 인원 이미지 추가  -->
-        <br><ion-row class="user_image">
-          <ng-container>
-            <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
-            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-            <div class="user_sub"><span class="user_name">253</span>명이 참가 중입니다.</div>
-          </ng-container>
-        </ion-row>
+          <ion-row class="row">
+            <ion-col class="container2" (click)="mission_start(carezone._id)">
+              <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}' />
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-9 class="imagetitle">
+              {{carezone.title}}
+            </ion-col>
+            <ion-col class="right_align">
+              <!-- {{missionCounter[i]}}/{{carezone.maxmember}} -->
+              113:47:34
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="sub">
+              {{carezone.body}}
+            </ion-col>
+          </ion-row>
+          <!-- 참가 인원 이미지 추가  -->
+          <br>
+          <ion-row class="user_image">
+            <ng-container>
+              <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
+              <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+              <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+              <div class="user_sub"><span class="user_name">253</span>명이 참가 중입니다.</div>
+            </ng-container>
+          </ion-row>
         </ng-container>
       </ion-list>
 
@@ -302,7 +323,7 @@
           </ng-container>
         </ng-container>
         <ng-container *ngIf="userData.email === beautynote.email && i === 5">
-        <button ion-button  class="beautynote_add">더보기</button>
+          <button ion-button class="beautynote_add">더보기</button>
         </ng-container>
       </ng-container>
 
@@ -343,7 +364,7 @@
           </ng-container>
         </ng-container>
         <ng-container *ngIf="userData.email === skinqna.email && i === 5">
-        <button ion-button class="skinqna_add">더보기</button>
+          <button ion-button class="skinqna_add">더보기</button>
         </ng-container>
       </ng-container>
     </ion-slide>

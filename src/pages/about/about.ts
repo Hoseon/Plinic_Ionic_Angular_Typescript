@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, ModalController, ActionSheetController, AlertController, LoadingController, Platform, ToastController, normalizeURL } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DomSanitizer } from '@angular/platform-browser';
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { ImageLoader } from 'ionic-image-loader';
 import { AuthService } from '../../providers/auth-service';
@@ -20,7 +19,7 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController, private imagesProvider: ImagesProvider, private _camera: Camera, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController,
     private alertCtrl: AlertController, public _DomSanitizer: DomSanitizer, public auth: AuthService,
-    private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader,
+    private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader,
   ) {
     this.reloadImages();
     //this.openBrowser("","플리닉");

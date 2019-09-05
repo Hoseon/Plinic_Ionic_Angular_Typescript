@@ -9,7 +9,6 @@ import { MyinfoPage } from '../myinfo/myinfo';
 import { CareZonePage } from '../care-zone/care-zone';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { ImageLoader } from 'ionic-image-loader';
 
@@ -25,7 +24,7 @@ export class TabsPage {
   tab4Root = CommunityPage;
   tab5Root = MyinfoPage;
 
-  constructor(public navParams: NavParams, private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, public platform: Platform) {
+  constructor(public navParams: NavParams, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, public platform: Platform) {
     if (this.navParams.get('home') === 'successHome') {
       this.tab1Root = SuccessHomePage;
     } else {

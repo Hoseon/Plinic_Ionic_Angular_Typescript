@@ -14,7 +14,6 @@ import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-missi
 import { CareZoneMissionStartPage } from '../care-zone-mission-start/care-zone-mission-start'
 import { CareZoneMissionDeadlineEndPage } from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end'
 import { DOCUMENT } from '@angular/common';
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { ImageLoader } from 'ionic-image-loader';
 
@@ -62,7 +61,7 @@ export class SuccessHomePage {
 
   constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController, public translateService: TranslateService, //public bluetoothle: BluetoothLE,
-    private iab: InAppBrowser, private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader
+    private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader
     , @Inject(DOCUMENT) document) {
     this.platform.ready().then((readySource) => {
       // this.showLoading();
@@ -124,18 +123,6 @@ export class SuccessHomePage {
       browser.close();
     })
 }
-
-inapp_test() {
-
-  const options: InAppBrowserOptions = {
-    zoom: 'no'
-  }
-  const browser = this.iab.create('http://naver.com/');
-}
-
-
-
-
 
   // ionViewDidEnter(){
   //   this.translateService.get('helloWorld').subscribe(

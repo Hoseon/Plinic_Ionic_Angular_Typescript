@@ -194,7 +194,7 @@ import { MultiPickerModule } from 'ion-multi-picker';
 
 
 import { FCM } from '@ionic-native/fcm';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+// import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 
 
@@ -440,7 +440,7 @@ export function getAuthHttp(http, storage) {
     BluetoothLE,
     //AnimationService,
     FCM,
-    InAppBrowser,
+    // InAppBrowser,
     ThemeableBrowser,
     CallNumber,
     LocalNotifications,
