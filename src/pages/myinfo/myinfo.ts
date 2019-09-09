@@ -15,6 +15,8 @@ import { SkinDiagnoseMoisturePage } from '../skin-diagnose-moisture/skin-diagnos
 import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture';
 import { SettingPage } from './setting/setting';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+
 
 
 
@@ -126,13 +128,26 @@ export class MyinfoPage {
   memberRanking: Array<any> = new Array<any>();
 
 
-  constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider, public modalCtrl: ModalController, public alertCtrl: AlertController,
+  constructor(
+    public noti: LocalNotifications,
+    public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider, public modalCtrl: ModalController, public alertCtrl: AlertController,
     public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController, private themeableBrowser: ThemeableBrowser, public viewCtrl: ViewController) {
 
     this.platform.ready().then((readySource) => {
       this.segment_moisture = "수분";
+      this.noti.on('click').subscribe((response) => { console.log(response); })
     });
 
+  }
+
+  test_noti() {
+    this.noti.schedule({
+    id: 1,
+    title: 'Plinic 알림',
+    text: '플리닉에서 알람이 발생하였습니다.',
+    data: { mydata: 'My hidden message this is' },
+    trigger : {at: new Date(new Date().getTime() + 5 * 1000)}
+  });
   }
 
   ionViewCanEnter() {
@@ -876,12 +891,12 @@ export class MyinfoPage {
         // this.update();
         this.memberRanking = new Array<any>();
         console.log(JSON.stringify(items));
-        for(let i = 0; i < items.length; i ++){
-            this.memberRanking[i] ={
-              email : items[i]._id,
-              sum : items[i].sum,
-              rank : i + 1
-            }
+        for (let i = 0; i < items.length; i++) {
+          this.memberRanking[i] = {
+            email: items[i]._id,
+            sum: items[i].sum,
+            rank: i + 1
+          }
         }
         console.log(this.memberRanking);
       }
