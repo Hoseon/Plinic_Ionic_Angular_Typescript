@@ -11,7 +11,7 @@ import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 // import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Naver } from 'ionic-plugin-naver';
-import { LocalNotifications } from '@ionic-native/local-notifications';
+// import { LocalNotifications } from '@ionic-native/local-notifications';
 import { FCM } from '@ionic-native/fcm';
 import { Transfer, TransferObject, FileUploadOptions } from '@ionic-native/transfer'
 import { BLE } from '@ionic-native/ble';
@@ -84,8 +84,9 @@ export class AuthService {
     public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController,
     // private facebook: Facebook,
     private google: GooglePlus,
-    public bluetoothle: BluetoothLE, public naver: Naver, private localNotifications: LocalNotifications,
-    // private fcm: FCM
+    public bluetoothle: BluetoothLE, public naver: Naver,
+    // private localNotifications: LocalNotifications,
+    private fcm: FCM
   ) {
 
     this.platform.ready().then(() => {
@@ -95,6 +96,7 @@ export class AuthService {
       //   this.push_token = token;
       //   console.log("push_token================="+ token);
       // })
+
     });
 
     let loginOptions = {};
@@ -169,13 +171,13 @@ export class AuthService {
 
 
   public get_qna_answer() {
-    this.localNotifications.schedule({
-      title: "plinic",
-      text: '문의하신 질문에 답글이 작성되었습니다.',
-      trigger: { at: new Date(new Date().getTime()) },
-      led: 'FF0000',
-      sound: null
-    });
+    // this.localNotifications.schedule({
+    //   title: "plinic",
+    //   text: '문의하신 질문에 답글이 작성되었습니다.',
+    //   trigger: { at: new Date(new Date().getTime()) },
+    //   led: 'FF0000',
+    //   sound: null
+    // });
 
     this.sendnotification("plinic", "문의하신 질문에 답글이 작성되었습니다.");
   }

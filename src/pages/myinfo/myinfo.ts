@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Platform, Slides, ModalController,
 import { ImagesProvider } from '../../providers/images/images';
 import { MyCommunityModifyPage } from '../community/my/my-community-modify/my-community-modify';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { AuthService } from '../../providers/auth-service';
 import { Chart } from 'chart.js';
 import { format } from 'date-fns';
@@ -15,7 +16,9 @@ import { SkinDiagnoseMoisturePage } from '../skin-diagnose-moisture/skin-diagnos
 import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture';
 import { SettingPage } from './setting/setting';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
-import { LocalNotifications } from '@ionic-native/local-notifications';
+// import { LocalNotifications } from '@ionic-native/local-notifications';
+import { FCM } from '@ionic-native/fcm';
+
 
 
 
@@ -127,27 +130,112 @@ export class MyinfoPage {
 
   memberRanking: Array<any> = new Array<any>();
 
+  pushToken: any;
+
 
   constructor(
-    public noti: LocalNotifications,
+    private http: Http,
+    private fcm: FCM,
+    // public noti: LocalNotifications,
     public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider, public modalCtrl: ModalController, public alertCtrl: AlertController,
     public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController, private themeableBrowser: ThemeableBrowser, public viewCtrl: ViewController) {
 
     this.platform.ready().then((readySource) => {
       this.segment_moisture = "수분";
-      this.noti.on('click').subscribe((response) => { console.log(response); })
+      // this.noti.on('click').subscribe((response) => { console.log(response); })
+
+
     });
 
   }
 
   test_noti() {
-    this.noti.schedule({
-    id: 1,
-    title: 'Plinic 알림',
-    text: '플리닉에서 알람이 발생하였습니다.',
-    data: { mydata: 'My hidden message this is' },
-    trigger : {at: new Date(new Date().getTime() + 5 * 1000)}
-  });
+
+    this.fcm.onTokenRefresh().subscribe(token => {
+      this.pushToken = token;
+      console.log("FCM iOS Refresh Token :::::::::::::" + token);
+    });
+    this.fcm.getToken().then(token => {
+      this.pushToken = token;
+      console.log("FCM iOS Token :::::::::::::" + token);
+    })
+
+
+
+    // let headers = new Headers();
+    // headers.append("Authorization", "key=AAAAawIHAO0:APA91bGzeUMWksc9U4kDEZZgVAHFUNdu1mFYu9UBXUyEZBJK4wdcxOoSAPLwFg3T8PWjnjhpG9M8bEHGz6aXhh50-kQEdZQRAITlHwSsk8iIkzSer9esaxYVgk6ozt1tGsB6R9qFYVUv");
+    // headers.append("Content-Type", "application/json");
+    //
+    // let options = new RequestOptions({ headers: headers });
+    //
+    // let body = {
+    //   "to": "f4gToYffMJI:APA91bFNSRoNJ19HPnMPwgoFII2YYM9De-IwvVRDfg2MDvZZvHO6Aeksu9u0ePUM_spfeYLMf-O1WEGKY4-Kbq47inMh9EvR9XCQnRPAWWF4ai0_hKXDgefjakHA-5hkkOEhM57RUOQc",
+    //   "priority": "high",
+    //   "notification": {
+    //     "body": "Plinic Background Message",
+    //     "title": "Plinic Title",
+    //     "badge": 1,
+    //     "sound": "default",
+    //     "click_action": "FCM_PLUGIN_ACTIVITY"
+    //   },
+    //   "data": {
+    //     "title": "FG Plinic Title",
+    //     "message": "Plinic Foreground Message"
+    //   }
+    // };
+    //
+    // console.log("qna : " + JSON.stringify(body));
+    // return this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(body), options)
+    //   .map(res => res.json())
+    //   .map(data => {
+    //     console.log(data);
+    //     return data;
+    //   });
+
+
+
+    //
+
+
+
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Authorization',
+        'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
+      let option = new RequestOptions({ headers: headers });
+      let payload = {
+          "to": this.pushToken,
+          "priority": "high",
+          "notification": {
+            "body": "Plinic Background Message",
+            "title": "Plinic Title",
+            "badge": 1,
+            "sound": "default",
+            "click_action": "FCM_PLUGIN_ACTIVITY"
+        },
+        //토큰
+      }
+      this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
+        .map(res => res.json())
+        .subscribe(data => {
+          console.log("dddddddddddddddddddddd=================" + JSON.stringify(data));
+        });
+
+    // this.fcm.onTokenRefresh().subscribe(token => {
+    //   console.log("FCM iOS Refresh Token :::::::::::::" + token);
+    // });
+    // this.fcm.getToken().then(token => {
+    //   console.log("FCM iOS Token :::::::::::::" + token);
+    // })
+    //
+
+    // this.noti.schedule({
+    //   id: 1,
+    //   title: 'Plinic 알림',
+    //   text: '플리닉에서 알람이 발생하였습니다.',
+    //   data: { mydata: 'My hidden message this is' },
+    //   trigger : {at: new Date(new Date().getTime() + 5 * 1000)}
+    // });
   }
 
   ionViewCanEnter() {

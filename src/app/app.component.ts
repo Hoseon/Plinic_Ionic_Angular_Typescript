@@ -40,27 +40,27 @@ export class MyApp {
 
     this.platform.ready().then(() => {
 
-      // if (this.platform.is('ios')) {
-      //   this.fcm.subscribeToTopic('all');
-      //
-      //   this.fcm.getToken().then(token => {
-      //     console.log("FCM iOS Token :::::::::::::" + token);
-      //   })
-      //
-      //   this.fcm.onNotification().subscribe(data => {
-      //     if (data.wasTapped) {
-      //       console.log("Received in background - iOS");
-      //     } else {
-      //       this.showAlert(JSON.stringify(data.aps.alert));
-      //       console.log("Received in foreground - iOS");
-      //     };
-      //   });
-      //
-      //   this.fcm.onTokenRefresh().subscribe(token => {
-      //     console.log("FCM iOS Refresh Token :::::::::::::" + token);
-      //   });
-      // }
-      //
+      if (this.platform.is('ios')) {
+        this.fcm.subscribeToTopic('plinic');
+
+        this.fcm.getToken().then(token => {
+          console.log("FCM iOS Token :::::::::::::" + token);
+        })
+
+        this.fcm.onNotification().subscribe((data) => {
+          if (data.wasTapped) {
+            console.log("Received in background - iOS");
+          } else {
+            this.showAlert(JSON.stringify(data.aps.alert));
+            console.log("Received in foreground - iOS");
+          };
+        });
+
+        this.fcm.onTokenRefresh().subscribe(token => {
+          console.log("FCM iOS Refresh Token :::::::::::::" + token);
+        });
+      }
+
       // if (this.platform.is('android')) {
       //   console.log("android platform");
       //   this.fcm.subscribeToTopic('all');
