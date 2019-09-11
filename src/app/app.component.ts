@@ -61,34 +61,35 @@ export class MyApp {
         });
       }
 
-      // if (this.platform.is('android')) {
-      //   console.log("android platform");
-      //   this.fcm.subscribeToTopic('all');
-      //
-      //   this.fcm.getToken().then(token => {
-      //     console.log("FCM Token :::::::::::::" + token);
-      //   })
-      //
-      //   this.fcm.onNotification().subscribe(data => {
-      //     console.log("FCM data ::::::::::::::" + JSON.stringify(data));
-      //     let alert = this.alertCtrl.create({
-      //       cssClass: 'push_alert',
-      //       title: data.title,
-      //       subTitle: data.message_name,
-      //       message: data.body,
-      //       buttons: [{
-      //         text: '확인'
-      //       }]
-      //     });
-      //     alert.present();
-      //     if (data.wasTapped) {
-      //     }
-      //   });
-      //
-      //   this.fcm.onTokenRefresh().subscribe(token => {
-      //     console.log("FCM Refresh Token :::::::::::::" + token);
-      //   });
-      // }
+
+      if (this.platform.is('android')) {
+        console.log("android platform");
+        this.fcm.subscribeToTopic('all');
+
+        this.fcm.getToken().then(token => {
+          console.log("FCM Token :::::::::::::" + token);
+        })
+
+        this.fcm.onNotification().subscribe(data => {
+          console.log("FCM data ::::::::::::::" + JSON.stringify(data));
+          let alert = this.alertCtrl.create({
+            cssClass: 'push_alert',
+            title: data.title,
+            subTitle: data.message_name,
+            message: data.body,
+            buttons: [{
+              text: '확인'
+            }]
+          });
+          alert.present();
+          if (data.wasTapped) {
+          }
+        });
+
+        this.fcm.onTokenRefresh().subscribe(token => {
+          console.log("FCM Refresh Token :::::::::::::" + token);
+        });
+      }
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
