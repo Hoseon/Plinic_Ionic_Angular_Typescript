@@ -5,6 +5,8 @@ import { RegisterPage} from '../../register/register';
 import {RegistercompletePage} from '../registercomplete/registercomplete';
 import { SelectSearchableComponent } from 'ionic-select-searchable';
 import { ImagesProvider } from '../../../providers/images/images';
+import { FCM } from '@ionic-native/fcm';
+
 
 /**
  * Generated class for the AddinfoPage page.
@@ -27,11 +29,29 @@ export class AddinfoPage{
   alertEvent : boolean = false;
   myImage: any;
   simpleColumns : any;
+  pushToken: any;
   // registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
-  registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday:'', skincomplaint: '', imagePath: '', user_jwt: 'true' };
+  registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday:'', skincomplaint: '', imagePath: '', user_jwt: 'true', pushtoken: '' };
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public navParams: NavParams
+  constructor(
+    private fcm: FCM,
+    private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public navParams: NavParams
   , public viewCtrl: ViewController, public platform: Platform, private imagesProvider: ImagesProvider) {
+
+    if (this.platform.is('ios')) {
+      this.fcm.getToken().then(token => {
+        this.pushToken = token;
+        console.log("FCM iOS Auth Token :::::::::::::" + token);
+        //사용자 개인 알림, 게시물 알림 등을 처리하기 위해서 각각 로그인한 사용자의 푸쉬 토큰을 개별로 사용자 정보(mongoDb)에 저장한다.
+      })
+    }
+
+
+    if (this.platform.is('android')) {
+      this.fcm.getToken().then(token => {
+        console.log("FCM Auth Token :::::::::::::" + token);
+      })
+    }
 
 
     // this.registerCredentials.birthday = '1970-06-15';
@@ -142,6 +162,9 @@ toggle(){
     // this.imagePath2 = this.imagePath2.replace(/^file:\/\//, '');
     this.registerCredentials.email = this.email;
     this.registerCredentials.password = this.password;
+
+    //2019-09-16 사용자 가입시 푸쉬토큰 저장 로직
+    this.registerCredentials.pushtoken = this.pushToken;
 
     //this.showPopup("this.registerCredentials.imagePath" , this.registerCredentials.imagePath);
     //this.showPopup("imagePath2" , this.imagePath2);

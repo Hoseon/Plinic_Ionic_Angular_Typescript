@@ -25,6 +25,8 @@ import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/s
 import { CommunityModifyPage } from '../community/community-modify/community-modify';
 import { CommunityPage } from '../community/community';
 import { Observable } from 'rxjs/Rx';
+import { FCM } from '@ionic-native/fcm';
+
 
 
 
@@ -165,12 +167,13 @@ export class HomePage {
   timeremaining: any;
   timeremaining2: any;
 
-  constructor(public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
+  constructor(private fcm: FCM, public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController,
     public translateService: TranslateService, public bluetoothle: BluetoothLE, public viewCtrl: ViewController,
     private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, public app: App, private callNumber: CallNumber
     , @Inject(DOCUMENT) document, public events: Events) {
     this.platform.ready().then((readySource) => {
+
       // this.currentDate = new Date().toISOString();
 
       // this.loadItems();
@@ -536,6 +539,8 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
+    this.auth.registerSnS(this.userData);
+
     // this.translateService.get('helloWorld').subscribe(
     //   hi => {
     //     let alert = this.alertCtrl.create({

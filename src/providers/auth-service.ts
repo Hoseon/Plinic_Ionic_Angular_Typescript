@@ -78,6 +78,7 @@ export class AuthService {
   pairedDevices: any;
   gettingDevices: Boolean;
   peripheral: any = {};
+  pushToken: any;
 
 
   constructor(private ble: BLE, private transfer: Transfer, private http: Http, public authHttp: AuthHttp, public storage: Storage,
@@ -90,6 +91,31 @@ export class AuthService {
   ) {
 
     this.platform.ready().then(() => {
+
+      if (this.platform.is('ios')) {
+        this.fcm.getToken().then(token => {
+          this.pushToken = token;
+          console.log("FCM iOS Auth Token :::::::::::::" + token);
+          //사용자 개인 알림, 게시물 알림 등을 처리하기 위해서 각각 로그인한 사용자의 푸쉬 토큰을 개별로 사용자 정보(mongoDb)에 저장한다.
+        })
+
+        this.fcm.onTokenRefresh().subscribe(token => {
+          this.pushToken = token;
+          console.log("FCM iOS Auth Refresh Token :::::::::::::" + token);
+        });
+      }
+
+
+      if (this.platform.is('android')) {
+        this.fcm.getToken().then(token => {
+          console.log("FCM Auth Token :::::::::::::" + token);
+        })
+        this.fcm.onTokenRefresh().subscribe(token => {
+          console.log("FCM Auth Refresh Token :::::::::::::" + token);
+        });
+      }
+
+
       this.checkToken();
       this.bluetooth_connect();
       // this.fcm.getToken().then(token => {
@@ -233,6 +259,7 @@ export class AuthService {
       .then(response => {
         this.userData = {
           accessToken: response['accessToken'],
+          pushtoken : this.pushToken,
           from: 'naver'
         }
         this.naver.requestMe()
@@ -325,6 +352,7 @@ export class AuthService {
           //profile_image: res['profile_image'],
           thumbnail_image: res['imageUrl'],
           //use_email: res['has_email'],
+          pushtoken : this.pushToken,
           from: 'google'
         };
         this.storage.set('userData', this.userData);
@@ -352,6 +380,7 @@ export class AuthService {
 
   public kakao_login() {
     this._kakaoCordovaSDK.login(AuthTypes.AuthTypeTalk).then((res) => {
+      console.log("카카오 로그인 성공 ::::::::::::::");
       this.userData = {
         accessToken: res.accessToken,
         id: res.id,
@@ -363,6 +392,7 @@ export class AuthService {
         profile_image: res.properties['profile_image'],
         thumbnail_image: res.properties['thumbnail_image'],
         use_email: res.kakao_account['has_email'],
+        pushtoken : this.pushToken,
         from: 'kakao'
       };
       this.currentUser = res.properties['nickname'];
@@ -400,6 +430,7 @@ export class AuthService {
 
   // Login a user with email + password and store the JWT
   public login(credentials) {
+    console.log("매번 로그인이 되나요??????");
     return this.http.post(CONFIG.apiUrl + 'api/login', credentials)
       .map(response => response.json())
       .map(data => {
@@ -943,6 +974,43 @@ export class AuthService {
     // __proto__: Object
   }
 
+  // Register a new user at our API
+  public registerSnS(credentials) {
+    console.log("registerSnS ::::::::::::::::::: " + JSON.stringify(credentials));
+    return this.http.post(CONFIG.apiUrl + 'api/register', credentials)
+      .map(response => response.json())
+      .map(data => {
+        console.log("SNS Login Sucess!! ::::::: " + JSON.stringify(data));
+        // this.userData = {
+        //   //accessToken: data.accessToken,
+        //   //id: data.id,
+        //   //age_range: data.kakao_account['age_range'],
+        //   birthday: data.birthday,
+        //   email: data.email,
+        //   gender: data.gender,
+        //   nickname: data.name,
+        //   // profile_image: data.properties['profile_image'],
+        //   // thumbnail_image: data.properties['thumbnail_image'],
+        //   // use_email: data.kakao_account['has_email'],
+        //   from: 'SNS'
+        // };
+        // this.setCurrentUser(data.token);
+        // this.authenticationState.next(true);
+        // return this.userData;
+      });
+    // birthday: "2019-07-25"
+    // country: "Andorra"
+    // email: "wjddn0313@naver.com"
+    // gender: "남성"
+    // name: "이정우"
+    // password: "$2a$10$41SKpY.5gQeMz/XviTQMtupl3tCb1eS8g6HKLDNj9Tme08xOYjyXW"
+    // skincomplaint: "복합성"
+    // __v: 0
+    // _id: "5cc143f3eed1e1474303a58d"
+    // __proto__: Object
+
+  }
+
   //The route to the pulbic information, not used currently
   public getPublicInformation() {
     return this.http.get(CONFIG.apiUrl + 'api/special')
@@ -960,6 +1028,7 @@ export class AuthService {
     this.userToken = token;
     this.currentUser = new User(this.jwtHelper.decodeToken(this.userToken).email, this.jwtHelper.decodeToken(this.userToken).name);
     console.log(this.currentUser);
+    console.log("토큰정보 토큰정보 토큰정보 토큰정보 토큰정보" +token);
     return this.storage.set('userData', token);
   }
 
@@ -1042,8 +1111,6 @@ export class AuthService {
     return this.http.get(CONFIG.apiUrl + 'carezone/ranktotalusetime/' + date)
       .map(response => response.json());
   }
-
-  ranktotalusetime
 
   public getSkinScore(email) {
     return this.http.get(CONFIG.apiUrl + 'userskinscore/' + email)

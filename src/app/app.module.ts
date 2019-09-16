@@ -200,7 +200,7 @@ import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 
 //콜센터 연결
 import { CallNumber } from '@ionic-native/call-number';
-// import { LocalNotifications } from '@ionic-native/local-notifications';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 //문진표
@@ -443,7 +443,7 @@ export function getAuthHttp(http, storage) {
     // InAppBrowser,
     ThemeableBrowser,
     CallNumber,
-    // LocalNotifications,
+    LocalNotifications,
     //  AdMobFree,
     BLE,
     // TimerComponent,

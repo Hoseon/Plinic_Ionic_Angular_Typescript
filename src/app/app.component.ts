@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, AlertController } from 'ionic-angular';
+import { Platform, AlertController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
@@ -18,10 +18,12 @@ import { timer } from 'rxjs/observable/timer';
 export class MyApp {
   rootPage: any = LoginPage;
 
-   showSplash = true;
+  showSplash = true;
 
 
-  constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
+  constructor(
+    public toastCtrl: ToastController,
+    private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
     private screenOrientation: ScreenOrientation, public translateService: TranslateService,
     // private imageLoaderConfig: ImageLoaderConfig,
     private fcm: FCM, private alertCtrl: AlertController) {
@@ -51,7 +53,14 @@ export class MyApp {
           if (data.wasTapped) {
             console.log("Received in background - iOS");
           } else {
-            this.showAlert(JSON.stringify(data.aps.alert));
+            const toast = this.toastCtrl.create({
+              showCloseButton : true,
+              closeButtonText: 'OK',
+              message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.body + '\n' + data.aps.alert.title,
+              duration: 10000
+            });
+            toast.present();
+            // this.showAlert(JSON.stringify(data.aps.alert));
             console.log("Received in foreground - iOS");
           };
         });
@@ -109,10 +118,10 @@ export class MyApp {
       }
       if (this.platform.is('cordova')) {
         this.splashScreen.hide();
-        if(this.platform.is('ios)')){
-        timer(3000).subscribe(() => this.showSplash = false)
+        if (this.platform.is('ios)')) {
+          timer(3000).subscribe(() => this.showSplash = false)
         }
-        else{
+        else {
           timer(3000).subscribe(() => this.showSplash = false)
         }
       } else {

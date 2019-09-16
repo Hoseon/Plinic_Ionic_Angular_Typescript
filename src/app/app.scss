@@ -1027,3 +1027,8 @@ scroll-content {
   border-bottom: 0px;
   top:0px;
 }
+
+.toast-message {
+  white-space: pre;
+  overflow: hidden !important;
+}

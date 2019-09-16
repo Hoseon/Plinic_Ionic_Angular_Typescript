@@ -16,7 +16,7 @@ import { SkinDiagnoseMoisturePage } from '../skin-diagnose-moisture/skin-diagnos
 import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture';
 import { SettingPage } from './setting/setting';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
-// import { LocalNotifications } from '@ionic-native/local-notifications';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 import { FCM } from '@ionic-native/fcm';
 
 
@@ -136,7 +136,7 @@ export class MyinfoPage {
   constructor(
     private http: Http,
     private fcm: FCM,
-    // public noti: LocalNotifications,
+    public noti: LocalNotifications,
     public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider, public modalCtrl: ModalController, public alertCtrl: AlertController,
     public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController, private themeableBrowser: ThemeableBrowser, public viewCtrl: ViewController) {
 
@@ -145,20 +145,29 @@ export class MyinfoPage {
       // this.noti.on('click').subscribe((response) => { console.log(response); })
 
 
+      this.fcm.onTokenRefresh().subscribe(token => {
+        this.pushToken = token;
+        console.log("FCM iOS Refresh Token :::::::::::::" + token);
+      });
+      this.fcm.getToken().then(token => {
+        this.pushToken = token;
+        console.log("FCM iOS Token :::::::::::::" + token);
+      })
+
     });
 
   }
 
   test_noti() {
 
-    this.fcm.onTokenRefresh().subscribe(token => {
-      this.pushToken = token;
-      console.log("FCM iOS Refresh Token :::::::::::::" + token);
-    });
-    this.fcm.getToken().then(token => {
-      this.pushToken = token;
-      console.log("FCM iOS Token :::::::::::::" + token);
-    })
+    // this.fcm.onTokenRefresh().subscribe(token => {
+    //   this.pushToken = token;
+    //   console.log("FCM iOS Refresh Token :::::::::::::" + token);
+    // });
+    // this.fcm.getToken().then(token => {
+    //   this.pushToken = token;
+    //   console.log("FCM iOS Token :::::::::::::" + token);
+    // })
 
 
 
@@ -233,6 +242,7 @@ export class MyinfoPage {
     //   id: 1,
     //   title: 'Plinic 알림',
     //   text: '플리닉에서 알람이 발생하였습니다.',
+    //   foreground: true,
     //   data: { mydata: 'My hidden message this is' },
     //   trigger : {at: new Date(new Date().getTime() + 5 * 1000)}
     // });
