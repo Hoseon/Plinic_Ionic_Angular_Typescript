@@ -49,6 +49,7 @@ export class AddinfoPage{
 
     if (this.platform.is('android')) {
       this.fcm.getToken().then(token => {
+        this.pushToken = token;
         console.log("FCM Auth Token :::::::::::::" + token);
       })
     }
