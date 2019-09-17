@@ -1,4 +1,5 @@
 import { Component, ViewChild, Directive, HostListener, ElementRef } from '@angular/core';
+import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { IonicPage, NavController, NavParams, Platform, ViewController, PopoverController, LoadingController, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { PopoverPage } from './popover/popover';
 import { ImagesProvider } from '../../../providers/images/images';
@@ -57,7 +58,7 @@ export class CommunityModifyPage {
   browserRef: any;
 
 
-  constructor(private fb: Facebook, private socialSharing: SocialSharing, private instagram: Instagram, public _kakaoCordovaSDK: KakaoCordovaSDK, private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController,
+  constructor(private http: Http, private fb: Facebook, private socialSharing: SocialSharing, private instagram: Instagram, public _kakaoCordovaSDK: KakaoCordovaSDK, private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController,
     public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
     public viewCtrl: ViewController, public popoverCtrl: PopoverController, public element: ElementRef, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
     this.platform.ready().then((readySource) => {
@@ -602,6 +603,7 @@ export class CommunityModifyPage {
 
   public beautyNoteOneLoad(id) {
     this.images.beautyNoteOneLoad(id).subscribe(data => {
+      console.log("푸쉬를 잘 가져 왔는가........................" + JSON.stringify(data));
       this.beautyNoteOneLoadData = data;
       this.tags = data.tags.split(",");
       for (var i = 0; i < data.likeuser.length; i++) {
@@ -716,6 +718,34 @@ export class CommunityModifyPage {
       });
     }
 
+
+    //2019-09-17 댓글 등록 시 본문 게시자에게 푸쉬 알림 전송
+    //자신이 작성한 글에는 댓글 알람이 가지 않도록 한다.
+    if (this.beautyNoteOneLoadData.email !== this.userData.email) {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Authorization',
+        'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
+      let option = new RequestOptions({ headers: headers });
+      let payload = {
+        // "to": this.pushToken,
+        "to": this.beautyNoteOneLoadData.pushtoken,
+        "priority": "high",
+        "notification": {
+          "body": this.registerReply.comment,
+          "title": this.beautyNoteOneLoadData.title,
+          // "badge": 1,
+          "sound": "default",
+          "click_action": "FCM_PLUGIN_ACTIVITY"
+        },
+        //토큰
+      }
+      this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
+        .map(res => res.json())
+        .subscribe(data => {
+          console.log("dddddddddddddddddddddd=================" + JSON.stringify(data));
+        });
+    }
     // this.auth.replySave(this.userData, this.registerReply).subscribe(data => {
     //   if (data !== "") {
     //     let alert2 = this.alertCtrl.create({
@@ -1029,7 +1059,7 @@ export class CommunityModifyPage {
       };
     }
 
-    if (mode === 'qna'){
+    if (mode === 'qna') {
       var feedContent: KLContentObject = {
         title: loadData.title,
         link: feedLink,
@@ -1077,7 +1107,7 @@ export class CommunityModifyPage {
     // .then(()=>{console.log("페이스북 공유 성공")})
     // .catch(()=>{console.log("페이스북 공유 실패")});
     console.log("데이터 Id : " + loaddata._id);
-    if(mode === 'note'){
+    if (mode === 'note') {
       this.socialSharing.shareViaFacebook("Plinic", 'http://plinic.cafe24app.com/beautynoteimage/' + loaddata._id, "http://g1p.co.kr").then(res => {
         console.log("페이스북 공유 성공 : " + res);
       }, err => {
@@ -1090,7 +1120,7 @@ export class CommunityModifyPage {
         }
       });
     }
-    if(mode === 'qna'){
+    if (mode === 'qna') {
       this.socialSharing.shareViaFacebook("Plinic", 'http://plinic.cafe24app.com/skinqnaimage/' + loaddata._id, "http://g1p.co.kr").then(res => {
         console.log("페이스북 공유 성공 : " + res);
       }, err => {

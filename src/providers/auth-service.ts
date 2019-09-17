@@ -108,9 +108,11 @@ export class AuthService {
 
       if (this.platform.is('android')) {
         this.fcm.getToken().then(token => {
+          this.pushToken = token;
           console.log("FCM Auth Token :::::::::::::" + token);
         })
         this.fcm.onTokenRefresh().subscribe(token => {
+          this.pushToken = token;
           console.log("FCM Auth Refresh Token :::::::::::::" + token);
         });
       }
@@ -395,9 +397,14 @@ export class AuthService {
         pushtoken : this.pushToken,
         from: 'kakao'
       };
+      this.registerSnS(this.userData).subscribe(data =>{
+        console.log("성공임");
+      }, error =>{
+        console.log("에러임");
+      })
       this.currentUser = res.properties['nickname'];
       this.storage.set('userData', this.userData);
-      console.log(JSON.stringify(this.userData))
+      // console.log(JSON.stringify(this.userData))
       this.authenticationState.next(true);
       return this.userData;
 
@@ -430,7 +437,6 @@ export class AuthService {
 
   // Login a user with email + password and store the JWT
   public login(credentials) {
-    console.log("매번 로그인이 되나요??????");
     return this.http.post(CONFIG.apiUrl + 'api/login', credentials)
       .map(response => response.json())
       .map(data => {
@@ -653,6 +659,7 @@ export class AuthService {
       select: content.select,
       title: content.title,
       contents: content.contents,
+      pushtoken: this.pushToken,
       tags: content.tags,
     };
 
@@ -674,6 +681,7 @@ export class AuthService {
       title: content.title,
       contents: content.contents,
       tags: content.tags,
+      pushtoken : this.pushToken,
     };
 
     let url = CONFIG.apiUrl + 'beautynote';
@@ -688,6 +696,7 @@ export class AuthService {
         'select': body.select,
         'title': body.title,
         'contents': body.contents,
+        'pushtoken' : body.pushtoken,
         'tags': JSON.stringify(body.tags),
       }
     };
@@ -975,39 +984,32 @@ export class AuthService {
   }
 
   // Register a new user at our API
-  public registerSnS(credentials) {
-    console.log("registerSnS ::::::::::::::::::: " + JSON.stringify(credentials));
-    return this.http.post(CONFIG.apiUrl + 'api/register', credentials)
+  public registerSnS(userData) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: userData.email,
+      name : userData.nickname,
+      gender: userData.gender,
+      birthday: userData.birthday,
+      pushtoken: this.pushToken,
+      user_jwt : false,
+      imagePath : userData.profile_image,
+      age_range : userData.age_range,
+      from : userData.from,
+      // score: 'bbbbbb',
+      // saveDate: this.currentDate,
+    };
+
+    // console.log("skinChartSave Data : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/registersns', JSON.stringify(body), { headers: headers })
       .map(response => response.json())
       .map(data => {
-        console.log("SNS Login Sucess!! ::::::: " + JSON.stringify(data));
-        // this.userData = {
-        //   //accessToken: data.accessToken,
-        //   //id: data.id,
-        //   //age_range: data.kakao_account['age_range'],
-        //   birthday: data.birthday,
-        //   email: data.email,
-        //   gender: data.gender,
-        //   nickname: data.name,
-        //   // profile_image: data.properties['profile_image'],
-        //   // thumbnail_image: data.properties['thumbnail_image'],
-        //   // use_email: data.kakao_account['has_email'],
-        //   from: 'SNS'
-        // };
-        // this.setCurrentUser(data.token);
-        // this.authenticationState.next(true);
-        // return this.userData;
+        console.log(data);
+        return data;
       });
-    // birthday: "2019-07-25"
-    // country: "Andorra"
-    // email: "wjddn0313@naver.com"
-    // gender: "남성"
-    // name: "이정우"
-    // password: "$2a$10$41SKpY.5gQeMz/XviTQMtupl3tCb1eS8g6HKLDNj9Tme08xOYjyXW"
-    // skincomplaint: "복합성"
-    // __v: 0
-    // _id: "5cc143f3eed1e1474303a58d"
-    // __proto__: Object
 
   }
 

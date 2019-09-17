@@ -17,7 +17,7 @@ import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/s
 import { SettingPage } from './setting/setting';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-import { FCM } from '@ionic-native/fcm';
+// import { FCM } from '@ionic-native/fcm';
 
 
 
@@ -130,12 +130,12 @@ export class MyinfoPage {
 
   memberRanking: Array<any> = new Array<any>();
 
-  pushToken: any;
+  // pushToken: any;
 
 
   constructor(
     private http: Http,
-    private fcm: FCM,
+    // private fcm: FCM,
     public noti: LocalNotifications,
     public nav: NavController, public navParams: NavParams, public platform: Platform, private images: ImagesProvider, public modalCtrl: ModalController, public alertCtrl: AlertController,
     public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController, private themeableBrowser: ThemeableBrowser, public viewCtrl: ViewController) {
@@ -145,20 +145,26 @@ export class MyinfoPage {
       // this.noti.on('click').subscribe((response) => { console.log(response); })
 
 
-      this.fcm.onTokenRefresh().subscribe(token => {
-        this.pushToken = token;
-        console.log("FCM iOS Refresh Token :::::::::::::" + token);
-      });
-      this.fcm.getToken().then(token => {
-        this.pushToken = token;
-        console.log("FCM iOS Token :::::::::::::" + token);
-      })
+      // this.fcm.onTokenRefresh().subscribe(token => {
+      //   this.pushToken = token;
+      //   console.log("FCM iOS Refresh Token :::::::::::::" + token);
+      // });
+      // this.fcm.getToken().then(token => {
+      //   this.pushToken = token;
+      //   console.log("FCM iOS Token :::::::::::::" + token);
+      // })
 
     });
 
   }
 
   test_noti() {
+
+    // this.auth.registerSnS(this.userData).subscribe(data =>{
+    //   console.log("성공임");
+    // }, error =>{
+    //   console.log("에러임");
+    // })
 
     // this.fcm.onTokenRefresh().subscribe(token => {
     //   this.pushToken = token;
@@ -200,25 +206,26 @@ export class MyinfoPage {
     //     console.log(data);
     //     return data;
     //   });
-
+    //
 
 
     //
 
 
-
+      console.log("푸쉬 토큰 발송 값 : " + this.userData.pushtoken);
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('Authorization',
         'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
       let option = new RequestOptions({ headers: headers });
       let payload = {
-          "to": this.pushToken,
+        // "to": this.pushToken,
+          "to": this.userData.pushtoken,
           "priority": "high",
           "notification": {
             "body": "Plinic Background Message",
             "title": "Plinic Title",
-            "badge": 1,
+            // "badge": 1,
             "sound": "default",
             "click_action": "FCM_PLUGIN_ACTIVITY"
         },
@@ -1013,7 +1020,7 @@ export class MyinfoPage {
 
   public loadItems() {
     this.auth.getUserStorage().then(items => {
-
+      console.log("토큰 값을 가져 왔는가?" + JSON.stringify(items));
       if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
         this.userData = {
           accessToken: items.accessToken,
@@ -1025,6 +1032,7 @@ export class MyinfoPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          pushtoken : items.pushtoken,
           from: items.from,
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
@@ -1043,8 +1051,10 @@ export class MyinfoPage {
           nickname: this.jwtHelper.decodeToken(items).name,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          pushtoken: this.jwtHelper.decodeToken(items).pushtoken,
           from: 'plinic',
         };
+        console.log("그냥 유저 데이터는?? ??? ???  " + JSON.stringify(this.userData));
       }
 
       // this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
