@@ -82,24 +82,24 @@ export class MyApp {
 
         this.fcm.onNotification().subscribe(data => {
           // console.log("FCM data ::::::::::::::" + JSON.stringify(data));
-          // const toast = this.toastCtrl.create({
-          //   showCloseButton : true,
-          //   closeButtonText: 'OK',
-          //   message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
-          //   duration: 10000
-          // });
-          // toast.present();
-          //
-          let alert = this.alertCtrl.create({
-            cssClass: 'push_alert',
-            title: data.title,
-            subTitle: data.message_name,
-            message: data.body,
-            buttons: [{
-              text: '확인'
-            }]
+          const toast = this.toastCtrl.create({
+            showCloseButton : true,
+            closeButtonText: 'OK',
+            message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
+            duration: 10000
           });
-          alert.present();
+          toast.present();
+
+          // let alert = this.alertCtrl.create({
+          //   cssClass: 'push_alert',
+          //   title: '댓글알림',
+          //   subTitle: data.message_name,
+          //   message: "작성한 게시물에 댓글이 등록되었습니다. <br>" + data.title +'<br>' + data.body,
+          //   buttons: [{
+          //     text: '확인'
+          //   }]
+          // });
+          // alert.present();
           if (data.wasTapped) {
           }
         });
