@@ -85,7 +85,7 @@ export class MyApp {
           const toast = this.toastCtrl.create({
             showCloseButton : true,
             closeButtonText: 'OK',
-            message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
+            message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.title + '\n' + data.body,
             duration: 10000
           });
           toast.present();
