@@ -740,7 +740,7 @@ export class CommunityModifyPage {
           "title": '뷰티노트 댓글이 작성되었습니다.',
           "body": this.beautyNoteOneLoadData.title,
           "sound": "default",
-          "click_action": '--------------------------------------------------------------',
+          "click_action": 'FCM_PLUGIN_ACTIVITY',
         },
         //토큰
       }
@@ -904,7 +904,7 @@ export class CommunityModifyPage {
           "title": '피부고민 댓글이 작성되었습니다.',
           "body": this.skinQnaOneLoadData.title,
           "sound": "default",
-          "click_action": '--------------------------------------------------------------',
+          "click_action": 'FCM_PLUGIN_ACTIVITY',
         },
         //토큰
       }
