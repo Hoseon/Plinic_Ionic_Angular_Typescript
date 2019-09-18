@@ -272,7 +272,6 @@ export class HomePage {
         }
       });
 
-
       if (this.platform.is('ios')) {
         this.fcm.subscribeToTopic('plinic');
 
@@ -310,8 +309,6 @@ export class HomePage {
       }
 
 
-
-
       if (this.platform.is('android')) {
         console.log("android platform");
         this.fcm.subscribeToTopic('all');
@@ -321,7 +318,7 @@ export class HomePage {
         })
 
         this.fcm.onNotification().subscribe(data => {
-          // console.log("FCM data ::::::::::::::" + JSON.stringify(data));
+          console.log("FCM data ::::::::::::::" + JSON.stringify(data));
           const toast = this.toastCtrl.create({
             showCloseButton: true,
             closeButtonText: 'OK',
@@ -341,15 +338,15 @@ export class HomePage {
           // });
           // alert.present();
           if (data.wasTapped) {
-            if (data.mode === 'qna' || data.mode === 'note') {
-              this.nav.parent.select(3).then(() => {
-                let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
-                myModal.onDidDismiss(data => {
-                  this.ionViewWillEnter();
-                });
-                myModal.present();
+            // if (data.mode === 'qna' || data.mode === 'note') {
+            this.nav.parent.select(3).then(() => {
+              let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
+              myModal.onDidDismiss(data => {
+                this.ionViewWillEnter();
               });
-            }
+              myModal.present();
+            });
+            // }
           }
         });
 
@@ -632,7 +629,6 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
-    console.log("카카오 로그인을 위한 " + this.userData);
     // this.auth.registerSnS();
 
     // this.translateService.get('helloWorld').subscribe(

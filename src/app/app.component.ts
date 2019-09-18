@@ -72,42 +72,42 @@ export class MyApp {
       // }
 
 
-      if (this.platform.is('android')) {
-        console.log("android platform");
-        this.fcm.subscribeToTopic('all');
-
-        this.fcm.getToken().then(token => {
-          console.log("FCM Token :::::::::::::" + token);
-        })
-
-        this.fcm.onNotification().subscribe(data => {
-          // console.log("FCM data ::::::::::::::" + JSON.stringify(data));
-          const toast = this.toastCtrl.create({
-            showCloseButton : true,
-            closeButtonText: 'OK',
-            message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.title + '\n' + data.body,
-            duration: 10000
-          });
-          toast.present();
-
-          // let alert = this.alertCtrl.create({
-          //   cssClass: 'push_alert',
-          //   title: '댓글알림',
-          //   subTitle: data.message_name,
-          //   message: "작성한 게시물에 댓글이 등록되었습니다. <br>" + data.title +'<br>' + data.body,
-          //   buttons: [{
-          //     text: '확인'
-          //   }]
-          // });
-          // alert.present();
-          if (data.wasTapped) {
-          }
-        });
-
-        this.fcm.onTokenRefresh().subscribe(token => {
-          console.log("FCM Refresh Token :::::::::::::" + token);
-        });
-      }
+      // if (this.platform.is('android')) {
+      //   console.log("android platform");
+      //   this.fcm.subscribeToTopic('all');
+      //
+      //   this.fcm.getToken().then(token => {
+      //     console.log("FCM Token :::::::::::::" + token);
+      //   })
+      //
+      //   this.fcm.onNotification().subscribe(data => {
+      //     // console.log("FCM data ::::::::::::::" + JSON.stringify(data));
+      //     const toast = this.toastCtrl.create({
+      //       showCloseButton : true,
+      //       closeButtonText: 'OK',
+      //       message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.title + '\n' + data.body,
+      //       duration: 10000
+      //     });
+      //     toast.present();
+      //
+      //     // let alert = this.alertCtrl.create({
+      //     //   cssClass: 'push_alert',
+      //     //   title: '댓글알림',
+      //     //   subTitle: data.message_name,
+      //     //   message: "작성한 게시물에 댓글이 등록되었습니다. <br>" + data.title +'<br>' + data.body,
+      //     //   buttons: [{
+      //     //     text: '확인'
+      //     //   }]
+      //     // });
+      //     // alert.present();
+      //     if (data.wasTapped) {
+      //     }
+      //   });
+      //
+      //   this.fcm.onTokenRefresh().subscribe(token => {
+      //     console.log("FCM Refresh Token :::::::::::::" + token);
+      //   });
+      // }
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
