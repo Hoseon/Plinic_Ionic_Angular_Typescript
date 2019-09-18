@@ -43,33 +43,33 @@ export class MyApp {
 
     this.platform.ready().then(() => {
 
-      if (this.platform.is('ios')) {
-        this.fcm.subscribeToTopic('plinic');
-
-        this.fcm.getToken().then(token => {
-          console.log("FCM iOS Token :::::::::::::" + token);
-        })
-
-        this.fcm.onNotification().subscribe((data) => {
-          if (data.wasTapped) {
-            console.log("Received in background - iOS");
-          } else {
-            const toast = this.toastCtrl.create({
-              showCloseButton : true,
-              closeButtonText: 'OK',
-              message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
-              duration: 10000
-            });
-            toast.present();
-            // this.showAlert(JSON.stringify(data.aps.alert));
-            console.log("Received in foreground - iOS");
-          };
-        });
-
-        this.fcm.onTokenRefresh().subscribe(token => {
-          console.log("FCM iOS Refresh Token :::::::::::::" + token);
-        });
-      }
+      // if (this.platform.is('ios')) {
+      //   this.fcm.subscribeToTopic('plinic');
+      //
+      //   this.fcm.getToken().then(token => {
+      //     console.log("FCM iOS Token :::::::::::::" + token);
+      //   })
+      //
+      //   this.fcm.onNotification().subscribe((data) => {
+      //     if (data.wasTapped) {
+      //       console.log("Received in  ------------------------------------------------------------------------------------ background - iOS");
+      //     } else {
+      //       const toast = this.toastCtrl.create({
+      //         showCloseButton : true,
+      //         closeButtonText: 'OK',
+      //         message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
+      //         duration: 10000
+      //       });
+      //       toast.present();
+      //       // this.showAlert(JSON.stringify(data.aps.alert));
+      //       console.log("Received in foreground - iOS");
+      //     };
+      //   });
+      //
+      //   this.fcm.onTokenRefresh().subscribe(token => {
+      //     console.log("FCM iOS Refresh Token :::::::::::::" + token);
+      //   });
+      // }
 
 
       if (this.platform.is('android')) {

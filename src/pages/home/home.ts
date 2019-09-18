@@ -1,6 +1,6 @@
 import { IonicPage, App } from 'ionic-angular';
 import { Component, Inject } from '@angular/core';
-import { NavController, Platform, AlertController, ModalController, Loading, LoadingController, ViewController, Events } from 'ionic-angular';
+import { NavController, Platform, AlertController, ModalController, Loading, LoadingController, ViewController, Events, ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
@@ -25,7 +25,7 @@ import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/s
 import { CommunityModifyPage } from '../community/community-modify/community-modify';
 import { CommunityPage } from '../community/community';
 import { Observable } from 'rxjs/Rx';
-// import { FCM } from '@ionic-native/fcm';
+import { FCM } from '@ionic-native/fcm';
 
 
 
@@ -167,8 +167,11 @@ export class HomePage {
   timeremaining: any;
   timeremaining2: any;
 
+
+
   constructor(
-    // private fcm: FCM,
+    private fcm: FCM,
+    public toastCtrl: ToastController,
     public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController,
     public translateService: TranslateService, public bluetoothle: BluetoothLE, public viewCtrl: ViewController,
@@ -268,6 +271,94 @@ export class HomePage {
           }
         }
       });
+
+
+      if (this.platform.is('ios')) {
+        this.fcm.subscribeToTopic('plinic');
+
+        this.fcm.getToken().then(token => {
+          console.log("FCM iOS Token :::::::::::::" + token);
+        })
+
+        this.fcm.onNotification().subscribe((data) => {
+          if (data.wasTapped) {
+            if (data.mode === 'qna' || data.mode === 'note') {
+              this.nav.parent.select(3).then(() => {
+                let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
+                myModal.onDidDismiss(data => {
+                  this.ionViewWillEnter();
+                });
+                myModal.present();
+              });
+            }
+          } else {
+            const toast = this.toastCtrl.create({
+              showCloseButton: true,
+              closeButtonText: 'OK',
+              message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
+              duration: 10000
+            });
+            toast.present();
+            // this.showAlert(JSON.stringify(data.aps.alert));
+            console.log("Received in foreground - iOS");
+          };
+        });
+
+        this.fcm.onTokenRefresh().subscribe(token => {
+          console.log("FCM iOS Refresh Token :::::::::::::" + token);
+        });
+      }
+
+
+
+
+      if (this.platform.is('android')) {
+        console.log("android platform");
+        this.fcm.subscribeToTopic('all');
+
+        this.fcm.getToken().then(token => {
+          console.log("FCM Token :::::::::::::" + token);
+        })
+
+        this.fcm.onNotification().subscribe(data => {
+          // console.log("FCM data ::::::::::::::" + JSON.stringify(data));
+          const toast = this.toastCtrl.create({
+            showCloseButton: true,
+            closeButtonText: 'OK',
+            message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.title + '\n' + data.body,
+            duration: 10000
+          });
+          toast.present();
+
+          // let alert = this.alertCtrl.create({
+          //   cssClass: 'push_alert',
+          //   title: '댓글알림',
+          //   subTitle: data.message_name,
+          //   message: "작성한 게시물에 댓글이 등록되었습니다. <br>" + data.title +'<br>' + data.body,
+          //   buttons: [{
+          //     text: '확인'
+          //   }]
+          // });
+          // alert.present();
+          if (data.wasTapped) {
+            if (data.mode === 'qna' || data.mode === 'note') {
+              this.nav.parent.select(3).then(() => {
+                let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
+                myModal.onDidDismiss(data => {
+                  this.ionViewWillEnter();
+                });
+                myModal.present();
+              });
+            }
+          }
+        });
+
+        this.fcm.onTokenRefresh().subscribe(token => {
+          console.log("FCM Refresh Token :::::::::::::" + token);
+        });
+      }
+
+
     });
   }
 
@@ -541,7 +632,7 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
-    console.log("카카오 로그인을 위한 "  + this.userData);
+    console.log("카카오 로그인을 위한 " + this.userData);
     // this.auth.registerSnS();
 
     // this.translateService.get('helloWorld').subscribe(

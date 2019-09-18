@@ -49,6 +49,7 @@ export class CommunityModifyPage {
 
   page_write = "2";
   page_modify = "3";
+  pushData: any = { mode: '', id: '' };
 
 
   @ViewChild('myInput') myInput: ElementRef;
@@ -603,7 +604,6 @@ export class CommunityModifyPage {
 
   public beautyNoteOneLoad(id) {
     this.images.beautyNoteOneLoad(id).subscribe(data => {
-      console.log("푸쉬를 잘 가져 왔는가........................" + JSON.stringify(data));
       this.beautyNoteOneLoadData = data;
       this.tags = data.tags.split(",");
       for (var i = 0; i < data.likeuser.length; i++) {
@@ -731,19 +731,22 @@ export class CommunityModifyPage {
         // "to": this.pushToken,
         "to": this.beautyNoteOneLoadData.pushtoken,
         "priority": "high",
+        data: { "mode": "note", "id": this.beautyNoteOneLoadData._id },
         "notification": {
-          "body": this.registerReply.comment,
-          "title": this.beautyNoteOneLoadData.title,
+          // "title": this.beautyNoteOneLoadData.title,
+          // "body": this.registerReply.comment,
+          // "subtitle" : '댓글알림 subtitle',
           // "badge": 1,
+          "title": '뷰티노트 댓글이 작성되었습니다.',
+          "body": this.beautyNoteOneLoadData.title,
           "sound": "default",
-          "click_action": "FCM_PLUGIN_ACTIVITY"
+          "click_action": '--------------------------------------------------------------',
         },
         //토큰
       }
       this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
         .map(res => res.json())
         .subscribe(data => {
-          console.log("dddddddddddddddddddddd=================" + JSON.stringify(data));
         });
     }
     // this.auth.replySave(this.userData, this.registerReply).subscribe(data => {
@@ -877,6 +880,38 @@ export class CommunityModifyPage {
       }, error => {
         this.showError(JSON.parse(error._body).msg);
       });
+    }
+
+
+    //2019-09-18 댓글 등록 시 본문 게시자에게 푸쉬 알림 전송
+    //자신이 작성한 글에는 댓글 알람이 가지 않도록 한다.
+    if (this.skinQnaOneLoadData.email !== this.userData.email) {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Authorization',
+        'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
+      let option = new RequestOptions({ headers: headers });
+      let payload = {
+        // "to": this.pushToken,
+        "to": this.skinQnaOneLoadData.pushtoken,
+        "priority": "high",
+        data: { "mode": "qna", "id": this.skinQnaOneLoadData._id },
+        "notification": {
+          // "title": this.skinQnaOneLoadData.title,
+          // "body": this.registerReply.comment,
+          // "subtitle" : '댓글알림 subtitle',
+          // "badge": 1,
+          "title": '피부고민 댓글이 작성되었습니다.',
+          "body": this.skinQnaOneLoadData.title,
+          "sound": "default",
+          "click_action": '--------------------------------------------------------------',
+        },
+        //토큰
+      }
+      this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
+        .map(res => res.json())
+        .subscribe(data => {
+        });
     }
 
 

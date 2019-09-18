@@ -70,6 +70,9 @@ export class CommunityPage {
 
     this.platform.ready().then((readySource) => {
 
+      console.log("루트페어런트 데이터 테스트 ::::::;" + JSON.stringify(navParams.data));
+
+      console.log('parent_test :::::: '+ this.navParams.get('test'));
       console.log(this.navParams.get('back'));
       this.tabs_check();
       this.events1();
@@ -631,6 +634,11 @@ this.events.subscribe('tabs3', (data) => {
     });
 
     toast.present();
+  }
+
+
+  test(){
+    console.log(" ljasd;lfkjasd;lkfjas;dklfja;sdklfja;sdklfj------------------------------------------------------------");
   }
 
 

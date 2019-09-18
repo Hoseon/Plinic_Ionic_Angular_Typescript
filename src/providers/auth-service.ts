@@ -638,6 +638,7 @@ export class AuthService {
       email: email,
       select: content.qna_select,
       qna: content.qna_input,
+      pushtoken : this.pushToken,
     };
 
     console.log("qna : " + JSON.stringify(body));
@@ -715,6 +716,7 @@ export class AuthService {
       select: content.select,
       title: content.title,
       contents: content.contents,
+      pushtoken : this.pushToken,
       tags: content.tags,
     };
 
@@ -750,6 +752,7 @@ export class AuthService {
       select: content.select,
       title: content.title,
       contents: content.contents,
+      pushtoken : this.pushToken,
       tags: content.tags,
     };
 
@@ -774,6 +777,7 @@ export class AuthService {
       select: content.select,
       title: content.title,
       contents: content.contents,
+      pushtoken : this.pushToken,
       tags: content.tags,
     };
 
@@ -808,6 +812,7 @@ export class AuthService {
       select: content.select,
       title: content.title,
       contents: content.contents,
+      pushtoken : this.pushToken,
       tags: content.tags,
     };
 
@@ -836,6 +841,7 @@ export class AuthService {
       select: content.select,
       title: content.title,
       contents: content.contents,
+      pushtoken : this.pushToken,
       tags: content.tags,
     };
 
@@ -861,6 +867,7 @@ export class AuthService {
       select: content.select,
       title: content.title,
       contents: content.contents,
+      pushtoken : this.pushToken,
       tags: content.tags,
     };
 
@@ -876,6 +883,7 @@ export class AuthService {
         'select': body.select,
         'title': body.title,
         'contents': body.contents,
+        'pushtoken': body.pushtoken,
         'tags': JSON.stringify(body.tags),
       }
     };
