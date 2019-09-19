@@ -193,6 +193,22 @@ export class MyinfoPage {
     }, 500)
   }
 
+  ionViewWillEnter() {
+    //this.showLoading();
+    this.skinQnaLoad();
+    this.beautyNoteLoad();
+    this.communityEditorBeautyLoad();
+    this.carezoneData = this.roadcareZone();
+    this.getUserImage(this.userData.email);
+    // let tabs = document.querySelectorAll('.tabbar');
+    // if (tabs !== null) {
+    //   Object.keys(tabs).map((key) => {
+    //     //tabs[ key ].style.transform = 'translateY(0)';
+    //     tabs[key].style.display = 'none';
+    //   });
+    // }
+  }
+
   public initChart() {
 
     ////처음 진입시 현재 월로 조회 되도록
@@ -423,21 +439,7 @@ export class MyinfoPage {
   }
 
 
-  ionViewWillEnter() {
-    //this.showLoading();
-    this.skinQnaLoad();
-    this.beautyNoteLoad();
-    this.communityEditorBeautyLoad();
-    this.carezoneData = this.roadcareZone();
 
-    // let tabs = document.querySelectorAll('.tabbar');
-    // if (tabs !== null) {
-    //   Object.keys(tabs).map((key) => {
-    //     //tabs[ key ].style.transform = 'translateY(0)';
-    //     tabs[key].style.display = 'none';
-    //   });
-    // }
-  }
 
   public setting_page() {
     this.nav.push(SettingPage);
