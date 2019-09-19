@@ -454,6 +454,7 @@ export class AuthService {
       email: email,
       select: content.qna_select,
       qna: content.qna_input,
+      pushtoken : this.pushToken,
     };
 
     console.log("qna : " + JSON.stringify(body));

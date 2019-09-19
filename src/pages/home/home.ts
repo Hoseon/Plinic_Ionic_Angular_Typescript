@@ -24,6 +24,7 @@ import { SkinDiagnoseMoisturePage } from '../skin-diagnose-moisture/skin-diagnos
 import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture';
 import { CommunityModifyPage } from '../community/community-modify/community-modify';
 import { CommunityPage } from '../community/community';
+import { QnaReadPage } from '../myinfo/details/qna/qna-read/qna-read'
 import { Observable } from 'rxjs/Rx';
 import { FCM } from '@ionic-native/fcm';
 
@@ -281,6 +282,7 @@ export class HomePage {
 
         this.fcm.onNotification().subscribe((data) => {
           if (data.wasTapped) {
+            //커뮤니티 (뷰티노트, 피부고민 알림 처리)
             if (data.mode === 'qna' || data.mode === 'note') {
               this.nav.parent.select(3).then(() => {
                 let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
@@ -290,16 +292,37 @@ export class HomePage {
                 myModal.present();
               });
             }
+            if (data.mode === 'myqna') {
+              // this.nav.parent.select(4).then(() => {
+                let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
+                myModal.onDidDismiss(data => {
+                  // this.ionViewWillEnter();
+                });
+                myModal.present();
+              // });
+            }
           } else {
-            const toast = this.toastCtrl.create({
-              showCloseButton: true,
-              closeButtonText: 'OK',
-              message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
-              duration: 10000
-            });
-            toast.present();
-            // this.showAlert(JSON.stringify(data.aps.alert));
-            console.log("Received in foreground - iOS");
+            if (data.mode === 'qna' || data.mode === 'note') {
+              const toast = this.toastCtrl.create({
+                showCloseButton: true,
+                closeButtonText: 'OK',
+                message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
+                duration: 10000
+              });
+              toast.present();
+              console.log("Received in foreground - iOS");
+            };
+
+            if (data.mode === 'myqna') {
+              const toast = this.toastCtrl.create({
+                showCloseButton: true,
+                closeButtonText: 'OK',
+                message: "문의하신 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
+                duration: 10000
+              });
+              toast.present();
+              console.log("Received in foreground - iOS");
+            }
           };
         });
 
@@ -307,8 +330,6 @@ export class HomePage {
           console.log("FCM iOS Refresh Token :::::::::::::" + token);
         });
       }
-
-
       if (this.platform.is('android')) {
         console.log("android platform");
         this.fcm.subscribeToTopic('all');
@@ -319,16 +340,6 @@ export class HomePage {
 
         this.fcm.onNotification().subscribe(data => {
           console.log("FCM data ::::::::::::::" + JSON.stringify(data));
-          // let alert = this.alertCtrl.create({
-          //   cssClass: 'push_alert',
-          //   title: '댓글알림',
-          //   subTitle: data.message_name,
-          //   message: "작성한 게시물에 댓글이 등록되었습니다. <br>" + data.title +'<br>' + data.body,
-          //   buttons: [{
-          //     text: '확인'
-          //   }]
-          // });
-          // alert.present();
           if (data.wasTapped) {
             if (data.mode === 'qna' || data.mode === 'note') {
               this.nav.parent.select(3).then(() => {
@@ -339,15 +350,36 @@ export class HomePage {
                 myModal.present();
               });
             }
+            if (data.mode === 'myqna') {
+              // this.nav.parent.select(4).then(() => {
+                let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
+                myModal.onDidDismiss(data => {
+                  // this.ionViewWillEnter();
+                });
+                myModal.present();
+              // });
+            }
           } else {
-            const toast = this.toastCtrl.create({
-              showCloseButton: true,
-              closeButtonText: 'OK',
-              message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.title + '\n' + data.body,
-              duration: 10000
-            });
-            toast.present();
-
+            if (data.mode === 'qna' || data.mode === 'note') {
+              const toast = this.toastCtrl.create({
+                showCloseButton: true,
+                closeButtonText: 'OK',
+                message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.title + '\n' + data.body,
+                duration: 10000
+              });
+              toast.present();
+            }
+            if (data.mode === 'myqna') {
+              const toast = this.toastCtrl.create({
+                showCloseButton: true,
+                closeButtonText: 'OK',
+                message: "문의하신 게시물에 댓글이 등록되었습니다. \n" + data.title + '\n' + data.body,
+                duration: 10000
+              });
+              toast.present();
+              // this.showAlert(JSON.stringify(data.aps.alert));
+              console.log("Received in foreground - android");
+            }
           }
         });
 
