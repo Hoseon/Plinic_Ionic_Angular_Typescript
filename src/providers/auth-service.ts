@@ -1353,6 +1353,11 @@ export class AuthService {
       });
   }
 
+  public getUserImage(email) {
+    return this.http.get(CONFIG.apiUrl + 'userimages/' + email)
+      .map(response => response.json());
+  }
+
 
 
 

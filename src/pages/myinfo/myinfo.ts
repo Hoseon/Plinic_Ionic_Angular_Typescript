@@ -130,6 +130,8 @@ export class MyinfoPage {
 
   memberRanking: Array<any> = new Array<any>();
 
+  chkUserImage: boolean = false;
+
   // pushToken: any;
 
 
@@ -142,77 +144,12 @@ export class MyinfoPage {
 
     this.platform.ready().then((readySource) => {
       this.segment_moisture = "수분";
-      // this.noti.on('click').subscribe((response) => { console.log(response); })
-
-
-      // this.fcm.onTokenRefresh().subscribe(token => {
-      //   this.pushToken = token;
-      //   console.log("FCM iOS Refresh Token :::::::::::::" + token);
-      // });
-      // this.fcm.getToken().then(token => {
-      //   this.pushToken = token;
-      //   console.log("FCM iOS Token :::::::::::::" + token);
-      // })
 
     });
 
   }
 
   test_noti() {
-
-    // this.auth.registerSnS(this.userData).subscribe(data =>{
-    //   console.log("성공임");
-    // }, error =>{
-    //   console.log("에러임");
-    // })
-
-    // this.fcm.onTokenRefresh().subscribe(token => {
-    //   this.pushToken = token;
-    //   console.log("FCM iOS Refresh Token :::::::::::::" + token);
-    // });
-    // this.fcm.getToken().then(token => {
-    //   this.pushToken = token;
-    //   console.log("FCM iOS Token :::::::::::::" + token);
-    // })
-
-
-
-    // let headers = new Headers();
-    // headers.append("Authorization", "key=AAAAawIHAO0:APA91bGzeUMWksc9U4kDEZZgVAHFUNdu1mFYu9UBXUyEZBJK4wdcxOoSAPLwFg3T8PWjnjhpG9M8bEHGz6aXhh50-kQEdZQRAITlHwSsk8iIkzSer9esaxYVgk6ozt1tGsB6R9qFYVUv");
-    // headers.append("Content-Type", "application/json");
-    //
-    // let options = new RequestOptions({ headers: headers });
-    //
-    // let body = {
-    //   "to": "f4gToYffMJI:APA91bFNSRoNJ19HPnMPwgoFII2YYM9De-IwvVRDfg2MDvZZvHO6Aeksu9u0ePUM_spfeYLMf-O1WEGKY4-Kbq47inMh9EvR9XCQnRPAWWF4ai0_hKXDgefjakHA-5hkkOEhM57RUOQc",
-    //   "priority": "high",
-    //   "notification": {
-    //     "body": "Plinic Background Message",
-    //     "title": "Plinic Title",
-    //     "badge": 1,
-    //     "sound": "default",
-    //     "click_action": "FCM_PLUGIN_ACTIVITY"
-    //   },
-    //   "data": {
-    //     "title": "FG Plinic Title",
-    //     "message": "Plinic Foreground Message"
-    //   }
-    // };
-    //
-    // console.log("qna : " + JSON.stringify(body));
-    // return this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(body), options)
-    //   .map(res => res.json())
-    //   .map(data => {
-    //     console.log(data);
-    //     return data;
-    //   });
-    //
-
-
-    //
-
-
-      console.log("푸쉬 토큰 발송 값 : " + this.userData.pushtoken);
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('Authorization',
@@ -236,23 +173,6 @@ export class MyinfoPage {
         .subscribe(data => {
           console.log("dddddddddddddddddddddd=================" + JSON.stringify(data));
         });
-
-    // this.fcm.onTokenRefresh().subscribe(token => {
-    //   console.log("FCM iOS Refresh Token :::::::::::::" + token);
-    // });
-    // this.fcm.getToken().then(token => {
-    //   console.log("FCM iOS Token :::::::::::::" + token);
-    // })
-    //
-
-    // this.noti.schedule({
-    //   id: 1,
-    //   title: 'Plinic 알림',
-    //   text: '플리닉에서 알람이 발생하였습니다.',
-    //   foreground: true,
-    //   data: { mydata: 'My hidden message this is' },
-    //   trigger : {at: new Date(new Date().getTime() + 5 * 1000)}
-    // });
   }
 
   ionViewCanEnter() {
@@ -1349,6 +1269,15 @@ export class MyinfoPage {
   getAllUseTime() {
     this.auth.getChartAllScore(this.userData.email).subscribe(items => {
       this.allusetime = this.getSecondsAsDigitalClock(items[0].sum)
+    });
+  }
+
+  //20190919 추호선 사용자 이미지 정보가 있는지 없는지 체크 한다.
+  public getUserImage(email) {
+    this.auth.getUserImage(email).subscribe(items => {
+      if(items !== ''){
+        this.chkUserImage = true;
+      }
     });
   }
 

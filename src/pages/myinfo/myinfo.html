@@ -26,8 +26,18 @@
 <ion-content #content no-padding>
 
   <ng-container *ngIf="userData">
-    <img *ngIf="userData.thumbnail_image" class="profile_image" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
-    <img *ngIf="!userData.thumbnail_image" class="profile_image" src="http://plinic.cafe24app.com/userimages/{{userData.email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+
+    <ng-container *ngIf="userData.from === 'kakao' || userData.from === 'naver' || userData.from === 'google'">
+      <img *ngIf="userData.thumbnail_image" class="profile_image" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+    </ng-container>
+    <ng-container *ngIf="userData.from === 'plinic'">
+      <ng-container *ngIf="chkUserImage" >
+        <img class="profile_image" src="http://plinic.cafe24app.com/userimages/{{userData.email}}"/>
+      </ng-container>
+      <ng-container *ngIf="!chkUserImage" >
+        <img class="profile_image" src="assets/img/register/ic-system-profile-default@3x.png"/>
+      </ng-container>
+    </ng-container>
     <div class="profile_name">{{userData.nickname}}</div>
     <div class="profile_email">{{userData.email}}</div>
   </ng-container>
