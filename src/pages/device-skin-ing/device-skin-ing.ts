@@ -24,7 +24,25 @@ import { ImagesProvider } from '../../providers/images/images';
 //Blue Mod S42
 const PLINIC_SERVICE = 'FEFB';
 const UUID_SERVICE = 'FEFB';
-const SWITCH_CHARACTERISTIC = 'FEFB';
+const SWITCH_CHARACTERISTIC = '00000002-0000-1000-8000-008025000000';
+
+// { "characteristics": [{ "properties": ["Read"], "isNotifying": false, "characteristic": "2A50", "service": "180A" },
+// { "properties": ["Write"], "isNotifying": false, "characteristic": "00000009-0000-1000-8000-008025000000", "service": "FEFB" },
+// { "properties": ["Indicate"], "isNotifying": false, "characteristic": "0000000A-0000-1000-8000-008025000000", "service": "FEFB" },
+// { "properties": ["WriteWithoutResponse"], "isNotifying": false, "characteristic": "00000001-0000-1000-8000-008025000000", "service": "FEFB" },
+// { "properties": ["Notify"], "isNotifying": false, "characteristic": "00000002-0000-1000-8000-008025000000", "service": "FEFB" },
+// { "properties": ["Write"], "isNotifying": false, "characteristic": "00000003-0000-1000-8000-008025000000", "service": "FEFB" },
+// { "properties": ["Indicate"], "isNotifying": false, "characteristic": "00000004-0000-1000-8000-008025000000", "service": "FEFB" }],
+// "id": "3109E61F-A1BB-5BB3-08CE-99E3A83487D6",
+// "rssi": -68,
+// "advertising": { "kCBAdvDataLocalName": "BM+S42 347", "kCBAdvDataManufacturerData": { }, "kCBAdvDataServiceUUIDs": ["FEFB"], "kCBAdvDataIsConnectable": 1 },
+// "name": "BM+S42 347",
+// "services": ["180A", "FEFB"] }
+//
+
+
+
+
 // const SWITCH_CHARACTERISTIC = 'FF01';
 //
 //
@@ -37,6 +55,14 @@ const SWITCH_CHARACTERISTIC = 'FEFB';
 // const PLINIC_SERVICE = 'FFE0';
 // const UUID_SERVICE = 'FFE0';
 // const SWITCH_CHARACTERISTIC = 'FFE1';
+
+
+// { "characteristics": [{ "properties": ["Read", "WriteWithoutResponse", "Write", "Notify"], "isNotifying": false, "characteristic": "FFE1", "service": "FFE0" }],
+// "id": "AAA346CC-CC32-A521-5489-EA4833037CE9",
+// "rssi": -59,
+// "advertising": { "kCBAdvDataIsConnectable": 1, "kCBAdvDataLocalName": "HMSoft", "kCBAdvDataServiceUUIDs": ["FFE0"], "kCBAdvDataServiceData": { "B000": { } }, "kCBAdvDataTxPowerLevel": 0, "kCBAdvDataManufacturerData": { } },
+// "name": "HMSoft",
+// "services": ["FFE0"] }
 
 
 
@@ -86,7 +112,7 @@ export class DeviceSkinIngPage {
   subscriptionFourth: any;
 
 
-  updateId : any;
+  updateId: any;
 
 
   constructor(private images: ImagesProvider, private auth: AuthService, private alertCtrl: AlertController, private ble: BLE, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public modalCtrl: ModalController,
@@ -206,8 +232,11 @@ export class DeviceSkinIngPage {
     //   device: device
     // });
 
+
+
     this.ble.connect(device.id).subscribe(
       peripheral => this.onConnected(peripheral),
+      // this.onConnected(peripheral),
       // peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
       peripheral => { //디바이스 연결 중단되면 누적 처리 후 종료
         // this.bleshowAlert('Disconnected', '디바이스 연결이 중단 되었습니다.');
@@ -215,11 +244,15 @@ export class DeviceSkinIngPage {
       }
     );
 
-    this.ble.startNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
-      console.log("Plinic G1Partners Notifi " + String.fromCharCode.apply(null, new Uint8Array(buffer)))
-    }, error => {
-      console.log("Notifi Error : " + error);
-    })
+
+
+
+
+    // this.ble.startNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
+    //   console.log("Plinic G1Partners Notifi " + String.fromCharCode.apply(null, new Uint8Array(buffer)))
+    // }, error => {
+    //   console.log("Notifi Error : " + error);
+    // })
 
 
 
@@ -228,37 +261,67 @@ export class DeviceSkinIngPage {
 
   onConnected(peripheral) {
 
+    console.log("디바이스 서비스 정보 : " + JSON.stringify(peripheral));
+
     this.peripheral = peripheral;
     // this.setStatus('Connected to ' + (peripheral.name || peripheral.id));
 
     console.log("this.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.id : " + this.peripheral.id);
+
+
+    var test = new ArrayBuffer(16);
+
+    var data = new Uint8Array(3).buffer;
+    data[0] = 16; // red
+    data[1] = 17; // green
+    data[2] = 1; // blue
+
+    // let array = new Uint8Array([AT+LECCCD=0x10,0x0011,1]);
+
+    let array = this.strtoarray('AT+LECCCD=0x10,0x0011,1')
+    let buffer = new Uint8Array([16]).buffer;
+    // this.ble.write(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC, array).then(result =>{
+    //   console.log("쓰기 기능" + JSON.stringify(result));
+    // }).catch(error => {
+    //       console.log(JSON.stringify(error));
+    // });
     // Update the UI with the current state of the switch characteristic
-    this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(
-      buffer => {
-        let data = new Uint8Array(buffer);
-        let data2 = String.fromCharCode.apply(null, new Uint8Array(buffer));
-        console.log("data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : " + data2)
+    // this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(
+    //   buffer => {
+    //     let data = new Uint8Array(buffer);
+    //     let data2 = String.fromCharCode.apply(null, new Uint8Array(buffer));
+    //     console.log("data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : " + JSON.stringify(data2));
+    //
+    //     for (var i = 0; i < data.length; i++) {
+    //       console.log("data" + i + "--- :" + data[i]);
+    //     }
+    //     // var array = new Uint8Array(string.length);
+    //     // for (var i = 0, l = string.length; i < l; i++) {
+    //     //   array[i] = string.charCodeAt(i);
+    //     // }
+    //     // return array.buffer;
+    //
+    //
+    //     // this.ngZone.run(() => {
+    //     //     this.power = data[0] !== 0;
+    //     // });
+    //   }
+    // )
 
-        for (var i = 0; i < data.length; i++) {
-          console.log("data" + i + "--- :" + data[i]);
-        }
-        // var array = new Uint8Array(string.length);
-        // for (var i = 0, l = string.length; i < l; i++) {
-        //   array[i] = string.charCodeAt(i);
-        // }
-        // return array.buffer;
-
-
-        // this.ngZone.run(() => {
-        //     this.power = data[0] !== 0;
-        // });
-      }
-    )
-
+    //
     this.ble.startNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
       console.log("Plinic G1Partners Notifi " + String.fromCharCode.apply(null, new Uint8Array(buffer)));
     }, error => {
       console.log("Notifi Error : " + error);
+    })
+
+
+    this.ble.startStateNotifications().subscribe(state => {
+      console.log("ble state ========================================================== " + state);
+    })
+
+    this.ble.isEnabled().then(data => {
+      console.log("is enabled???  --------------------------------" + data);
     })
 
     // Update the UI with the current state of the dimmer characteristic
@@ -569,9 +632,9 @@ export class DeviceSkinIngPage {
   }
 
   pointUpdate(): void {
-    console.log("this.carezoneData._id : "+ this.carezoneData._id);
+    console.log("this.carezoneData._id : " + this.carezoneData._id);
     console.log("this.userData.email : " + this.userData.email);
-    console.log("this.secondsRemaining : "+ this.secondsRemaining);
+    console.log("this.secondsRemaining : " + this.secondsRemaining);
     this.auth.missionPointUpdate(this.carezoneData._id, this.userData.email, this.secondsRemaining).subscribe(data => {
       this.subscriptionFourth.complete();
       this.showAlert("플리닉 종료", JSON.stringify(data.msg).replace('"', ''));
@@ -580,4 +643,14 @@ export class DeviceSkinIngPage {
       this.showAlert("플리닉 종료", JSON.parse(error._body).msg);
     });
   }
+
+  strtoarray(str){
+      var buf = new ArrayBuffer(20); // 2 bytes for each char
+      var bufView = new Uint8Array(buf);
+      for (var i=0, strLen=str.length; i < strLen; i++) {
+        bufView[i] = str.charCodeAt(i);
+      }
+      return buf;
+  }
+
 }

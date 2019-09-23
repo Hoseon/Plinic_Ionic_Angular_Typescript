@@ -19,9 +19,9 @@ import { BLE } from '@ionic-native/ble';
  */
 
 //Blue Mod S42
-// const PLINIC_SERVICE = 'FEFB';
-// const UUID_SERVICE = 'FEFB';
-// const SWITCH_CHARACTERISTIC = 'FEFB';
+const PLINIC_SERVICE = 'FEFB';
+const UUID_SERVICE = '180A';
+const SWITCH_CHARACTERISTIC = '2A50';
 
 //
 //
@@ -32,9 +32,9 @@ import { BLE } from '@ionic-native/ble';
 // const SWITCH_CHARACTERISTIC = 'FF01';
 
 // //HM Soft Bluetooth Mod
-const PLINIC_SERVICE = 'FFE0';
-const UUID_SERVICE = 'FFE0';
-const SWITCH_CHARACTERISTIC = 'FFE1';
+// const PLINIC_SERVICE = 'FFE0';
+// const UUID_SERVICE = 'FFE0';
+// const SWITCH_CHARACTERISTIC = 'FFE1';
 
 
 @IonicPage()
