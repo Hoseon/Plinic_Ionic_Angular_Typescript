@@ -27,6 +27,8 @@ import { CommunityPage } from '../community/community';
 import { QnaReadPage } from '../myinfo/details/qna/qna-read/qna-read'
 import { Observable } from 'rxjs/Rx';
 import { FCM } from '@ionic-native/fcm';
+import { SearchPage } from '../community/search/search';
+
 
 
 
@@ -1246,5 +1248,12 @@ export class HomePage {
   }
 
 
+  public community_search() {
+    let myModal = this.modalCtrl.create(SearchPage);
+    myModal.onDidDismiss(data => {
+
+    });
+    myModal.present();
+  }
 
 }
