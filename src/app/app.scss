@@ -68,53 +68,53 @@
 
 
 ion-icon {
-    // &[class*="custom-"] {
-    //     margin: 0 0 0 0;
-    //     vertical-align: middle;
-    //     $sz: 24px;
-    //     width: $sz;
-    //     height: $sz;
-    // } // custom icons
-    // &[class*="home"][ng-reflect-is-active="true"] {
-    //     background: url(../assets/img/tabs/ic-system-tab-home-on@3x.png) no-repeat 50% 50%;
-    //     background-size: 20px;
-    // }//in case of active
-    // &[class*="home"][ng-reflect-is-active="false"] {
-    //     background: url(../assets/img/tabs/ic-system-tab-home-off@3x.png) no-repeat 50% 50%;
-    //     background-size: 20px;
-    // }
-    // &[class*="carezone"][ng-reflect-is-active="true"] {
-    //     background: url(../assets/img/tabs/ic-system-tab-cc-on@3x.png) no-repeat 50% 50%;
-    //     background-size: 20px;
-    // }//in case of active
-    // &[class*="carezone"][ng-reflect-is-active="false"] {
-    //     background: url(../assets/img/tabs/ic-system-tab-cc-off@3x.png) no-repeat 50% 50%;
-    //     background-size: 20px;
-    // }
-    // &[class*="shopping"][ng-reflect-is-active="true"] {
-    //     background: url(../assets/img/tabs/ic-system-tab-shop-on@3x.png) no-repeat 50% 50%;
-    //     background-size: 20px;
-    // }//in case of active
-    // &[class*="shopping"][ng-reflect-is-active="false"] {
-    //     background: url(../assets/img/tabs/ic-system-tab-shop-off@3x.png) no-repeat 50% 50%;
-    //     background-size: 20px;
-    // }
-    // &[class*="cummunity"][ng-reflect-is-active="true"] {
-    //     background: url(../assets/img/tabs/ic-system-tab-community-on@3x.png) no-repeat 50% 50%;
-    //     background-size: 20px;
-    // }//in case of active
-    // &[class*="cummunity"][ng-reflect-is-active="false"] {
-    //     background: url(../assets/img/tabs/ic-system-tab-community-off@3x.png) no-repeat 50% 50%;
-    //     background-size: 20px;
-    // }
-    // &[class*="my"][ng-reflect-is-active="true"] {
-    //     background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
-    //     background-size: 20px;
-    // }//in case of active
-    // &[class*="my"][ng-reflect-is-active="false"] {
-    //     background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
-    //     background-size: 20px;
-    // }
+    &[class*="custom-"] {
+        margin: 0 0 0 0;
+        vertical-align: middle;
+        $sz: 24px;
+        width: $sz;
+        height: $sz;
+    } // custom icons
+    &[class*="home"][ng-reflect-is-active="true"] {
+        background: url(../assets/img/tabs/ic-system-tab-home-on@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+    }//in case of active
+    &[class*="home"][ng-reflect-is-active="false"] {
+        background: url(../assets/img/tabs/ic-system-tab-home-off@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+    }
+    &[class*="carezone"][ng-reflect-is-active="true"] {
+        background: url(../assets/img/tabs/ic-system-tab-cc-on@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+    }//in case of active
+    &[class*="carezone"][ng-reflect-is-active="false"] {
+        background: url(../assets/img/tabs/ic-system-tab-cc-off@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+    }
+    &[class*="shopping"][ng-reflect-is-active="true"] {
+        background: url(../assets/img/tabs/ic-system-tab-shop-on@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+    }//in case of active
+    &[class*="shopping"][ng-reflect-is-active="false"] {
+        background: url(../assets/img/tabs/ic-system-tab-shop-off@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+    }
+    &[class*="cummunity"][ng-reflect-is-active="true"] {
+        background: url(../assets/img/tabs/ic-system-tab-community-on@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+    }//in case of active
+    &[class*="cummunity"][ng-reflect-is-active="false"] {
+        background: url(../assets/img/tabs/ic-system-tab-community-off@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+    }
+    &[class*="my"][ng-reflect-is-active="true"] {
+        background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+    }//in case of active
+    &[class*="my"][ng-reflect-is-active="false"] {
+        background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+    }
 }
 
 
@@ -500,7 +500,7 @@ ion-icon {
         }
     }
   }
-
+    //20190924 첫줄에 아이콘변화는 ionic cordova build ios --prod --release 로 했을댄 정상작동을 안해서 아래와 같이 prod로 빌드시 작동 할 수 있도록 추가
   .tabs-ios {
     a[aria-selected=true] {
       .tab-button-icon[aria-label="home"] {
