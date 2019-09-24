@@ -9,6 +9,8 @@ import { AuthService } from '../../providers/auth-service';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { TimerObservable } from "rxjs/observable/TimerObservable";
 import { Observable } from 'rxjs/Rx';
+import { Device } from '@ionic-native/device';
+
 
 
 /**
@@ -77,18 +79,20 @@ export class CareZonePage {
   displayTime: Array<any> = new Array<any>();
 
 
-  tickFourth : any;
-  tickThree : any;
-  subscriptionFourth : any;
-  subscriptionThree : any;
+  tickFourth: any;
+  tickThree: any;
+  subscriptionFourth: any;
+  subscriptionThree: any;
 
-  missionmember : Array<any> = new Array<any>();
-  memberRanking : Array<any> = new Array<any>();
-
-
+  missionmember: Array<any> = new Array<any>();
+  memberRanking: Array<any> = new Array<any>();
 
 
-  constructor(public platform: Platform, public nav: NavController,
+
+
+  constructor(
+    public device : Device,
+    public platform: Platform, public nav: NavController,
     public navParams: NavParams, private images: ImagesProvider,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public authService: AuthService) {
     this.platform.ready().then((readySource) => {
@@ -112,7 +116,7 @@ export class CareZonePage {
     console.log("Timer Clear!");
   }
 
-  ionViewDidLeave(){
+  ionViewDidLeave() {
     this.subscriptionFourth.complete();
     console.log("ionViewDidLeave Timer Clear!");
 
@@ -187,7 +191,7 @@ export class CareZonePage {
 
     if (this.missionData === null || this.missionData === undefined) {
       //this.nav.push(CareZoneMissionIngPage);
-      this.nav.push(CareZoneMissionStartPage, { carezoneData : carezone });
+      this.nav.push(CareZoneMissionStartPage, { carezoneData: carezone });
     } else if (carezone._id === this.missionData.missionID) {
       this.nav.push(CareZoneMissionIngPage, { carezoneData: carezone });
 
@@ -302,7 +306,7 @@ export class CareZonePage {
                   email: data3[i].email,
                   usetime: data3[i].usetime,
                   rank: i + 1,
-                  image_url : data3[i].image_url
+                  image_url: data3[i].image_url
                 }
               }
             }
@@ -534,12 +538,42 @@ export class CareZonePage {
   }
 
   showLoading() {
-    let loading = this.loadingCtrl.create({
-      spinner: 'hide',
-      duration: 1000,
-      cssClass: 'sk-rotating-plane'
-    });
-    loading.present();
+    if (this.platform.is("ios") && this.device.model === 'iPhone7,2' || this.device.model === 'iPhone8,1' || this.device.model === 'iPhone9,1' || this.device.model === 'iPhone9,3' || this.device.model === 'iPhone10,1' || this.device.model === 'iPhone10,4') {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 1000,
+        cssClass: 'sk-rotating-plane_ios'
+      });
+      loading.present();
+    } else if (this.platform.is("ios") && this.device.model === 'iPhone7,1' || this.device.model === 'iPhone8,2' || this.device.model === 'iPhone9,2' || this.device.model === 'iPhone9,4' || this.device.model === 'iPhone10,2' || this.device.model === 'iPhone10,5') {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 1000,
+        cssClass: 'sk-rotating-plane_ios_plus'
+      });
+      loading.present();
+    } else if (this.platform.is("ios") && this.device.model === 'iPhone10,3' || this.device.model === 'iPhone10,6' || this.device.model === 'iPhone11,2' || this.device.model === 'iPhone11,8' || this.device.model === 'iPhone12,1' || this.device.model === 'iPhone12,3') {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 1000,
+        cssClass: 'sk-rotating-plane_ios_x'
+      });
+      loading.present();
+    } else if (this.platform.is("ios") && this.device.model === 'iPhone11,4' || this.device.model === 'iPhone11,6' || this.device.model === 'iPhone12,5') {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 1000,
+        cssClass: 'sk-rotating-plane_ios_x_max'
+      });
+      loading.present();
+    } else {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 1000,
+        cssClass: 'sk-rotating-plane'
+      });
+      loading.present();
+    }
   }
 
   showAlert(text) {
@@ -595,21 +629,21 @@ export class CareZonePage {
 
     // Set the inital tick to 0
     this.subscriptionFourth = Observable.interval(1000).subscribe(x => {
-        // 1000 implies miliseconds = 1 second
-        // Basically run the following code per second
-        for(var i= 0; i < this.timeremaining.length; i++){
-          this.timeremaining[i]--;
-          // console.log(this.timeremaining[i]--);
-          this.displayTime[i] = this.getSecondsAsDigitalClock(this.timeremaining[i]);
-        }
-       this.tickFourth--;
-       this.tickThree--;
-       let time = this.getSecondsAsDigitalClock(this.tickFourth);
-       let time2 = this.getSecondsAsDigitalClock(this.tickThree);
-       // console.log(time);
-       // console.log(time2);
-       // console.log(this.tickFourth);
-       // console.log("this" + JSON.stringify(this.subscriptionFourth));
+      // 1000 implies miliseconds = 1 second
+      // Basically run the following code per second
+      for (var i = 0; i < this.timeremaining.length; i++) {
+        this.timeremaining[i]--;
+        // console.log(this.timeremaining[i]--);
+        this.displayTime[i] = this.getSecondsAsDigitalClock(this.timeremaining[i]);
+      }
+      this.tickFourth--;
+      this.tickThree--;
+      let time = this.getSecondsAsDigitalClock(this.tickFourth);
+      let time2 = this.getSecondsAsDigitalClock(this.tickThree);
+      // console.log(time);
+      // console.log(time2);
+      // console.log(this.tickFourth);
+      // console.log("this" + JSON.stringify(this.subscriptionFourth));
 
     });
 

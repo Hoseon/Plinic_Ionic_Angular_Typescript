@@ -68,53 +68,53 @@
 
 
 ion-icon {
-    &[class*="custom-"] {
-        margin: 0 0 0 0;
-        vertical-align: middle;
-        $sz: 24px;
-        width: $sz;
-        height: $sz;
-    } // custom icons
-    &[class*="home"][ng-reflect-is-active="true"] {
-        background: url(../assets/img/tabs/ic-system-tab-home-on.svg) no-repeat 50% 50%;
-        background-size: 20px;
-    }//in case of active
-    &[class*="home"][ng-reflect-is-active="false"] {
-        background: url(../assets/img/tabs/ic-system-tab-home-off.svg) no-repeat 50% 50%;
-        background-size: 20px;
-    }
-    &[class*="carezone"][ng-reflect-is-active="true"] {
-        background: url(../assets/img/tabs/ic-system-tab-cc-on.svg) no-repeat 50% 50%;
-        background-size: 20px;
-    }//in case of active
-    &[class*="carezone"][ng-reflect-is-active="false"] {
-        background: url(../assets/img/tabs/ic-system-tab-cc-off.svg) no-repeat 50% 50%;
-        background-size: 20px;
-    }
-    &[class*="shopping"][ng-reflect-is-active="true"] {
-        background: url(../assets/img/tabs/ic-system-tab-shop-on.svg) no-repeat 50% 50%;
-        background-size: 20px;
-    }//in case of active
-    &[class*="shopping"][ng-reflect-is-active="false"] {
-        background: url(../assets/img/tabs/ic-system-tab-shop-off.svg) no-repeat 50% 50%;
-        background-size: 20px;
-    }
-    &[class*="cummunity"][ng-reflect-is-active="true"] {
-        background: url(../assets/img/tabs/ic-system-tab-community-on.svg) no-repeat 50% 50%;
-        background-size: 20px;
-    }//in case of active
-    &[class*="cummunity"][ng-reflect-is-active="false"] {
-        background: url(../assets/img/tabs/ic-system-tab-community-off.svg) no-repeat 50% 50%;
-        background-size: 20px;
-    }
-    &[class*="my"][ng-reflect-is-active="true"] {
-        background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
-        background-size: 20px;
-    }//in case of active
-    &[class*="my"][ng-reflect-is-active="false"] {
-        background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
-        background-size: 20px;
-    }
+    // &[class*="custom-"] {
+    //     margin: 0 0 0 0;
+    //     vertical-align: middle;
+    //     $sz: 24px;
+    //     width: $sz;
+    //     height: $sz;
+    // } // custom icons
+    // &[class*="home"][ng-reflect-is-active="true"] {
+    //     background: url(../assets/img/tabs/ic-system-tab-home-on@3x.png) no-repeat 50% 50%;
+    //     background-size: 20px;
+    // }//in case of active
+    // &[class*="home"][ng-reflect-is-active="false"] {
+    //     background: url(../assets/img/tabs/ic-system-tab-home-off@3x.png) no-repeat 50% 50%;
+    //     background-size: 20px;
+    // }
+    // &[class*="carezone"][ng-reflect-is-active="true"] {
+    //     background: url(../assets/img/tabs/ic-system-tab-cc-on@3x.png) no-repeat 50% 50%;
+    //     background-size: 20px;
+    // }//in case of active
+    // &[class*="carezone"][ng-reflect-is-active="false"] {
+    //     background: url(../assets/img/tabs/ic-system-tab-cc-off@3x.png) no-repeat 50% 50%;
+    //     background-size: 20px;
+    // }
+    // &[class*="shopping"][ng-reflect-is-active="true"] {
+    //     background: url(../assets/img/tabs/ic-system-tab-shop-on@3x.png) no-repeat 50% 50%;
+    //     background-size: 20px;
+    // }//in case of active
+    // &[class*="shopping"][ng-reflect-is-active="false"] {
+    //     background: url(../assets/img/tabs/ic-system-tab-shop-off@3x.png) no-repeat 50% 50%;
+    //     background-size: 20px;
+    // }
+    // &[class*="cummunity"][ng-reflect-is-active="true"] {
+    //     background: url(../assets/img/tabs/ic-system-tab-community-on@3x.png) no-repeat 50% 50%;
+    //     background-size: 20px;
+    // }//in case of active
+    // &[class*="cummunity"][ng-reflect-is-active="false"] {
+    //     background: url(../assets/img/tabs/ic-system-tab-community-off@3x.png) no-repeat 50% 50%;
+    //     background-size: 20px;
+    // }
+    // &[class*="my"][ng-reflect-is-active="true"] {
+    //     background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
+    //     background-size: 20px;
+    // }//in case of active
+    // &[class*="my"][ng-reflect-is-active="false"] {
+    //     background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
+    //     background-size: 20px;
+    // }
 }
 
 
@@ -153,6 +153,138 @@ ion-icon {
       // margin-top: 16%;
       }
  }
+
+ .sk-rotating-plane_ios {
+
+   margin: auto;
+   bottom: 7.45%;
+       .spinner-md-crescent circle{
+         stroke: transparent !important;
+         height: 0px !important;
+       }
+       .spinner-ios-crescent circle{
+         stroke: transparent !important;
+         height: 0px !important;
+       }
+       .loading-wrapper{
+        border-radius: 50%;
+        background-color: #5c59b6;
+        box-shadow: none !important;
+        -webkit-animation: sk-rotatePlane 1.4s infinite ease-in-out;
+                animation: sk-rotatePlane 1.4s infinite ease-in-out;
+                opacity: 1 !important;
+       padding: 24px !important;
+       }
+
+       ion-backdrop.backdrop-no-tappable{
+       // background: #000 !important;
+       // opacity: 0.4 !important;
+       background: #FFF !important;
+       opacity: 1 !important;
+       // top: 60px;
+       // height: 82.4%;
+
+       }
+  }
+
+  .sk-rotating-plane_ios_plus {
+
+    margin: auto;
+    bottom: 6.7%;
+        .spinner-md-crescent circle{
+          stroke: transparent !important;
+          height: 0px !important;
+        }
+        .spinner-ios-crescent circle{
+          stroke: transparent !important;
+          height: 0px !important;
+        }
+        .loading-wrapper{
+         border-radius: 50%;
+         background-color: #5c59b6;
+         box-shadow: none !important;
+         -webkit-animation: sk-rotatePlane 1.4s infinite ease-in-out;
+                 animation: sk-rotatePlane 1.4s infinite ease-in-out;
+                 opacity: 1 !important;
+        padding: 24px !important;
+        }
+
+        ion-backdrop.backdrop-no-tappable{
+        // background: #000 !important;
+        // opacity: 0.4 !important;
+        background: #FFF !important;
+        opacity: 1 !important;
+        // top: 60px;
+        // height: 82.4%;
+
+        }
+   }
+
+  .sk-rotating-plane_ios_x {
+
+    margin: auto;
+    bottom: 10.25%;
+        .spinner-md-crescent circle{
+          stroke: transparent !important;
+          height: 0px !important;
+        }
+        .spinner-ios-crescent circle{
+          stroke: transparent !important;
+          height: 0px !important;
+        }
+        .loading-wrapper{
+         border-radius: 50%;
+         background-color: #5c59b6;
+         box-shadow: none !important;
+         -webkit-animation: sk-rotatePlane 1.4s infinite ease-in-out;
+                 animation: sk-rotatePlane 1.4s infinite ease-in-out;
+                 opacity: 1 !important;
+        padding: 24px !important;
+        }
+
+        ion-backdrop.backdrop-no-tappable{
+        // background: #000 !important;
+        // opacity: 0.4 !important;
+        background: #FFF !important;
+        opacity: 1 !important;
+        // top: 60px;
+        // height: 82.4%;
+
+        }
+   }
+
+   .sk-rotating-plane_ios_x_max {
+
+     margin: auto;
+     bottom: 9.4%;
+         .spinner-md-crescent circle{
+           stroke: transparent !important;
+           height: 0px !important;
+         }
+         .spinner-ios-crescent circle{
+           stroke: transparent !important;
+           height: 0px !important;
+         }
+         .loading-wrapper{
+          border-radius: 50%;
+          background-color: #5c59b6;
+          box-shadow: none !important;
+          -webkit-animation: sk-rotatePlane 1.4s infinite ease-in-out;
+                  animation: sk-rotatePlane 1.4s infinite ease-in-out;
+                  opacity: 1 !important;
+         padding: 24px !important;
+         }
+
+         ion-backdrop.backdrop-no-tappable{
+         // background: #000 !important;
+         // opacity: 0.4 !important;
+         background: #FFF !important;
+         opacity: 1 !important;
+         // top: 60px;
+         // height: 82.4%;
+
+         }
+    }
 
 @-webkit-keyframes sk-rotatePlane {
   0% {
@@ -334,29 +466,134 @@ ion-icon {
 
 
   //탭바 제플린 스타일
-  .tabs-md[tabsLayout=icon-top] .has-icon .tab-button-text{
-    font-family: NotoSansCJKkr;
-    font-size: 10px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: #2f3640;
+  // .tabs-md[tabsLayout=icon-top] .has-icon .tab-button-text{
+  //   font-family: NotoSansCJKkr;
+  //   font-size: 10px;
+  //   font-weight: normal;
+  //   font-style: normal;
+  //   font-stretch: normal;
+  //   line-height: normal;
+  //   letter-spacing: normal;
+  //   text-align: center;
+  //   color: #2f3640;
+  // }
+
+  // .tabs-ios[tabsLayout=icon-top] .has-icon .tab-button-text{
+  //   font-family: NotoSansCJKkr;
+  //   font-size: 10px;
+  //   font-weight: normal;
+  //   font-style: normal;
+  //   font-stretch: normal;
+  //   line-height: normal;
+  //   letter-spacing: normal;
+  //   text-align: center;
+  //   color: #2f3640;
+  // }
+  .tabbar, .tabs-ios, .tabs-md {
+    .tab-button-icon {
+        background-repeat:no-repeat;
+        background-position:center;
+        height:24px;
+        width:24px;
+        &:before {
+            display:none;
+        }
+    }
   }
 
-  .tabs-ios[tabsLayout=icon-top] .has-icon .tab-button-text{
-    font-family: NotoSansCJKkr;
-    font-size: 10px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: #2f3640;
+  .tabs-ios {
+    a[aria-selected=true] {
+      .tab-button-icon[aria-label="home"] {
+        background: url(../assets/img/tabs/ic-system-tab-home-on@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      .tab-button-icon[aria-label="carezone"] {
+        background: url(../assets/img/tabs/ic-system-tab-cc-on@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      // .tab-button-icon[aria-label="shopping"] {
+      //   background: url(../assets/img/tabs/ic-system-tab-shop-on@3x.png) no-repeat 50% 50%;
+      //   background-size: 20px;
+      // }
+      .tab-button-icon[aria-label="cummunity"] {
+        background: url(../assets/img/tabs/ic-system-tab-community-on@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      .tab-button-icon[aria-label="my"] {
+        background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+    }
+    a[aria-selected=false] {
+      .tab-button-icon[aria-label="home outline"] {
+        background: url(../assets/img/tabs/ic-system-tab-home-off@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      .tab-button-icon[aria-label="carezone outline"] {
+        background: url(../assets/img/tabs/ic-system-tab-cc-off@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      .tab-button-icon[aria-label="shopping outline"] {
+        background: url(../assets/img/tabs/ic-system-tab-shop-off@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      .tab-button-icon[aria-label="cummunity outline"] {
+        background: url(../assets/img/tabs/ic-system-tab-community-off@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      .tab-button-icon[aria-label="my outline"] {
+        background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+    }
   }
+
+  .tabs-md {
+    a[aria-selected=true] {
+      .tab-button-icon[aria-label="home"] {
+        background: url(../assets/img/tabs/ic-system-tab-home-on@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      .tab-button-icon[aria-label="carezone"] {
+        background: url(../assets/img/tabs/ic-system-tab-cc-on@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      // .tab-button-icon[aria-label="shopping"] {
+      //   background: url(../assets/img/tabs/ic-system-tab-shop-on@3x.png) no-repeat 50% 50%;
+      //   background-size: 20px;
+      // }
+      .tab-button-icon[aria-label="cummunity"] {
+        background: url(../assets/img/tabs/ic-system-tab-community-on@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      .tab-button-icon[aria-label="my"] {
+        background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+    }
+    a[aria-selected=false] {
+      .tab-button-icon[aria-label="home"] {
+        background: url(../assets/img/tabs/ic-system-tab-home-off@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      .tab-button-icon[aria-label="carezone"] {
+        background: url(../assets/img/tabs/ic-system-tab-cc-off@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      .tab-button-icon[aria-label="shopping"] {
+        background: url(../assets/img/tabs/ic-system-tab-shop-off@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      .tab-button-icon[aria-label="cummunity"] {
+        background: url(../assets/img/tabs/ic-system-tab-community-off@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+      .tab-button-icon[aria-label="my"] {
+        background: url(../assets/img/tabs/ic-system-profile-default@3x.png) no-repeat 50% 50%;
+        background-size: 20px;
+      }
+  }
+}
 
 
 scroll-content {
@@ -1031,4 +1268,9 @@ scroll-content {
 .toast-message {
   white-space: pre;
   overflow: hidden !important;
+}
+
+.tabs-top {
+  position: fixed;
+  z-index: 9999
 }

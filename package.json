@@ -33,6 +33,7 @@
     "@ionic-native/call-number": "^4.20.0",
     "@ionic-native/camera": "^4.20.0",
     "@ionic-native/core": "4.3.2",
+    "@ionic-native/device": "^4.20.0",
     "@ionic-native/facebook": "^4.20.0",
     "@ionic-native/fcm": "^4.20.0",
     "@ionic-native/file": "^4.20.0",

@@ -150,29 +150,29 @@ export class MyinfoPage {
   }
 
   test_noti() {
-      let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      headers.append('Authorization',
-        'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
-      let option = new RequestOptions({ headers: headers });
-      let payload = {
-        // "to": this.pushToken,
-          "to": this.userData.pushtoken,
-          "priority": "high",
-          "notification": {
-            "body": "Plinic Background Message",
-            "title": "Plinic Title",
-            // "badge": 1,
-            "sound": "default",
-            "click_action": "FCM_PLUGIN_ACTIVITY"
-        },
-        //토큰
-      }
-      this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
-        .map(res => res.json())
-        .subscribe(data => {
-          console.log("dddddddddddddddddddddd=================" + JSON.stringify(data));
-        });
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization',
+      'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
+    let option = new RequestOptions({ headers: headers });
+    let payload = {
+      // "to": this.pushToken,
+      "to": this.userData.pushtoken,
+      "priority": "high",
+      "notification": {
+        "body": "Plinic Background Message",
+        "title": "Plinic Title",
+        // "badge": 1,
+        "sound": "default",
+        "click_action": "FCM_PLUGIN_ACTIVITY"
+      },
+      //토큰
+    }
+    this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
+      .map(res => res.json())
+      .subscribe(data => {
+        console.log("dddddddddddddddddddddd=================" + JSON.stringify(data));
+      });
   }
 
   ionViewCanEnter() {
@@ -954,7 +954,7 @@ export class MyinfoPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
-          pushtoken : items.pushtoken,
+          pushtoken: items.pushtoken,
           from: items.from,
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
@@ -1125,16 +1125,29 @@ export class MyinfoPage {
 
 
   showLoading() {
-    let loading = this.loadingCtrl.create({
-      spinner: 'hide',
-      duration: 500,
-      cssClass: 'sk-rotating-plane'
-    });
-    loading.present();
+    if (this.platform.is("ios")) {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 500,
+        cssClass: 'sk-rotating-plane_ios'
+      });
+      loading.present();
 
-    setTimeout(() => {
-      loading.dismiss();
-    }, 3000);
+      setTimeout(() => {
+        loading.dismiss();
+      }, 3000);
+    } else {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 500,
+        cssClass: 'sk-rotating-plane'
+      });
+      loading.present();
+
+      setTimeout(() => {
+        loading.dismiss();
+      }, 3000);
+    }
   }
 
   testFunction() {
@@ -1277,7 +1290,7 @@ export class MyinfoPage {
   //20190919 추호선 사용자 이미지 정보가 있는지 없는지 체크 한다.
   public getUserImage(email) {
     this.auth.getUserImage(email).subscribe(items => {
-      if(items !== ''){
+      if (items !== '') {
         this.chkUserImage = true;
       }
     });

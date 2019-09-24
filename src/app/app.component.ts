@@ -11,6 +11,9 @@ import { FCM } from '@ionic-native/fcm';
 import { timer } from 'rxjs/observable/timer';
 // import { Keyboard } from '@ionic-native/keyboard';
 
+import { Device } from '@ionic-native/device';
+
+
 @Component({
   templateUrl: 'app.html',
   // providers: [Keyboard],
@@ -22,6 +25,7 @@ export class MyApp {
 
 
   constructor(
+    public device : Device,
     public toastCtrl: ToastController,
     private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
     private screenOrientation: ScreenOrientation, public translateService: TranslateService,
@@ -42,6 +46,7 @@ export class MyApp {
     // this.translateService.use(defaultlanguage);
 
     this.platform.ready().then(() => {
+      console.log("this.device.model-------------------------------------------------" + JSON.stringify(this.device.model));
 
       // if (this.platform.is('ios')) {
       //   this.fcm.subscribeToTopic('plinic');

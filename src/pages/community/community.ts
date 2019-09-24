@@ -1,5 +1,5 @@
 import { Component, ViewChild, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Content, ModalController, Slides, Platform, Loading, LoadingController, ToastController, ViewController, Events} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Content, ModalController, Slides, Platform, Loading, LoadingController, ToastController, ViewController, Events } from 'ionic-angular';
 import { CommunityModifyPage } from './community-modify/community-modify';
 import { CommunityWritePage } from './community-write/community-write';
 import { MyPage } from './my/my';
@@ -9,6 +9,8 @@ import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } fro
 import { DOCUMENT } from '@angular/common';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { AuthService } from '../../providers/auth-service';
+import { Device } from '@ionic-native/device';
+
 
 
 
@@ -58,12 +60,14 @@ export class CommunityPage {
   beauty_data_id4: any;
   beauty_data_url4: any;
   loading: Loading;
-  tab3:any;
-  tab1:any;
+  tab3: any;
+  tab1: any;
   tabs_boolean: boolean;
   @ViewChild(Slides) slides: Slides;
 
-  constructor(private view : ViewController, private toastCtrl: ToastController, private authService: AuthService, public loadingCtrl: LoadingController, public nav: NavController,
+  constructor(
+    public device: Device,
+    private view: ViewController, private toastCtrl: ToastController, private authService: AuthService, public loadingCtrl: LoadingController, public nav: NavController,
     public navParams: NavParams, private alertCtrl: AlertController, public modalCtrl: ModalController, private images: ImagesProvider, public platform: Platform
     , private themeableBrowser: ThemeableBrowser, @Inject(DOCUMENT) document, public events: Events) {
 
@@ -72,7 +76,7 @@ export class CommunityPage {
 
       console.log("루트페어런트 데이터 테스트 ::::::;" + JSON.stringify(navParams.data));
 
-      console.log('parent_test :::::: '+ this.navParams.get('test'));
+      console.log('parent_test :::::: ' + this.navParams.get('test'));
       console.log(this.navParams.get('back'));
       this.tabs_check();
       this.events1();
@@ -90,10 +94,10 @@ export class CommunityPage {
 
 
 
-  update(){
-  this.view._willEnter();
+  update() {
+    this.view._willEnter();
 
-}
+  }
 
 
   ionViewWillEnter() {
@@ -110,73 +114,73 @@ export class CommunityPage {
     //this.loading.dismiss();
 
 
-    if(this.page === '2' || this.page === '3'){
-    let tabs = document.querySelectorAll('.tabbar');
-    if (tabs !== null) {
-      Object.keys(tabs).map((key) => {
-        //tabs[ key ].style.transform = 'translateY(0)';
-        tabs[key].style.display = '';
-      });
+    if (this.page === '2' || this.page === '3') {
+      let tabs = document.querySelectorAll('.tabbar');
+      if (tabs !== null) {
+        Object.keys(tabs).map((key) => {
+          //tabs[ key ].style.transform = 'translateY(0)';
+          tabs[key].style.display = '';
+        });
+      }
+      setTimeout(() => {
+        this.loading.dismiss();
+      }, 1000);
     }
-    setTimeout(() => {
-      this.loading.dismiss();
-    }, 1000);
   }
-}
 
 
-public tabs_check() {
-  this.authService.getUserStoragetab().then(items => {
-    this.tabs_boolean = items;
-    console.log("tabs_boolean=======" + this.tabs_boolean);
-    if(this.tabs_boolean===true){
-      setTimeout(() => {
-      this.selectedTab(1);
-      this.page="1";
-    }, 100);
-    }
-    else if(this.tabs_boolean===false){
-      setTimeout(() => {
-      this.selectedTab(3);
-      this.page="3";
-    }, 100);
-    }
-    this.authService.setUserStoragetab(0);
-  });
-}
-
-
-events1(){
-this.events.subscribe('tabs1', (data) => {
-  this.tab1 = data;
-  this.selectedTab(0);
-  if(this.tab1=="tabs1"){
-    setTimeout(() => {
-    this.selectedTab(1);
-    this.page="1";
-  }, 100);
-}
-this.events.unsubscribe('tabs1', this.tab1 )
-this.tab1 = undefined;
-  console.log("tabs1 subscribe===============" + data);
-});
-}
-
-events3(){
-this.events.subscribe('tabs3', (data) => {
-  this.tab3 = data;
-  this.selectedTab(0);
-  if(this.tab3=="tabs3"){
-      setTimeout(() => {
-      this.selectedTab(3);
-      this.page="3";
-    }, 100);
+  public tabs_check() {
+    this.authService.getUserStoragetab().then(items => {
+      this.tabs_boolean = items;
+      console.log("tabs_boolean=======" + this.tabs_boolean);
+      if (this.tabs_boolean === true) {
+        setTimeout(() => {
+          this.selectedTab(1);
+          this.page = "1";
+        }, 100);
+      }
+      else if (this.tabs_boolean === false) {
+        setTimeout(() => {
+          this.selectedTab(3);
+          this.page = "3";
+        }, 100);
+      }
+      this.authService.setUserStoragetab(0);
+    });
   }
-  this.events.unsubscribe('tabs3', this.tab3 )
-  this.tab3 = undefined;
-  console.log("tabs3 subscribe===============" + data);
-});
-}
+
+
+  events1() {
+    this.events.subscribe('tabs1', (data) => {
+      this.tab1 = data;
+      this.selectedTab(0);
+      if (this.tab1 == "tabs1") {
+        setTimeout(() => {
+          this.selectedTab(1);
+          this.page = "1";
+        }, 100);
+      }
+      this.events.unsubscribe('tabs1', this.tab1)
+      this.tab1 = undefined;
+      console.log("tabs1 subscribe===============" + data);
+    });
+  }
+
+  events3() {
+    this.events.subscribe('tabs3', (data) => {
+      this.tab3 = data;
+      this.selectedTab(0);
+      if (this.tab3 == "tabs3") {
+        setTimeout(() => {
+          this.selectedTab(3);
+          this.page = "3";
+        }, 100);
+      }
+      this.events.unsubscribe('tabs3', this.tab3)
+      this.tab3 = undefined;
+      console.log("tabs3 subscribe===============" + data);
+    });
+  }
 
 
   ionViewDidLoad() {
@@ -403,8 +407,8 @@ this.events.subscribe('tabs3', (data) => {
 
   openBrowser_androidlike(url, title, id, user, mode) {
     this.images.communityBeautyViewsUpdate(id).subscribe(data => {
-       this.communityBeautyLoadData = data;
-     });
+      this.communityBeautyLoadData = data;
+    });
 
     const options: ThemeableBrowserOptions = {
       toolbar: {
@@ -515,15 +519,15 @@ this.events.subscribe('tabs3', (data) => {
 
 
   public community_my() {
-  this.nav.push(MyPage);
+    this.nav.push(MyPage);
   }
 
   public community_search() {
-  let myModal = this.modalCtrl.create(SearchPage);
-  myModal.onDidDismiss(data => {
+    let myModal = this.modalCtrl.create(SearchPage);
+    myModal.onDidDismiss(data => {
 
-  });
-  myModal.present();
+    });
+    myModal.present();
   }
 
   public community_write() {
@@ -612,17 +616,46 @@ this.events.subscribe('tabs3', (data) => {
 
 
   showLoading() {
-    this.loading = this.loadingCtrl.create({
-      // content: 'Please wait...',
-      spinner: 'hide',
-      duration: 1000,
-      cssClass: 'sk-rotating-plane'
-    });
-    this.loading.present();
+    if (this.platform.is("ios") && this.device.model === 'iPhone7,2' || this.device.model === 'iPhone8,1' || this.device.model === 'iPhone9,1' || this.device.model === 'iPhone9,3' || this.device.model === 'iPhone10,1' || this.device.model === 'iPhone10,4') {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 1000,
+        cssClass: 'sk-rotating-plane_ios'
+      });
+      loading.present();
+    } else if (this.platform.is("ios") && this.device.model === 'iPhone7,1' || this.device.model === 'iPhone8,2' || this.device.model === 'iPhone9,2' || this.device.model === 'iPhone9,4' || this.device.model === 'iPhone10,2' || this.device.model === 'iPhone10,5') {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 1000,
+        cssClass: 'sk-rotating-plane_ios_plus'
+      });
+      loading.present();
+    } else if (this.platform.is("ios") && this.device.model === 'iPhone10,3' || this.device.model === 'iPhone10,6' || this.device.model === 'iPhone11,2' || this.device.model === 'iPhone11,8' || this.device.model === 'iPhone12,1' || this.device.model === 'iPhone12,3') {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 1000,
+        cssClass: 'sk-rotating-plane_ios_x'
+      });
+      loading.present();
+    } else if (this.platform.is("ios") && this.device.model === 'iPhone11,4' || this.device.model === 'iPhone11,6' || this.device.model === 'iPhone12,5') {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 1000,
+        cssClass: 'sk-rotating-plane_ios_x_max'
+      });
+      loading.present();
+    } else {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 1000,
+        cssClass: 'sk-rotating-plane'
+      });
+      loading.present();
+    }
   }
 
 
-  toast(){
+  toast() {
     let toast = this.toastCtrl.create({
       message: '좋아요!',
       duration: 5000,
@@ -637,7 +670,7 @@ this.events.subscribe('tabs3', (data) => {
   }
 
 
-  test(){
+  test() {
     console.log(" ljasd;lfkjasd;lkfjas;dklfja;sdklfja;sdklfj------------------------------------------------------------");
   }
 

@@ -59,7 +59,7 @@
 
   </ion-item><br>
 
-  <ion-item *ngIf="!platform.is('ios')" class="item_align" style="margin-bottom:3%;">
+  <ion-item class="item_align" style="margin-bottom:3%;">
     <ion-label class="birthdaylabel"  stacked> 생년월일</ion-label>
     <ion-datetime type="text" style="font-size:15px" placeholder="생년월일을 선택해주세요." name="birthday"
     doneText="확인" cancelText="취소" pickerFormat="YYYY년 MM월 DD일" displayFormat="YYYY년 MM월 DD일" min="1910" max="2019"
@@ -88,7 +88,7 @@
       </select-searchable>
   </ion-item><br> -->
 
-  <ion-item *ngIf="!platform.is('ios')" class="item_align" style="margin-bottom:4%;">
+  <ion-item class="item_align" style="margin-bottom:4%;">
      <ion-label  class="countrylabel" stacked>국가</ion-label>
      <ion-multi-picker (ionChange)="toggle()" item-content class="multi-picker" name="country"
      [multiPickerColumns]="simpleColumns" doneText="확인" placeholder="국가를 선택해 주세요."
@@ -96,11 +96,11 @@
  </ion-item><br>
 
 
-  <ion-item *ngIf="!platform.is('ios')" class="item_align" style="margin-bottom:3%;" no-lines>
+  <ion-item class="item_align" style="margin-bottom:3%;" no-lines>
   <ion-label class="titlelabel" stacked>성별</ion-label>
   </ion-item>
 
-  <ion-list *ngIf="!platform.is('ios')" class="gender_list" name="gender_list" radio-group [(ngModel)]="registerCredentials.gender" required>
+  <ion-list class="gender_list" name="gender_list" radio-group [(ngModel)]="registerCredentials.gender" required>
     <ion-row class="row_align">
     <ion-col><ion-item no-lines>
       <ion-label class="radiolabel" name="gender" for="여성" checked>여성

@@ -863,12 +863,21 @@ ionViewDidEnter() {
 
 
   showLoading() {
-    this.loading = this.loadingCtrl.create({
-      spinner: 'hide',
-      duration: 100,
-      cssClass: 'sk-rotating-plane'
-    });
-    this.loading.present();
+    if (this.platform.is("ios")) {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 1000,
+        cssClass: 'sk-rotating-plane_ios'
+      });
+      loading.present();
+    } else {
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        duration: 1000,
+        cssClass: 'sk-rotating-plane'
+      });
+      loading.present();
+    }
   }
 
   showAlert(text) {

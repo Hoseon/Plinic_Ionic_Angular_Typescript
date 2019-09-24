@@ -222,6 +222,9 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { CustomIconsModule } from 'ionic2-custom-icons'
 
+//20190923 기기별로 분리하여 css정의 하기 위한 패키지
+import { Device } from '@ionic-native/device';
+
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -449,6 +452,7 @@ export function getAuthHttp(http, storage) {
     // TimerComponent,
     Instagram,
     SocialSharing,
+    Device,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
