@@ -68,8 +68,8 @@
     <ion-item no-lines>
       <ion-row class="sns_row2">
         <ion-col>
-          <img *ngIf="!islike" class="sns-img" (click)="like(beautyNoteOneLoadData._id, this.userData.email)" src="assets/img/like/dislike2.png" />
-          <img *ngIf="islike" class="sns-img" (click)="dislike(beautyNoteOneLoadData._id, this.userData.email)" src="assets/img/like/like2.png" />
+          <img *ngIf="!islike" class="like-img" (click)="like(beautyNoteOneLoadData._id, this.userData.email)" src="assets/img/like/dislike2.png" />
+          <img *ngIf="islike" class="like-img" (click)="dislike(beautyNoteOneLoadData._id, this.userData.email)" src="assets/img/like/like2.png" />
         </ion-col>
       </ion-row>
 
