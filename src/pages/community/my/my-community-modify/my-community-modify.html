@@ -35,7 +35,8 @@
 
   <!-- 광고 -->
   <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
-  <img class="beauty_ad_img" src="assets/img/beauty/beauty_ad.jpg" />
+  <img *ngIf="platform.is('android')" class="beauty_ad_img" src="assets/img/beauty/beauty_ad.JPG" />
+  <img *ngIf="!platform.is('android')" class="beauty_ad_img" src="assets/img/beauty/beauty_ad.jpg" />
   <div style="height:8px; width:100%; margin-top:-1%; background-color:#f1f1f1"></div>
 
   <img class="beauty_text_img" src="assets/img/beauty/ic-q-a-answer@3x.png" />
