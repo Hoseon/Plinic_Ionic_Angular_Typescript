@@ -76,15 +76,7 @@ page-register {
     }
 
 
-    .email_img{
-      position: absolute;
-      background-color: #FFF;
-      width: 25px;
-      height: 25px;
-      object-fit: contain;
-      right: 0%;
-      top: 37%;
-    }
+
 
     .item-md{
       padding-left: 0px;
@@ -215,6 +207,19 @@ page-register {
       padding-left: 2%;
       padding-right: 2%;
     }
+
+    .email_img{
+      position: absolute;
+      background-color: #FFF;
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      right: 0%;
+      top: 37%;
+    }
+
+
+
     .register_list{
       margin-top: -15%;
     }
@@ -263,7 +268,8 @@ page-register {
     height: 25px;
     object-fit: contain;
     right: 7%;
-    top: -0.5%;
+    // top: -0.5%;
+    margin-top: -26%;
     }
 
     .toolaralign2{
@@ -273,7 +279,8 @@ page-register {
       height: 25px;
       object-fit: contain;
       right: 12%;
-      top: 17%;
+      // top: 17%;
+      margin-top: -15%;
     }
     .toolaralign3{
       position: absolute;
@@ -281,8 +288,9 @@ page-register {
       width: 25px;
       height: 25px;
       object-fit: contain;
-      top: 17%;
+      // top: 17%;
       right: -3.5%;
+      margin-top: -15%;
     }
 
   .h1{

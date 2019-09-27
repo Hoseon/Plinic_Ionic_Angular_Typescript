@@ -176,10 +176,11 @@ export class MyinfoPage {
   }
 
   ionViewCanEnter() {
-    this.userData = this.loadItems();
+
   }
 
   ionViewDidLoad() {
+    this.userData = this.loadItems();
     this.id = this.navParams.get('id');
     this.mode = this.navParams.get('mode');
     setTimeout(() => {
@@ -195,11 +196,8 @@ export class MyinfoPage {
 
   ionViewWillEnter() {
     //this.showLoading();
-    this.skinQnaLoad();
-    this.beautyNoteLoad();
-    this.communityEditorBeautyLoad();
-    this.carezoneData = this.roadcareZone();
-    this.getUserImage(this.userData.email);
+
+    // this.getUserImage(this.userData.email);
     // let tabs = document.querySelectorAll('.tabbar');
     // if (tabs !== null) {
     //   Object.keys(tabs).map((key) => {
@@ -207,6 +205,15 @@ export class MyinfoPage {
     //     tabs[key].style.display = 'none';
     //   });
     // }
+  }
+
+
+  ionViewDidEnter() {
+    this.skinQnaLoad();
+    this.beautyNoteLoad();
+    this.communityEditorBeautyLoad();
+    this.carezoneData = this.roadcareZone();
+
   }
 
   public initChart() {
@@ -892,7 +899,7 @@ export class MyinfoPage {
       console.log(this.chartMoistureData);
       console.log(this.chartOilData);
     } else {
-      this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
+      // this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
     }
   }
 
@@ -935,9 +942,7 @@ export class MyinfoPage {
 
   }
 
-  ionViewDidEnter() {
 
-  }
 
 
   public loadItems() {
@@ -977,11 +982,22 @@ export class MyinfoPage {
           from: 'plinic',
         };
         console.log("그냥 유저 데이터는?? ??? ???  " + JSON.stringify(this.userData));
+        console.log("프로필 이미지를 가져 오는 시점은?");
+        if (this.userData) {
+          this.auth.getUserImage(this.userData.email).subscribe(items => {
+            if (items) {
+              this.chkUserImage = true;
+            }
+          });
+        }
       }
 
       // this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
       // this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
     });
+
+
+
   }
 
   getchartScore() {
@@ -1290,7 +1306,7 @@ export class MyinfoPage {
   //20190919 추호선 사용자 이미지 정보가 있는지 없는지 체크 한다.
   public getUserImage(email) {
     this.auth.getUserImage(email).subscribe(items => {
-      if (items !== '') {
+      if (items) {
         this.chkUserImage = true;
       }
     });

@@ -210,7 +210,7 @@ export class DeviceConnectIngPage {
         this.navCtrl.push(DeviceConnectFailPage);
       }
     );
-    setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
+    // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
 
 
   }

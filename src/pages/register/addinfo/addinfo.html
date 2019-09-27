@@ -33,14 +33,11 @@
         <ion-col><ion-img class="close" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
                       assets/img/agreement/ic-system-back-black@3x.png" (click)="navpop()"></ion-img></ion-col>
 
-        <ion-img  class="toolaralign2" src="assets/img/agreement/ic-system-step-on.png" srcset="assets/img/agreement/ic-system-step-on@2x.png,
-                        assets/img/agreement/ic-system-step-on@3x.png"></ion-img>
+        <!-- <ion-img  class="toolaralign2" src="assets/img/agreement/ic-system-step-on@3x.png"></ion-img>
 
-        <ion-img class="toolaralign" src="assets/img/agreement/ic-system-step-03@3x.png" srcset="assets/img/agreement/ic-system-step-02@2x.png,
-                        assets/img/agreement/ic-system-step-02@3x.png"></ion-img>
+        <ion-img class="toolaralign" src="assets/img/agreement/ic-system-step-03@3x.png"></ion-img>
 
-        <ion-img class="toolaralign3" src="assets/img/agreement/ic-system-step-on.png" srcset="assets/img/agreement/ic-system-step-02@2x.png,
-                        assets/img/agreement/ic-system-step-02@3x.png"></ion-img>
+        <ion-img class="toolaralign3" src="assets/img/agreement/ic-system-step-on@3x.png"></ion-img> -->
 
           </ion-row>
      </ion-grid>
@@ -64,7 +61,7 @@
     <ion-datetime type="text" style="font-size:15px" placeholder="생년월일을 선택해주세요." name="birthday"
     doneText="확인" cancelText="취소" pickerFormat="YYYY년 MM월 DD일" displayFormat="YYYY년 MM월 DD일" min="1910" max="2019"
            [(ngModel)]="registerCredentials.birthday" (ionChange)="birthday();" required></ion-datetime>
-  </ion-item><br>
+  </ion-item>
 
   <!-- <ion-item *ngIf="!platform.is('ios')" class="item_align">
     <ion-label class="countrylabel" stacked>국가</ion-label>

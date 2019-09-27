@@ -23,8 +23,8 @@ import { ImagesProvider } from '../../providers/images/images';
 
 //Blue Mod S42
 const PLINIC_SERVICE = 'FEFB';
-const UUID_SERVICE = 'FEFB';
-const SWITCH_CHARACTERISTIC = '00000002-0000-1000-8000-008025000000';
+const UUID_SERVICE = '180A';
+const SWITCH_CHARACTERISTIC = '2A50';
 
 // { "characteristics": [{ "properties": ["Read"], "isNotifying": false, "characteristic": "2A50", "service": "180A" },
 // { "properties": ["Write"], "isNotifying": false, "characteristic": "00000009-0000-1000-8000-008025000000", "service": "FEFB" },
@@ -269,18 +269,18 @@ export class DeviceSkinIngPage {
     console.log("this.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.id : " + this.peripheral.id);
 
 
-    var test = new ArrayBuffer(16);
-
-    var data = new Uint8Array(3).buffer;
-    data[0] = 16; // red
-    data[1] = 17; // green
-    data[2] = 1; // blue
+    // var test = new ArrayBuffer(16);
+    //
+    // var data = new Uint8Array(3).buffer;
+    // data[0] = 16; // red
+    // data[1] = 17; // green
+    // data[2] = 1; // blue
 
     // let array = new Uint8Array([AT+LECCCD=0x10,0x0011,1]);
 
-    let array = this.strtoarray('AT+LECCCD=0x10,0x0011,1')
-    let buffer = new Uint8Array([16]).buffer;
-    // this.ble.write(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC, array).then(result =>{
+    // let array = this.strtoarray('AT+LECCCD=0x10,0x0011,1')
+    // let buffer = new Uint8Array([16]).buffer;
+    // // this.ble.write(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC, array).then(result =>{
     //   console.log("쓰기 기능" + JSON.stringify(result));
     // }).catch(error => {
     //       console.log(JSON.stringify(error));
@@ -309,20 +309,24 @@ export class DeviceSkinIngPage {
     // )
 
     //
+
+    console.log("---------------------------------노티피 시작 ------------------------------------------------");
     this.ble.startNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
       console.log("Plinic G1Partners Notifi " + String.fromCharCode.apply(null, new Uint8Array(buffer)));
     }, error => {
       console.log("Notifi Error : " + error);
     })
+    console.log("---------------------------------노티피 종료 ------------------------------------------------");
 
 
-    this.ble.startStateNotifications().subscribe(state => {
-      console.log("ble state ========================================================== " + state);
-    })
 
-    this.ble.isEnabled().then(data => {
-      console.log("is enabled???  --------------------------------" + data);
-    })
+    // this.ble.startStateNotifications().subscribe(state => {
+    //   console.log("ble state ========================================================== " + state);
+    // })
+    //
+    // this.ble.isEnabled().then(data => {
+    //   console.log("is enabled???  --------------------------------" + data);
+    // })
 
     // Update the UI with the current state of the dimmer characteristic
     // this.ble.read(this.peripheral.id, LIGHTBULB_SERVICE, DIMMER_CHARACTERISTIC).then(

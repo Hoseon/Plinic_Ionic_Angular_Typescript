@@ -286,13 +286,14 @@ export class HomePage {
           if (data.wasTapped) {
             //커뮤니티 (뷰티노트, 피부고민 알림 처리)
             if (data.mode === 'qna' || data.mode === 'note') {
-              this.nav.parent.select(3).then(() => {
-                let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
-                myModal.onDidDismiss(data => {
-                  this.ionViewWillEnter();
-                });
-                myModal.present();
-              });
+              // this.nav.parent.select(3).then(() => {
+                  let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
+                  myModal.onDidDismiss(data => {
+                    // this.ionViewWillEnter();
+                    this.nav.parent.select(3)
+                  });
+                  myModal.present();
+              // });
             }
             if (data.mode === 'myqna') {
               // this.nav.parent.select(4).then(() => {
@@ -344,13 +345,14 @@ export class HomePage {
           console.log("FCM data ::::::::::::::" + JSON.stringify(data));
           if (data.wasTapped) {
             if (data.mode === 'qna' || data.mode === 'note') {
-              this.nav.parent.select(3).then(() => {
-                let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
-                myModal.onDidDismiss(data => {
-                  this.ionViewWillEnter();
-                });
-                myModal.present();
-              });
+              // this.nav.parent.select(3).then(() => {
+                  let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
+                  myModal.onDidDismiss(data => {
+                    // this.ionViewWillEnter();
+                    this.nav.parent.select(3)
+                  });
+                  myModal.present();
+              // });
             }
             if (data.mode === 'myqna') {
               // this.nav.parent.select(4).then(() => {
