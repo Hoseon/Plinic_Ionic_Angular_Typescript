@@ -121,6 +121,17 @@ export class CareZoneMissionIngPage {
     } // end if
   }
 
+  ionViewWillLeave() {
+    this.subscriptionFourth.complete();
+    console.log("Timer Clear!");
+  }
+
+  ionViewDidLeave() {
+    this.subscriptionFourth.complete();
+    console.log("ionViewDidLeave Timer Clear!");
+
+  }
+
   public roadbanner() {
     this.images.bannerRoad().subscribe(data => {
       this.bannerData = data;
