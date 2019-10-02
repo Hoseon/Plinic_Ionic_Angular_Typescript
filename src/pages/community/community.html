@@ -170,7 +170,7 @@
 
       <!-- 광고 -->
       <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
-      <img *ngIf="platform.is('android')" class="beauty_ad_img" src="assets/img/beauty/beauty_ad.JPG" />
+      <img *ngIf="platform.is('android')" class="beauty_ad_img" src="assets/img/beauty/beauty_ad.jpg" />
       <img *ngIf="!platform.is('android')" class="beauty_ad_img" src="assets/img/beauty/beauty_ad.jpg" />
       <div style="height:8px; width:100%; margin-top:-1.5%; background-color:#f1f1f1"></div>
 
@@ -365,7 +365,8 @@
             <img class="beauty_img" src="http://plinic.cafe24app.com/beautynoteimage/{{mainNote._id}}" />
             <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
             <div class="beauty_desc">{{mainNote.title}}</div>
-            <div *ngIf="mainNote.like" class="beauty_count"> 좋아요 {{mainNote.like}}</div>
+            <div *ngIf="mainNote.like" class="beauty_count"> 좋아요 {{mainNote.like}} ∙  답변 {{mainNote.comments.length}}</div>
+            <!-- <div class="beauty_count">답변 {{mainNote.comments.length}}</div> -->
           </ion-col>
         </ng-container>
       </ion-row>

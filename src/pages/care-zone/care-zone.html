@@ -115,10 +115,20 @@
         <ion-col col-9 class="imagetitle">
           {{carezone.title}}
         </ion-col>
+        <!-- <ng-container ngIf="carezone.timeremaining[i] > 0"> -->
         <ion-col class="right_align">
           <!-- {{missionCounter[i]}}/{{carezone.maxmember}} -->
-          {{displayTime[i]}}
+          <!-- <ng-container *ngIf="displayTime[i] > 0">
+            {{displayTime[i]}}
+          </ng-container> -->
+            챌린지 마감
         </ion-col>
+        <!-- </ng-container> -->
+        <!-- <ng-container ngIf="carezone.timeremaining[i] <= 0">
+          <ion-col class="right_align">
+            챌린지 마감
+          </ion-col>
+        </ng-container> -->
       </ion-row>
       <ion-row>
         <ion-col class="sub">

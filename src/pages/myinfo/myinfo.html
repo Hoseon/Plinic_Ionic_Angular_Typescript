@@ -110,9 +110,10 @@
       <ion-item>
         <button ion-button class="care_chart_btn" (click)="test_noti()"> 케어하기</button>
       </ion-item>
+      <br />
 
       <ion-row>
-        <ion-col class="skin_chart">스킨 차트</ion-col>
+        <ion-col class="skin_chart">스킨차트</ion-col>
         <ion-col>
           <ion-select (ionChange)="yearmonthselect($event)" placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover" [(ngModel)]="valueday.day" multiple="false" class="linechart_btn">
             <ion-option *ngFor="let days of monthdate">{{days.day}}</ion-option>
@@ -162,26 +163,26 @@
       </ion-item>
 
 
-      <h3 class="solution_title">솔루션</h3>
+      <!-- <h3 class="solution_title">솔루션</h3> -->
 
       <!-- 데이터가 없을 때 -->
-      <ng-container *ngIf="!skinScoreData">
+      <!-- <ng-container *ngIf="!skinScoreData">
         <br>
         <div class="solution_no_data">솔루션 정보가 없습니다.<br> 피부를 측정하여 맞춤 솔루션을 받아보세요. </div><br>
-      </ng-container>
+      </ng-container> -->
 
 
       <!-- 데이터가 있을 때 -->
-      <ng-container *ngIf="skinScoreData">
+      <!-- <ng-container *ngIf="skinScoreData"> -->
       <!-- 수분지수가 낮을 때 -->
-      <br>
-      <h1 class="solution_care">당신의 피부는<br> <span style="color:#5c59b6">"수분개선" </span> 맞춤 케어가 필요합니다. </h1>
-      <br>
+      <!-- <br> -->
+      <!-- <h1 class="solution_care">당신의 피부는<br> <span style="color:#5c59b6">"수분개선" </span> 맞춤 케어가 필요합니다. </h1> -->
+      <!-- <br> -->
       <!-- 유분지수가 낮을 때  -->
       <!-- <h1 class="solution_care">당신의 피부는<br> <span style="color:#5c59b6">"유분개선" </span> 맞춤 케어가 필요합니다. </h1> -->
-      </ng-container>
+      <!-- </ng-container> -->
 
-      <h3 class="recommander_title">연관된 뷰티팁 추천</h3>
+      <h3 class="recommander_title">맞춤 뷰티팁 추천</h3>
       <ng-container *ngIf="communityEditorBeautyLoadData">
         <ion-grid class="beauty_tip">
           <ion-row>

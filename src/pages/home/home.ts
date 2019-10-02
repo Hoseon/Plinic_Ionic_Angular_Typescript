@@ -170,6 +170,8 @@ export class HomePage {
   timeremaining: any;
   timeremaining2: any;
 
+  endmission: Array<any> = new Array<any>();
+
 
 
   constructor(
@@ -290,12 +292,12 @@ export class HomePage {
                   let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
                   myModal.onDidDismiss(data => {
                     // this.ionViewWillEnter();
-                    this.nav.parent.select(3)
+                    // this.nav.parent.select(3)
                   });
                   myModal.present();
               // });
             }
-            if (data.mode === 'myqna') {
+            if (data.mode === 'myqna') {  //문의하기
               // this.nav.parent.select(4).then(() => {
                 let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
                 myModal.onDidDismiss(data => {
@@ -772,6 +774,10 @@ export class HomePage {
       this.firstCarezoneData = data;
       this.timeremaining = (new Date(data[0].endmission).getTime() - new Date().getTime()) / 1000;
       this.first_missionCount(data[0]._id);
+
+      for (let i = 0; i < data.length; i++) {
+        this.endmission[i] = new Date(data[i].endmission);
+      }
     });
   }
 

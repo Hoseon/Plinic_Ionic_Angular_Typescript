@@ -309,15 +309,15 @@ export class CommunityPage {
         align: 'left',
         event: 'closePressed'
       },
-      customButtons: [
-        {
-
-          wwwImage: 'assets/img/like/like.png',
-          // wwwImagePressed: 'assets/img/like/dislike.png',
-          align: 'right',
-          event: 'sharePressed'
-        }
-      ],
+      // customButtons: [
+      //   {
+      //
+      //     wwwImage: 'assets/img/like/like.png',
+      //     // wwwImagePressed: 'assets/img/like/dislike.png',
+      //     align: 'right',
+      //     event: 'sharePressed'
+      //   }
+      // ],
     };
 
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
@@ -377,14 +377,14 @@ export class CommunityPage {
         align: 'left',
         event: 'closePressed'
       },
-      customButtons: [
-        {
-          wwwImage: 'assets/img/like/like.png',
-          imagePressed: 'assets/img/like/dislike.png',
-          align: 'right',
-          event: 'sharePressed'
-        }
-      ],
+      // customButtons: [
+      //   {
+      //     wwwImage: 'assets/img/like/like.png',
+      //     imagePressed: 'assets/img/like/dislike.png',
+      //     align: 'right',
+      //     event: 'sharePressed'
+      //   }
+      // ],
     };
 
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
@@ -425,15 +425,15 @@ export class CommunityPage {
         align: 'left',
         event: 'closePressed'
       },
-      customButtons: [
-        {
-
-          wwwImage: 'assets/img/like/like.png',
-          // wwwImagePressed: 'assets/img/like/dislike.png',
-          align: 'right',
-          event: 'sharePressed'
-        }
-      ],
+      // customButtons: [
+      //   {
+      //
+      //     wwwImage: 'assets/img/like/like.png',
+      //     // wwwImagePressed: 'assets/img/like/dislike.png',
+      //     align: 'right',
+      //     event: 'sharePressed'
+      //   }
+      // ],
     };
 
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
@@ -489,14 +489,14 @@ export class CommunityPage {
         showPageTitle: false,
         staticText: title
       },
-      customButtons: [
-        {
-          wwwImage: 'assets/img/like/like.png',
-          imagePressed: 'assets/img/like/dislike.png',
-          align: 'right',
-          event: 'sharePressed'
-        }
-      ],
+      // customButtons: [
+      //   {
+      //     wwwImage: 'assets/img/like/like.png',
+      //     imagePressed: 'assets/img/like/dislike.png',
+      //     align: 'right',
+      //     event: 'sharePressed'
+      //   }
+      // ],
     };
 
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);

@@ -7,7 +7,7 @@ import { AuthService } from '../providers/auth-service';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 // import { ImageLoaderConfig } from 'ionic-image-loader';
-import { FCM } from '@ionic-native/fcm';
+// import { FCM } from '@ionic-native/fcm';
 import { timer } from 'rxjs/observable/timer';
 // import { Keyboard } from '@ionic-native/keyboard';
 
@@ -30,7 +30,7 @@ export class MyApp {
     private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
     private screenOrientation: ScreenOrientation, public translateService: TranslateService,
     // private imageLoaderConfig: ImageLoaderConfig,
-    private fcm: FCM,
+    // private fcm: FCM,
     private alertCtrl: AlertController) {
 
     this.initializeApp();

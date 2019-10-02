@@ -48,40 +48,79 @@
       </ion-col>
     </ion-row>
 
-    <div *ngFor="let firstCarezone of firstCarezoneData">
-      <ion-row>
-        <ion-col *ngIf="firstCarezone._id" class="img_carezone_background" style="text-align: center" (click)="mission_start(firstCarezone)">
-          <img class="img_carezone" src="http://plinic.cafe24app.com/carezone_images/{{firstCarezone._id}}" />
-          <!-- 모집중, 모집마감 -->
-          <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #B7C9AF;" ion-button>진행 중</button> -->
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col *ngIf="firstCarezoneData" class="font_carezone2 left-margin">
-          <!-- {{first_carezone_title}} -->
-          {{firstCarezone.title}}
-        </ion-col>
-        <!-- 타이머 추가 -->
-        <ion-col class="font_carezone2_page right-margin">
-          {{displayTime}}
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col *ngIf="firstCarezoneData" class="font_carezone2_sub left-margin">
-          <!-- {{first_carezone_body}} -->
-          {{firstCarezone.body}}
-        </ion-col>
-      </ion-row>
-      <!-- 참가 인원 이미지 추가  -->
-      <ion-row>
-        <ng-container *ngIf="firstCarezoneData">
-          <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <div class="user_sub"><span class="user_name">253</span>명이 참가 중입니다.</div>
-        </ng-container>
-      </ion-row>
+    <div *ngFor="let firstCarezone of firstCarezoneData; let i = index;">
+      <ng-container *ngIf="endmission[i] > currentDate">
+        <ion-row>
+          <ion-col *ngIf="firstCarezone._id" class="img_carezone_background" style="text-align: center" (click)="mission_start(firstCarezone)">
+            <img class="img_carezone" src="http://plinic.cafe24app.com/carezone_images/{{firstCarezone._id}}" />
+            <!-- 모집중, 모집마감 -->
+            <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #B7C9AF;" ion-button>진행 중</button> -->
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col *ngIf="firstCarezoneData" class="font_carezone2 left-margin">
+            <!-- {{first_carezone_title}} -->
+            {{firstCarezone.title}}
+          </ion-col>
+          <!-- 타이머 추가 -->
+          <ion-col class="font_carezone2_page right-margin">
+            {{displayTime}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col *ngIf="firstCarezoneData" class="font_carezone2_sub left-margin">
+            <!-- {{first_carezone_body}} -->
+            {{firstCarezone.body}}
+          </ion-col>
+        </ion-row>
+        <!-- 참가 인원 이미지 추가  -->
+        <ion-row>
+          <ng-container *ngIf="firstCarezoneData">
+            <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
+            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+            <div class="user_sub"><span class="user_name">2531</span>명이 참가 중입니다.</div>
+          </ng-container>
+        </ion-row>
+      </ng-container>
+    </div>
 
+    <div *ngFor="let firstCarezone of firstCarezoneData; let i = index;">
+      <ng-container *ngIf="endmission[i] < currentDate">
+
+        <ion-row>
+          <ion-col *ngIf="firstCarezone._id" class="img_carezone_background" style="text-align: center" (click)="mission_start(firstCarezone)">
+            <img class="img_carezone" src="http://plinic.cafe24app.com/carezone_images/{{firstCarezone._id}}" />
+            <!-- 모집중, 모집마감 -->
+            <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #B7C9AF;" ion-button>진행 중</button> -->
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col *ngIf="firstCarezoneData" class="font_carezone2 left-margin">
+            <!-- {{first_carezone_title}} -->
+            {{firstCarezone.title}}
+          </ion-col>
+          <!-- 타이머 추가 -->
+          <ion-col class="font_carezone2_page right-margin">
+            챌린지 마감
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col *ngIf="firstCarezoneData" class="font_carezone2_sub left-margin">
+            <!-- {{first_carezone_body}} -->
+            {{firstCarezone.body}}
+          </ion-col>
+        </ion-row>
+        <!-- 참가 인원 이미지 추가  -->
+        <ion-row>
+          <ng-container *ngIf="firstCarezoneData">
+            <!-- <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
+            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
+            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
+            <div class="user_sub"><span class="user_name">&nbsp;&nbsp;&nbsp;</span>챌린지가 종료 되었습니다.</div>
+          </ng-container>
+        </ion-row>
+      </ng-container>
     </div>
 
 
@@ -115,7 +154,7 @@
           <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
           <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
           <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <div class="user_sub"><span class="user_name">253</span>명이 참가 중입니다.</div>
+          <div class="user_sub"><span class="user_name">2532</span>명이 참가 중입니다.</div>
         </ng-container>
       </ion-row>
     </div>
@@ -155,14 +194,14 @@
           <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
           <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
           <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <div class="user_sub"><span class="user_name">253</span>명이 참가 중입니다.</div>
+          <div class="user_sub"><span class="user_name">2533</span>명이 참가 중입니다.</div>
         </ng-container>
       </ion-row>
     </div>
 
     <ion-row>
       <ion-col style="text-align: center">
-        <button ion-button class="mission_btn" outline (click)="openCareZoneTab()">미션 더 보기 > </button>
+        <button ion-button class="mission_btn" outline (click)="openCareZoneTab()">챌린지 더 보기 > </button>
       </ion-col>
     </ion-row>
   </ion-list>

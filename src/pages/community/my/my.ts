@@ -558,7 +558,7 @@ yearmonthselect(e) {
     console.log(this.chartOilData);
   } else {
     setTimeout(() => {
-    this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
+    // this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
     }, 3000)
   }
 

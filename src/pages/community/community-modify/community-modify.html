@@ -87,7 +87,7 @@
 
     <!-- 광고 -->
     <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
-    <img *ngIf="platform.is('android')" class="beauty_ad_img" src="assets/img/beauty/beauty_ad.JPG" />
+    <img *ngIf="platform.is('android')" class="beauty_ad_img" src="assets/img/beauty/beauty_ad.jpg" />
     <img *ngIf="!platform.is('android')" class="beauty_ad_img" src="assets/img/beauty/beauty_ad.jpg" />
     <div style="height:8px; width:100%; margin-top:-0.5%; background-color:#f1f1f1"></div>
 
@@ -222,8 +222,8 @@
     <ion-item no-lines>
       <ion-row class="sns_row2">
         <ion-col>
-          <img *ngIf="!islike" class="sns-img" (click)="like(beautyNoteOneLoadData._id, this.userData.email)" src="assets/img/like/dislike2.png" />
-          <img *ngIf="islike" class="sns-img" (click)="dislike(beautyNoteOneLoadData._id, this.userData.email)" src="assets/img/like/like2.png" />
+          <img *ngIf="!islike" class="sns-img" (click)="like(skinQnaOneLoadData._id, this.userData.email)" src="assets/img/like/dislike2.png" />
+          <img *ngIf="islike" class="sns-img" (click)="dislike(skinQnaOneLoadData._id, this.userData.email)" src="assets/img/like/like2.png" />
         </ion-col>
       </ion-row>
       <ion-row *ngIf="skinQnaOneLoadData" class="sns_row">
@@ -238,7 +238,7 @@
 
     <!-- 광고 -->
     <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
-    <img *ngIf="platform.is('android')" class="beauty_ad_img" src="assets/img/beauty/beauty_ad.JPG" />
+    <img *ngIf="platform.is('android')" class="beauty_ad_img" src="assets/img/beauty/beauty_ad.jpg" />
     <img *ngIf="!platform.is('android')" class="beauty_ad_img" src="assets/img/beauty/beauty_ad.jpg" />
     <div style="height:8px; width:100%; margin-top:-0.5%; background-color:#f1f1f1"></div>
 

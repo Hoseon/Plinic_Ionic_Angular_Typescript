@@ -8,7 +8,7 @@ import { TermsPage } from '../details/terms/terms';
 import { ReRegisterPage } from '../../re-register/re-register';
 import { NoticePage } from '../details/notice/notice';
 import { PersonalinfoPage } from '../details/personalinfo/personalinfo';
-import { FCM } from '@ionic-native/fcm';
+// import { FCM } from '@ionic-native/fcm';
 import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { BluetoothConnectIngPage } from '../details/bluetooth-connect-ing/bluetooth-connect-ing';
 import { BluetoothDisconnectPage } from '../details/bluetooth-disconnect/bluetooth-disconnect';
@@ -52,7 +52,9 @@ export class SettingPage {
   from: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public storage: Storage,
-    private alertCtrl: AlertController, private platform: Platform, private fcm: FCM, public bluetoothle: BluetoothLE, public modalCtrl: ModalController) {
+    private alertCtrl: AlertController, private platform: Platform,
+    // private fcm: FCM,
+    public bluetoothle: BluetoothLE, public modalCtrl: ModalController) {
 
       this.platform.ready().then(() => {
       });
@@ -180,14 +182,18 @@ public logout() {
         text: '확인',
         handler: () => {
           if (this.userData.from === 'plinic') {
+            console.log("플리닉 로그아웃")
             this.authService.logout();
             this.navCtrl.setRoot(LoginPage);
             this.navCtrl.popToRoot();
           } else if (this.userData.from === 'naver') {
             this.authService.naver_logout();
+            console.log("플리닉 네이버 로그아웃");
           } else if (this.userData.from === 'google' || this.userData.from === 'kakao') {
+            console.log("플리닉 구글 카카오 로그아웃");
             this.authService.kakao_authlogout();
           } else {
+            console.log("그외 로그아웃");
             this.authService.logout();
             this.navCtrl.setRoot(LoginPage);
             this.navCtrl.popToRoot();

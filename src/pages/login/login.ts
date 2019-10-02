@@ -116,6 +116,16 @@ export class LoginPage {
   }
 
   public kakao_login() {
+
+    // let loginOptions = {};
+    // loginOptions['authTypes'] = [
+    //                               AuthTypes.AuthTypeTalk,
+    //                               // AuthTypes.AuthTypeStory,
+    //                               // AuthTypes.AuthTypeAccount
+    //                             ];
+    // this._kakaoCordovaSDK.login(loginOptions).then((res) =>{
+    //   console.log("카카오 로그인 성공 했음... 테스트 추호선 : " + res)
+    // })
     //스플래시 이미지 변경을 위해서 로딩 컴포넌트 빼 버림
     //this.showLoading()
     this.userData = this.auth.kakao_login();

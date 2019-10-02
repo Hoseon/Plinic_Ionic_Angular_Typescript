@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.g1p.plinic" version="0.0.47" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.g1p.plinic" version="0.0.50" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Plinic</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -14,7 +14,6 @@
     <preference name="KeyboardResize" value="true" />
     <preference name="KeyboardResizeMode" value="native" />
     <preference name="ScrollEnabled" value="true" />
-    <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="0" />
@@ -57,10 +56,10 @@
             <string>Plinic App을 사용하기 위해서는 카메라의 접근권한을 허용해야 합니다.</string>
         </edit-config>
         <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryAddUsageDescription">
-            <string>Plinic App을 사용하기 위해서는 사진첩의 접근권한을 허용해야 합니다.</string>
+            <string>플리닉의 케어챌린지 랭킹 기능, 커뮤니티 기능, My Profile 의 프로필 사진을  등록 및 변경하려면 사진 승인을 해야 합니다.</string>
         </edit-config>
         <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
-            <string>Plinic App을 사용하기 위해서는 사진첩의 접근권한을 허용해야 합니다.</string>
+            <string>플리닉의 케어챌린지 랭킹 기능, 커뮤니티 기능, My Profile 의 프로필 사진을  등록 및 변경하려면 사진 승인을 해야 합니다.</string>
         </edit-config>
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
