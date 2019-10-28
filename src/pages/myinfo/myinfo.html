@@ -27,12 +27,18 @@
 
   <ng-container *ngIf="userData">
 
-    <ng-container *ngIf="userData.from === 'kakao' || userData.from === 'naver' || userData.from === 'google'">
+    <ng-container *ngIf="userData.from === 'kakao' || userData.from === 'google'">
       <img *ngIf="userData.thumbnail_image" class="profile_image" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+    </ng-container>
+    <ng-container *ngIf="userData.from === 'naver'">
+      <img class="profile_image" src="assets/img/register/ic-system-profile-default@3x.png" />
     </ng-container>
     <ng-container *ngIf="userData.from === 'plinic'">
       <ng-container *ngIf="chkUserImage" >
-        <img class="profile_image" src="http://plinic.cafe24app.com/userimages/{{userData.email}}"/>
+        <ng-container *ngIf="thumb_image">
+        <!-- <img class="profile_image" src="http://plinic.cafe24app.com/userimages/{{userData.email}}"/> -->
+        <img class="profile_image" src="http://g1partners1.cafe24.com/plinic/{{thumb_image.filename}}"/>
+        </ng-container>
       </ng-container>
       <ng-container *ngIf="!chkUserImage" >
         <img class="profile_image" src="assets/img/register/ic-system-profile-default@3x.png"/>
@@ -222,22 +228,22 @@
     <ion-slide>
 
       <!-- 챌린지 참여 이력이 없을떄  -->
-      <ng-container>
+      <ng-container *ngIf="!missionHistory">
         <div class="carezone_no_data">활동 이력이 없습니다.</div>
       </ng-container>
 
       <!-- 챌린지 참여 이력이 있을떄  -->
 
-      <ion-list *ngFor="let carezone of carezoneData; let i = index">
-        <ng-container *ngIf="endmission[i] > currentDate">
+      <ion-list *ngFor="let history of missionHistory; let i = index">
+        <!-- <ng-container *ngIf="endmission[i] > currentDate"> -->
           <ion-row class="row">
-            <ion-col class="container2" (click)="mission_start(carezone._id)">
-              <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}' />
+            <ion-col class="container2" (click)="mission_start(history.missionID)">
+              <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{history.missionID}}' />
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col col-9 class="imagetitle">
-              {{carezone.title}}
+              {{history.title}}
             </ion-col>
             <ion-col class="right_align">
               <!-- {{missionCounter[i]}}/{{carezone.maxmember}} -->
@@ -246,7 +252,7 @@
           </ion-row>
           <ion-row>
             <ion-col class="sub">
-              {{carezone.body}}
+              {{history.body}}
             </ion-col>
           </ion-row>
           <!-- 참가 인원 이미지 추가  -->
@@ -259,43 +265,8 @@
               <div class="user_sub"><span class="user_name">253</span>명이 참가 중입니다.</div>
             </ng-container>
           </ion-row>
-        </ng-container>
+        <!-- </ng-container> -->
       </ion-list>
-
-      <ion-list *ngFor="let carezone of carezoneData; let i = index">
-        <ng-container *ngIf="endmission[i] < currentDate">
-          <ion-row class="row">
-            <ion-col class="container2" (click)="mission_start(carezone._id)">
-              <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}' />
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-9 class="imagetitle">
-              {{carezone.title}}
-            </ion-col>
-            <ion-col class="right_align">
-              <!-- {{missionCounter[i]}}/{{carezone.maxmember}} -->
-              113:47:34
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col class="sub">
-              {{carezone.body}}
-            </ion-col>
-          </ion-row>
-          <!-- 참가 인원 이미지 추가  -->
-          <br>
-          <ion-row class="user_image">
-            <ng-container>
-              <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
-              <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-              <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-              <div class="user_sub"><span class="user_name">253</span>명이 참가 중입니다.</div>
-            </ng-container>
-          </ion-row>
-        </ng-container>
-      </ion-list>
-
     </ion-slide>
 
 

@@ -1,6 +1,6 @@
 import { Component, ViewChild, Directive, HostListener, ElementRef } from '@angular/core';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
-import { IonicPage, NavController, NavParams, Platform, ViewController, PopoverController, LoadingController, ModalController, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ViewController, PopoverController, Loading, LoadingController, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { PopoverPage } from './popover/popover';
 import { ImagesProvider } from '../../../providers/images/images';
 import { CommunityWritePage } from '../community-write/community-write';
@@ -57,6 +57,9 @@ export class CommunityModifyPage {
   @ViewChild('textarea') mytextarea;
 
   browserRef: any;
+
+  loading: Loading;
+
 
 
   constructor(private http: Http, private fb: Facebook, private socialSharing: SocialSharing, private instagram: Instagram, public _kakaoCordovaSDK: KakaoCordovaSDK, private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController,
@@ -311,6 +314,31 @@ export class CommunityModifyPage {
 
                   if (this.mode === 'qna') {
                     console.log("안드로이드 피부 고민 삭제");
+                    this.auth.skinQnaDelete(this.skinQnaOneLoadData._id).subscribe(data => {
+                      if (data) {
+                        let alert2 = this.alertCtrl.create({
+                          cssClass: 'push_alert',
+                          title: '게시글 삭제',
+                          message: "게시글이 정상적으로 삭제 되었습니다.",
+                          buttons: [
+                            {
+                              text: '확인',
+                              handler: () => {
+                                // this.registerReply.comment = '';
+                                // this.comment_popover_option_textarea = -1;
+                                // this.textareaResize();
+                                // this.update();
+                                console.log("피부 고민 삭제");
+                                this.viewCtrl.dismiss({
+                                  page_modify: this.page_modify
+                                });
+                              }
+                            }
+                          ]
+                        });
+                        alert2.present();
+                      }
+                    });
                   }
                 }
               }]

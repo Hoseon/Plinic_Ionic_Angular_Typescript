@@ -172,6 +172,8 @@ export class HomePage {
 
   endmission: Array<any> = new Array<any>();
 
+  first_missionMemberData: any;
+
 
 
   constructor(
@@ -749,6 +751,11 @@ export class HomePage {
     this.images.missionCount(id).subscribe(data => {
       this.first_carezone_missioncount = data;
     });
+
+    this.images.getMissionMember(id).subscribe(data => {
+      this.first_missionMemberData = data;
+    });
+
   }
 
   //20190617 미션 참여자 인원 count
@@ -1011,19 +1018,19 @@ export class HomePage {
     this.images.communityEditorHomeBeautyLoad().subscribe(data => {
       this.beauty_data_type1 = data[0].title;
       this.beauty_data_title1 = data[0].body;
-      this.beauty_data_id1 = data[0]._id;
+      this.beauty_data_id1 = data[0].filename;
       this.beauty_data_url1 = data[0].posturl;
       this.beauty_data_type2 = data[1].title;
       this.beauty_data_title2 = data[1].body;
-      this.beauty_data_id2 = data[1]._id;
+      this.beauty_data_id2 = data[1].filename;
       this.beauty_data_url2 = data[1].posturl;
       this.beauty_data_type3 = data[2].title;
       this.beauty_data_title3 = data[2].body;
-      this.beauty_data_id3 = data[2]._id;
+      this.beauty_data_id3 = data[2].filename;
       this.beauty_data_url3 = data[2].posturl;
       this.beauty_data_type4 = data[3].title;
       this.beauty_data_title4 = data[3].body;
-      this.beauty_data_id4 = data[3]._id;
+      this.beauty_data_id4 = data[3].filename;
       this.beauty_data_url4 = data[3].posturl;
       this.beautyData = data;
     });

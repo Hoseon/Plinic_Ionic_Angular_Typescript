@@ -16,11 +16,18 @@
   <div *ngIf="platform.is('ios')" class="container">
 
     <div *ngIf="!imagePath2">
+
       <div *ngIf="userData"><img *ngIf="!thumb_image" class="register_profile" src="http://plinic.cafe24app.com/userimages/{{userData.email}}" /></div>
+
+      <!-- SNS프로필 이미지가 있을때 -->
       <img *ngIf="thumb_image" class="register_profile" src="{{userData.thumbnail_image}}" />
+
+      <!-- SNS인데 이미지도 없고 일반사용자인데 이미지도 없을때 -->
       <img *ngIf="!thumb_image && !userData" class="register_profile" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
                     assets/img\register/ic-system-profile-default@3x.png" />
     </div>
+
+    <!-- 카메라로 새로 등록 하려면 -->
     <div *ngIf="imagePath2">
       <img *ngIf="!thumb_image" class="register_profile" [src]="imagePath2" />
     </div>
@@ -50,7 +57,7 @@
     <div class="profile_text">{{userData.email}}</div>이메일
   </button> -->
   <button type="text" *ngIf="userData" mode="ios" class="profile_modify" ion-item (click)="modify_nickname()" >
-    <div class="profile_text">{{nickname}}</div>닉네임
+    <div class="profile_text">{{userData.nickname}}</div>닉네임
   </button>
   <button type="password" *ngIf="userData" mode="ios" class="profile_modify" ion-item (click)="modify_password()" >
     <div class="profile_text" type="password">{{password}}</div>비밀번호

@@ -129,6 +129,7 @@ export class CommunityWritePage {
     setTimeout(() => {
       this.imageElement.nativeElement.remove();
     }, 100)
+    this.imagePath2='';
   }
 
 
@@ -205,16 +206,16 @@ export class CommunityWritePage {
   public takePicture(sourceType) {
     // Create options for the Camera Dialog
     var options = {
-      quality: 80,
+      quality: 100,
       destinationType: this._camera.DestinationType.FILE_URI,
       sourceType: sourceType,
       // saveToPhotoAlbum: true,
       encodingType: this._camera.EncodingType.JPEG,
       mediaType: this._camera.MediaType.PICTURE,
-      allowEdit: true,
+      // allowEdit: true,
       correctOrientation: true,
-      targetWidth: 300,
-      targetHeight: 300
+      // targetWidth: 300,
+      // targetHeight: 300
     };
 
     // Get the data of an image
@@ -584,7 +585,7 @@ export class CommunityWritePage {
           {
             text: '확인',
             handler: () => {
-              if (this.imagePath2) { //이미지 변경없이 저장 할 경우
+              if (this.imagePath2) { //이미지 변경 후 저장 할 경우
                 this.auth.qnaImageUpdate(this.userData.email, this.skinQnaOneLoadData, this.imagePath2).then(data => {
                   if (data) {
                     let alert2 = this.alertCtrl.create({

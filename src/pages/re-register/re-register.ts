@@ -207,7 +207,7 @@ export class ReRegisterPage {
   public takePicture(sourceType) {
     // Create options for the Camera Dialog
     var options = {
-      quality: 80,
+      quality: 100,
       destinationType: this._camera.DestinationType.FILE_URI,
       sourceType: sourceType,
       // saveToPhotoAlbum: true,

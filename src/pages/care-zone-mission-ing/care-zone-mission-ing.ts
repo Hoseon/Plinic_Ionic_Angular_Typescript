@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController, Platform, PopoverController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Loading, LoadingController, ModalController, AlertController, Platform, PopoverController, ViewController } from 'ionic-angular';
 import { CareZoneMissionDeadlinePage } from '../care-zone-mission-deadline/care-zone-mission-deadline';
 import { CareZonePage } from '../care-zone/care-zone';
 import { ImagesProvider } from '../../providers/images/images';
@@ -8,6 +8,7 @@ import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { MissionStartPage } from './mission-start/mission-start';
 import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing'
 import { PopoverPage } from '../community/community-modify/popover/popover';
+import { RewardPage } from '../reward/reward'
 import { Observable } from 'rxjs/Rx';
 
 
@@ -65,9 +66,13 @@ export class CareZoneMissionIngPage {
   endCheck : boolean = false;
   missionuseTime: any;
 
+  reward : boolean = false;
+
   constructor(public nav: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     private images: ImagesProvider, public element: ElementRef,
-    private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform, private auth: AuthService, public popoverCtrl: PopoverController) {
+    private loadingCtrl: LoadingController, private modalCtrl: ModalController,
+    private alertCtrl: AlertController, public platform: Platform,
+    private auth: AuthService, public popoverCtrl: PopoverController) {
 
     // this.missionUseTime(this.carezoneData2);
     // this.roadmission(this.carezoneData2._id);
@@ -96,7 +101,9 @@ export class CareZoneMissionIngPage {
   }
 
   ionViewDidEnter() {
+    //20191024 참여자의 사용시간, 보상여부(Reward)의 값을 가져 온다.
     this.missionUseTime(this.carezoneData2, this.userData.email);
+
     this.missionMember(this.carezoneData2._id);
     this.timeremaining = (new Date(this.carezoneData2.endmission).getTime() - new Date().getTime()) / 1000;
     (new Date(this.carezoneData2.endmission).getTime() < new Date().getTime()) ? this.endCheck = true : this.endCheck = false;
@@ -194,7 +201,11 @@ export class CareZoneMissionIngPage {
         {
           text: '상품 받으러 가기',
           handler: () => {
-            //do
+            let modal = this.modalCtrl.create(RewardPage, { mission : this.carezoneData2});
+            modal.onDidDismiss(data =>{
+              this.ionViewDidEnter();
+            });
+            modal.present();
           }
         }]
     });
@@ -612,6 +623,7 @@ export class CareZoneMissionIngPage {
     // this.showLoading();
     this.images.missionUseTime(carezoneData._id, email).subscribe(data => {
       this.missionuseTime = data;
+      this.reward = this.missionuseTime.reward;
       this.loadProgress = (Number(data.usetime) / 7560) * 100;
       this.displayUseTime = this.getSecondsAsDigitalClock2(data.usetime);
     });

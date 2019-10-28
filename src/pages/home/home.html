@@ -12,7 +12,7 @@
 
   <ion-slides *ngIf="bannerData && bannerData.length" class="img-banner_top_19000501" pager loop=true autoplay=2000>
     <ion-slide *ngFor="let banner of bannerData">
-      <img src='http://plinic.cafe24app.com/images/{{banner._id}}' />
+      <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{banner.filename}}' />
     </ion-slide>
   </ion-slides>
   <div style="height:8px; width:100%; margin-top:-1%; margin-bottom:5%; background-color:#f1f1f1"></div>
@@ -52,7 +52,7 @@
       <ng-container *ngIf="endmission[i] > currentDate">
         <ion-row>
           <ion-col *ngIf="firstCarezone._id" class="img_carezone_background" style="text-align: center" (click)="mission_start(firstCarezone)">
-            <img class="img_carezone" src="http://plinic.cafe24app.com/carezone_images/{{firstCarezone._id}}" />
+            <img class="img_carezone" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{firstCarezone.filename}}" />
             <!-- 모집중, 모집마감 -->
             <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #B7C9AF;" ion-button>진행 중</button> -->
           </ion-col>
@@ -76,10 +76,30 @@
         <!-- 참가 인원 이미지 추가  -->
         <ion-row>
           <ng-container *ngIf="firstCarezoneData">
-            <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
-            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-            <div class="user_sub"><span class="user_name">2531</span>명이 참가 중입니다.</div>
+            <ng-container *ngFor="let mission of first_missionMemberData; let i = index">
+              <ng-container *ngIf="i <= 3">
+                <ng-container *ngIf="i === 0">
+                  <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:5%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
+                    onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+                  <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: -1%;" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+                </ng-container>
+                <ng-container *ngIf="i > 0">
+                  <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:-1%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
+                    onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+                  <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: -1%;" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+                </ng-container>
+              </ng-container>
+
+
+              <!-- {{mission.image_url}} -->
+              <!-- {{mission.userImageFilename}} -->
+
+            </ng-container>
+            <!-- <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
+            <!-- <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
+            <!-- <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
+            <div *ngIf="first_carezone_missioncount" class="user_sub"><span class="user_name">{{first_carezone_missioncount}}</span>명이 참가 중입니다.</div>
+            <div *ngIf="!first_carezone_missioncount" class="user_sub"><span class="user_name">00</span>명이 참가 중입니다.</div>
           </ng-container>
         </ion-row>
       </ng-container>
@@ -90,7 +110,7 @@
 
         <ion-row>
           <ion-col *ngIf="firstCarezone._id" class="img_carezone_background" style="text-align: center" (click)="mission_start(firstCarezone)">
-            <img class="img_carezone" src="http://plinic.cafe24app.com/carezone_images/{{firstCarezone._id}}" />
+            <img class="img_carezone" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{firstCarezone.filename}}" />
             <!-- 모집중, 모집마감 -->
             <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #B7C9AF;" ion-button>진행 중</button> -->
           </ion-col>
@@ -131,7 +151,7 @@
           <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #FFC3C3;" ion-button>모집 중</button>
           <button *ngIf="ingmdchuchun[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>MD추천</button>
           <button *ngIf="ingapproaching[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #87B5FF;" ion-button>마감임박</button> -->
-          <img class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{secondCarezone._id}}" />
+          <img class="img_carezone2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{firstCarezone.filename}}" />
         </ion-col>
       </ion-row>
       <ion-row>
@@ -171,7 +191,7 @@
           <button *ngIf="ingmdchuchun[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>MD추천</button>
           <button *ngIf="ingapproaching[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>마감임박</button> -->
 
-          <img *ngIf="thirdCarezone._id" class="img_carezone2" src="http://plinic.cafe24app.com/carezone_images/{{thirdCarezone._id}}" />
+          <img *ngIf="thirdCarezone._id" class="img_carezone2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{firstCarezone.filename}}" />
         </ion-col>
 
       </ion-row>
@@ -217,13 +237,13 @@
     </ion-row>
     <ion-row class="beauty_grid_width">
       <ion-col class=beauty_grid1 col-6 (click)="openBrowser_android(beauty_data_url1, beauty_data_title1)">
-        <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{beauty_data_id1}}" />
+        <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id1}}" />
         <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
         <div class="beauty_desc">{{beauty_data_title1}}</div>
         <div class="beauty_count">조회 4,567</div>
       </ion-col>
       <ion-col class=beauty_grid2 col-6 (click)="openBrowser_android(beauty_data_url2, beauty_data_title2)">
-        <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{beauty_data_id2}}" />
+        <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id2}}" />
         <!-- <div class="beauty_title">{{beauty_data_type2}}</div> -->
         <div class="beauty_desc">{{beauty_data_title2}}</div>
         <div class="beauty_count">조회 4,567</div>
@@ -231,13 +251,13 @@
     </ion-row>
     <ion-row class="beauty_grid_width">
       <ion-col class="beauty_grid3" col-6 (click)="openBrowser_android(beauty_data_url3, beauty_data_title3)">
-        <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{beauty_data_id3}}" />
+        <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id3}}" />
         <!-- <div class="beauty_title">{{beauty_data_type3}}</div> -->
         <div class="beauty_desc">{{beauty_data_title3}}</div>
         <div class="beauty_count">조회 4,567</div>
       </ion-col>
       <ion-col class="beauty_grid4" col-6 (click)="openBrowser_android(beauty_data_url4, beauty_data_title4)">
-        <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{beauty_data_id4}}" />
+        <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id4}}" />
         <!-- <div class="beauty_title">{{beauty_data_type4}}</div> -->
         <div class="beauty_desc">{{beauty_data_title4}}</div>
         <div class="beauty_count">조회 4,567</div>
@@ -258,13 +278,13 @@
     </ion-row>
     <ion-row class="beauty_grid_width">
       <ion-col class=beauty_grid1 col-6 (click)="openBrowser_ios(beauty_data_url1, beauty_data_title1)">
-        <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{beauty_data_id1}}" />
+        <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id1}}" />
         <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
         <div class="beauty_desc">{{beauty_data_title1}}</div>
         <div class="beauty_count">조회 4,567</div>
       </ion-col>
       <ion-col class=beauty_grid2 col-6 (click)="openBrowser_ios(beauty_data_url2, beauty_data_title2)">
-        <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{beauty_data_id2}}" />
+        <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id2}}" />
         <!-- <div class="beauty_title">{{beauty_data_type2}}</div> -->
         <div class="beauty_desc">{{beauty_data_title2}}</div>
         <div class="beauty_count">조회 4,567</div>
@@ -272,13 +292,13 @@
     </ion-row>
     <ion-row class="beauty_grid_width">
       <ion-col class="beauty_grid3" col-6 (click)="openBrowser_ios(beauty_data_url3, beauty_data_title3)">
-        <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{beauty_data_id3}}" />
+        <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id3}}" />
         <!-- <div class="beauty_title">{{beauty_data_type3}}</div> -->
         <div class="beauty_desc">{{beauty_data_title3}}</div>
         <div class="beauty_count">조회 4,567</div>
       </ion-col>
       <ion-col class="beauty_grid4" col-6 (click)="openBrowser_ios(beauty_data_url4, beauty_data_title4)">
-        <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{beauty_data_id4}}" />
+        <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id4}}" />
         <!-- <div class="beauty_title">{{beauty_data_type4}}</div> -->
         <div class="beauty_desc">{{beauty_data_title4}}</div>
         <div class="beauty_count">조회 4,567</div>
@@ -314,8 +334,8 @@
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
 
-              <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
-              <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+              <img *ngIf="platform.is('android')" class="beauty_worry_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
+              <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
             </ion-col>
           </ion-item>
           <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>

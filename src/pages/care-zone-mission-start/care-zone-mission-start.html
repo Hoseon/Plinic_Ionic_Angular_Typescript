@@ -32,23 +32,23 @@
       <img src='http://plinic.cafe24app.com/images/{{banner._id}}' />
     </ion-slide> -->
     <ion-slide *ngIf="carezoneData.challenge_image1_filename">
-      <img src='http://plinic.cafe24app.com/challenge_image1/{{carezoneData._id}}' />
+      <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData.challenge_image1_filename}}' />
     </ion-slide>
 
     <ion-slide *ngIf="carezoneData.challenge_image2_filename">
-      <img src='http://plinic.cafe24app.com/challenge_image2/{{carezoneData._id}}' />
+      <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData.challenge_image2_filename}}' />
     </ion-slide>
 
     <ion-slide *ngIf="carezoneData.challenge_image3_filename">
-      <img src='http://plinic.cafe24app.com/challenge_image3/{{carezoneData._id}}' />
+      <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData.challenge_image3_filename}}' />
     </ion-slide>
 
     <ion-slide *ngIf="carezoneData.challenge_image4_filename">
-      <img src='http://plinic.cafe24app.com/challenge_image4/{{carezoneData._id}}' />
+      <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData.challenge_image4_filename}}' />
     </ion-slide>
 
     <ion-slide *ngIf="carezoneData.challenge_image5_filename">
-      <img src='http://plinic.cafe24app.com/challenge_image5/{{carezoneData._id}}' />
+      <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData.challenge_image5_filename}}' />
     </ion-slide>
 
   </ion-slides>
@@ -66,8 +66,17 @@
     </ion-item> -->
     <h1 class="top_text"> {{carezoneData.title}} </h1><br>
     <!-- <div text-wrap class="top_sub" >{{carezoneData.body}}</div> -->
-    <button ion-button class="top_btn" (click)="satrtMission(carezoneData)">참여하기 <img class="top_img" src="assets/img/care-zone/ic-system-trophy/ic-system-trophy@3x.png"/></button>
-
+    <ng-container *ngIf="chkBtn">
+      <ng-container *ngIf="joinchk">
+        <button ion-button class="top_btn" (click)="satrtMission(carezoneData)">참여하기 <img class="top_img" src="assets/img/care-zone/ic-system-trophy/ic-system-trophy@3x.png" /></button>
+      </ng-container>
+      <ng-container *ngIf="!joinchk">
+        <button ion-button class="top_btn_end">챌린지 마감</button>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="!chkBtn">
+      <button ion-button class="top_btn_end">다른 챌린지 참여중</button>
+    </ng-container>
     <!-- 참가 인원 이미지 추가  -->
     <ion-row>
       <ng-container>
@@ -107,10 +116,10 @@
       <ion-grid class="gridtext">
         <ion-row style="width:89.7%">
           <ion-col class="event-col11">보상 조건</ion-col>
-          <ion-col class="event-col9" style="color:#5c59b6" >
-            <textarea  readonly style="text-align: right" rows="3" cols="30">{{carezoneData.condition}}</textarea>
+          <ion-col class="event-col9" style="color:#5c59b6">
+            <textarea readonly style="text-align: right" rows="3" cols="30">{{carezoneData.condition}}</textarea>
           </ion-col>
-                                      <!-- <ion-col class="event-col9" style="color:#292929">
+          <!-- <ion-col class="event-col9" style="color:#292929">
                                                                   챌린지 기간 안에 가장 많은 시간을<br>
                                                                   케어한사람 순위 1위~20위까지<br>
                                                                   무료 증정 (1일한도 : 9분 이내)</ion-col> -->
@@ -174,7 +183,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      </ion-item>
+    </ion-item>
   </ion-list>
 
 

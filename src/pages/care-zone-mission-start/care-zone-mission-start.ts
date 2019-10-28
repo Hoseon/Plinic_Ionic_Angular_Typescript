@@ -80,6 +80,13 @@ export class CareZoneMissionStartPage {
   starttimeremaining: Date = new Date();
   displayTime: any;
 
+  chkDate: Date = new Date();
+
+  joinchk: Boolean = false;
+
+  UserImageFileName: any = '';
+
+
 
   constructor(private socialSharing: SocialSharing,
     public _kakaoCordovaSDK: KakaoCordovaSDK,
@@ -157,6 +164,7 @@ export class CareZoneMissionStartPage {
         };
         // console.log(this.userData);
         this.chkmission(this.userData.email);
+        this.chkUserImage(this.userData.email);
       }
     });
   }
@@ -172,13 +180,13 @@ export class CareZoneMissionStartPage {
     // console.log("chkBtn" + this.chkBtn);
     this.images.chkMission(email).subscribe(data => {
       if (data === '' || data === null || data === undefined) {
-        this.chkBtn = true;
+        this.chkBtn = true; //챌린지 미 참여 중일때
         //this.carezoneData = data;
         //this.endDate = data.endmission.substr(0, 10);
         //console.log(JSON.stringify(data));
         // this.loading.dismiss();
       } else if (data !== '' || data !== null || data !== undefined) {
-        this.chkBtn = false;
+        this.chkBtn = false; //챌린지 참여 중일 때
       } else {
         this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
       }
@@ -205,6 +213,14 @@ export class CareZoneMissionStartPage {
         this.carezoneData = data;
         this.startDate = data.startmission.substr(0, 10);
         this.endDate = data.endmission.substr(0, 10);
+        this.chkDate = new Date(data.endmission)
+        if(this.chkDate >= this.currentDate) {  // 챌린지 기간이 남아 있을때
+          console.log("챌린지 기간이 남아 있음");
+          this.joinchk = true;
+        } else {
+          console.log("챌린지 기간이 종료 됨");
+          this.joinchk = false;
+        }
         // this.loading.dismiss();
       } else {
         this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
@@ -426,7 +442,7 @@ export class CareZoneMissionStartPage {
             // console.log("맥스멤버: "+ this.carezoneData.maxmember)
             this.auth.missionSave(carezoneData._id, this.userData.email, this.userData.thumbnail_image,
               carezoneData.startmission, carezoneData.endmission, carezoneData.title,
-              carezoneData.body, carezoneData.productcount).subscribe(data => {
+              carezoneData.body, carezoneData.productcount, this.UserImageFileName).subscribe(data => {
                 // console.log("처리 성공 : " + JSON.stringify(carezoneData));
                 this.nav.push(CareZoneMissionIngPage, { carezoneData: carezoneData });
               }, error => {
@@ -640,5 +656,26 @@ export class CareZoneMissionStartPage {
     //   console.log("loadstart --------------------------------------- : " + event);
     // })
   }
+
+
+  //20191025 미션 참여 할때 Userimages에서 사용자 파일명을 가져 온다 (아마존 s3에서 이미지를 가져 오기 위해서)
+  public chkUserImage(email) {
+    // this.showLoading();
+    // console.log("chkBtn" + this.chkBtn);
+    this.images.chkUserImage(email).subscribe(data => {
+      if(data){
+        this.UserImageFileName = data;
+        console.log("사용자 이미지 파일명을 잘 가져 왔는가?" + data);
+      }
+      // if (data === '' || data === null || data === undefined) {
+      //   this.chkBtn = true; //챌린지 미 참여 중일때
+      // } else if (data !== '' || data !== null || data !== undefined) {
+      //   this.chkBtn = false; //챌린지 참여 중일 때
+      // } else {
+      //
+      // }
+    });
+  }
+
 
 }

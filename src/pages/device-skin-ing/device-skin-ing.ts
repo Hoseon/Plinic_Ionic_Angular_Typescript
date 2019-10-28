@@ -22,9 +22,29 @@ import { ImagesProvider } from '../../providers/images/images';
  */
 
 //Blue Mod S42
-const PLINIC_SERVICE = 'FEFB';
-const UUID_SERVICE = '180A';
-const SWITCH_CHARACTERISTIC = '2A50';
+// const PLINIC_SERVICE = 'FEFB';
+// const UUID_SERVICE = 'FEFB';
+// const SWITCH_CHARACTERISTIC = '00000002-0000-1000-8000-008025000000';
+
+
+
+// "디바이스 서비스 정보 :
+// {"name":"BM + S42 E6C","id":"00: 80: 25: E7: 3E: 6C","advertising":{},"rssi":-64,
+// "services":["1800","1801","180a","fefb"],
+//  "characteristics":[
+//   {"service":"1800","characteristic":"2a00","properties":["Read"]},
+//   {"service":"1800","characteristic":"2a01","properties":["Read"]},
+//   {"service":"1800","characteristic":"2a04","properties":["Read"]},
+//   {"service":"1800","characteristic":"2aa6","properties":["Read"]},
+//   {"service":"1801","characteristic":"2a05","properties":["Indicate"],"descriptors":[{"uuid":"2902"}]},
+//   {"service":"180a","characteristic":"2a50","properties":["Read"]},
+//   {"service":"fefb","characteristic":"00000009 - 0000 - 1000 - 8000 - 008025000000","properties":["Write"]},
+//   {"service":"fefb","characteristic":"0000000a - 0000 - 1000 - 8000 - 008025000000","properties":["Indicate"],"descriptors":[{"uuid":"2902"}]},
+//   {"service":"fefb","characteristic":"00000001 - 0000 - 1000 - 8000 - 008025000000","properties":["WriteWithoutResponse"]},
+//   {"service":"fefb","characteristic":"00000002 - 0000 - 1000 - 8000 - 008025000000","properties":["Notify"],"descriptors":[{"uuid":"2902"}]},
+//   {"service":"fefb","characteristic":"00000003 - 0000 - 1000 - 8000 - 008025000000","properties":["Write"]},
+//   {"service":"fefb","characteristic":"00000004 - 0000 - 1000 - 8000 - 008025000000","properties":["Indicate"],"descriptors":[{"uuid":"2902"}]}]}",
+
 
 // { "characteristics": [{ "properties": ["Read"], "isNotifying": false, "characteristic": "2A50", "service": "180A" },
 // { "properties": ["Write"], "isNotifying": false, "characteristic": "00000009-0000-1000-8000-008025000000", "service": "FEFB" },
@@ -41,8 +61,6 @@ const SWITCH_CHARACTERISTIC = '2A50';
 //
 
 
-
-
 // const SWITCH_CHARACTERISTIC = 'FF01';
 //
 //
@@ -52,9 +70,9 @@ const SWITCH_CHARACTERISTIC = '2A50';
 // UUID:FEFB  (device Information Service, DIS)
 
 // //HM Soft Bluetooth Mod
-// const PLINIC_SERVICE = 'FFE0';
-// const UUID_SERVICE = 'FFE0';
-// const SWITCH_CHARACTERISTIC = 'FFE1';
+const PLINIC_SERVICE = 'FFE0';
+const UUID_SERVICE = 'FFE0';
+const SWITCH_CHARACTERISTIC = 'FFE1';
 
 
 // { "characteristics": [{ "properties": ["Read", "WriteWithoutResponse", "Write", "Notify"], "isNotifying": false, "characteristic": "FFE1", "service": "FFE0" }],
@@ -149,9 +167,9 @@ export class DeviceSkinIngPage {
 
 
     this.auth.getmissionPoint(this.carezoneData._id, this.userData.email).subscribe(data => {
-      console.log("현재 날짜 : " + this.currentDate.getFullYear() + '-' + this.currentDate.getMonth() + '-' + this.currentDate.getDate());
-      console.log("데이터 날짜 : " + new Date(data.usedmission[0].updatedAt).getFullYear() + '-' + new Date(data.usedmission[0].updatedAt).getMonth() + '-' + new Date(data.usedmission[0].updatedAt).getDate());
-      console.log("data : " + JSON.stringify(data));
+      // console.log("현재 날짜 : " + this.currentDate.getFullYear() + '-' + this.currentDate.getMonth() + '-' + this.currentDate.getDate());
+      // console.log("데이터 날짜 : " + new Date(data.usedmission[0].updatedAt).getFullYear() + '-' + new Date(data.usedmission[0].updatedAt).getMonth() + '-' + new Date(data.usedmission[0].updatedAt).getDate());
+      // console.log("data : " + JSON.stringify(data));
     }, error => {
       console.log("error : " + error);
     });
@@ -169,7 +187,7 @@ export class DeviceSkinIngPage {
 
   device_disconnect() {
     this.runTimer = false;
-    console.log("device skin ing Device id : " + this.device.id);
+    // console.log("device skin ing Device id : " + this.device.id);
     // setTimeout(() => {
     // this.spintime = 1;
     this.navCtrl.setRoot(TabsPage);
@@ -227,15 +245,24 @@ export class DeviceSkinIngPage {
 
 
   deviceSelected(device) {
-    console.log(JSON.stringify(device) + ' selected');
+    // console.log(JSON.stringify(device) + ' selected');
     // this.navCtrl.push(DetailPage, {
     //   device: device
     // });
 
 
 
+
     this.ble.connect(device.id).subscribe(
-      peripheral => this.onConnected(peripheral),
+      peripheral => {
+        this.ble.refreshDeviceCache(device.id, 2000).then(result =>{
+          console.log("refresh sucess : " + result);
+
+        }).catch(error =>{
+          console.log("refresh error : " + error);
+        });
+        this.onConnected(peripheral);
+      },
       // this.onConnected(peripheral),
       // peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
       peripheral => { //디바이스 연결 중단되면 누적 처리 후 종료
@@ -243,6 +270,7 @@ export class DeviceSkinIngPage {
         this.pointUpdate();
       }
     );
+
 
 
 
@@ -266,7 +294,7 @@ export class DeviceSkinIngPage {
     this.peripheral = peripheral;
     // this.setStatus('Connected to ' + (peripheral.name || peripheral.id));
 
-    console.log("this.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.id : " + this.peripheral.id);
+    // console.log("this.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.id : " + this.peripheral.id);
 
 
     // var test = new ArrayBuffer(16);
@@ -310,6 +338,47 @@ export class DeviceSkinIngPage {
 
     //
 
+    // {"name":"BM+S42 E6C",
+    // "id":"00:80:25:E7:3E:6C","advertising":{},
+    // "rssi":60,
+    // "services":["1800","1801","180a","fefb"],
+    // "characteristics":[
+    // {"service":"1800","characteristic":"2a00","properties":["Read"]},
+    // {"service":"1800","characteristic":"2a01","properties":["Read"]},
+    // {"service":"1800","characteristic":"2a04","properties":["Read"]},
+    // {"service":"1800","characteristic":"2aa6","properties":["Read"]},
+    // {"service":"1801","characteristic":"2a05","properties":["Indicate"],"descriptors":[{"uuid":"2902"}]},
+    // {"service":"180a","characteristic":"2a50","properties":["Read"]},
+    // {"service":"fefb","characteristic":"00000009-0000-1000-8000-008025000000","properties":["Write"]},
+    // {"service":"fefb","characteristic":"0000000a-0000-1000-8000-008025000000","properties":["Indicate"],"descriptors":[{"uuid":"2902"}]},
+    // {"service":"fefb","characteristic":"00000001-0000-1000-8000-008025000000","properties":["WriteWithoutResponse"]},
+    // {"service":"fefb","characteristic":"00000002-0000-1000-8000-008025000000","properties":["Notify"],"descriptors":[{"uuid":"2902"}]},
+    // {"service":"fefb","characteristic":"00000003-0000-1000-8000-008025000000","properties":["Write"]},
+    // {"service":"fefb","characteristic":"00000004-0000-1000-8000-008025000000","properties":["Indicate"],"descriptors":[{"uuid":"2902"}]}]}
+
+    // UUID:1800  (Generic Access Service)
+    // UUID:1801  (Terminal I/O Service, TIO)
+    // UUID:180A  (Environmental Sensing Service, ESS)
+    // UUID:FEFB  (device Information Service, DIS)
+
+    var service_UUID = '1801';
+    var char_UUID = '2902';
+
+    var read_UUID = '180a';
+    var read_char_UUID ='2a50';
+
+    // this.ble.startStateNotifications().subscribe(result => {
+    //   console.log("블루트스 상태 변화 감지 : " + result);
+    // }, error =>{
+    //   console.log("블루투스 상태 변화 감지 에러 메세지 : " + error);
+    // });
+
+    // this.ble.connectedPeripheralsWithServices([PLINIC_SERVICE]).then(result =>{
+    //   console.log("ios test ble : " + JSON.stringify(result));
+    // }).catch(error =>{
+    //   console.log("error ios test : " + error);
+    // })
+
     console.log("---------------------------------노티피 시작 ------------------------------------------------");
     this.ble.startNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
       console.log("Plinic G1Partners Notifi " + String.fromCharCode.apply(null, new Uint8Array(buffer)));
@@ -317,6 +386,132 @@ export class DeviceSkinIngPage {
       console.log("Notifi Error : " + error);
     })
     console.log("---------------------------------노티피 종료 ------------------------------------------------");
+
+    // this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(result =>{
+    //   console.log("read success : " + JSON.stringify(result));
+    // }).catch(error => {
+    //   console.log("read fail : " + JSON.stringify(error));
+    // })
+
+    this.ble.write(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC, this.stringToBytes('abcd1234')).then(
+      data =>{
+        console.log("write 성공 : " + data);
+      }, error=>{
+        console.log("write 실패 : " + error);
+      }
+    )
+
+    this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(
+      buffer => {
+        // var a = String.fromCharCode.apply(null, new Uint8Array(buffer))
+
+        var data = new Uint8Array(buffer);
+        var str = String.fromCharCode.apply(String, data);
+        console.log("읽기성공88 str : " + str[0]);
+
+        var data2 = new Uint16Array(buffer);
+        var str2 = String.fromCharCode.apply(String, data2);
+        console.log("읽기성공1616 str : " + str2[0]);
+        console.log("읽기성공1616 str : " + str2[1]);
+        console.log("읽기성공1616 str : " + str2[2]);
+        console.log("읽기성공1616 str : " + str2[3]);
+        console.log("읽기성공1616 str : " + str2[4]);
+        console.log("읽기성공1616 str : " + str2[5]);
+
+        console.log("그냥받은 HEX0 : " + data2[0]);
+        console.log("그냥받은 HEX1 : " + data2[1]);
+        console.log("그냥받은 HEX2 : " + data2[2]);
+        console.log("그냥받은 HEX3 : " + data2[3]);
+        console.log("그냥받은 HEX4 : " + data2[4]);
+        console.log("그냥받은 HEX5 : " + data2[5]);
+
+        var hex0 = String.fromCharCode.apply(String, data2[0]);
+        var hex1 =String.fromCharCode.apply(String, data2[1]);
+        var hex2 =String.fromCharCode.apply(String, data2[2]);
+        var hex3 =String.fromCharCode.apply(String, data2[3]);
+        var hex4 =String.fromCharCode.apply(String, data2[4]);
+        var hex5 =String.fromCharCode.apply(String, data2[5]);
+
+        console.log("변환한 HEX0 : " + hex0);
+        console.log("변환한 HEX1 : " + hex1);
+        console.log("변환한 HEX2 : " + hex2);
+        console.log("변환한 HEX3 : " + hex3);
+        console.log("변환한 HEX4 : " + hex4);
+        console.log("변환한 HEX5 : " + hex5);
+
+
+        console.log("읽기 성공 : " + this.bytesToString(buffer));
+        console.log("읽기 성공 data : " + this.bytesToString(data));
+        // console.log('dimmer characteristic0 ' + this.bytesToString(buffer));
+        // console.log('dimmer characteristic1 ' + this.bytesToString(data[1]));
+        // console.log('dimmer characteristic2 ' + this.bytesToString(data[2]));
+        // console.log('dimmer characteristic3 ' + this.bytesToString(data[3]));
+        // console.log('dimmer characteristic4 ' + this.bytesToString(data[4]));
+        // console.log('dimmer characteristic5 ' + this.bytesToString(data[5]));
+        // console.log('dimmer characteristic6 ' + this.bytesToString(data[6]));
+        // console.log('dimmer characteristic7 ' + this.bytesToString(data[7]));
+        // this.ngZone.run(() => {
+          // this.brightness = data[0];
+        // });
+      }
+    )
+
+
+
+    this.ble.read(this.peripheral.id, '1805', '2A0F').then(
+      buffer => {
+        // var a = String.fromCharCode.apply(null, new Uint8Array(buffer))
+
+        var data = new Uint8Array(buffer);
+        var str = String.fromCharCode.apply(String, data);
+        console.log("읽기성공88 str : " + str[0]);
+
+        var data2 = new Uint16Array(buffer);
+        var str2 = String.fromCharCode.apply(String, data2);
+        console.log("읽기성공1616 str : " + str2[0]);
+        console.log("읽기성공1616 str : " + str2[1]);
+        console.log("읽기성공1616 str : " + str2[2]);
+        console.log("읽기성공1616 str : " + str2[3]);
+        console.log("읽기성공1616 str : " + str2[4]);
+        console.log("읽기성공1616 str : " + str2[5]);
+
+        console.log("그냥받은 HEX0 : " + data2[0]);
+        console.log("그냥받은 HEX1 : " + data2[1]);
+        console.log("그냥받은 HEX2 : " + data2[2]);
+        console.log("그냥받은 HEX3 : " + data2[3]);
+        console.log("그냥받은 HEX4 : " + data2[4]);
+        console.log("그냥받은 HEX5 : " + data2[5]);
+
+        var hex0 = String.fromCharCode.apply(String, data2[0]);
+        var hex1 =String.fromCharCode.apply(String, data2[1]);
+        var hex2 =String.fromCharCode.apply(String, data2[2]);
+        var hex3 =String.fromCharCode.apply(String, data2[3]);
+        var hex4 =String.fromCharCode.apply(String, data2[4]);
+        var hex5 =String.fromCharCode.apply(String, data2[5]);
+
+        console.log("변환한 HEX0 : " + hex0);
+        console.log("변환한 HEX1 : " + hex1);
+        console.log("변환한 HEX2 : " + hex2);
+        console.log("변환한 HEX3 : " + hex3);
+        console.log("변환한 HEX4 : " + hex4);
+        console.log("변환한 HEX5 : " + hex5);
+
+
+        console.log("읽기 성공 : " + this.bytesToString(buffer));
+        console.log("읽기 성공 data : " + this.bytesToString(data));
+        // console.log('dimmer characteristic0 ' + this.bytesToString(buffer));
+        // console.log('dimmer characteristic1 ' + this.bytesToString(data[1]));
+        // console.log('dimmer characteristic2 ' + this.bytesToString(data[2]));
+        // console.log('dimmer characteristic3 ' + this.bytesToString(data[3]));
+        // console.log('dimmer characteristic4 ' + this.bytesToString(data[4]));
+        // console.log('dimmer characteristic5 ' + this.bytesToString(data[5]));
+        // console.log('dimmer characteristic6 ' + this.bytesToString(data[6]));
+        // console.log('dimmer characteristic7 ' + this.bytesToString(data[7]));
+        // this.ngZone.run(() => {
+          // this.brightness = data[0];
+        // });
+      }
+    )
 
 
 
@@ -550,13 +745,13 @@ export class DeviceSkinIngPage {
     this.runTimer = false;
 
     if (this.platform.is('cordova')) {
-      console.log("device skin ing Device id : " + this.device.id);
+      // console.log("device skin ing Device id : " + this.device.id);
       // setTimeout(() => {
       // this.spintime = 1;
       // this.navCtrl.setRoot(TabsPage);
       this.ble.disconnect(this.device.id).then(result => {
 
-        console.log("취소하기 블루투스 연결해제" + result);
+        // console.log("취소하기 블루투스 연결해제" + result);
         this.pointUpdate();
         // console.log("ble skin ing disconnect OK : " + result);
         // this.navCtrl.setRoot(TabsPage);
@@ -603,9 +798,9 @@ export class DeviceSkinIngPage {
         // }
       });
     } else {
-      console.log("this.secondsRemaining : " + this.secondsRemaining);
-      console.log(this.userData.email);
-      console.log(this.carezoneData._id);
+      // console.log("this.secondsRemaining : " + this.secondsRemaining);
+      // console.log(this.userData.email);
+      // console.log(this.carezoneData._id);
 
       this.pointUpdate();
       // this.auth.missionPointUpdate(this.userData, this.carezoneData._id this.secondsRemaining).subscribe(data => {
@@ -636,9 +831,9 @@ export class DeviceSkinIngPage {
   }
 
   pointUpdate(): void {
-    console.log("this.carezoneData._id : " + this.carezoneData._id);
-    console.log("this.userData.email : " + this.userData.email);
-    console.log("this.secondsRemaining : " + this.secondsRemaining);
+    // console.log("this.carezoneData._id : " + this.carezoneData._id);
+    // console.log("this.userData.email : " + this.userData.email);
+    // console.log("this.secondsRemaining : " + this.secondsRemaining);
     this.auth.missionPointUpdate(this.carezoneData._id, this.userData.email, this.secondsRemaining).subscribe(data => {
       this.subscriptionFourth.complete();
       this.showAlert("플리닉 종료", JSON.stringify(data.msg).replace('"', ''));
@@ -648,13 +843,27 @@ export class DeviceSkinIngPage {
     });
   }
 
-  strtoarray(str){
-      var buf = new ArrayBuffer(20); // 2 bytes for each char
-      var bufView = new Uint8Array(buf);
-      for (var i=0, strLen=str.length; i < strLen; i++) {
-        bufView[i] = str.charCodeAt(i);
+  strtoarray(str) {
+    var buf = new ArrayBuffer(20); // 2 bytes for each char
+    var bufView = new Uint8Array(buf);
+    for (var i = 0, strLen = str.length; i < strLen; i++) {
+      bufView[i] = str.charCodeAt(i);
+    }
+    return buf;
+  }
+
+  // ASCII only
+  stringToBytes(string) {
+     var array = new Uint8Array(string.length);
+     for (var i = 0, l = string.length; i < l; i++) {
+         array[i] = string.charCodeAt(i);
       }
-      return buf;
+      return array.buffer;
+  }
+
+  // ASCII only
+  bytesToString(buffer) {
+      return String.fromCharCode.apply(null, new Uint8Array(buffer));
   }
 
 }

@@ -69,7 +69,7 @@
 
     <div #image *ngIf="imagePath2" id="attache_image" class="container">
       <img class="attache_image" [src]="imagePath2" />
-      <img class="close_image" (click)="image_close();" src="/assets/img/register/ic-system-clear-grey@3x.png" />
+      <img class="close_image" (click)="image_close();" src="assets/img/register/ic-system-clear-grey@3x.png" />
     </div>
   </ng-container>
 
@@ -107,12 +107,12 @@
 
         <div #image *ngIf="imagePath2" id="attache_image" class="container">
           <img class="attache_image" [src]="imagePath2" />
-          <img class="close_image" (click)="image_close();" src="/assets/img/register/ic-system-clear-grey@3x.png" />
+          <img class="close_image" (click)="image_close();" src="assets/img/register/ic-system-clear-grey@3x.png" />
         </div>
 
         <div #image *ngIf="beautyNoteOneLoadData.filename && !imagePath2" id="attache_image" class="container">
-          <img class="attache_image" src="http://plinic.cafe24app.com/beautynoteimage/{{beautyNoteOneLoadData._id}}" />
-          <img class="close_image" (click)="image_close();" src="/assets/img/register/ic-system-clear-grey@3x.png" />
+          <img class="attache_image" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautyNoteOneLoadData.filename}}" />
+          <img class="close_image" (click)="image_close();" src="assets/img/register/ic-system-clear-grey@3x.png" />
         </div>
       </ng-container>
     </ng-container>
@@ -151,12 +151,12 @@
 
         <div #image *ngIf="imagePath2" id="attache_image" class="container">
           <img class="attache_image" [src]="imagePath2" />
-          <img class="close_image" (click)="image_close();" src="/assets/img/register/ic-system-clear-grey@3x.png" />
+          <img class="close_image" (click)="image_close();" src="assets/img/register/ic-system-clear-grey@3x.png" />
         </div>
 
         <div #image *ngIf="skinQnaOneLoadData.filename && !imagePath2" id="attache_image" class="container">
-          <img class="attache_image" src="http://plinic.cafe24app.com/beautynoteimage/{{skinQnaOneLoadData._id}}" />
-          <img class="close_image" (click)="image_close();" src="/assets/img/register/ic-system-clear-grey@3x.png" />
+          <img class="attache_image" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinQnaOneLoadData.filename}}" />
+          <img class="close_image" (click)="image_close();" src="assets/img/register/ic-system-clear-grey@3x.png" />
         </div>
       </ng-container>
     </ng-container>

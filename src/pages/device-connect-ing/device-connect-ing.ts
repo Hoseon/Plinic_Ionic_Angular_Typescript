@@ -19,9 +19,26 @@ import { BLE } from '@ionic-native/ble';
  */
 
 //Blue Mod S42
-const PLINIC_SERVICE = 'FEFB';
-const UUID_SERVICE = '180A';
-const SWITCH_CHARACTERISTIC = '2A50';
+// const PLINIC_SERVICE = 'FEFB';
+// const UUID_SERVICE = '180A';
+// const SWITCH_CHARACTERISTIC = '2A50';
+
+// //HM Soft Bluetooth Mod
+const PLINIC_SERVICE = 'FFE0';
+const UUID_SERVICE = '1801';
+const SWITCH_CHARACTERISTIC = '2a05';
+
+
+// {"service":"1800","characteristic":"2a00","properties":["Read"]},
+// {"service":"1800","characteristic":"2a01","properties":["Read"]},
+// {"service":"1800","characteristic":"2a02","properties":["Read","Write"]},
+// {"service":"1800","characteristic":"2a03","properties":["Write"]},
+// {"service":"1800","characteristic":"2a04","properties":["Read"]},
+// {"service":"1801","characteristic":"2a05","properties":["Indicate"],"descriptors":[{"uuid":"2902"}]},
+// {"service":"ffe0","characteristic":"ffe1","properties":["Read","WriteWithoutResponse","Write","Notify"],"descriptors":[{"uuid":"2902"},{"uuid":"2901"}]}]}
+
+
+
 
 //
 //
@@ -31,10 +48,6 @@ const SWITCH_CHARACTERISTIC = '2A50';
 // UUID:FEFB  (device Information Service, DIS)
 // const SWITCH_CHARACTERISTIC = 'FF01';
 
-// //HM Soft Bluetooth Mod
-// const PLINIC_SERVICE = 'FFE0';
-// const UUID_SERVICE = 'FFE0';
-// const SWITCH_CHARACTERISTIC = 'FFE1';
 
 
 @IonicPage()

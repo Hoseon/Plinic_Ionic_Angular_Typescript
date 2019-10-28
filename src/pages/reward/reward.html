@@ -1,0 +1,77 @@
+<!--
+  Generated template for the RewardPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <!-- 안드로이드 용 네비 바 -->
+  <ion-navbar *ngIf="platform.is('android')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <img no-lines class="android_nav" src="./assets/img/beauty/ic-system-close-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>보상받기</ion-title>
+  </ion-navbar>
+
+  <!-- iOS용 네비 바 -->
+  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <img no-lines class="ios_nav" src="assets/img/beauty/ic-system-close-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>보상받기</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-item class="item_align" style="background:#FFF">
+    <ion-label mode="ios" class="password_label" stacked>이름</ion-label>
+    <ion-input (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="base_password" placeholder="받으시는 분 이름을 입력해주세요." [(ngModel)]="name" clearInput required></ion-input>
+  </ion-item>
+
+  <button ion-button outline (click)="postCheck()" end class="button_start">우편번호 찾기</button>
+  <ion-item class="item_align" style="background:#FFF">
+    <ion-label mode="ios" class="password_label" stacked>우편번호</ion-label>
+    <ion-input (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="base_password" placeholder="우편번호" [(ngModel)]="zonecode" clearInput required></ion-input>
+  </ion-item>
+
+  <!-- <iframe *ngIf="ishidden" src="http://localhost:8001/api/daumjuso" width="100%" height="400px" frameBorder="0" id='daumIframe'></iframe> -->
+  <iframe *ngIf="ishidden" src="http://plinic.cafe24app.com/api/daumjuso" width="100%" height="400px" frameBorder="0" id='daumIframe'></iframe>
+
+  <ion-item class="item_align" style="background:#FFF">
+    <ion-label mode="ios" class="password_label" stacked>주소</ion-label>
+    <ion-input (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="base_password" placeholder="도로명 주소" [(ngModel)]="address" clearInput required></ion-input>
+  </ion-item>
+
+  <ion-item class="item_align" style="background:#FFF">
+    <ion-label mode="ios" class="password_label" stacked>상세주소</ion-label>
+    <ion-input (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="base_password" placeholder="나머지 주소를 입력해주세요." [(ngModel)]="detailAddress" clearInput required></ion-input>
+  </ion-item>
+
+  <ion-item class="item_align" style="background:#FFF">
+    <ion-label mode="ios" class="password_label" stacked>참고항목</ion-label>
+    <ion-input (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="base_password" placeholder="배송시 특이사항을 입력해주세요." [(ngModel)]="desc" clearInput required></ion-input>
+  </ion-item>
+
+  <ion-item class="item_align" style="background:#FFF">
+    <ion-label mode="ios" class="password_label" stacked>연락처</ion-label>
+    <ion-input (ionFocus)="postFocusOut()" (ionBlur)="inputPhoneNumber()" class="input_name" mode="ios" type="text" name="new_password" placeholder="연락처" [(ngModel)]="phoneNumber" clearInput required></ion-input>
+  </ion-item>
+
+  <ion-item class="item_align" style="background:#FFF">
+    <ion-label mode="ios" class="password_label" stacked>Email</ion-label>
+    <ion-input (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="new_password" placeholder="Email" [(ngModel)]="postEmail" clearInput required></ion-input>
+  </ion-item>
+
+  <button ion-button outline (click)="registerReward()" class="button_save">저장 및 발송</button>
+  <button ion-button navPop outline class="button_cancel">취소</button>
+
+
+
+  <!-- <button type="button" ng-click="jusoSearch()" class="button">검색</button> -->
+</ion-content>

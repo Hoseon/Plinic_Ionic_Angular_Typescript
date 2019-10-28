@@ -42,7 +42,7 @@
     <ng-container *ngIf="endmission[i] > currentDate">
       <ion-row class="row">
         <ion-col class="container" (click)="mission_start(carezone)">
-          <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}' />
+          <img class="imagealign" src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezone.filename}}' />
 
           <!-- <button *ngIf="recruiting[i]" class="carezon_btn1_1" style="box-shadow: none;" ion-button>모집 중</button>
         <button *ngIf="endrecruit[i]" class="carezon_status1_1" style="box-shadow: none; background-color: #d2d4d8;" ion-button>모집마감</button>
@@ -77,12 +77,12 @@
           <ng-container *ngIf="i <= 3">
             <!-- <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
             <ng-container *ngIf="i === 0">
-              <img *ngIf="!memberRanking[i].image_url" class="font_carezone2_img" style="margin-left:2%;" src="http://plinic.cafe24app.com/userimages/{{memberRanking[i].email}}"
+              <img *ngIf="!memberRanking[i].image_url" class="font_carezone2_img" style="margin-left:2%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{memberRanking[i].userImageFilename}}"
                 onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
               <img *ngIf="memberRanking[i].image_url" class="font_carezone2_img" style="margin-left: 2%;" src="{{memberRanking[i].image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
             </ng-container>
             <ng-container *ngIf="i > 0">
-              <img *ngIf="!memberRanking[i].image_url" class="font_carezone2_img" style="margin-left:-2%;" src="http://plinic.cafe24app.com/userimages/{{memberRanking[i].email}}"
+              <img *ngIf="!memberRanking[i].image_url" class="font_carezone2_img" style="margin-left:-2%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{memberRanking[i].userImageFilename}}"
                 onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
               <img *ngIf="memberRanking[i].image_url" class="font_carezone2_img" style="margin-left: -2%;" src="{{memberRanking[i].image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
             </ng-container>
@@ -100,7 +100,7 @@
     <ng-container *ngIf="endmission[i] < currentDate">
       <ion-row class="row">
         <ion-col class="container" (click)="mission_start(carezone)">
-          <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{carezone._id}}' />
+          <img class="imagealign" src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezone.filename}}' />
 
           <!-- <button *ngIf="recruiting[i]" class="carezon_btn1_1" style="box-shadow: none;" ion-button>모집 중</button> -->
           <button class="carezon_btn1_1" style="box-shadow: none; background-color: #A8BABA;" ion-button>챌린지 마감</button>
@@ -142,12 +142,12 @@
           <ng-container *ngIf="i <= 3">
             <!-- <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
             <ng-container *ngIf="i === 0">
-              <img *ngIf="!memberRanking[i].image_url" class="font_carezone2_img" style="margin-left:2%;" src="http://plinic.cafe24app.com/userimages/{{memberRanking[i].email}}"
+              <img *ngIf="!memberRanking[i].image_url" class="font_carezone2_img" style="margin-left:2%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{memberRanking[i].userImageFilename}}"
                 onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
               <img *ngIf="memberRanking[i].image_url" class="font_carezone2_img" style="margin-left: 2%;" src="{{memberRanking[i].image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
             </ng-container>
             <ng-container *ngIf="i > 0">
-              <img *ngIf="!memberRanking[i].image_url" class="font_carezone2_img" style="margin-left:-2%;" src="http://plinic.cafe24app.com/userimages/{{memberRanking[i].email}}"
+              <img *ngIf="!memberRanking[i].image_url" class="font_carezone2_img" style="margin-left:-2%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{memberRanking[i].userImageFilename}}"
                 onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
               <img *ngIf="memberRanking[i].image_url" class="font_carezone2_img" style="margin-left: -2%;" src="{{memberRanking[i].image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
             </ng-container>

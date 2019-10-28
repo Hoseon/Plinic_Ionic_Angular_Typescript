@@ -132,6 +132,9 @@ export class MyinfoPage {
 
   chkUserImage: boolean = false;
 
+  missionHistory: any; //참여자 미션 이력 값
+
+
   // pushToken: any;
 
 
@@ -212,6 +215,7 @@ export class MyinfoPage {
     this.skinQnaLoad();
     this.beautyNoteLoad();
     this.communityEditorBeautyLoad();
+    // this.getHistoryMission();
     this.carezoneData = this.roadcareZone();
 
   }
@@ -242,64 +246,63 @@ export class MyinfoPage {
     this.lineCanvas = new Chart(this.lineCanvas.nativeElement, {
 
 
-      type: 'line',
+      type: 'bar',
       data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
         labels: this.chartDateData,
-        datasets: [{
-          // label: format(this.today, 'MM/DD', '유분'),
-          label: '내 수분 점수',
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "#368AFF",
-          borderColor: "#368AFF",
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "#368AFF",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5, //클릭시 원크기
-          pointHoverBackgroundColor: "#368AFF",
-          pointHoverBorderColor: "#368AFF",
-          pointHoverBorderWidth: 2, //데이터 호버크기
-          pointRadius: 3,  //데이터 포인트크기
-          pointHitRadius: 100,
-          // data: [this.data1, this.data2, this.data3, this.data4],
-          data: this.chartMoistureData,
-          spanGaps: false,
-        },
-        {
-          // label: format(this.today, 'MM/DD', '유분'),
-          label: '20대 평균 수분 점수',
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "#00C6ED",
-          borderColor: "#00C6ED",
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "#00C6ED",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "#00C6ED",
-          pointHoverBorderColor: "#00C6ED",
-          pointHoverBorderWidth: 2,
-          pointRadius: 3,
-          pointHitRadius: 20,
-          data: [
-            // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
-            // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
-            //DB데이터 출력
-
-          ],
-          spanGaps: false,
-          // 수분은 하늘이랑 파랑
-          // 유분은 노랑이랑 주황!!
-          // label: format(this.today, 'MM/DD', '유분'),
-        }],
+        datasets: [
+          {
+            type: 'line',
+            // label: format(this.today, 'MM/DD', '유분'),
+            label: '20대 평균 수분 점수',
+            fill: false,
+            // lineTension: 0,
+            backgroundColor: "#00C6ED",
+            borderColor: "#00C6ED",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "#00C6ED",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#00C6ED",
+            pointHoverBorderColor: "#00C6ED",
+            pointHoverBorderWidth: 2,
+            pointRadius: 3,
+            pointHitRadius: 20,
+            data: this.chartMoistureData,
+            spanGaps: false,
+            // 수분은 하늘이랑 파랑
+            // 유분은 노랑이랑 주황!!
+            // label: format(this.today, 'MM/DD', '유분'),
+          },
+          {
+            // label: format(this.today, 'MM/DD', '유분'),
+            type: 'bar',
+            label: '내 수분 점수',
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "#FFA0D0",
+            borderColor: "#FFA0D0",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "#368AFF",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5, //클릭시 원크기
+            pointHoverBackgroundColor: "#368AFF",
+            pointHoverBorderColor: "#368AFF",
+            pointHoverBorderWidth: 2, //데이터 호버크기
+            pointRadius: 3,  //데이터 포인트크기
+            pointHitRadius: 100,
+            // data: [this.data1, this.data2, this.data3, this.data4],
+            data: [50, 60, 70, 80, 90, 70, 50, 40, 60, 70, 90, 90, 70, 70],
+            spanGaps: false,
+          },
+        ],
       },
       options: {
         animation: {
@@ -327,16 +330,16 @@ export class MyinfoPage {
             }
           }]
         },
-        // plugins: {
-        //     labels: {
-        //           render: this.percentage,
-        //           precision: 0,
-        //           fontSize: 15,
-        //           fontStyle: 'normal',
-        //           textShadow: true,
-        //           showActualPercentages: true
-        //       }
-        //   }
+        plugins: {
+          labels: {
+            render: 'text',
+            precision: 0,
+            fontSize: 0,
+            fontStyle: 'normal',
+            textShadow: true,
+            showActualPercentages: true
+          }
+        }
       }
     });
 
@@ -986,8 +989,17 @@ export class MyinfoPage {
         if (this.userData) {
           this.auth.getUserImage(this.userData.email).subscribe(items => {
             if (items) {
+              this.thumb_image = items
+              console.log("사용자 이미지를 가져 왔는가? : " + JSON.stringify(this.thumb_image));
               this.chkUserImage = true;
             }
+          });
+        }
+
+        if (this.userData) {
+          this.auth.getHistoryMission(this.userData.email).subscribe(data => {
+            this.missionHistory = data;
+            console.log("aaaaa" + JSON.stringify(data));
           });
         }
       }
@@ -1299,7 +1311,9 @@ export class MyinfoPage {
   //20190905 사용자의 플리닉 블루투스 총 사용 시간
   getAllUseTime() {
     this.auth.getChartAllScore(this.userData.email).subscribe(items => {
-      this.allusetime = this.getSecondsAsDigitalClock(items[0].sum)
+      if (items.length > 0) {
+        this.allusetime = this.getSecondsAsDigitalClock(items[0].sum)
+      }
     });
   }
 
@@ -1310,6 +1324,14 @@ export class MyinfoPage {
         this.chkUserImage = true;
       }
     });
+  }
+
+  public getHistoryMission() {
+    if (this.userData.email !== '') {
+      this.auth.getHistoryMission(this.userData.email).subscribe(data => {
+        console.log("미션 이력은 잘 가져 왔는가?" + JSON.stringify(data));
+      });
+    }
   }
 
 }

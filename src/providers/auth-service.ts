@@ -12,7 +12,7 @@ import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Naver } from 'ionic-plugin-naver';
 // import { LocalNotifications } from '@ionic-native/local-notifications';
-// import { FCM } from '@ionic-native/fcm';
+import { FCM } from '@ionic-native/fcm';
 import { Transfer, TransferObject, FileUploadOptions } from '@ionic-native/transfer'
 import { BLE } from '@ionic-native/ble';
 
@@ -87,35 +87,35 @@ export class AuthService {
     private google: GooglePlus,
     public bluetoothle: BluetoothLE, public naver: Naver,
     // private localNotifications: LocalNotifications,
-    // private fcm: FCM
+    private fcm: FCM
   ) {
 
     this.platform.ready().then(() => {
 
-      // if (this.platform.is('ios')) {
-      //   this.fcm.getToken().then(token => {
-      //     this.pushToken = token;
-      //     console.log("FCM iOS Auth Token :::::::::::::" + token);
-      //     //사용자 개인 알림, 게시물 알림 등을 처리하기 위해서 각각 로그인한 사용자의 푸쉬 토큰을 개별로 사용자 정보(mongoDb)에 저장한다.
-      //   })
-      //
-      //   this.fcm.onTokenRefresh().subscribe(token => {
-      //     this.pushToken = token;
-      //     console.log("FCM iOS Auth Refresh Token :::::::::::::" + token);
-      //   });
-      // }
-      //
-      //
-      // if (this.platform.is('android')) {
-      //   this.fcm.getToken().then(token => {
-      //     this.pushToken = token;
-      //     console.log("FCM Auth Token :::::::::::::" + token);
-      //   })
-      //   this.fcm.onTokenRefresh().subscribe(token => {
-      //     this.pushToken = token;
-      //     console.log("FCM Auth Refresh Token :::::::::::::" + token);
-      //   });
-      // }
+      if (this.platform.is('ios')) {
+        this.fcm.getToken().then(token => {
+          this.pushToken = token;
+          console.log("FCM iOS Auth Token :::::::::::::" + token);
+          //사용자 개인 알림, 게시물 알림 등을 처리하기 위해서 각각 로그인한 사용자의 푸쉬 토큰을 개별로 사용자 정보(mongoDb)에 저장한다.
+        })
+
+        this.fcm.onTokenRefresh().subscribe(token => {
+          this.pushToken = token;
+          console.log("FCM iOS Auth Refresh Token :::::::::::::" + token);
+        });
+      }
+
+
+      if (this.platform.is('android')) {
+        this.fcm.getToken().then(token => {
+          this.pushToken = token;
+          console.log("FCM Auth Token :::::::::::::" + token);
+        })
+        this.fcm.onTokenRefresh().subscribe(token => {
+          this.pushToken = token;
+          console.log("FCM Auth Refresh Token :::::::::::::" + token);
+        });
+      }
 
 
       this.checkToken();
@@ -127,12 +127,7 @@ export class AuthService {
 
     });
 
-    let loginOptions = {};
-    loginOptions['authTypes'] = [
-      AuthTypes.AuthTypeTalk,
-      AuthTypes.AuthTypeStory,
-      AuthTypes.AuthTypeAccount
-    ];
+
   }
 
   // 최초 탭스이벤트 처리
@@ -261,7 +256,7 @@ export class AuthService {
       .then(response => {
         this.userData = {
           accessToken: response['accessToken'],
-          pushtoken : this.pushToken,
+          pushtoken: this.pushToken,
           from: 'naver'
         }
         this.naver.requestMe()
@@ -277,6 +272,11 @@ export class AuthService {
             }
           }) // 성공
           .catch(error => console.error(error)); // 실패
+        this.registerSnS(this.userData).subscribe(data => {
+          console.log("성공임");
+        }, error => {
+          console.log("에러임");
+        })
       }
       )
       .catch(error => console.error(error)); // 실패
@@ -354,9 +354,14 @@ export class AuthService {
           //profile_image: res['profile_image'],
           thumbnail_image: res['imageUrl'],
           //use_email: res['has_email'],
-          pushtoken : this.pushToken,
+          pushtoken: this.pushToken,
           from: 'google'
         };
+        this.registerSnS(this.userData).subscribe(data => {
+          console.log("성공임");
+        }, error => {
+          console.log("에러임");
+        })
         this.storage.set('userData', this.userData);
         this.authenticationState.next(true);
         return this.userData;
@@ -381,8 +386,15 @@ export class AuthService {
   // }
 
   public kakao_login() {
+
+    let loginOptions = {};
+    loginOptions['authTypes'] = [
+      // AuthTypes.AuthTypeTalk,
+      // AuthTypes.AuthTypeStory,
+      AuthTypes.AuthTypeAccount
+    ];
     console.log("카카오 로그인 시작 ::::::::::::::");
-    this._kakaoCordovaSDK.login(AuthTypes.AuthTypeTalk).then((res) => {
+    this._kakaoCordovaSDK.login(loginOptions).then((res) => {
       console.log("카카오 로그인 성공 ::::::::::::::");
       this.userData = {
         accessToken: res.accessToken,
@@ -395,12 +407,12 @@ export class AuthService {
         profile_image: res.properties['profile_image'],
         thumbnail_image: res.properties['thumbnail_image'],
         use_email: res.kakao_account['has_email'],
-        pushtoken : this.pushToken,
+        pushtoken: this.pushToken,
         from: 'kakao'
       };
-      this.registerSnS(this.userData).subscribe(data =>{
+      this.registerSnS(this.userData).subscribe(data => {
         console.log("성공임");
-      }, error =>{
+      }, error => {
         console.log("에러임");
       })
       this.currentUser = res.properties['nickname'];
@@ -456,7 +468,7 @@ export class AuthService {
       email: email,
       select: content.qna_select,
       qna: content.qna_input,
-      pushtoken : this.pushToken,
+      pushtoken: this.pushToken,
     };
 
     console.log("qna : " + JSON.stringify(body));
@@ -641,7 +653,7 @@ export class AuthService {
       email: email,
       select: content.qna_select,
       qna: content.qna_input,
-      pushtoken : this.pushToken,
+      pushtoken: this.pushToken,
     };
 
     console.log("qna : " + JSON.stringify(body));
@@ -685,7 +697,7 @@ export class AuthService {
       title: content.title,
       contents: content.contents,
       tags: content.tags,
-      pushtoken : this.pushToken,
+      pushtoken: this.pushToken,
     };
 
     let url = CONFIG.apiUrl + 'beautynote';
@@ -700,7 +712,7 @@ export class AuthService {
         'select': body.select,
         'title': body.title,
         'contents': body.contents,
-        'pushtoken' : body.pushtoken,
+        'pushtoken': body.pushtoken,
         'tags': JSON.stringify(body.tags),
       }
     };
@@ -719,7 +731,7 @@ export class AuthService {
       select: content.select,
       title: content.title,
       contents: content.contents,
-      pushtoken : this.pushToken,
+      pushtoken: this.pushToken,
       tags: content.tags,
     };
 
@@ -755,7 +767,7 @@ export class AuthService {
       select: content.select,
       title: content.title,
       contents: content.contents,
-      pushtoken : this.pushToken,
+      pushtoken: this.pushToken,
       tags: content.tags,
     };
 
@@ -780,7 +792,7 @@ export class AuthService {
       select: content.select,
       title: content.title,
       contents: content.contents,
-      pushtoken : this.pushToken,
+      pushtoken: this.pushToken,
       tags: content.tags,
     };
 
@@ -815,7 +827,7 @@ export class AuthService {
       select: content.select,
       title: content.title,
       contents: content.contents,
-      pushtoken : this.pushToken,
+      pushtoken: this.pushToken,
       tags: content.tags,
     };
 
@@ -844,7 +856,7 @@ export class AuthService {
       select: content.select,
       title: content.title,
       contents: content.contents,
-      pushtoken : this.pushToken,
+      pushtoken: this.pushToken,
       tags: content.tags,
     };
 
@@ -870,7 +882,7 @@ export class AuthService {
       select: content.select,
       title: content.title,
       contents: content.contents,
-      pushtoken : this.pushToken,
+      pushtoken: this.pushToken,
       tags: content.tags,
     };
 
@@ -938,7 +950,7 @@ export class AuthService {
       });
   }
 
-  public missionSave(id, email, image, start, end, title, sub, maxmember) {
+  public missionSave(id, email, image, start, end, title, sub, maxmember, userimagefile) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
 
@@ -950,7 +962,8 @@ export class AuthService {
       endmission: end,
       title: title,
       body: sub,
-      maxmember: maxmember
+      maxmember: maxmember,
+      userImageFilename :userimagefile
     };
     return this.http.post(CONFIG.apiUrl + 'api/missionsave', JSON.stringify(body), { headers: headers })
       .map(res => res.json())
@@ -1001,14 +1014,14 @@ export class AuthService {
 
     let body = {
       email: userData.email,
-      name : userData.nickname,
+      name: userData.nickname,
       gender: userData.gender,
       birthday: userData.birthday,
       pushtoken: this.pushToken,
-      user_jwt : false,
-      imagePath : userData.profile_image,
-      age_range : userData.age_range,
-      from : userData.from,
+      user_jwt: false,
+      imagePath: userData.profile_image,
+      age_range: userData.age_range,
+      from: userData.from,
       // score: 'bbbbbb',
       // saveDate: this.currentDate,
     };
@@ -1041,7 +1054,7 @@ export class AuthService {
     this.userToken = token;
     this.currentUser = new User(this.jwtHelper.decodeToken(this.userToken).email, this.jwtHelper.decodeToken(this.userToken).name);
     console.log(this.currentUser);
-    console.log("토큰정보 토큰정보 토큰정보 토큰정보 토큰정보" +token);
+    console.log("토큰정보 토큰정보 토큰정보 토큰정보 토큰정보" + token);
     return this.storage.set('userData', token);
   }
 
@@ -1110,17 +1123,17 @@ export class AuthService {
       .map(response => response.json());
   }
 
-  public getChartScore(email, date){
+  public getChartScore(email, date) {
     return this.http.get(CONFIG.apiUrl + 'carezone/totalusetime/' + email + '/' + date)
       .map(response => response.json());
   }
 
-  public getChartAllScore(email){
+  public getChartAllScore(email) {
     return this.http.get(CONFIG.apiUrl + 'carezone/totalallusetime/' + email)
       .map(response => response.json());
   }
 
-  public getRankTotalUseTime(date){
+  public getRankTotalUseTime(date) {
     return this.http.get(CONFIG.apiUrl + 'carezone/ranktotalusetime/' + date)
       .map(response => response.json());
   }
@@ -1357,7 +1370,51 @@ export class AuthService {
 
   public getUserImage(email) {
     return this.http.get(CONFIG.apiUrl + 'userimages/' + email)
-      .map(response => response.ok);
+      .map(response => response.json());
+  }
+
+  public getHistoryMission(email) {
+    return this.http.get(CONFIG.apiUrl + 'carezone/historymission/' + email)
+      .map(response => response.json());
+  }
+
+
+  public getPostCodeCheck() {
+    return this.http.get(CONFIG.apiUrl + 'api/daumjuso/mobile')
+      .map(response => response.json());
+  }
+
+  public rewardSave(userdata, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: userdata,
+      name: content.name,
+      missionID: content.missionid,
+      reward: true,
+      product: content.product,
+      prodfilename: content.prodfilename,
+      prodoriginalname: content.prodoriginalname,
+      title: content.title,
+      startmission: content.startmission,
+      endmission: content.endmission,
+      zonecode: content.zonecode,
+      address: content.address,
+      detailAddress: content.detailAddress,
+      desc: content.desc,
+      bname: content.bname,
+      buildingName: content.buildingName,
+      phoneNumber: content.phoneNumber,
+      postemail: content.email,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/rewardsave', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
   }
 
 

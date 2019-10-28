@@ -35,8 +35,27 @@
       <button ion-button style="height:28px;box-shadow: none;" class="button_outline" outline (click)="mission_deadline()">진행중 </button>
       </ion-item> -->
     <ion-slides *ngIf="bannerData && bannerData.length" class="img-banner_top_19000501" pager loop=true autoplay=2000>
-      <ion-slide *ngFor="let banner of bannerData">
+      <!-- <ion-slide *ngFor="let banner of bannerData">
         <img src='http://plinic.cafe24app.com/images/{{banner._id}}' />
+      </ion-slide> -->
+      <ion-slide *ngIf="carezoneData2.challenge_image1_filename">
+        <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData2.challenge_image1_filename}}' />
+      </ion-slide>
+
+      <ion-slide *ngIf="carezoneData2.challenge_image2_filename">
+        <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData2.challenge_image2_filename}}' />
+      </ion-slide>
+
+      <ion-slide *ngIf="carezoneData2.challenge_image3_filename">
+        <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData2.challenge_image3_filename}}' />
+      </ion-slide>
+
+      <ion-slide *ngIf="carezoneData2.challenge_image4_filename">
+        <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData2.challenge_image4_filename}}' />
+      </ion-slide>
+
+      <ion-slide *ngIf="carezoneData2.challenge_image5_filename">
+        <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData2.challenge_image5_filename}}' />
       </ion-slide>
     </ion-slides>
 
@@ -131,7 +150,14 @@
       <ng-container *ngIf="endCheck === true">
         <ng-container *ngIf="carezoneData2.productcount >= rank">
           <!-- 미션 완료일 떄 -->
-          <button ion-button class="button_start" text-align="center" outline (click)="showMissionsuccess()">보상받기</button>
+          <!-- 보상받기가 완료 된 경우 -->
+          <ng-container *ngIf="reward">
+            <button ion-button class="button_end" text-align="center" outline>보상받기 완료</button>
+          </ng-container>
+          <!-- 보상받기가 아직 완료되지 않은 경우 -->
+          <ng-container *ngIf="!reward">
+            <button ion-button class="button_start" text-align="center" outline (click)="showMissionsuccess()">보상받기</button>
+          </ng-container>
         </ng-container>
         <ng-container *ngIf="carezoneData2.productcount < rank">
           <!-- 미션 종료일 때 -->

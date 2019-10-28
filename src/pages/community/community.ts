@@ -124,7 +124,7 @@ export class CommunityPage {
       }
       setTimeout(() => {
         this.loading.dismiss();
-      }, 1000);
+      }, 5000);
     }
   }
 
@@ -619,38 +619,53 @@ export class CommunityPage {
     if (this.platform.is("ios") && this.device.model === 'iPhone7,2' || this.device.model === 'iPhone8,1' || this.device.model === 'iPhone9,1' || this.device.model === 'iPhone9,3' || this.device.model === 'iPhone10,1' || this.device.model === 'iPhone10,4') {
       let loading = this.loadingCtrl.create({
         spinner: 'hide',
-        duration: 1000,
+        // duration: 100,
         cssClass: 'sk-rotating-plane_ios'
       });
       loading.present();
+      setTimeout(() => {
+        loading.dismiss();
+      }, 1000);
     } else if (this.platform.is("ios") && this.device.model === 'iPhone7,1' || this.device.model === 'iPhone8,2' || this.device.model === 'iPhone9,2' || this.device.model === 'iPhone9,4' || this.device.model === 'iPhone10,2' || this.device.model === 'iPhone10,5') {
       let loading = this.loadingCtrl.create({
         spinner: 'hide',
-        duration: 1000,
+        // duration: 100,
         cssClass: 'sk-rotating-plane_ios_plus'
       });
       loading.present();
+      setTimeout(() => {
+        loading.dismiss();
+      }, 1000);
     } else if (this.platform.is("ios") && this.device.model === 'iPhone10,3' || this.device.model === 'iPhone10,6' || this.device.model === 'iPhone11,2' || this.device.model === 'iPhone11,8' || this.device.model === 'iPhone12,1' || this.device.model === 'iPhone12,3') {
       let loading = this.loadingCtrl.create({
         spinner: 'hide',
-        duration: 1000,
+        // duration: 100,
         cssClass: 'sk-rotating-plane_ios_x'
       });
       loading.present();
+      setTimeout(() => {
+        loading.dismiss();
+      }, 1000);
     } else if (this.platform.is("ios") && this.device.model === 'iPhone11,4' || this.device.model === 'iPhone11,6' || this.device.model === 'iPhone12,5') {
       let loading = this.loadingCtrl.create({
         spinner: 'hide',
-        duration: 1000,
+        // duration: 100,
         cssClass: 'sk-rotating-plane_ios_x_max'
       });
       loading.present();
+      setTimeout(() => {
+        loading.dismiss();
+      }, 1000);
     } else {
       let loading = this.loadingCtrl.create({
         spinner: 'hide',
-        duration: 1000,
+        // duration: 100,
         cssClass: 'sk-rotating-plane'
       });
       loading.present();
+      setTimeout(() => {
+        loading.dismiss();
+      }, 1000);
     }
   }
 

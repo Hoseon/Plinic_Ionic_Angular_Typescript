@@ -1,0 +1,178 @@
+page-reward {
+
+  //안드로이드 상단네비바, 탭바 그림자 제거
+  .header-md::after,
+  .tabs-md[tabsPlacement="top"] > .tabbar::after,
+  .footer-md::before,
+  .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+    height: 1px;
+    margin-bottom: 5px;
+  }
+
+  .toolbar-ios {
+    margin-top: 8%;
+  }
+
+  .toolbar-background {
+    background-color: #FFF;
+  }
+
+  .toolbar-title-md {
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: NotoSansCJKkr;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+  }
+
+  .toolbar-title-ios {
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: NotoSansCJKkr;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    margin-top: -5%;
+    color: #292929;
+  }
+
+  .android_nav{
+    background-color: #FFF !important;
+    width: 50px !important;
+    height: 25px !important;
+    object-fit: contain;
+    margin-left: -26%;
+  }
+
+  .ios_nav{
+    background-color: #FFF !important;
+    width: 25px !important;
+    height: 25px !important;
+    object-fit: contain;
+    margin-right: -50%;
+    margin-top: -60%;
+  }
+
+  .android_title{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 70%;
+    color: #292929;
+  }
+  .ios_title{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 120%;
+    color: #292929;
+  }
+
+  .item_align{
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-bottom: 1%;
+    position: relative;
+  }
+
+  .input_name{
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    margin-bottom: 3%;
+  }
+
+  .button_start {
+    position: relative;
+    left: 70%;
+    // top: -20%;
+    // margin-left: auto;
+    // margin-right: auto;
+    display: block;
+    font-size: 12px;
+    border: solid 0.5px #c7c7c7;
+    background-color: #ffffff;
+    // min-width: 100%;
+    // min-height: 50px;
+    font-family: AppleSDGothicNeo;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5c59b6;
+    border-radius: 4px;
+    // margin-top: -4%;
+    margin-bottom: -10%;
+    z-index: 2;
+  }
+
+  .button_save {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-size: 14px;
+    border: solid 0.5px #c7c7c7;
+    background-color: #5c59b6 !important;
+    min-width: 95%;
+    min-height: 50px;
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 4px;
+    margin-bottom: 3%;
+    box-shadow: none !important;
+  }
+
+  .button_cancel {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-size: 14px;
+    border: solid 0.5px #c7c7c7;
+    background-color: #ffffff;
+    min-width: 95%;
+    min-height: 50px;
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5c59b6;
+    border-radius: 4px;
+    margin-bottom: 3%;
+  }
+
+  .password_label{
+    position: relative;
+    z-index: 1;
+  }
+
+}

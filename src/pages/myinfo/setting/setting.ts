@@ -266,10 +266,17 @@ public loadItems() {
         thumbnail_image: items.thumbnail_image,
         from: 'plinic',
       };
+      this.authService.getUserImage(this.userData.email).subscribe(items => {
+        if (items) {
+          this.profileimg_url = "http://g1partners1.cafe24.com/plinic/";
+          this.profileimg_url = this.profileimg_url.concat(items.filename + "?random+\=" + Math.random());
+          console.log("사용자 이미지를 가져 왔는가? : " + JSON.stringify(items));
+
+        }
+      });
     }
 
-    this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
-    this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
+
   });
 }
 

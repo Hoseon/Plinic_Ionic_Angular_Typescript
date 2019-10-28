@@ -18,7 +18,7 @@ import { AboutPage } from '../pages/about/about';
 // import { HomePage } from '../pages/home/home';
 // //import {SuccessHomePage} from '../pages/success-home/success-home';
 import { MyinfoPage } from '../pages/myinfo/myinfo';
-import {SettingPage} from '../pages/myinfo/setting/setting';
+import { SettingPage } from '../pages/myinfo/setting/setting';
 // import { TabsPage } from '../pages/tabs/tabs';
 // import { AgreementPage } from '../pages/agreement/agreement';
 // import { LoginpagePage } from '../pages/login/loginpage/loginpage';
@@ -33,7 +33,7 @@ import { AddinfoPage } from '../pages/register/addinfo/addinfo';
 // import { BluetoothDisconnectPage } from '../pages/myinfo/details/bluetooth-disconnect/bluetooth-disconnect';
 
 //수정페이지
- import { ReRegisterPage } from '../pages/re-register/re-register';
+import { ReRegisterPage } from '../pages/re-register/re-register';
 // import { ModifyEmailPage } from '../pages/re-register/modify-email/modify-email';
 // import { ModifyNumberPage } from '../pages/re-register/modify-number/modify-number';
 // import { ModifyPasswordPage } from '../pages/re-register/modify-password/modify-password';
@@ -140,15 +140,18 @@ import { BeautyTipAddPageModule } from '../pages/beauty-tip-add/beauty-tip-add.m
 //import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
 import { PopoverPage } from '../pages/community/community-modify/popover/popover';
 import { AlignPopoverPage } from '../pages/community/search/align-popover/align-popover';
-import { MyPage} from '../pages/community/my/my';
-import { MyCommunityModifyPage} from '../pages/community/my/my-community-modify/my-community-modify';
-import { SearchPage} from '../pages/community/search/search';
+import { MyPage } from '../pages/community/my/my';
+import { MyCommunityModifyPage } from '../pages/community/my/my-community-modify/my-community-modify';
+import { SearchPage } from '../pages/community/search/search';
 //import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
 //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 //
 // //미션 시작하기
 import { MissionStartPageModule } from '../pages/care-zone-mission-ing/mission-start/mission-start.module';
 import { MissionVideoPageModule } from '../pages/care-zone-mission-ing/mission-video/mission-video.module';
+
+//20191022 케어 챌린지 보상 페이지
+import { RewardPageModule } from '../pages/reward/reward.module'
 
 
 import { ProgressBarModule } from "angular-progress-bar";
@@ -211,7 +214,7 @@ import { SkinDiagnoseFirstOilPageModule } from '../pages/skin-diagnose-first-oil
 
 
 //태그
-import {RlTagInputModule} from 'angular2-tag-input';
+import { RlTagInputModule } from 'angular2-tag-input';
 
 
 //인스타그램공유하기
@@ -245,7 +248,7 @@ export function getAuthHttp(http, storage) {
     AddinfoPage,
     //    LoginplinicPage,
     AboutPage,
-     MyinfoPage,
+    MyinfoPage,
     // TabsPage,
     // HomePage,
     //SuccessHomePage,
@@ -359,6 +362,7 @@ export function getAuthHttp(http, storage) {
     RlTagInputModule,
     SelectSearchableModule,
     NgCircleProgressModule.forRoot(),
+    RewardPageModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
@@ -378,7 +382,7 @@ export function getAuthHttp(http, storage) {
     // PasswordfindPage,
     AddinfoPage,
     // AboutPage,
-     MyinfoPage,
+    MyinfoPage,
     //    TabsPage,
     // HomePage,
     //SuccessHomePage,
