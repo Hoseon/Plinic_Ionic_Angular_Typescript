@@ -1301,6 +1301,23 @@ export class AuthService {
       });
   }
 
+  public userTimeUpdate(email, points) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      points: points,
+    };
+    
+    return this.http.post(CONFIG.apiUrl + 'api/usetimeupdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
 
   public getmissionPoint(id, email) {
     return this.http.get(CONFIG.apiUrl + 'carezone/getmissionpoint/' + id + '/' + email)
@@ -1417,9 +1434,9 @@ export class AuthService {
       });
   }
 
-
-
-
-
+  public getUseTotalTime(id) {
+    return this.http.get(CONFIG.apiUrl + 'totalusetime/' + id)
+      .map(response => response.json());
+  }
 
 }

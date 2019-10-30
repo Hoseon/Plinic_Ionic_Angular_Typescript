@@ -164,15 +164,13 @@ export class DeviceSkinIngPage {
   }
 
   ionViewDidEnter() {
-
-
-    this.auth.getmissionPoint(this.carezoneData._id, this.userData.email).subscribe(data => {
-      // console.log("현재 날짜 : " + this.currentDate.getFullYear() + '-' + this.currentDate.getMonth() + '-' + this.currentDate.getDate());
-      // console.log("데이터 날짜 : " + new Date(data.usedmission[0].updatedAt).getFullYear() + '-' + new Date(data.usedmission[0].updatedAt).getMonth() + '-' + new Date(data.usedmission[0].updatedAt).getDate());
-      // console.log("data : " + JSON.stringify(data));
-    }, error => {
-      console.log("error : " + error);
-    });
+    // this.auth.getmissionPoint(this.carezoneData._id, this.userData.email).subscribe(data => {
+    //   // console.log("현재 날짜 : " + this.currentDate.getFullYear() + '-' + this.currentDate.getMonth() + '-' + this.currentDate.getDate());
+    //   // console.log("데이터 날짜 : " + new Date(data.usedmission[0].updatedAt).getFullYear() + '-' + new Date(data.usedmission[0].updatedAt).getMonth() + '-' + new Date(data.usedmission[0].updatedAt).getDate());
+    //   // console.log("data : " + JSON.stringify(data));
+    // }, error => {
+    //   console.log("error : " + error);
+    // });
   }
 
   cancel() {
@@ -192,67 +190,21 @@ export class DeviceSkinIngPage {
     // this.spintime = 1;
     this.navCtrl.setRoot(TabsPage);
     this.ble.disconnect(this.device.id).then(result => {
-      this.pointUpdate();
-
-      // console.log("ble skin ing disconnect OK : " + result);
-      // if (this.platform.is('android')) {
-      //   const toast = this.toastCtrl.create({
-      //     cssClass: 'blu_toast_android',
-      //     message: '피부측정이 연결이 완료되었습니다.',
-      //     duration: 3000,
-      //     position: 'bottom'
-      //   });
-      //   toast.present();
-      // }
-      // else {
-      //   const toast = this.toastCtrl.create({
-      //     cssClass: 'blu_toast_ios',
-      //     message: '피부측정이 완료되었습니다.',
-      //     duration: 3000,
-      //     position: 'bottom'
-      //   });
-      //   toast.present();
-      // }
+      if (this.navParams.get('carezoneData')) {
+        this.pointUpdate();
+      } else {
+        this.userTimeUpdate();
+      }
     }, error => {
-      this.pointUpdate();
-
-      // console.log("ble skin ing disconnect error :" + error);
-      // if (this.platform.is('android')) {
-      //   const toast = this.toastCtrl.create({
-      //     cssClass: 'blu_toast_android',
-      //     message: '피부측정이 취소 되었습니다.',
-      //     duration: 3000,
-      //     position: 'bottom'
-      //   });
-      //   toast.present();
-      // }
-      // else {
-      //   const toast = this.toastCtrl.create({
-      //     cssClass: 'blu_toast_ios',
-      //     message: '피부측정이 취소 되었습니다.',
-      //     duration: 3000,
-      //     position: 'bottom'
-      //   });
-      //   toast.present();
-      // }
+      if (this.navParams.get('carezoneData')) {
+        this.pointUpdate();
+      } else {
+        this.userTimeUpdate();
+      }
     })
-
-
-    // }, 1000);
   }
 
-
-
-
   deviceSelected(device) {
-    // console.log(JSON.stringify(device) + ' selected');
-    // this.navCtrl.push(DetailPage, {
-    //   device: device
-    // });
-
-
-
-
     this.ble.connect(device.id).subscribe(
       peripheral => {
         this.ble.refreshDeviceCache(device.id, 2000).then(result =>{
@@ -267,7 +219,11 @@ export class DeviceSkinIngPage {
       // peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
       peripheral => { //디바이스 연결 중단되면 누적 처리 후 종료
         // this.bleshowAlert('Disconnected', '디바이스 연결이 중단 되었습니다.');
-        this.pointUpdate();
+        if (this.navParams.get('carezoneData')) {
+          this.pointUpdate();
+        } else {
+          this.userTimeUpdate();
+        }
       }
     );
 
@@ -745,87 +701,26 @@ export class DeviceSkinIngPage {
     this.runTimer = false;
 
     if (this.platform.is('cordova')) {
-      // console.log("device skin ing Device id : " + this.device.id);
-      // setTimeout(() => {
-      // this.spintime = 1;
-      // this.navCtrl.setRoot(TabsPage);
       this.ble.disconnect(this.device.id).then(result => {
-
-        // console.log("취소하기 블루투스 연결해제" + result);
-        this.pointUpdate();
-        // console.log("ble skin ing disconnect OK : " + result);
-        // this.navCtrl.setRoot(TabsPage);
-        // if (this.platform.is('android')) {
-        //   const toast = this.toastCtrl.create({
-        //     cssClass: 'blu_toast_android',
-        //     message: '피부측정이 취소 되었습니다.',
-        //     duration: 3000,
-        //     position: 'bottom'
-        //   });
-        //   toast.present();
-        // }
-        // else {
-        //   const toast = this.toastCtrl.create({
-        //     cssClass: 'blu_toast_ios',
-        //     message: '피부측정이 취소 되었습니다.',
-        //     duration: 3000,
-        //     position: 'bottom'
-        //   });
-        //   toast.present();
-        // }
+        if (this.navParams.get('carezoneData')) {
+          this.pointUpdate();
+        } else {
+          this.userTimeUpdate();
+        }
       }, error => {
         console.log("취소하기 블루투스 연결해제 에러" + error);
-        this.pointUpdate();
-
-        // console.log("ble skin ing disconnect error :" + error);
-        // if (this.platform.is('android')) {
-        //   const toast = this.toastCtrl.create({
-        //     cssClass: 'blu_toast_android',
-        //     message: '피부측정이 취소 되었습니다.',
-        //     duration: 3000,
-        //     position: 'bottom'
-        //   });
-        //   toast.present();
-        // }
-        // else {
-        //   const toast = this.toastCtrl.create({
-        //     cssClass: 'blu_toast_ios',
-        //     message: '피부측정이 취소 되었습니다.',
-        //     duration: 3000,
-        //     position: 'bottom'
-        //   });
-        //   toast.present();
-        // }
+        if (this.navParams.get('carezoneData')) {
+          this.pointUpdate();
+        } else {
+          this.userTimeUpdate();
+        }
       });
     } else {
-      // console.log("this.secondsRemaining : " + this.secondsRemaining);
-      // console.log(this.userData.email);
-      // console.log(this.carezoneData._id);
-
-      this.pointUpdate();
-      // this.auth.missionPointUpdate(this.userData, this.carezoneData._id this.secondsRemaining).subscribe(data => {
-      //   if (data !== "") {
-      //     let alert2 = this.alertCtrl.create({
-      //       cssClass: 'push_alert',
-      //       title: '댓글달기',
-      //       message: "댓글이 정상적으로 등록되었습니다.",
-      //       buttons: [
-      //         {
-      //           text: '확인',
-      //           handler: () => {
-      //             this.registerReply.comment = '';
-      //             this.textareaResize();
-      //             this.update();
-      //           }
-      //         }
-      //       ]
-      //     });
-      //     alert2.present();
-      //   }
-      //   // this.nav.push(CareZoneMissionIngPage, { _id: id });
-      // }, error => {
-      //   this.showError(JSON.parse(error._body).msg);
-      // });
+      if (this.navParams.get('carezoneData')) {
+        this.pointUpdate();
+      } else {
+        this.userTimeUpdate();
+      }
     }
 
   }
@@ -835,6 +730,19 @@ export class DeviceSkinIngPage {
     // console.log("this.userData.email : " + this.userData.email);
     // console.log("this.secondsRemaining : " + this.secondsRemaining);
     this.auth.missionPointUpdate(this.carezoneData._id, this.userData.email, this.secondsRemaining).subscribe(data => {
+      this.subscriptionFourth.complete();
+      this.showAlert("플리닉 종료", JSON.stringify(data.msg).replace('"', ''));
+    }, error => {
+      this.subscriptionFourth.complete();
+      this.showAlert("플리닉 종료", JSON.parse(error._body).msg);
+    });
+  }
+
+  userTimeUpdate(): void {
+    // console.log("this.carezoneData._id : " + this.carezoneData._id);
+    // console.log("this.userData.email : " + this.userData.email);
+    // console.log("this.secondsRemaining : " + this.secondsRemaining);
+    this.auth.userTimeUpdate(this.userData.email, this.secondsRemaining).subscribe(data => {
       this.subscriptionFourth.complete();
       this.showAlert("플리닉 종료", JSON.stringify(data.msg).replace('"', ''));
     }, error => {

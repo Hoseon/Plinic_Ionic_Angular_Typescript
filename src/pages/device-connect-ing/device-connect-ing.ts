@@ -160,7 +160,11 @@ export class DeviceConnectIngPage {
   public deviceFail() {
     // this.navCtrl.push(DeviceConnectFailPage);
     //this.navCtrl.setRoot(TabsPage);
-   this.viewCtrl.dismiss();
+   // if (this.navParams.get('carezoneData')) {
+     this.viewCtrl.dismiss();
+   // } else { //마이페이지에서는 parent select로 취소 되기 버튼이 되어야 한다.
+     // this.navCtrl.parent.select(4);
+   // }
 
   }
 

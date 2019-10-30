@@ -17,6 +17,7 @@ import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/s
 import { SettingPage } from './setting/setting';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing'
 // import { FCM } from '@ionic-native/fcm';
 
 
@@ -133,6 +134,8 @@ export class MyinfoPage {
   chkUserImage: boolean = false;
 
   missionHistory: any; //참여자 미션 이력 값
+  userUseTime: any; //참여자 미션 이력 값
+
 
 
   // pushToken: any;
@@ -153,30 +156,49 @@ export class MyinfoPage {
   }
 
   test_noti() {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization',
-      'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
-    let option = new RequestOptions({ headers: headers });
-    let payload = {
-      // "to": this.pushToken,
-      "to": this.userData.pushtoken,
-      "priority": "high",
-      "notification": {
-        "body": "Plinic Background Message",
-        "title": "Plinic Title",
-        // "badge": 1,
-        "sound": "default",
-        "click_action": "FCM_PLUGIN_ACTIVITY"
-      },
-      //토큰
+
+      // this.nav.push(MissionStartPage);
+
+      //20190813 미션 시작이 블루투스 사용하는 기기 사용시간 만큼 축적 시킨다.
+      let myModal = this.modalCtrl.create(DeviceConnectIngPage);
+      myModal.onDidDismiss(data =>{
+        let tabs = document.querySelectorAll('.tabbar');
+        if (tabs !== null) {
+          Object.keys(tabs).map((key) => {
+            // tabs[ key ].style.transform = 'translateY(0)';
+            tabs[key].style.display = 'block';
+            tabs[key].style.display = '';
+          });
+        } // end if
+      })
+      myModal.present();
+      // this.nav.push(DeviceConnectIngPage);
     }
-    this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
-      .map(res => res.json())
-      .subscribe(data => {
-        console.log("dddddddddddddddddddddd=================" + JSON.stringify(data));
-      });
-  }
+
+    // let headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+    // headers.append('Authorization',
+    //   'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
+    // let option = new RequestOptions({ headers: headers });
+    // let payload = {
+    //   // "to": this.pushToken,
+    //   "to": this.userData.pushtoken,
+    //   "priority": "high",
+    //   "notification": {
+    //     "body": "Plinic Background Message",
+    //     "title": "Plinic Title",
+    //     // "badge": 1,
+    //     "sound": "default",
+    //     "click_action": "FCM_PLUGIN_ACTIVITY"
+    //   },
+    //   //토큰
+    // }
+    // this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
+    //   .map(res => res.json())
+    //   .subscribe(data => {
+    //     // console.log("dddddddddddddddddddddd=================" + JSON.stringify(data));
+    //   });
+  // }
 
   ionViewCanEnter() {
 
@@ -898,9 +920,9 @@ export class MyinfoPage {
       this.lineCanvas.update();
       this.lineCanvas2.update();
 
-      console.log(this.chartDateData);
-      console.log(this.chartMoistureData);
-      console.log(this.chartOilData);
+      // console.log(this.chartDateData);
+      // console.log(this.chartMoistureData);
+      // console.log(this.chartOilData);
     } else {
       // this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
     }
@@ -927,7 +949,7 @@ export class MyinfoPage {
       if (items.length > 0) {
         // this.update();
         this.memberRanking = new Array<any>();
-        console.log(JSON.stringify(items));
+        // console.log(JSON.stringify(items));
         for (let i = 0; i < items.length; i++) {
           this.memberRanking[i] = {
             email: items[i]._id,
@@ -935,7 +957,7 @@ export class MyinfoPage {
             rank: i + 1
           }
         }
-        console.log(this.memberRanking);
+        // console.log(this.memberRanking);
       }
       else {
         // this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
@@ -950,7 +972,7 @@ export class MyinfoPage {
 
   public loadItems() {
     this.auth.getUserStorage().then(items => {
-      console.log("토큰 값을 가져 왔는가?" + JSON.stringify(items));
+      // console.log("토큰 값을 가져 왔는가?" + JSON.stringify(items));
       if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
         this.userData = {
           accessToken: items.accessToken,
@@ -964,6 +986,7 @@ export class MyinfoPage {
           thumbnail_image: items.thumbnail_image,
           pushtoken: items.pushtoken,
           from: items.from,
+          totaluseitme : items.totalusetime
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           //this.thumb_image = false;
@@ -983,26 +1006,34 @@ export class MyinfoPage {
           thumbnail_image: items.thumbnail_image,
           pushtoken: this.jwtHelper.decodeToken(items).pushtoken,
           from: 'plinic',
+          totaluseitme : items.totalusetime
         };
-        console.log("그냥 유저 데이터는?? ??? ???  " + JSON.stringify(this.userData));
-        console.log("프로필 이미지를 가져 오는 시점은?");
+        // console.log("그냥 유저 데이터는?? ??? ???  " + JSON.stringify(this.userData));
+        // console.log("프로필 이미지를 가져 오는 시점은?");
         if (this.userData) {
           this.auth.getUserImage(this.userData.email).subscribe(items => {
             if (items) {
               this.thumb_image = items
-              console.log("사용자 이미지를 가져 왔는가? : " + JSON.stringify(this.thumb_image));
               this.chkUserImage = true;
             }
           });
+
+
         }
 
         if (this.userData) {
           this.auth.getHistoryMission(this.userData.email).subscribe(data => {
             this.missionHistory = data;
-            console.log("aaaaa" + JSON.stringify(data));
           });
         }
       }
+
+      //20191029 사용자의 플리닉 총 사용 시간을 가져 온다 (챌린지 사용시간만 가져 오는게 아니라 챌린지를 안했을때도 수집해오는 총 시간을 말함)
+      this.auth.getUseTotalTime(this.userData.email).subscribe(usetime => {
+        if (usetime) {
+          this.userUseTime = this.getSecondsAsDigitalClock(usetime);
+        }
+      })
 
       // this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
       // this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
@@ -1329,7 +1360,7 @@ export class MyinfoPage {
   public getHistoryMission() {
     if (this.userData.email !== '') {
       this.auth.getHistoryMission(this.userData.email).subscribe(data => {
-        console.log("미션 이력은 잘 가져 왔는가?" + JSON.stringify(data));
+        // console.log("미션 이력은 잘 가져 왔는가?" + JSON.stringify(data));
       });
     }
   }
