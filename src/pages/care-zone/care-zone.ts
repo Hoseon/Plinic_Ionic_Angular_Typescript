@@ -28,6 +28,7 @@ import { Device } from '@ionic-native/device';
 export class CareZonePage {
   carezoneData: any;
   missionData: any;
+  missionID: any;
   loading: Loading;
   userData: any;
   nickname: string;
@@ -188,11 +189,11 @@ export class CareZonePage {
   public mission_start(carezone) {
     //console.log(id);
     //console.log("missiondata" + this.missionData.missionID);
-
-    if (this.missionData === null || this.missionData === undefined) {
+    console.log(this.missionData.length);
+    if (this.missionData === null || this.missionData === undefined || this.missionData.length <= 0) {
       //this.nav.push(CareZoneMissionIngPage);
       this.nav.push(CareZoneMissionStartPage, { carezoneData: carezone });
-    } else if (carezone._id === this.missionData.missionID) {
+    } else if (carezone._id === this.missionID) {
       this.nav.push(CareZoneMissionIngPage, { carezoneData: carezone });
 
     } else {
@@ -489,18 +490,37 @@ export class CareZonePage {
     // this.showLoading();
     //console.log("chkBtn" + this.chkBtn);
     this.images.chkMission(email).subscribe(data => {
-
-      if (data !== '' || data !== null) {
-        //this.chkBtn = true;
-        this.missionData = data;
-        //this.endDate = data.endmission.substr(0, 10);
-        //console.log(JSON.stringify(data));
-        // this.loading.dismiss();
-      } else if (data === '' || data === null || data === undefined) {
-        //this.chkBtn = false;
+      if (data.length <= 0) {
+        console.log("챌린지를 완료 했거나 참여중인게 없을때");
+        // this.chkBtn = true; //챌린지 미 참여 중일때
+      } else if (data.length > 0) {
+        for (let i = 0; i < data.length; i++) {
+          if (!data[i].missioncomplete) { //완료하지 못한 미션이 있는 체크
+            this.missionData = data[i];
+            this.missionID = data[i].missionID;
+            // if (this.carezoneData2._id === data[i].missionID) { //완료하지 못한 미션이 현재 미션과 동일한지 체크
+            //   this.chkBtn = true; //동일 하면 미션 시작할수 있도록 하고
+            // } else {
+            //   this.chkBtn = false; //동일하지 않으면 다른 챌림치 참여중이라고 한다.
+            // }
+          }
+        }
       } else {
-        this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
+        console.log("이상한 값이 들어 왔을때 챌린지 참여 안한걸로");
+        // this.chkBtn = false;
       }
+
+      // if (data !== '' || data !== null) {
+      //   //this.chkBtn = true;
+      //   this.missionData = data;
+      //   //this.endDate = data.endmission.substr(0, 10);
+      //   //console.log(JSON.stringify(data));
+      //   // this.loading.dismiss();
+      // } else if (data === '' || data === null || data === undefined) {
+      //   //this.chkBtn = false;
+      // } else {
+      //   this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
+      // }
     });
 
   }

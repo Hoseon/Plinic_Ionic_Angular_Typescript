@@ -8,6 +8,8 @@ import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Observable } from 'rxjs/Rx';
 import { KakaoCordovaSDK, KLCustomTemplate, KLLinkObject, KLSocialObject, KLButtonObject, KLContentObject, KLFeedTemplate, AuthTypes } from 'kakao-sdk';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
+
 
 
 
@@ -92,6 +94,7 @@ export class CareZoneMissionStartPage {
     public _kakaoCordovaSDK: KakaoCordovaSDK,
     public nav: NavController, public navParams: NavParams, private images: ImagesProvider,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, public platform: Platform, private auth: AuthService,
+    private themeableBrowser: ThemeableBrowser,
   ) {
     this.platform.ready().then((readySource) => {
 
@@ -179,17 +182,36 @@ export class CareZoneMissionStartPage {
     // this.showLoading();
     // console.log("chkBtn" + this.chkBtn);
     this.images.chkMission(email).subscribe(data => {
-      if (data === '' || data === null || data === undefined) {
+      console.log(data.length);
+      if (data.length <= 0) {
+        console.log("챌린지를 완료 했거나 참여중인게 없을때");
         this.chkBtn = true; //챌린지 미 참여 중일때
-        //this.carezoneData = data;
-        //this.endDate = data.endmission.substr(0, 10);
-        //console.log(JSON.stringify(data));
-        // this.loading.dismiss();
-      } else if (data !== '' || data !== null || data !== undefined) {
-        this.chkBtn = false; //챌린지 참여 중일 때
+      } else if (data.length > 0) {
+        for (let i = 0; i < data.length; i++) {
+          if (!data[i].missioncomplete) { //완료하지 못한 미션이 있는 체크
+            if (this.carezoneData2._id === data[i].missionID) { //완료하지 못한 미션이 현재 미션과 동일한지 체크
+              this.chkBtn = true; //동일 하면 미션 시작할수 있도록 하고
+            } else {
+              this.chkBtn = false; //동일하지 않으면 다른 챌림치 참여중이라고 한다.
+            }
+          }
+        }
       } else {
-        this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
+        console.log("이상한 값이 들어 왔을때 챌린지 참여 안한걸로");
+        this.chkBtn = false;
       }
+
+      // if (data === '' || data === null || data === undefined) {
+      //   this.chkBtn = true; //챌린지 미 참여 중일때
+      //   //this.carezoneData = data;
+      //   //this.endDate = data.endmission.substr(0, 10);
+      //   //console.log(JSON.stringify(data));
+      //   // this.loading.dismiss();
+      // } else if (data !== '' || data !== null || data !== undefined) {
+      //   this.chkBtn = false; //챌린지 참여 중일 때
+      // } else {
+      //   this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
+      // }
     });
   }
 
@@ -214,7 +236,7 @@ export class CareZoneMissionStartPage {
         this.startDate = data.startmission.substr(0, 10);
         this.endDate = data.endmission.substr(0, 10);
         this.chkDate = new Date(data.endmission)
-        if(this.chkDate >= this.currentDate) {  // 챌린지 기간이 남아 있을때
+        if (this.chkDate >= this.currentDate) {  // 챌린지 기간이 남아 있을때
           console.log("챌린지 기간이 남아 있음");
           this.joinchk = true;
         } else {
@@ -615,14 +637,14 @@ export class CareZoneMissionStartPage {
 
     // this.browserRef = this.iab.create(shareURL, "_blank");
     // this.browserRef.on("exit").subscribe((event: InAppBrowserEvent) => {
-      // let successComes: boolean = false;
-      // console.log("exit comes: " + JSON.stringify(event));
-      //사용자가 done을 눌러야지만 추적이 가능함
-      // setTimeout(() => {
-      // if (!successComes) {
-      // let reason = { stage: "login_err", msg: "no input" };
-      // }
-      // }, 1000); //  1 second. Is it enough?
+    // let successComes: boolean = false;
+    // console.log("exit comes: " + JSON.stringify(event));
+    //사용자가 done을 눌러야지만 추적이 가능함
+    // setTimeout(() => {
+    // if (!successComes) {
+    // let reason = { stage: "login_err", msg: "no input" };
+    // }
+    // }, 1000); //  1 second. Is it enough?
 
     // });
     // this.browserRef.on("loadstart").subscribe((event: InAppBrowserEvent) => {
@@ -663,7 +685,7 @@ export class CareZoneMissionStartPage {
     // this.showLoading();
     // console.log("chkBtn" + this.chkBtn);
     this.images.chkUserImage(email).subscribe(data => {
-      if(data){
+      if (data) {
         this.UserImageFileName = data;
         console.log("사용자 이미지 파일명을 잘 가져 왔는가?" + data);
       }
@@ -677,5 +699,67 @@ export class CareZoneMissionStartPage {
     });
   }
 
+  openBrowser_ios(url, title) {
+
+    const options: ThemeableBrowserOptions = {
+      toolbar: {
+        height: 55,
+        color: '#6562b9'
+      },
+      title: {
+        color: '#ffffffff',
+        showPageTitle: false,
+        staticText: title
+      },
+      closeButton: {
+        wwwImage: 'assets/img/close.png',
+        align: 'left',
+        event: 'closePressed'
+      },
+    };
+
+    const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
+    browser.insertCss({
+      file: 'assets/img/close.png',
+      code: '.navbar-fixed-top {display: block !important;}'
+    });
+    browser.reload();
+    browser.on('closePressed').subscribe(data => {
+      browser.close();
+    })
+
+    browser.on('sharePressed').subscribe(data => {
+      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+    })
+  }
+
+  openBrowser_android(url, title) {
+
+    const options: ThemeableBrowserOptions = {
+      toolbar: {
+        height: 55,
+        color: '#6562b9'
+      },
+      title: {
+        color: '#ffffffff',
+        showPageTitle: false,
+        staticText: title
+      },
+    };
+
+    const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
+    browser.insertCss({
+      file: 'assets/img/close.png',
+      code: '.navbar-fixed-top {display: block !important;}'
+    });
+    browser.reload();
+    browser.on('closePressed').subscribe(data => {
+      browser.close();
+    })
+
+    browser.on('sharePressed').subscribe(data => {
+      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+    })
+  }
 
 }

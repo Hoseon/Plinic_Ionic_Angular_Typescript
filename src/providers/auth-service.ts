@@ -1309,7 +1309,7 @@ export class AuthService {
       email: email,
       points: points,
     };
-    
+
     return this.http.post(CONFIG.apiUrl + 'api/usetimeupdate', JSON.stringify(body), { headers: headers })
       .map(res => res.json())
       .map(data => {

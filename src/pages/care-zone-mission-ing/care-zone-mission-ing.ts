@@ -10,6 +10,8 @@ import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing'
 import { PopoverPage } from '../community/community-modify/popover/popover';
 import { RewardPage } from '../reward/reward'
 import { Observable } from 'rxjs/Rx';
+import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
+
 
 
 /**
@@ -72,7 +74,8 @@ export class CareZoneMissionIngPage {
     private images: ImagesProvider, public element: ElementRef,
     private loadingCtrl: LoadingController, private modalCtrl: ModalController,
     private alertCtrl: AlertController, public platform: Platform,
-    private auth: AuthService, public popoverCtrl: PopoverController) {
+    private auth: AuthService, public popoverCtrl: PopoverController,
+    private themeableBrowser: ThemeableBrowser) {
 
     // this.missionUseTime(this.carezoneData2);
     // this.roadmission(this.carezoneData2._id);
@@ -799,6 +802,69 @@ export class CareZoneMissionIngPage {
     this.updatevalue = event.target.value
     // console.log(event)
     // console.log("focus focus")
+  }
+
+  openBrowser_ios(url, title) {
+
+    const options: ThemeableBrowserOptions = {
+      toolbar: {
+        height: 55,
+        color: '#6562b9'
+      },
+      title: {
+        color: '#ffffffff',
+        showPageTitle: false,
+        staticText: title
+      },
+      closeButton: {
+        wwwImage: 'assets/img/close.png',
+        align: 'left',
+        event: 'closePressed'
+      },
+    };
+
+    const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
+    browser.insertCss({
+      file: 'assets/img/close.png',
+      code: '.navbar-fixed-top {display: block !important;}'
+    });
+    browser.reload();
+    browser.on('closePressed').subscribe(data => {
+      browser.close();
+    })
+
+    browser.on('sharePressed').subscribe(data => {
+      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+    })
+  }
+
+  openBrowser_android(url, title) {
+
+    const options: ThemeableBrowserOptions = {
+      toolbar: {
+        height: 55,
+        color: '#6562b9'
+      },
+      title: {
+        color: '#ffffffff',
+        showPageTitle: false,
+        staticText: title
+      },
+    };
+
+    const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
+    browser.insertCss({
+      file: 'assets/img/close.png',
+      code: '.navbar-fixed-top {display: block !important;}'
+    });
+    browser.reload();
+    browser.on('closePressed').subscribe(data => {
+      browser.close();
+    })
+
+    browser.on('sharePressed').subscribe(data => {
+      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+    })
   }
 
 

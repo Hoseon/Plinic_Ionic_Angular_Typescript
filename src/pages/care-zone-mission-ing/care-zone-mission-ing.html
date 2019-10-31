@@ -161,8 +161,14 @@
         </ng-container>
         <ng-container *ngIf="carezoneData2.productcount < rank">
           <!-- 미션 종료일 때 -->
-          <button ion-button class="button_end" text-align="center" outline (click)="showMissionfail()">챌린지 종료</button>
-          <button ion-button class="button_detail" text-align="center" outline (click)="showMissionfail()">보상 제품 상세정보</button>
+          <ng-container *ngIf="platform.is('ios')">
+            <button ion-button class="button_end" text-align="center" outline (click)="showMissionfail()">챌린지 종료</button>
+            <button ion-button class="button_detail" text-align="center" outline (click)="openBrowser_ios(carezoneData2.product_url, carezoneData2.product)">보상 제품 상세정보</button>
+          </ng-container>
+          <ng-container *ngIf="platform.is('android')">
+            <button ion-button class="button_end" text-align="center" outline (click)="showMissionfail()">챌린지 종료</button>
+            <button ion-button class="button_detail" text-align="center" outline (click)="openBrowser_android(carezoneData2.product_url, carezoneData2.product)">보상 제품 상세정보</button>
+          </ng-container>
         </ng-container>
       </ng-container>
 
