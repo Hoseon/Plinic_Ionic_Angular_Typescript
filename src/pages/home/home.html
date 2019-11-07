@@ -64,7 +64,7 @@
           </ion-col>
           <!-- 타이머 추가 -->
           <ion-col class="font_carezone2_page right-margin">
-            {{displayTime}}
+            {{displayTime[i]}}
           </ion-col>
         </ion-row>
         <ion-row>
@@ -76,12 +76,12 @@
         <!-- 참가 인원 이미지 추가  -->
         <ion-row>
           <ng-container *ngIf="firstCarezoneData">
-            <ng-container *ngFor="let mission of first_missionMemberData; let i = index">
+            <ng-container *ngFor="let mission of missionmember[i]; let i = index">
               <ng-container *ngIf="i <= 3">
                 <ng-container *ngIf="i === 0">
                   <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:5%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
                     onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
-                  <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: -1%;" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+                  <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: 5%;" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
                 </ng-container>
                 <ng-container *ngIf="i > 0">
                   <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:-1%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
@@ -144,22 +144,22 @@
     </div>
 
 
-    <div *ngFor="let secondCarezone of secondCarezoneData let i = index">
+    <!-- <div *ngFor="let secondCarezone of secondCarezoneData let i = index">
       <ion-row>
-        <ion-col *ngIf="secondCarezone._id" class="img_carezone_background2" style="text-align: center" (click)="mission_start(secondCarezone)">
+        <ion-col *ngIf="secondCarezone._id" class="img_carezone_background2" style="text-align: center" (click)="mission_start(secondCarezone)"> -->
           <!-- 모집중, 모집마감 -->
           <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #FFC3C3;" ion-button>모집 중</button>
           <button *ngIf="ingmdchuchun[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>MD추천</button>
           <button *ngIf="ingapproaching[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #87B5FF;" ion-button>마감임박</button> -->
-          <img class="img_carezone2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{secondCarezone.filename}}" />
+          <!-- <img class="img_carezone2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{secondCarezone.filename}}" />
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col class="font_carezone3 left-margin">
           {{secondCarezone.title}}
-        </ion-col>
+        </ion-col> -->
         <!-- 타이머 추가 -->
-        <ion-col class="font_carezone3_page right-margin">
+        <!-- <ion-col class="font_carezone3_page right-margin">
           {{displayTime2}}
         </ion-col>
       </ion-row>
@@ -167,34 +167,61 @@
         <ion-col class="font_carezone3_sub left-margin">
           {{secondCarezone.body}}
         </ion-col>
-      </ion-row>
+      </ion-row> -->
       <!-- 참가 인원 이미지 추가  -->
-      <ion-row>
+      <!-- <ion-row>
         <ng-container *ngIf="secondCarezoneData">
+          <ng-container *ngFor="let mission of second_missionMemberData; let i = index">
+            <ng-container *ngIf="i <= 3">
+              <ng-container *ngIf="i === 0">
+                <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:5%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
+                  onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+                <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: 5%;" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+              </ng-container>
+              <ng-container *ngIf="i > 0">
+                <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:-1%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
+                  onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+                <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: -1%;" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+              </ng-container>
+            </ng-container> -->
+
+
+            <!-- {{mission.image_url}} -->
+            <!-- {{mission.userImageFilename}} -->
+
+          <!-- </ng-container> -->
+          <!-- <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
+          <!-- <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
+          <!-- <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
+          <!-- <div *ngIf="second_carezone_missioncount" class="user_sub"><span class="user_name">{{second_carezone_missioncount}}</span>명이 참가 중입니다.</div>
+          <div *ngIf="!second_carezone_missioncount" class="user_sub"><span class="user_name">00</span>명이 참가 중입니다.</div>
+        </ng-container> -->
+
+        <!-- <ng-container *ngIf="secondCarezoneData">
           <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
           <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
           <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <div class="user_sub"><span class="user_name">00</span>명이 참가 중입니다.</div>
-        </ng-container>
-      </ion-row>
-    </div>
+          <div class="user_sub"><span class="user_name">01</span>명이 참가 중입니다.</div>
+        </ng-container> -->
+      <!-- </ion-row>
+    </div> -->
 
 
 
 
-    <div *ngFor="let thirdCarezone of thirdCarezoneData">
+    <!-- <div *ngFor="let thirdCarezone of thirdCarezoneData">
       <ion-row>
-        <ion-col *ngIf="thirdCarezone._id" class="img_carezone_background3" style="text-align: center" (click)="mission_start(thirdCarezone)">
+        <ion-col *ngIf="thirdCarezone._id" class="img_carezone_background3" style="text-align: center" (click)="mission_start(thirdCarezone)"> -->
           <!-- 모집중, 모집마감 -->
           <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #644A99;" ion-button>모집 D-{{dday}}</button>
 
           <button *ngIf="ingmdchuchun[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>MD추천</button>
           <button *ngIf="ingapproaching[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>마감임박</button> -->
 
-          <img *ngIf="thirdCarezone._id" class="img_carezone2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{thirdCarezoneData.filename}}" />
-        </ion-col>
+          <!-- <img *ngIf="thirdCarezone._id" class="img_carezone2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{thirdCarezoneData.filename}}" />
+        </ion-col> -->
 
-      </ion-row>
+      <!-- </ion-row>
       <ion-row>
         <ion-col class="font_carezone4 left-margin">
           {{thirdCarezone.title}}
@@ -207,9 +234,9 @@
         <ion-col class="font_carezone4_sub left-margin">
           {{thirdCarezone.body}}
         </ion-col>
-      </ion-row>
+      </ion-row> -->
       <!-- 참가 인원 이미지 추가  -->
-      <ion-row>
+      <!-- <ion-row>
         <ng-container *ngIf="thirdCarezoneData">
           <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
           <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
@@ -217,7 +244,7 @@
           <div class="user_sub"><span class="user_name">00</span>명이 참가 중입니다.</div>
         </ng-container>
       </ion-row>
-    </div>
+    </div> -->
 
     <ion-row>
       <ion-col style="text-align: center">

@@ -1,0 +1,269 @@
+page-device-skinsensor-ing {
+  .header-md::after,
+  .tabs-md[tabsPlacement="top"] > .tabbar::after,
+  .footer-md::before,
+  .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+    height: 0;
+  }
+
+  .font_title {
+    //width: 139px;
+    height: 55px;
+    font-family: NotoSansCJKkr;
+    font-size: 23px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #292929;
+    margin: 4% auto 2%;
+  }
+
+  .font_sub {
+  //  width: 315px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+    margin: 0 auto;
+  }
+
+  .container {
+    position: relative;
+    width: 100%;
+  }
+
+  .container .ic_system_skin_face_cheek {
+    width: 50%;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+    background-color: transparent;
+    margin-bottom: 12%;
+  }
+
+  .container .anim-point {
+    position: absolute;
+    top: 39%;
+    right: 36%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    cursor: pointer;
+    animation-name: stylie-transform-keyframes;
+    animation-duration: 1000ms;
+    animation-delay: 0;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform-origin: 0 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  .container .anim-point2 {
+    position: absolute;
+    top: 39%;
+    right: 52%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    cursor: pointer;
+    animation-name: stylie-transform-keyframes;
+    animation-duration: 1000ms;
+    animation-delay: 0;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform-origin: 0 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  .container .anim-point3 {
+    position: absolute;
+    top: 9%;
+    right: 42%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    cursor: pointer;
+    animation-name: stylie-transform-keyframes;
+    animation-duration: 1000ms;
+    animation-delay: 0;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform-origin: 0 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  .container .anim-point4 {
+    position: absolute;
+    top: 70%;
+    right: 44%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    cursor: pointer;
+    animation-name: stylie-transform-keyframes;
+    animation-duration: 1000ms;
+    animation-delay: 0;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform-origin: 0 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  .container .anim-point5 {
+    position: absolute;
+    top: 48%;
+    right: 36%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    cursor: pointer;
+    animation-name: stylie-transform-keyframes;
+    animation-duration: 1000ms;
+    animation-delay: 0;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform-origin: 0 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  @keyframes stylie-transform-keyframes {
+    0% {
+      transform: translate(0px, 0px) scale(0.2) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+      animation-timing-function: cubic-bezier(.25,.25,.75,.75);
+    }
+
+    100% {
+      transform: translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);
+    }
+  }
+
+  .center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    // padding-bottom: 10%;
+  }
+
+  .ic-system-back-black {
+    width: 25px;
+    height: 35px;
+    object-fit: contain;
+    margin-left: 3%;
+    margin-top: 3%;
+    background-color: transparent;
+  }
+
+  // .font_button {
+  //   width: 28px;
+  //   height: 22.5px;
+  //   font-family: NotoSansCJKkr;
+  //   font-size: 15px;
+  //   font-weight: normal;
+  //   font-style: normal;
+  //   font-stretch: normal;
+  //   line-height: normal;
+  //   letter-spacing: normal;
+  //   text-align: center;
+  //   color: #ffffff;
+  //   margin: 0 auto;
+  // }
+
+  .cancel_button {
+    width: 55.5px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+    margin: 0 auto;
+  }
+
+  // .ing_spinner {
+  //   left: 37%;
+  //   width: 20px;
+  //   height: 20px;
+  //   object-fit: contain;
+  //   margin-bottom: 2%;
+  //   background-color: transparent;
+  // }
+
+  // .spinner-md-crescent circle {
+  //   stroke: #FFF;
+  //   stroke-dasharray: 179px;
+  // }
+  //
+  // .spinner-ios-crescent circle {
+  //   stroke: #FFF;
+  //   stroke-dasharray: 179px;
+  // }
+
+  .cell {
+    width: 90%;
+    height: 50px;
+    background-color: #d2d4d8;
+    box-shadow: none !important;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 4px;
+    margin: 0 auto;
+  }
+
+  // .cancel_button {
+  //   width: 90%;
+  //   height: 50px;
+  //   font-family: NotoSansCJKkr;
+  //   font-size: 15px;
+  //   font-weight: normal;
+  //   font-style: normal;
+  //   font-stretch: normal;
+  //   line-height: normal;
+  //   letter-spacing: normal;
+  //   text-align: center;
+  //   color: #939393;
+  //   margin: 5px auto 0;
+  // }
+
+  .header {
+    left: -4%;
+  }
+
+  .title {
+    top: -2%;
+  }
+
+  .subtitle {
+    top: -3.5%;
+  }
+
+  .footer {
+    bottom: 3%;
+  }
+}

@@ -336,8 +336,39 @@ export class DeviceSkinIngPage {
     // })
 
     console.log("---------------------------------노티피 시작 ------------------------------------------------");
+    var i = 0;
     this.ble.startNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
-      console.log("Plinic G1Partners Notifi " + String.fromCharCode.apply(null, new Uint8Array(buffer)));
+      // console.log("그냥 버퍼 " + String.fromCharCode.apply(null, buffer));
+      // console.log(this.stringToBytes(buffer));
+      // console.log("Plinic G1Partners Notifi 8 " +  String.fromCharCode(parseInt(buffer,16)));
+      // console.log("Plinic G1Partners Notifi 8 " +  String.fromCharCode.apply(null, new Uint8Array(buffer)));
+      // console.log("Plinic G1Partners Notifi 16 " + String.fromCharCode.apply(null, new Uint16Array(buffer)));
+      // console.log("Plinic G1Partners Notifi 32 " + String.fromCharCode.apply(null, new Uint32Array(buffer)));
+      // console.log("Plinic G1Partners Notifi Uint8ClampedArray " + String.fromCharCode.apply(null, new Uint8ClampedArray(buffer)));
+      // console.log("Plinic G1Partners Notifi 8 " + String.fromCharCode.apply(null, new Int8Array(buffer)));
+      // console.log("Plinic G1Partners Notifi 16 " + String.fromCharCode.apply(null, new Int16Array(buffer)));
+      // console.log("Plinic G1Partners Notifi 32 " + String.fromCharCode.apply(null, new Int32Array(buffer)));
+
+      console.log("Plinic G1Partners Notifi 8 " + new Uint8Array(buffer));
+      var data2 = new Uint8Array(buffer);
+      var data3 = '';
+      var data16 = '';
+      console.log(data2[3], data2[4]);
+      console.log(data2[3].toString(16) + data2[4].toString(16));
+      data16 = data2[3].toString(16) + data2[4].toString(16);
+      data3  = '0x' + data16;
+      console.log(data3);
+      console.log(parseInt(data3, 16));
+      console.log(i);
+      i++;
+      // console.log("data16 : " + parseInt(data16, 10));
+
+      // console.log("Plinic G1Partners Notifi 16 " + new Uint16Array(buffer));
+      // console.log("Plinic G1Partners Notifi 32 " + new Uint32Array(buffer));
+      // console.log("Plinic G1Partners Notifi 8 " + new Int8Array(buffer));
+      // console.log("Plinic G1Partners Notifi 16 " + new Int16Array(buffer));
+      // console.log("Plinic G1Partners Notifi 32 " + new Int32Array(buffer));
+
     }, error => {
       console.log("Notifi Error : " + error);
     })
@@ -349,125 +380,125 @@ export class DeviceSkinIngPage {
     //   console.log("read fail : " + JSON.stringify(error));
     // })
 
-    this.ble.write(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC, this.stringToBytes('abcd1234')).then(
-      data =>{
-        console.log("write 성공 : " + data);
-      }, error=>{
-        console.log("write 실패 : " + error);
-      }
-    )
+    // this.ble.write(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC, this.stringToBytes('abcd1234')).then(
+    //   data =>{
+    //     console.log("write 성공 : " + data);
+    //   }, error=>{
+    //     console.log("write 실패 : " + error);
+    //   }
+    // )
 
-    this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(
-      buffer => {
-        // var a = String.fromCharCode.apply(null, new Uint8Array(buffer))
-
-        var data = new Uint8Array(buffer);
-        var str = String.fromCharCode.apply(String, data);
-        console.log("읽기성공88 str : " + str[0]);
-
-        var data2 = new Uint16Array(buffer);
-        var str2 = String.fromCharCode.apply(String, data2);
-        console.log("읽기성공1616 str : " + str2[0]);
-        console.log("읽기성공1616 str : " + str2[1]);
-        console.log("읽기성공1616 str : " + str2[2]);
-        console.log("읽기성공1616 str : " + str2[3]);
-        console.log("읽기성공1616 str : " + str2[4]);
-        console.log("읽기성공1616 str : " + str2[5]);
-
-        console.log("그냥받은 HEX0 : " + data2[0]);
-        console.log("그냥받은 HEX1 : " + data2[1]);
-        console.log("그냥받은 HEX2 : " + data2[2]);
-        console.log("그냥받은 HEX3 : " + data2[3]);
-        console.log("그냥받은 HEX4 : " + data2[4]);
-        console.log("그냥받은 HEX5 : " + data2[5]);
-
-        var hex0 = String.fromCharCode.apply(String, data2[0]);
-        var hex1 =String.fromCharCode.apply(String, data2[1]);
-        var hex2 =String.fromCharCode.apply(String, data2[2]);
-        var hex3 =String.fromCharCode.apply(String, data2[3]);
-        var hex4 =String.fromCharCode.apply(String, data2[4]);
-        var hex5 =String.fromCharCode.apply(String, data2[5]);
-
-        console.log("변환한 HEX0 : " + hex0);
-        console.log("변환한 HEX1 : " + hex1);
-        console.log("변환한 HEX2 : " + hex2);
-        console.log("변환한 HEX3 : " + hex3);
-        console.log("변환한 HEX4 : " + hex4);
-        console.log("변환한 HEX5 : " + hex5);
-
-
-        console.log("읽기 성공 : " + this.bytesToString(buffer));
-        console.log("읽기 성공 data : " + this.bytesToString(data));
-        // console.log('dimmer characteristic0 ' + this.bytesToString(buffer));
-        // console.log('dimmer characteristic1 ' + this.bytesToString(data[1]));
-        // console.log('dimmer characteristic2 ' + this.bytesToString(data[2]));
-        // console.log('dimmer characteristic3 ' + this.bytesToString(data[3]));
-        // console.log('dimmer characteristic4 ' + this.bytesToString(data[4]));
-        // console.log('dimmer characteristic5 ' + this.bytesToString(data[5]));
-        // console.log('dimmer characteristic6 ' + this.bytesToString(data[6]));
-        // console.log('dimmer characteristic7 ' + this.bytesToString(data[7]));
-        // this.ngZone.run(() => {
-          // this.brightness = data[0];
-        // });
-      }
-    )
-
-
-
-    this.ble.read(this.peripheral.id, '1805', '2A0F').then(
-      buffer => {
-        // var a = String.fromCharCode.apply(null, new Uint8Array(buffer))
-
-        var data = new Uint8Array(buffer);
-        var str = String.fromCharCode.apply(String, data);
-        console.log("읽기성공88 str : " + str[0]);
-
-        var data2 = new Uint16Array(buffer);
-        var str2 = String.fromCharCode.apply(String, data2);
-        console.log("읽기성공1616 str : " + str2[0]);
-        console.log("읽기성공1616 str : " + str2[1]);
-        console.log("읽기성공1616 str : " + str2[2]);
-        console.log("읽기성공1616 str : " + str2[3]);
-        console.log("읽기성공1616 str : " + str2[4]);
-        console.log("읽기성공1616 str : " + str2[5]);
-
-        console.log("그냥받은 HEX0 : " + data2[0]);
-        console.log("그냥받은 HEX1 : " + data2[1]);
-        console.log("그냥받은 HEX2 : " + data2[2]);
-        console.log("그냥받은 HEX3 : " + data2[3]);
-        console.log("그냥받은 HEX4 : " + data2[4]);
-        console.log("그냥받은 HEX5 : " + data2[5]);
-
-        var hex0 = String.fromCharCode.apply(String, data2[0]);
-        var hex1 =String.fromCharCode.apply(String, data2[1]);
-        var hex2 =String.fromCharCode.apply(String, data2[2]);
-        var hex3 =String.fromCharCode.apply(String, data2[3]);
-        var hex4 =String.fromCharCode.apply(String, data2[4]);
-        var hex5 =String.fromCharCode.apply(String, data2[5]);
-
-        console.log("변환한 HEX0 : " + hex0);
-        console.log("변환한 HEX1 : " + hex1);
-        console.log("변환한 HEX2 : " + hex2);
-        console.log("변환한 HEX3 : " + hex3);
-        console.log("변환한 HEX4 : " + hex4);
-        console.log("변환한 HEX5 : " + hex5);
-
-
-        console.log("읽기 성공 : " + this.bytesToString(buffer));
-        console.log("읽기 성공 data : " + this.bytesToString(data));
-        // console.log('dimmer characteristic0 ' + this.bytesToString(buffer));
-        // console.log('dimmer characteristic1 ' + this.bytesToString(data[1]));
-        // console.log('dimmer characteristic2 ' + this.bytesToString(data[2]));
-        // console.log('dimmer characteristic3 ' + this.bytesToString(data[3]));
-        // console.log('dimmer characteristic4 ' + this.bytesToString(data[4]));
-        // console.log('dimmer characteristic5 ' + this.bytesToString(data[5]));
-        // console.log('dimmer characteristic6 ' + this.bytesToString(data[6]));
-        // console.log('dimmer characteristic7 ' + this.bytesToString(data[7]));
-        // this.ngZone.run(() => {
-          // this.brightness = data[0];
-        // });
-      }
-    )
+    // this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(
+    //   buffer => {
+    //     // var a = String.fromCharCode.apply(null, new Uint8Array(buffer))
+    //
+    //     var data = new Uint8Array(buffer);
+    //     var str = String.fromCharCode.apply(String, data);
+    //     console.log("읽기성공88 str : " + str[0]);
+    //
+    //     var data2 = new Uint16Array(buffer);
+    //     var str2 = String.fromCharCode.apply(String, data2);
+    //     console.log("읽기성공1616 str : " + str2[0]);
+    //     console.log("읽기성공1616 str : " + str2[1]);
+    //     console.log("읽기성공1616 str : " + str2[2]);
+    //     console.log("읽기성공1616 str : " + str2[3]);
+    //     console.log("읽기성공1616 str : " + str2[4]);
+    //     console.log("읽기성공1616 str : " + str2[5]);
+    //
+    //     console.log("그냥받은 HEX0 : " + data2[0]);
+    //     console.log("그냥받은 HEX1 : " + data2[1]);
+    //     console.log("그냥받은 HEX2 : " + data2[2]);
+    //     console.log("그냥받은 HEX3 : " + data2[3]);
+    //     console.log("그냥받은 HEX4 : " + data2[4]);
+    //     console.log("그냥받은 HEX5 : " + data2[5]);
+    //
+    //     var hex0 = String.fromCharCode.apply(String, data2[0]);
+    //     var hex1 =String.fromCharCode.apply(String, data2[1]);
+    //     var hex2 =String.fromCharCode.apply(String, data2[2]);
+    //     var hex3 =String.fromCharCode.apply(String, data2[3]);
+    //     var hex4 =String.fromCharCode.apply(String, data2[4]);
+    //     var hex5 =String.fromCharCode.apply(String, data2[5]);
+    //
+    //     console.log("변환한 HEX0 : " + hex0);
+    //     console.log("변환한 HEX1 : " + hex1);
+    //     console.log("변환한 HEX2 : " + hex2);
+    //     console.log("변환한 HEX3 : " + hex3);
+    //     console.log("변환한 HEX4 : " + hex4);
+    //     console.log("변환한 HEX5 : " + hex5);
+    //
+    //
+    //     console.log("읽기 성공 : " + this.bytesToString(buffer));
+    //     console.log("읽기 성공 data : " + this.bytesToString(data));
+    //     // console.log('dimmer characteristic0 ' + this.bytesToString(buffer));
+    //     // console.log('dimmer characteristic1 ' + this.bytesToString(data[1]));
+    //     // console.log('dimmer characteristic2 ' + this.bytesToString(data[2]));
+    //     // console.log('dimmer characteristic3 ' + this.bytesToString(data[3]));
+    //     // console.log('dimmer characteristic4 ' + this.bytesToString(data[4]));
+    //     // console.log('dimmer characteristic5 ' + this.bytesToString(data[5]));
+    //     // console.log('dimmer characteristic6 ' + this.bytesToString(data[6]));
+    //     // console.log('dimmer characteristic7 ' + this.bytesToString(data[7]));
+    //     // this.ngZone.run(() => {
+    //       // this.brightness = data[0];
+    //     // });
+    //   }
+    // )
+    //
+    //
+    //
+    // this.ble.read(this.peripheral.id, '1805', '2A0F').then(
+    //   buffer => {
+    //     // var a = String.fromCharCode.apply(null, new Uint8Array(buffer))
+    //
+    //     var data = new Uint8Array(buffer);
+    //     var str = String.fromCharCode.apply(String, data);
+    //     console.log("읽기성공88 str : " + str[0]);
+    //
+    //     var data2 = new Uint16Array(buffer);
+    //     var str2 = String.fromCharCode.apply(String, data2);
+    //     console.log("읽기성공1616 str : " + str2[0]);
+    //     console.log("읽기성공1616 str : " + str2[1]);
+    //     console.log("읽기성공1616 str : " + str2[2]);
+    //     console.log("읽기성공1616 str : " + str2[3]);
+    //     console.log("읽기성공1616 str : " + str2[4]);
+    //     console.log("읽기성공1616 str : " + str2[5]);
+    //
+    //     console.log("그냥받은 HEX0 : " + data2[0]);
+    //     console.log("그냥받은 HEX1 : " + data2[1]);
+    //     console.log("그냥받은 HEX2 : " + data2[2]);
+    //     console.log("그냥받은 HEX3 : " + data2[3]);
+    //     console.log("그냥받은 HEX4 : " + data2[4]);
+    //     console.log("그냥받은 HEX5 : " + data2[5]);
+    //
+    //     var hex0 = String.fromCharCode.apply(String, data2[0]);
+    //     var hex1 =String.fromCharCode.apply(String, data2[1]);
+    //     var hex2 =String.fromCharCode.apply(String, data2[2]);
+    //     var hex3 =String.fromCharCode.apply(String, data2[3]);
+    //     var hex4 =String.fromCharCode.apply(String, data2[4]);
+    //     var hex5 =String.fromCharCode.apply(String, data2[5]);
+    //
+    //     console.log("변환한 HEX0 : " + hex0);
+    //     console.log("변환한 HEX1 : " + hex1);
+    //     console.log("변환한 HEX2 : " + hex2);
+    //     console.log("변환한 HEX3 : " + hex3);
+    //     console.log("변환한 HEX4 : " + hex4);
+    //     console.log("변환한 HEX5 : " + hex5);
+    //
+    //
+    //     console.log("읽기 성공 : " + this.bytesToString(buffer));
+    //     console.log("읽기 성공 data : " + this.bytesToString(data));
+    //     // console.log('dimmer characteristic0 ' + this.bytesToString(buffer));
+    //     // console.log('dimmer characteristic1 ' + this.bytesToString(data[1]));
+    //     // console.log('dimmer characteristic2 ' + this.bytesToString(data[2]));
+    //     // console.log('dimmer characteristic3 ' + this.bytesToString(data[3]));
+    //     // console.log('dimmer characteristic4 ' + this.bytesToString(data[4]));
+    //     // console.log('dimmer characteristic5 ' + this.bytesToString(data[5]));
+    //     // console.log('dimmer characteristic6 ' + this.bytesToString(data[6]));
+    //     // console.log('dimmer characteristic7 ' + this.bytesToString(data[7]));
+    //     // this.ngZone.run(() => {
+    //       // this.brightness = data[0];
+    //     // });
+    //   }
+    // )
 
 
 

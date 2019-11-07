@@ -37,7 +37,7 @@
       <ng-container *ngIf="chkUserImage" >
         <ng-container *ngIf="thumb_image">
         <!-- <img class="profile_image" src="http://plinic.cafe24app.com/userimages/{{userData.email}}"/> -->
-        <img class="profile_image" src="http://g1partners1.cafe24.com/plinic/{{thumb_image.filename}}"/>
+        <img class="profile_image" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{thumb_image.filename}}"/>
         </ng-container>
       </ng-container>
       <ng-container *ngIf="!chkUserImage" >
@@ -165,7 +165,7 @@
       <p class="data">※&nbsp;2019.01.01 ~ 2019.12.31 까지 데이터 분석입니다.</p>
 
       <ion-item>
-        <button ion-button class="care_diagnose_btn" (click)="skin_measure()">측정하기</button>
+        <button ion-button class="care_diagnose_btn" (click)="skin_measure()">유수분 측정하기</button>
       </ion-item>
 
 
@@ -194,7 +194,7 @@
           <ion-row>
             <ng-container *ngIf="platform.is('android')">
               <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData" (click)="openBrowser_android(editor.posturl, editor.body)">
-                <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{editor._id}}" />
+                <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{editor.filename}}" />
                 <div class="beauty_desc">{{editor.body}}</div>
                 <div class="beauty_count">조회 {{editor.views}}</div>
               </ion-col>
@@ -202,7 +202,7 @@
 
             <ng-container *ngIf="platform.is('ios') || platform.is('core')">
               <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData" (click)="openBrowser_ios(editor.posturl, editor.body)">
-                <img class="beauty_img" src="http://plinic.cafe24app.com/commubeauty_images/{{editor._id}}" />
+                <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{editor.filename}}" />
                 <div class="beauty_desc">{{editor.body}}</div>
                 <div class="beauty_count">조회 {{editor.views}}</div>
               </ion-col>
@@ -238,7 +238,7 @@
         <!-- <ng-container *ngIf="endmission[i] > currentDate"> -->
           <ion-row class="row">
             <ion-col class="container2" (click)="mission_start(history.missionID)">
-              <img class="imagealign" src='http://plinic.cafe24app.com/carezone_images/{{history.missionID}}' />
+              <img class="imagealign" src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{history.filename}}' />
             </ion-col>
           </ion-row>
           <ion-row>
@@ -287,8 +287,8 @@
                 <ion-col *ngIf="beautynote.like || beautynote.like===0" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
                   <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
                 </ion-col>
-                <img *ngIf="platform.is('android')" class="beauty_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
-                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_note_img_ios" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
+                <img *ngIf="platform.is('android')" class="beauty_note_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
+                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_note_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
               </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
@@ -328,8 +328,8 @@
                 <ion-col *ngIf="skinqna.like || skinqna.like===0" class="beauty_note_like">좋아요 {{skinqna.like}} ∙
                   <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
                 </ion-col>
-                <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
-                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+                <img *ngIf="platform.is('android')" class="beauty_worry_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
+                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
               </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>

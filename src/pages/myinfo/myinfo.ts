@@ -18,6 +18,7 @@ import { SettingPage } from './setting/setting';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing'
+import { DeviceConnectSkinIngPage } from '../device-connect-skin-ing/device-connect-skin-ing'
 // import { FCM } from '@ionic-native/fcm';
 
 
@@ -275,11 +276,11 @@ export class MyinfoPage {
           {
             type: 'line',
             // label: format(this.today, 'MM/DD', '유분'),
-            label: '20대 평균 수분 점수',
+            label: '나의 수분 점수',
             fill: false,
             // lineTension: 0,
-            backgroundColor: "#00C6ED",
-            borderColor: "#00C6ED",
+            backgroundColor: "#808080",
+            borderColor: "#808080",
             borderCapStyle: 'butt',
             borderDash: [],
             borderDashOffset: 0.0,
@@ -293,6 +294,7 @@ export class MyinfoPage {
             pointHoverBorderWidth: 2,
             pointRadius: 3,
             pointHitRadius: 20,
+            borderWidth: 1,
             data: this.chartMoistureData,
             spanGaps: false,
             // 수분은 하늘이랑 파랑
@@ -302,24 +304,25 @@ export class MyinfoPage {
           {
             // label: format(this.today, 'MM/DD', '유분'),
             type: 'bar',
-            label: '내 수분 점수',
+            label: '20~30대 평균 수분 점수',
             fill: false,
             lineTension: 0,
-            backgroundColor: "#FFA0D0",
-            borderColor: "#FFA0D0",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: "#368AFF",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5, //클릭시 원크기
-            pointHoverBackgroundColor: "#368AFF",
-            pointHoverBorderColor: "#368AFF",
-            pointHoverBorderWidth: 2, //데이터 호버크기
-            pointRadius: 3,  //데이터 포인트크기
-            pointHitRadius: 100,
+            borderWidth: 1,
+            backgroundColor: "#726FBD",
+            borderColor: "#726FBD",
+            // borderCapStyle: 'butt',
+            // borderDash: [],
+            // borderDashOffset: 0.0,
+            // borderJoinStyle: 'miter',
+            // pointBorderColor: "#368AFF",
+            // pointBackgroundColor: "#fff",
+            // pointBorderWidth: 1,
+            // pointHoverRadius: 5, //클릭시 원크기
+            // pointHoverBackgroundColor: "#368AFF",
+            // pointHoverBorderColor: "#368AFF",
+            // pointHoverBorderWidth: 2, //데이터 호버크기
+            // pointRadius: 3,  //데이터 포인트크기
+            // pointHitRadius: 50,
             // data: [this.data1, this.data2, this.data3, this.data4],
             data: [50, 60, 70, 80, 90, 70, 50, 40, 60, 70, 90, 90, 70, 70],
             spanGaps: false,
@@ -336,6 +339,10 @@ export class MyinfoPage {
         },
         scales: {
           xAxes: [{
+            gridLines: {
+                offsetGridLines: false
+            },
+            barPercentage: 0.4,
             display: true,
             ticks: {
               beginAtZero: true,
@@ -531,22 +538,36 @@ export class MyinfoPage {
     //   }]
     // });
     // alert.present();
-    if (this.skin_diagnose_first_check) {
-      let myModal = this.modalCtrl.create(SkinDiagnoseMoisturePage);
-      myModal.onDidDismiss(data => {
+    // if (this.skin_diagnose_first_check) {
+    //   let myModal = this.modalCtrl.create(SkinDiagnoseMoisturePage);
+    //   myModal.onDidDismiss(data => {
+    //
+    //     this.update();
+    //   });
+    //   myModal.present();
+    // }
+    // else {
+    //   let myModal = this.modalCtrl.create(SkinDiagnoseFirstMoisturePage);
+    //   myModal.onDidDismiss(data => {
+    //
+    //     this.update();
+    //   });
+    //   myModal.present();
+    // }
 
+      let myModal = this.modalCtrl.create(DeviceConnectSkinIngPage);
+      myModal.onDidDismiss(data => {
+        let tabs = document.querySelectorAll('.tabbar');
+        if (tabs !== null) {
+          Object.keys(tabs).map((key) => {
+            // tabs[ key ].style.transform = 'translateY(0)';
+            tabs[key].style.display = 'block';
+            tabs[key].style.display = '';
+          });
+        } // end if
         this.update();
       });
       myModal.present();
-    }
-    else {
-      let myModal = this.modalCtrl.create(SkinDiagnoseFirstMoisturePage);
-      myModal.onDidDismiss(data => {
-
-        this.update();
-      });
-      myModal.present();
-    }
   }
 
 

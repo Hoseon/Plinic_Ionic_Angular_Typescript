@@ -127,10 +127,12 @@ import { NoticePageModule } from '../pages/myinfo/details/notice/notice.module';
 // //피부측정 페이지
 import { SkinMeasureStartPageModule } from '../pages/skin-measure-start/skin-measure-start.module';
 import { DeviceConnectIngPageModule } from '../pages/device-connect-ing/device-connect-ing.module';
+import { DeviceConnectSkinIngPageModule } from '../pages/device-connect-skin-ing/device-connect-skin-ing.module';
 import { DeviceConnectCompletePageModule } from '../pages/device-connect-complete/device-connect-complete.module';
 import { DeviceConnectFailPageModule } from '../pages/device-connect-fail/device-connect-fail.module';
 import { DeviceSkinStartPageModule } from '../pages/device-skin-start/device-skin-start.module';
 import { DeviceSkinIngPageModule } from '../pages/device-skin-ing/device-skin-ing.module';
+import { DeviceSkinSensorIngPageModule } from '../pages/device-skinsensor-ing/device-skinsensor-ing.module';
 //
 // //뷰티팁
 import { BeautyTipAddPageModule } from '../pages/beauty-tip-add/beauty-tip-add.module';
@@ -337,10 +339,12 @@ export function getAuthHttp(http, storage) {
     NoticePageModule,
     SkinMeasureStartPageModule,
     DeviceConnectIngPageModule,
+    DeviceConnectSkinIngPageModule,
     DeviceConnectCompletePageModule,
     DeviceConnectFailPageModule,
     DeviceSkinStartPageModule,
     DeviceSkinIngPageModule,
+    DeviceSkinSensorIngPageModule,
     BeautyTipAddPageModule,
     CommunityPageModule,
     // CommunityModifyPageModule,

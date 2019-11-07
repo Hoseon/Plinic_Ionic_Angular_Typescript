@@ -160,7 +160,8 @@ export class HomePage {
   pre_total_score: any = 0;
   skinQnaData: any;
 
-  displayTime: any;
+  // displayTime: any;
+  displayTime: Array<any> = new Array<any>();
   displayTime2: any;
   secondsRemaining: any = 1000000;
   secondsRemaining2: any = 2000000;
@@ -168,12 +169,15 @@ export class HomePage {
 
   subscriptionTimer: any;
   subscriptionTimer2: any;
-  timeremaining: any;
+  // timeremaining: any;
+  timeremaining: Array<any> = new Array<any>();
   timeremaining2: any;
 
   endmission: Array<any> = new Array<any>();
 
   first_missionMemberData: any;
+  missionmember: Array<any> = new Array<any>();
+  second_missionMemberData: any;
 
 
 
@@ -763,9 +767,13 @@ export class HomePage {
   public second_missionCount(id) {
     // this.showLoading();
     this.images.missionCount(id).subscribe(data => {
-      this.second_carezone_missioncount[this.secondCount] = data;
+      this.second_carezone_missioncount = data;
       this.secondCount++;
 
+    });
+
+    this.images.getMissionMember(id).subscribe(data => {
+      this.second_missionMemberData = data;
     });
   }
 
@@ -780,11 +788,32 @@ export class HomePage {
   public firstLoadCareZone() {
     this.images.first_carezoneRoad().subscribe(data => {
       this.firstCarezoneData = data;
-      this.timeremaining = (new Date(data[0].endmission).getTime() - new Date().getTime()) / 1000;
-      this.first_missionCount(data[0]._id);
 
+      if (data !== '') {
+        for (let i = 0; i < data.length; i++) {
+          this.timeremaining[i] = (new Date(data[i].endmission).getTime() - new Date().getTime()) / 1000;
+          // this.timeremaining = (new Date(data[0].endmission).getTime() - new Date().getTime()) / 1000;
+        }
+      }
+
+      this.first_missionCount(data[0]._id);
       for (let i = 0; i < data.length; i++) {
+        this.images.getMissionMember(data[i]._id).subscribe(data3 => {
+          if (data3 !== '') {
+            this.missionmember[i] = data3;
+            // for (var k = 0; k < data3.length; k++) {
+            //   this.memberRanking[i] = {
+            //     email: data3[k].email,
+            //     usetime: data3[k].usetime,
+            //     rank: i + 1,
+            //     image_url: data3[k].image_url
+            //   }
+            // }
+          }
+        });
+
         this.endmission[i] = new Date(data[i].endmission);
+
       }
     });
   }
@@ -1239,8 +1268,14 @@ export class HomePage {
 
   timerTick() {
     this.subscriptionTimer = Observable.interval(1000).subscribe(x => {
-      this.timeremaining--;
-      this.displayTime = this.getSecondsAsDigitalClock(this.timeremaining);
+
+      for (var i = 0; i < this.timeremaining.length; i++) {
+        this.timeremaining[i]--;
+        // console.log(this.timeremaining[i]--);
+        this.displayTime[i] = this.getSecondsAsDigitalClock(this.timeremaining[i]);
+      }
+      // this.timeremaining--;
+      // this.displayTime = this.getSecondsAsDigitalClock(this.timeremaining);
 
     });
 

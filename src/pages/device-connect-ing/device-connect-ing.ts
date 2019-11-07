@@ -104,7 +104,7 @@ export class DeviceConnectIngPage {
         // });
       } else {  // 웹 개발 시에는 무조건 성공페이지로 넘어가 데이터를 강제적으로 보여준다
         // this.navCtrl.push(DeviceConnectCompletePage); //20190813 플리닉 사용 시간을 위해서 바로 타임 측정 페이지로 넘어간다
-        this.navCtrl.push(DeviceSkinIngPage, {'carezoneData' : this.carezoneData});
+        // this.navCtrl.push(DeviceSkinIngPage, {'carezoneData' : this.carezoneData});
       }
       // }, 3500);
 
@@ -322,7 +322,8 @@ export class DeviceConnectIngPage {
     )
 
     this.ble.startNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
-      console.log("Plinic G1Partners Notifi " + String.fromCharCode.apply(null, new Uint8Array(buffer)));
+      console.log("Plinic G1Partners Notifi 8 " + String.fromCharCode.apply(null, new Uint8Array(buffer)));
+      console.log("Plinic G1Partners Notifi 16" + String.fromCharCode.apply(null, new Uint16Array(buffer)));
     }, error => {
       console.log("Notifi Error : " + error);
     })

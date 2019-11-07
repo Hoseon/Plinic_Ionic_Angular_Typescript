@@ -464,7 +464,7 @@ export class CareZoneMissionStartPage {
             // console.log("맥스멤버: "+ this.carezoneData.maxmember)
             this.auth.missionSave(carezoneData._id, this.userData.email, this.userData.thumbnail_image,
               carezoneData.startmission, carezoneData.endmission, carezoneData.title,
-              carezoneData.body, carezoneData.productcount, this.UserImageFileName).subscribe(data => {
+              carezoneData.body, carezoneData.productcount, this.UserImageFileName, carezoneData.filename).subscribe(data => {
                 // console.log("처리 성공 : " + JSON.stringify(carezoneData));
                 this.nav.push(CareZoneMissionIngPage, { carezoneData: carezoneData });
               }, error => {

@@ -950,7 +950,7 @@ export class AuthService {
       });
   }
 
-  public missionSave(id, email, image, start, end, title, sub, maxmember, userimagefile) {
+  public missionSave(id, email, image, start, end, title, sub, maxmember, userimagefile, filename) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
 
@@ -963,7 +963,8 @@ export class AuthService {
       title: title,
       body: sub,
       maxmember: maxmember,
-      userImageFilename :userimagefile
+      userImageFilename :userimagefile,
+      filename: filename
     };
     return this.http.post(CONFIG.apiUrl + 'api/missionsave', JSON.stringify(body), { headers: headers })
       .map(res => res.json())
