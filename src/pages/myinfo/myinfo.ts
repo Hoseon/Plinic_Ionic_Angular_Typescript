@@ -594,18 +594,20 @@ export class MyinfoPage {
     });
   }
 
-  public mission_start(id) {
+  public mission_start(carezoneData) {
     //console.log(id);
     //console.log("missiondata" + this.missionData.missionID);
 
+    console.log(this.missionHistory);
+
     if (this.missionData === null || this.missionData === undefined) {
       //this.nav.push(CareZoneMissionIngPage);
-      this.nav.push(CareZoneMissionStartPage, { _id: id });
-    } else if (id === this.missionData.missionID) {
-      this.nav.push(CareZoneMissionIngPage, { _id: id });
+      this.nav.push(CareZoneMissionStartPage, { carezoeId: carezoneData });
+    } else if (carezoneData === this.missionData[0].missionID) {
+      this.nav.push(CareZoneMissionIngPage, { carezoeId: carezoneData });
 
     } else {
-      this.nav.push(CareZoneMissionStartPage, { _id: id });
+      this.nav.push(CareZoneMissionStartPage, { carezoeId: carezoneData });
     }
   }
 
@@ -810,6 +812,7 @@ export class MyinfoPage {
       if (data !== '' || data !== null) {
         //this.chkBtn = true;
         this.missionData = data;
+        console.log(this.missionData);
         //this.endDate = data.endmission.substr(0, 10);
         //console.log(JSON.stringify(data));
         // this.loading.dismiss();
@@ -1046,6 +1049,10 @@ export class MyinfoPage {
           this.auth.getHistoryMission(this.userData.email).subscribe(data => {
             this.missionHistory = data;
           });
+        }
+
+        if (this.userData){
+          this.chkmission(this.userData.email);
         }
       }
 

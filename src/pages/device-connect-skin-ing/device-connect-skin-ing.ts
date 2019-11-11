@@ -220,7 +220,6 @@ export class DeviceConnectSkinIngPage {
 
       },
       error => {
-        // console.log("bbbbb" + error);
         this.scanError(error);
         this.ble.stopScan();
         this.navCtrl.push(DeviceConnectFailPage);

@@ -167,11 +167,11 @@ export class DeviceSkinSensorIngPage {
   }
 
   ionViewDidLoad() {
-
     // console.log('ionViewDidLoad DeviceSkinIngPage');
   }
 
   ionViewDidLeave() {
+    this.device_canceldisconnect();
     // this.device_disconnect();
   }
 
@@ -365,6 +365,7 @@ export class DeviceSkinSensorIngPage {
 
       console.log("Plinic G1Partners Notifi 8 " + new Uint8Array(buffer));
       var data2 = new Uint8Array(buffer);
+      console.log("data22222 : " + data2);
       var data3 = '';
       var data16 = '';
       // console.log(data2[3], data2[4]);
@@ -376,19 +377,20 @@ export class DeviceSkinSensorIngPage {
       // console.log(i);
       // this.result[i] = 100 - ((parseInt(data3, 16) / 1023) * 100);
       this.resultmoisture = (100 - ((parseInt(data3, 16) / 1023) * 100)).toFixed(1);
+      console.log(parseInt(data3, 16));
       // console.log(this.result[i]);
-      if (i >= 1 && i <= 3) {
+      if (i >= 1 && i <= 6) {
         console.log(this.result[i]);
         this.result2[i] = (100 - ((parseInt(data3, 16) / 1023) * 100)).toFixed(1);
-      } else if (i === 4) {
+      } else if (i === 7) {
         this.ble.stopNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(data => {
           var kkkk = 0;
           for (var k = 1; k < this.result2.length; k++) {
             console.log(k + ":" + parseInt(this.result2[k]));
             kkkk += parseInt(this.result2[k]);
           }
-          console.log("kkkk" + (kkkk / 3).toFixed(1));
-          this.moisture = (kkkk / 3).toFixed(1);
+          // console.log("kkkk" + (kkkk / 3).toFixed(1));
+          this.moisture = (kkkk / 6).toFixed(1);
 
           var today = this.currentDate.getFullYear() + "-" + this.get2digits(this.currentDate.getMonth() + 1) + "-" + this.get2digits(this.currentDate.getDate());
           this.notimeDate = new Date(today);
@@ -423,6 +425,7 @@ export class DeviceSkinSensorIngPage {
               }
               // this.navCtrl.setRoot(TabsPage);
               this.viewCtrl.dismiss().then(_ => {
+                this.ble.disconnect(this.peripheral.id);
                 this.dismissAllModal();
               })
 
@@ -431,6 +434,7 @@ export class DeviceSkinSensorIngPage {
               // console.log("데이터 등록 실패");
               // this.navCtrl.setRoot(TabsPage);
               this.viewCtrl.dismiss().then(_ => {
+                this.ble.disconnect(this.peripheral.id);
                 this.dismissAllModal();
               })
             }

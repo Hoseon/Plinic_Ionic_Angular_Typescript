@@ -109,9 +109,19 @@ export class CareZoneMissionStartPage {
     // console.log("Enter Mission Start");
     // this.showLoading();
     this.loadItems();
-    this.carezoneData2 = this.navParams.get('carezoneData');
-    this.roadmission(this.carezoneData2._id);
-    this.missionCount(this.carezoneData2._id);
+    if (this.navParams.get('carezoeId')) {
+      this.carezoneData2 = this.roadmission(this.navParams.get('carezoeId'));
+      this.missionCount(this.carezoneData2);
+    }
+
+    if (this.navParams.get('carezoneData')) {
+      this.carezoneData2 = this.navParams.get('carezoneData');
+      this.roadmission(this.carezoneData2._id);
+      this.missionCount(this.carezoneData2._id);
+    }
+
+
+
     // this.getDday();
     // this.roadingmission();
     // this.roadddaymission();
@@ -119,6 +129,8 @@ export class CareZoneMissionStartPage {
     // console.log("End Mission Start");
   }
   ionViewDidLoad() {
+
+
   }
 
   ionViewDidEnter() {
