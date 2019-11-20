@@ -31,7 +31,7 @@ export class ImagesProvider {
   }
 
   public first_carezoneRoad() {
-    return this.http.get(this.apiURL + 'carezone/firstlist')
+    return this.http.get(this.apiURL + 'carezone/challengefirstlist')
       .map(response => response.json());
   }
 
@@ -244,7 +244,7 @@ export class ImagesProvider {
 
 
 
-  user_udateImage(img, desc) {
+  public user_udateImage(img, desc) {
 
     // Destination URL
     let url = this.apiURL + 'userupdateimages';
@@ -258,6 +258,28 @@ export class ImagesProvider {
       // mimeType: 'image/jpeg',
       mimeType: 'multipart/form-data',
       params: { 'id': desc.id, 'email': desc.email }
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+
+    // Use the FileTransfer to upload the image
+    return fileTransfer.upload(targetPath, url, options);
+  }
+
+  public myuser_UploadImage(img, desc) { //My 에 프로필을 수정할때 등록된 사진이 없다면 새롭게 등록하게 한다.
+
+    // Destination URL
+    let url = this.apiURL + 'userimages';
+
+    // File for Upload
+    var targetPath = img;
+
+    var options: FileUploadOptions = {
+      fileKey: 'image',
+      chunkedMode: false,
+      // mimeType: 'image/jpeg',
+      mimeType: 'multipart/form-data',
+      params: { 'desc': desc }
     };
 
     const fileTransfer: TransferObject = this.transfer.create();

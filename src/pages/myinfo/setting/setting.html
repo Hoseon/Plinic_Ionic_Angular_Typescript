@@ -7,7 +7,7 @@
     <ion-title class="android_title" text-wrap >설정</ion-title>
   </ion-navbar>
 
-  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
   	<ion-buttons left no-lines>
   		<button ion-button navPop icon-only>
         <img no-lines class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
@@ -29,7 +29,7 @@
       <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
     </button>
 
-    <div *ngIf="platform.is('ios')" style="height: 1px;width: 92%;margin: 0 auto; margin-top: 4%; background-color:#f1f1f1"></div>
+    <div *ngIf="platform.is('ios') || platform.is('core')" style="height: 1px;width: 92%;margin: 0 auto; margin-top: 4%; background-color:#f1f1f1"></div>
     <div *ngIf="platform.is('android')" style="height: 1px;width: 92%; margin: 0 auto; margin-top: 4%; background-color:#f1f1f1"></div>
 
   </ion-list>
@@ -56,7 +56,7 @@
   </ion-list>
 
 
-  <div *ngIf="platform.is('ios')" style=" height: 1px; width: 92%; margin: 0 auto; margin-top: -4%; background-color:#f1f1f1"></div>
+  <div *ngIf="platform.is('ios') || platform.is('core')" style=" height: 1px; width: 92%; margin: 0 auto; margin-top: -4%; background-color:#f1f1f1"></div>
   <div *ngIf="platform.is('android')" style=" height: 1px; width: 92%; margin: 0 auto; margin-top: 0%; background-color:#f1f1f1"></div>
 
 

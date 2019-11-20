@@ -7,7 +7,7 @@
                 assets/img/agreement/ic-system-back-black@3x.png" (click)="navpop()"></ion-img>
 
 
-  <ion-img *ngIf="platform.is('ios')" class="close" style="margin-top: 5%;" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
+  <ion-img *ngIf="platform.is('ios') || platform.is('core')" class="close" style="margin-top: 5%;" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
                 assets/img/agreement/ic-system-back-black@3x.png" (click)="navpop()"></ion-img>
 
 
@@ -15,7 +15,7 @@
 
   <ion-item class="item_align" style="background:#FFF">
   <ion-input class="input_name" mode="ios" type="text" name="name" placeholder="닉네임을 입력해주세요." [(ngModel)]="nickname"
-  clearInput required></ion-input>
+  value="{{userData.nickname}}" required></ion-input>
   </ion-item>
 
 

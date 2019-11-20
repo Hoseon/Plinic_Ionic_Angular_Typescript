@@ -37,7 +37,8 @@
       <ng-container *ngIf="chkUserImage" >
         <ng-container *ngIf="thumb_image">
         <!-- <img class="profile_image" src="http://plinic.cafe24app.com/userimages/{{userData.email}}"/> -->
-        <img class="profile_image" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{thumb_image.filename}}"/>
+        <!-- <img class="profile_image" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{thumb_image.filename}}"/> -->
+        <img *ngIf="profileimg_url" class="profile_image" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
         </ng-container>
       </ng-container>
       <ng-container *ngIf="!chkUserImage" >

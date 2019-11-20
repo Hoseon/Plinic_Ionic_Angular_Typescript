@@ -212,7 +212,7 @@ export class DeviceConnectSkinIngPage {
     //잡힐떄 까지 계속 스캔하는 방법
     this.ble.startScan([PLINIC_SERVICE]).subscribe(
       device => {
-        this.onDeviceDiscovered(device);
+        // this.onDeviceDiscovered(device);
         // this.deviceSelected(device);
         this.ble.stopScan();
         // this.navCtrl.push(DeviceConnectCompletePage, { device: device }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동

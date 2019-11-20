@@ -4,7 +4,7 @@
                 assets/img/login\ic-system-close-black@3x.png" (click)="dissmiss()"></ion-img>
 
 
-  <ion-img *ngIf="platform.is('ios')" class="close" style="margin-top:5%;" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
+  <ion-img *ngIf="platform.is('ios') || platform.is('core')" class="close" style="margin-top:5%;" src="assets/img/login/ic-system-close-black@3x.png" srcset="assets/img/login\ic-system-close-black2x.png,
                         assets/img/login\ic-system-close-black@3x.png" (click)="dissmiss()"></ion-img>
 
   <h1 class="h1"> 회원정보를 수정해주세요. </h1>
@@ -17,36 +17,40 @@
 
     <div *ngIf="!imagePath2">
 
-      <div *ngIf="userData"><img *ngIf="!thumb_image" class="register_profile" src="http://plinic.cafe24app.com/userimages/{{userData.email}}" /></div>
+      <div *ngIf="userData"><img *ngIf="!thumb_image" class="register_profile" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" /></div>
 
       <!-- SNS프로필 이미지가 있을때 -->
-      <img *ngIf="thumb_image" class="register_profile" src="{{userData.thumbnail_image}}" />
+      <img *ngIf="thumb_image" class="register_profile" src="{{userData.thumbnail_image}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
 
       <!-- SNS인데 이미지도 없고 일반사용자인데 이미지도 없을때 -->
       <img *ngIf="!thumb_image && !userData" class="register_profile" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
-                    assets/img\register/ic-system-profile-default@3x.png" />
+                    assets/img\register/ic-system-profile-default@3x.png" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
     </div>
 
     <!-- 카메라로 새로 등록 하려면 -->
     <div *ngIf="imagePath2">
-      <img *ngIf="!thumb_image" class="register_profile" [src]="imagePath2" />
+      <img *ngIf="!thumb_image" class="register_profile" [src]="imagePath2" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
     </div>
     <ion-img class="register_camera" src="assets/img/register/ic-system-camera@3x.png" srcset="assets/img/register/ic-system-camera@2x.png,
-                                    assets/img/register/ic-system-camera@3x.png" (click)="camera()"></ion-img>
+                                    assets/img/register/ic-system-camera@3x.png" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" (click)="camera()"></ion-img>
   </div>
 
 
   <div *ngIf="platform.is('android')" class="container">
 
     <div *ngIf="!imagePath2">
-      <!-- <div *ngIf="userData"><img *ngIf="!thumb_image" class="register_profile" src="http://plinic.cafe24app.com/userimages/{{userData.email}}" /></div> -->
-      <img class="register_profile" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
-                    assets/img\register/ic-system-profile-default@3x.png" />
-      <ion-img class="register_camera" src="assets/img/register/ic-system-camera@3x.png" srcset="assets/img/register/ic-system-camera@2x.png,
-                      ssets/img/register/ic-system-camera@3x.png" (click)="camera()"></ion-img>
+
+      <div *ngIf="userData"><img *ngIf="!thumb_image" class="register_profile" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" /></div>
+
+      <!-- SNS프로필 이미지가 있을때 -->
+      <img *ngIf="thumb_image" class="register_profile" src="{{userData.thumbnail_image}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
+
+      <!-- SNS인데 이미지도 없고 일반사용자인데 이미지도 없을때 -->
+      <img *ngIf="!thumb_image && !userData" class="register_profile" src="assets/img/register/ic-system-profile-default@3x.png" srcset="assets/img/register/ic-system-profile-default@2x.png,
+                    assets/img\register/ic-system-profile-default@3x.png" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
     </div>
     <div *ngIf="imagePath2">
-      <img class="register_profile" [src]="imagePath2" />
+      <img *ngIf="!thumb_image" class="register_profile" [src]="imagePath2" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
     </div>
     <ion-img class="register_camera" src="assets/img/register/ic-system-camera@3x.png" srcset="assets/img/register/ic-system-camera@2x.png,
                                     assets/img/register/ic-system-camera@3x.png" (click)="camera()"></ion-img>
@@ -59,10 +63,9 @@
   <button type="text" *ngIf="userData" mode="ios" class="profile_modify" ion-item (click)="modify_nickname()" >
     <div class="profile_text">{{userData.nickname}}</div>닉네임
   </button>
-  <button type="password" *ngIf="userData" mode="ios" class="profile_modify" ion-item (click)="modify_password()" >
+  <!-- <button type="password" *ngIf="userData" mode="ios" class="profile_modify" ion-item (click)="modify_password()" >
     <div class="profile_text" type="password">{{password}}</div>비밀번호
-    <!-- <ion-input  class="profile_text" type="password" disabled> {{password}} </ion-input>비밀번호 -->
-  </button>
+  </button> -->
   <!-- <button mode="ios" class="profile_modify" ion-item (click)="modify_number()">
     <div class="profile_text">01012341234</div>연락처
   </button> -->
@@ -72,13 +75,13 @@
   <ion-label class="titlelabel" stacked>피부타입</ion-label>
   </ion-item>
 
-  <ion-list *ngIf="userData" class="skincomplaint_list" name="skincomplaint_list" radio-group [(ngModel)]="skincomplaint" required >
+  <ion-list radio-group [(ngModel)]="skincomplaint" *ngIf="userData" class="skincomplaint_list">
 
     <ion-row class="row_align"><ion-col><ion-item no-lines>
-      <ion-label *ngIf="platform.is('android')" class="radiolabel" name="A" for="건성" checked>건성
-      <ion-radio class="radiobutton" name="A" id="건성" value="건성" checked></ion-radio></ion-label>
-      <ion-label *ngIf="platform.is('ios')" style="margin-bottom:1%;" class="radiolabel" name="A" for="건성" checked>건성
-      <ion-radio class="radiobutton" name="A" id="건성" value="건성" checked></ion-radio></ion-label>
+      <ion-label *ngIf="platform.is('android')" class="radiolabel" name="A" for="건성" >건성
+      <ion-radio class="radiobutton" name="A" id="건성" value="건성"></ion-radio></ion-label>
+      <ion-label *ngIf="platform.is('ios')" style="margin-bottom:1%;" class="radiolabel" name="A" for="건성" >건성
+      <ion-radio class="radiobutton" name="A" id="건성" value="건성"></ion-radio></ion-label>
     </ion-item></ion-col>
     <ion-col><ion-item no-lines>
       <ion-label *ngIf="platform.is('android')" class="radiolabel" name="B" for="지성">지성
@@ -115,7 +118,7 @@
 
 
 
-  <button class="confirm_button2" ion-button > 수정하기</button>
+  <button class="confirm_button2" ion-button (click)="save()"> 수정하기</button>
 
 
 

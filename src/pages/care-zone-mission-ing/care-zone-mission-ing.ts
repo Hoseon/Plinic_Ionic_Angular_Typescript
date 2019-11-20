@@ -657,7 +657,8 @@ export class CareZoneMissionIngPage {
             email: data[i].email,
             usetime: data[i].usetime,
             rank: i + 1,
-            image_url: data[i].image_url
+            image_url: data[i].image_url,
+            userImageFilename: data[i].userImageFilename,
           }
           // this.memberRanking[i].rank = i;
           this.displayUseTimeList[i] = this.getSecondsAsDigitalClock3(Number(data[i].usetime));

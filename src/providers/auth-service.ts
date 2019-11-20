@@ -41,9 +41,9 @@ export class User {
   thumbnail_image: string;
   imagePath: any;
   from: string;
+  skincomplaint: string;
 
-
-  constructor(email: string, name: string) {
+  constructor(email: string, name: string, birthday: string, gender: string, skincomplaint: string) {
     this.email = email;
     this.nickname = name;
   }
@@ -260,23 +260,33 @@ export class AuthService {
           from: 'naver'
         }
         this.naver.requestMe()
-          .then(response => {
-            this.userData.email = response.response.email;
-            this.userData.nickname = response.response.name;
-            this.userData.id = response.response.id;
+          .then(response2 => {
+            this.userData = {
+              accessToken: response['accessToken'],
+              pushtoken: this.pushToken,
+              email: response2.response.email,
+              nickname: response2.response.name,
+              id: response2.response.id,
+              from: 'naver'
+            }
+            // this.userData.email = response.response.email;
+            // this.userData.nickname = response.response.name;
+            // this.userData.id = response.response.id;
             console.log("userdata ::: " + JSON.stringify(this.userData))
             if (this.userData !== '') {
+              this.registerSnS(this.userData).subscribe(data => {
+                console.log("성공임");
+              }, error => {
+                console.log("에러임");
+              })
               this.storage.set('userData', this.userData);
               this.authenticationState.next(true);
               return this.userData;
             }
           }) // 성공
-          .catch(error => console.error(error)); // 실패
-        this.registerSnS(this.userData).subscribe(data => {
-          console.log("성공임");
-        }, error => {
-          console.log("에러임");
-        })
+          .catch(error => console.error(error)); //
+
+
       }
       )
       .catch(error => console.error(error)); // 실패
@@ -963,7 +973,7 @@ export class AuthService {
       title: title,
       body: sub,
       maxmember: maxmember,
-      userImageFilename :userimagefile,
+      userImageFilename: userimagefile,
       filename: filename
     };
     return this.http.post(CONFIG.apiUrl + 'api/missionsave', JSON.stringify(body), { headers: headers })
@@ -986,6 +996,8 @@ export class AuthService {
           email: data.email,
           gender: data.gender,
           nickname: data.name,
+          skincomplaint: data.skincomplaint,
+          country: data.country,
           // profile_image: data.properties['profile_image'],
           // thumbnail_image: data.properties['thumbnail_image'],
           // use_email: data.kakao_account['has_email'],
@@ -1053,7 +1065,7 @@ export class AuthService {
   // Store the token and current user information local
   public setCurrentUser(token) {
     this.userToken = token;
-    this.currentUser = new User(this.jwtHelper.decodeToken(this.userToken).email, this.jwtHelper.decodeToken(this.userToken).name);
+    this.currentUser = new User(this.jwtHelper.decodeToken(this.userToken).email, this.jwtHelper.decodeToken(this.userToken).name, this.jwtHelper.decodeToken(this.userToken).birthday, this.jwtHelper.decodeToken(this.userToken).gender, this.jwtHelper.decodeToken(this.userToken).skincomplaint);
     console.log(this.currentUser);
     console.log("토큰정보 토큰정보 토큰정보 토큰정보 토큰정보" + token);
     return this.storage.set('userData', token);
@@ -1077,6 +1089,10 @@ export class AuthService {
   //플리닉에서 사용되어질 사용자명, 이메일, 프로필 이미지 등등의 정보를 스토리지에 저장한다.
   public getUserStorage() {
     return this.storage.get('userData');
+  }
+
+  public setUserStorage(userData) {
+    this.storage.set('userData', userData);
   }
 
   public logout() {
@@ -1438,6 +1454,40 @@ export class AuthService {
   public getUseTotalTime(id) {
     return this.http.get(CONFIG.apiUrl + 'totalusetime/' + id)
       .map(response => response.json());
+  }
+
+  //사용자 닉네임 변경
+  public updateUserNickname(email, nickname) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      nickname: nickname,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/userupdatenickname', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
+  //사용자 피부타입 변경
+  public updateUserSkinComplaint(email, skincomplaint) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      skincomplaint: skincomplaint,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/updateskincomplaint', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
   }
 
 }

@@ -158,47 +158,47 @@ export class MyinfoPage {
 
   test_noti() {
 
-      // this.nav.push(MissionStartPage);
+    // this.nav.push(MissionStartPage);
 
-      //20190813 미션 시작이 블루투스 사용하는 기기 사용시간 만큼 축적 시킨다.
-      let myModal = this.modalCtrl.create(DeviceConnectIngPage);
-      myModal.onDidDismiss(data =>{
-        let tabs = document.querySelectorAll('.tabbar');
-        if (tabs !== null) {
-          Object.keys(tabs).map((key) => {
-            // tabs[ key ].style.transform = 'translateY(0)';
-            tabs[key].style.display = 'block';
-            tabs[key].style.display = '';
-          });
-        } // end if
-      })
-      myModal.present();
-      // this.nav.push(DeviceConnectIngPage);
-    }
+    //20190813 미션 시작이 블루투스 사용하는 기기 사용시간 만큼 축적 시킨다.
+    let myModal = this.modalCtrl.create(DeviceConnectIngPage);
+    myModal.onDidDismiss(data => {
+      let tabs = document.querySelectorAll('.tabbar');
+      if (tabs !== null) {
+        Object.keys(tabs).map((key) => {
+          // tabs[ key ].style.transform = 'translateY(0)';
+          tabs[key].style.display = 'block';
+          tabs[key].style.display = '';
+        });
+      } // end if
+    })
+    myModal.present();
+    // this.nav.push(DeviceConnectIngPage);
+  }
 
-    // let headers = new Headers();
-    // headers.append('Content-Type', 'application/json');
-    // headers.append('Authorization',
-    //   'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
-    // let option = new RequestOptions({ headers: headers });
-    // let payload = {
-    //   // "to": this.pushToken,
-    //   "to": this.userData.pushtoken,
-    //   "priority": "high",
-    //   "notification": {
-    //     "body": "Plinic Background Message",
-    //     "title": "Plinic Title",
-    //     // "badge": 1,
-    //     "sound": "default",
-    //     "click_action": "FCM_PLUGIN_ACTIVITY"
-    //   },
-    //   //토큰
-    // }
-    // this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
-    //   .map(res => res.json())
-    //   .subscribe(data => {
-    //     // console.log("dddddddddddddddddddddd=================" + JSON.stringify(data));
-    //   });
+  // let headers = new Headers();
+  // headers.append('Content-Type', 'application/json');
+  // headers.append('Authorization',
+  //   'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
+  // let option = new RequestOptions({ headers: headers });
+  // let payload = {
+  //   // "to": this.pushToken,
+  //   "to": this.userData.pushtoken,
+  //   "priority": "high",
+  //   "notification": {
+  //     "body": "Plinic Background Message",
+  //     "title": "Plinic Title",
+  //     // "badge": 1,
+  //     "sound": "default",
+  //     "click_action": "FCM_PLUGIN_ACTIVITY"
+  //   },
+  //   //토큰
+  // }
+  // this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
+  //   .map(res => res.json())
+  //   .subscribe(data => {
+  //     // console.log("dddddddddddddddddddddd=================" + JSON.stringify(data));
+  //   });
   // }
 
   ionViewCanEnter() {
@@ -221,6 +221,17 @@ export class MyinfoPage {
   }
 
   ionViewWillEnter() {
+    if (this.userData) {
+      this.auth.getUserImage(this.userData.email).subscribe(items => {
+        if (items) {
+          this.profileimg_url = "https://plinic.s3.ap-northeast-2.amazonaws.com/";
+          this.profileimg_url = this.profileimg_url.concat(items.filename + "?random+\=" + Math.random());
+          this.chkUserImage = true;
+          this.thumb_image = true;
+        }
+      });
+    }
+
     //this.showLoading();
 
     // this.getUserImage(this.userData.email);
@@ -340,7 +351,7 @@ export class MyinfoPage {
         scales: {
           xAxes: [{
             gridLines: {
-                offsetGridLines: false
+              offsetGridLines: false
             },
             barPercentage: 0.4,
             display: true,
@@ -555,19 +566,19 @@ export class MyinfoPage {
     //   myModal.present();
     // }
 
-      let myModal = this.modalCtrl.create(DeviceConnectSkinIngPage);
-      myModal.onDidDismiss(data => {
-        let tabs = document.querySelectorAll('.tabbar');
-        if (tabs !== null) {
-          Object.keys(tabs).map((key) => {
-            // tabs[ key ].style.transform = 'translateY(0)';
-            tabs[key].style.display = 'block';
-            tabs[key].style.display = '';
-          });
-        } // end if
-        this.update();
-      });
-      myModal.present();
+    let myModal = this.modalCtrl.create(DeviceConnectSkinIngPage);
+    myModal.onDidDismiss(data => {
+      let tabs = document.querySelectorAll('.tabbar');
+      if (tabs !== null) {
+        Object.keys(tabs).map((key) => {
+          // tabs[ key ].style.transform = 'translateY(0)';
+          tabs[key].style.display = 'block';
+          tabs[key].style.display = '';
+        });
+      } // end if
+      this.update();
+    });
+    myModal.present();
   }
 
 
@@ -1010,7 +1021,7 @@ export class MyinfoPage {
           thumbnail_image: items.thumbnail_image,
           pushtoken: items.pushtoken,
           from: items.from,
-          totaluseitme : items.totalusetime
+          totaluseitme: items.totalusetime
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           //this.thumb_image = false;
@@ -1022,15 +1033,16 @@ export class MyinfoPage {
           accessToken: items.accessToken,
           id: items.id,
           age_range: items.age_range,
-          birthday: items.birthday,
+          birthday: this.jwtHelper.decodeToken(items).birthday,
+          gender: this.jwtHelper.decodeToken(items).gender,
+          skincomplaint: this.jwtHelper.decodeToken(items).skincomplaint,
           email: this.jwtHelper.decodeToken(items).email,
-          gender: items.gender,
           nickname: this.jwtHelper.decodeToken(items).name,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
           pushtoken: this.jwtHelper.decodeToken(items).pushtoken,
           from: 'plinic',
-          totaluseitme : items.totalusetime
+          totaluseitme: items.totalusetime
         };
         // console.log("그냥 유저 데이터는?? ??? ???  " + JSON.stringify(this.userData));
         // console.log("프로필 이미지를 가져 오는 시점은?");
@@ -1039,10 +1051,10 @@ export class MyinfoPage {
             if (items) {
               this.thumb_image = items
               this.chkUserImage = true;
+              this.profileimg_url = "https://plinic.s3.ap-northeast-2.amazonaws.com/";
+              this.profileimg_url = this.profileimg_url.concat(items.filename + "?random+\=" + Math.random());
             }
           });
-
-
         }
 
         if (this.userData) {
@@ -1051,7 +1063,7 @@ export class MyinfoPage {
           });
         }
 
-        if (this.userData){
+        if (this.userData) {
           this.chkmission(this.userData.email);
         }
       }

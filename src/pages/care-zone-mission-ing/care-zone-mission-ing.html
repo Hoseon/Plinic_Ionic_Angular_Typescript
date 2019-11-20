@@ -103,7 +103,7 @@
         <ion-row style="width:89.7%">
           <ion-col class="event-col11">보상 조건</ion-col>
           <ion-col class="event-col9" style="color:#5c59b6">
-            <textarea readonly style="text-align: right" rows="3" cols="30">{{carezoneData2.condition}}</textarea>
+            <textarea readonly style="text-align: right" rows="3" cols="35">{{carezoneData2.condition}}</textarea>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -130,7 +130,11 @@
         <ion-row style="width:89.7%">
           <ion-col class="event-col11">보너스</ion-col>
           <ion-col class="event-col9">
-            <textarea readonly style="text-align: right" rows="3" cols="30">{{carezoneData2.bonus}}</textarea>
+            <textarea readonly style="text-align: right" rows="3" cols="35">
+              카카오톡 공유하면 +{{carezoneData2.bonuskakao}}초/명
+              페이스북 공유하면 +{{carezoneData2.bonusface}}초/명
+              인스타그램 공유하면 +{{carezoneData2.bonusinstar}}초/명
+            </textarea>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -190,7 +194,7 @@
         <ion-grid *ngIf="mission.email===userData.email" class="eventgrid">
           <ion-row class="my_list">
             <ion-col class="event-col12">{{(i) + 1}}</ion-col>
-            <img *ngIf="!memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img" src="http://plinic.cafe24app.com/userimages/{{memberRanking[i].email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            <img *ngIf="!memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{memberRanking[i].userImageFilename}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
             <img *ngIf="memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img" src="{{memberRanking[i].image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
             <ion-col class="event-col13">{{mission.email}}(나)</ion-col>
             <ion-col class="event-col14" style="color:#5c59b6;">{{displayUseTimeList[i]}}</ion-col>
@@ -203,7 +207,7 @@
         <ion-grid class="eventgrid">
           <ion-row>
             <ion-col class="event-col0">{{(i) + 1}}</ion-col>
-            <img *ngIf="!memberRanking[i].image_url" class="profile-img" src="http://plinic.cafe24app.com/userimages/{{memberRanking[i].email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            <img *ngIf="!memberRanking[i].image_url" class="profile-img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{memberRanking[i].userImageFilename}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
             <img *ngIf="memberRanking[i].image_url" class="profile-img" src="{{memberRanking[i].image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
             <ion-col class="event-col8">{{mission.email}}</ion-col>
             <ion-col class="event-col6">{{displayUseTimeList[i]}}</ion-col>

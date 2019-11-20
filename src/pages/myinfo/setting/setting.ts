@@ -110,9 +110,15 @@ public Reregiter() {
   if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
     this.showAlert("SNS계정 회원은 정보를 수정 할 수 없습니다.");
   } else {
-    let myModal = this.modalCtrl.create(ReRegisterPage);
+    let myModal = this.modalCtrl.create(ReRegisterPage, {userData: this.userData});
     myModal.onDidDismiss(data => {
       this.imagePath = data.imagePath;
+      this.authService.getUserImage(this.userData.email).subscribe(items => {
+        if (items) {
+          this.profileimg_url = "https://plinic.s3.ap-northeast-2.amazonaws.com/";
+          this.profileimg_url = this.profileimg_url.concat(items.filename + "?random+\=" + Math.random());
+        }
+      });
     });
     myModal.present();
   }
@@ -258,9 +264,10 @@ public loadItems() {
         accessToken: items.accessToken,
         id: items.id,
         age_range: items.age_range,
-        birthday: items.birthday,
+        birthday: this.jwtHelper.decodeToken(items).birthday,
+        gender: this.jwtHelper.decodeToken(items).gender,
+        skincomplaint: this.jwtHelper.decodeToken(items).skincomplaint,
         email: this.jwtHelper.decodeToken(items).email,
-        gender: items.gender,
         nickname: this.jwtHelper.decodeToken(items).name,
         profile_image: items.profile_image,
         thumbnail_image: items.thumbnail_image,
@@ -268,10 +275,8 @@ public loadItems() {
       };
       this.authService.getUserImage(this.userData.email).subscribe(items => {
         if (items) {
-          this.profileimg_url = "http://g1partners1.cafe24.com/plinic/";
+          this.profileimg_url = "https://plinic.s3.ap-northeast-2.amazonaws.com/";
           this.profileimg_url = this.profileimg_url.concat(items.filename + "?random+\=" + Math.random());
-          console.log("사용자 이미지를 가져 왔는가? : " + JSON.stringify(items));
-
         }
       });
     }

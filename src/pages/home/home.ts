@@ -67,7 +67,8 @@ export class HomePage {
   third_carezone_maxmember: any;
   third_carezone_startDate: Date;
   loading: Loading;
-  missionCounter: any;
+  // missionCounter: any;
+  missionCounter: Array<any> = new Array<any>();
 
   beauty_data_type1: any;
   beauty_data_title1: any;
@@ -174,6 +175,7 @@ export class HomePage {
   timeremaining2: any;
 
   endmission: Array<any> = new Array<any>();
+  startmission: Array<any> = new Array<any>();
 
   first_missionMemberData: any;
   missionmember: Array<any> = new Array<any>();
@@ -296,21 +298,21 @@ export class HomePage {
             //커뮤니티 (뷰티노트, 피부고민 알림 처리)
             if (data.mode === 'qna' || data.mode === 'note') {
               // this.nav.parent.select(3).then(() => {
-                  let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
-                  myModal.onDidDismiss(data => {
-                    // this.ionViewWillEnter();
-                    // this.nav.parent.select(3)
-                  });
-                  myModal.present();
+              let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
+              myModal.onDidDismiss(data => {
+                // this.ionViewWillEnter();
+                // this.nav.parent.select(3)
+              });
+              myModal.present();
               // });
             }
             if (data.mode === 'myqna') {  //문의하기
               // this.nav.parent.select(4).then(() => {
-                let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
-                myModal.onDidDismiss(data => {
-                  // this.ionViewWillEnter();
-                });
-                myModal.present();
+              let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
+              myModal.onDidDismiss(data => {
+                // this.ionViewWillEnter();
+              });
+              myModal.present();
               // });
             }
           } else {
@@ -355,21 +357,21 @@ export class HomePage {
           if (data.wasTapped) {
             if (data.mode === 'qna' || data.mode === 'note') {
               // this.nav.parent.select(3).then(() => {
-                  let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
-                  myModal.onDidDismiss(data => {
-                    // this.ionViewWillEnter();
-                    this.nav.parent.select(3)
-                  });
-                  myModal.present();
+              let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
+              myModal.onDidDismiss(data => {
+                // this.ionViewWillEnter();
+                this.nav.parent.select(3)
+              });
+              myModal.present();
               // });
             }
             if (data.mode === 'myqna') {
               // this.nav.parent.select(4).then(() => {
-                let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
-                myModal.onDidDismiss(data => {
-                  // this.ionViewWillEnter();
-                });
-                myModal.present();
+              let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
+              myModal.onDidDismiss(data => {
+                // this.ionViewWillEnter();
+              });
+              myModal.present();
               // });
             }
           } else {
@@ -546,9 +548,10 @@ export class HomePage {
           accessToken: items.accessToken,
           id: items.id,
           age_range: items.age_range,
-          birthday: items.birthday,
+          birthday: this.jwtHelper.decodeToken(items).birthday,
+          gender: this.jwtHelper.decodeToken(items).gender,
+          skincomplaint: this.jwtHelper.decodeToken(items).skincomplaint,
           email: this.jwtHelper.decodeToken(items).email,
-          gender: items.gender,
           nickname: this.jwtHelper.decodeToken(items).name,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
@@ -754,12 +757,12 @@ export class HomePage {
   public first_missionCount(id) {
     // this.showLoading();
     this.images.missionCount(id).subscribe(data => {
-      this.first_carezone_missioncount = data;
+      // console.log(data);
     });
 
-    this.images.getMissionMember(id).subscribe(data => {
-      this.first_missionMemberData = data;
-    });
+    // this.images.getMissionMember(id).subscribe(data => {
+    //   this.first_missionMemberData = data;
+    // });
 
   }
 
@@ -791,13 +794,22 @@ export class HomePage {
 
       if (data !== '') {
         for (let i = 0; i < data.length; i++) {
+
+          this.images.missionCount(data[i]._id).subscribe(counter => {
+            this.missionCounter[i] = counter;
+            // console.log(this.missionCounter[i]);
+          });
+
           this.timeremaining[i] = (new Date(data[i].endmission).getTime() - new Date().getTime()) / 1000;
           // this.timeremaining = (new Date(data[0].endmission).getTime() - new Date().getTime()) / 1000;
         }
       }
 
-      this.first_missionCount(data[0]._id);
       for (let i = 0; i < data.length; i++) {
+        //미션별로 참여자 수 구하기
+
+
+
         this.images.getMissionMember(data[i]._id).subscribe(data3 => {
           if (data3 !== '') {
             this.missionmember[i] = data3;

@@ -87,6 +87,8 @@ export class CareZoneMissionStartPage {
   joinchk: Boolean = false;
 
   UserImageFileName: any = '';
+  missionmember: any;
+
 
 
 
@@ -118,6 +120,20 @@ export class CareZoneMissionStartPage {
       this.carezoneData2 = this.navParams.get('carezoneData');
       this.roadmission(this.carezoneData2._id);
       this.missionCount(this.carezoneData2._id);
+
+      this.images.getMissionMember(this.carezoneData2._id).subscribe(data3 => {
+        if (data3 !== '') {
+          this.missionmember = data3;
+          // for (var k = 0; k < data3.length; k++) {
+          //   this.memberRanking[i] = {
+          //     email: data3[k].email,
+          //     usetime: data3[k].usetime,
+          //     rank: i + 1,
+          //     image_url: data3[k].image_url
+          //   }
+          // }
+        }
+      });
     }
 
 
@@ -591,7 +607,7 @@ export class CareZoneMissionStartPage {
       link: feedLink,
       imageWidth: '360px',
       imageHeight: '202px',
-      imageURL: 'http://plinic.cafe24app.com/challenge_image1/' + loadData._id
+      imageURL: 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + loadData.filename
     };
 
 

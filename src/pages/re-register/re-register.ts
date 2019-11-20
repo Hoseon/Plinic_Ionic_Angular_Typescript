@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Platform, ViewController, ActionSheetController, normalizeURL, Events  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Platform, ViewController, ActionSheetController, normalizeURL, Events, Loading, LoadingController, } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ModifyEmailPage } from './modify-email/modify-email';
 import { ModifyNumberPage } from './modify-number/modify-number';
@@ -28,6 +28,7 @@ import { ImagesProvider } from './../../providers/images/images';
 })
 export class ReRegisterPage {
 
+  loading: Loading;
   createSuccess = false;
   userData: any;
   userImgData: any;
@@ -50,25 +51,35 @@ export class ReRegisterPage {
   imagePath: any;
   imagePath2: any;
   userimg_id: any;
+  profileimg_url: any;
 
+  checked: boolean = true;
+  skincomplaint: any;
 
   registerCredentials = { email: '', password: '', name: '', gender: '', country: '', birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
 
 
   constructor(private imagesProvider: ImagesProvider, private actionSheetCtrl: ActionSheetController, private _camera: Camera, public nav: NavController, public navParams: NavParams, public auth: AuthService, private alertCtrl: AlertController,
-    private platform: Platform, public viewCtrl: ViewController , private events: Events) {
+    private platform: Platform, public viewCtrl: ViewController, private events: Events, private loadingCtrl: LoadingController) {
     this.platform.ready().then(() => {
-      //this.loadItems();
+      if (this.navParams.get('userData')) {
+        this.userData = this.navParams.get('userData');
+        this.skincomplaint = this.userData.skincomplaint;
+        this.authGetUserImage(this.userData.email);
+        this.imageGetUserUpdateImage(this.userData.email);
+      } else {
+        this.loadItems();
+      }
     });
   }
 
   ionViewWillEnter() {
-    if(this.platform.is('ios')){
-      this.loadItems();
+    if (this.platform.is('ios')) {
+      // this.loadItems();
     }
-    if(this.platform.is('android')){
+    if (this.platform.is('android')) {
       this.loadimagePath();
-      this.loadItems();
+      // this.loadItems();
     }
 
   }
@@ -84,7 +95,7 @@ export class ReRegisterPage {
 
   public loadimagePath() {
     this.auth.getUserStorageimagePath().then(items => {
-      this.imagePath2 = items;
+      // this.imagePath2 = items;
 
       // this.showPopup("this.imagePath3================" , items);
     });
@@ -112,6 +123,7 @@ export class ReRegisterPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: items.from,
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           this.thumb_image = false;
@@ -125,24 +137,19 @@ export class ReRegisterPage {
           accessToken: items.accessToken,
           id: items.id,
           age_range: items.age_range,
-          birthday: items.birthday,
+          birthday: this.jwtHelper.decodeToken(items).birthday,
+          gender: this.jwtHelper.decodeToken(items).gender,
+          skincomplaint: this.jwtHelper.decodeToken(items).skincomplaint,
           email: this.jwtHelper.decodeToken(items).email,
-          gender: items.gender,
           nickname: this.jwtHelper.decodeToken(items).name,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: 'plinic'
         };
-
+        this.skincomplaint = this.userData.skincomplaint;
+        this.authGetUserImage(this.userData.email);
       }
-      this.imagesProvider.getuser_updateImage(this.userData.email).subscribe(data => {
-        console.log("imageupload Data :  " + data._id);
-        this.userimg_id = data._id;
-        this.userImgData = {
-          id: data._id,
-          email: data.email,
-        }
-        console.log(this.userImgData);
-      })
+      this.imageGetUserUpdateImage(this.userData.email);
     });
   }
 
@@ -159,22 +166,33 @@ export class ReRegisterPage {
 
   public modify_password() {
     this.events.subscribe('custom-user-events', (paramsVar) => {
-        // Do stuff with "paramsVar"
-        this.events.unsubscribe('custom-user-events'); // unsubscribe this event
-        this.password = paramsVar;
-        console.log("password=============="+ this.password);
+      // Do stuff with "paramsVar"
+      this.events.unsubscribe('custom-user-events'); // unsubscribe this event
+      this.password = paramsVar;
+      console.log("password==============" + this.password);
     })
     this.nav.push(ModifyPasswordPage);
   }
 
   public modify_nickname() {
     this.events.subscribe('custom-user-events', (paramsVar) => {
-        // Do stuff with "paramsVar"
-        this.events.unsubscribe('custom-user-events'); // unsubscribe this event
-        this.nickname = paramsVar;
-        console.log("nickname=============="+ this.nickname);
+      // Do stuff with "paramsVar"
+      this.events.unsubscribe('custom-user-events'); // unsubscribe this event
+      this.nickname = paramsVar;
+      console.log("nickname==============" + this.nickname);
     })
-    this.nav.push(ModifyNicknamePage);
+    this.nav.push(ModifyNicknamePage, {"userData" : this.userData}).then(()=>{
+      this.nav.getActive().onDidDismiss(data =>{
+        // this.auth.getUserStorage().then(data2 => {
+        //     console.log("데이터2 " + JSON.stringify(data2))
+        //     this.userData = {
+        //       email : data2.email,
+        //       nickname : data2.nickname,
+        //       from: data2.from
+        //     }
+        // });
+      })
+    });
   }
 
 
@@ -221,38 +239,62 @@ export class ReRegisterPage {
 
     // Get the data of an image
     this._camera.getPicture(options).then((imagePath) => {
-      if (this.platform.is('ios')) {
+      if (this.platform.is('ios')) {          //아이폰
         this.imagePath = imagePath;
         this.imagePath = normalizeURL(this.imagePath);
         this.imagePath2 = normalizeURL(this.imagePath);
+        if (!this.profileimg_url) {
+          this.showLoading();
+          this.imagesProvider.myuser_UploadImage(this.imagePath, this.userData.email).then(res => {
+            this.loading.dismiss();
+            this.viewCtrl.dismiss({ reload: true });
+            // this.loading.dismiss();
+          }, err => {
+            this.loading.dismiss();
+            // this.dismiss();
+            this.showPopup("이미지 업로드", "이미지 업로드에 실패 하였습니다.");
+          });
+        } else {            //안드로이드
+          this.showLoading();
+          this.imagesProvider.user_udateImage(this.imagePath, this.userImgData).then(res => {
+            this.loading.dismiss();
+            this.viewCtrl.dismiss({ reload: true });
+            // this.loading.dismiss();
+          }, err => {
+            this.loading.dismiss();
+            // this.dismiss();
+            this.showPopup("이미지 업로드", "이미지 업로드에 실패 하였습니다.");
+          });
+        }
 
-        this.imagesProvider.user_udateImage(this.imagePath, this.userImgData).then(res => {
-          this.viewCtrl.dismiss({ reload: true });
-          // this.loading.dismiss();
-        }, err => {
-          // this.dismiss();
-          this.showPopup("이미지 업로드", "이미지 업로드에 실패 하였습니다.");
-        });
       } else {
-        // if (imagePath == null) {
-        //       alert("선택된 사진이 없습니다.");
-        //       return false;
-        //   }
-        //   // 안드로이드는 파일이름 뒤에 ?123234234 형식의 내용이 붙어 오는 경우가 있으므로,
-        //   // 이 경우 ? 이하 내용을 잘라버린다.
-        //   var p = imagePath.toLowerCase().lastIndexOf('?');
-        //   if (p > -1) {
-        //       imagePath = imagePath.substring(0, p);
-        //   }
-        //   // 안드로이드는 확장자가 없는 경우가 있으므로, 이 경우 확장자를 강제로 추가한다.
-        //   if (imagePath.toLowerCase().lastIndexOf('.') < 0) {
-        //       imagePath += '.jpg';
-        //   }
-      this.imagePath = imagePath;
-      this.imagePath = this.imagePath;
-      this.imagePath2 = this.imagePath;
-      this.auth.setUserStorageimagePath(this.imagePath2);
-    }
+        this.imagePath = imagePath;
+        this.imagePath = this.imagePath;
+        this.imagePath2 = this.imagePath;
+        if (!this.profileimg_url) {
+          this.showLoading();
+          this.imagesProvider.myuser_UploadImage(this.imagePath, this.userData.email).then(res => {
+            this.loading.dismiss();
+            this.viewCtrl.dismiss({ reload: true });
+            // this.loading.dismiss();
+          }, err => {
+            this.loading.dismiss();
+            // this.dismiss();
+            this.showPopup("이미지 업로드", "이미지 업로드에 실패 하였습니다.");
+          });
+        } else {
+          this.showLoading();
+          this.imagesProvider.user_udateImage(this.imagePath, this.userImgData).then(res => {
+            this.loading.dismiss();
+            this.viewCtrl.dismiss({ reload: true });
+            // this.loading.dismiss();
+          }, err => {
+            this.loading.dismiss();
+            // this.dismiss();
+            this.showPopup("이미지 업로드", "이미지 업로드에 실패 하였습니다.");
+          });
+        }
+      }
     }, (err) => {
       console.log('Error: ', err);
     });
@@ -295,6 +337,93 @@ export class ReRegisterPage {
       ]
     });
     alert.present();
+  }
+
+  showLoading() {
+    if (this.platform.is("ios")) {
+      this.loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        // duration: 1000,
+        cssClass: 'sk-rotating-plane2'
+      });
+      this.loading.present();
+    } else {
+      this.loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        // duration: 1000,
+        cssClass: 'sk-rotating-plane2'
+      });
+      this.loading.present();
+    }
+  }
+
+  authGetUserImage(email) {
+    this.auth.getUserImage(email).subscribe(items2 => {
+      if (items2) {
+        this.profileimg_url = "https://plinic.s3.ap-northeast-2.amazonaws.com/";
+        this.profileimg_url = this.profileimg_url.concat(items2.filename + "?random+\=" + Math.random());
+      }
+    });
+  }
+  imageGetUserUpdateImage(email) {
+    this.imagesProvider.getuser_updateImage(email).subscribe(data => {
+      this.userimg_id = data._id;
+      this.userImgData = {
+        id: data._id,
+        email: data.email,
+      }
+    })
+  }
+
+  save(){
+    if(this.userData && this.skincomplaint){
+      this.auth.updateUserSkinComplaint(this.userData.email, this.skincomplaint).subscribe(data => {
+        if (data !== "") {
+          this.showAlert("피부타입 저장", "피부타입 저장이 완료되었습니다. <br> 반영은 재 로그인 하면 변경됩니다.");
+        }
+      }, error => {
+        this.showError("[오류] 피부타입 저장 실패 <br> 재 로그인 후 다시 시도해주세요.")
+      })
+    } else {
+      this.showAlert("피부타입 저장실패", "[오류] 피부타입 저장을 위해 <br> 재 로그인 후 변경 바랍니다.");
+    }
+  }
+
+  showAlert(title, message) {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: title,
+      message: message,
+      buttons: [
+        {
+          text: '확인',
+          handler: () => {
+            this.navpop();
+            // this.setUserData();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+
+  showError(text) {
+    //this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: 'Plinic',
+      message: text,
+      buttons: [{
+        text: '확인'
+      }]
+    });
+    alert.present();
+  }
+
+  public navpop() {
+    this.nav.pop();
   }
 
 }

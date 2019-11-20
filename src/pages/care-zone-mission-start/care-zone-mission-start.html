@@ -79,12 +79,22 @@
     </ng-container>
     <!-- 참가 인원 이미지 추가  -->
     <ion-row>
-      <ng-container>
-        <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
-        <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-        <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-        <div *ngIf="missionCounter" class="user_sub">{{missionCounter}}명이 참가 중입니다.</div>
+
+      <ng-container *ngFor="let mission of missionmember; let k = index">
+        <ng-container *ngIf="k <= 3">
+          <ng-container *ngIf="k === 0">
+            <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:2%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
+              onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: 2%;" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+          </ng-container>
+          <ng-container *ngIf="k > 0">
+            <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:-2%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
+              onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: -2%;" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+          </ng-container>
+        </ng-container>
       </ng-container>
+        <div *ngIf="missionCounter" class="user_sub">{{missionCounter}}명이 참가 중입니다.</div>
     </ion-row>
 
 
@@ -117,7 +127,7 @@
         <ion-row style="width:89.7%">
           <ion-col class="event-col11">보상 조건</ion-col>
           <ion-col class="event-col9" style="color:#5c59b6">
-            <textarea readonly style="text-align: right" rows="3" cols="30">{{carezoneData.condition}}</textarea>
+            <textarea readonly style="text-align: right" rows="3" cols="35">{{carezoneData.condition}}</textarea>
           </ion-col>
           <!-- <ion-col class="event-col9" style="color:#292929">
                                                                   챌린지 기간 안에 가장 많은 시간을<br>
@@ -147,7 +157,11 @@
       <ion-grid class="gridtext">
         <ion-row style="width:91.7%">
           <ion-col class="event-col11">보너스</ion-col>
-          <ion-col class="event-col9"><textarea readonly style="text-align: right" rows="3" cols="30">{{carezoneData.bonus}}</textarea></ion-col>
+          <ion-col class="event-col9"><textarea readonly style="text-align: right" rows="3" cols="35">
+              카카오톡 공유하면 +{{carezoneData.bonuskakao}}초/명
+              페이스북 공유하면 +{{carezoneData.bonusface}}초/명
+              인스타그램 공유하면 +{{carezoneData.bonusinstar}}초/명
+          </textarea></ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
