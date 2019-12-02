@@ -926,4 +926,21 @@ page-care-zone-mission-ing {
     overflow: hidden !important;
   }
 
+  .sns_row {
+    margin-left: 22%;
+    margin-top: -2.5%;
+    margin-bottom: -4%;
+  }
+
+  .mission-img {
+    margin-left: auto;
+    margin-right: auto;
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    background-color: #FFF;
+    text-align: center;
+    margin-right: 3%;
+  }
+
 }

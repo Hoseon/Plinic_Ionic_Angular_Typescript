@@ -109,7 +109,7 @@
                 <ion-col class="beauty_note_like">좋아요 32 ∙
                   <ion-col class="beauty_note_count">조회 {{community.views}}</ion-col>
                 </ion-col>
-                <img class="beauty_home_img" src="http://plinic.cafe24app.com/commubeauty_images/{{community._id}}" />
+                <img class="beauty_home_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" />
               </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
@@ -129,7 +129,7 @@
                 <ion-col class="beauty_note_like">좋아요 32 ∙
                   <ion-col class="beauty_note_count">조회 {{community.views}}</ion-col>
                 </ion-col>
-                <img class="beauty_home_img_ios" src="http://plinic.cafe24app.com/commubeauty_images/{{community._id}}" />
+                <img class="beauty_home_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" />
               </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
@@ -151,8 +151,8 @@
                 <ion-col class="beauty_note_like">좋아요 {{beautynote.like}} ∙
                   <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
                 </ion-col>
-                <img *ngIf="platform.is('android') " class="beauty_home_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
-                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_home_note_img_ios" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
+                <img *ngIf="platform.is('android') " class="beauty_home_note_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
+                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_home_note_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
               </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
@@ -193,8 +193,8 @@
                   <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
                 </ion-col>
 
-                <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
-                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+                <img *ngIf="platform.is('android')" class="beauty_worry_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
+                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
               </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
@@ -244,8 +244,8 @@
                 <ion-col class="beauty_note_like">좋아요 {{beautynote.like}} ∙
                   <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
                 </ion-col>
-                <img *ngIf="platform.is('android') " class="beauty_home_note_img" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
-                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_home_note_img_ios" src="http://plinic.cafe24app.com/beautynoteimage/{{beautynote._id}}" />
+                <img *ngIf="platform.is('android') " class="beauty_home_note_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
+                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_home_note_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
               </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
@@ -286,8 +286,8 @@
                   <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
                 </ion-col>
 
-                <img *ngIf="platform.is('android')" class="beauty_worry_img" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
-                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="http://plinic.cafe24app.com/skinqnaimage/{{skinqna._id}}" />
+                <img *ngIf="platform.is('android')" class="beauty_worry_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
+                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
               </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>

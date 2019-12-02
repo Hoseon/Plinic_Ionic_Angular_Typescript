@@ -1092,7 +1092,7 @@ export class CommunityModifyPage {
 
   kakaolink(loadData, mode) {
     let feedLink: KLLinkObject = {
-      webURL: 'http://www.naver.com/',
+      webURL: 'http://www.g1p.co.kr/',
     };
 
     let feedSocial: KLSocialObject = {
@@ -1102,7 +1102,7 @@ export class CommunityModifyPage {
     let feedButtons1: KLButtonObject = {
       title: '플리닉 바로가기',
       link: {
-        mobileWebURL: 'http://plinic.co.kr',
+        mobileWebURL: 'http://g1p.co.kr',
       },
     };
 
@@ -1118,7 +1118,7 @@ export class CommunityModifyPage {
       var feedContent: KLContentObject = {
         title: loadData.title,
         link: feedLink,
-        imageURL: 'http://plinic.cafe24app.com/beautynoteimage/' + loadData._id
+        imageURL: 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + loadData.filename
       };
     }
 
@@ -1126,7 +1126,7 @@ export class CommunityModifyPage {
       var feedContent: KLContentObject = {
         title: loadData.title,
         link: feedLink,
-        imageURL: 'http://plinic.cafe24app.com/skinqnaimage/' + loadData._id
+        imageURL: 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + loadData.filename
       };
     }
 
@@ -1169,9 +1169,8 @@ export class CommunityModifyPage {
     // this.socialSharing.shareVia("com.apple.social.facebook", "Hello Plinic", "플리닉을 사용하자", "http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png", "http://g1p.co.kr")
     // .then(()=>{console.log("페이스북 공유 성공")})
     // .catch(()=>{console.log("페이스북 공유 실패")});
-    console.log("데이터 Id : " + loaddata._id);
     if (mode === 'note') {
-      this.socialSharing.shareViaFacebook("Plinic", 'http://plinic.cafe24app.com/beautynoteimage/' + loaddata._id, "http://g1p.co.kr").then(res => {
+      this.socialSharing.shareViaFacebook("Plinic", 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + loaddata.filename, "http://g1p.co.kr").then(res => {
         console.log("페이스북 공유 성공 : " + res);
       }, err => {
         console.log("페이스북 공유 실패 : " + err)
@@ -1184,7 +1183,7 @@ export class CommunityModifyPage {
       });
     }
     if (mode === 'qna') {
-      this.socialSharing.shareViaFacebook("Plinic", 'http://plinic.cafe24app.com/skinqnaimage/' + loaddata._id, "http://g1p.co.kr").then(res => {
+      this.socialSharing.shareViaFacebook("Plinic", 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + loaddata._id, "http://g1p.co.kr").then(res => {
         console.log("페이스북 공유 성공 : " + res);
       }, err => {
         console.log("페이스북 공유 실패 : " + err)

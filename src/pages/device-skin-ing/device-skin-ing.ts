@@ -597,35 +597,80 @@ export class DeviceSkinIngPage {
       //   this.stepdesc = "화장품 도포";
       //   this.desc = "사용하시는 화장품을 골구로 넉넉하게 도포하세요";
       // }
+
+      //20191129
       if (this.displayTime === "00:00:00") {
         this.step = "1단계";
         this.anipoint = true;
         this.animpoint = "anim-point";
         this.stepdesc = "좌측 볼 마사지(1분)";
         this.desc = "원을 그리듯 아래에서 위로 마사지해주세요.";
-      } else if (this.displayTime === "00:01:00") {
+      } else if (this.displayTime === "00:00:05") {
         this.step = "2단계";
         this.animpoint = "anim-point2";
         this.stepdesc = "우측볼 마사지(1분)";
         this.desc = "원을 그리듯 아래에서 위로 마사지해주세요.";
-      } else if (this.displayTime === "00:02:00") {
+      } else if (this.displayTime === "00:00:08") {
         this.step = "3단계";
-        this.animpoint = "anim-point3";
-        this.stepdesc = "이마 마사지(1분)";
-        this.desc = "원을 그리듯 아래에서 위로 마사지해주세요.";
-      } else if (this.displayTime === "00:03:00") {
-        this.step = "4단계";
-        this.animpoint = "anim-point4";
-        this.stepdesc = "목 마사지(1분)";
-        this.desc = "아래에서 위로 마사지해주세요.";
-      } else if (this.displayTime === "00:04:00") {
-        this.step = "5단계";
+        // this.animpoint = "anim-point3";
         this.animpoint = "anim-point5";
+        // this.stepdesc = "이마 마사지(1분)";
         this.stepdesc = "V라인 리프팅";
         this.desc = "아래에서 위로 마사지해주세요.";
-      } else if (this.displayTime === "00:06:00") {
-        this.device_disconnect();
       }
+      else if (this.displayTime === "00:00:11") {
+        this.device_disconnect();
+
+        // this.step = "4단계";
+        // this.animpoint = "anim-point4";
+        // this.stepdesc = "목 마사지(1분)";
+        // this.desc = "아래에서 위로 마사지해주세요.";
+      }
+
+      // else if (this.displayTime === "00:04:00") {
+      //   this.step = "5단계";
+      //   this.animpoint = "anim-point5";
+      //   this.stepdesc = "V라인 리프팅";
+      //   this.desc = "아래에서 위로 마사지해주세요.";
+      // }
+      // else if (this.displayTime === "00:06:00") {
+      //   this.device_disconnect();
+      // }
+
+
+
+      //20191129 전시회를 위해서 기본로직 잠시 중
+      // if (this.displayTime === "00:00:00") {
+      //   this.step = "1단계";
+      //   this.anipoint = true;
+      //   this.animpoint = "anim-point";
+      //   this.stepdesc = "좌측 볼 마사지(1분)";
+      //   this.desc = "원을 그리듯 아래에서 위로 마사지해주세요.";
+      // } else if (this.displayTime === "00:01:00") {
+      //   this.step = "2단계";
+      //   this.animpoint = "anim-point2";
+      //   this.stepdesc = "우측볼 마사지(1분)";
+      //   this.desc = "원을 그리듯 아래에서 위로 마사지해주세요.";
+      // } else if (this.displayTime === "00:02:00") {
+      //   this.step = "3단계";
+      //   this.animpoint = "anim-point3";
+      //   this.stepdesc = "이마 마사지(1분)";
+      //   this.desc = "원을 그리듯 아래에서 위로 마사지해주세요.";
+      // } else if (this.displayTime === "00:03:00") {
+      //   this.step = "4단계";
+      //   this.animpoint = "anim-point4";
+      //   this.stepdesc = "목 마사지(1분)";
+      //   this.desc = "아래에서 위로 마사지해주세요.";
+      // } else if (this.displayTime === "00:04:00") {
+      //   this.step = "5단계";
+      //   this.animpoint = "anim-point5";
+      //   this.stepdesc = "V라인 리프팅";
+      //   this.desc = "아래에서 위로 마사지해주세요.";
+      // } else if (this.displayTime === "00:06:00") {
+      //   this.device_disconnect();
+      // }
+
+
 
       //
       // if (this.displayTime === "00:00:00") {

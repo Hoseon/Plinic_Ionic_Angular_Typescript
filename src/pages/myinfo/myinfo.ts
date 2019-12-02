@@ -20,6 +20,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing'
 import { DeviceConnectSkinIngPage } from '../device-connect-skin-ing/device-connect-skin-ing'
 // import { FCM } from '@ionic-native/fcm';
+import { CommunityModifyPage } from '../community/community-modify/community-modify';
 
 
 
@@ -869,11 +870,20 @@ export class MyinfoPage {
   }
 
   public community_qna_modify(id) {
-    this.nav.push(MyCommunityModifyPage, { id: id, mode: 'qna' });
+    // this.nav.push(MyCommunityModifyPage, { id: id, mode: 'qna' });
+    let myModal = this.modalCtrl.create(CommunityModifyPage, { id: id, mode: 'qna' });
+    myModal.onDidDismiss(data => {
+      this.ionViewWillEnter();
+    });
+    myModal.present();
   }
   public community_modify(id) {
-    this.nav.push(MyCommunityModifyPage, { id: id, mode: 'qna' });
-
+    // this.nav.push(MyCommunityModifyPage, { id: id, mode: 'qna' });
+    let myModal = this.modalCtrl.create(CommunityModifyPage, { id: id, mode: 'note' });
+    myModal.onDidDismiss(data => {
+      // this.ionViewWillEnter();
+    });
+    myModal.present();
   }
 
 
@@ -972,7 +982,11 @@ export class MyinfoPage {
       if (items.length > 0) {
         // this.update();
         this.totalusetime = this.getSecondsAsDigitalClock(items[0].sum);
-        this.loadProgress = (Number(items[0].sum) / 16200) * 100;
+        // this.loadProgress = (Number(items[0].sum) / 16200) * 100; //20191129 전시회 용으로 원래 로직 잠시 막아둠
+        this.loadProgress = (Number(items[0].sum) / 900) * 100; //20191129 전시회 용으로 프로그레스바 15분 로직으로 변경
+        if(this.loadProgress > 100){
+          this.loadProgress = 100;
+        }
       }
       else {
         this.totalusetime = false;

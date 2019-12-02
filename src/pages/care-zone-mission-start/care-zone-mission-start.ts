@@ -589,7 +589,7 @@ export class CareZoneMissionStartPage {
     let feedButtons1: KLButtonObject = {
       title: '플리닉 바로가기',
       link: {
-        mobileWebURL: 'http://plinic.co.kr',
+        mobileWebURL: 'http://g1p.co.kr',
       },
     };
 
@@ -601,23 +601,37 @@ export class CareZoneMissionStartPage {
       },
     };
 
-    var feedContent: KLContentObject = {
-      title: loadData.title,
-      desc: loadData.body,
-      link: feedLink,
-      imageWidth: '360px',
-      imageHeight: '202px',
-      imageURL: 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + loadData.filename
-    };
+    if (this.platform.is('ios')) {
+      var feedContent: KLContentObject = {
+        title: loadData.title,
+        desc: loadData.body,
+        link: feedLink,
+        imageWidth: '360px',
+        imageHeight: '202px',
+        imageURL: 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + loadData.filename
+      };
+    } else { //안드로이드 카카오톡 공유는 파라메터가 3개만 허용
+      var feedContent: KLContentObject = {
+        title: loadData.title,
+        link: feedLink,
+        imageURL: 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + loadData.filename
+      };
+    }
 
-
+    // var feedContent: KLContentObject = {
+    //   title: loadData.title,
+    //   desc: loadData.body,
+    //   link: feedLink,
+    //   imageWidth: '360px',
+    //   imageHeight: '202px',
+    //   imageURL: 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + loadData.filename
+    // };
 
     let feedTemplate: KLFeedTemplate = {
       content: feedContent,
       social: feedSocial,
       buttons: [feedButtons1, feedButtons2]
     };
-
 
     this._kakaoCordovaSDK
       .sendLinkFeed(feedTemplate)
@@ -655,13 +669,15 @@ export class CareZoneMissionStartPage {
   }
 
   share() {
-    var url = encodeURI(encodeURIComponent("https://g1p.co.kr/company/plinicstory.html"));
-    var title = encodeURI("플라즈마 미용기기 플리닉");
-    // var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
-    var shareURL = "https://band.us/plugin/share?body='플리닉'&route='Plinic'";
-    let successComes: boolean = false;
-
-    document.location.href = shareURL;
+    this.showAlert("준비중", "밴드 공유 기능 준비중입니다.")
+    //
+    // var url = encodeURI(encodeURIComponent("https://g1p.co.kr/company/plinicstory.html"));
+    // var title = encodeURI("플라즈마 미용기기 플리닉");
+    // // var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
+    // var shareURL = "https://band.us/plugin/share?body='플리닉'&route='Plinic'";
+    // let successComes: boolean = false;
+    //
+    // document.location.href = shareURL;
 
     // this.browserRef = this.iab.create(shareURL, "_blank");
     // this.browserRef.on("exit").subscribe((event: InAppBrowserEvent) => {
@@ -788,6 +804,21 @@ export class CareZoneMissionStartPage {
     browser.on('sharePressed').subscribe(data => {
       console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
     })
+  }
+
+  showAlert(title, message) {
+    // this.runTimer = false;
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: title,
+      message: message,
+      buttons: [{
+        text: '확인',
+        handler: () => {
+        }
+      }]
+    });
+      alert.present();
   }
 
 }

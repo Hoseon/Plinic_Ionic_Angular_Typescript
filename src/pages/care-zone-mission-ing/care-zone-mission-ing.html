@@ -179,6 +179,28 @@
     </ion-item>
   </ion-list>
 
+  <ng-container *ngIf="endCheck === false">
+    <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br><br>
+
+    <ion-list>
+      <ion-item no-lines>
+        <ion-grid>
+          <ion-row class="sns_row">
+            <ion-col>
+              <img class="mission-img" (click)="kakaoLink(carezoneData2)" src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" />
+              <ion-col>
+                <img class="mission-img" (click)="share_facebook(carezoneData2)" src="assets/img/care-zone/sns/ic-sns-fb@3x.png" />
+                <ion-col>
+                  <img class="mission-img" (click)="share()" src="assets/img/care-zone/sns/ic-sns-band@3x.png" />
+                </ion-col>
+              </ion-col>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
   <ion-list>
 
     <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
@@ -194,7 +216,8 @@
         <ion-grid *ngIf="mission.email===userData.email" class="eventgrid">
           <ion-row class="my_list">
             <ion-col class="event-col12">{{(i) + 1}}</ion-col>
-            <img *ngIf="!memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{memberRanking[i].userImageFilename}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            <img *ngIf="!memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{memberRanking[i].userImageFilename}}"
+              onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
             <img *ngIf="memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img" src="{{memberRanking[i].image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
             <ion-col class="event-col13">{{mission.email}}(나)</ion-col>
             <ion-col class="event-col14" style="color:#5c59b6;">{{displayUseTimeList[i]}}</ion-col>
@@ -242,8 +265,7 @@
   <ng-container *ngIf="carezoneData2">
     <ng-container *ngFor="let registerReply of carezoneData2.comments; let i = index">
       <img *ngIf="registerReply.img_url" class="profile_comment" [src]="registerReply.img_url" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
-      <img *ngIf="!registerReply.img_url" class="profile_comment" src="http://plinic.cafe24app.com/userimages/{{registerReply.email}}" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
-
+      <img *ngIf="!registerReply.img_url" class="profile_comment" [src]="plinicUserImages[i]" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
       <!-- <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
       <ng-container *ngIf="userData">
         <ng-container *ngIf="userData.email === registerReply.email">
@@ -254,7 +276,8 @@
         <div class="nickname_comment">{{registerReply.email}}</div>
         <button *ngIf="comment_popover_option_textarea === i" (click)="replySkinQnaUpdate(registerReply.email, registerReply._id)" ion-button class="comment_enroll">수정</button>
       </div>
-      <div class="time_comment">{{registerReply.createdAt.substr(0,19)}}</div>
+      <div class="time_comment">{{commentTimeZone[i]}}</div>
+      <!-- <div class="time_comment">{{registerReply.createdAt.substr(0,19)}}</div> -->
       <!-- 보기 -->
       <!-- <textarea *ngIf="comment_popover_option==='보기'" class="content_comment" readonly autoGrow autoresize value="{{reply.comment}}"></textarea> -->
       <ng-container *ngIf="comment_popover_option_textarea !== i ">

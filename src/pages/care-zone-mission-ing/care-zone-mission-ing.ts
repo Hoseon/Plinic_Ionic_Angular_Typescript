@@ -11,8 +11,8 @@ import { PopoverPage } from '../community/community-modify/popover/popover';
 import { RewardPage } from '../reward/reward'
 import { Observable } from 'rxjs/Rx';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
-
-
+import { KakaoCordovaSDK, KLCustomTemplate, KLLinkObject, KLSocialObject, KLButtonObject, KLContentObject, KLFeedTemplate, AuthTypes } from 'kakao-sdk';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 /**
  * Generated class for the CareZoneMissionIngPage page.
@@ -37,6 +37,7 @@ export class CareZoneMissionIngPage {
   endDate: any;
   startDate: any;
   imgUrl: any;
+  plinicUserImages: Array<any> = new Array<any>();
   userData: any;
   thumb_image: any;
   jwtHelper: JwtHelper = new JwtHelper();
@@ -50,7 +51,7 @@ export class CareZoneMissionIngPage {
   comment_popover_option: any = "보기";
   comment_popover_option_textarea: any;
   skinQnaOneLoadData: any = {};
-  registerReply = { comment: '', id: '' };
+  registerReply = { comment: '', id: '', date: new Date()};
   reply = { comment: '', id: '', email: '' };
   @ViewChild('myInput') myInput: ElementRef;
   mode: any;
@@ -65,17 +66,19 @@ export class CareZoneMissionIngPage {
 
   memberRanking: Array<any> = new Array<any>();
 
-  endCheck : boolean = false;
+  endCheck: boolean = false;
   missionuseTime: any;
 
-  reward : boolean = false;
+  reward: boolean = false;
+
+  commentTimeZone: Array<any> = new Array<any>();
 
   constructor(public nav: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     private images: ImagesProvider, public element: ElementRef,
     private loadingCtrl: LoadingController, private modalCtrl: ModalController,
     private alertCtrl: AlertController, public platform: Platform,
     private auth: AuthService, public popoverCtrl: PopoverController,
-    private themeableBrowser: ThemeableBrowser) {
+    private themeableBrowser: ThemeableBrowser, public _kakaoCordovaSDK: KakaoCordovaSDK, private socialSharing: SocialSharing) {
 
     // this.missionUseTime(this.carezoneData2);
     // this.roadmission(this.carezoneData2._id);
@@ -96,7 +99,8 @@ export class CareZoneMissionIngPage {
     if (this.navParams.get('carezoneData')) {
       this.carezoneData2 = this.navParams.get('carezoneData');
     }
-
+    this.getCommentTimeZone();
+    this.getUserimage();
 
 
     // this.showMissionfail();
@@ -114,8 +118,6 @@ export class CareZoneMissionIngPage {
     console.log("Your Ranking : " + this.rank);
     this.timerTick();
     this.missionCount(this.carezoneData2._id);
-
-
 
   }
 
@@ -190,7 +192,7 @@ export class CareZoneMissionIngPage {
     //this.loading.dismiss();
     let alert = this.alertCtrl.create({
       cssClass: 'mission_alert_success',
-      title: '최종 순위 ' + this.rank  + '위',
+      title: '최종 순위 ' + this.rank + '위',
       subTitle: '축하합니다.',
       message: '보상상품 받으시고 <br /> 피부관리에 더욱 매진하세요.',
       buttons: [
@@ -204,8 +206,8 @@ export class CareZoneMissionIngPage {
         {
           text: '상품 받으러 가기',
           handler: () => {
-            let modal = this.modalCtrl.create(RewardPage, { mission : this.carezoneData2});
-            modal.onDidDismiss(data =>{
+            let modal = this.modalCtrl.create(RewardPage, { mission: this.carezoneData2 });
+            modal.onDidDismiss(data => {
               this.ionViewDidEnter();
             });
             modal.present();
@@ -219,6 +221,7 @@ export class CareZoneMissionIngPage {
     // this.viewCtrl._didLoad();
     // this.viewCtrl._didEnter();
     this.roadmission(this.carezoneData2._id);
+    this.missionMember(this.carezoneData2._id);
     // this.nav.setRoot(this.nav.getActive().component);
   }
 
@@ -501,6 +504,8 @@ export class CareZoneMissionIngPage {
         //this.imgUrl.includes(data._id);
         //console.log(JSON.stringify(this.carezoneData));
         this.loading.dismiss();
+        this.getCommentTimeZone();
+        this.getUserimage();
       } else {
         this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
       }
@@ -627,7 +632,11 @@ export class CareZoneMissionIngPage {
     this.images.missionUseTime(carezoneData._id, email).subscribe(data => {
       this.missionuseTime = data;
       this.reward = this.missionuseTime.reward;
-      this.loadProgress = (Number(data.usetime) / 7560) * 100;
+      // this.loadProgress = (Number(data.usetime) / 7560) * 100;
+      this.loadProgress = (Number(data.usetime) / 900) * 100; //20191129 전시회 용으로 프로그레스바 15분 로직으로 변경
+      if(this.loadProgress > 100){
+        this.loadProgress = 100;
+      }
       this.displayUseTime = this.getSecondsAsDigitalClock2(data.usetime);
     });
   }
@@ -868,5 +877,187 @@ export class CareZoneMissionIngPage {
     })
   }
 
+  kakaoLink(loadData) {
+    let feedLink: KLLinkObject = {
+      webURL: 'http://g1p.co.kr/',
+    };
 
+    let feedSocial: KLSocialObject = {
+      viewCount: parseInt(loadData.views),
+    };
+
+    let feedButtons1: KLButtonObject = {
+      title: '플리닉 바로가기',
+      link: {
+        mobileWebURL: 'http://g1p.co.kr',
+      },
+    };
+
+    let feedButtons2: KLButtonObject = {
+      title: '앱에서 확인',
+      link: {
+        iosExecutionParams: 'param1=value1&param2=value2',
+        androidExecutionParams: 'param1=value1&param2=value2',
+      },
+    };
+    if (this.platform.is('ios')) {
+      var feedContent: KLContentObject = {
+        title: loadData.title,
+        desc: loadData.body,
+        link: feedLink,
+        imageWidth: '360px',
+        imageHeight: '202px',
+        imageURL: 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + loadData.filename
+      };
+    } else { //안드로이드 카카오톡 공유는 파라메터가 3개만 허용
+      var feedContent: KLContentObject = {
+        title: loadData.title,
+        link: feedLink,
+        imageURL: 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + loadData.filename
+      };
+    }
+
+    // var feedContent: KLContentObject = {
+    //   title: loadData.title,
+    //   link: feedLink,
+    //   imageURL: 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + loadData.filename
+    // };
+
+
+
+    let feedTemplate: KLFeedTemplate = {
+      content: feedContent,
+      social: feedSocial,
+      buttons: [feedButtons1, feedButtons2]
+    };
+
+
+    this._kakaoCordovaSDK
+      .sendLinkFeed(feedTemplate)
+      .then(
+        res => {
+          console.log("카카오 링크 공유 성공----------------------------------------");
+          this.auth.snsPointUpdate(this.carezoneData2._id, this.userData.email, this.carezoneData2.bonuskakao).subscribe(data => {
+            if (data) {
+              this.showAlert("플리닉 SNS누적", JSON.stringify(data.msg).replace('"', ''))
+            } else {
+              this.showAlert("플리닉 누적 오류", "[오류]SNS 누적이 정상적으로 되지 않았습니다.")
+            }
+          });
+          console.log("점수는 ? : " + this.carezoneData2.bonuskakao);
+          console.log("이메일은 ? : " + this.userData.email);
+
+        },
+        err => {
+          console.log(JSON.stringify(err));
+          console.log("카카오 링크 공유 실패----------------------------------------");
+        }
+      )
+      .catch(err => {
+        console.log(err);
+        console.log("카카오 링크 공유 캐치ㅣㅣㅣㅣㅣ----------------------------------------");
+      });
+  }
+
+  share_facebook(loaddata) {
+    // this.socialSharing.shareVia("com.apple.social.facebook", "Hello Plinic", "플리닉을 사용하자", "http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png", "http://g1p.co.kr")
+    // .then(()=>{console.log("페이스북 공유 성공")})
+    // .catch(()=>{console.log("페이스북 공유 실패")});
+    this.socialSharing.shareViaFacebook("Plinic", 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + loaddata.filename, "http://g1p.co.kr").then(res => {
+      console.log("페이스북 공유 성공 : " + res);
+      this.auth.snsPointUpdate(this.carezoneData2._id, this.userData.email, this.carezoneData2.bonusface).subscribe(data => {
+        if (data) {
+          this.showAlert("플리닉 SNS누적", JSON.stringify(data.msg).replace('"', ''))
+        } else {
+          this.ios_showAlert("플리닉 누적 오류", "[오류]SNS 누적이 정상적으로 되지 않았습니다.")
+        }
+      });
+    }, err => {
+      console.log("페이스북 공유 실패 : " + JSON.stringify(err))
+      if (err === 'cancelled') {
+        console.log("페이스북 공유 하려다가 취소 됨 : " + err);
+      }
+      if (err === 'not available') {
+        console.log("페이스북 공유 성공적으로 됨");
+        this.auth.snsPointUpdate(this.carezoneData2._id, this.userData.email, this.carezoneData2.bonusface).subscribe(data => {
+          if (data) {
+            this.ios_showAlert("플리닉 SNS누적", JSON.stringify(data.msg).replace('"', ''))
+          } else {
+            this.ios_showAlert("플리닉 누적 오류", "[오류]SNS 누적이 정상적으로 되지 않았습니다.")
+          }
+        });
+      }
+    });
+  }
+
+  share() {
+    this.showAlert("준비중", "밴드 공유 기능 준비중입니다.")
+    // var url = encodeURI(encodeURIComponent("https://g1p.co.kr/company/plinicstory.html"));
+    // var title = encodeURI("플라즈마 미용기기 플리닉");
+    // // var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
+    // var shareURL = "https://band.us/plugin/share?body='플리닉'&route='Plinic'";
+    // let successComes: boolean = false;
+    //
+    // document.location.href = shareURL;
+  }
+
+
+  showAlert(title, message) {
+    // this.runTimer = false;
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: title,
+      message: message,
+      buttons: [{
+        text: '확인',
+        handler: () => {
+          // this.registerReply.comment = '';
+          this.comment_popover_option_textarea = -1;
+          // this.textareaResize();
+          this.update();
+        }
+      }]
+    });
+    setTimeout(() => {
+      alert.present();
+    }, 1000)
+  }
+
+  ios_showAlert(title, message) {
+    // this.runTimer = false;
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: title,
+      message: message,
+      buttons: [{
+        text: '확인',
+        handler: () => {
+          // this.registerReply.comment = '';
+          this.comment_popover_option_textarea = -1;
+          // this.textareaResize();
+          this.update();
+        }
+      }]
+    });
+    alert.present();
+  }
+
+  getUserimage() {
+    for (let i = 0; i < this.carezoneData2.comments.length; i++) {
+      this.images.chkUserImage(this.carezoneData2.comments[i].email).subscribe(data => {
+        if(data !== 'NOTFOUND'){
+          this.plinicUserImages[i] = 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + data
+        }
+      })
+    }
+
+    // return 'https://plinic.s3.ap-northeast-2.amazonaws.com/image-1574732479055';
+  }
+
+  getCommentTimeZone() {
+    for (let i = 0; i < this.carezoneData2.comments.length; i++) {
+      this.commentTimeZone[i] = new Date(this.carezoneData2.comments[i].createdAt).getFullYear() + "-" + new Date(this.carezoneData2.comments[i].createdAt).getMonth() + "-" + new Date(this.carezoneData2.comments[i].createdAt).getDay() + " " + new Date(this.carezoneData2.comments[i].createdAt).getHours() + ":" + new Date(this.carezoneData2.comments[i].createdAt).getMinutes() + ":" + new Date(this.carezoneData2.comments[i].createdAt).getSeconds()
+      console.log("abcd : " + this.commentTimeZone[i]);
+    }
+  }
 }

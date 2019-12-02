@@ -1490,4 +1490,24 @@ export class AuthService {
       });
   }
 
+  public snsPointUpdate(id, email, points) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      id: id,
+      snsPoint: points,
+    };
+
+    // console.log("missionPointUpdate : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/snspointupdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
 }
