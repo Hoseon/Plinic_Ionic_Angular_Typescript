@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.g1p.plinic" version="0.0.51" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.g1p.plinic" version="0.0.67" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Plinic</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -24,6 +24,7 @@
     <preference name="FadeSplashScreen" value="”false”" />
     <preference name="AutoHideSplashScreen" value="”false”" />
     <preference name="loadUrlTimeoutValue" value="60000" />
+    <preference name="AllowInlineMediaPlayback" value="true" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
@@ -46,22 +47,9 @@
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
     </platform>
     <platform name="ios">
-        <edit-config file="*-Info.plist" mode="merge" target="NSBluetoothAlwaysUsageDescription">
-            <string>플리닉은 Plinic App과 블루투스 기능을 사용을 위해 블루투스를 허용해야 합니다.</string>
-        </edit-config>
-        <edit-config file="*-Info.plist" mode="merge" target="NSBluetoothPeripheralUsageDescription">
-            <string>플리닉은 Plinic App과 블루투스 기능을 사용을 위해 블루투스를 허용해야 합니다.</string>
-        </edit-config>
-        <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
-            <string>Plinic App을 사용하기 위해서는 카메라의 접근권한을 허용해야 합니다.</string>
-        </edit-config>
-        <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryAddUsageDescription">
-            <string>플리닉의 케어챌린지 랭킹 기능, 커뮤니티 기능, My Profile 의 프로필 사진을  등록 및 변경하려면 사진 승인을 해야 합니다.</string>
-        </edit-config>
-        <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
-            <string>플리닉의 케어챌린지 랭킹 기능, 커뮤니티 기능, My Profile 의 프로필 사진을  등록 및 변경하려면 사진 승인을 해야 합니다.</string>
-        </edit-config>
         <allow-navigation href="http://*plinic.cafe24app.com*" />
+        <allow-navigation href="https://*plinic.s3.ap-northeast-2.amazonaws.com*" />
+        <allow-navigation href="http://192.168.0.34*" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
@@ -140,5 +128,6 @@
     <plugin name="cordova-plugin-local-notification" spec="https://github.com/katzer/cordova-plugin-local-notifications.git#0.9.0-beta.3" />
     <plugin name="cordova-plugin-fcm-with-dependecy-updated" spec="^2.4.0" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
+    <allow-navigation href="http://192.168.0.12:8100" />
     <engine name="ios" spec="5.0.0" />
 </widget>

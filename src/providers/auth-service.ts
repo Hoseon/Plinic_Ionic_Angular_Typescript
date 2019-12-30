@@ -233,20 +233,20 @@ export class AuthService {
 
 
   public bluetooth_connect() {
-    if (this.platform.is('cordova')) {
-      this.bluetoothle.initialize().then(ble => {
-        console.log('ble', ble.status) // logs 'enabled'
-        if (ble.status === "enabled") {
-          this.blu_connect = true;
-          console.log('enabled====================', this.blu_connect);
-        }
-        else {
-          this.blu_connect = false;
-          console.log('disenabled====================', this.blu_connect);
-        }
-      });
-      return this.blu_connect;
-    }
+    // if (this.platform.is('cordova')) {
+    //   this.bluetoothle.initialize().then(ble => {
+    //     console.log('ble', ble.status) // logs 'enabled'
+    //     if (ble.status === "enabled") {
+    //       this.blu_connect = true;
+    //       console.log('enabled====================', this.blu_connect);
+    //     }
+    //     else {
+    //       this.blu_connect = false;
+    //       console.log('disenabled====================', this.blu_connect);
+    //     }
+    //   });
+    //   return this.blu_connect;
+    // }
   }
 
 
@@ -285,17 +285,14 @@ export class AuthService {
             }
           }) // 성공
           .catch(error => console.error(error)); //
-
-
       }
       )
       .catch(error => console.error(error)); // 실패
-
-    if (this.userData !== '') {
-      this.storage.set('userData', this.userData);
-      this.authenticationState.next(true);
-      return this.userData;
-    }
+    // if (this.userData !== '') {
+    //   this.storage.set('userData', this.userData);
+    //   this.authenticationState.next(true);
+    //   return this.userData;
+    // }
   }
 
   public naver_logout() {

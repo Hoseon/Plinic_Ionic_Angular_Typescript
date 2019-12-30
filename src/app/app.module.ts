@@ -132,7 +132,8 @@ import { DeviceConnectCompletePageModule } from '../pages/device-connect-complet
 import { DeviceConnectFailPageModule } from '../pages/device-connect-fail/device-connect-fail.module';
 import { DeviceSkinStartPageModule } from '../pages/device-skin-start/device-skin-start.module';
 import { DeviceSkinIngPageModule } from '../pages/device-skin-ing/device-skin-ing.module';
-import { DeviceSkinSensorIngPageModule } from '../pages/device-skinsensor-ing/device-skinsensor-ing.module';
+// import { DeviceSkinSensorIngPageModule } from '../pages/device-skinsensor-ing/device-skinsensor-ing.module';
+import { DeviceSkinSensorIngPage } from '../pages/device-skinsensor-ing/device-skinsensor-ing';
 //
 // //뷰티팁
 import { BeautyTipAddPageModule } from '../pages/beauty-tip-add/beauty-tip-add.module';
@@ -301,6 +302,7 @@ export function getAuthHttp(http, storage) {
     MyCommunityModifyPage,
     SettingPage,
     FaqPage,
+    DeviceSkinSensorIngPage,
   ],
   imports: [
     HttpModule,
@@ -344,7 +346,7 @@ export function getAuthHttp(http, storage) {
     DeviceConnectFailPageModule,
     DeviceSkinStartPageModule,
     DeviceSkinIngPageModule,
-    DeviceSkinSensorIngPageModule,
+    // DeviceSkinSensorIngPageModule,
     BeautyTipAddPageModule,
     CommunityPageModule,
     // CommunityModifyPageModule,
@@ -434,6 +436,7 @@ export function getAuthHttp(http, storage) {
     MyCommunityModifyPage,
     SettingPage,
     FaqPage,
+    DeviceSkinSensorIngPage,
   ],
   providers: [
     StatusBar,

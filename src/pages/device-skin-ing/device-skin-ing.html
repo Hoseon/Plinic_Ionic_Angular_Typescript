@@ -25,17 +25,27 @@
     </div>
   </ion-item>
 
-    <div class="container">
-    <img class="img ic_system_skin_face_cheek" src="assets/img/ic-system-skin-face-cheek/ic-system-skin-face-cheek@3x.png"/>
+    <!-- <div class="container"> -->
+    <!-- 동영상 처리 -->
+    <video width="100%" id="videoPlayer" class="" webkit-playsinline playsinline autoplay loop preload="auto" >
+    <!-- <video width="100%" id="videoPlayer" class="" webkit-playsinline playsinline autoplay muted loop controls preload="auto" > -->
+    <!-- <video width="100%" id="videoPlayer" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" controls preload="auto"> -->
+      <source src="https://plinic.s3.ap-northeast-2.amazonaws.com/useplinic.mp4" type="video/mp4" />
+    </video>
+
+    <br /><br /><br />
+
+    <!-- <img class="img ic_system_skin_face_cheek" src="assets/img/ic-system-skin-face-cheek/ic-system-skin-face-cheek@3x.png"/>
     <ng-container *ngIf="anipoint">
     <img src="assets/img/testpoint.png" class="{{animpoint}}"/>
-    </ng-container>
-    </div>
+    </ng-container> -->
+    <!-- </div> -->
 
 
   <ion-item class="subtitle" no-lines>
     <div class="font_sub">
-      {{desc}}
+      <!-- {{desc}} -->
+      플리닉 사용 동영상을 참고 하세요.
     </div>
     <!-- <div class="font_sub">
       정밀한 피부측정을 위해<br />

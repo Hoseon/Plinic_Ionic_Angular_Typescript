@@ -210,9 +210,9 @@ export class HomePage {
         this.auth.setUserStoragediagnose_first_check(this.skin_diagnose_first_check);
         // console.log("===================="+this.skin_diagnose_first_check);
       }
-      if (this.auth.bluetooth_connect() == true) {
+      // if (this.auth.bluetooth_connect() == true) {
         //this.nav.push(SkinChartPage);
-      }
+      // }
 
 
       this.platform.registerBackButtonAction(() => {

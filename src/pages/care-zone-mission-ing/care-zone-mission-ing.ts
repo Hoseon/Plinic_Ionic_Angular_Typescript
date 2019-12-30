@@ -56,22 +56,19 @@ export class CareZoneMissionIngPage {
   @ViewChild('myInput') myInput: ElementRef;
   mode: any;
   updatevalue: any;
-
   subscriptionFourth: any;
   timeremaining: any;
   starttimeremaining: Date = new Date();
   displayTime: any;
   displayUseTime: any;
   displayUseTimeList: Array<any> = new Array<any>();
-
   memberRanking: Array<any> = new Array<any>();
-
   endCheck: boolean = false;
   missionuseTime: any;
-
   reward: boolean = false;
-
   commentTimeZone: Array<any> = new Array<any>();
+  profileimg_url: any;
+
 
   constructor(public nav: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     private images: ImagesProvider, public element: ElementRef,
@@ -92,6 +89,7 @@ export class CareZoneMissionIngPage {
   }
 
   ionViewDidLoad() {
+    this.loadItems();
     if (this.navParams.get('carezoeId')) {
       this.carezoneData2 = this.roadmission(this.navParams.get('carezoeId'));
     }
@@ -468,10 +466,16 @@ export class CareZoneMissionIngPage {
           gender: items.gender,
           nickname: this.jwtHelper.decodeToken(items).name,
           profile_image: items.profile_image,
-          thumbnail_image: items.thumbnail_image,
+          // thumbnail_image: items.thumbnail_image,
         };
         // console.log(this.userData);
         //this.chkmission(this.userData.email);
+        this.auth.getUserImage(this.userData.email).subscribe(items => {
+          if (items) {
+            this.profileimg_url = "https://plinic.s3.ap-northeast-2.amazonaws.com/";
+            this.profileimg_url = this.profileimg_url.concat(items.filename + "?random+\=" + Math.random());
+          }
+        });
       }
     });
   }
@@ -632,8 +636,8 @@ export class CareZoneMissionIngPage {
     this.images.missionUseTime(carezoneData._id, email).subscribe(data => {
       this.missionuseTime = data;
       this.reward = this.missionuseTime.reward;
-      // this.loadProgress = (Number(data.usetime) / 7560) * 100;
-      this.loadProgress = (Number(data.usetime) / 900) * 100; //20191129 전시회 용으로 프로그레스바 15분 로직으로 변경
+      this.loadProgress = (Number(data.usetime) / 7560) * 100;
+      // this.loadProgress = (Number(data.usetime) / 10800) * 100; //20191129 전시회 용으로 프로그레스바 15분 로직으로 변경
       if(this.loadProgress > 100){
         this.loadProgress = 100;
       }

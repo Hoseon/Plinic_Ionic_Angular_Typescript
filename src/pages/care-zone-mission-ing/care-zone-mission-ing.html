@@ -249,9 +249,10 @@
   </ion-list>
 
   <ng-container *ngIf="comment_popover_option==='보기' || comment_popover_option ==='삭제'">
-    <!-- <img *ngIf="!userData.thumbnail_image && profileimg_url" class="profile_comment" style="margin-top: 7%;" [src]="profileimg_url" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
-         <img *ngIf="userData.thumbnail_image" class="profile_comment" style="margin-top: 7%;" [src]="userData.thumbnail_image" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
-         <img *ngIf="!userData.thumbnail_image && !profileimg_url" style="margin-top: 7%;" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
+    <img *ngIf="profileimg_url" class="profile_comment" style="margin-top: 7%;" [src]="profileimg_url" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+    <img *ngIf="!profileimg_url" class="profile_comment" style="margin-top: 7%;" src="userData.thumbnail_image" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+    <!-- <img *ngIf="userData.thumbnail_image" class="profile_comment" style="margin-top: 7%;" [src]="userData.thumbnail_image" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" /> -->
+    <!-- <img *ngIf="!userData.thumbnail_image && !profileimg_url" style="margin-top: 7%;" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
     <div class="container">
       <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300" autoGrow="true" placeholder="댓글 등록" (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea>
       <button *ngIf="registerReply.comment.length >= 1" ion-button class="comment_input_enroll" (click)="saveSkinQnaReply()">등록</button>

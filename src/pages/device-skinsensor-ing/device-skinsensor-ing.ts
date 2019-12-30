@@ -105,7 +105,7 @@ export class DeviceSkinSensorIngPage {
 
   step: any = '1단계';
   stepdesc: any = '좌측 볼 마사지(1분)';
-  desc: any = '원을 그리듯 아래에서 위로 마사지해주세요.';
+  desc: any = '하단 막대가 모두 채워지도록 유수분 센서를 접촉해주세요.';
 
   // step: any = '0단계';
   // stepdesc: any = '화장품 도포';
@@ -139,7 +139,12 @@ export class DeviceSkinSensorIngPage {
   notimeDate: Date = new Date();
   score: any;
   moisture: any;
+  oil: any;
 
+  percent: any = "0%";
+  toggleToast: boolean = false;
+
+  loadProgress: number = 0;
 
 
 
@@ -156,10 +161,10 @@ export class DeviceSkinSensorIngPage {
         this.carezoneData = this.navParams.get('carezoneData');
       }
 
-      if (this.navParams.get('device')) {
-        this.device = this.navParams.get('device');
-        this.deviceSelected(this.device);
-      }
+      // if (this.navParams.get('device')) {
+      //   this.device = this.navParams.get('device');
+      //   this.deviceSelected(this.device);
+      // }
       // setTimeout(() => {
       this.startTimer();
       // }, 1000)
@@ -176,6 +181,11 @@ export class DeviceSkinSensorIngPage {
   }
 
   ionViewDidEnter() {
+    if (this.navParams.get('device')) {
+      // console.log("유수분 모드 측정 시작???");
+      this.device = this.navParams.get('device');
+      this.deviceSelected(this.device);
+    }
     // this.auth.getmissionPoint(this.carezoneData._id, this.userData.email).subscribe(data => {
     //   // console.log("현재 날짜 : " + this.currentDate.getFullYear() + '-' + this.currentDate.getMonth() + '-' + this.currentDate.getDate());
     //   // console.log("데이터 날짜 : " + new Date(data.usedmission[0].updatedAt).getFullYear() + '-' + new Date(data.usedmission[0].updatedAt).getMonth() + '-' + new Date(data.usedmission[0].updatedAt).getDate());
@@ -217,29 +227,37 @@ export class DeviceSkinSensorIngPage {
   }
 
   deviceSelected(device) {
-    this.ble.connect(device.id).subscribe(
-      peripheral => {
-        this.ble.refreshDeviceCache(device.id, 2000).then(result => {
-          console.log("refresh sucess : " + result);
+    this.ble.startScan([PLINIC_SERVICE]).subscribe(
+      device => {
+        // console.log("스캔이 잘 되었는지?");
+        this.ble.connect(this.device.id).subscribe(
+          peripheral => {
+            // console.log("커넥션이 잘 되었는지??");
+            // this.ble.refreshDeviceCache(device.id, 2000).then(result => {
+            //   console.log("refresh sucess : " + result);
+            //
+            // }).catch(error => {
+            //   console.log("refresh error : " + error);
+            // });
+            this.onConnected(peripheral);
+          },
+          // this.onConnected(peripheral),
+          // peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
+          peripheral => { //디바이스 연결 중단되면 누적 처리 후 종료
+            // console.log("연결이 종료됨 유수분 측정");
+            // this.bleshowAlert('Disconnected', '디바이스 연결이 중단 되었습니다.');
+            if (this.navParams.get('carezoneData')) {
+              // this.pointUpdate();
+              this.navCtrl.pop().then(() => this.navCtrl.pop())
+            } else {
+              // this.userTimeUpdate();
+              this.navCtrl.pop().then(() => this.navCtrl.pop())
+            }
+          }
+        );
+      });
 
-        }).catch(error => {
-          console.log("refresh error : " + error);
-        });
-        this.onConnected(peripheral);
-      },
-      // this.onConnected(peripheral),
-      // peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
-      peripheral => { //디바이스 연결 중단되면 누적 처리 후 종료
-        // this.bleshowAlert('Disconnected', '디바이스 연결이 중단 되었습니다.');
-        if (this.navParams.get('carezoneData')) {
-          // this.pointUpdate();
-          this.navCtrl.pop().then(() => this.navCtrl.pop())
-        } else {
-          // this.userTimeUpdate();
-          this.navCtrl.pop().then(() => this.navCtrl.pop())
-        }
-      }
-    );
+
 
 
 
@@ -259,7 +277,7 @@ export class DeviceSkinSensorIngPage {
 
   onConnected(peripheral) {
 
-    console.log("디바이스 서비스 정보 : " + JSON.stringify(peripheral));
+    // console.log("디바이스 서비스 정보 : " + JSON.stringify(peripheral));
 
     this.peripheral = peripheral;
     // this.setStatus('Connected to ' + (peripheral.name || peripheral.id));
@@ -331,11 +349,11 @@ export class DeviceSkinSensorIngPage {
     // UUID:180A  (Environmental Sensing Service, ESS)
     // UUID:FEFB  (device Information Service, DIS)
 
-    var service_UUID = '1801';
-    var char_UUID = '2902';
+    // var service_UUID = '1801';
+    // var char_UUID = '2902';
 
-    var read_UUID = '180a';
-    var read_char_UUID = '2a50';
+    // var read_UUID = '180a';
+    // var read_char_UUID = '2a50';
 
     // this.ble.startStateNotifications().subscribe(result => {
     //   console.log("블루트스 상태 변화 감지 : " + result);
@@ -349,111 +367,133 @@ export class DeviceSkinSensorIngPage {
     //   console.log("error ios test : " + error);
     // })
 
-    console.log("---------------------------------노티피 시작 ------------------------------------------------");
+    // console.log("---------------------------------노티피 시작 ------------------------------------------------");
     var i = 0;
     this.ble.startNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
-      // console.log("그냥 버퍼 " + String.fromCharCode.apply(null, buffer));
-      // console.log(this.stringToBytes(buffer));
-      // console.log("Plinic G1Partners Notifi 8 " +  String.fromCharCode(parseInt(buffer,16)));
-      // console.log("Plinic G1Partners Notifi 8 " +  String.fromCharCode.apply(null, new Uint8Array(buffer)));
-      // console.log("Plinic G1Partners Notifi 16 " + String.fromCharCode.apply(null, new Uint16Array(buffer)));
-      // console.log("Plinic G1Partners Notifi 32 " + String.fromCharCode.apply(null, new Uint32Array(buffer)));
-      // console.log("Plinic G1Partners Notifi Uint8ClampedArray " + String.fromCharCode.apply(null, new Uint8ClampedArray(buffer)));
-      // console.log("Plinic G1Partners Notifi 8 " + String.fromCharCode.apply(null, new Int8Array(buffer)));
-      // console.log("Plinic G1Partners Notifi 16 " + String.fromCharCode.apply(null, new Int16Array(buffer)));
-      // console.log("Plinic G1Partners Notifi 32 " + String.fromCharCode.apply(null, new Int32Array(buffer)));
-
-      console.log("Plinic G1Partners Notifi 8 " + new Uint8Array(buffer));
       var data2 = new Uint8Array(buffer);
-      console.log("data22222 : " + data2);
-      var data3 = '';
-      var data16 = '';
-      // console.log(data2[3], data2[4]);
-      // console.log(data2[3].toString(16) + data2[4].toString(16));
-      data16 = data2[3].toString(16) + data2[4].toString(16);
-      data3 = '0x' + data16;
-      // console.log(data3);
-      // console.log(parseInt(data3, 16));
-      // console.log(i);
-      // this.result[i] = 100 - ((parseInt(data3, 16) / 1023) * 100);
-      this.resultmoisture = (100 - ((parseInt(data3, 16) / 1023) * 100)).toFixed(1);
-      console.log(parseInt(data3, 16));
-      // console.log(this.result[i]);
-      if (i >= 1 && i <= 6) {
-        console.log(this.result[i]);
-        this.result2[i] = (100 - ((parseInt(data3, 16) / 1023) * 100)).toFixed(1);
-      } else if (i === 7) {
-        this.ble.stopNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(data => {
-          var kkkk = 0;
-          for (var k = 1; k < this.result2.length; k++) {
-            console.log(k + ":" + parseInt(this.result2[k]));
-            kkkk += parseInt(this.result2[k]);
-          }
-          // console.log("kkkk" + (kkkk / 3).toFixed(1));
-          this.moisture = (kkkk / 6).toFixed(1);
+      var checkdata = data2[0].toString();
+      if (checkdata === '2') {
+        // console.log("Plinic G1Partners Notifi 8 " + new Uint8Array(buffer));
+        // var data2 = new Uint8Array(buffer);
+        // console.log("data22222 : " + data2);
+        var data3 = '';
+        var data16 = '';
+        // console.log(data2[3], data2[4]);
+        // console.log(data2[3].toString(16) + data2[4].toString(16));
+        data16 = data2[3].toString(16) + data2[4].toString(16);
+        data3 = '0x' + data16;
+        // console.log(data3);
+        // console.log(parseInt(data3, 16));
+        // console.log(i);
+        // this.result[i] = 100 - ((parseInt(data3, 16) / 1023) * 100);
+        this.resultmoisture = (100 - ((parseInt(data3, 16) / 1023) * 100)).toFixed(1);
+        // console.log(parseInt(data3, 16));
+        // console.log("this.resultmoisture :" + this.resultmoisture );
+        // console.log(this.result[i]);
+        if (i >= 0 && i <= 7) {
+          // console.log(this.result[i]);
+          if (parseFloat(this.resultmoisture) > 1) {
+            // console.log("데이터가 1보다 큼");
+            this.result2[i] = (100 - ((parseInt(data3, 16) / 1023) * 100)).toFixed(1);
+            i++;
+            this.toggleToast = true;
+            if (i === 1) {
+              this.percent = "10%"
+              this.loadProgress = 10;
+            } else if (i === 2) {
+              this.percent = "20%"
+              this.loadProgress = 20;
+            } else if (i === 3) {
+              this.percent = "35%"
+              this.loadProgress = 35;
+            } else if (i === 4) {
+              this.percent = "50%"
+              this.loadProgress = 50;
+            } else if (i === 5) {
+              this.percent = "60%"
+              this.loadProgress = 60;
+            } else if (i === 6) {
+              this.percent = "80%"
+              this.loadProgress = 80;
+            } else if (i === 7) {
+              this.percent = "100%"
+              this.loadProgress = 100;
 
-          var today = this.currentDate.getFullYear() + "-" + this.get2digits(this.currentDate.getMonth() + 1) + "-" + this.get2digits(this.currentDate.getDate());
-          this.notimeDate = new Date(today);
-
-          this.score = {
-            oil: this.moisture,
-            moisture: this.moisture,
-            saveDate: this.notimeDate,
-          }
-
-          this.auth.skinChartSave(this.userData.email, this.score).subscribe(data => {
-            if (data !== '') {
-              // this.auth.setUserStoragediagnose_first_oil(this.all_oil_score*20);
-              //this.auth.setUserStoragediagnose_first_check(true);
-              if (this.platform.is('android')) {
-                const toast = this.toastCtrl.create({
-                  cssClass: 'blu_toast_android',
-                  message: '수분 측정 데이터 등록이 완료되었습니다.',
-                  duration: 3000,
-                  position: 'bottom'
-                });
-                toast.present();
-              }
-              else {
-                const toast = this.toastCtrl.create({
-                  cssClass: 'blu_toast_ios',
-                  message: '수분 측정 데이터 등록이 완료되었습니다.',
-                  duration: 3000,
-                  position: 'bottom'
-                });
-                toast.present();
-              }
-              // this.navCtrl.setRoot(TabsPage);
-              this.viewCtrl.dismiss().then(_ => {
-                this.ble.disconnect(this.peripheral.id);
-                this.dismissAllModal();
-              })
-
-              // console.log("데이터 등록 성공");
-            } else {
-              // console.log("데이터 등록 실패");
-              // this.navCtrl.setRoot(TabsPage);
-              this.viewCtrl.dismiss().then(_ => {
-                this.ble.disconnect(this.peripheral.id);
-                this.dismissAllModal();
-              })
             }
+          } else if (parseFloat(this.resultmoisture) <= 0.9) {
+            // console.log("데이터가 0보다 작음");
+            if (this.toggleToast) {
+              this.showToast("유수분 센서를 피부에 정확하게 접촉해주세요.");
+              this.toggleToast = false;
+            }
+          }
+        } else if (i === 8) {
+          this.ble.stopNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(data => {
+            var kkkk = 0;
+            for (var k = 1; k < this.result2.length; k++) {
+              // console.log(k + ":" + parseInt(this.result2[k]));
+              kkkk += parseInt(this.result2[k]);
+            }
+            // console.log("kkkk" + (kkkk / 3).toFixed(1));
+            this.moisture = (kkkk / 7).toFixed(1);
+
+            var today = this.currentDate.getFullYear() + "-" + this.get2digits(this.currentDate.getMonth() + 1) + "-" + this.get2digits(this.currentDate.getDate());
+            this.notimeDate = new Date(today);
+            this.oil = this.getOilScore(this.moisture);
+
+            this.score = {
+              oil: this.oil,
+              moisture: this.moisture,
+              saveDate: this.notimeDate,
+            }
+
+            this.auth.skinChartSave(this.userData.email, this.score).subscribe(data => {
+              if (data !== '') {
+                if (this.platform.is('android')) {
+                  const toast = this.toastCtrl.create({
+                    cssClass: 'blu_toast_android',
+                    message: '수분 측정 데이터 등록이 완료되었습니다.',
+                    duration: 3000,
+                    position: 'bottom'
+                  });
+                  toast.present();
+                }
+                else {
+                  const toast = this.toastCtrl.create({
+                    cssClass: 'blu_toast_ios',
+                    message: '수분 측정 데이터 등록이 완료되었습니다.',
+                    duration: 3000,
+                    position: 'bottom'
+                  });
+                  toast.present();
+                }
+                // this.navCtrl.setRoot(TabsPage);
+                this.viewCtrl.dismiss().then(_ => {
+                  this.ble.disconnect(this.peripheral.id);
+                  this.dismissAllModal();
+                })
+              } else {
+                this.viewCtrl.dismiss().then(_ => {
+                  this.ble.disconnect(this.peripheral.id);
+                  this.dismissAllModal();
+                })
+              }
+            })
           })
+        }
+      } else if (checkdata !== '2') {
+        // this.displayTime = 'false';
+        // this.resultmoisture = '센서 연결 끊김';
+
+        this.viewCtrl.dismiss().then(_ => {
+          this.ble.disconnect(this.peripheral.id);
+          this.dismissAllModal();
         })
       }
-      i++;
-      // console.log("data16 : " + parseInt(data16, 10));
-
-      // console.log("Plinic G1Partners Notifi 16 " + new Uint16Array(buffer));
-      // console.log("Plinic G1Partners Notifi 32 " + new Uint32Array(buffer));
-      // console.log("Plinic G1Partners Notifi 8 " + new Int8Array(buffer));
-      // console.log("Plinic G1Partners Notifi 16 " + new Int16Array(buffer));
-      // console.log("Plinic G1Partners Notifi 32 " + new Int32Array(buffer));
-
     }, error => {
       console.log("Notifi Error : " + error);
     })
-    console.log("---------------------------------노티피 종료 ------------------------------------------------");
+    // console.log("---------------------------------노티피 종료 ------------------------------------------------");
 
     // this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(result =>{
     //   console.log("read success : " + JSON.stringify(result));
@@ -899,5 +939,99 @@ export class DeviceSkinSensorIngPage {
         this.dismissAllModal()
       });
     }
+  }
+
+  public showToast(text) {
+    const toast = this.toastCtrl.create({
+      // cssClass: 'blu_toast_android',
+      message: text,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
+
+  private getOilScore(moisture) { //수분에 근거한 유분 구하는 공식
+    var intmoisture = parseFloat(moisture)
+    var getOil = '';
+    if (intmoisture >= 61) {
+      getOil = '95';
+    } else if (intmoisture <= 60.9 && intmoisture >= 60.0) {
+      getOil = this.makeRandom(94, 95);
+    } else if (intmoisture <= 59.9 && intmoisture >= 59.0) {
+      getOil = '93';
+    } else if (intmoisture <= 58.9 && intmoisture >= 58.0) {
+      getOil = '92';
+    } else if (intmoisture <= 57.9 && intmoisture >= 57.0) {
+      getOil = '91';
+    } else if (intmoisture <= 56.9 && intmoisture >= 56.0) {
+      getOil = '90';
+    } else if (intmoisture <= 55.9 && intmoisture >= 55.0) {
+      getOil = '89';
+    } else if (intmoisture <= 54.9 && intmoisture >= 54.0) {
+      getOil = '88';
+    } else if (intmoisture <= 53.9 && intmoisture >= 53.0) {
+      getOil = '87';
+    } else if (intmoisture <= 52.9 && intmoisture >= 52.0) {
+      getOil = '86';
+    } else if (intmoisture <= 51.9 && intmoisture >= 51.0) {
+      getOil = '85';
+    } else if (intmoisture <= 50.9 && intmoisture >= 50.0) {
+      getOil = '76';
+    } else if (intmoisture <= 49.9 && intmoisture >= 49.0) {
+      getOil = '70';
+    } else if (intmoisture <= 48.9 && intmoisture >= 48.0) {
+      getOil = '65';
+    } else if (intmoisture <= 47.9 && intmoisture >= 47.0) {
+      getOil = '57';
+    } else if (intmoisture <= 46.9 && intmoisture >= 46.0) {
+      getOil = '54';
+    } else if (intmoisture <= 45.9 && intmoisture >= 37.0) {
+      getOil = '53';
+    } else if (intmoisture <= 36.9 && intmoisture >= 36.0) {
+      getOil = '52';
+    } else if (intmoisture <= 35.9 && intmoisture >= 35.0) {
+      getOil = '50';
+    } else if (intmoisture <= 34.9 && intmoisture >= 34.0) {
+      getOil = '47';
+    } else if (intmoisture <= 33.9 && intmoisture >= 33.0) {
+      getOil = '45';
+    } else if (intmoisture <= 32.9 && intmoisture >= 32.0) {
+      getOil = '40';
+    } else if (intmoisture <= 31.9 && intmoisture >= 31.0) {
+      getOil = '35';
+    } else if (intmoisture <= 30.9 && intmoisture >= 30.0) {
+      getOil = '30';
+    } else if (intmoisture <= 29.9 && intmoisture >= 29.0) {
+      getOil = '25';
+    } else if (intmoisture <= 28.9 && intmoisture >= 28.0) {
+      getOil = '20';
+    } else if (intmoisture <= 27.9 && intmoisture >= 27.0) {
+      getOil = '15';
+    } else if (intmoisture <= 26.9 && intmoisture >= 26.0) {
+      getOil = '14';
+    } else if (intmoisture <= 25.9 && intmoisture >= 25.0) {
+      getOil = '13';
+    } else if (intmoisture <= 24.9 && intmoisture >= 24.0) {
+      getOil = '12';
+    } else if (intmoisture <= 23.9 && intmoisture >= 23.0) {
+      getOil = '11';
+    } else if (intmoisture <= 22.9 && intmoisture >= 22.0) {
+      getOil = '10';
+    } else if (intmoisture <= 21.9 && intmoisture >= 21.0) {
+      getOil = '9';
+    } else if (intmoisture <= 20.9 && intmoisture >= 20.0) {
+      getOil = '8';
+    } else if (intmoisture <= 19.9 && intmoisture >= 19.0) {
+      getOil = '7';
+    } else if (intmoisture <= 18.9 && intmoisture >= 1.0) {
+      getOil = this.makeRandom(10, 1);
+    }
+    return getOil;
+  }
+
+  private makeRandom(min, max) {
+        var RandVal = Math.floor(Math.random() * (max - min + 1)) + min;
+        return RandVal;
   }
 }

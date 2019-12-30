@@ -81,8 +81,8 @@ public loadimagePath() {
 }
 
 ionViewDidEnter() {
-  this.blu_connect = this.authService.bluetooth_connect();
-  console.log('blu_connect=====================' + this.authService.bluetooth_connect());
+  // this.blu_connect = this.authService.bluetooth_connect();
+  // console.log('blu_connect=====================' + this.authService.bluetooth_connect());
   // this.loadItems();
   // this.loadNotice();
   let tabs = document.querySelectorAll('.tabbar');

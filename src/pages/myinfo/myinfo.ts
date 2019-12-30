@@ -21,7 +21,7 @@ import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing'
 import { DeviceConnectSkinIngPage } from '../device-connect-skin-ing/device-connect-skin-ing'
 // import { FCM } from '@ionic-native/fcm';
 import { CommunityModifyPage } from '../community/community-modify/community-modify';
-
+import videojs from 'video.js'
 
 
 
@@ -138,7 +138,7 @@ export class MyinfoPage {
   missionHistory: any; //참여자 미션 이력 값
   userUseTime: any; //참여자 미션 이력 값
 
-
+  url: any;
 
   // pushToken: any;
 
@@ -152,7 +152,6 @@ export class MyinfoPage {
 
     this.platform.ready().then((readySource) => {
       this.segment_moisture = "수분";
-
     });
 
   }
@@ -279,8 +278,6 @@ export class MyinfoPage {
     this.today = format(this.today, 'DD');
 
     this.lineCanvas = new Chart(this.lineCanvas.nativeElement, {
-
-
       type: 'bar',
       data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
         labels: this.chartDateData,
@@ -385,62 +382,65 @@ export class MyinfoPage {
     });
 
     this.lineCanvas2 = new Chart(this.lineCanvas2.nativeElement, {
-
-
-      type: 'line',
+      type: 'bar',
       data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
         labels: this.chartDateData,
-        datasets: [{
-          // 수분은 하늘이랑 파랑
-          // 유분은 노랑이랑 주황!!
-          // label: format(this.today, 'MM/DD', '유분'),
-          label: '내 유분 점수',
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "#368AFF",
-          borderColor: "#368AFF",
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "#368AFF",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "#368AFF",
-          pointHoverBorderColor: "#368AFF",
-          pointHoverBorderWidth: 2,
-          pointRadius: 3,
-          pointHitRadius: 10,
-          data: this.chartOilData,
-          spanGaps: false,
-        },
-        {
-          // label: format(this.today, 'MM/DD', '유분'),
-          label: '20대 평균 유분 점수',
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "#00C6ED",
-          borderColor: "#00C6ED",
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "#00C6ED",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "#00C6ED",
-          pointHoverBorderColor: "#00C6ED",
-          pointHoverBorderWidth: 2,
-          pointRadius: 3,
-          pointHitRadius: 10,
-          data: [
-            // this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
-            // this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
-          ],
-          spanGaps: false,
-        }],
+        datasets: [
+          {
+            type: 'line',
+            // label: format(this.today, 'MM/DD', '유분'),
+            label: '나의 수분 점수',
+            fill: false,
+            // lineTension: 0,
+            backgroundColor: "#808080",
+            borderColor: "#808080",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "#00C6ED",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#00C6ED",
+            pointHoverBorderColor: "#00C6ED",
+            pointHoverBorderWidth: 2,
+            pointRadius: 3,
+            pointHitRadius: 20,
+            borderWidth: 1,
+            data: this.chartOilData,
+            spanGaps: false,
+            // 수분은 하늘이랑 파랑
+            // 유분은 노랑이랑 주황!!
+            // label: format(this.today, 'MM/DD', '유분'),
+          },
+          {
+            // label: format(this.today, 'MM/DD', '유분'),
+            type: 'bar',
+            label: '20~30대 평균 수분 점수',
+            fill: false,
+            lineTension: 0,
+            borderWidth: 1,
+            backgroundColor: "#726FBD",
+            borderColor: "#726FBD",
+            // borderCapStyle: 'butt',
+            // borderDash: [],
+            // borderDashOffset: 0.0,
+            // borderJoinStyle: 'miter',
+            // pointBorderColor: "#368AFF",
+            // pointBackgroundColor: "#fff",
+            // pointBorderWidth: 1,
+            // pointHoverRadius: 5, //클릭시 원크기
+            // pointHoverBackgroundColor: "#368AFF",
+            // pointHoverBorderColor: "#368AFF",
+            // pointHoverBorderWidth: 2, //데이터 호버크기
+            // pointRadius: 3,  //데이터 포인트크기
+            // pointHitRadius: 50,
+            // data: [this.data1, this.data2, this.data3, this.data4],
+            data: [57, 30, 54, 35, 53, 50, 52, 50, 51, 70, 47, 30, 45, 40],
+            spanGaps: false,
+          },
+        ],
       },
       options: {
         animation: {
@@ -452,6 +452,10 @@ export class MyinfoPage {
         },
         scales: {
           xAxes: [{
+            gridLines: {
+              offsetGridLines: false
+            },
+            barPercentage: 0.4,
             display: true,
             ticks: {
               beginAtZero: true,
@@ -468,18 +472,115 @@ export class MyinfoPage {
             }
           }]
         },
-        // plugins: {
-        //     labels: {
-        //           render: this.percentage,
-        //           precision: 0,
-        //           fontSize: 15,
-        //           fontStyle: 'normal',
-        //           textShadow: true,
-        //           showActualPercentages: true
-        //       }
-        //   }
+        plugins: {
+          labels: {
+            render: 'text',
+            precision: 0,
+            fontSize: 0,
+            fontStyle: 'normal',
+            textShadow: true,
+            showActualPercentages: true
+          }
+        }
       }
     });
+
+    // this.lineCanvas2 = new Chart(this.lineCanvas2.nativeElement, {
+    //
+    //
+    //   type: 'line',
+    //   data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
+    //     labels: this.chartDateData,
+    //     datasets: [{
+    //       // 수분은 하늘이랑 파랑
+    //       // 유분은 노랑이랑 주황!!
+    //       // label: format(this.today, 'MM/DD', '유분'),
+    //       label: '내 유분 점수',
+    //       fill: false,
+    //       lineTension: 0.1,
+    //       backgroundColor: "#368AFF",
+    //       borderColor: "#368AFF",
+    //       borderCapStyle: 'butt',
+    //       borderDash: [],
+    //       borderDashOffset: 0.0,
+    //       borderJoinStyle: 'miter',
+    //       pointBorderColor: "#368AFF",
+    //       pointBackgroundColor: "#fff",
+    //       pointBorderWidth: 1,
+    //       pointHoverRadius: 5,
+    //       pointHoverBackgroundColor: "#368AFF",
+    //       pointHoverBorderColor: "#368AFF",
+    //       pointHoverBorderWidth: 2,
+    //       pointRadius: 3,
+    //       pointHitRadius: 10,
+    //       data: this.chartOilData,
+    //       spanGaps: false,
+    //     },
+    //     {
+    //       // label: format(this.today, 'MM/DD', '유분'),
+    //       label: '20대 평균 유분 점수',
+    //       fill: false,
+    //       lineTension: 0.1,
+    //       backgroundColor: "#00C6ED",
+    //       borderColor: "#00C6ED",
+    //       borderCapStyle: 'butt',
+    //       borderDash: [],
+    //       borderDashOffset: 0.0,
+    //       borderJoinStyle: 'miter',
+    //       pointBorderColor: "#00C6ED",
+    //       pointBackgroundColor: "#fff",
+    //       pointBorderWidth: 1,
+    //       pointHoverRadius: 5,
+    //       pointHoverBackgroundColor: "#00C6ED",
+    //       pointHoverBorderColor: "#00C6ED",
+    //       pointHoverBorderWidth: 2,
+    //       pointRadius: 3,
+    //       pointHitRadius: 10,
+    //       data: [
+    //         // this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
+    //         // this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
+    //       ],
+    //       spanGaps: false,
+    //     }],
+    //   },
+    //   options: {
+    //     animation: {
+    //       duration: 3000 // general animation time
+    //     },
+    //     responsive: true,
+    //     legend: {
+    //       display: false,     //라벨표시
+    //     },
+    //     scales: {
+    //       xAxes: [{
+    //         display: true,
+    //         ticks: {
+    //           beginAtZero: true,
+    //           max: 100,
+    //           min: 0
+    //         }
+    //       }],
+    //       yAxes: [{
+    //         display: true,
+    //         ticks: {
+    //           beginAtZero: true,
+    //           max: 100,
+    //           min: 0
+    //         }
+    //       }]
+    //     },
+    //     // plugins: {
+    //     //     labels: {
+    //     //           render: this.percentage,
+    //     //           precision: 0,
+    //     //           fontSize: 15,
+    //     //           fontStyle: 'normal',
+    //     //           textShadow: true,
+    //     //           showActualPercentages: true
+    //     //       }
+    //     //   }
+    //   }
+    // });
 
 
   }
@@ -983,8 +1084,8 @@ export class MyinfoPage {
         // this.update();
         this.totalusetime = this.getSecondsAsDigitalClock(items[0].sum);
         // this.loadProgress = (Number(items[0].sum) / 16200) * 100; //20191129 전시회 용으로 원래 로직 잠시 막아둠
-        this.loadProgress = (Number(items[0].sum) / 900) * 100; //20191129 전시회 용으로 프로그레스바 15분 로직으로 변경
-        if(this.loadProgress > 100){
+        this.loadProgress = (Number(items[0].sum) / 10800) * 100; //20191129 전시회 용으로 프로그레스바 15분 로직으로 변경
+        if (this.loadProgress > 100) {
           this.loadProgress = 100;
         }
       }
@@ -1416,6 +1517,25 @@ export class MyinfoPage {
       this.auth.getHistoryMission(this.userData.email).subscribe(data => {
         // console.log("미션 이력은 잘 가져 왔는가?" + JSON.stringify(data));
       });
+    }
+  }
+
+  initPlayer() {
+    this.url = "https://plinic.s3.ap-northeast-2.amazonaws.com/test.mp4"
+    try {
+      // setup the player via the unique element ID
+      var element = document.getElementById('videoPlayer');
+      if (element == null) {
+        throw "error loading blah";
+      }
+      // if we get here, all good!
+      videojs(element, {
+        controlBar: {
+          fullscreenToggle: false
+        }
+      }, () => { });
+    }
+    catch (e) {
     }
   }
 

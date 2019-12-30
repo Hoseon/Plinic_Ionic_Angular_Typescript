@@ -25,8 +25,8 @@ import { BLE } from '@ionic-native/ble';
 
 // //HM Soft Bluetooth Mod
 const PLINIC_SERVICE = 'FFE0';
-const UUID_SERVICE = '1801';
-const SWITCH_CHARACTERISTIC = '2a05';
+const UUID_SERVICE = 'FFE0';
+const SWITCH_CHARACTERISTIC = 'FFE1';
 
 
 // {"service":"1800","characteristic":"2a00","properties":["Read"]},
@@ -82,7 +82,7 @@ export class DeviceConnectSkinIngPage {
     this.platform.ready().then((readySource) => {
 
       if(this.platform.is('android')){
-      this.enableBluetooth();
+      // this.enableBluetooth();
       }
 
       if (this.navParams.get('carezoneData')) {
@@ -191,11 +191,12 @@ export class DeviceConnectSkinIngPage {
   }
 
   scan() {
+    console.log("start scan");
     this.setStatus('Scanning for Bluetooth LE Devices');
     this.devices = [];  // clear list
     // 시간내로 스캔 하는 방법
     // this.ble.scan([PLINIC_SERVICE], 10).subscribe(
-    //   device => {
+    //   device =>  {
     //     console.log("aaaaa :" + device);
     //     this.onDeviceDiscovered(device);
     //     this.deviceSelected(device);
@@ -215,11 +216,31 @@ export class DeviceConnectSkinIngPage {
         // this.onDeviceDiscovered(device);
         // this.deviceSelected(device);
         this.ble.stopScan();
-        // this.navCtrl.push(DeviceConnectCompletePage, { device: device }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
-        this.navCtrl.push(DeviceSkinSensorIngPage, { device: device,  'carezoneData':this.carezoneData }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
 
+        this.ble.connect(device.id).subscribe(
+          peripheral => {
+            // console.log("1111111111111111111 커넥트 성공");
+            // this.onConnected(peripheral);
+            this.ble.startNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
+              // console.log("333333333 노티피 성공");
+              var data2 = new Uint8Array(buffer);
+              var data16 = data2[0].toString()
+              if(data16 === '2'){
+                this.ble.stopNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(result => {
+                  this.ble.disconnect(device.id).then(result1 =>{
+                    // console.log("디스커넥트 됨" + result1);
+                  });
+                  this.navCtrl.push(DeviceSkinSensorIngPage, { device: device,  'carezoneData':this.carezoneData }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
+                })
+              }
+            },error => {
+              // console.log("444444444444 노티피 에러 " + error);
+            });
+          },
+        );
       },
       error => {
+        // console.log("22222222222 + error" + error);
         this.scanError(error);
         this.ble.stopScan();
         this.navCtrl.push(DeviceConnectFailPage);
@@ -231,7 +252,7 @@ export class DeviceConnectSkinIngPage {
   }
 
   onDeviceDiscovered(device) {
-    console.log('Discovered ' + JSON.stringify(device, null, 2));
+    // console.log('Discovered ' + JSON.stringify(device, null, 2));
     this.ngZone.run(() => {
       this.devices.push(device);
     });
@@ -259,7 +280,7 @@ export class DeviceConnectSkinIngPage {
   }
 
   deviceSelected(device) {
-    console.log(JSON.stringify(device) + ' selected');
+    // console.log(JSON.stringify(device) + ' selected');
     // this.navCtrl.push(DetailPage, {
     //   device: device
     // });
@@ -286,13 +307,13 @@ export class DeviceConnectSkinIngPage {
     this.peripheral = peripheral;
     this.setStatus('Connected to ' + (peripheral.name || peripheral.id));
 
-    console.log("this.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.id : " + this.peripheral.id);
+    // console.log("this.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.id : " + this.peripheral.id);
     // Update the UI with the current state of the switch characteristic
     this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(
       buffer => {
         let data = new Uint8Array(buffer);
         let data2 = String.fromCharCode.apply(null, new Uint8Array(buffer));
-        console.log("data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : " + data2)
+        // console.log("data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : " + data2)
 
 
         // console.log('switch characteristic 0' + data[0]);
@@ -304,7 +325,7 @@ export class DeviceConnectSkinIngPage {
 
 
         for (var i = 0; i < data.length; i++) {
-          console.log("data" + i + "--- :" + data[i]);
+          // console.log("data" + i + "--- :" + data[i]);
         }
         // var array = new Uint8Array(string.length);
         // for (var i = 0, l = string.length; i < l; i++) {
@@ -320,10 +341,10 @@ export class DeviceConnectSkinIngPage {
     )
 
     this.ble.startNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
-      console.log("Plinic G1Partners Notifi 8 " + String.fromCharCode.apply(null, new Uint8Array(buffer)));
-      console.log("Plinic G1Partners Notifi 16" + String.fromCharCode.apply(null, new Uint16Array(buffer)));
+      // console.log("Plinic G1Partners Notifi 8 " + String.fromCharCode.apply(null, new Uint8Array(buffer)));
+      // console.log("Plinic G1Partners Notifi 16" + String.fromCharCode.apply(null, new Uint16Array(buffer)));
     }, error => {
-      console.log("Notifi Error : " + error);
+      // console.log("Notifi Error : " + error);
     })
 
     // Update the UI with the current state of the dimmer characteristic

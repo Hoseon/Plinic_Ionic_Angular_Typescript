@@ -59,6 +59,7 @@ export class CommunityModifyPage {
   browserRef: any;
 
   loading: Loading;
+  plinicUserImages: Array<any> = new Array<any>();
 
 
 
@@ -85,6 +86,7 @@ export class CommunityModifyPage {
       this.skinQnaOneLoad(this.id);
     } else {
       this.beautyNoteOneLoad(this.id);
+      this.getUserimage();
     }
   }
 
@@ -639,6 +641,7 @@ export class CommunityModifyPage {
           this.islike = true;
         }
       }
+      this.getUserimage();
     });
   }
 
@@ -683,11 +686,13 @@ export class CommunityModifyPage {
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
         };
-        console.log(this.userData.from);
+        this.auth.getUserImage(this.userData.email).subscribe(items => {
+          if (items) {
+            this.profileimg_url = "https://plinic.s3.ap-northeast-2.amazonaws.com/";
+            this.profileimg_url = this.profileimg_url.concat(items.filename + "?random+\=" + Math.random());
+          }
+        });
       }
-
-      this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
-      this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
     });
   }
 
@@ -768,7 +773,7 @@ export class CommunityModifyPage {
           "title": '뷰티노트 댓글이 작성되었습니다.',
           "body": this.beautyNoteOneLoadData.title,
           "sound": "default",
-          "click_action":"FCM_PLUGIN_ACTIVITY",
+          "click_action": "FCM_PLUGIN_ACTIVITY",
         },
         //토큰
       }
@@ -932,7 +937,7 @@ export class CommunityModifyPage {
           "title": '피부고민 댓글이 작성되었습니다.',
           "body": this.skinQnaOneLoadData.title,
           "sound": "default",
-          "click_action":"FCM_PLUGIN_ACTIVITY",
+          "click_action": "FCM_PLUGIN_ACTIVITY",
         },
         //토큰
       }
@@ -1253,6 +1258,20 @@ export class CommunityModifyPage {
   //     console.log("loadstart --------------------------------------- : " + event);
   //   })
   // }
+
+
+
+  getUserimage() {
+    for (let i = 0; i < this.beautyNoteOneLoadData.comments.length; i++) {
+      this.images.chkUserImage(this.beautyNoteOneLoadData.comments[i].email).subscribe(data => {
+        if (data !== 'NOTFOUND') {
+          this.plinicUserImages[i] = 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + data
+        }
+      })
+    }
+
+    // return 'https://plinic.s3.ap-northeast-2.amazonaws.com/image-1574732479055';
+  }
 
 
 

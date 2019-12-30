@@ -25,8 +25,8 @@ import { BLE } from '@ionic-native/ble';
 
 // //HM Soft Bluetooth Mod
 const PLINIC_SERVICE = 'FFE0';
-const UUID_SERVICE = '1801';
-const SWITCH_CHARACTERISTIC = '2a05';
+const UUID_SERVICE = 'FFE0';
+const SWITCH_CHARACTERISTIC = 'FFE1';
 
 
 // {"service":"1800","characteristic":"2a00","properties":["Read"]},
@@ -81,8 +81,8 @@ export class DeviceConnectIngPage {
   ) {
     this.platform.ready().then((readySource) => {
 
-      if(this.platform.is('android')){
-      this.enableBluetooth();
+      if (this.platform.is('android')) {
+        // this.enableBluetooth();
       }
 
       if (this.navParams.get('carezoneData')) {
@@ -145,6 +145,10 @@ export class DeviceConnectIngPage {
     console.log('ionViewDidLoad DeviceConnectIngPage');
   }
 
+  ionViewWillLeave() {
+    this.ble.stopScan();
+  }
+
   // public successpage() {
   //   this.navCtrl.push(DeviceConnectCompletePage);
   // }
@@ -160,25 +164,25 @@ export class DeviceConnectIngPage {
   public deviceFail() {
     // this.navCtrl.push(DeviceConnectFailPage);
     //this.navCtrl.setRoot(TabsPage);
-   // if (this.navParams.get('carezoneData')) {
-     this.viewCtrl.dismiss();
-   // } else { //마이페이지에서는 parent select로 취소 되기 버튼이 되어야 한다.
-     // this.navCtrl.parent.select(4);
-   // }
+    // if (this.navParams.get('carezoneData')) {
+    this.viewCtrl.dismiss();
+    // } else { //마이페이지에서는 parent select로 취소 되기 버튼이 되어야 한다.
+    // this.navCtrl.parent.select(4);
+    // }
 
   }
 
 
   public enableBluetooth() {
-      this.ble.enable().then(
-        success => {
-          console.log("Bluetooth is enabled");
-        },
-        error => {
-          console.log("The user did *not* enable Bluetooth");
-        }
-      );
-    }
+    this.ble.enable().then(
+      success => {
+        console.log("Bluetooth is enabled");
+      },
+      error => {
+        console.log("The user did *not* enable Bluetooth");
+      }
+    );
+  }
 
 
   showAlert(text) {
@@ -212,16 +216,36 @@ export class DeviceConnectIngPage {
     //잡힐떄 까지 계속 스캔하는 방법
     this.ble.startScan([PLINIC_SERVICE]).subscribe(
       device => {
-        console.log("aaaaa :" + device);
-        this.onDeviceDiscovered(device);
+        // this.onDeviceDiscovered(device);
         // this.deviceSelected(device);
         this.ble.stopScan();
-        // this.navCtrl.push(DeviceConnectCompletePage, { device: device }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
-        this.navCtrl.push(DeviceSkinIngPage, { device: device,  'carezoneData':this.carezoneData }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
 
+        this.ble.connect(device.id).subscribe(
+          peripheral => {
+            // console.log("1111111111111111111 커넥트 성공");
+            // this.onConnected(peripheral);
+            this.ble.startNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
+              // console.log("333333333 노티피 성공");
+              var data2 = new Uint8Array(buffer);
+              var data16 = data2[0].toString()
+              // console.log("노티피 데이터는 ? : " + data16);
+              if (data16 === '17') {
+                this.ble.stopNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(result => {
+                  this.ble.disconnect(device.id).then(result1 => {
+                    // console.log("디스커넥트 됨" + result1);
+                    this.navCtrl.push(DeviceSkinIngPage, { device: device, 'carezoneData': this.carezoneData }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
+                  });
+                })
+              } else {
+                this.scan();
+              }
+            }, error => {
+              // console.log("444444444444 노티피 에러 " + error);
+            });
+          });
       },
       error => {
-        console.log("bbbbb" + error);
+        // console.log("22222222222 + error" + error);
         this.scanError(error);
         this.ble.stopScan();
         this.navCtrl.push(DeviceConnectFailPage);
