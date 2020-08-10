@@ -48,13 +48,21 @@
 
 
   <!-- <ion-card style =" width=100%;"> -->
-    <ion-item no-lines>
+    <ion-item *ngIf="!isComplete" no-lines>
       <!-- <button *ngIf="displayTime" ion-button large full clear class="timer-button" >{{displayTime}}</button> -->
-      <button *ngIf="resultmoisture" ion-button large full clear class="timer-button" >{{resultmoisture}}%</button>
+      <!-- <button *ngIf="resultmoisture" ion-button large full clear class="timer-button" >{{resultmoisture}}%</button> -->
       <!-- <button *ngIf="displayTime === 'false'" ion-button large full clear class="timer-button" >{{resultmoisture}}</button> -->
       <!-- <button *ngIf="result2.length <= 6" ion-button large full clear class="timer-button" >{{percent}}</button> -->
       <progress-bar [color]="mycolor" [progress]="loadProgress"></progress-bar><br><br>
     </ion-item>
+
+    <!-- <ion-item *ngIf="isComplete" no-lines>
+      <div class="font_sub2">
+        당신의 피부 데이터 결과 <br>
+        수분 : {{score.moisture}} <br>
+        유분 : {{score.oil}}<br>
+      </div>
+    </ion-item> -->
     <!-- <ion-item > -->
       <!-- <button ion-button icon-left clear color="danger" small (click)="initTimer()" item-left >
         <ion-icon name="refresh"></ion-icon>
@@ -114,7 +122,7 @@
 
     <div class="center">
       <button class="cancel_button"clear ion-button (click)="device_canceldisconnect()">
-        <div>취소하기</div>
+        <div>종료하기</div>
       </button>
     </div>
 

@@ -277,7 +277,7 @@
         <div class="nickname_comment">{{registerReply.email}}</div>
         <button *ngIf="comment_popover_option_textarea === i" (click)="replySkinQnaUpdate(registerReply.email, registerReply._id)" ion-button class="comment_enroll">수정</button>
       </div>
-      <div class="time_comment">{{commentTimeZone[i]}}</div>
+      <div class="time_comment">{{getCovertKoreaTime(registerReply.updatedAt).substr(0,16).replace('T', ' ')}}</div>
       <!-- <div class="time_comment">{{registerReply.createdAt.substr(0,19)}}</div> -->
       <!-- 보기 -->
       <!-- <textarea *ngIf="comment_popover_option==='보기'" class="content_comment" readonly autoGrow autoresize value="{{reply.comment}}"></textarea> -->

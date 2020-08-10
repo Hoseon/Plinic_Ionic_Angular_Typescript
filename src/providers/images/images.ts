@@ -25,6 +25,11 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public topbannerLoad() {
+    return this.http.get(this.apiURL + 'topbanner/list')
+      .map(response => response.json());
+  }
+
   public carezoneRoad() {
     return this.http.get(this.apiURL + 'carezone/list')
       .map(response => response.json());
@@ -60,13 +65,35 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public challangeCount(id) {
+    return this.http.get(this.apiURL + 'carezone/challangecount/' + id)
+      .map(response => response.json());
+  }
+
+  public challangeCount2(id, date) {
+    return this.http.get(this.apiURL + 'carezone/challangecount/' + id + '/' + date)
+      .map(response => response.json());
+  }
+
   public missionCount(id) {
-    return this.http.get(this.apiURL + 'carezone/missioncount/' + id)
+    return this.http.get(this.apiURL + 'carezone/challangecount/' + id)
       .map(response => response.json());
   }
 
   public missionUseTime(id, email) {
     return this.http.get(this.apiURL + 'carezone/missionusetime/' + id + '/' + email)
+      .map(response => response.json());
+  }
+
+  //2020-02-10 챌린지 사용 횟수 구하기
+  public challengeUseTime(id, email) {
+    return this.http.get(this.apiURL + 'carezone/challengeusetime/' + id + '/' + email)
+      .map(response => response.json());
+  }
+
+  //2020-02-20 챌린지 사용 횟수 구하기
+  public challengeUseTime2(id, email) {
+    return this.http.get(this.apiURL + 'carezone/challengeusetime2/' + id + '/' + email)
       .map(response => response.json());
   }
 
@@ -82,13 +109,33 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public getChallangeMember(id) {
+    return this.http.get(this.apiURL + 'carezone/getchallangemember/' + id)
+      .map(response => response.json());
+  }
+
   public giveupMission(email) {
     return this.http.get(this.apiURL + 'carezone/giveupmission/' + email)
       .map(response => response.json());
   }
 
+  public giveupChallenge(email) {
+    return this.http.get(this.apiURL + 'carezone/giveupchallenge/' + email)
+      .map(response => response.json());
+  }
+
   public chkMission(email) {
     return this.http.get(this.apiURL + 'carezone/chkmission/' + email)
+      .map(response => response.json());
+  }
+
+  public ChallengeChkMission(email) {
+    return this.http.get(this.apiURL + 'carezone/challengechkmission/' + email)
+      .map(response => response.json());
+  }
+
+  public challengeChkStartDate(email) {
+    return this.http.get(this.apiURL + 'carezone/challengechkstart/' + email)
       .map(response => response.json());
   }
 
@@ -127,7 +174,7 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
-  public beautyNoteMainLoad() {
+  public beautyNoteMainLoad() {  
     return this.http.get(this.apiURL + 'beautynote/editorlist')
       .map(response => response.json());
 
@@ -142,6 +189,11 @@ export class ImagesProvider {
 
   public skinQnaLoad() {
     return this.http.get(this.apiURL + 'skinqna/main_list')
+      .map(response => response.json());
+  }
+
+  public userSkinQnaLoad(email) {
+    return this.http.get(this.apiURL + 'skinqna/skinqna_list/' + email)
       .map(response => response.json());
   }
 
@@ -187,6 +239,26 @@ export class ImagesProvider {
 
   public chkUserImage(email) {
     return this.http.get(this.apiURL + 'carezone/chkuserimage/' + email)
+      .map(response => response.json());
+  }
+
+  // public productLoad() { 20200707
+  //   return this.http.get(this.apiURL + 'product/productlist')
+  //     .map(response => response.json());
+  // }
+
+  public productLoad(search, page) {
+    return this.http.get(this.apiURL + 'getProductList/' + search + '/' + page)
+      .map(response => response.json());
+  }
+
+  public myMainProductLoad(email) {
+    return this.http.get(this.apiURL + 'users/mymainproductlist/' + email)
+      .map(response => response.json());
+  }
+
+  public mySubProductLoad(email) {
+    return this.http.get(this.apiURL + 'users/mysubproductlist/' + email)
       .map(response => response.json());
   }
 
@@ -345,6 +417,29 @@ export class ImagesProvider {
     // Use the FileTransfer to upload the image
     return fileTransfer.upload(targetPath, url, options);
   }
+
+
+  public getWeather(date, time) {
+    return this.http.get(this.apiURL + 'getweather/' + date + '/' + time) 
+      .map(response => response.json());
+  }
+
+  public getMise() {
+    return this.http.get(this.apiURL + 'getmise') 
+      .map(response => response.json());
+  }
+
+  public getUv() {
+    return this.http.get(this.apiURL + 'getsun') 
+      .map(response => response.json());
+  }
+
+  public getProductDetail(product_num) {
+    return this.http.get(this.apiURL + 'getProductFindOne/' + product_num) 
+      .map(response => response.json());
+  }
+
+  
 
 
 }

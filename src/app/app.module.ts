@@ -4,7 +4,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 
-import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 
 import { GenderFilter } from './../pipes/gender-filter';
@@ -18,6 +17,7 @@ import { AboutPage } from '../pages/about/about';
 // import { HomePage } from '../pages/home/home';
 // //import {SuccessHomePage} from '../pages/success-home/success-home';
 import { MyinfoPage } from '../pages/myinfo/myinfo';
+import { OrderDetailPageModule } from '../pages/order-detail/order-detail.module';
 import { SettingPage } from '../pages/myinfo/setting/setting';
 // import { TabsPage } from '../pages/tabs/tabs';
 // import { AgreementPage } from '../pages/agreement/agreement';
@@ -48,10 +48,14 @@ import { RegistercompletePage } from '../pages/register/registercomplete/registe
 // import { CareZonePage } from '../pages/care-zone/care-zone';
 // import { CareZoneIngPage } from '../pages/care-zone-ing/care-zone-ing';
 import { CareZoneMissionIngPage } from '../pages/care-zone-mission-ing/care-zone-mission-ing';
+import { ChalMissionIngPage } from '../pages/chal-mission-ing/chal-mission-ing';
 import { CareZoneMissionDeadlinePage } from '../pages/care-zone-mission-deadline/care-zone-mission-deadline';
 // import { CareZoneMissionDeadlineEndPage } from '../pages/care-zone-mission-deadline-end/care-zone-mission-deadline-end';
 // import { CareZoneMissionStartPage } from '../pages/care-zone-mission-start/care-zone-mission-start';
 import { CareZoneMissionCompletePage } from '../pages/care-zone-mission-complete/care-zone-mission-complete';
+import { ChalGuidePageModule } from '../pages/chal-guide/chal-guide.module';
+import { UseGuidePageModule } from '../pages/use-guide/use-guide.module';
+import { SkinReadyPageModule } from '../pages/skin-ready/skin-ready.module';
 // import { NoticePage } from '../pages/myinfo/details/notice/notice';
 //
 // //피부측정 페이지
@@ -92,6 +96,9 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { LoginpagePageModule } from '../pages/login/loginpage/loginpage.module';
 // import { AddinfoPageModule } from '../pages/register/addinfo/addinfo.module';
 import { PasswordfindPageModule } from '../pages/login/passwordfind/passwordfind.module';
+import { IdfindPageModule } from '../pages/idfind/idfind.module';
+import { PasswordresetPageModule } from '../pages/passwordreset/passwordreset.module';
+import { IdfindresultPageModule } from '../pages/idfindresult/idfindresult.module';
 import { PlinicManualPageModule } from '../pages/myinfo/details/plinic-manual/plinic-manual.module';
 import { QnaPageModule } from '../pages/myinfo/details/qna/qna.module';
 import { TermsPageModule } from '../pages/myinfo/details/terms/terms.module';
@@ -121,12 +128,14 @@ import { CareZoneMissionIngPageModule } from '../pages/care-zone-mission-ing/car
 import { CareZoneMissionDeadlinePageModule } from '../pages/care-zone-mission-deadline/care-zone-mission-deadline.module';
 import { CareZoneMissionDeadlineEndPageModule } from '../pages/care-zone-mission-deadline-end/care-zone-mission-deadline-end.module';
 import { CareZoneMissionStartPageModule } from '../pages/care-zone-mission-start/care-zone-mission-start.module';
+import { ChalMissionStartPageModule } from '../pages/chal-mission-start/chal-mission-start.module';
 import { CareZoneMissionCompletePageModule } from '../pages/care-zone-mission-complete/care-zone-mission-complete.module';
 import { NoticePageModule } from '../pages/myinfo/details/notice/notice.module';
 //
 // //피부측정 페이지
 import { SkinMeasureStartPageModule } from '../pages/skin-measure-start/skin-measure-start.module';
 import { DeviceConnectIngPageModule } from '../pages/device-connect-ing/device-connect-ing.module';
+import { DeviceCameraPageModule } from '../pages/device-camera/device-camera.module';
 import { DeviceConnectSkinIngPageModule } from '../pages/device-connect-skin-ing/device-connect-skin-ing.module';
 import { DeviceConnectCompletePageModule } from '../pages/device-connect-complete/device-connect-complete.module';
 import { DeviceConnectFailPageModule } from '../pages/device-connect-fail/device-connect-fail.module';
@@ -182,7 +191,7 @@ import { Camera } from '@ionic-native/camera';
 
 
 //Bluetooth 모듈 추가
-import { BluetoothLE } from '@ionic-native/bluetooth-le';
+// import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { BLE } from '@ionic-native/ble';
 
 //다국어 처리 모듈 추가 20190510-추호선
@@ -206,7 +215,6 @@ import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 
 //콜센터 연결
 import { CallNumber } from '@ionic-native/call-number';
-import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 //문진표
@@ -216,12 +224,12 @@ import { SkinDiagnoseFirstMoisturePageModule } from '../pages/skin-diagnose-firs
 import { SkinDiagnoseFirstOilPageModule } from '../pages/skin-diagnose-first-oil/skin-diagnose-first-oil.module';
 
 
+//빌링 결제 
+import { MembershipManagePageModule } from '../pages/bill/membership-manage/membership-manage.module';
+import { MembershipListPageModule } from '../pages/bill/membership-list/membership-list.module';
+
 //태그
 import { RlTagInputModule } from 'angular2-tag-input';
-
-
-//인스타그램공유하기
-import { Instagram } from '@ionic-native/instagram';
 
 //각종 소셜 쉐어 기능,,,
 import { SocialSharing } from '@ionic-native/social-sharing';
@@ -231,6 +239,46 @@ import { CustomIconsModule } from 'ionic2-custom-icons'
 //20190923 기기별로 분리하여 css정의 하기 위한 패키지
 import { Device } from '@ionic-native/device';
 
+//20200206 출석체크 페이지
+// import { ChulsukCheckPageModule } from '../pages/chulsuk-check/chulsuk-check.module'
+import { ChulsukCheckPage } from '../pages/chulsuk-check/chulsuk-check'
+
+//20200421 나의 활동 페이지
+import { MyqnaPageModule } from '../pages/myqna/myqna.module'
+
+import { CalendarModule } from 'ionic3-calendar-en';
+
+//20200214 달력 모듈 추가
+import { NgCalendarModule } from 'ionic2-calendar';
+
+//202020220 포인트 가이드 페이지 추가
+import { GuidePageModule } from '../pages/guide/guide.module';
+import { SkinGuidePageModule } from '../pages/skin-guide/skin-guide.module';
+
+
+//20200424 피부 진단
+import { CameraGuidePageModule } from '../pages/camera-guide/camera-guide.module';
+import { SkinChekPageModule } from '../pages/skin-chek/skin-chek.module';
+import { SkinChekMunjinPageModule } from '../pages/skin-chek-munjin/skin-chek-munjin.module'
+import { ItemSearchPage } from '../pages/item-search/item-search';
+import { SkinChekConnectPageModule } from '../pages/skin-chek-connect/skin-chek-connect.module';
+import { SkinChekCamera1PageModule } from '../pages/skin-chek-camera1/skin-chek-camera1.module';
+import { SkinChekCamera2PageModule } from '../pages/skin-chek-camera2/skin-chek-camera2.module';
+import { SkinChekCamera3PageModule } from '../pages/skin-chek-camera3/skin-chek-camera3.module';
+import { SkinChekChartPageModule } from '../pages/skin-chek-chart/skin-chek-chart.module';
+
+import { PointGuidePageModule } from '../pages/point-guide/point-guide.module';
+import { SkincheckGuidePageModule } from '../pages/skincheck-guide/skincheck-guide.module';
+
+//20200701 포인트 적립/차감 내역
+import { PointLogPageModule } from '../pages/point-log/point-log.module';
+
+
+//20200709 화장품 상세정보
+import { ProductDetailPageModule } from '../pages/product-detail/product-detail.module'
+import { ProductSungbunPageModule } from '../pages/product-sungbun/product-sungbun.module'
+
+import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -259,6 +307,7 @@ export function getAuthHttp(http, storage) {
     // CareZonePage,
     // CareZoneIngPage,
     CareZoneMissionIngPage,
+    ChalMissionIngPage,
     CareZoneMissionDeadlinePage,
     // CareZoneMissionDeadlineEndPage,
     // CareZoneMissionStartPage,
@@ -303,10 +352,14 @@ export function getAuthHttp(http, storage) {
     SettingPage,
     FaqPage,
     DeviceSkinSensorIngPage,
+    ChulsukCheckPage,
+    ItemSearchPage,
   ],
   imports: [
+    PointLogPageModule,
     HttpModule,
     HomePageModule,
+    MyqnaPageModule,
     //MyinfoPageModule,
     TabsPageModule,
     AgreementPageModule,
@@ -314,6 +367,9 @@ export function getAuthHttp(http, storage) {
     LoginPageModule,
     // AddinfoPageModule,
     PasswordfindPageModule,
+    IdfindPageModule,
+    IdfindresultPageModule,
+    PasswordresetPageModule,
     PlinicManualPageModule,
     QnaPageModule,
     TermsPageModule,
@@ -337,10 +393,12 @@ export function getAuthHttp(http, storage) {
     // CareZoneMissionDeadlinePageModule,
     CareZoneMissionDeadlineEndPageModule,
     CareZoneMissionStartPageModule,
+    ChalMissionStartPageModule,
     // CareZoneMissionCompletePageModule,
     NoticePageModule,
     SkinMeasureStartPageModule,
     DeviceConnectIngPageModule,
+    DeviceCameraPageModule,
     DeviceConnectSkinIngPageModule,
     DeviceConnectCompletePageModule,
     DeviceConnectFailPageModule,
@@ -369,12 +427,35 @@ export function getAuthHttp(http, storage) {
     SelectSearchableModule,
     NgCircleProgressModule.forRoot(),
     RewardPageModule,
+    OrderDetailPageModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
       deps: [Http]
     }),
     CustomIconsModule,
+    CalendarModule,
+    NgCalendarModule,
+    GuidePageModule,
+    CameraGuidePageModule,
+    SkinChekPageModule,
+    SkinChekMunjinPageModule,
+    SkinChekConnectPageModule,
+    SkinGuidePageModule,
+    SkinChekCamera1PageModule,
+    SkinChekCamera2PageModule,
+    SkinChekCamera3PageModule,
+    SkinChekChartPageModule,
+    // ChulsukCheckPageModule,
+    ChalGuidePageModule,
+    UseGuidePageModule,
+    SkinReadyPageModule,
+    PointGuidePageModule,
+    SkincheckGuidePageModule,
+    ProductDetailPageModule,
+    ProductSungbunPageModule,
+    MembershipManagePageModule,
+    MembershipListPageModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
@@ -396,6 +477,7 @@ export function getAuthHttp(http, storage) {
     // CareZonePage,
     // CareZoneIngPage,
     CareZoneMissionIngPage,
+    ChalMissionIngPage,
     CareZoneMissionDeadlinePage,
     // CareZoneMissionDeadlineEndPage,
     // CareZoneMissionStartPage,
@@ -437,6 +519,8 @@ export function getAuthHttp(http, storage) {
     SettingPage,
     FaqPage,
     DeviceSkinSensorIngPage,
+    ChulsukCheckPage,
+    ItemSearchPage,
   ],
   providers: [
     StatusBar,
@@ -445,25 +529,19 @@ export function getAuthHttp(http, storage) {
     KakaoCordovaSDK,
     AuthService,
     IonicErrorHandler,
-    Facebook,
     GooglePlus,
     ImagesProvider,
     Transfer,
     Camera,
     Naver,
-    BluetoothLE,
-    //AnimationService,
+    // BluetoothLE,
     FCM,
-    // InAppBrowser,
     ThemeableBrowser,
     CallNumber,
-    LocalNotifications,
-    //  AdMobFree,
     BLE,
-    // TimerComponent,
-    Instagram,
     SocialSharing,
     Device,
+    OpenNativeSettings,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,

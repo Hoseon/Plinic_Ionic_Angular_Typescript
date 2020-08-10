@@ -455,7 +455,7 @@ export class MyPage {
         //this.chkBtn = true;
         this.missionData = data;
         // console.log("미션데이터 : " + JSON.stringify(this.missionData));
-        console.log("미션데이터 : " + this.missionData.missionID);
+        // console.log("미션데이터 : " + this.missionData.missionID);
         // this.images.missionCount(this.missionData.missionID).subscribe(data2 => {
         //   this.ingmissionCounter = data2;
         // });
@@ -485,7 +485,7 @@ export class MyPage {
   selectedTab(tab){
     this.slides.slideTo(tab);
 
-    console.log('  this.slides.slideTo(tab)==================='+   this.slides.slideTo(tab));
+    // console.log('  this.slides.slideTo(tab)==================='+   this.slides.slideTo(tab));
   }
 
 
@@ -795,6 +795,7 @@ ionViewDidEnter() {
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
           from: items.from,
+          snsid: items.snsid
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           //this.thumb_image = false;

@@ -10,6 +10,8 @@ import { DOCUMENT } from '@angular/common';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { AuthService } from '../../providers/auth-service';
 import { Device } from '@ionic-native/device';
+import { MyinfoPage } from '../myinfo/myinfo'
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -62,8 +64,9 @@ export class CommunityPage {
   loading: Loading;
   tab3: any;
   tab1: any;
-  tabs_boolean: boolean;
+  tabs_boolean: any;
   @ViewChild(Slides) slides: Slides;
+
 
   constructor(
     public device: Device,
@@ -78,20 +81,24 @@ export class CommunityPage {
 
       console.log('parent_test :::::: ' + this.navParams.get('test'));
       console.log(this.navParams.get('back'));
-      this.tabs_check();
       this.events1();
+      this.events2();
       this.events3();
     });
   }
 
   ionViewCanEnter() {
     this.loadItems();
+
   }
   ionViewDidEnter() {
-    console.log("다시다시");
     this.content.resize();
   }
 
+  ionViewDidLeave(){
+   console.log("ionViewDidLeave Community");
+   this.authService.setUserStoragetab(0);
+  }
 
 
   update() {
@@ -100,9 +107,10 @@ export class CommunityPage {
   }
 
 
-  ionViewWillEnter() {
-    //this.selectedTab(0);
-    this.showLoading();
+  async ionViewWillEnter() {
+    await this.tabs_check();
+    // this.selectedTab(0);
+    // this.showLoading();
     this.roadbeauty();
     this.communityEditorBeautyLoad();
     this.communityBeautyLoad();
@@ -112,8 +120,14 @@ export class CommunityPage {
     this.skinQnaMainLoad();
     this.exhibitionLoad();
     //this.loading.dismiss();
-
-
+    if(this.userData) {
+      if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
+        this.reloadUserPoint(this.userData.snsid);
+      }
+      else {
+        this.reloadUserPoint(this.userData.email);
+      }
+    }
     if (this.page === '2' || this.page === '3') {
       let tabs = document.querySelectorAll('.tabbar');
       if (tabs !== null) {
@@ -133,34 +147,64 @@ export class CommunityPage {
     this.authService.getUserStoragetab().then(items => {
       this.tabs_boolean = items;
       console.log("tabs_boolean=======" + this.tabs_boolean);
-      if (this.tabs_boolean === true) {
+      if (this.tabs_boolean === 1) {
         setTimeout(() => {
           this.selectedTab(1);
           this.page = "1";
         }, 100);
-      }
-      else if (this.tabs_boolean === false) {
+      } else if (this.tabs_boolean === 0) {  //최초 슬라이드 되는 페이지
         setTimeout(() => {
-          this.selectedTab(3);
-          this.page = "3";
+          this.selectedTab(0);
+          this.page = "0";
         }, 100);
-      }
-      this.authService.setUserStoragetab(0);
+      } 
+      // else if (this.tabs_boolean === 2) {
+      //   setTimeout(() => {
+      //     this.selectedTab(2);
+      //     this.page = "2";
+      //   }, 100);
+      // } else if (this.tabs_boolean === 3) {
+      //   setTimeout(() => {
+      //     this.selectedTab(3);
+      //     this.page = "3";
+      //   }, 100);
+      // }
+      // this.authService.setUserStoragetab(0); //2020-06-22 피부고민 작성시 슬라이드가 2번째로 가 있도록 창이 닫히는(ondiddismiss에 처리 하였다)
     });
   }
 
 
   events1() {
     this.events.subscribe('tabs1', (data) => {
+      console.log("이벤트111")
       this.tab1 = data;
       this.selectedTab(0);
       if (this.tab1 == "tabs1") {
+      console.log("이벤트111_2222")
         setTimeout(() => {
           this.selectedTab(1);
-          this.page = "1";
+          this.page = "2";
         }, 100);
       }
       this.events.unsubscribe('tabs1', this.tab1)
+      this.tab1 = undefined;
+      console.log("tabs1 subscribe===============" + data);
+    });
+  }
+
+  events2() {
+    this.events.subscribe('tabs2', (data) => {
+      console.log("이벤트2222");
+      this.tab1 = data;
+      this.selectedTab(0);
+      if (this.tab1 == "tabs2") {
+      console.log("이벤트2222_2222");
+        setTimeout(() => {
+          this.selectedTab(2);
+          this.page = "2";
+        }, 100);
+      }
+      this.events.unsubscribe('tabs2', this.tab1)
       this.tab1 = undefined;
       console.log("tabs1 subscribe===============" + data);
     });
@@ -189,7 +233,8 @@ export class CommunityPage {
 
   selectedTab(tab) {
     this.slides.slideTo(tab);
-    console.log('this.slides.slideTo(tab)===================' + tab);
+    this.authService.setUserStoragetab(tab);
+    // console.log('this.slides.slideTo(tab)===================' + tab);
   }
 
   slideChanged($event) {
@@ -291,7 +336,7 @@ export class CommunityPage {
 
   openBrowser_ioslike(url, title, id, user, mode) {
     this.images.communityBeautyViewsUpdate(id).subscribe(data => {
-      this.communityBeautyLoadData = data;
+      // this.communityBeautyLoadData = data;
     });
 
     const options: ThemeableBrowserOptions = {
@@ -300,14 +345,24 @@ export class CommunityPage {
         color: '#6562b9'
       },
       title: {
-        color: '#ffffffff',
-        showPageTitle: false,
+        color: '#FFFFFF',
+        showPageTitle: true,
         staticText: title
       },
       closeButton: {
         wwwImage: 'assets/img/close.png',
         align: 'left',
         event: 'closePressed'
+      },
+      backButton: {
+        wwwImage: 'assets/img/back.png',
+        align: 'right',
+        event: 'backPressed'
+      },
+      forwardButton: {
+        wwwImage: 'assets/img/forward.png',
+        align: 'right',
+        event: 'forwardPressed'
       },
       // customButtons: [
       //   {
@@ -334,48 +389,50 @@ export class CommunityPage {
       browser.executeScript({
         code: ""
       });
-      console.log("idididididididid : " + id);
-      console.log("modemodemodemodemodemodemodemodmoe : " + mode);
-      console.log("useruseruseruseruseruseruseruser" + user);
-      console.log(data);
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
       if (mode === 'tip') {
-        console.log("tiptiptiptiptiptiptiptiptiptiptip");
         this.toast();
         // this.images.like(id, user).subscribe(data => {
         //   console.log("-----------------------------------------" + data);
         //
         // });
-        console.log("tip2tip2tip2tip2tip2tip2tiptiptiptiptip");
 
       } else if (mode === 'exhi') {
-        console.log("exhiexhiexhiexhiexhiexhiexhiexhi");
 
       } else {
-        console.log("nothingnothingnothingnothingnothingnothing");
       }
     })
 
 
   }
 
-  openBrowser_ios(url, title) {
-    // https://ionicframework.com/docs/native/themeable-browser/
-
+  openBrowser_ios(url, title, id) {
+    this.images.communityBeautyViewsUpdate(id).subscribe(data => {
+      // this.communityBeautyLoadData = data;
+    });
     const options: ThemeableBrowserOptions = {
       toolbar: {
         height: 55,
         color: '#6562b9'
       },
       title: {
-        color: '#ffffffff',
-        showPageTitle: false,
+        color: '#FFFFFF',
+        showPageTitle: true,
         staticText: title
       },
       closeButton: {
         wwwImage: 'assets/img/close.png',
         align: 'left',
         event: 'closePressed'
+      },
+      backButton: {
+        wwwImage: 'assets/img/back.png',
+        align: 'right',
+        event: 'backPressed'
+      },
+      forwardButton: {
+        wwwImage: 'assets/img/forward.png',
+        align: 'right',
+        event: 'forwardPressed'
       },
       // customButtons: [
       //   {
@@ -407,7 +464,7 @@ export class CommunityPage {
 
   openBrowser_androidlike(url, title, id, user, mode) {
     this.images.communityBeautyViewsUpdate(id).subscribe(data => {
-      this.communityBeautyLoadData = data;
+      // this.communityBeautyLoadData = data;
     });
 
     const options: ThemeableBrowserOptions = {
@@ -416,14 +473,24 @@ export class CommunityPage {
         color: '#6562b9'
       },
       title: {
-        color: '#ffffffff',
-        showPageTitle: false,
+        color: '#FFFFFF',
+        showPageTitle: true,
         staticText: title
       },
       closeButton: {
         wwwImage: 'assets/img/close.png',
         align: 'left',
         event: 'closePressed'
+      },
+      backButton: {
+        wwwImage: 'assets/img/back.png',
+        align: 'right',
+        event: 'backPressed'
+      },
+      forwardButton: {
+        wwwImage: 'assets/img/forward.png',
+        align: 'right',
+        event: 'forwardPressed'
       },
       // customButtons: [
       //   {
@@ -476,8 +543,11 @@ export class CommunityPage {
   }
 
 
-  openBrowser_android(url, title) {
-    // https://ionicframework.com/docs/native/themeable-browser/
+  openBrowser_android(url, title, id) {
+
+    this.images.communityBeautyViewsUpdate(id).subscribe(data => {
+      // this.communityBeautyLoadData = data;
+    });
 
     const options: ThemeableBrowserOptions = {
       toolbar: {
@@ -485,9 +555,24 @@ export class CommunityPage {
         color: '#6562b9'
       },
       title: {
-        color: '#ffffffff',
-        showPageTitle: false,
+        color: '#FFFFFF',
+        showPageTitle: true,
         staticText: title
+      },
+      closeButton: {
+        wwwImage: 'assets/img/close.png',
+        align: 'left',
+        event: 'closePressed'
+      },
+      backButton: {
+        wwwImage: 'assets/img/back.png',
+        align: 'right',
+        event: 'backPressed'
+      },
+      forwardButton: {
+        wwwImage: 'assets/img/forward.png',
+        align: 'right',
+        event: 'forwardPressed'
       },
       // customButtons: [
       //   {
@@ -533,6 +618,7 @@ export class CommunityPage {
   public community_write() {
     let myModal = this.modalCtrl.create(CommunityWritePage);
     myModal.onDidDismiss(data => {
+      this.authService.setUserStoragetab(1);
       this.ionViewWillEnter();
     });
     myModal.present();
@@ -541,6 +627,7 @@ export class CommunityPage {
   public community_modify(id) {
     let myModal = this.modalCtrl.create(CommunityModifyPage, { id: id, mode: 'note' });
     myModal.onDidDismiss(data => {
+      this.authService.setUserStoragetab(1);
       this.ionViewWillEnter();
     });
     myModal.present();
@@ -549,6 +636,7 @@ export class CommunityPage {
   public community_qna_modify(id) {
     let myModal = this.modalCtrl.create(CommunityModifyPage, { id: id, mode: 'qna' });
     myModal.onDidDismiss(data => {
+      this.authService.setUserStoragetab(1);
       this.ionViewWillEnter();
     });
     myModal.present();
@@ -557,6 +645,7 @@ export class CommunityPage {
   public community_qna_write() {
     let myModal = this.modalCtrl.create(CommunityWritePage, { qna: 'qna' });
     myModal.onDidDismiss(data => {
+      this.authService.setUserStoragetab(1);
       this.ionViewWillEnter();
     });
     myModal.present();
@@ -578,7 +667,9 @@ export class CommunityPage {
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
           from: items.from,
+          snsid: items.snsid
         };
+        this.reloadUserPoint(this.userData.snsid);
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           this.thumb_image = false;
         } else {
@@ -595,14 +686,22 @@ export class CommunityPage {
           email: this.jwtHelper.decodeToken(items).email,
           gender: items.gender,
           nickname: this.jwtHelper.decodeToken(items).name,
+          // totaluserpoint: this.jwtHelper.decodeToken(items).totaluserpoint,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
           from: 'plinic',
         };
+        this.reloadUserPoint(this.userData.email);
         // this.chkmission(this.userData.email);
         // this.chkIngmission(this.userData.email);
         this.from = 'plinic';
       }
+      // console.log("사용자 포인트는? : " + this.userData.totaluserpoint);
+      
+      // console.log("사용자 포인트는? : " + this.userData.totaluserpoint);
+      // console.log("사용자 이메일은? : " + this.userData.email);
+      
+
       this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
       this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
     });
@@ -689,8 +788,35 @@ export class CommunityPage {
     console.log(" ljasd;lfkjasd;lkfjas;dklfja;sdklfja;sdklfj------------------------------------------------------------");
   }
 
+  public myinfo() {
+    //2020-05-28 마이페이지 하단탭 제거
+    // this.nav.push(MyinfoPage); 
+
+    let myModal = this.modalCtrl.create(MyinfoPage);
+    myModal.onDidDismiss(data => {
+      if(this.userData) {
+        if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
+          this.reloadUserPoint(this.userData.snsid);
+        }
+        else {
+          this.reloadUserPoint(this.userData.email);
+        }
+      }
+      console.log("출석체크 페이지 닫음");
+    });
+    myModal.present();
+  }
 
 
+  addComma(data_value) { //숫자 세자리 마다 컴마 붙히기
+    return Number(data_value).toLocaleString('en');
+  }
 
-
+  private reloadUserPoint(email) {
+    this.authService.reloadUserPointfromPlincShop(email).subscribe(data =>{
+      // console.log("커뮤니티 사용자 포인트 : " + data)
+      this.userData.totaluserpoint = data.point;
+      this.userData.totaluserpoint = this.addComma(this.userData.totaluserpoint);
+    });
+  }
 }

@@ -81,12 +81,6 @@ page-agreement {
     right: -88%;
   }
 
-  .ion-app.md [padding] .scroll-content {
-    padding-top: 0;
-    position: absolute;
-    top: 0;
-  }
-
   .toolaralign3 {
     position: absolute;
     background-color: #FFF;
@@ -95,6 +89,12 @@ page-agreement {
     object-fit: contain;
     margin-top: -15%;
     right: -20%;
+  }
+
+  .ion-app.md [padding] .scroll-content {
+    padding-top: 0;
+    position: absolute;
+    top: 0;
   }
 
   .h1 {
@@ -238,5 +238,9 @@ page-agreement {
     text-align: center;
     border-radius: 4px;
     box-shadow: none;
+  }
+
+  .down {
+    margin-top: 5%;
   }
 }

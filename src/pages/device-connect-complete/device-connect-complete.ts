@@ -6,7 +6,6 @@ import { DeviceSkinIngPage } from '../device-skin-ing/device-skin-ing';
 import { TabsPage } from '../tabs/tabs';
 import { BLE } from '@ionic-native/ble';
 
-
 /**
  * Generated class for the DeviceConnectCompletePage page.
  *
@@ -23,24 +22,54 @@ export class DeviceConnectCompletePage {
 
   spintime: any = 0;
   device : any;
-  constructor(private ble: BLE,
-    public navCtrl: NavController, public navParams: NavParams,
-    public modalCtrl: ModalController, public viewCtrl: ViewController, public platform: Platform) {
+  mode: any;
+  carezoneData: any;
+  timer: any;
+  isTimer: boolean;
+
+
+  constructor(
+      private ble: BLE,
+      public navCtrl: NavController, 
+      public navParams: NavParams,
+      public modalCtrl: ModalController, 
+      public viewCtrl: ViewController, 
+      public platform: Platform
+    ) {
 
       this.platform.ready().then((readySource)=>{
-        this.device = this.navParams.get('device');
-        console.log("연결된 디바이스 : " + JSON.stringify(this.device));
-        console.log("연결된 디바이스 ID : " + this.device.id)
-        // setTimeout(()=>{
-        //   this.spintime = 1;
-        //   let myModal = this.modalCtrl.create(DeviceSkinStartPage);
-        //   myModal.present();
-        // }, 3500);
+
+        if (this.navParams.get('carezoneData')) {
+          this.carezoneData = this.navParams.get('carezoneData');
+          this.isTimer = true;
+        }
+  
+        if (this.navParams.get('mode')) {
+          this.mode = this.navParams.get('mode');
+        }
+
+        if (this.navParams.get('device')) {
+          this.device = this.navParams.get('device');
+        }
       });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DeviceConnectCompletePage');
+  }
+
+  ionViewDidEnter(){
+  if(this.device !=='') {
+      this.timer = setTimeout(() => {
+        this.navCtrl.push(DeviceSkinIngPage, { device: this.device, 'carezoneData': this.carezoneData, mode: this.mode }); //20200527 중간 성공페이지 보여지도록 처리
+        this.device = '';
+      }, 3000);
+    }
+  }
+
+
+  ionViewWillLeave(){
+   clearTimeout(this.timer);
   }
 
   public deviceComplete() {
@@ -59,6 +88,7 @@ export class DeviceConnectCompletePage {
   }
 
   public measureBack(){
+    clearTimeout(this.timer);
     // this.navCtrl.push(DeviceSkinIngPage);
     // this.navCtrl.setRoot(TabsPage);
     this.ble.disconnect(this.device.id).then(result => {
@@ -70,6 +100,7 @@ export class DeviceConnectCompletePage {
   }
 
   deviceFail(){
+    clearTimeout(this.timer);
     this.ble.disconnect(this.device.id).then(result => {
       console.log("ble disconnect OK : " + result);
       this.navCtrl.setRoot(TabsPage);

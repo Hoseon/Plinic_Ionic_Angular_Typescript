@@ -10,9 +10,6 @@ import { CustomIconsModule } from 'ionic2-custom-icons'
   imports: [
     IonicPageModule.forChild(TabsPage),
     CustomIconsModule
-  ],
-  exports: [
-     TabsPage
   ]
 })
 export class TabsPageModule {}

@@ -1,0 +1,185 @@
+<!--
+  Generated template for the ItemSearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <!-- 폼 액션을 . 으로 하면 스마트폰 키보드에 검색이 뜸 -->
+    <form action=".">
+  
+  
+      <ion-searchbar *ngIf="platform.is('android')" mode="ios" class="android_search" 
+      [(ngModel)]="searchTerm" 
+      [ngModelOptions]="{standalone: true}" 
+      [showCancelButton]="shouldShowCancel" 
+      (ionInput)="setFilteredItems($event)"
+      (ionCancel)="onCancel($event)" 
+      (keydown.enter)="onEnterKeyDown(searchTerm)" 
+      (search)="search($event)" 
+      placeholder="제품을 검색해주세요.">
+      </ion-searchbar>
+  
+      <ion-searchbar *ngIf="platform.is('ios') || platform.is('core')" mode="ios" class="ios_search" 
+      [(ngModel)]="searchTerm" 
+      [ngModelOptions]="{standalone: true}" 
+      [showCancelButton]="shouldShowCancel" 
+      (ionInput)="setFilteredItems($event)"
+      (ionCancel)="onCancel($event)" 
+      (keydown.enter)="onEnterKeyDown(searchTerm)" 
+      (search)="search($event)" 
+      placeholder="제품을 검색해주세요.">
+      </ion-searchbar>
+
+      <!-- <ion-searchbar *ngIf="platform.is('ios') || platform.is('core')" mode="ios" class="ios_search" 
+      [(ngModel)]="searchTerm" 
+      [ngModelOptions]="{standalone: true}" 
+      [showCancelButton]="shouldShowCancel" 
+      (ionInput)="setFilteredItems($event)"
+      (ionCancel)="onCancel($event)" 
+      (ionFocus)="onFocus($event)" 
+      (keyup.enter)="onEnterKeyDown(searchTerm)" 
+      (ionChange)="onChange($event)" 
+      (search)="search($event)" 
+      placeholder="제품을 검색해주세요.">
+      </ion-searchbar> -->
+    </form>
+  </ion-header>
+  
+  
+  
+  <ion-content no-padding>
+  
+    <ion-item *ngIf="search_tip" no-lines><div class="font_sub">
+      검색은 두 글자 이상부터 검색됩니다.<br>
+      <!-- <br />
+      태그 검색은 '#'을 붙혀 검색해 주세요<br> -->
+    </div></ion-item>
+  
+  
+    <!-- <ion-segment *ngIf="focus && page_view" outline mode="md" [(ngModel)]="page" color="#5c59b6">
+      <ion-segment-button value="0" (click)="selectedTab(0)">
+        게시물
+      </ion-segment-button>
+      <ion-segment-button value="1" (click)="selectedTab(1)">
+        태그
+      </ion-segment-button>
+    </ion-segment>
+   -->
+    <ng-contain *ngIf="search_view">
+      <!-- <ng-container *ngIf="toggleTag">
+        <ion-scroll *ngIf="focus && !page_view" class="search_scroll" scrollX="true">
+          <ion-item no-lines class="item_search_btn" *ngFor="let data of tempTags" (click)="navigateToDetails(data)"> -->
+            <!-- <ng-container *ngIf="tag.length !== 0"> -->
+            <!-- <button ion-button class="search_btn">{{data.name}}</button><br><br> -->
+            <!-- </ng-container> -->
+          <!-- </ion-item>
+        </ion-scroll>
+      </ng-container> -->
+  
+  
+      <ion-list *ngIf="focus && !page_view">
+        <ng-container *ngFor="let data of jsonData">
+          <ng-container *ngIf="data.type ==='beauty'">
+            <ion-item (click)="navigateToDetails(data)">
+              {{data.name}}
+            </ion-item>
+          </ng-container>
+        </ng-container>
+      </ion-list>
+  
+      <ion-list *ngIf="focus && !page_view">
+        <ng-container *ngFor="let data of jsonData">
+          <ng-container *ngIf="data.type ==='note'">
+  
+            <ion-item (click)="navigateToDetails(data)">
+              {{data.name}}
+            </ion-item>
+          </ng-container>
+        </ng-container>
+      </ion-list>
+  
+      <ion-list *ngIf="focus && !page_view">
+        <ng-container *ngFor="let data of jsonData">
+          <ng-container *ngIf="data.type ==='qna'">
+  
+            <ion-item (click)="navigateToDetails(data)">
+              {{data.name}}
+            </ion-item>
+          </ng-container>
+        </ng-container>
+      </ion-list>
+    </ng-contain>
+  
+  
+  
+  
+  
+    <!-- 검색리스트 정렬 뷰티꿀팁 / 뷰티노트 / 피부고민/   -->
+    <ng-container *ngIf="page === '0'">
+      <ng-container *ngIf="page_view">
+        <br>
+        <!-- <ion-col (click)="select_popover($event)" class="align_text">{{select_popover_option}}
+          <img class="align_img" src="./assets/img/myinfo/ic-system-arrowdown-grey@3x.png" /></ion-col><br> -->
+  
+  
+  
+  
+        <!-- 뷰트꿀팁 이미지가 있을 때  -->
+        <ng-container *ngIf="platform.is('android')">
+          <ng-container *ngFor="let community of productData">
+            <!-- <ng-container *ngIf="community.brand_name.indexOf(searchTerm) >= 0 || community.brand_name.indexOf(searchTerm) >= 0"> -->
+              <ion-item class="line_item" no-lines>
+                <ion-col col-9 class="container">
+                  <ion-row>
+                    <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{community.brand_name}} </span></ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col col-8 class="beauty_note_title_img2">{{community.product_name}}</ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col col-8 class="beauty_note_title_img3">
+                      <button ion-button outline class="select_btn" (click)="saveMyProduct(community)">선택</button>
+                    </ion-col>
+                  </ion-row>
+                  <img class="beauty_home_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/{{community.product_num}}.jpg" />
+                </ion-col>
+              </ion-item>
+              <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+            <!-- </ng-container> -->
+          </ng-container>
+        </ng-container>
+  
+  
+        <ng-container *ngIf="platform.is('ios') || platform.is('core')">
+          <ng-container *ngFor="let community of productData">
+            <!-- <ng-container *ngIf="community.brand_name.indexOf(searchTerm) >= 0 || community.brand_name.indexOf(searchTerm) >= 0"> -->
+              <ion-item class="line_item" no-lines>
+                <ion-col class="container" >
+                  <ion-row (click)="product_detail(community.product_num)">
+                    <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{community.brand_name}} </span></ion-col>
+                  </ion-row>
+                  <ion-row (click)="product_detail(community.product_num)" >
+                    <ion-col col-8 class="beauty_note_title_img2">{{community.product_name}}</ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col col-8 class="beauty_note_title_img3">
+                      <button ion-button outline class="select_btn" (click)="saveMyProduct(community)">선택</button>
+                    </ion-col>
+                  </ion-row>
+                  <img (click)="product_detail(community.product_num)" class="beauty_home_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/{{community.product_num}}.jpg" />
+                </ion-col>
+              </ion-item>
+              <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+            <!-- </ng-container> -->
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+    <ion-infinite-scroll threshold="30px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="데이터 불러오는중...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+  </ion-content>

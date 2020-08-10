@@ -5,16 +5,18 @@ import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
-import { Platform, AlertController } from 'ionic-angular';
-import { BluetoothLE } from '@ionic-native/bluetooth-le';
+import { Platform, AlertController, Config, Loading, LoadingController } from 'ionic-angular';
+// import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 // import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Naver } from 'ionic-plugin-naver';
-// import { LocalNotifications } from '@ionic-native/local-notifications';
 import { FCM } from '@ionic-native/fcm';
 import { Transfer, TransferObject, FileUploadOptions } from '@ionic-native/transfer'
 import { BLE } from '@ionic-native/ble';
+import { reject } from 'q';
+declare var cordova: any;
+// declare var SignInWithApple: any;
 
 
 //Blue Mod S42
@@ -53,6 +55,8 @@ const TOKEN_KEY = 'userData';
 const CONFIG = {
   apiUrl: 'http://plinic.cafe24app.com/',
   // apiUrl: 'http://localhost:8001/',
+  subapiUrl: 'https://plinicshop.com/',
+  adminapiUrl: 'http://plinicshop.com:50082/',
 };
 
 @Injectable()
@@ -79,43 +83,51 @@ export class AuthService {
   gettingDevices: Boolean;
   peripheral: any = {};
   pushToken: any;
+  loading: Loading;
 
-
-  constructor(private ble: BLE, private transfer: Transfer, private http: Http, public authHttp: AuthHttp, public storage: Storage,
-    public _kakaoCordovaSDK: KakaoCordovaSDK, private platform: Platform, private alertCtrl: AlertController,
+  constructor(
+    private ble: BLE, 
+    private transfer: Transfer, 
+    private http: Http, 
+    public authHttp: AuthHttp, 
+    public storage: Storage,
+    public _kakaoCordovaSDK: KakaoCordovaSDK, 
+    private platform: Platform, 
+    private alertCtrl: AlertController,
     // private facebook: Facebook,
     private google: GooglePlus,
-    public bluetoothle: BluetoothLE, public naver: Naver,
-    // private localNotifications: LocalNotifications,
-    private fcm: FCM
+    // public bluetoothle: BluetoothLE, 
+    public naver: Naver,
+    private fcm: FCM,
+    public loadingCtrl: LoadingController
   ) {
 
     this.platform.ready().then(() => {
 
-      if (this.platform.is('ios')) {
-        this.fcm.getToken().then(token => {
-          this.pushToken = token;
-          console.log("FCM iOS Auth Token :::::::::::::" + token);
-          //사용자 개인 알림, 게시물 알림 등을 처리하기 위해서 각각 로그인한 사용자의 푸쉬 토큰을 개별로 사용자 정보(mongoDb)에 저장한다.
-        })
+      // if (this.platform.is('ios')) {
+      //   this.fcm.getToken().then(token => {
+      //     this.pushToken = token;
+      //     // console.log("FCM iOS Auth Token :::::::::::::" + token);
+      //     //사용자 개인 알림, 게시물 알림 등을 처리하기 위해서 각각 로그인한 사용자의 푸쉬 토큰을 개별로 사용자 정보(mongoDb)에 저장한다.
+      //   })
 
-        this.fcm.onTokenRefresh().subscribe(token => {
-          this.pushToken = token;
-          console.log("FCM iOS Auth Refresh Token :::::::::::::" + token);
-        });
-      }
+      //   this.fcm.onTokenRefresh().subscribe(token => {
+      //     this.pushToken = token;
+      //     console.log("FCM iOS Auth Refresh Token :::::::::::::" + token);
+      //   });
+      // }
 
 
-      if (this.platform.is('android')) {
-        this.fcm.getToken().then(token => {
-          this.pushToken = token;
-          console.log("FCM Auth Token :::::::::::::" + token);
-        })
-        this.fcm.onTokenRefresh().subscribe(token => {
-          this.pushToken = token;
-          console.log("FCM Auth Refresh Token :::::::::::::" + token);
-        });
-      }
+      // if (this.platform.is('android')) {
+      //   this.fcm.getToken().then(token => {
+      //     this.pushToken = token;
+      //     console.log("FCM Auth Token :::::::::::::" + token);
+      //   })
+      //   this.fcm.onTokenRefresh().subscribe(token => {
+      //     this.pushToken = token;
+      //     console.log("FCM Auth Refresh Token :::::::::::::" + token);
+      //   });
+      // }
 
 
       this.checkToken();
@@ -128,6 +140,15 @@ export class AuthService {
     });
 
 
+  }
+
+  //2020-06-30 홈 화면 팝업 페이지 3일간 보지 않기 로직 구성
+  public setHomePopUpCheck(check) {
+    this.storage.set('HomePopup', check);
+  }
+
+  public getHomePopUpCheck() {
+    return this.storage.get('HomePopup');
   }
 
   // 최초 탭스이벤트 처리
@@ -194,14 +215,6 @@ export class AuthService {
 
 
   public get_qna_answer() {
-    // this.localNotifications.schedule({
-    //   title: "plinic",
-    //   text: '문의하신 질문에 답글이 작성되었습니다.',
-    //   trigger: { at: new Date(new Date().getTime()) },
-    //   led: 'FF0000',
-    //   sound: null
-    // });
-
     this.sendnotification("plinic", "문의하신 질문에 답글이 작성되었습니다.");
   }
 
@@ -295,15 +308,64 @@ export class AuthService {
     // }
   }
 
-  public naver_logout() {
+   public naver_promise() {
+    return new Promise((resolve, reject) => {
+        this.naver.login()
+        .then(response => {
+          this.userData = {
+            accessToken: response['accessToken'],
+            pushtoken: this.pushToken,
+            from: 'naver'
+          }
+          this.naver.requestMe()
+          .then(response2 => {
+            this.userData = {
+              accessToken: response['accessToken'],
+              pushtoken: this.pushToken,
+              email: response2.response.email,
+              nickname: response2.response.name,
+              id: response2.response.id,
+              from: 'naver'
+            }
+            console.log("userdata ::: " + JSON.stringify(this.userData))
+            if (this.userData !== '') {
+              this.snsexists(this.userData.email).subscribe(result=> {
+                if(result) {
+                  this.userData = {
+                    birthday: result.user.birthday,
+                    email: result.user.email,
+                    gender: result.user.gender,
+                    nickname: result.user.name,
+                    skincomplaint: result.user.skincomplaint,
+                    country: result.user.country,
+                    from: result.user.from,
+                    snsid: result.user.snsid
+                  }
+                  this.storage.set('userData', this.userData);
+                  this.authenticationState.next(true);
+                  return result;
+                }
+                if(!result) { //addinfo page로 보내 신규 사용자 등록 절차를 진행한다.
+                  resolve(this.userData);
+                }
+              })
+            }
+          }).catch(error => console.error(error));
+        });
+        
+      // reject('naver promise reject');
+    })
+  }
+
+  public async naver_logout() {
     console.log("로그아웃 준비 -------------------------: ");
     // this.naver.logoutAndDeleteToken()
     //   .then(response => {
     // console.log("로그아웃 성공 ---------------------------" + response)
-    this.deleteToken();
-    this.deleteUser();
+    await this.deleteToken();
+    await this.deleteUser();
     this.currentUser = null;
-    this.authenticationState.next(false);
+    await this.authenticationState.next(false);
     console.log("로그아웃 성공 ---------------------------")
     // }) // 성공
     // .catch(error => console.error(error)); // 실패
@@ -345,7 +407,7 @@ export class AuthService {
     });
   }
 
-  //구글 로그인 추가 2018-04-23 추호선
+  //구글 로그인 추가 2019-04-23 추호선
   public google_login() {
     this.google.login({})
       .then(res => {
@@ -379,6 +441,150 @@ export class AuthService {
       });
   }
 
+  //구글 로그인 추가 2019-04-23 추호선
+  public google_login_promise() {
+    return new Promise((resolve, reject) => {
+
+    
+      this.google.login({})
+        .then(res => {
+          //console.log(res)
+          this.userData = {
+            accessToken: res['accessToken'],
+            id: res['userId'],
+            //age_range: res['age_range'],
+            //birthday: res['birthday'],
+            email: res['email'],
+            //gender: res['gender'],
+            nickname: res['displayName'],
+            //profile_image: res['profile_image'],
+            thumbnail_image: res['imageUrl'],
+            //use_email: res['has_email'],
+            pushtoken: this.pushToken,
+            from: 'google'
+          };
+          console.log("userdata ::: " + JSON.stringify(this.userData))
+            if (this.userData !== '') {
+              this.snsexists(this.userData.email).subscribe(result=> {
+                if(result) {
+                  this.userData = {
+                    birthday: result.user.birthday,
+                    email: result.user.email,
+                    gender: result.user.gender,
+                    nickname: result.user.name,
+                    skincomplaint: result.user.skincomplaint,
+                    country: result.user.country,
+                    from: result.user.from,
+                    snsid: result.user.snsid
+                  }
+                  this.storage.set('userData', this.userData);
+                  this.authenticationState.next(true);
+                  return result;
+                }
+                if(!result) { //addinfo page로 보내 신규 사용자 등록 절차를 진행한다.
+                  resolve(this.userData);
+                }
+              })
+            }
+        })
+        .catch(err => {
+          this.showAlert("Google에 로그인하지 못했습니다. 관리자에게 문의하세요." + err)
+          // console.error(err)
+        });
+    })
+  }
+
+  // 애플 로그인 추가 2019-07-02 추호선
+  public apple_login() {
+    cordova.plugins.SignInWithApple.signin (
+      { requestedScopes: [0, 1] },
+      (appleLoginResponse : any) => {
+        console.log (appleLoginResponse)
+        this.userData = {
+            accessToken: appleLoginResponse['authorizationCode'],
+            // id: appleLoginResponse['userId'],
+            //age_range: succ['age_range'],
+            //birthday: succ['birthday'],
+            email: this.jwtHelper.decodeToken(appleLoginResponse.identityToken).email,
+            //gender: succ['gender'],
+            nickname: appleLoginResponse['fullName'].familyName + appleLoginResponse['fullName'].givenName,
+            //profile_image: succ['profile_image'],
+            // thumbnail_image: succ['imageUrl'],
+            //use_email: succ['has_email'],
+            pushtoken: '',
+            from: 'apple'
+        };
+        this.registerSnS(this.userData).subscribe(data => {
+          console.log("성공임");
+        }, error => {
+          console.error("애플 로그인 에러임" + error);
+        })
+        this.storage.set('userData', this.userData);
+        this.authenticationState.next(true);
+        return this.userData;
+      },
+      (err : any) => {
+        console.error ("애플로 로그인 에러 발생 : " + err)
+        console.log ("애플로 로그인 에러 발생 : " +  JSON.stringify (err))
+      })
+  }
+
+  public async apple_login_promise() {
+    return new Promise((resolve, reject) => {
+    cordova.plugins.SignInWithApple.signin (
+      { requestedScopes: [0, 1] },
+      (appleLoginResponse : any) => {
+        console.log (appleLoginResponse)
+        this.userData = {
+            accessToken: appleLoginResponse['authorizationCode'],
+            // id: appleLoginResponse['userId'],
+            //age_range: succ['age_range'],
+            //birthday: succ['birthday'],
+            email: this.jwtHelper.decodeToken(appleLoginResponse.identityToken).email,
+            //gender: succ['gender'],
+            nickname: appleLoginResponse['fullName'].familyName + appleLoginResponse['fullName'].givenName,
+            //profile_image: succ['profile_image'],
+            // thumbnail_image: succ['imageUrl'],
+            //use_email: succ['has_email'],
+            pushtoken: '',
+            from: 'apple'
+        };
+
+        if (this.userData !== '') {
+          this.snsexists(this.userData.email).subscribe(result=> {
+            if(result) {
+              this.userData = {
+                birthday: result.user.birthday,
+                email: result.user.email,
+                gender: result.user.gender,
+                nickname: result.user.name,
+                skincomplaint: result.user.skincomplaint,
+                country: result.user.country,
+                from: result.user.from,
+                snsid: result.user.snsid
+              }
+              this.storage.set('userData', this.userData);
+              this.authenticationState.next(true);
+              return result;
+            }
+            if(!result) { //addinfo page로 보내 신규 사용자 등록 절차를 진행한다.
+              resolve(this.userData);
+            }
+          })
+        }
+        console.log(this.jwtHelper.decodeToken(appleLoginResponse.identityToken));
+
+      },
+      (err : any) => {
+        console.error (err)
+        console.log ( JSON.stringify (err))
+      });
+    }).catch(err => {
+      alert("Apple에 로그인하지 못했습니다. 관리자에게 문의하세요." + err)
+    });
+  }
+
+
   //페이스북 로그인 추가 2018-04-23 추호선
   // public facebook_login() {
   //   this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
@@ -393,52 +599,114 @@ export class AuthService {
   // }
 
   public kakao_login() {
+        let loginOptions = {};
+        loginOptions['authTypes'] = [
+          // AuthTypes.AuthTypeTalk,
+          // AuthTypes.AuthTypeStory,
+          AuthTypes.AuthTypeAccount
+        ];
+        console.log("카카오 로그인 시작 ::::::::::::::");
+        this._kakaoCordovaSDK.login(loginOptions).then((res) => {
+          console.log("카카오 로그인 성공 ::::::::::::::");
+          this.userData = {
+            accessToken: res.accessToken,
+            id: res.id,
+            age_range: res.kakao_account['age_range'],
+            birthday: res.kakao_account['birthday'],
+            email: res.kakao_account['email'],
+            gender: res.kakao_account['gender'],
+            nickname: res.properties['nickname'],
+            profile_image: res.properties['profile_image'],
+            thumbnail_image: res.properties['thumbnail_image'],
+            use_email: res.kakao_account['has_email'],
+            pushtoken: this.pushToken,
+            from: 'kakao'
+          };
+          this.registerSnS(this.userData).subscribe(data => {
+            console.log("성공임");
+          }, error => {
+            console.log("에러임");
+          })
+          this.currentUser = res.properties['nickname'];
+          this.storage.set('userData', this.userData);
+          // console.log(JSON.stringify(this.userData))
+          this.authenticationState.next(true);
+          return this.userData;
+        }).catch((err) => {
+          console.log("kakao ---------------------- err" + err);
+        })
+    }
 
-    let loginOptions = {};
-    loginOptions['authTypes'] = [
-      // AuthTypes.AuthTypeTalk,
-      // AuthTypes.AuthTypeStory,
-      AuthTypes.AuthTypeAccount
-    ];
-    console.log("카카오 로그인 시작 ::::::::::::::");
-    this._kakaoCordovaSDK.login(loginOptions).then((res) => {
-      console.log("카카오 로그인 성공 ::::::::::::::");
-      this.userData = {
-        accessToken: res.accessToken,
-        id: res.id,
-        age_range: res.kakao_account['age_range'],
-        birthday: res.kakao_account['birthday'],
-        email: res.kakao_account['email'],
-        gender: res.kakao_account['gender'],
-        nickname: res.properties['nickname'],
-        profile_image: res.properties['profile_image'],
-        thumbnail_image: res.properties['thumbnail_image'],
-        use_email: res.kakao_account['has_email'],
-        pushtoken: this.pushToken,
-        from: 'kakao'
-      };
-      this.registerSnS(this.userData).subscribe(data => {
-        console.log("성공임");
-      }, error => {
-        console.log("에러임");
-      })
-      this.currentUser = res.properties['nickname'];
-      this.storage.set('userData', this.userData);
-      // console.log(JSON.stringify(this.userData))
-      this.authenticationState.next(true);
-      return this.userData;
-    }).catch((err) => {
-      console.log("kakao ---------------------- err" + err);
-    })
+  
+    public kakao_login_promise() {
+      return new Promise((resolve, reject) => {
+          let loginOptions = {};
+          loginOptions['authTypes'] = [
+            // AuthTypes.AuthTypeTalk,
+            // AuthTypes.AuthTypeStory,
+            AuthTypes.AuthTypeAccount
+          ];
+          console.log("카카오 로그인 시작 ::::::::::::::");
+          this._kakaoCordovaSDK.login(loginOptions).then((res) => {
+            console.log("카카오 로그인 성공 ::::::::::::::");
+            this.userData = {
+              accessToken: res.accessToken,
+              id: res.id,
+              age_range: res.kakao_account['age_range'],
+              birthday: res.kakao_account['birthday'],
+              email: res.kakao_account['email'],
+              gender: res.kakao_account['gender'],
+              nickname: res.properties['nickname'],
+              profile_image: res.properties['profile_image'],
+              thumbnail_image: res.properties['thumbnail_image'],
+              use_email: res.kakao_account['has_email'],
+              pushtoken: this.pushToken,
+              from: 'kakao'
+            };
+            // console.log("userdata ::: " + JSON.stringify(this.userData))
+            if (this.userData !== '') {
+              this.snsexists(this.userData.email).subscribe(result=> {
+                if(result) {
+                  this.userData = {
+                    birthday: result.user.birthday,
+                    email: result.user.email,
+                    gender: result.user.gender,
+                    nickname: result.user.name,
+                    skincomplaint: result.user.skincomplaint,
+                    country: result.user.country,
+                    from: result.user.from,
+                    snsid: result.user.snsid
+                  }
+                  this.storage.set('userData', this.userData);
+                  this.authenticationState.next(true);
+                  return result;
+                }
+                if(!result) { //addinfo page로 보내 신규 사용자 등록 절차를 진행한다.
+                  resolve(this.userData);
+                }
+              })
+            }
+            // this.registerSnS(this.userData).subscribe(data => {
+              // console.log("성공임");
+            // }, error => {
+            //   console.log("에러임");
+            // })
+            // this.currentUser = res.properties['nickname'];
+            // this.storage.set('userData', this.userData);
+            // console.log(JSON.stringify(this.userData))
+            // this.authenticationState.next(true);
+            // return this.userData;
+          }).catch((err) => {
+            console.log("kakao ---------------------- err" + err);
+          })
+        })
+      }
 
-
-  }
-
-  public kakao_authlogout() {
-    this.deleteToken();
-    this.deleteUser();
+  public async kakao_authlogout() {
+    await this.deleteToken();
+    await this.deleteUser();
     this.currentUser = null;
-    this.authenticationState.next(false);
+    await this.authenticationState.next(false);
 
     // if(this.platform.is('cordova')){
     //   this._kakaoCordovaSDK.logout().then(() => {
@@ -980,6 +1248,31 @@ export class AuthService {
       });
   }
 
+  //2020-02-10 챌린지 세이브
+
+  public challengeSave(id, email, image, start, end, title, sub, maxmember, userimagefile, filename) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      missionID: id,
+      email: email,
+      image_url: image,
+      startmission: start,
+      endmission: end,
+      title: title,
+      body: sub,
+      maxmember: maxmember,
+      userImageFilename: userimagefile,
+      filename: filename
+    };
+    return this.http.post(CONFIG.apiUrl + 'api/challengesave', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
   // Register a new user at our API
   public register(credentials) {
     return this.http.post(CONFIG.apiUrl + 'api/register', credentials)
@@ -1021,27 +1314,35 @@ export class AuthService {
   public registerSnS(userData) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
-
     let body = {
       email: userData.email,
-      name: userData.nickname,
+      name: userData.name,
       gender: userData.gender,
       birthday: userData.birthday,
+      skincomplaint: userData.skincomplaint,
+      phonenumber: userData.phonenumber,
+      country: userData.country,
       pushtoken: this.pushToken,
       user_jwt: false,
       imagePath: userData.profile_image,
       age_range: userData.age_range,
       from: userData.from,
-      // score: 'bbbbbb',
-      // saveDate: this.currentDate,
+      snsid: userData.snsid,
     };
-
-    // console.log("skinChartSave Data : " + JSON.stringify(body));
-
     return this.http.post(CONFIG.apiUrl + 'api/registersns', JSON.stringify(body), { headers: headers })
       .map(response => response.json())
       .map(data => {
-        console.log(data);
+        this.userData = {
+          birthday: data.user.birthday,
+          email: data.user.email,
+          gender: data.user.gender,
+          nickname: data.user.name,
+          skincomplaint: data.user.skincomplaint,
+          country: data.user.country,
+          from: data.user.from
+        }
+        this.storage.set('userData', this.userData);
+        this.authenticationState.next(true);
         return data;
       });
 
@@ -1063,8 +1364,8 @@ export class AuthService {
   public setCurrentUser(token) {
     this.userToken = token;
     this.currentUser = new User(this.jwtHelper.decodeToken(this.userToken).email, this.jwtHelper.decodeToken(this.userToken).name, this.jwtHelper.decodeToken(this.userToken).birthday, this.jwtHelper.decodeToken(this.userToken).gender, this.jwtHelper.decodeToken(this.userToken).skincomplaint);
-    console.log(this.currentUser);
-    console.log("토큰정보 토큰정보 토큰정보 토큰정보 토큰정보" + token);
+    // console.log(this.currentUser);
+    // console.log("토큰정보 토큰정보 토큰정보 토큰정보 토큰정보" + token);
     return this.storage.set('userData', token);
   }
 
@@ -1092,10 +1393,10 @@ export class AuthService {
     this.storage.set('userData', userData);
   }
 
-  public logout() {
+  public async logout() {
     this.currentUser = null;
-    this.deleteToken();
-    this.authenticationState.next(false);
+    await this.deleteToken();
+    await this.authenticationState.next(false);
     // this.nav.setRoot(LoginPage);
     // this.nav.popToRoot();
     //this.currentUser = null;
@@ -1124,6 +1425,11 @@ export class AuthService {
 
   public getAllNotice() {
     return this.http.get(CONFIG.apiUrl + 'notice/list')
+      .map(response => response.json());
+  }
+
+  public getAllFaq() {
+    return this.http.get(CONFIG.apiUrl + 'faq/list')
       .map(response => response.json());
   }
 
@@ -1315,6 +1621,64 @@ export class AuthService {
       });
   }
 
+  public challengeUpdate(id, email, points) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      id: id,
+      points: points,
+    };
+
+    // console.log("missionPointUpdate : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/challengeUpdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public challengeUpdate2(id, email, points) { //하루 120초(2분) 사용 했을시, 챌린지 하루 성공으로 쳐주는 로직 추가 2020-02-20
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      id: id,
+      points: points,
+    };
+
+    // console.log("missionPointUpdate : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/challengeUpdate2', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public chulSukUpdate(email, chulcheck) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      chulcheck: chulcheck,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/chulsuk', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+  
+
   public userTimeUpdate(email, points) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -1331,6 +1695,31 @@ export class AuthService {
         return data;
       });
   }
+
+  //2020-02-18 사용자 포인트 누적 하기 //20200522 커뮤니티 글쓰기 할 시에도 포인트가 누적되도록 한다.
+  public userPointUpdate(email, points) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      userpoint : {
+        point: points,
+        updatedAt : new Date(),
+        status : true
+      },
+      points: points,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/usepointupdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+
 
 
   public getmissionPoint(id, email) {
@@ -1448,6 +1837,40 @@ export class AuthService {
       });
   }
 
+  public rewardChallengeSave(userdata, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: userdata,
+      name: content.name,
+      missionID: content.missionid,
+      reward: true,
+      product: content.product,
+      prodfilename: content.prodfilename,
+      prodoriginalname: content.prodoriginalname,
+      title: content.title,
+      startmission: content.startmission,
+      endmission: content.endmission,
+      zonecode: content.zonecode,
+      address: content.address,
+      detailAddress: content.detailAddress,
+      desc: content.desc,
+      bname: content.bname,
+      buildingName: content.buildingName,
+      phoneNumber: content.phoneNumber,
+      postemail: content.email,
+      review: content.review,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/rewardchallengesave', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
   public getUseTotalTime(id) {
     return this.http.get(CONFIG.apiUrl + 'totalusetime/' + id)
       .map(response => response.json());
@@ -1507,4 +1930,626 @@ export class AuthService {
       });
   }
 
+  public hairSkin(img, user) { // 두피 저장 2020-04-16
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    var age = user.birthday;
+    console.log("사용자 생일 데이터는?" + age);
+    age = age.substr(0,4);
+    age = Number(2020) - Number(age);
+    console.log("나이는? :" + age);
+    // let body = {
+    //   email: email,
+    //   select: content.select,
+    //   title: content.title,
+    //   contents: content.contents,
+    //   tags: content.tags,
+    //   pushtoken: this.pushToken,
+    // };
+
+    let url = CONFIG.apiUrl + 'hairskin';
+
+    var targetPath = img;
+    var options: FileUploadOptions = {
+      fileKey: 'hairimage',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: {
+        'email': user.email,
+        'gender': user.gender,
+        'skincomplaint': user.skincomplaint,
+        'nickname': user.nickname,
+        'birthday': user.birthday,
+        'age': user.age,
+        // 'select': body.select,
+        // 'title': body.title,
+        // 'contents': body.contents,
+        // 'pushtoken': body.pushtoken,
+        // 'tags': JSON.stringify(body.tags),
+      }
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+    return fileTransfer.upload(targetPath, url, options);
+
+  }
+
+  public eyeSkin(img, user) { // 눈가 저장 2020-04-16
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    var age = user.birthday;
+    console.log("사용자 생일 데이터는?" + age);
+    age = age.substr(0,4);
+    age = Number(2020) - Number(age);
+    console.log("나이는? :" + age);
+    // let body = {
+    //   email: email,
+    //   select: content.select,
+    //   title: content.title,
+    //   contents: content.contents,
+    //   tags: content.tags,
+    //   pushtoken: this.pushToken,
+    // };
+
+    let url = CONFIG.apiUrl + 'eyeskin';
+
+    var targetPath = img;
+    var options: FileUploadOptions = {
+      fileKey: 'eyeimage',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: {
+        'email': user.email,
+        'gender': user.gender,
+        'skincomplaint': user.skincomplaint,
+        'nickname': user.nickname,
+        'birthday': user.birthday,
+        'age': user.age,
+        // 'select': body.select,
+        // 'title': body.title,
+        // 'contents': body.contents,
+        // 'pushtoken': body.pushtoken,
+        // 'tags': JSON.stringify(body.tags),
+      }
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+    return fileTransfer.upload(targetPath, url, options);
+  }
+
+  public foreheadSkin(img, user) { // 이마 저장
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    var age = user.birthday;
+    console.log("사용자 생일 데이터는?" + age);
+    age = age.substr(0,4);
+    age = Number(2020) - Number(age);
+    console.log("나이는? :" + age);
+    // let body = {
+    //   email: email,
+    //   select: content.select,
+    //   title: content.title,
+    //   contents: content.contents,
+    //   tags: content.tags,
+    //   pushtoken: this.pushToken,
+    // };
+
+    let url = CONFIG.apiUrl + 'foreheadskin';
+
+    var targetPath = img;
+    var options: FileUploadOptions = {
+      fileKey: 'foreheadimage',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: {
+        'email': user.email,
+        'gender': user.gender,
+        'skincomplaint': user.skincomplaint,
+        'nickname': user.nickname,
+        'birthday': user.birthday,
+        'age': user.age,
+        // 'select': body.select,
+        // 'title': body.title,
+        // 'contents': body.contents,
+        // 'pushtoken': body.pushtoken,
+        // 'tags': JSON.stringify(body.tags),
+      }
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+    return fileTransfer.upload(targetPath, url, options);
+
+  }
+
+  public cheekSkin(img, user) { //볼 저장
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    var age = user.birthday;
+    age = age.substr(0,4);
+    age = 2020 - Number(age);
+    console.log("나이는? :" + age);
+    // let body = {
+    //   email: email,
+    //   select: content.select,
+    //   title: content.title,
+    //   contents: content.contents,
+    //   tags: content.tags,
+    //   pushtoken: this.pushToken,
+    // };
+
+    let url = CONFIG.apiUrl + 'cheekskin';
+
+    var targetPath = img;
+    var options: FileUploadOptions = {
+      fileKey: 'cheekimage',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: {
+        'email': user.email,
+        'gender': user.gender,
+        'skincomplaint': user.skincomplaint,
+        'nickname': user.nickname,
+        'birthday': user.birthday,
+        'age': user.age,
+        // 'select': body.select,
+        // 'title': body.title,
+        // 'contents': body.contents,
+        // 'pushtoken': body.pushtoken,
+        // 'tags': JSON.stringify(body.tags),
+      }
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+    return fileTransfer.upload(targetPath, url, options);
+
+  }
+
+  //출석체크 데이터 불러 오기 2020-02-14
+  public loadChulSuk(email) {
+    return this.http.get(CONFIG.apiUrl + 'loadchulsuk/' + email)
+      .map(response => response.json());
+  }
+
+  //사용자 포인트 다시 가져 오기 2020-02-18
+  public reloadUserPoint(email) {
+    return this.http.get(CONFIG.apiUrl + 'reloadUserPoint/' + email)
+      .map(response => response.json());
+  }
+
+  //사용자 포인트 플리닉 샵에서 가져오기 2020-07-01
+  public reloadUserPointfromPlincShop(email) {
+    return this.http.get(CONFIG.apiUrl + 'Point/getUserPlinicPoint/' + email)
+      .map(response => response.json());
+  }
+
+  //사용자 정보를 다시 가져 오기
+  public refreshUser(email) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/loaduser', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        // console.log(data);
+        this.storage.set('userData', data);
+        return data;
+      });
+  }
+
+  public plinicShopSignUp(credentials) {
+    console.log("사용자 가입 정보 : " + JSON.stringify(credentials));
+    // let url = "http://localhost/Users/PlinicSignup";
+    var headers = new Headers();
+    var phoneNumber = credentials.phonenumber.replace(/-/gi, "");
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    let options = new RequestOptions({ headers: headers });
+    let body =  "UsrPassword=" + credentials.password  + 
+                "&UsrName=" + credentials.name + 
+                "&UsrPhone=" + phoneNumber + 
+                "&UsrEmail=" + credentials.email + 
+                "&UsrIsAgrdToUse=" + 'true' + 
+                "&UsrIsAgrdPrivacy=" + 'true' +
+                "&UsrIsEmailMrktAgrd=" + 'true' +
+                "&UsrIsSmsMrktAgrd=" + 'true' +
+                "&UsrSex=" + credentials.gender +
+                "&UsrSkin=" + credentials.skincomplaint +
+                "&UsrBirthday=" + credentials.birthday;
+    return this.http.post(CONFIG.subapiUrl + 'Users/PlinicSignup' ,body,options)
+    .map(res => res.json())
+    .map(data => {
+      return data;
+    }, err => {
+      console.log("Error : " + err);
+    })
+  }
+
+  public plinicShopAddPoint(email, point, reason) {
+    // let url = "http://localhost/Users/PlinicSignup";
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    let options = new RequestOptions({ headers: headers });
+    let body =  "id=" + email  + 
+                "&point=" + point + 
+                "&expire=" + 1096 +
+                "&reason=" + reason; 
+    return this.http.post(CONFIG.adminapiUrl + 'Point/PlinicAddPoint',body,options)
+    .map(res => res.json())
+    .map(data => {
+      return data;
+    }, err => {
+      console.log("Error : " + err);
+    })
+  }
+
+  //2020-03-17 SNS사용자 가입 여부 체크
+  public plinicShopGetUserPoint() {
+
+    var headers = new Headers();
+    // headers.append('Access-Control-Allow-Origin' , '*http://plinicshop:50082*');
+    // headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    // headers.append('Accept','application/json');
+    // headers.append('content-type','application/json');
+     let options = new RequestOptions({ headers:headers});
+    // return this.http.get(CONFIG.apiUrl + 'users/snsexists/')
+    return this.http.get(CONFIG.apiUrl + 'Point/getPlinicPoint', options)
+    .map(response => response.json());
+  }
+  
+
+  //2020-03-17 SNS사용자 가입 여부 체크
+  public snsexists(email) {
+      return this.http.get(CONFIG.apiUrl + 'users/snsexists/' + email)
+      .map(response => response.json());
+  }
+
+  //2020-03-18 애플 스토어 심사 여부 체크
+  public isReview() {
+      return this.http.get(CONFIG.apiUrl + 'appreview')
+      .map(response => response.json());
+  }
+
+
+  //2020-05-07 사용자 개인 화장품 저장
+  public saveMyProduct(email, product, mode) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    if(mode==='main'){
+      var urlmode = "savemymainproduct";
+    }else {
+      var urlmode = "savemysubproduct";
+    }
+
+    var preIngredient = {
+      korean_name : product.ingredient.korean_name,
+      english_name : product.ingredient.english_name,
+      ewg_level : product.ingredient.ewg_level,
+      purpose : product.ingredient.purpose
+    }
+
+    var saveProduct = {
+      title: product.title,
+      jejosa: product.jejosa,
+      brand: product.brand,
+      body: product.body,
+      filename : product.filename,
+      originalName : product.originalName,
+      brand_name: product.brand_name,
+      big_category: product.big_category,
+      small_category: product.small_category,
+      product_name: product.product_name,
+      seller: product.seller,
+      color_type: product.color_type,
+      function: product.function,
+      product_num: product.product_num,
+      image_url: product.image_url,
+      ingredient: preIngredient,
+      weight: product.weight,
+      price: product.price,
+    }
+
+    let body = {
+      email : email,
+      product: saveProduct,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/' + urlmode, JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
+  public delAndSaveMyProduct(email, product, mode) { //2020-05-11 기존 상품이 있을 시 데이터를 삭제 후 저장한다.
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    if(mode==='main'){
+      var urlmode = "delsavemymainproduct";
+    }else {
+      var urlmode = "delsavemysubproduct";
+    }
+
+    var preIngredient = {
+      korean_name : product.ingredient.korean_name,
+      english_name : product.ingredient.english_name,
+      ewg_level : product.ingredient.ewg_level,
+      purpose : product.ingredient.purpose
+    }
+
+    var saveProduct = {
+      title: product.title,
+      jejosa: product.jejosa,
+      brand: product.brand,
+      body: product.body,
+      filename : product.filename,
+      originalName : product.originalName,
+      brand_name: product.brand_name,
+      big_category: product.big_category,
+      small_category: product.small_category,
+      product_name: product.product_name,
+      seller: product.seller,
+      color_type: product.color_type,
+      function: product.function,
+      product_num: product.product_num,
+      image_url: product.image_url,
+      ingredient: preIngredient,
+      weight: product.weight,
+      price: product.price,
+    }
+
+    let body = {
+      email : email,
+      product: saveProduct,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/' + urlmode, JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
+
+  public cameraTest(img, img2, img3, user) { // 여러장이 올라 가는지 확인 필요
+
+    console.log(img);
+    console.log(img2);
+    console.log(img3);
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    var age = 37;
+    // console.log("사용자 생일 데이터는?" + age);
+    // age = age.substr(0,4);
+    // age = Number(2020) - Number(age);
+    // console.log("나이는? :" + age);
+    // age = 37;
+    // let body = {
+    //   email: email,
+    //   select: content.select,
+    //   title: content.title,
+    //   contents: content.contents,
+    //   tags: content.tags,
+    //   pushtoken: this.pushToken,
+    // };
+
+    // let url = CONFIG.apiUrl + 'hairskin';
+    let url = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/api/?skin_feature=skin_tone,pores,wrinkles,diff';
+
+    var targetPath = img;
+    var targetPath2 = img2;
+    var targetPath3 = img3;
+    var options: FileUploadOptions = {
+      // fileKey: 'hairimage',
+      fileKey: 'image',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: {
+        'email': user.email,
+        'gender': user.gender,
+        'skincomplaint': user.skincomplaint,
+        'nickname': user.nickname,
+        'birthday': user.birthday,
+        'age': age,
+        // 'select': body.select,
+        // 'title': body.title,
+        // 'contents': body.contents,
+        // 'pushtoken': body.pushtoken,
+        // 'tags': JSON.stringify(body.tags),
+      }
+    };
+    const fileTransfer: TransferObject = this.transfer.create();
+    return fileTransfer.upload(targetPath, url, options).then(data=>{
+      var result1 = JSON.parse(data.response);
+      console.log("첫 번째 (볼) 전송  성공 : " + JSON.stringify(result1));
+      return fileTransfer.upload(targetPath2, url, options).then(data2=> {
+        var result2 = JSON.parse(data2.response);
+        console.log("두 번째 (이마) 전송  성공 : " + JSON.stringify(result2));
+        return fileTransfer.upload(targetPath3, url, options).then(data3=> {
+          var result3 = JSON.parse(data3.response);
+          console.log("세 번째 (눈가) 전송  성공 : " + JSON.stringify(result3));
+        }, fail3=> {
+          console.log("세 번째  전송  실패 : " + JSON.stringify(fail3));
+        })
+      },fail2=> {
+        console.log("두 번째  전송  실패 : " + JSON.stringify(fail2));
+      })
+    }, fail1=> {
+      console.log("첫 번째  전송  실패 : " + JSON.stringify(fail1));
+    });
+  }
+
+
+  //문진표 Save 20190709 추호선 ------------------------------------------
+  public cameraTest2(files, email, score) {
+    let formData = new FormData();
+    for(let i =0; i < files.length; i++){
+      formData.append("uploads[]", files[i], files[i]['name']);
+      console.log("폼에 데이터 저장" + i);
+    }
+    // let headers = new Headers();
+    // headers.append("Content-Type", "application/json");
+    console.log("폼데이터 : " + JSON.stringify(formData));
+    // console.log("skinChartSave Data : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'cameratest', formData)
+      .map(res => res.json())
+      .map(data => {
+        console.log("파일전송 성공 : " + data);
+        return data;
+      });
+  }
+
+  //2020-06-04 사용자 id(email) 찾기
+  public idFind(credentials) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      name : credentials.name,
+      birthday: credentials.birthday,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/findId', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
+  public passwordReset(credentials) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email : credentials.email,
+      name : credentials.name,
+      birthday: credentials.birthday,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/validIdandSendemail', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
+  public passwordChange(credentials) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email : credentials.email,
+      name : credentials.name,
+      birthday: credentials.birthday,
+      temp: credentials.temp,
+      password: credentials.password
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/changePassword', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
+  public checkUser(credentials) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    
+    let body = {
+      email : credentials.email
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/checkUser', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
+  public changePush(email, ispush) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    
+    let body = {
+      email : email,
+      ispush : ispush
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/changepush', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
+  public getUserPush(email) {
+    return this.http.get(CONFIG.apiUrl + 'userpush/' + email)
+      .map(response => response.json());
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: '잠시만 기다려주세요'
+    });
+    this.loading.present();
+  }
+
+  public updatePushToken(email, pushtoken) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email : email,
+      pushtoken : pushtoken
+    }
+
+    return this.http.post(CONFIG.apiUrl + 'api/updatepushtoken', JSON.stringify(body), {headers : headers} )
+    .map(res => res.json())
+    .map(data => {
+      return data;
+    })
+  }
+
+  public jsonBackSlash(data) {
+    const removeBackSlash = data.replace(/\\/g,'');
+    const replaceFirstBracket = removeBackSlash.replace(/\"{/g,'{');
+    const replaceSecondBracket = replaceFirstBracket.replace(/\}"/g,'}'); 
+    return replaceSecondBracket;
+  }
+
+  public compareAppVersion() {
+    return this.http.get(CONFIG.apiUrl + 'appversion')
+      .map(response => response.json());
+  }
+
+  public getOrderList(email, dateTime) {
+    return this.http.get(CONFIG.apiUrl + 'Point/getUserOrder/' + email + '/' + dateTime)
+      .map(response => response.json());
+  }
+
+  public billingsUser(key) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    
+    let body = {
+      key : key
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/billings', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
 }

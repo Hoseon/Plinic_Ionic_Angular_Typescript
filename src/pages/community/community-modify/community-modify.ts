@@ -7,12 +7,8 @@ import { CommunityWritePage } from '../community-write/community-write';
 import { AuthService } from '../../../providers/auth-service';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { KakaoCordovaSDK, KLCustomTemplate, KLLinkObject, KLSocialObject, KLButtonObject, KLContentObject, KLFeedTemplate, AuthTypes } from 'kakao-sdk';
-import { Instagram } from '@ionic-native/instagram';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { SocialSharing } from '@ionic-native/social-sharing';
-
-
-
+import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 
 
 @IonicPage()
@@ -38,18 +34,17 @@ export class CommunityModifyPage {
   userData: any = {};
   profileimg_url: any;
   jwtHelper: JwtHelper = new JwtHelper();
-
   registerReply = { comment: '', id: '' };
   reply = { comment: '', id: '', email: '' };
-
   islike: boolean = false;
-
   focusvalue: any;
   updatevalue: any;
-
   page_write = "2";
   page_modify = "3";
   pushData: any = { mode: '', id: '' };
+  adUrl: any;
+  productTitle: any;
+  productURL: any;
 
 
   @ViewChild('myInput') myInput: ElementRef;
@@ -63,9 +58,24 @@ export class CommunityModifyPage {
 
 
 
-  constructor(private http: Http, private fb: Facebook, private socialSharing: SocialSharing, private instagram: Instagram, public _kakaoCordovaSDK: KakaoCordovaSDK, private toastctrl: ToastController, private alertCtrl: AlertController, private auth: AuthService, public nav: NavController,
-    public navParams: NavParams, public platform: Platform, private images: ImagesProvider,
-    public viewCtrl: ViewController, public popoverCtrl: PopoverController, public element: ElementRef, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
+  constructor(
+      private http: Http, 
+      private socialSharing: SocialSharing, 
+      public _kakaoCordovaSDK: KakaoCordovaSDK, 
+      private toastctrl: ToastController, 
+      private alertCtrl: AlertController, 
+      private auth: AuthService, 
+      public nav: NavController,
+      public navParams: NavParams, 
+      public platform: Platform, 
+      private images: ImagesProvider,
+      public viewCtrl: ViewController, 
+      public popoverCtrl: PopoverController, 
+      public element: ElementRef, 
+      public loadingCtrl: LoadingController, 
+      public modalCtrl: ModalController,
+      public themeableBrowser: ThemeableBrowser,
+    ) {
     this.platform.ready().then((readySource) => {
       //this.presentLoading();
 
@@ -86,12 +96,16 @@ export class CommunityModifyPage {
       this.skinQnaOneLoad(this.id);
     } else {
       this.beautyNoteOneLoad(this.id);
-      this.getUserimage();
+      // this.getUserimage();
     }
   }
 
   ionViewDidEnter() {
+    // this.getUserimage();
+  }
 
+  ionViewWillEnter(){
+   this.randomUrl();
   }
 
   update() {
@@ -178,7 +192,7 @@ export class CommunityModifyPage {
           let alert = this.alertCtrl.create({
             cssClass: 'push_alert_cancel',
             title: "plinic",
-            message: "게시글을 정말로 삭제하시겠습니까?",
+            message: "내용을 정말로 삭제하시겠습니까?",
             buttons: [
               {
                 text: '취소',
@@ -196,7 +210,7 @@ export class CommunityModifyPage {
                         let alert2 = this.alertCtrl.create({
                           cssClass: 'push_alert',
                           title: '게시글 삭제',
-                          message: "게시글이 정상적으로 삭제 되었습니다.",
+                          message: "글이 정상적으로 삭제 되었습니다",
                           buttons: [
                             {
                               text: '확인',
@@ -225,7 +239,7 @@ export class CommunityModifyPage {
                         let alert2 = this.alertCtrl.create({
                           cssClass: 'push_alert',
                           title: '게시글 삭제',
-                          message: "게시글이 정상적으로 삭제 되었습니다.",
+                          message: "글이 정상적으로 삭제 되었습니다",
                           buttons: [
                             {
                               text: '확인',
@@ -268,15 +282,49 @@ export class CommunityModifyPage {
         if (this.select_popover_option === "수정") {
           setTimeout(() => {
             console.log('수정');
-            let myModal = this.modalCtrl.create(CommunityWritePage);
-            myModal.present();
+            console.log(JSON.stringify(this.beautyNoteOneLoadData));
+            if (this.mode === 'note') {
+              let myModal = this.modalCtrl.create(CommunityWritePage, {
+                _id: this.beautyNoteOneLoadData._id,
+                beautyNoteOneLoadData: this.beautyNoteOneLoadData,
+                // select : this.beautyNoteOneLoadData.select,
+                // title : this.beautyNoteOneLoadData.title,
+                // contents : this.beautyNoteOneLoadData.contents,
+                // tags : this.beautyNoteOneLoadData.tags,
+                // filename : this.beautyNoteOneLoadData.filename,
+                // originalName : this.beautyNoteOneLoadData.originalName,
+                // views : this.beautyNoteOneLoadData.views,
+                // createdAt : this.beautyNoteOneLoadData.createdAt,
+                // email : this.beautyNoteOneLoadData.email,
+                mode: 'note'
+              });
+              myModal.present();
+            }
+            if (this.mode === 'qna') {
+              let myModal = this.modalCtrl.create(CommunityWritePage, {
+                _id: this.skinQnaOneLoadData._id,
+                skinQnaOneLoadData: this.skinQnaOneLoadData,
+                // _id : this.skinQnaOneLoadData._id,
+                // select : this.skinQnaOneLoadData.select,
+                // title : this.skinQnaOneLoadData.title,
+                // contents : this.skinQnaOneLoadData.contents,
+                // tags : this.skinQnaOneLoadData.tags,
+                // filename : this.skinQnaOneLoadData.filename,
+                // originalName : this.skinQnaOneLoadData.originalName,
+                // views : this.skinQnaOneLoadData.views,
+                // createdAt : this.skinQnaOneLoadData.createdAt,
+                // email : this.skinQnaOneLoadData.email,
+                mode: 'qna'
+              });
+              myModal.present();
+            }
           }, 100)
         }
         else if (this.select_popover_option === "삭제") {
           let alert = this.alertCtrl.create({
             cssClass: 'push_alert_cancel',
             title: "plinic",
-            message: "게시글을 정말로 삭제하시겠습니까?",
+            message: "내용을 정말로 삭제하시겠습니까?",
             buttons: [
               {
                 text: '취소',
@@ -321,7 +369,7 @@ export class CommunityModifyPage {
                         let alert2 = this.alertCtrl.create({
                           cssClass: 'push_alert',
                           title: '게시글 삭제',
-                          message: "게시글이 정상적으로 삭제 되었습니다.",
+                          message: "글이 정상적으로 삭제 되었습니다",
                           buttons: [
                             {
                               text: '확인',
@@ -654,6 +702,7 @@ export class CommunityModifyPage {
           this.islike = true;
         }
       }
+      this.getUserimage();
     });
   }
 
@@ -672,7 +721,8 @@ export class CommunityModifyPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
-          from: items.from
+          from: items.from,
+          snsid: items.snsid
         };
       } else {
         this.userData = {
@@ -1161,15 +1211,6 @@ export class CommunityModifyPage {
       });
   }
 
-
-  share_instagram() {
-    this.instagram.share('http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png', '플리닉 공유하기')
-      // this.instagram.share('data:image/png;uhduhf3hfif33', '플리닉 공유하기')
-      .then(() => { console.log('Shared!') })
-      .catch((error: any) => console.error(error));
-
-  }
-
   share_facebook(loaddata, mode) {
     // this.socialSharing.shareVia("com.apple.social.facebook", "Hello Plinic", "플리닉을 사용하자", "http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png", "http://g1p.co.kr")
     // .then(()=>{console.log("페이스북 공유 성공")})
@@ -1262,8 +1303,8 @@ export class CommunityModifyPage {
 
 
   getUserimage() {
-    for (let i = 0; i < this.beautyNoteOneLoadData.comments.length; i++) {
-      this.images.chkUserImage(this.beautyNoteOneLoadData.comments[i].email).subscribe(data => {
+    for (let i = 0; i < this.skinQnaOneLoadData.comments.length; i++) {
+      this.images.chkUserImage(this.skinQnaOneLoadData.comments[i].email).subscribe(data => {
         if (data !== 'NOTFOUND') {
           this.plinicUserImages[i] = 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + data
         }
@@ -1273,6 +1314,115 @@ export class CommunityModifyPage {
     // return 'https://plinic.s3.ap-northeast-2.amazonaws.com/image-1574732479055';
   }
 
+
+  getCovertKoreaTime(time) {
+    return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000).toISOString()
+  }
+
+  // 이메일 마스킹 처리 2020-06-02
+  emailSecurity(userEmail){
+    var id = userEmail.split('@')[0]; 
+    var mail = userEmail.split('@')[1]; 
+    var maskingId = function(id){ 
+      var splitId = id.substring(0,2); 
+      for(var i = 1; i < id.length; i++){ 
+        splitId += '*'; 
+      } 
+      return splitId; 
+    }; 
+    var maskingMail = function(mail){ 
+      var splitMail = ''; 
+      for(var i = 1; i < mail.length; i++){ 
+        splitMail += '*'; 
+      } splitMail += mail.substring(mail.length-1,mail.length); 
+      return splitMail; 
+    }; 
+    userEmail = maskingId(id) + '@' + (mail); 
+    return userEmail; 
+  }
+
+
+  
+  randomUrl() {
+      var urlNo;
+      urlNo = this.makeRandom(1,3);
+      
+      switch(urlNo) {
+        case 1 : this.adUrl = 'assets/img/beauty/beauty_ad_1.png';
+                 this.productTitle = '플리닉 크림';
+                 this.productURL = 'https://www.plinicshop.com/Products/Details/1863';
+                  break;
+        case 2 : this.adUrl = 'assets/img/beauty/beauty_ad_2.png';
+                 this.productTitle = '뷰셀리온';
+                 this.productURL = 'https://www.plinicshop.com/Products/Details/1968';
+                  break;
+        case 3 : this.adUrl = 'assets/img/beauty/beauty_ad_3.png';
+                 this.productTitle = '레스테틱';
+                 this.productURL = 'https://www.plinicshop.com/Products/Details/1832';
+                  break;   
+        default : this.adUrl = 'assets/img/beauty/beauty_ad_1.png';
+                  this.productTitle = '플리닉 크림';
+                  this.productURL = 'https://www.plinicshop.com/Products/Details/1863';
+      }
+    }
+
+  
+  private makeRandom(min, max) {
+        var RandVal = Math.floor(Math.random() * (max - min + 1)) + min;
+        return RandVal;
+  }
+
+  openBrowser_android() {
+    const options: ThemeableBrowserOptions = {
+      toolbar: {
+        height: 55,
+        color: '#6562b9'
+      },
+      title: {
+        color: '#FFFFFF',
+        showPageTitle: true,
+        staticText: this.productTitle
+      },
+      closeButton: {
+        wwwImage: 'assets/img/close.png',
+        align: 'left',
+        event: 'closePressed'
+      },
+      backButton: {
+        wwwImage: 'assets/img/back.png',
+        align: 'right',
+        event: 'backPressed'
+      },
+      forwardButton: {
+        wwwImage: 'assets/img/forward.png',
+        align: 'right',
+        event: 'forwardPressed'
+      },
+      // customButtons: [
+      //   {
+      //     wwwImage: 'assets/img/like/like.png',
+      //     imagePressed: 'assets/img/like/dislike.png',
+      //     align: 'right',
+      //     event: 'sharePressed'
+      //   }
+      // ],
+    };
+
+    const browser: ThemeableBrowserObject = this.themeableBrowser.create(this.productURL, '_blank', options);
+    browser.insertCss({
+      file: 'assets/img/close.png',
+      code: '.navbar-fixed-top {display: block !important;}'
+    });
+    browser.reload();
+    browser.on('closePressed').subscribe(data => {
+      browser.close();
+    })
+
+    browser.on('sharePressed').subscribe(data => {
+      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+    })
+
+  }
 
 
 }

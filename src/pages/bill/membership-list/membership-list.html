@@ -1,0 +1,38 @@
+<!--
+  Generated template for the MembershipListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core') ">
+    <ion-buttons left>
+      <button (click)="close()" ion-button icon-only>
+        <!-- <img class="android_nav" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" /> -->
+      </button>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>정기결제 멤버십 내역</ion-title>
+    <ion-buttons (click)="myinfo()" right>
+      <!-- <button  ion-button>
+              <div class="button_left">{{totaluserpoint}}P &nbsp;<img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
+          </button> -->
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>정기결제 멤버십 내역</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  
+</ion-content>

@@ -102,7 +102,6 @@ page-addinfo {
           padding-bottom: 2%;
           margin-top: 2%;
           color: #292929;
-
         }
         .label-md[stacked]{
           font-size: 13px;
@@ -405,5 +404,19 @@ page-addinfo {
           color: #FFF;
           margin-top: 10%;
           margin-bottom: -300px !important;
+        }
+
+        .name_img{
+          position: absolute;
+          background-color: #FFF;
+          width: 25px;
+          height: 25px;
+          object-fit: contain;
+          right: 0%;
+          top: 37%;
+        }
+
+        .down {
+          margin-top: 5%;
         }
 }

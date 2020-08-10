@@ -85,6 +85,8 @@ export class QnaPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: items.from,
+          snsid: items.snsid
         };
         // console.log(this.userData);
         this.loadQna(this.userData.email);

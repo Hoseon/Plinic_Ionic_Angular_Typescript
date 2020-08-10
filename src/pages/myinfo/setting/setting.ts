@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Platform, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Platform, ModalController, Loading, LoadingController } from 'ionic-angular';
 import { AuthService } from '../../../providers/auth-service';
 import { PlinicManualPage } from '../details/plinic-manual/plinic-manual';
+import { UseGuidePage } from '../../use-guide/use-guide';
 import { QnaPage } from '../details/qna/qna';
 import { FaqPage } from '../details/faq/faq';
 import { TermsPage } from '../details/terms/terms';
@@ -9,13 +10,15 @@ import { ReRegisterPage } from '../../re-register/re-register';
 import { NoticePage } from '../details/notice/notice';
 import { PersonalinfoPage } from '../details/personalinfo/personalinfo';
 // import { FCM } from '@ionic-native/fcm';
-import { BluetoothLE } from '@ionic-native/bluetooth-le';
+// import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { BluetoothConnectIngPage } from '../details/bluetooth-connect-ing/bluetooth-connect-ing';
 import { BluetoothDisconnectPage } from '../details/bluetooth-disconnect/bluetooth-disconnect';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { CareZonePage } from '../../care-zone/care-zone';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../../login/login';
+import { async } from 'q';
+import { MembershipManagePage } from '../../bill/membership-manage/membership-manage';
 
 /**
  * Generated class for the SettingPage page.
@@ -50,29 +53,54 @@ export class SettingPage {
   profileimg_url: any;
   imagePath: any;
   from: any;
+  loading : Loading;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public storage: Storage,
-    private alertCtrl: AlertController, private platform: Platform,
-    // private fcm: FCM,
-    public bluetoothle: BluetoothLE, public modalCtrl: ModalController) {
+  constructor(
+      public navCtrl: NavController, 
+      public navParams: NavParams, 
+      public authService: AuthService, 
+      public storage: Storage,
+      private alertCtrl: AlertController, 
+      private platform: Platform,
+      // private fcm: FCM,
+      // public bluetoothle: BluetoothLE, 
+      public modalCtrl: ModalController,
+      public loadingCtrl : LoadingController
+    ) {
 
       this.platform.ready().then(() => {
       });
 
   }
 
-  ionViewDidLoad() {
+  async ionViewDidLoad() {
     console.log('ionViewDidLoad SettingPage');
+    await this.loadItems();
+    await this.loadimagePath();
+  }
+
+  async ionViewDidEnter() {
+    console.log('ionViewDidEnter SettingPage');
+    await this.loadNotice();
+    await this.getUserPush(this.userData.email);
+    // this.blu_connect = this.authService.bluetooth_connect();
+    // console.log('blu_connect=====================' + this.authService.bluetooth_connect());
+    // this.loadItems();
+    // this.loadNotice();
+    let tabs = document.querySelectorAll('.tabbar');
+    if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+        // tabs[ key ].style.transform = 'translateY(0)';
+        tabs[key].style.display = 'block';
+        tabs[key].style.display = '';
+      });
+    } // end if
   }
 
 
-ionViewWillEnter() {
-  this.loadimagePath();
-  this.loadItems();
-  this.loadNotice();
-  console.log("1234");
-
-}
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter SettingPage');
+  }
 
 public loadimagePath() {
   this.authService.getUserStorageimagePath().then(items => {
@@ -80,20 +108,7 @@ public loadimagePath() {
   });
 }
 
-ionViewDidEnter() {
-  // this.blu_connect = this.authService.bluetooth_connect();
-  // console.log('blu_connect=====================' + this.authService.bluetooth_connect());
-  // this.loadItems();
-  // this.loadNotice();
-  let tabs = document.querySelectorAll('.tabbar');
-  if (tabs !== null) {
-    Object.keys(tabs).map((key) => {
-      // tabs[ key ].style.transform = 'translateY(0)';
-      tabs[key].style.display = 'block';
-      tabs[key].style.display = '';
-    });
-  } // end if
-}
+
 
 public Reregiter() {
   // this.navCtrl.push(ReRegisterPage, {
@@ -108,7 +123,7 @@ public Reregiter() {
 
 
   if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
-    this.showAlert("SNS계정 회원은 정보를 수정 할 수 없습니다.");
+    this.showAlert("SNS계정 회원은 정보를 <br>수정 할 수 없습니다.");
   } else {
     let myModal = this.modalCtrl.create(ReRegisterPage, {userData: this.userData});
     myModal.onDidDismiss(data => {
@@ -131,34 +146,46 @@ public Reregiter() {
 // }
 
 public push_change() {
+  this.showLoading();
   if (this.push_check) {
-    // this.getToken();
-    console.log("켜진 상태");
+    this.authService.changePush(this.userData.email, this.push_check).subscribe(data => {
+      this.loading.dismiss();
+      console.log("푸쉬 알림 허용");
+    }, error => {
+      this.loading.dismiss();
+      this.showAlert("푸쉬 알림 변경 오류 <br> 관리자에게 문의 해주세요");
+    })
   }
   else {
     console.log("꺼진 상태");
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert_cancel',
-      title: "추천 알림",
+      // title: "추천 알림",
       message: "알림을 해제하시면 플리닉 이벤트 및 <br> 주요 정보를 받아 보실 수 없습니다. <br> 알림을 해제하시겠습니까?",
       buttons: [
         {
           text: '취소',
           role: 'cancel',
           handler: () => {
-            console.log('취소'),
-              this.push_check = true;
+            console.log('취소');
           }
         },
         {
           text: '확인',
           handler: () => {
             console.log('확인');
+            this.authService.changePush(this.userData.email, this.push_check).subscribe(data => {
+              this.loading.dismiss();
+              console.log("푸쉬 알림 안 허용");
+            }, error => {
+              this.loading.dismiss();
+              this.showAlert("푸쉬 알림 변경 오류 <br> 관리자에게 문의 해주세요");
+            })
           }
         }]
     });
     alert.present();
-    this.backend.registerToken('');
+    // this.backend.registerToken('');
   }
 }
 
@@ -180,29 +207,33 @@ public logout() {
       {
         text: '취소',
         role: 'cancel',
-        handler: () => {
-
-        }
+        handler: () => {}
       },
       {
         text: '확인',
         handler: () => {
           if (this.userData.from === 'plinic') {
             console.log("플리닉 로그아웃")
-            this.authService.logout();
-            this.navCtrl.setRoot(LoginPage);
-            this.navCtrl.popToRoot();
+            this.authService.logout().then(()=>{
+              this.navCtrl.setRoot(LoginPage).then(()=>{
+                this.navCtrl.popToRoot();
+              });
+            });
           } else if (this.userData.from === 'naver') {
             this.authService.naver_logout();
+            this.navCtrl.setRoot(LoginPage);
             console.log("플리닉 네이버 로그아웃");
           } else if (this.userData.from === 'google' || this.userData.from === 'kakao') {
             console.log("플리닉 구글 카카오 로그아웃");
             this.authService.kakao_authlogout();
-          } else {
-            console.log("그외 로그아웃");
-            this.authService.logout();
             this.navCtrl.setRoot(LoginPage);
-            this.navCtrl.popToRoot();
+          } else {
+            console.log("플리닉 로그아웃")
+            this.authService.logout().then(()=>{
+              this.navCtrl.setRoot(LoginPage).then(()=>{
+                this.navCtrl.popToRoot();
+              });
+            });
           }
         }
       }]
@@ -216,7 +247,7 @@ public logout() {
 // }
 
 public plinic_manual() {
-  this.navCtrl.push(PlinicManualPage);
+  this.navCtrl.push(UseGuidePage);
 }
 
 public plinic_qna() {
@@ -253,6 +284,8 @@ public loadItems() {
         profile_image: items.profile_image,
         thumbnail_image: items.thumbnail_image,
         from: items.from,
+        snsid: items.snsid,
+        ispush: items.ispush,
       };
       if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
         //this.thumb_image = false;
@@ -269,6 +302,7 @@ public loadItems() {
         skincomplaint: this.jwtHelper.decodeToken(items).skincomplaint,
         email: this.jwtHelper.decodeToken(items).email,
         nickname: this.jwtHelper.decodeToken(items).name,
+        ispush: this.jwtHelper.decodeToken(items).ispush,
         profile_image: items.profile_image,
         thumbnail_image: items.thumbnail_image,
         from: 'plinic',
@@ -278,11 +312,25 @@ public loadItems() {
           this.profileimg_url = "https://plinic.s3.ap-northeast-2.amazonaws.com/";
           this.profileimg_url = this.profileimg_url.concat(items.filename + "?random+\=" + Math.random());
         }
+        // (this.userData.ispush) ? this.push_check = true : this.push_check = false;
       });
     }
 
 
   });
+}
+
+public getUserPush(email) {
+  this.showLoading();
+  this.authService.getUserPush(email).subscribe(data => {
+    this.loading.dismiss();
+    console.log('푸쉬체크 데이터 ' + data);
+    this.push_check = data;
+  }, error => {
+    this.loading.dismiss();
+    console.log("푸시 체크 가져 오기 에러");
+  })
+
 }
 
 
@@ -303,6 +351,21 @@ showAlert(text) {
     buttons: ['OK']
   });
   alert.present();
+}
+
+showLoading() {
+  this.loading = this.loadingCtrl.create({
+    content: '데이터를 불러오는중입니다'
+  });
+  this.loading.present();
+}
+
+bill() {
+  this.navCtrl.push(MembershipManagePage).then(() => {
+    this.navCtrl.getActive().onDidDismiss(data => {
+      console.log("멤버십 관리 페이지 닫힘");
+    });
+  });
 }
 
 

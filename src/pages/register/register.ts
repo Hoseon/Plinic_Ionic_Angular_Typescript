@@ -1,6 +1,6 @@
 import { IonicPage } from 'ionic-angular';
 import { Component} from '@angular/core';
-import { NavController, AlertController, Platform, ActionSheetController, ModalController, normalizeURL, ViewController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, Platform, ActionSheetController, ModalController, normalizeURL, ViewController, Loading, LoadingController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from './../../providers/images/images';
 import {AgreementPage } from '../agreement/agreement';
@@ -8,7 +8,6 @@ import {AddinfoPage} from '../register/addinfo/addinfo';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImageLoader } from 'ionic-image-loader';
-// import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 
 @IonicPage()
@@ -32,10 +31,22 @@ export class RegisterPage {
   imagePath: any;
   imagePath2 : any;
   unregisterBackButtonAction: Function;
+  loading : Loading;
+  isPush: boolean;
 
-
-  constructor(private _camera: Camera, private imagesProvider: ImagesProvider, private actionSheetCtrl: ActionSheetController, private modalCtrl: ModalController,
-    private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public platform: Platform, public viewCtrl: ViewController) {
+  constructor(
+      private _camera: Camera, 
+      private imagesProvider: ImagesProvider, 
+      private actionSheetCtrl: ActionSheetController, 
+      private modalCtrl: ModalController,
+      private nav: NavController, 
+      private auth: AuthService, 
+      private alertCtrl: AlertController, 
+      public platform: Platform, 
+      public viewCtrl: ViewController,
+      public loadingCtrl: LoadingController,
+      public navParams: NavParams,
+    ) {
 
 
     this.platform.ready().then((readySource) => {
@@ -81,6 +92,9 @@ export class RegisterPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad registerpage');
+    if(this.navParams.get('ispush')) {
+      this.isPush = this.navParams.get('ispush');
+    }
   }
 
 
@@ -124,9 +138,10 @@ export class RegisterPage {
 
   ngOnInit() {
      let EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+     let PASSWORDPATTERN = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
      this.signupform = new FormGroup({
-       password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]),
-       passwordconfirm: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]),
+       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(15), Validators.pattern(PASSWORDPATTERN)]),
+       passwordconfirm: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(15), Validators.pattern(PASSWORDPATTERN)]),
        email: new FormControl('', [Validators.required, Validators.pattern(EMAILPATTERN)])
      });
   }
@@ -136,25 +151,34 @@ export class RegisterPage {
     console.log(value)
 }
 
-    public anddinfo(){
-      if(this.userData.password===this.userData.passwordconfirm){
+  public anddinfo(){
+    this.showLoading();
+    if(this.userData.password===this.userData.passwordconfirm){
+    this.auth.checkUser(this.userData).subscribe(data => {
+      this.loading.dismiss();
       this.nav.push(AddinfoPage,{
         email: this.userData.email,
         password: this.userData.password,
-        imagePath: this.imagePath2
+        imagePath: this.imagePath2,
+        ispush: this.isPush
       });
-    }
-    else{
-        let alert = this.alertCtrl.create({
-          cssClass: 'push_alert',
-          title: "비밀번호 불일치",
-          message: "패스워드를 확인해주세요.",
-          buttons: [{
-            text: '확인'
-          }]
-        });
-        alert.present();
-       console.log("비밀번호 불일치");
+    }, error => {
+      // console.log(JSON.stringify(error._body.msg));
+      this.loading.dismiss();
+      this.showAlert("아이디 오류", "이미 가입되어 있는 아이디 입니다.");
+      // this.showAlert("아이디 오류", JSON.stringify(error.msg).replace('"', '').replace('"', ''))
+    }) 
+  } else{
+      let alert = this.alertCtrl.create({
+        cssClass: 'push_alert',
+        title: "비밀번호 불일치",
+        message: "패스워드를 확인해주세요.",
+        buttons: [{
+          text: '확인'
+        }]
+      });
+      alert.present();
+      console.log("비밀번호 불일치");
   }
 }
 
@@ -274,5 +298,26 @@ export class RegisterPage {
   }
   return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
 };
+
+  showAlert(title, message) {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: title,
+      message: message,
+      buttons: [{
+        text: '확인',
+        handler: () => {
+        }
+      }]
+    });
+      alert.present();
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: '잠시만 기다려주세요'
+    });
+    this.loading.present();
+  }
 
 }

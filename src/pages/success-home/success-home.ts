@@ -7,7 +7,7 @@ import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { SkinChartPage } from '../skin-chart/skin-chart'
 import { CareZonePage } from '../care-zone/care-zone'
 import { SkinMeasureStartPage } from '../skin-measure-start/skin-measure-start'
-import { BluetoothLE } from '@ionic-native/bluetooth-le';
+// import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { TranslateService } from 'ng2-translate/ng2-translate'
 import { TabsPage } from '../tabs/tabs'
 import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-mission-ing'

@@ -26,7 +26,7 @@ export class DeviceConnectFailPage {
   }
 
   public deviceReConnect(){
-    this.navCtrl.push(DeviceConnectIngPage);
+    this.navCtrl.pop();
   }
 
   public measureBack(){

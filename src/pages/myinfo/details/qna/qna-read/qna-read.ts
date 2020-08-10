@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, Platform, AlertController } from '
 import { QnaWritePage } from '../qna-write/qna-write';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { AuthService } from '../../../../../providers/auth-service';
-// import { LocalNotifications } from '@ionic-native/local-notifications';
 import { format } from 'date-fns';
 
 
@@ -32,7 +31,6 @@ export class QnaReadPage {
   createdAt: any;
 
   constructor(public nav: NavController, public navParams: NavParams, public platform: Platform, public auth: AuthService,  public alertCtrl: AlertController,
-    // private localNotifications: LocalNotifications
    ) {
     this.platform.ready().then((readySource) => {
 
@@ -80,6 +78,8 @@ export class QnaReadPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: items.from,
+          snsid: items.snsid
         };
       } else {
         this.userData = {

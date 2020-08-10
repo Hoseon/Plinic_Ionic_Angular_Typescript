@@ -11,44 +11,12 @@ import { AuthService } from '../../providers/auth-service';
 // import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { BLE } from '@ionic-native/ble';
 // import { SuccessHomePage } from '../success-home/success-home';
-/**
- * Generated class for the DeviceConnectIngPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
-//Blue Mod S42
-// const PLINIC_SERVICE = 'FEFB';
-// const UUID_SERVICE = '180A';
-// const SWITCH_CHARACTERISTIC = '2A50';
 
 // //HM Soft Bluetooth Mod
 const PLINIC_SERVICE = 'FFE0';
 const UUID_SERVICE = 'FFE0';
 const SWITCH_CHARACTERISTIC = 'FFE1';
-
-
-// {"service":"1800","characteristic":"2a00","properties":["Read"]},
-// {"service":"1800","characteristic":"2a01","properties":["Read"]},
-// {"service":"1800","characteristic":"2a02","properties":["Read","Write"]},
-// {"service":"1800","characteristic":"2a03","properties":["Write"]},
-// {"service":"1800","characteristic":"2a04","properties":["Read"]},
-// {"service":"1801","characteristic":"2a05","properties":["Indicate"],"descriptors":[{"uuid":"2902"}]},
-// {"service":"ffe0","characteristic":"ffe1","properties":["Read","WriteWithoutResponse","Write","Notify"],"descriptors":[{"uuid":"2902"},{"uuid":"2901"}]}]}
-
-
-
-
-//
-//
-// UUID:1800  (Generic Access Service)
-// UUID:1801  (Terminal I/O Service, TIO)
-// UUID:180A  (Environmental Sensing Service, ESS)
-// UUID:FEFB  (device Information Service, DIS)
-// const SWITCH_CHARACTERISTIC = 'FF01';
-
-
 
 @IonicPage()
 @Component({
@@ -59,37 +27,42 @@ export class DeviceConnectIngPage {
 
   devices: any[] = [];
   statusMessage: string;
-
   output: any;
   message: String;
   responseTxt: any;
   unpairedDevices: any;
   pairedDevices: any;
   gettingDevices: Boolean;
-
+  mode: any;
   carezoneData: any;
-
-
   peripheral: any = {};
-
   spintime: any = 0;
+  timer: any;
 
-  constructor(public auth: AuthService, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private ngZone: NgZone,
+  constructor(
+    public auth: AuthService, 
+    public viewCtrl: ViewController, 
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public toastCtrl: ToastController, 
+    private ngZone: NgZone,
     // public bluetoothle: BluetoothLE,
     public ble: BLE,
-    public platform: Platform, private alertCtrl: AlertController
-  ) {
-    this.platform.ready().then((readySource) => {
-
+    public platform: Platform, 
+    private alertCtrl: AlertController
+    )
+    {
+      this.platform.ready().then((readySource) => {
       if (this.platform.is('android')) {
         // this.enableBluetooth();
       }
-
       if (this.navParams.get('carezoneData')) {
         this.carezoneData = this.navParams.get('carezoneData');
         console.log("데이터 데리고 옴 : " + JSON.stringify(this.navParams.get('carezoneData')));
       }
-
+      if (this.navParams.get('mode')) {
+        this.mode = this.navParams.get('mode');
+      }
       // setTimeout(() => {
       this.spintime = 1;
       if (this.platform.is('cordova')) {
@@ -145,7 +118,14 @@ export class DeviceConnectIngPage {
     console.log('ionViewDidLoad DeviceConnectIngPage');
   }
 
+  ionViewDidEnter(){
+   this.timer = setTimeout(() => {
+     this.navCtrl.push(DeviceConnectFailPage);
+   }, 20000);
+  }
+
   ionViewWillLeave() {
+    clearTimeout(this.timer);
     this.ble.stopScan();
   }
 
@@ -213,40 +193,47 @@ export class DeviceConnectIngPage {
     // );
     // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
 
-    //잡힐떄 까지 계속 스캔하는 방법
+
+
+
+    // 2020-01-31 충전시에 블루투스 신호가 감지 되는것을 막기 위해 처리------------------------------------------------------------------------------------------
     this.ble.startScan([PLINIC_SERVICE]).subscribe(
       device => {
         // this.onDeviceDiscovered(device);
         // this.deviceSelected(device);
         this.ble.stopScan();
+        // this.navCtrl.push(DeviceSkinIngPage, { device: device, 'carezoneData': this.carezoneData }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
 
         this.ble.connect(device.id).subscribe(
           peripheral => {
-            // console.log("1111111111111111111 커넥트 성공");
+            console.log("1111111111111111111 커넥트 성공");
             // this.onConnected(peripheral);
             this.ble.startNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
-              // console.log("333333333 노티피 성공");
+              console.log("333333333 노티피 성공");
               var data2 = new Uint8Array(buffer);
-              var data16 = data2[0].toString()
-              // console.log("노티피 데이터는 ? : " + data16);
-              if (data16 === '17') {
+              var data16 = data2[0].toString();
+              var data_ = data2[1].toString();
+              var result = '';
+              var result = data16 + data_;
+              // if (result === '20') {
+              if (result === '051') {
                 this.ble.stopNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(result => {
                   this.ble.disconnect(device.id).then(result1 => {
-                    // console.log("디스커넥트 됨" + result1);
-                    this.navCtrl.push(DeviceSkinIngPage, { device: device, 'carezoneData': this.carezoneData }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
+                    this.navCtrl.push(DeviceConnectCompletePage , { device: device, 'carezoneData': this.carezoneData, mode: this.mode }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
+
+                    // this.navCtrl.push(DeviceSkinIngPage, { device: device, 'carezoneData': this.carezoneData, mode: this.mode }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
                   });
                 })
               } else {
-                this.scan();
+                // this.scan();
               }
             }, error => {
-              // console.log("444444444444 노티피 에러 " + error);
             });
           });
       },
       error => {
-        // console.log("22222222222 + error" + error);
-        this.scanError(error);
+        console.log("222222222222222222 + error " + error);
+        // this.scanError(error); //20200622 토스트 발생시키지 않음
         this.ble.stopScan();
         this.navCtrl.push(DeviceConnectFailPage);
       }
@@ -254,6 +241,94 @@ export class DeviceConnectIngPage {
     // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
 
 
+
+
+
+
+
+
+
+    // // 2020-01-20 이전 메인보드로 돌아감 (케어모드만 포함하고 있음)------------------------------------------------------------------------------------------
+    // this.ble.startScan([PLINIC_SERVICE]).subscribe(
+    //   device => {
+    //     // this.onDeviceDiscovered(device);
+    //     // this.deviceSelected(device);
+    //     this.ble.stopScan();
+    //     this.navCtrl.push(DeviceSkinIngPage, { device: device, 'carezoneData': this.carezoneData }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
+
+    //     // this.ble.connect(device.id).subscribe(
+    //     //   peripheral => {
+    //         // console.log("1111111111111111111 커넥트 성공");
+    //         // this.onConnected(peripheral);
+    //         // this.ble.startNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
+    //           // console.log("333333333 노티피 성공");
+    //           // var data2 = new Uint8Array(buffer);
+    //           // var data16 = data2[0].toString()
+    //           // console.log("노티피 데이터는 ? : " + data16);
+    //           // if (data16 === '17') {
+    //             // this.ble.stopNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(result => {
+    //               // this.ble.disconnect(device.id).then(result1 => {
+    //                 // console.log("디스커넥트 됨" + result1);
+    //                 // this.navCtrl.push(DeviceSkinIngPage, { device: device, 'carezoneData': this.carezoneData }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
+    //               // });
+    //             // })
+    //           // } else {
+    //             // this.scan();
+    //           // }
+    //         // }, error => {
+    //           // console.log("444444444444 노티피 에러 " + error);
+    //         // });
+    //       // });
+    //   },
+    //   error => {
+    //     // console.log("22222222222 + error" + error);
+    //     this.scanError(error);
+    //     this.ble.stopScan();
+    //     this.navCtrl.push(DeviceConnectFailPage);
+    //   }
+    // );
+    // // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
+
+
+    // // 2020-01-20 기본 메인보드로 돌아가기전 (케어모드, 유수분 모드 포함하고 있음)------------------------------------------------------------------------------------------
+    // this.ble.startScan([PLINIC_SERVICE]).subscribe(
+    //   device => {
+    //     // this.onDeviceDiscovered(device);
+    //     // this.deviceSelected(device);
+    //     this.ble.stopScan();
+    //
+    //     this.ble.connect(device.id).subscribe(
+    //       peripheral => {
+    //         // console.log("1111111111111111111 커넥트 성공");
+    //         // this.onConnected(peripheral);
+    //         this.ble.startNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
+    //           // console.log("333333333 노티피 성공");
+    //           var data2 = new Uint8Array(buffer);
+    //           var data16 = data2[0].toString()
+    //           // console.log("노티피 데이터는 ? : " + data16);
+    //           if (data16 === '17') {
+    //             this.ble.stopNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(result => {
+    //               this.ble.disconnect(device.id).then(result1 => {
+    //                 // console.log("디스커넥트 됨" + result1);
+    //                 this.navCtrl.push(DeviceSkinIngPage, { device: device, 'carezoneData': this.carezoneData }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
+    //               });
+    //             })
+    //           } else {
+    //             this.scan();
+    //           }
+    //         }, error => {
+    //           // console.log("444444444444 노티피 에러 " + error);
+    //         });
+    //       });
+    //   },
+    //   error => {
+    //     // console.log("22222222222 + error" + error);
+    //     this.scanError(error);
+    //     this.ble.stopScan();
+    //     this.navCtrl.push(DeviceConnectFailPage);
+    //   }
+    // );
+    // // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
   }
 
   onDeviceDiscovered(device) {

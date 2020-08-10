@@ -6,78 +6,94 @@
 -->
 <ion-header no-lines>
 
-  <ion-navbar *ngIf="platform.is('android')" no-lines>
-
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core')" no-lines>
+    <ion-buttons (click)="myinfo()" end>
+      <div *ngIf="userData" class="android_point">{{userData.totaluserpoint}}P&nbsp;
+        <img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
+    </ion-buttons>
+    <img class="android_search" style="left:5%" (click)="community_search()"
+      src="assets/img/beauty/ic-system-search@3x.png" />
     <ion-title class="android_title" text-wrap>커뮤니티</ion-title>
-    <ng-container *ngIf="page==='0'">
-      <img class="android_search" style="right:5%" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
-      <!-- <div class="android_my">MY</div> -->
-    </ng-container>
-    <ng-container *ngIf="page==='1'">
-      <!-- <img class="android_search" src="assets/img/beauty/ic-system-search@3x.png" />
+    <!-- <ng-container *ngIf="page==='0'"> -->
+
+    <!-- <div class="android_my">MY</div> -->
+    <!-- </ng-container> -->
+    <!-- <ng-container *ngIf="page==='1'"> -->
+    <!-- <img class="android_search" src="assets/img/beauty/ic-system-search@3x.png" />
     <div class="android_my">MY</div> -->
-    </ng-container>
-    <ng-container *ngIf="page==='2'">
-      <img class="android_search" style="right:5%" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
-      <!-- <button ion-button class="android_my" (click)="community_my()">MY</button> -->
-    </ng-container>
-    <ng-container *ngIf="page==='3'">
-      <img class="android_search" style="right:5%" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
-      <!-- <button ion-button class="android_my" (click)="community_my()">MY</button> -->
-    </ng-container>
-    <ng-container *ngIf="page==='4'">
-      <!-- <img class="android_search" src="assets/img/beauty/ic-system-search@3x.png" />
+    <!-- </ng-container> -->
+    <!-- <ng-container *ngIf="page==='2'"> -->
+    <!-- <img class="android_search" style="right:5%" (click)="community_search()" -->
+    <!-- src="assets/img/beauty/ic-system-search@3x.png" /> -->
+    <!-- <button ion-button class="android_my" (click)="community_my()">MY</button> -->
+    <!-- </ng-container> -->
+    <!-- <ng-container *ngIf="page==='3'"> -->
+    <!-- <img class="android_search" style="right:5%" (click)="community_search()" -->
+    <!-- src="assets/img/beauty/ic-system-search@3x.png" /> -->
+    <!-- <button ion-button class="android_my" (click)="community_my()">MY</button> -->
+    <!-- </ng-container> -->
+    <!-- <ng-container *ngIf="page==='4'"> -->
+    <!-- <img class="android_search" src="assets/img/beauty/ic-system-search@3x.png" />
     <div class="android_my">MY</div> -->
-    </ng-container>
+    <!-- </ng-container> -->
 
   </ion-navbar>
 
-  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
     <ion-buttons left no-lines>
       <button ion-button navPop icon-only>
+        <img class="ios_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
         <!-- <img no-lines class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/> -->
       </button>
     </ion-buttons>
+    <ion-buttons end>
+      <div *ngIf="userData" class="ios_point" (click)="myinfo()" style="right:5%">{{userData.totaluserpoint}}P&nbsp;
+        <img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" />
+      </div>
+    </ion-buttons>
+
     <ion-title class="ios_title" text-wrap>커뮤니티</ion-title>
-    <ng-container *ngIf="page==='0'">
-      <img class="ios_search" style="right:5%" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
-      <!-- <div class="ios_my">MY</div> -->
-    </ng-container>
-    <ng-container *ngIf="page==='1'">
-      <!-- <img class="ios_search" src="assets/img/beauty/ic-system-search@3x.png" />
+
+    <!-- <ng-container *ngIf="page==='0'"> -->
+    <!-- <div class="ios_my">MY</div> -->
+    <!-- </ng-container> -->
+    <!-- <ng-container *ngIf="page==='1'"> -->
+    <!-- <img class="ios_search" src="assets/img/beauty/ic-system-search@3x.png" />
     <div class="ios_my">MY</div> -->
-    </ng-container>
-    <ng-container *ngIf="page==='2'">
-      <img class="ios_search" style="right:5%" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
-      <!-- <button ion-button class="ios_my" (click)="community_my()">MY</button> -->
-    </ng-container>
-    <ng-container *ngIf="page==='3'">
-      <img class="ios_search" style="right:5%" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
-      <!-- <button ion-button class="ios_my" (click)="community_my()">MY</button> -->
-    </ng-container>
-    <ng-container *ngIf="page==='4'">
-      <!-- <img class="ios_search" src="assets/img/beauty/ic-system-search@3x.png" />
+    <!-- </ng-container> -->
+    <!-- <ng-container *ngIf="page==='2'"> -->
+    <!-- <img class="ios_search" style="right:5%" (click)="community_search()" -->
+    <!-- src="assets/img/beauty/ic-system-search@3x.png" /> -->
+    <!-- <button ion-button class="ios_my" (click)="community_my()">MY</button> -->
+    <!-- </ng-container> -->
+    <!-- <ng-container *ngIf="page==='3'"> -->
+    <!-- <img class="ios_search" style="right:5%" (click)="community_search()" -->
+    <!-- src="assets/img/beauty/ic-system-search@3x.png" /> -->
+    <!-- <button ion-button class="ios_my" (click)="community_my()">MY</button> -->
+    <!-- </ng-container> -->
+    <!-- <ng-container *ngIf="page==='4'"> -->
+    <!-- <img class="ios_search" src="assets/img/beauty/ic-system-search@3x.png" />
     <div class="ios_my">MY</div> -->
-    </ng-container>
+    <!-- </ng-container> -->
 
   </ion-navbar>
   <div style="height:1px; width:100%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
   <ion-segment outline mode="md" [(ngModel)]="page" color="#5c59b6">
-    <ion-segment-button value="0" (click)="selectedTab(0)">
+    <!-- <ion-segment-button value="0" (click)="selectedTab(0)">
       홈
-    </ion-segment-button>
-    <ion-segment-button value="1" (click)="selectedTab(1)">
+    </ion-segment-button> -->
+    <ion-segment-button value="0" (click)="selectedTab(0)">
       뷰티 꿀팁
     </ion-segment-button>
-    <ion-segment-button value="2" (click)="selectedTab(2)">
+    <!-- <ion-segment-button value="2" (click)="selectedTab(2)">
       뷰티 노트
-    </ion-segment-button>
-    <ion-segment-button value="3" (click)="selectedTab(3)">
+    </ion-segment-button> -->
+    <ion-segment-button value="1" (click)="selectedTab(1)">
       피부 고민
     </ion-segment-button>
-    <ion-segment-button value="4" (click)="selectedTab(4)">
+    <!-- <ion-segment-button value="4" (click)="selectedTab(4)">
       기획전
-    </ion-segment-button>
+    </ion-segment-button> -->
   </ion-segment>
   <div style="height:1px; width:100%; margin:0 auto; display: block; margin-top: -2px; background-color:#f1f1f1"></div>
 </ion-header>
@@ -90,47 +106,51 @@
 
     <!-- 뷰티 홈 -->
 
-    <ion-slide>
+    <!-- <ion-slide>
       <ng-container *ngIf="communityEditorBeautyLoadData">
         <h2 class="beauty_ggul_tip">뷰티 꿀팁</h2>
         <ion-grid class="beauty_tip">
           <ion-row>
             <ng-container *ngIf="platform.is('android')">
-              <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData" (click)="openBrowser_android(editor.posturl, editor.body)">
-                <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{editor.filename}}" />
-                <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
-                <div class="beauty_desc">{{editor.body}}</div>
+              <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData"
+                (click)="openBrowser_android(editor.posturl, editor.body)">
+                <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{editor.filename}}" /> -->
+    <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
+    <!-- <div class="beauty_desc">{{editor.body}}</div>
                 <div class="beauty_count">조회 {{editor.views}}</div>
               </ion-col>
-            </ng-container>
+            </ng-container> -->
 
-            <ng-container *ngIf="platform.is('ios') || platform.is('core')">
-              <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData" (click)="openBrowser_ios(editor.posturl, editor.body)">
-                <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{editor.filename}}" />
-                <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
-                <div class="beauty_desc">{{editor.body}}</div>
+    <!-- <ng-container *ngIf="platform.is('ios') || platform.is('core')">
+              <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData"
+                (click)="openBrowser_ios(editor.posturl, editor.body)">
+                <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{editor.filename}}" /> -->
+    <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
+    <!-- <div class="beauty_desc">{{editor.body}}</div>
                 <div class="beauty_count">조회 {{editor.views}}</div>
               </ion-col>
             </ng-container>
           </ion-row>
         </ion-grid>
       </ng-container>
-      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
 
 
-      <!-- 뷰트꿀팁 이미지가 있을 때  -->
-      <ng-container *ngIf="platform.is('android')">
+    <!-- 뷰트꿀팁 이미지가 있을 때  -->
+    <!-- <ng-container *ngIf="platform.is('android')">
         <ng-container *ngFor="let community of communityBeautyLoadData; let i = index">
           <ng-container *ngIf="(i < 3)">
             <ion-item class="line_item" no-lines>
               <ion-col col-9 class="container" (click)="openBrowser_android(community.posturl, community.body)">
                 <ion-row class="beauty_row">
-                  <ion-col col-8 class="beauty_tip_title_img"><span class="beauty_note_tag">{{community.title}} </span>{{community.body}}</ion-col>
+                  <ion-col col-8 class="beauty_tip_title_img"><span class="beauty_note_tag">{{community.title}}
+                    </span>{{community.body}}</ion-col>
                 </ion-row>
                 <ion-col class="beauty_note_like">
                   <ion-col class="beauty_note_count">조회 {{community.views}}</ion-col>
                 </ion-col>
-                <img class="beauty_home_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" />
+                <img class="beauty_home_img"
+                  src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" />
               </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
@@ -143,75 +163,83 @@
         <ng-container *ngFor="let community of communityBeautyLoadData; let i = index">
           <ng-container *ngIf="(i < 3)">
             <ion-item class="line_item" no-lines>
-              <ion-col class="container" (click)="openBrowser_ioslike(community.posturl, community.body, community._id, userData.email, 'tip')">
+              <ion-col class="container"
+                (click)="openBrowser_ioslike(community.posturl, community.body, community._id, userData.email, 'tip')">
                 <ion-row class="beauty_row">
-                  <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{community.title}} </span>{{community.body}}</ion-col>
+                  <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{community.title}}
+                    </span>{{community.body}}</ion-col>
                 </ion-row>
                 <ion-col class="beauty_note_like">
                   <ion-col class="beauty_note_count">조회 {{community.views}}</ion-col>
                 </ion-col>
-                <img class="beauty_home_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" />
+                <img class="beauty_home_img_ios"
+                  src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" />
               </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
           </ng-container>
         </ng-container>
-      </ng-container>
+      </ng-container> -->
 
-      <!-- <button mode="md" no-lines ion-item icon-start class="beauty_top_label"> 여름철 피부관리 노하우 대방출!</button>
+    <!-- <button mode="md" no-lines ion-item icon-start class="beauty_top_label"> 여름철 피부관리 노하우 대방출!</button>
       <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
       <button mode="md" no-lines ion-item icon-start class="beauty_top_label"> 여름철 피부관리 노하우 대방출!</button>
       <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
       <button mode="md" no-lines ion-item icon-start class="beauty_top_label"> 여름철 피부관리 노하우 대방출!</button>
       <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
 
-      <button ion-button class="beauty_top_add" (click)="selectedTab(1)"> 더보기 > </button>
+    <!-- <button ion-button class="beauty_top_add" (click)="selectedTab(1)"> 더보기 > </button> -->
 
 
-      <!-- 광고 -->
-      <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
+    <!-- 광고 -->
+    <!-- <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
       <img *ngIf="platform.is('android')" class="beauty_ad_img" src="assets/img/beauty/beauty_ad.jpg" />
       <img *ngIf="!platform.is('android')" class="beauty_ad_img" src="assets/img/beauty/beauty_ad.jpg" />
       <div style="height:8px; width:100%; margin-top:-1.5%; background-color:#f1f1f1"></div>
 
 
-      <h2 class="beauty_note_tip">뷰티 노트</h2>
+      <h2 class="beauty_note_tip">뷰티 노트</h2> -->
 
 
-      <!-- 뷰티노트 이미지가 있을 때  -->
+    <!-- 뷰티노트 이미지가 있을 때  -->
 
-      <ng-container *ngFor="let beautynote of beautyNoteData; let i = index">
-        <!-- 뷰트꿀팁 이미지가 있을 때  -->
-        <!-- {{i}} -->
-        <ng-container *ngIf="(i < 5)">
+    <!-- <ng-container *ngFor="let beautynote of beautyNoteData; let i = index"> -->
+    <!-- 뷰트꿀팁 이미지가 있을 때  -->
+    <!-- {{i}} -->
+    <!-- <ng-container *ngIf="(i < 5)">
           <ng-container *ngIf="beautynote.filename">
             <ion-item class="line_item" no-lines>
               <ion-col (click)="community_modify(beautynote._id)" class="container">
                 <ion-row class="beauty_row">
-                  <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
+                  <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{beautynote.select}}
+                    </span>{{beautynote.title}}</ion-col>
                 </ion-row>
                 <ion-col *ngIf="beautynote.like >= 0" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
                   <ion-col class="beauty_note_count">답변 {{beautynote.comments.length}}</ion-col>
                 </ion-col>
-                <img *ngIf="platform.is('android') " class="beauty_home_note_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
-                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_home_note_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
+                <img *ngIf="platform.is('android') " class="beauty_home_note_img"
+                  src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
+                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_home_note_img_ios"
+                  src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
               </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
           </ng-container>
 
 
-          <ng-container *ngIf="!beautynote.filename">
-            <!-- 뷰트노트 이미지가 없을 때  -->
-            <ion-item class="line_item" no-lines>
+          <ng-container *ngIf="!beautynote.filename"> -->
+    <!-- 뷰트노트 이미지가 없을 때  -->
+    <!-- <ion-item class="line_item" no-lines>
               <ion-col (click)="community_modify(beautynote._id)" class="container">
                 <ion-row class="beauty_row">
-                  <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
+                  <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}}
+                    </span>{{beautynote.title}}</ion-col>
                 </ion-row>
                 <ion-col *ngIf="beautynote.like >= 0" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
-                  <ion-col *ngIf="beautynote.views >= 0" class="beauty_note_count">답변 {{beautynote.comments.length}}</ion-col>
+                  <ion-col *ngIf="beautynote.views >= 0" class="beauty_note_count">답변 {{beautynote.comments.length}}
+                  </ion-col>
                 </ion-col>
-                </ion-col>
+              </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
           </ng-container>
@@ -247,26 +275,29 @@
       <h2 class="beauty_worry_tip">피부 고민</h2>
       <ng-container *ngFor="let skinqna of skinQnaData; let i = index">
         <ng-container *ngIf="(i < 4)">
-          <ng-container *ngIf="skinqna.filename">
-            <!-- 피부 고민 이미지가 있을 때  -->
-            <ion-item class="line_item" no-lines>
+          <ng-container *ngIf="skinqna.filename"> -->
+    <!-- 피부 고민 이미지가 있을 때  -->
+    <!-- <ion-item class="line_item" no-lines>
               <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
                 <ion-row class="beauty_row">
-                  <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
+                  <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}
+                  </ion-col>
                 </ion-row>
                 <ion-col class="beauty_note_like">좋아요 {{skinqna.like}} ∙
                   <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
                 </ion-col>
 
-                <img *ngIf="platform.is('android')" class="beauty_worry_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
-                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
+                <img *ngIf="platform.is('android')" class="beauty_worry_img"
+                  src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
+                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios"
+                  src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
               </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
           </ng-container>
-          <ng-container *ngIf="!skinqna.filename">
-            <!-- 피부 고민 이미지가 없을 때  -->
-            <ion-item class="line_item" no-lines>
+          <ng-container *ngIf="!skinqna.filename"> -->
+    <!-- 피부 고민 이미지가 없을 때  -->
+    <!-- <ion-item class="line_item" no-lines>
               <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
                 <ion-row class="beauty_row">
                   <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
@@ -274,7 +305,7 @@
                 <ion-col class="beauty_note_like">좋아요 {{skinqna.like}} ∙
                   <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
                 </ion-col>
-                </ion-col>
+              </ion-col>
             </ion-item>
             <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
           </ng-container>
@@ -286,7 +317,7 @@
       <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
 
 
-    </ion-slide>
+    </ion-slide> -->
 
 
     <!-- 뷰티 꿀팁 ---------------------------------------------------------------------------->
@@ -296,20 +327,22 @@
         <h2 class="beauty_ggul_tip">에디터 추천</h2>
         <ion-grid class="beauty_tip">
           <ion-row>
-            <ng-container *ngIf="platform.is('android')">
-              <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData" (click)="openBrowser_android(editor.posturl, editor.body)">
+            <ng-container *ngIf="platform.is('android') || platform.is('core')">
+              <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData"
+                (click)="openBrowser_android(editor.posturl, editor.body, editor._id)">
                 <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{editor.filename}}" />
                 <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
-                <div class="beauty_desc">{{editor.body}}</div>
+                <p class="beauty_desc"><span class="beauty_desc_title">{{editor.title}}&nbsp;</span>{{editor.body}}</p>
                 <div class="beauty_count"></div>
               </ion-col>
             </ng-container>
 
-            <ng-container *ngIf="platform.is('ios') || platform.is('core')">
-              <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData" (click)="openBrowser_ios(editor.posturl, editor.body)">
+            <ng-container *ngIf="platform.is('ios')">
+              <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData"
+                (click)="openBrowser_ios(editor.posturl, editor.body, editor._id)">
                 <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{editor.filename}}" />
                 <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
-                <div class="beauty_desc">{{editor.body}}</div>
+                <p class="beauty_desc"><span class="beauty_desc_title">{{editor.title}}&nbsp;</span>{{editor.body}}</p>
                 <div class="beauty_count"></div>
               </ion-col>
             </ng-container>
@@ -317,35 +350,59 @@
         </ion-grid>
       </ng-container>
       <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+
       <!-- 뷰트꿀팁 이미지가 있을 때  -->
-      <ng-container *ngIf="platform.is('android')">
+      <ng-container *ngIf="platform.is('android') || platform.is('core')">
         <ng-container *ngFor="let community of communityBeautyLoadData">
           <ion-item class="line_item" no-lines>
-            <ion-col class="container" (click)="openBrowser_android(community.posturl, community.body)">
-              <ion-row class="beauty_row">
-                <ion-col col-8 class="beauty_tip_title_img"><span class="beauty_note_tag">{{community.title}} </span>{{community.body}}</ion-col>
+            <ion-col class="container" (click)="openBrowser_android(community.posturl, community.body, community._id)">
+              <ion-row>
+                <ion-col col-8 class="beauty_tip_title_img">
+                  <span class="beauty_note_tag">{{community.title}}&nbsp;&nbsp;</span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-8 class="beauty_tip_title">
+                  <span class="beauty_note_tag_title">{{community.body}}</span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <div class="skinqna_contents_img">{{community.midtext}}</div>
               </ion-row>
               <ion-col class="beauty_note_like">
                 <ion-col class="beauty_note_count">조회 {{community.views}}</ion-col>
               </ion-col>
-              <img class="beauty_home_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" />
+              <img class="beauty_home_img"
+                src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" />
             </ion-col>
           </ion-item>
           <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
         </ng-container>
       </ng-container>
 
-      <ng-container *ngIf="platform.is('ios') || platform.is('core')">
+      <ng-container *ngIf="platform.is('ios')">
         <ng-container *ngFor="let community of communityBeautyLoadData">
           <ion-item class="line_item" no-lines>
-            <ion-col class="container" (click)="openBrowser_ios(community.posturl, community.body)">
-              <ion-row class="beauty_row">
-                <ion-col col-8 class="ios_beauty_note_title_img"><span class="beauty_note_tag">{{community.title}} </span>{{community.body}}</ion-col>
+            <ion-col class="container" (click)="openBrowser_ios(community.posturl, community.body, community._id)">
+              <ion-row>
+                <ion-col col-8 class="ios_beauty_note_title_img">
+                  <span class="beauty_note_tag">{{community.title}}</span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-8 class="beauty_tip_title">
+                  <span class="beauty_note_tag_title">{{community.body}}</span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <div class="skinqna_contents_img">{{community.midtext}}</div>
               </ion-row>
               <ion-col class="beauty_note_like">
                 <ion-col class="beauty_note_count">조회 {{community.views}}</ion-col>
               </ion-col>
-              <img class="beauty_home_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" />
+              <img class="beauty_home_img_ios"
+                src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" />
             </ion-col>
           </ion-item>
           <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
@@ -357,57 +414,62 @@
 
     <!-- 뷰티 노트 ----------------------------------------------------------------------------->
 
-    <ion-slide>
+    <!-- <ion-slide>
       <h2 class="beauty_ggul_tip">인기노트</h2>
       <ion-row class="beauty_tip">
         <ng-container *ngFor="let mainNote of beautyNoteMainData; let i = index">
           <ion-col col-6 (click)="community_modify(mainNote._id)">
-            <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mainNote.filename}}" />
-            <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
-            <div class="beauty_desc">{{mainNote.title}}</div>
-            <div *ngIf="mainNote.like" class="beauty_count"> 좋아요 {{mainNote.like}} ∙  답변 {{mainNote.comments.length}}</div>
-            <!-- <div class="beauty_count">답변 {{mainNote.comments.length}}</div> -->
-          </ion-col>
+            <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mainNote.filename}}" /> -->
+    <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
+    <!-- <div class="beauty_desc">{{mainNote.title}}</div>
+            <div *ngIf="mainNote.like" class="beauty_count"> 좋아요 {{mainNote.like}} ∙ 답변 {{mainNote.comments.length}}
+            </div> -->
+    <!-- <div class="beauty_count">답변 {{mainNote.comments.length}}</div> -->
+    <!-- </ion-col>
         </ng-container>
       </ion-row>
-      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
 
-      <ng-container *ngFor="let beautynote of beautyNoteData; let i = index">
-        <!-- 뷰트꿀팁 이미지가 있을 때  -->
-        <ng-container *ngIf="beautynote.filename">
+    <!-- <ng-container *ngFor="let beautynote of beautyNoteData; let i = index"> -->
+    <!-- 뷰트꿀팁 이미지가 있을 때  -->
+    <!-- <ng-container *ngIf="beautynote.filename">
           <ion-item class="line_item" no-lines>
             <ion-col (click)="community_modify(beautynote._id)" class="container">
               <ion-row class="beauty_row">
-                <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
+                <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{beautynote.select}}
+                  </span>{{beautynote.title}}</ion-col>
               </ion-row>
               <ion-col *ngIf="beautynote.like >= 0" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
                 <ion-col class="beauty_note_count">답변 {{beautynote.comments.length}}</ion-col>
               </ion-col>
 
-              <img *ngIf="platform.is('android')" class="beauty_note_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
-              <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_note_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
+              <img *ngIf="platform.is('android')" class="beauty_note_img"
+                src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
+              <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_note_img_ios"
+                src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
             </ion-col>
           </ion-item>
           <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
-        </ng-container>
+        </ng-container> -->
 
-        <ng-container *ngIf="!beautynote.filename">
-          <!-- 뷰트노트 이미지가 없을 때  -->
-          <ion-item class="line_item" no-lines>
+    <!-- <ng-container *ngIf="!beautynote.filename"> -->
+    <!-- 뷰트노트 이미지가 없을 때  -->
+    <!-- <ion-item class="line_item" no-lines>
             <ion-col (click)="community_modify(beautynote._id)" class="container">
               <ion-row class="beauty_row">
-                <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}} </span>{{beautynote.title}}</ion-col>
+                <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}}
+                  </span>{{beautynote.title}}</ion-col>
               </ion-row>
               <ion-col *ngIf="beautynote.like >= 0" class="beauty_note_like">좋아요 {{beautynote.like}} ∙
                 <ion-col class="beauty_note_count">답변 {{beautynote.comments.length}}</ion-col>
               </ion-col>
-              </ion-col>
+            </ion-col>
           </ion-item>
           <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
         </ng-container>
       </ng-container>
       <br><br><br><br>
-    </ion-slide>
+    </ion-slide> -->
 
 
     <!-- 피부 고민 -------------------------------------------------------------------------------------->
@@ -420,7 +482,8 @@
             <ion-card>
               <div class="card-title"><span class="beauty_note_Q">Q </span> {{skinqnaMain.title}}</div><br>
               <!-- <div class="card-subtitle"><span class="beauty_note_Q">A </span>{{skinqnaMain.comments[0].body}}</div> -->
-              <div *ngIf="skinqnaMain.comments.length > 0" class="card-subtitle"><span class="beauty_note_Q">A </span>{{skinqnaMain.comments[0].comment}}</div>
+              <div *ngIf="skinqnaMain.comments.length > 0" class="card-subtitle"><span class="beauty_note_Q">A
+                </span>{{skinqnaMain.comments[0].comment}}</div>
             </ion-card>
           </ion-slide>
         </ng-container>
@@ -432,28 +495,36 @@
           <ion-item class="line_item" no-lines>
             <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
               <ion-row class="beauty_row">
-                <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
+                <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">{{skinqna.select}}
+                  </span>{{skinqna.title}}</ion-col>
+              </ion-row>
+              <ion-row class="beauty_row">
+                <ion-col col-8 class="beauty_note_title_contents_img">{{skinqna.contents}}</ion-col>
               </ion-row>
               <ion-col class="beauty_note_like">좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
-              <img *ngIf="platform.is('android')" class="beauty_worry_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
-              <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
+              <img *ngIf="platform.is('android')" class="beauty_worry_img"
+                src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
+              <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios"
+                src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
             </ion-col>
           </ion-item>
-          <!-- <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div> -->
+          <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
         </ng-container>
         <ng-container *ngIf="!skinqna.filename">
           <!-- 피부 고민 이미지가 없을 때  -->
           <ion-item class="line_item" no-lines>
             <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
               <ion-row class="beauty_row">
-                <ion-col class="beauty_note_title"><span class="beauty_note_Q">{{skinqna.select}} </span>{{skinqna.title}}</ion-col>
+                <ion-col class="beauty_note_title"><span class="beauty_note_Q">{{skinqna.select}}
+                  </span>{{skinqna.title}}</ion-col>
+                <ion-col class="beauty_note_contents">{{skinqna.contents}}</ion-col>
               </ion-row>
               <ion-col class="beauty_note_like">좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
-              </ion-col>
+            </ion-col>
           </ion-item>
           <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
         </ng-container>
@@ -471,9 +542,9 @@
 
 
     <!-- 기획전 ------------------------------------------------------------------------------------------------------------->
-    <ion-slide>
-      <!-- <h2 class="beauty_ggul_tip">기획전</h2> -->
-      <ng-container *ngIf="platform.is('android')">
+    <!-- <ion-slide> -->
+    <!-- <h2 class="beauty_ggul_tip">기획전</h2> -->
+    <!-- <ng-container *ngIf="platform.is('android')">
         <ng-container *ngFor="let exhibition of exhibitionData; let i = index">
           <img (click)="openBrowser_android(exhibition.posturl, exhibition.body)" class="imagealign_first" src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{exhibition.filename}}' />
           <ion-row (click)="openBrowser_android(exhibition.posturl, exhibition.body)">
@@ -501,17 +572,17 @@
         </ng-container>
       </ng-container>
       <br><br>
-    </ion-slide>
+    </ion-slide> -->
   </ion-slides>
 
   <ion-fab>
     <ng-container *ngIf="platform.is('android')">
-      <button ion-fab class="fab_btn" *ngIf="page==='2'" color="primary" (click)="community_write()">+</button>
-      <button ion-fab class="fab_btn" *ngIf="page==='3'" color="primary" (click)="community_qna_write()">+</button>
+      <!-- <button ion-fab class="fab_btn" *ngIf="page==='2'" color="primary" (click)="community_write()">+</button> -->
+      <button ion-fab class="fab_btn" *ngIf="page==='1'" color="primary" (click)="community_qna_write()">+</button>
     </ng-container>
     <ng-container *ngIf="platform.is('ios') || platform.is('core')">
-      <button ion-fab class="fab_btn_ios" *ngIf="page==='2'" color="primary" (click)="community_write()">+</button>
-      <button ion-fab class="fab_btn_ios" *ngIf="page==='3'" color="primary" (click)="community_qna_write()">+</button>
+      <!-- <button ion-fab class="fab_btn_ios" *ngIf="page==='2'" color="primary" (click)="community_write()">+</button> -->
+      <button ion-fab class="fab_btn_ios" *ngIf="page==='1'" color="primary" (click)="community_qna_write()">+</button>
     </ng-container>
 
   </ion-fab>

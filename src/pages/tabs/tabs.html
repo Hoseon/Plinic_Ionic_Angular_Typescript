@@ -1,9 +1,10 @@
 <ion-tabs *ngIf="platform.is('android')" >
   <ion-tab [root]="tab1Root" tabTitle="홈" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="케어 챌린지" tabIcon="carezone"></ion-tab>
-  <ion-tab [root]="" tabTitle="쇼핑" tabIcon="shopping" (ionSelect)="openBrowser_ios('https://m.smartstore.naver.com/plinic','플리닉몰')"> </ion-tab>
+  <ion-tab [root]="" tabTitle="포인트몰" tabIcon="shopping" (ionSelect)="openBrowser_android('https://plinicshop.com','PlinicShop')"> </ion-tab>
   <ion-tab [root]="tab4Root" tabTitle="커뮤니티" tabIcon="cummunity"></ion-tab>
-  <ion-tab [root]="tab5Root" tabTitle="마이" tabIcon="my"></ion-tab>
+  <ion-tab [root]="tab5Root" tabTitle="스킨차트" tabIcon="skin"></ion-tab>
+  <!-- <ion-tab [root]="tab5Root" tabTitle="마이" tabIcon="my"></ion-tab> 2020-02-11 마이 기능 홈화면으로 이동-->
 </ion-tabs>
 
 <!-- <ion-tabs *ngIf="platform.is('android')" >
@@ -15,12 +16,13 @@
 </ion-tabs> -->
 
 
-<ion-tabs *ngIf="platform.is('ios')" >
+<ion-tabs *ngIf="platform.is('ios') || platform.is('core')" >
   <ion-tab [root]="tab1Root" tabTitle="홈" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="케어 챌린지" tabIcon="carezone"></ion-tab>
-  <ion-tab [root]="" tabTitle="쇼핑" tabIcon="shopping" (ionSelect)="openBrowser_ios('https://m.smartstore.naver.com/plinic','플리닉몰')"> </ion-tab>
+  <ion-tab [root]="" tabTitle="포인트몰" tabIcon="shopping" (ionSelect)="openBrowser_ios('https://plinicshop.com','')"> </ion-tab>
   <ion-tab [root]="tab4Root" tabTitle="커뮤니티" tabIcon="cummunity"></ion-tab>
-  <ion-tab [root]="tab5Root" tabTitle="마이" tabIcon="my"></ion-tab>
+  <ion-tab [root]="tab5Root" tabTitle="스킨차트" tabIcon="skin"></ion-tab>
+  <!-- <ion-tab [root]="tab5Root" tabTitle="마이" tabIcon="my"></ion-tab> 2020-02-11 마이 기능 홈화면으로 이동 -->
 </ion-tabs>
 
 <!-- <ion-tabs *ngIf="!platform.is('ios') && !platform.is('android')" >
@@ -39,14 +41,6 @@
   <ion-tab [root]="tab4Root" tabTitle="커뮤니티" tabIcon="custom-cummunity"></ion-tab>
   <ion-tab [root]="tab5Root" tabTitle="마이" tabIcon="custom-my"></ion-tab>
 </ion-tabs> -->
-
-<ion-tabs *ngIf="!platform.is('ios') || !platform.is('android')" >
-  <ion-tab [root]="tab1Root" tabTitle="홈" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="케어 챌린지" tabIcon="carezone"></ion-tab>
-  <ion-tab [root]="" tabTitle="쇼핑" tabIcon="shopping" (ionSelect)="openBrowser_ios('https://m.smartstore.naver.com/plinic','플리닉몰')"> </ion-tab>
-  <ion-tab [root]="tab4Root" tabTitle="커뮤니티" tabIcon="cummunity"></ion-tab>
-  <ion-tab [root]="tab5Root" tabTitle="마이" tabIcon="my"></ion-tab>
-</ion-tabs>
 
 <!-- <ion-tabs *ngIf="!platform.is('ios') || !platform.is('android')" >
   <ion-tab [root]="tab1Root" tabTitle="홈" tabIcon="custom-home"></ion-tab>

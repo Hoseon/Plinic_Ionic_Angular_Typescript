@@ -118,6 +118,8 @@ export class QnaWritePage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: items.from,
+          snsid: items.snsid
         };
       } else {
         this.userData = {
@@ -182,7 +184,7 @@ export class QnaWritePage {
                   let alert2 = this.alertCtrl.create({
                     cssClass: 'push_alert',
                     title: '문의하기',
-                    message: "문의하기가 정상적으로 등록 되었습니다. <br>관리자에게 답변을 받을 수 있습니다.",
+                    message: "문의하신 내용이 접수되었습니다.<br>빠른 시간내에 답변 드리겠습니다.",
                     buttons: [
                       {
                         text: '확인',

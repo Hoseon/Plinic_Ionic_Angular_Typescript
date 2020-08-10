@@ -1,16 +1,18 @@
 <ion-header no-lines>
 
   <ion-navbar *ngIf="platform.is('android')" no-lines>
-    <button class="guide_android" ion-button>이용안내</button>
-    <ion-title class="android_title" text-wrap>케어 챌린지</ion-title>
-    <img class="android_search" style="right: 5%;" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
+    <button class="guide_android" (click)="chalguide()" ion-button>이용안내</button>
+    <ion-title class="android_title" text-wrap>챌린지</ion-title>
+    <div *ngIf="totaluserPoint" class="android_search" style="right: 7%;" (click)="myinfo()">{{totaluserPoint}}P &nbsp;<img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
+    <!-- <img class="android_search" style="right: 5%;" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" /> -->
 
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
-    <button class="guide_ios" ion-button>이용안내</button>
-    <ion-title class="ios_title" text-wrap>케어 챌린지</ion-title>
-    <img class="ios_search" style="right: 5%;" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
+    <button class="guide_ios" (click)="chalguide()" ion-button>이용안내</button>
+    <ion-title class="ios_title" text-wrap>챌린지</ion-title>
+    <div *ngIf="totaluserPoint" class="ios_search" style="right: 7%;" (click)="myinfo()">{{totaluserPoint}}P &nbsp;<img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
+    <!-- <img class="ios_search" style="right: 5%;" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" /> -->
 
   </ion-navbar>
 
@@ -19,42 +21,23 @@
 
 <ion-content padding>
 
-  <!-- <ion-list no-lines>
-
-    <ion-item no-lines>
-      <div *ngIf="userData">
-      <img *ngIf="!thumb_image" class="profile-img" src="{{profileimg_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-      </div>
-      <img *ngIf="thumb_image" class="profile-img" src="{{userData.thumbnail_image}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
-    </ion-item>
-
-
-
-      <div *ngIf="userData" style="text-align:center"><p class="top-text">{{ userData.nickname }}</p><p class="top-text2">님 피부관리를 위한<br> 미션을 선택해주세요.</p></div><br>
-      <button *ngIf="!ingBtn" ion-button style="font-size: 14px" class="button_outline" outline (click)="carezone_ing()">케어존이란?&nbsp;&nbsp;></button>
-      <button *ngIf="ingBtn" ion-button class="button_outline" outline style="font-size: 14px" (click)="mission_ing(missionData.missionID)">진행중인 미션
-        <img class="inglogo" src="assets/img/care-zone/ing/ic-system-step-01@3x.png" /></button>
-  </ion-list> -->
-
+ 
 
   <ion-list *ngFor="let carezone of carezoneData; let i = index">
     <ng-container *ngIf="endmission[i] > currentDate">
       <ion-row class="row">
         <ion-col class="container" (click)="mission_start(carezone)">
           <img class="imagealign" src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezone.filename}}' />
-
-          <!-- <button *ngIf="recruiting[i]" class="carezon_btn1_1" style="box-shadow: none;" ion-button>모집 중</button>
-        <button *ngIf="endrecruit[i]" class="carezon_status1_1" style="box-shadow: none; background-color: #d2d4d8;" ion-button>모집마감</button>
-        <button *ngIf="ingmdchuchun[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>MD추천</button>
-        <button *ngIf="ingapproaching[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #87B5FF;" ion-button>마감임박</button>
-
-        <button *ngIf="d5[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #644A99;" ion-button>모집 D{{dday[i]}}</button>
-        <button *ngIf="d4[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #644A99;" ion-button>모집 D{{dday[i]}}</button>
-        <button *ngIf="d3[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #644A99;" ion-button>모집 D{{dday[i]}}</button>
-        <button *ngIf="d2[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #FFC3C3;" ion-button>모집중</button>
-        <button *ngIf="d1[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #FFC3C3;" ion-button>모집중</button>
-        <button *ngIf="approaching[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #B7C9AF;" ion-button>진행중</button> -->
-
+          <ng-container *ngIf="flag[i] === '지금참여'">
+            <div class="flag"><p class="flag-text">지금참여</p></div>
+          </ng-container>
+          <ng-container *ngIf="flag[i] === '참여마감'">
+              <div class="flag"><p class="flag-text">참여마감</p></div>
+            </ng-container>
+          <!-- <div class="flag"><p class="flag-text">참여마감</p></div> -->
+          <ng-container *ngIf="flag[i] === '진행중'">
+            <div class="flag"><p class="flag-text-ready">{{flag[i]}}</p></div>
+          </ng-container>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -62,8 +45,7 @@
           {{carezone.title}}
         </ion-col>
         <ion-col class="right_align">
-          <!-- {{missionCounter[i]}}/{{carezone.maxmember}} -->
-          {{displayTime[i]}}
+          <!-- {{displayTime[i]}} -->
         </ion-col>
       </ion-row>
       <ion-row>
@@ -72,9 +54,8 @@
         </ion-col>
       </ion-row><br>
       <ion-row>
-        <ng-container *ngFor="let mission of missionmember[i]; let k = index">
+        <!-- <ng-container *ngFor="let mission of missionmember[i]; let k = index">
           <ng-container *ngIf="k <= 3">
-            <!-- <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
             <ng-container *ngIf="k === 0">
               <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:2%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
                 onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
@@ -86,10 +67,8 @@
               <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: -2%;" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
             </ng-container>
           </ng-container>
-          <!-- <ion-col *ngIf="!memberRanking[i].image_url"><img class="profile-img" src="http://plinic.cafe24app.com/userimages/{{mission.email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" /></ion-col> -->
-          <!-- <ion-col *ngIf="memberRanking[i].image_url"><img class="profile-img" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" /></ion-col> -->
         </ng-container>
-        <div *ngIf="missionCounter[i]" class="user_sub"><span class="user_name">{{missionCounter[i]}}</span>명이 참가 중입니다.</div>
+        <div *ngIf="missionCounter[i]" class="user_sub"><span class="user_name">{{missionCounter[i]}}</span>명이 참가 중입니다.</div> -->
 
       </ion-row>
     </ng-container>
@@ -100,34 +79,16 @@
       <ion-row class="row">
         <ion-col class="container" (click)="mission_start(carezone)">
           <img class="imagealign" src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezone.filename}}' />
-
-          <!-- <button *ngIf="recruiting[i]" class="carezon_btn1_1" style="box-shadow: none;" ion-button>모집 중</button> -->
           <button class="carezon_btn1_1" style="box-shadow: none; background-color: #A8BABA;" ion-button>챌린지 마감</button>
-          <!-- <button *ngIf="d3[i]" class="carezon_btn1_1" style="box-shadow: none; background-color: #d2d4d8;" ion-button>D-3</button> -->
-          <!-- <button *ngIf="new[i]" class="carezon_status1_1" style="box-shadow: none; background-color: #47C83E;" ion-button>NEW</button> -->
-          <!-- <button *ngIf="mdchuchun[i]" class="carezon_status1_1" style="box-shadow: none; background-color: #FF00DD;" ion-button>MD추천</button> -->
-          <!-- <button *ngIf="approaching[i]" class="carezon_status1_2" style="box-shadow: none;" ion-button>마감임박</button> -->
-
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-9 class="imagetitle">
           {{carezone.title}}
         </ion-col>
-        <!-- <ng-container ngIf="carezone.timeremaining[i] > 0"> -->
         <ion-col class="right_align">
-          <!-- {{missionCounter[i]}}/{{carezone.maxmember}} -->
-          <!-- <ng-container *ngIf="displayTime[i] > 0">
-            {{displayTime[i]}}
-          </ng-container> -->
             챌린지 마감
         </ion-col>
-        <!-- </ng-container> -->
-        <!-- <ng-container ngIf="carezone.timeremaining[i] <= 0">
-          <ion-col class="right_align">
-            챌린지 마감
-          </ion-col>
-        </ng-container> -->
       </ion-row>
       <ion-row>
         <ion-col class="sub">
@@ -136,10 +97,9 @@
       </ion-row>
       <!-- 참가 인원 이미지 추가  -->
       <br>
-      <ion-row>
+      <!-- <ion-row>
         <ng-container *ngFor="let mission of missionmember[i]; let k = index">
           <ng-container *ngIf="k <= 3">
-            <!-- <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
             <ng-container *ngIf="k === 0">
               <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:2%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
                 onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
@@ -151,13 +111,11 @@
               <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: -2%;" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
             </ng-container>
           </ng-container>
-          <!-- <ion-col *ngIf="!memberRanking[i].image_url"><img class="profile-img" src="http://plinic.cafe24app.com/userimages/{{mission.email}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" /></ion-col> -->
-          <!-- <ion-col *ngIf="memberRanking[i].image_url"><img class="profile-img" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" /></ion-col> -->
         </ng-container>
         <div *ngIf="missionCounter[i]" class="user_sub"><span class="user_name">{{missionCounter[i]}}</span>명이 참가 중입니다.</div>
 
 
-      </ion-row>
+      </ion-row> -->
     </ng-container>
   </ion-list>
 

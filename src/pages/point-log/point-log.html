@@ -1,0 +1,127 @@
+<!--
+  Generated template for the PointLogPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core') ">
+    <ion-buttons left>
+      <button (click)="close()" ion-button icon-only>
+        <img class="android_nav" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>포인트</ion-title>
+    <ion-buttons (click)="myinfo()" right>
+      <!-- <button  ion-button>
+          <div class="button_left">{{totaluserpoint}}P &nbsp;<img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
+      </button> -->
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')">
+    <ion-buttons left>
+      <button ion-button navPop icon-only>
+        <img class="ios_nav" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <!-- <ion-buttons (click)="myinfo()" class="ios_nav2" right>
+      <div class="button_left_ios">{{totaluserpoint}}P &nbsp;<img class="ic_system_arrow_white_ios"
+          src="assets/img/home/ic_arrow_black.png" /></div>
+    </ion-buttons> -->
+    <ion-title class="ios_title" text-wrap>포인트</ion-title>
+
+
+  </ion-navbar>
+  <div style="height:1px; width:100%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+  <ion-segment outline mode="md" [(ngModel)]="page" color="#5c59b6">
+    <ion-segment-button value="0" (click)="selectedTab(0)">
+      적립포인트
+    </ion-segment-button>
+    <ion-segment-button value="1" (click)="selectedTab(1)">
+      사용포인트
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-slides no-padding mode="ios" #Slides (ionDrag)="onSlideDrag()" (ionSlideWillChange)="slideChanged($event)">
+    <ion-slide>
+      <ng-container *ngIf="0 >= pointPlusData.length">
+        <!-- <ion-img class="inglogo" src="assets/img/pointLog/pointLog.png" srcset="assets/img/pointLog/pointLog@2x.png 2x,
+          assets/img/pointLog/pointLog@3x.png 3x"></ion-img> -->
+        <div class="nodataText">포인트 내역이 없습니다. <br> 플리닉 브랜드의 포인트를 적립해보세요.</div>
+      </ng-container>
+      <ng-container *ngIf="pointPlusData.length > 0">
+        <ng-container *ngFor="let point of pointPlusData; let i = index">
+          <ng-container *ngIf="(point.name === userData.email)">
+            <ion-item class="line_item">
+
+              <ion-col class="container"
+                (click)="openBrowser_android(community.posturl, community.body, community._id)">
+                <ion-row>
+                  <ion-col col-8 class="beauty_tip_title_img">
+                    <span class="beauty_note_tag">{{point.date.substr(0,10).replace('-','.').replace('-','.').replace('-','.')}}&nbsp;&nbsp;</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-8 class="beauty_tip_title">
+                    <span class="beauty_note_tag_title">&nbsp;&nbsp;{{point.pointName}}</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <div class="skinqna_contents_img">적립</div>
+                </ion-row>
+                <!-- <ion-col class="beauty_note_like">
+                  <ion-col class="beauty_note_count">조회 00</ion-col>
+                </ion-col> -->
+                <div class="beauty_home_img">{{point.point}}P</div>
+              </ion-col>
+            </ion-item>
+          </ng-container>
+        </ng-container>
+        <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+      </ng-container>
+    </ion-slide>
+
+
+
+    <ion-slide>
+      <ng-container *ngIf="0 >= pointMinusData.length">
+        <div class="nodataText">포인트 내역이 없습니다. <br> 플리닉 브랜드의 포인트를 적립해보세요.</div>
+      </ng-container>
+      <ng-container *ngIf="pointMinusData.length > 0">
+          <ng-container *ngFor="let minuspoint of pointMinusData; let i = index">
+            <!-- <ng-container *ngIf="(minuspoint.name === userData.email)"> -->
+              <ion-item class="line_item">
+  
+                <ion-col class="container"
+                  (click)="openBrowser_android(community.posturl, community.body, community._id)">
+                  <ion-row>
+                    <ion-col col-8 class="beauty_tip_title_img">
+                      <span class="beauty_note_tag">{{minuspoint.date.substr(0,10).replace('-','.').replace('-','.').replace('-','.')}}&nbsp;&nbsp;</span>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col col-8 class="beauty_tip_title">
+                      <span class="beauty_note_tag_title">&nbsp;&nbsp;{{minuspoint.pointName}}</span>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <div class="skinqna_contents_img_minus">사용</div>
+                  </ion-row>
+                  <!-- <ion-col class="beauty_note_like">
+                    <ion-col class="beauty_note_count">조회 00</ion-col>
+                  </ion-col> -->
+                  <div class="beauty_home_img_minus">{{minuspoint.point}}P</div>
+                </ion-col>
+              </ion-item>
+            <!-- </ng-container> -->
+          </ng-container>
+          <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+      </ng-container>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -12,11 +12,9 @@ import { Injectable, NgModule, ErrorHandler } from '@angular/core';
 export class PlinicErrorHandlerProvider implements ErrorHandler {
   handleError(error){
     //에러내용 출력
-    console.log("error ::::::: " + error )
   }
 
   constructor(public http: HttpClient) {
-    console.log('Hello PlinicErrorHandlerProvider Provider');
   }
 
 }

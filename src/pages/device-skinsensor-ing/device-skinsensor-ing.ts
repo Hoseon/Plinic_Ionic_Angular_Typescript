@@ -146,6 +146,8 @@ export class DeviceSkinSensorIngPage {
 
   loadProgress: number = 0;
 
+  isComplete: boolean = false;
+
 
 
 
@@ -229,10 +231,10 @@ export class DeviceSkinSensorIngPage {
   deviceSelected(device) {
     this.ble.startScan([PLINIC_SERVICE]).subscribe(
       device => {
-        // console.log("스캔이 잘 되었는지?");
+        console.log("스캔이 잘 되었는지?");
         this.ble.connect(this.device.id).subscribe(
           peripheral => {
-            // console.log("커넥션이 잘 되었는지??");
+            console.log("커넥션이 잘 되었는지??");
             // this.ble.refreshDeviceCache(device.id, 2000).then(result => {
             //   console.log("refresh sucess : " + result);
             //
@@ -244,7 +246,7 @@ export class DeviceSkinSensorIngPage {
           // this.onConnected(peripheral),
           // peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
           peripheral => { //디바이스 연결 중단되면 누적 처리 후 종료
-            // console.log("연결이 종료됨 유수분 측정");
+            console.log("연결이 종료됨 유수분 측정");
             // this.bleshowAlert('Disconnected', '디바이스 연결이 중단 되었습니다.');
             if (this.navParams.get('carezoneData')) {
               // this.pointUpdate();
@@ -255,6 +257,10 @@ export class DeviceSkinSensorIngPage {
             }
           }
         );
+      }, error => {
+        this.ble.stopScan().then(error=>{
+          console.log("스킨센서 BLE 연동 대기 화면에서 스캔 종료 됨" + error);
+        })
       });
 
 
@@ -277,101 +283,14 @@ export class DeviceSkinSensorIngPage {
 
   onConnected(peripheral) {
 
-    // console.log("디바이스 서비스 정보 : " + JSON.stringify(peripheral));
-
-    this.peripheral = peripheral;
-    // this.setStatus('Connected to ' + (peripheral.name || peripheral.id));
-
-    // console.log("this.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.idthis.peripheral.id : " + this.peripheral.id);
-
-
-    // var test = new ArrayBuffer(16);
-    //
-    // var data = new Uint8Array(3).buffer;
-    // data[0] = 16; // red
-    // data[1] = 17; // green
-    // data[2] = 1; // blue
-
-    // let array = new Uint8Array([AT+LECCCD=0x10,0x0011,1]);
-
-    // let array = this.strtoarray('AT+LECCCD=0x10,0x0011,1')
-    // let buffer = new Uint8Array([16]).buffer;
-    // // this.ble.write(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC, array).then(result =>{
-    //   console.log("쓰기 기능" + JSON.stringify(result));
-    // }).catch(error => {
-    //       console.log(JSON.stringify(error));
-    // });
-    // Update the UI with the current state of the switch characteristic
-    // this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(
-    //   buffer => {
-    //     let data = new Uint8Array(buffer);
-    //     let data2 = String.fromCharCode.apply(null, new Uint8Array(buffer));
-    //     console.log("data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : data2 : " + JSON.stringify(data2));
-    //
-    //     for (var i = 0; i < data.length; i++) {
-    //       console.log("data" + i + "--- :" + data[i]);
-    //     }
-    //     // var array = new Uint8Array(string.length);
-    //     // for (var i = 0, l = string.length; i < l; i++) {
-    //     //   array[i] = string.charCodeAt(i);
-    //     // }
-    //     // return array.buffer;
-    //
-    //
-    //     // this.ngZone.run(() => {
-    //     //     this.power = data[0] !== 0;
-    //     // });
-    //   }
-    // )
-
-    //
-
-    // {"name":"BM+S42 E6C",
-    // "id":"00:80:25:E7:3E:6C","advertising":{},
-    // "rssi":60,
-    // "services":["1800","1801","180a","fefb"],
-    // "characteristics":[
-    // {"service":"1800","characteristic":"2a00","properties":["Read"]},
-    // {"service":"1800","characteristic":"2a01","properties":["Read"]},
-    // {"service":"1800","characteristic":"2a04","properties":["Read"]},
-    // {"service":"1800","characteristic":"2aa6","properties":["Read"]},
-    // {"service":"1801","characteristic":"2a05","properties":["Indicate"],"descriptors":[{"uuid":"2902"}]},
-    // {"service":"180a","characteristic":"2a50","properties":["Read"]},
-    // {"service":"fefb","characteristic":"00000009-0000-1000-8000-008025000000","properties":["Write"]},
-    // {"service":"fefb","characteristic":"0000000a-0000-1000-8000-008025000000","properties":["Indicate"],"descriptors":[{"uuid":"2902"}]},
-    // {"service":"fefb","characteristic":"00000001-0000-1000-8000-008025000000","properties":["WriteWithoutResponse"]},
-    // {"service":"fefb","characteristic":"00000002-0000-1000-8000-008025000000","properties":["Notify"],"descriptors":[{"uuid":"2902"}]},
-    // {"service":"fefb","characteristic":"00000003-0000-1000-8000-008025000000","properties":["Write"]},
-    // {"service":"fefb","characteristic":"00000004-0000-1000-8000-008025000000","properties":["Indicate"],"descriptors":[{"uuid":"2902"}]}]}
-
-    // UUID:1800  (Generic Access Service)
-    // UUID:1801  (Terminal I/O Service, TIO)
-    // UUID:180A  (Environmental Sensing Service, ESS)
-    // UUID:FEFB  (device Information Service, DIS)
-
-    // var service_UUID = '1801';
-    // var char_UUID = '2902';
-
-    // var read_UUID = '180a';
-    // var read_char_UUID = '2a50';
-
-    // this.ble.startStateNotifications().subscribe(result => {
-    //   console.log("블루트스 상태 변화 감지 : " + result);
-    // }, error =>{
-    //   console.log("블루투스 상태 변화 감지 에러 메세지 : " + error);
-    // });
-
-    // this.ble.connectedPeripheralsWithServices([PLINIC_SERVICE]).then(result =>{
-    //   console.log("ios test ble : " + JSON.stringify(result));
-    // }).catch(error =>{
-    //   console.log("error ios test : " + error);
-    // })
-
+    this.ble.stopScan().then(result=>{
+      this.peripheral = peripheral;
     // console.log("---------------------------------노티피 시작 ------------------------------------------------");
     var i = 0;
     this.ble.startNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
       var data2 = new Uint8Array(buffer);
       var checkdata = data2[0].toString();
+      // console.log("유수분 모드 인지? : " + checkdata);
       if (checkdata === '2') {
         // console.log("Plinic G1Partners Notifi 8 " + new Uint8Array(buffer));
         // var data2 = new Uint8Array(buffer);
@@ -381,19 +300,23 @@ export class DeviceSkinSensorIngPage {
         // console.log(data2[3], data2[4]);
         // console.log(data2[3].toString(16) + data2[4].toString(16));
         data16 = data2[3].toString(16) + data2[4].toString(16);
+        // console.log("data2[3].toString(16)" + data2[3].toString(16));
+        // console.log("data2[4].toString(16)" + data2[4].toString(16));
+
         data3 = '0x' + data16;
         // console.log(data3);
         // console.log(parseInt(data3, 16));
         // console.log(i);
         // this.result[i] = 100 - ((parseInt(data3, 16) / 1023) * 100);
         this.resultmoisture = (100 - ((parseInt(data3, 16) / 1023) * 100)).toFixed(1);
-        // console.log(parseInt(data3, 16));
-        // console.log("this.resultmoisture :" + this.resultmoisture );
-        // console.log(this.result[i]);
-        if (i >= 0 && i <= 7) {
+        
+        // console.log("수분 데이터 : " + this.resultmoisture);
+        
+        if (i >= 0 && i <= 10) { // 2020-02-26 기존에는 6개의 배열을 받았지만 센서의 민감도를 높히는 테스트를 하기 위해서 50개로 늘렸다
           // console.log(this.result[i]);
-          if (parseFloat(this.resultmoisture) > 1) {
+          if (parseFloat(this.resultmoisture) > 0.5) {
             // console.log("데이터가 1보다 큼");
+            // console.log("데이터 순번 : " + i + "데이터 :" + this.result[i]);
             this.result2[i] = (100 - ((parseInt(data3, 16) / 1023) * 100)).toFixed(1);
             i++;
             this.toggleToast = true;
@@ -404,43 +327,53 @@ export class DeviceSkinSensorIngPage {
               this.percent = "20%"
               this.loadProgress = 20;
             } else if (i === 3) {
-              this.percent = "35%"
-              this.loadProgress = 35;
+              this.percent = "30%"
+              this.loadProgress = 30;
             } else if (i === 4) {
+              this.percent = "40%"
+              this.loadProgress = 40;
+            } else if (i === 5) {
               this.percent = "50%"
               this.loadProgress = 50;
-            } else if (i === 5) {
+            } else if (i === 6) {
               this.percent = "60%"
               this.loadProgress = 60;
-            } else if (i === 6) {
+            } else if (i === 7) {
+              this.percent = "70%"
+              this.loadProgress = 70;
+            } else if (i === 8) {
               this.percent = "80%"
               this.loadProgress = 80;
-            } else if (i === 7) {
+            } else if (i === 9) {
+              this.percent = "90%"
+              this.loadProgress = 90;
+            } else if (i === 10) {
               this.percent = "100%"
               this.loadProgress = 100;
-
-            }
-          } else if (parseFloat(this.resultmoisture) <= 0.9) {
-            // console.log("데이터가 0보다 작음");
+            } 
+          } else if (parseFloat(this.resultmoisture) <= 0.4) {
             if (this.toggleToast) {
               this.showToast("유수분 센서를 피부에 정확하게 접촉해주세요.");
               this.toggleToast = false;
             }
           }
-        } else if (i === 8) {
+        } else if (i >= 11) {
           this.ble.stopNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(data => {
             var kkkk = 0;
             for (var k = 1; k < this.result2.length; k++) {
               // console.log(k + ":" + parseInt(this.result2[k]));
-              kkkk += parseInt(this.result2[k]);
+              kkkk += parseInt(this.result2[k]);  //갯수만큼 총 total값을 구한다
             }
             // console.log("kkkk" + (kkkk / 3).toFixed(1));
-            this.moisture = (kkkk / 7).toFixed(1);
+            this.moisture = (kkkk / 10).toFixed(1); // 누적된 배열의 갯구만큼 값을 나누어 평균 값을 구한다.
 
             var today = this.currentDate.getFullYear() + "-" + this.get2digits(this.currentDate.getMonth() + 1) + "-" + this.get2digits(this.currentDate.getDate());
             this.notimeDate = new Date(today);
-            this.oil = this.getOilScore(this.moisture);
+            this.oil = this.getOilScore2(this.moisture);
 
+            // console.log("수분 결과값 : " + this.moisture);
+            // console.log("유분 결과값 : " + this.oil);
+            
             this.score = {
               oil: this.oil,
               moisture: this.moisture,
@@ -450,28 +383,44 @@ export class DeviceSkinSensorIngPage {
             this.auth.skinChartSave(this.userData.email, this.score).subscribe(data => {
               if (data !== '') {
                 if (this.platform.is('android')) {
-                  const toast = this.toastCtrl.create({
-                    cssClass: 'blu_toast_android',
-                    message: '수분 측정 데이터 등록이 완료되었습니다.',
-                    duration: 3000,
-                    position: 'bottom'
-                  });
-                  toast.present();
+                  this.showMissionsuccess();
+                  
+                  // const toast = this.toastCtrl.create({
+                  //   cssClass: 'blu_toast_android',
+                  //   message: '수분 측정 데이터 등록이 완료되었습니다.',
+                  //   duration: 3000,
+                  //   position: 'bottom'
+                  // });
+                  // toast.present();
+
+
                 }
                 else {
-                  const toast = this.toastCtrl.create({
-                    cssClass: 'blu_toast_ios',
-                    message: '수분 측정 데이터 등록이 완료되었습니다.',
-                    duration: 3000,
-                    position: 'bottom'
-                  });
-                  toast.present();
+                  this.showMissionsuccess();
+                  
+                  
+                  
+                  // const toast = this.toastCtrl.create({
+                  //   cssClass: 'blu_toast_ios',
+                  //   message: '수분 측정 데이터 등록이 완료되었습니다.',
+                  //   duration: 3000,
+                  //   position: 'bottom'
+                  // });
+                  // toast.present();
+
+
+
+
+
+
                 }
                 // this.navCtrl.setRoot(TabsPage);
-                this.viewCtrl.dismiss().then(_ => {
-                  this.ble.disconnect(this.peripheral.id);
-                  this.dismissAllModal();
-                })
+                this.isComplete = true;
+                // 2020-03-20 측정완료가 되면 화면이 닫히는것이 아니라 결과 값을 그대로 보여준다.
+                // this.viewCtrl.dismiss().then(_ => {
+                //   this.ble.disconnect(this.peripheral.id);
+                //   this.dismissAllModal();
+                // })
               } else {
                 this.viewCtrl.dismiss().then(_ => {
                   this.ble.disconnect(this.peripheral.id);
@@ -494,153 +443,9 @@ export class DeviceSkinSensorIngPage {
       console.log("Notifi Error : " + error);
     })
     // console.log("---------------------------------노티피 종료 ------------------------------------------------");
-
-    // this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(result =>{
-    //   console.log("read success : " + JSON.stringify(result));
-    // }).catch(error => {
-    //   console.log("read fail : " + JSON.stringify(error));
-    // })
-
-    // this.ble.write(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC, this.stringToBytes('abcd1234')).then(
-    //   data =>{
-    //     console.log("write 성공 : " + data);
-    //   }, error=>{
-    //     console.log("write 실패 : " + error);
-    //   }
-    // )
-
-    // this.ble.read(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(
-    //   buffer => {
-    //     // var a = String.fromCharCode.apply(null, new Uint8Array(buffer))
-    //
-    //     var data = new Uint8Array(buffer);
-    //     var str = String.fromCharCode.apply(String, data);
-    //     console.log("읽기성공88 str : " + str[0]);
-    //
-    //     var data2 = new Uint16Array(buffer);
-    //     var str2 = String.fromCharCode.apply(String, data2);
-    //     console.log("읽기성공1616 str : " + str2[0]);
-    //     console.log("읽기성공1616 str : " + str2[1]);
-    //     console.log("읽기성공1616 str : " + str2[2]);
-    //     console.log("읽기성공1616 str : " + str2[3]);
-    //     console.log("읽기성공1616 str : " + str2[4]);
-    //     console.log("읽기성공1616 str : " + str2[5]);
-    //
-    //     console.log("그냥받은 HEX0 : " + data2[0]);
-    //     console.log("그냥받은 HEX1 : " + data2[1]);
-    //     console.log("그냥받은 HEX2 : " + data2[2]);
-    //     console.log("그냥받은 HEX3 : " + data2[3]);
-    //     console.log("그냥받은 HEX4 : " + data2[4]);
-    //     console.log("그냥받은 HEX5 : " + data2[5]);
-    //
-    //     var hex0 = String.fromCharCode.apply(String, data2[0]);
-    //     var hex1 =String.fromCharCode.apply(String, data2[1]);
-    //     var hex2 =String.fromCharCode.apply(String, data2[2]);
-    //     var hex3 =String.fromCharCode.apply(String, data2[3]);
-    //     var hex4 =String.fromCharCode.apply(String, data2[4]);
-    //     var hex5 =String.fromCharCode.apply(String, data2[5]);
-    //
-    //     console.log("변환한 HEX0 : " + hex0);
-    //     console.log("변환한 HEX1 : " + hex1);
-    //     console.log("변환한 HEX2 : " + hex2);
-    //     console.log("변환한 HEX3 : " + hex3);
-    //     console.log("변환한 HEX4 : " + hex4);
-    //     console.log("변환한 HEX5 : " + hex5);
-    //
-    //
-    //     console.log("읽기 성공 : " + this.bytesToString(buffer));
-    //     console.log("읽기 성공 data : " + this.bytesToString(data));
-    //     // console.log('dimmer characteristic0 ' + this.bytesToString(buffer));
-    //     // console.log('dimmer characteristic1 ' + this.bytesToString(data[1]));
-    //     // console.log('dimmer characteristic2 ' + this.bytesToString(data[2]));
-    //     // console.log('dimmer characteristic3 ' + this.bytesToString(data[3]));
-    //     // console.log('dimmer characteristic4 ' + this.bytesToString(data[4]));
-    //     // console.log('dimmer characteristic5 ' + this.bytesToString(data[5]));
-    //     // console.log('dimmer characteristic6 ' + this.bytesToString(data[6]));
-    //     // console.log('dimmer characteristic7 ' + this.bytesToString(data[7]));
-    //     // this.ngZone.run(() => {
-    //       // this.brightness = data[0];
-    //     // });
-    //   }
-    // )
-    //
-    //
-    //
-    // this.ble.read(this.peripheral.id, '1805', '2A0F').then(
-    //   buffer => {
-    //     // var a = String.fromCharCode.apply(null, new Uint8Array(buffer))
-    //
-    //     var data = new Uint8Array(buffer);
-    //     var str = String.fromCharCode.apply(String, data);
-    //     console.log("읽기성공88 str : " + str[0]);
-    //
-    //     var data2 = new Uint16Array(buffer);
-    //     var str2 = String.fromCharCode.apply(String, data2);
-    //     console.log("읽기성공1616 str : " + str2[0]);
-    //     console.log("읽기성공1616 str : " + str2[1]);
-    //     console.log("읽기성공1616 str : " + str2[2]);
-    //     console.log("읽기성공1616 str : " + str2[3]);
-    //     console.log("읽기성공1616 str : " + str2[4]);
-    //     console.log("읽기성공1616 str : " + str2[5]);
-    //
-    //     console.log("그냥받은 HEX0 : " + data2[0]);
-    //     console.log("그냥받은 HEX1 : " + data2[1]);
-    //     console.log("그냥받은 HEX2 : " + data2[2]);
-    //     console.log("그냥받은 HEX3 : " + data2[3]);
-    //     console.log("그냥받은 HEX4 : " + data2[4]);
-    //     console.log("그냥받은 HEX5 : " + data2[5]);
-    //
-    //     var hex0 = String.fromCharCode.apply(String, data2[0]);
-    //     var hex1 =String.fromCharCode.apply(String, data2[1]);
-    //     var hex2 =String.fromCharCode.apply(String, data2[2]);
-    //     var hex3 =String.fromCharCode.apply(String, data2[3]);
-    //     var hex4 =String.fromCharCode.apply(String, data2[4]);
-    //     var hex5 =String.fromCharCode.apply(String, data2[5]);
-    //
-    //     console.log("변환한 HEX0 : " + hex0);
-    //     console.log("변환한 HEX1 : " + hex1);
-    //     console.log("변환한 HEX2 : " + hex2);
-    //     console.log("변환한 HEX3 : " + hex3);
-    //     console.log("변환한 HEX4 : " + hex4);
-    //     console.log("변환한 HEX5 : " + hex5);
-    //
-    //
-    //     console.log("읽기 성공 : " + this.bytesToString(buffer));
-    //     console.log("읽기 성공 data : " + this.bytesToString(data));
-    //     // console.log('dimmer characteristic0 ' + this.bytesToString(buffer));
-    //     // console.log('dimmer characteristic1 ' + this.bytesToString(data[1]));
-    //     // console.log('dimmer characteristic2 ' + this.bytesToString(data[2]));
-    //     // console.log('dimmer characteristic3 ' + this.bytesToString(data[3]));
-    //     // console.log('dimmer characteristic4 ' + this.bytesToString(data[4]));
-    //     // console.log('dimmer characteristic5 ' + this.bytesToString(data[5]));
-    //     // console.log('dimmer characteristic6 ' + this.bytesToString(data[6]));
-    //     // console.log('dimmer characteristic7 ' + this.bytesToString(data[7]));
-    //     // this.ngZone.run(() => {
-    //       // this.brightness = data[0];
-    //     // });
-    //   }
-    // )
-
-
-
-    // this.ble.startStateNotifications().subscribe(state => {
-    //   console.log("ble state ========================================================== " + state);
-    // })
-    //
-    // this.ble.isEnabled().then(data => {
-    //   console.log("is enabled???  --------------------------------" + data);
-    // })
-
-    // Update the UI with the current state of the dimmer characteristic
-    // this.ble.read(this.peripheral.id, LIGHTBULB_SERVICE, DIMMER_CHARACTERISTIC).then(
-    //   buffer => {
-    //     let data = new Uint8Array(buffer);
-    //     console.log('dimmer characteristic ' + data[0]);
-    //     this.ngZone.run(() => {
-    //       this.brightness = data[0];
-    //     });
-    //   }
-    // )
+    },error=> {
+      console.log("유수분 측정 중 에러 발생 :" +error)
+    })
   }
 
   bleshowAlert(title, message) {
@@ -831,6 +636,8 @@ export class DeviceSkinSensorIngPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: items.from,
+          snsid: items.snsid
         };
       } else {
         this.userData = {
@@ -854,7 +661,9 @@ export class DeviceSkinSensorIngPage {
 
     if (this.platform.is('cordova')) {
       this.ble.disconnect(this.device.id).then(result => {
-        this.navCtrl.pop().then(() => this.navCtrl.pop())
+        // this.navCtrl.pop().then(() => this.viewCtrl.dismiss())
+        // this.viewCtrl.dismiss();
+        this.navCtrl.popAll();
         if (this.navParams.get('carezoneData')) {
           // this.pointUpdate();
         } else {
@@ -862,7 +671,9 @@ export class DeviceSkinSensorIngPage {
         }
       }, error => {
         console.log("취소하기 블루투스 연결해제 에러" + error);
-        this.navCtrl.pop().then(() => this.navCtrl.pop())
+        // this.viewCtrl.dismiss();
+        this.navCtrl.popAll();
+        // this.navCtrl.pop().then(() => this.viewCtrl.dismiss())
         if (this.navParams.get('carezoneData')) {
           // this.pointUpdate();
         } else {
@@ -872,8 +683,12 @@ export class DeviceSkinSensorIngPage {
     } else {
       if (this.navParams.get('carezoneData')) {
         // this.pointUpdate();
+        this.viewCtrl.dismiss();
+        this.navCtrl.popAll();
       } else {
         // this.userTimeUpdate();
+        this.viewCtrl.dismiss();
+        this.navCtrl.popAll();
       }
     }
 
@@ -951,81 +766,133 @@ export class DeviceSkinSensorIngPage {
     toast.present();
   }
 
+  private getOilScore2(moisture) {
+    var intMoisture = parseFloat(moisture);
+    if (intMoisture <= 33.9 && intMoisture >= 0.1) {
+      var result = (intMoisture / parseFloat("0.67"));
+      var result2 = (Math.ceil(result*10)/10).toFixed(1);
+    } else if (intMoisture <= 49.9 && intMoisture >= 34.0) {
+      var result = (intMoisture / parseFloat("1.50"));
+      var result2 = (Math.ceil(result*10)/10).toFixed(1);
+    } else if (intMoisture <= 100 && intMoisture >= 50.0) {
+      var result = (intMoisture / parseFloat("3.14"));
+      var result2 = (Math.ceil(result*10)/10).toFixed(1);
+    }
+    console.log("테스트 결과는?" + Math.ceil(result*10)/10);
+    return result2;
+  }
+
   private getOilScore(moisture) { //수분에 근거한 유분 구하는 공식
     var intmoisture = parseFloat(moisture)
     var getOil = '';
     if (intmoisture >= 61) {
-      getOil = '95';
+      getOil = '95.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 60.9 && intmoisture >= 60.0) {
-      getOil = this.makeRandom(94, 95);
+      getOil = getOil = this.makeRandom(94, 95);
+      getOil = getOil.concat('.' + this.makeRandom(0, 9));
     } else if (intmoisture <= 59.9 && intmoisture >= 59.0) {
-      getOil = '93';
+      getOil = '93.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 58.9 && intmoisture >= 58.0) {
-      getOil = '92';
+      getOil = '92.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 57.9 && intmoisture >= 57.0) {
-      getOil = '91';
+      getOil = '91.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 56.9 && intmoisture >= 56.0) {
-      getOil = '90';
+      getOil = '90.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 55.9 && intmoisture >= 55.0) {
-      getOil = '89';
+      getOil = '89.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 54.9 && intmoisture >= 54.0) {
-      getOil = '88';
+      getOil = '88.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 53.9 && intmoisture >= 53.0) {
-      getOil = '87';
+      getOil = '87.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 52.9 && intmoisture >= 52.0) {
-      getOil = '86';
+      getOil = getOil = '86.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 51.9 && intmoisture >= 51.0) {
-      getOil = '85';
+      getOil = '85.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 50.9 && intmoisture >= 50.0) {
-      getOil = '76';
+      getOil = '76.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 49.9 && intmoisture >= 49.0) {
-      getOil = '70';
+      getOil = '70.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 48.9 && intmoisture >= 48.0) {
-      getOil = '65';
+      getOil = '65.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 47.9 && intmoisture >= 47.0) {
-      getOil = '57';
+      getOil = '57.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 46.9 && intmoisture >= 46.0) {
-      getOil = '54';
+      getOil = '54.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 45.9 && intmoisture >= 37.0) {
-      getOil = '53';
+      getOil = '53.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 36.9 && intmoisture >= 36.0) {
-      getOil = '52';
+      getOil = '52.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 35.9 && intmoisture >= 35.0) {
-      getOil = '50';
+      getOil = '50.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 34.9 && intmoisture >= 34.0) {
-      getOil = '47';
+      getOil = '47.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 33.9 && intmoisture >= 33.0) {
-      getOil = '45';
+      getOil = '45.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 32.9 && intmoisture >= 32.0) {
-      getOil = '40';
+      getOil = '40.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 31.9 && intmoisture >= 31.0) {
-      getOil = '35';
+      getOil = '35.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 30.9 && intmoisture >= 30.0) {
-      getOil = '30';
+      getOil = '30.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 29.9 && intmoisture >= 29.0) {
-      getOil = '25';
+      getOil = '25.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 28.9 && intmoisture >= 28.0) {
-      getOil = '20';
+      getOil = '20.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 27.9 && intmoisture >= 27.0) {
-      getOil = '15';
+      getOil = '15.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 26.9 && intmoisture >= 26.0) {
-      getOil = '14';
+      getOil = '14.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 25.9 && intmoisture >= 25.0) {
-      getOil = '13';
+      getOil = '13.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 24.9 && intmoisture >= 24.0) {
-      getOil = '12';
+      getOil = '12.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 23.9 && intmoisture >= 23.0) {
-      getOil = '11';
+      getOil = '11.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 22.9 && intmoisture >= 22.0) {
-      getOil = '10';
+      getOil = '10.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 21.9 && intmoisture >= 21.0) {
-      getOil = '9';
+      getOil = '9.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 20.9 && intmoisture >= 20.0) {
-      getOil = '8';
+      getOil = '8.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 19.9 && intmoisture >= 19.0) {
-      getOil = '7';
+      getOil = '7.';
+      getOil = getOil.concat(this.makeRandom(0, 9));
     } else if (intmoisture <= 18.9 && intmoisture >= 1.0) {
       getOil = this.makeRandom(10, 1);
+      getOil = getOil.concat('.' + this.makeRandom(0, 9));
     }
     return getOil;
   }
@@ -1034,4 +901,204 @@ export class DeviceSkinSensorIngPage {
         var RandVal = Math.floor(Math.random() * (max - min + 1)) + min;
         return RandVal;
   }
+
+
+  showMissionsuccess() {
+    //this.loading.dismiss();
+    let alert = this.alertCtrl.create({
+      cssClass: 'skin_alert_success',
+      title: '유수분 측정',
+      subTitle: '유수분 측정이 완료되었습니다',
+      message: '수분 : ' + this.score.moisture +'<br /> 유분 : ' + this.score.oil,
+      buttons: [
+        {
+          text: 'X',
+          role: 'cancel',
+          handler: () => {
+            this.device_canceldisconnect();
+          },
+          cssClass: 'cancle_btn'
+        },
+        {
+          text: '다시 측정',
+          handler: () => {
+            // this.device_canceldisconnect();  //2020-04-02 재측정이 되록 한다.
+            this.continue_test();
+            // this.navCtrl.parent.select(4);
+            // let modal = this.modalCtrl.create(RewardPage, { mission: this.carezoneData2 });
+            // modal.onDidDismiss(data => {
+            //   this.ionViewDidEnter();
+            // });
+            // modal.present();
+          }
+        }]
+    });
+    alert.present();
+  }
+
+
+  continue_test() {
+    this.isComplete = false;
+    this.loadProgress = 0;
+    this.ble.stopScan().then(result=>{
+      // this.peripheral = peripheral;
+    // console.log("---------------------------------노티피 시작 ------------------------------------------------");
+    var i = 0;
+    this.ble.startNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
+      var data2 = new Uint8Array(buffer);
+      var checkdata = data2[0].toString();
+      // console.log("유수분 모드 인지? : " + checkdata);
+      if (checkdata === '2') {
+        // console.log("Plinic G1Partners Notifi 8 " + new Uint8Array(buffer));
+        // var data2 = new Uint8Array(buffer);
+        // console.log("data22222 : " + data2);
+        var data3 = '';
+        var data16 = '';
+        // console.log(data2[3], data2[4]);
+        // console.log(data2[3].toString(16) + data2[4].toString(16));
+        data16 = data2[3].toString(16) + data2[4].toString(16);
+        data3 = '0x' + data16;
+        // console.log(data3);
+        // console.log(parseInt(data3, 16));
+        // console.log(i);
+        // this.result[i] = 100 - ((parseInt(data3, 16) / 1023) * 100);
+        this.resultmoisture = (100 - ((parseInt(data3, 16) / 1023) * 100)).toFixed(1);
+        
+        if (i >= 0 && i <= 10) { // 2020-02-26 기존에는 6개의 배열을 받았지만 센서의 민감도를 높히는 테스트를 하기 위해서 50개로 늘렸다
+          // console.log(this.result[i]);
+          if (parseFloat(this.resultmoisture) > 0.5) {
+            // console.log("데이터가 1보다 큼");
+            // console.log("데이터 순번 : " + i + "데이터 :" + this.result[i]);
+            this.result2[i] = (100 - ((parseInt(data3, 16) / 1023) * 100)).toFixed(1);
+            i++;
+            this.toggleToast = true;
+            if (i === 1) {
+              this.percent = "10%"
+              this.loadProgress = 10;
+            } else if (i === 2) {
+              this.percent = "20%"
+              this.loadProgress = 20;
+            } else if (i === 3) {
+              this.percent = "30%"
+              this.loadProgress = 30;
+            } else if (i === 4) {
+              this.percent = "40%"
+              this.loadProgress = 40;
+            } else if (i === 5) {
+              this.percent = "50%"
+              this.loadProgress = 50;
+            } else if (i === 6) {
+              this.percent = "60%"
+              this.loadProgress = 60;
+            } else if (i === 7) {
+              this.percent = "70%"
+              this.loadProgress = 70;
+            } else if (i === 8) {
+              this.percent = "80%"
+              this.loadProgress = 80;
+            } else if (i === 9) {
+              this.percent = "90%"
+              this.loadProgress = 90;
+            } else if (i === 10) {
+              this.percent = "100%"
+              this.loadProgress = 100;
+            } 
+          } else if (parseFloat(this.resultmoisture) <= 0.4) {
+            if (this.toggleToast) {
+              this.showToast("유수분 센서를 피부에 정확하게 접촉해주세요.");
+              this.toggleToast = false;
+            }
+          }
+        } else if (i >= 11) {
+          this.ble.stopNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(data => {
+            var kkkk = 0;
+            for (var k = 1; k < this.result2.length; k++) {
+              // console.log(k + ":" + parseInt(this.result2[k]));
+              kkkk += parseInt(this.result2[k]);  //갯수만큼 총 total값을 구한다
+            }
+            // console.log("kkkk" + (kkkk / 3).toFixed(1));
+            this.moisture = (kkkk / 10).toFixed(1); // 누적된 배열의 갯구만큼 값을 나누어 평균 값을 구한다.
+
+            var today = this.currentDate.getFullYear() + "-" + this.get2digits(this.currentDate.getMonth() + 1) + "-" + this.get2digits(this.currentDate.getDate());
+            this.notimeDate = new Date(today);
+            this.oil = this.getOilScore2(this.moisture);
+
+            console.log("수분 결과값 : " + this.moisture);
+            console.log("유분 결과값 : " + this.oil);
+            
+            this.score = {
+              oil: this.oil,
+              moisture: this.moisture,
+              saveDate: this.notimeDate,
+            }
+
+            this.auth.skinChartSave(this.userData.email, this.score).subscribe(data => {
+              if (data !== '') {
+                if (this.platform.is('android')) {
+                  this.showMissionsuccess();
+                  
+                  // const toast = this.toastCtrl.create({
+                  //   cssClass: 'blu_toast_android',
+                  //   message: '수분 측정 데이터 등록이 완료되었습니다.',
+                  //   duration: 3000,
+                  //   position: 'bottom'
+                  // });
+                  // toast.present();
+
+
+                }
+                else {
+                  this.showMissionsuccess();
+                  
+                  
+                  
+                  // const toast = this.toastCtrl.create({
+                  //   cssClass: 'blu_toast_ios',
+                  //   message: '수분 측정 데이터 등록이 완료되었습니다.',
+                  //   duration: 3000,
+                  //   position: 'bottom'
+                  // });
+                  // toast.present();
+
+
+
+
+
+
+                }
+                // this.navCtrl.setRoot(TabsPage);
+                this.isComplete = true;
+                // 2020-03-20 측정완료가 되면 화면이 닫히는것이 아니라 결과 값을 그대로 보여준다.
+                // this.viewCtrl.dismiss().then(_ => {
+                //   this.ble.disconnect(this.peripheral.id);
+                //   this.dismissAllModal();
+                // })
+              } else {
+                this.viewCtrl.dismiss().then(_ => {
+                  this.ble.disconnect(this.peripheral.id);
+                  this.dismissAllModal();
+                })
+              }
+            })
+          })
+        }
+      } else if (checkdata !== '2') {
+        // this.displayTime = 'false';
+        // this.resultmoisture = '센서 연결 끊김';
+
+        this.viewCtrl.dismiss().then(_ => {
+          this.ble.disconnect(this.peripheral.id);
+          this.dismissAllModal();
+        })
+      }
+    }, error => {
+      console.log("Notifi Error : " + error);
+    })
+    // console.log("---------------------------------노티피 종료 ------------------------------------------------");
+    },error=> {
+      console.log("유수분 측정 중 에러 발생 :" +error)
+    })
+
+  }
+
 }

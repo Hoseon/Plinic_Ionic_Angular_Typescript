@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, IonicApp } from 'ionic-angular';
+import { TabsPage } from '../../tabs/tabs';
+
 
 /**
  * Generated class for the RegistercompletePage page.
@@ -24,9 +26,12 @@ export class RegistercompletePage {
 
 
   public completeclose(){
-    this.viewCtrl.dismiss().then(_ => {
-         this.dismissAllModal();
-     })
+    // this.viewCtrl.dismiss().then(_ => {
+    //      this.dismissAllModal();
+    //  })
+    console.log("completeclosecompleteclosecompleteclose");
+    this.navCtrl.setRoot(TabsPage);
+
   }
 
   public dismissAllModal () {

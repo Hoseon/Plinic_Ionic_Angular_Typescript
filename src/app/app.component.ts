@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-import { Platform, AlertController, ToastController } from 'ionic-angular';
+import { Platform, AlertController, ToastController, App} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../providers/auth-service';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { TranslateService } from 'ng2-translate/ng2-translate';
-// import { ImageLoaderConfig } from 'ionic-image-loader';
-// import { FCM } from '@ionic-native/fcm';
 import { timer } from 'rxjs/observable/timer';
-// import { Keyboard } from '@ionic-native/keyboard';
 
 import { Device } from '@ionic-native/device';
 
@@ -19,18 +16,19 @@ import { Device } from '@ionic-native/device';
   // providers: [Keyboard],
 })
 export class MyApp {
-  rootPage: any = LoginPage;
+  rootPage: any;
 
   showSplash = true;
-
-
   constructor(
+    public app: App,
     public device : Device,
     public toastCtrl: ToastController,
-    private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private auth: AuthService,
-    private screenOrientation: ScreenOrientation, public translateService: TranslateService,
-    // private imageLoaderConfig: ImageLoaderConfig,
-    // private fcm: FCM,
+    private platform: Platform, 
+    private statusBar: StatusBar, 
+    private splashScreen: SplashScreen, 
+    private auth: AuthService,
+    private screenOrientation: ScreenOrientation, 
+    public translateService: TranslateService, //다국어 처리
     private alertCtrl: AlertController) {
 
     this.initializeApp();
@@ -38,94 +36,31 @@ export class MyApp {
   }
 
   initializeApp() {
+
+    //다국어 처리 시작 ----------------------------------
     // let browserLanguage = this.translateService.getBrowserLang();
     // let defaultlanguage = browserLanguage.substring(0, 2).toLowerCase();
-    //console.log("defaultlanguage:"+defaultlanguage)
-
-
     // this.translateService.use(defaultlanguage);
+    //다국어 처리 종료 ----------------------------------
+
+    this.rootPage = LoginPage;
 
     this.platform.ready().then(() => {
-      console.log("this.device.model-------------------------------------------------" + JSON.stringify(this.device.model));
-
-      // if (this.platform.is('ios')) {
-      //   this.fcm.subscribeToTopic('plinic');
-      //
-      //   this.fcm.getToken().then(token => {
-      //     console.log("FCM iOS Token :::::::::::::" + token);
-      //   })
-      //
-      //   this.fcm.onNotification().subscribe((data) => {
-      //     if (data.wasTapped) {
-      //       console.log("Received in  ------------------------------------------------------------------------------------ background - iOS");
-      //     } else {
-      //       const toast = this.toastCtrl.create({
-      //         showCloseButton : true,
-      //         closeButtonText: 'OK',
-      //         message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
-      //         duration: 10000
-      //       });
-      //       toast.present();
-      //       // this.showAlert(JSON.stringify(data.aps.alert));
-      //       console.log("Received in foreground - iOS");
-      //     };
-      //   });
-      //
-      //   this.fcm.onTokenRefresh().subscribe(token => {
-      //     console.log("FCM iOS Refresh Token :::::::::::::" + token);
-      //   });
-      // }
-
-
-      // if (this.platform.is('android')) {
-      //   console.log("android platform");
-      //   this.fcm.subscribeToTopic('all');
-      //
-      //   this.fcm.getToken().then(token => {
-      //     console.log("FCM Token :::::::::::::" + token);
-      //   })
-      //
-      //   this.fcm.onNotification().subscribe(data => {
-      //     // console.log("FCM data ::::::::::::::" + JSON.stringify(data));
-      //     const toast = this.toastCtrl.create({
-      //       showCloseButton : true,
-      //       closeButtonText: 'OK',
-      //       message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.title + '\n' + data.body,
-      //       duration: 10000
-      //     });
-      //     toast.present();
-      //
-      //     // let alert = this.alertCtrl.create({
-      //     //   cssClass: 'push_alert',
-      //     //   title: '댓글알림',
-      //     //   subTitle: data.message_name,
-      //     //   message: "작성한 게시물에 댓글이 등록되었습니다. <br>" + data.title +'<br>' + data.body,
-      //     //   buttons: [{
-      //     //     text: '확인'
-      //     //   }]
-      //     // });
-      //     // alert.present();
-      //     if (data.wasTapped) {
-      //     }
-      //   });
-      //
-      //   this.fcm.onTokenRefresh().subscribe(token => {
-      //     console.log("FCM Refresh Token :::::::::::::" + token);
-      //   });
-      // }
-
+      this.auth.authenticationState.subscribe(state => {
+        if (state) {
+          // this.rootPage = 'TabsPage';
+          this.app.getActiveNav().setRoot('TabsPage'); 
+        } else {
+          // this.rootPage = LoginPage;
+          this.app.getActiveNav().setRoot(LoginPage); 
+        }
+      });
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       if (this.platform.is('cordova')) {  //화면 가로모드 방지 하기 위하여 추가 20190508 추호선
         this.statusBar.styleDefault();
       }
-      this.auth.authenticationState.subscribe(state => {
-        if (state) {
-          this.rootPage = 'TabsPage';
-        } else {
-          this.rootPage = LoginPage;
-        }
-      });
+      
 
       if (this.platform.is('cordova')) {  //화면 가로모드 방지 하기 위하여 추가 20190508 추호선
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
@@ -141,10 +76,6 @@ export class MyApp {
       } else {
         this.showSplash = false
       }
-      // this.imageLoaderConfig.enableDebugMode();
-      // this.imageLoaderConfig.enableFallbackAsPlaceholder(true);
-      // this.imageLoaderConfig.setFallbackUrl('assets/img/logo.png');
-      // this.imageLoaderConfig.setMaximumCacheAge(24 * 60 * 60 * 1000);
     });
   }
 
@@ -158,6 +89,4 @@ export class MyApp {
     });
     alert.present();
   }
-
-
 }

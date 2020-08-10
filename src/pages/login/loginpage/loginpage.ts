@@ -1,14 +1,16 @@
 import { Component, Input, ViewChild, Inject, ElementRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController, Loading, ViewController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, Loading, ViewController, Platform, ModalController } from 'ionic-angular';
 import { AuthService } from '../../../providers/auth-service';
 import { AgreementPage } from '../../agreement/agreement';
 import { PasswordfindPage } from '../passwordfind/passwordfind';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Naver } from 'ionic-plugin-naver';
-
 import { trigger, state, style, transition, animate, keyframes, group } from '@angular/animations';
 // import { AnimationService, AnimationBuilder } from 'css-animator';
+import { IdfindPage } from '../../idfind/idfind';
+import { PasswordresetPage } from '../../passwordreset/passwordreset';
+import { AddinfoPage } from '../../register/addinfo/addinfo';
 
 
 /**
@@ -70,17 +72,32 @@ export class LoginpagePage {
   endTime = null;
   myImage: any;
   myImage2 : any;
+  isReview: boolean = false;
 
   @ViewChild('myElement') myElem;
-  constructor(public nav: NavController, public navParams: NavParams,
+  constructor(
+    public nav: NavController, 
+    public navParams: NavParams,
     // animationService: AnimationService,
-    private alertCtrl: AlertController, private loadingCtrl: LoadingController, public naver: Naver ,public platform: Platform,
-    private auth: AuthService, public viewCtrl: ViewController, @Inject(DOCUMENT) document) {
+    private alertCtrl: AlertController, 
+    private loadingCtrl: LoadingController, 
+    public naver: Naver ,
+    public platform: Platform,
+    private auth: AuthService, 
+    public viewCtrl: ViewController, 
+    @Inject(DOCUMENT) document,
+    public modalCtrl: ModalController,
+  ) {
       // this.animator = animationService.builder();
   }
 
 
   ionViewDidLoad() {
+    console.log('ionViewCanEnter Loginpage');
+    this.auth.isReview().subscribe(async result =>{
+      var data = await result;
+      this.isReview = data.isReview;
+    })
   }
 
   ngOnInit() {
@@ -139,14 +156,44 @@ export class LoginpagePage {
     this.viewCtrl.dismiss();
     this.nav.push(AgreementPage);
   }
-  public passwordfind() {
-    this.nav.push(PasswordfindPage);
+  public idFind() {
+    let modal = this.modalCtrl.create(IdfindPage);
+    modal.onDidDismiss(data => {
+      console.log("아이디 찾기 페이지 닫힘");
+    });
+    modal.present();
   }
+  public passwordreset() {
+    let modal = this.modalCtrl.create(PasswordresetPage);
+    modal.onDidDismiss(data => {
+      console.log("패스워드 찾기 페이지 닫힘");
+    });
+    modal.present();
+  }
+
+  public passwordfind() {
+    let modal = this.modalCtrl.create(PasswordfindPage);
+    modal.onDidDismiss(data => {
+      console.log("패스워드 찾기 페이지 닫힘");
+    });
+    modal.present();
+  }
+
   public dissmiss() {
     this.viewCtrl.dismiss();
   }
 
   public naver_login() {
+    this.auth.naver_promise().then(snsUserdata=>{
+      console.log("리졸브 결과는? : " +JSON.stringify(snsUserdata));
+      if(snsUserdata) {
+        const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
+        modal.present();
+      }
+    }).catch(reject => {
+      console.log("네이버 로그인 실패" + reject);
+    })
+
     // this.naver.login()
     //   .then(
     //     response => console.log(response)
@@ -158,18 +205,61 @@ export class LoginpagePage {
   }
 
   public kakao_login() {
-    this.viewCtrl.dismiss();
-    this.showLoading()
-    this.userData = this.auth.kakao_login();
-    this.loading.dismiss();
+    // this.viewCtrl.dismiss();
+    // this.showLoading()
+    // this.userData = this.auth.kakao_login();
+    // this.loading.dismiss();
+    this.auth.kakao_login_promise().then(snsUserdata=>{
+      console.log("리졸브 결과는? : " +JSON.stringify(snsUserdata));
+      if(snsUserdata) {
+        const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
+        modal.present();
+      }
+    }).catch(reject => {
+      console.log("카카오 로그인 실패" + reject);
+    })
+  }
+
+  public apple_login() {
+
+    this.auth.apple_login_promise().then(snsUserdata=>{
+      console.log("애플 리졸브 결과는? : " +JSON.stringify(snsUserdata));
+      if(snsUserdata) {
+        const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
+        modal.present();
+      }
+    }).catch(reject => {
+      console.log("애플 로그인 실패" + reject);
+    });
+    
+    // cordova.plugins.SignInWithApple.signin(
+    //   { requestedScopes: [0, 1] },
+    //   function(succ){
+    //     console.log(succ)
+    //     alert(JSON.stringify(succ))
+    //   },
+    //   function(err){
+    //     console.error(err)
+    //     console.log(JSON.stringify(err))
+    //   }
+    // )
   }
 
 
   public google_login() {
-    this.viewCtrl.dismiss();
-    this.showLoading()
-    this.auth.google_login();
-    this.loading.dismiss();
+    // this.viewCtrl.dismiss();
+    // this.showLoading()
+    // this.auth.google_login();
+    // this.loading.dismiss();
+    this.auth.google_login_promise().then(snsUserdata=>{
+      console.log("리졸브 결과는? : " +JSON.stringify(snsUserdata));
+      if(snsUserdata) {
+        const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
+        modal.present();
+      }
+    }).catch(reject => {
+      console.log("구글 로그인 실패" + reject);
+    })
   }
 
 
@@ -178,7 +268,7 @@ export class LoginpagePage {
     this.auth.login(this.registerCredentials).subscribe(data => {
       if (data !== '') {
         this.loading.dismiss();
-        this.nav.setRoot('TabsPage')
+        // this.nav.setRoot('TabsPage')
       } else {
         this.showError("Access Denied");
       }
@@ -192,7 +282,7 @@ export class LoginpagePage {
 
   showLoading() {
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: '잠시만 기다려주세요'
     });
     this.loading.present();
   }

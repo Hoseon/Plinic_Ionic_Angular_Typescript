@@ -1,0 +1,90 @@
+<!--
+  Generated template for the MyqnaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android')">
+      <ion-buttons left>
+          <button ion-button navPop icon-only>
+            <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+            <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+          </button>
+        </ion-buttons>
+    <ion-title class="android_title" text-wrap> 나의 활동 </ion-title>
+    <!-- <img class="android_setting" (click)="setting_page();" src="assets/img/myinfo/ic-system-setting@3x.png" /> -->
+  </ion-navbar>
+
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+    <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')">
+    <ion-buttons left>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap> 나의 활동 </ion-title>
+    <!-- <img class="ios_setting" (click)="setting_page();" src="assets/img/myinfo/ic-system-setting@3x.png" /> -->
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-padding>
+
+    <ng-container *ngFor="let beautynote of skinQnaData; let i = index">
+        <ng-container *ngIf="userData.email === beautynote.email">
+          <!-- 뷰트노트 이미지가 있을 때  -->
+          <ng-container *ngIf="beautynote.filename">
+            <ion-item class="line_item" no-lines>
+              <ion-col (click)="community_modify(beautynote._id)" class="container">
+                <ion-row class="beauty_row">
+                  <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_tag">{{beautynote.select}}
+                    </span>{{beautynote.title}}</ion-col>
+                </ion-row>
+                <ion-col *ngIf="beautynote.like || beautynote.like===0" class="beauty_note_like">
+                  <img class="my_like" src="assets/img/myinfo/ic-system-like-off@3x.png" />
+                  {{beautynote.like}}
+                  ∙
+                  <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
+                </ion-col>
+                <img *ngIf="platform.is('android')" class="beauty_note_img"
+                  src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
+                <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_note_img_ios"
+                  src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beautynote.filename}}" />
+              </ion-col>
+            </ion-item>
+            <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+          </ng-container>
+
+          <ng-container *ngIf="!beautynote.filename">
+            <!-- 뷰트노트 이미지가 없을 때  -->
+            <ion-item class="line_item" no-lines>
+              <ion-col (click)="community_modify(beautynote._id)" class="container">
+                <ion-row class="beauty_row">
+                  <ion-col col-8 class="beauty_note_title"><span class="beauty_note_tag">{{beautynote.select}}
+                    </span>{{beautynote.title}}</ion-col>
+                </ion-row>
+                <ion-col *ngIf="beautynote.like || beautynote.like===0" class="beauty_note_like">
+
+                  <img class="my_like" src="assets/img/myinfo/ic-system-like-off@3x.png" />
+                  {{beautynote.like}}
+                  ∙
+                  <ion-col class="beauty_note_count">조회 {{beautynote.views}}</ion-col>
+                </ion-col>
+              </ion-col>
+            </ion-item>
+            <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="userData.email === beautynote.email && i === 5">
+          <!-- <button ion-button class="beautynote_add">더보기</button> -->
+        </ng-container>
+      </ng-container>
+      
+
+</ion-content>

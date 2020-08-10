@@ -1,5 +1,5 @@
 import { IonicPage, App } from 'ionic-angular';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
 import { NavController, Platform, AlertController, ModalController, Loading, LoadingController, ViewController, Events, ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
@@ -7,12 +7,13 @@ import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { SkinChartPage } from '../skin-chart/skin-chart'
 import { CareZonePage } from '../care-zone/care-zone'
 import { SkinMeasureStartPage } from '../skin-measure-start/skin-measure-start'
-import { BluetoothLE } from '@ionic-native/bluetooth-le';
 import { TranslateService } from 'ng2-translate/ng2-translate'
 import { TabsPage } from '../tabs/tabs'
 import { CareZoneMissionIngPage } from '../care-zone-mission-ing/care-zone-mission-ing'
 import { CareZoneMissionStartPage } from '../care-zone-mission-start/care-zone-mission-start'
 import { CareZoneMissionDeadlineEndPage } from '../care-zone-mission-deadline-end/care-zone-mission-deadline-end'
+import { ChalMissionIngPage } from '../chal-mission-ing/chal-mission-ing';
+import { ChalMissionStartPage } from '../chal-mission-start/chal-mission-start';
 import { DOCUMENT } from '@angular/common';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { ImageLoader } from 'ionic-image-loader';
@@ -28,7 +29,14 @@ import { QnaReadPage } from '../myinfo/details/qna/qna-read/qna-read'
 import { Observable } from 'rxjs/Rx';
 import { FCM } from '@ionic-native/fcm';
 import { SearchPage } from '../community/search/search';
-
+import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing'
+import { Flip } from 'number-flip'; //숫자 카운트 되는 애니메이션 적용 
+import { ChulsukCheckPage } from '../chulsuk-check/chulsuk-check'; //숫자 카운트 되는 애니메이션 적용 
+import { MyinfoPage } from '../myinfo/myinfo'
+import { GuidePage } from '../guide/guide'
+import { RegistercompletePage } from '../register/registercomplete/registercomplete'
+import { RewardPage } from '../reward/reward';
+import { textDef } from '@angular/core/src/view';
 
 
 
@@ -39,11 +47,19 @@ import { SearchPage } from '../community/search/search';
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  flipAnim = null;
+  isFlip : boolean = false;
+
+  @ViewChild('numberbtn', { read: ElementRef}) private flipbtn: ElementRef;
+  currentAppVer: any = '1.0.11';
+  appCheck: boolean = false;
   userData: any;
   bannerData: any;
   imageUrl: any;
   carezoneData: any;
   missionData: any;
+  challengeData: any;
   missionID: any;
   jwtHelper: JwtHelper = new JwtHelper();
   careDataOBJ: any;
@@ -74,52 +90,55 @@ export class HomePage {
   beauty_data_title1: any;
   beauty_data_id1: any;
   beauty_data_url1: any;
+  beauty_data_viewId1: any;
+  beauty_data_views1: any;
+  beauty_data_midtext1: any;
   beauty_data_type2: any;
   beauty_data_title2: any;
   beauty_data_id2: any;
   beauty_data_url2: any;
+  beauty_data_viewId2: any;
+  beauty_data_views2: any;
+  beauty_data_midtext2: any;
   beauty_data_type3: any;
   beauty_data_title3: any;
   beauty_data_id3: any;
   beauty_data_url3: any;
+  beauty_data_viewId3: any;
+  beauty_data_views3: any;
+  beauty_data_midtext3: any;
   beauty_data_type4: any;
   beauty_data_title4: any;
   beauty_data_id4: any;
   beauty_data_url4: any;
+  beauty_data_viewId4: any;
+  beauty_data_views4: any;
+  beauty_data_midtext4: any;
   beautyData: any;
-
   imgUrl: any;
-
   currentDate: Date = new Date();
-
   new: any;
   recruiting: any;
   mdchuchun: any;
   approaching: any;
   endrecruit: any;
-
   second_new: any;
   second_recruiting: any;
   second_mdchuchun: any;
   second_approaching: any;
   second_endrecruit: any;
-
   third_new: any;
   third_recruiting: any;
   third_mdchuchun: any;
   third_approaching: any;
   third_endrecruit: any;
-
   firstCarezoneData: any;
   secondCarezoneData: any;
   thirdCarezoneData: any;
-
   secondCount: any = 0;
-
   getday: any;
   dday: any;
   chkDay: any;
-
   d5: Array<any> = new Array<any>();
   d4: Array<any> = new Array<any>();
   d3: Array<any> = new Array<any>();
@@ -130,296 +149,145 @@ export class HomePage {
   missionCounter2: Array<any> = new Array<any>();
   percent: Array<any> = new Array<any>();
   getthirdday: Array<any> = new Array<any>();
-
-
   skin_diagnose_first_check = false;
   all_moisture_score: any = 0;
   all_oil_score: any = 0;
   all_first_moisture_score: any = 0;
   all_first_oil_score: any = 0;
-
   all_first_total_score: any = 0;
   all_total_score: any = 0;
-
   skinScoreChk = false;
   skinScoreData: any;
   circle_moisture: any = 0;
   circle_oil: any = 0;
   circle_date: any;
-
   pre_circle_moisture: any = 0;
   pre_circle_oil: any = 0;
   pre_circle_date: any;
-
   chartDateData = [];
   chartOilData = [];
   chartMoistureData = [];
   array1 = [];
   chartDateData2: Array<any>;
-
   total_score: any = 0;
   pre_total_score: any = 0;
   skinQnaData: any;
-
-  // displayTime: any;
   displayTime: Array<any> = new Array<any>();
   displayTime2: any;
   secondsRemaining: any = 1000000;
   secondsRemaining2: any = 2000000;
   runTimer: boolean = true;
-
   subscriptionTimer: any;
   subscriptionTimer2: any;
-  // timeremaining: any;
   timeremaining: Array<any> = new Array<any>();
   timeremaining2: any;
-
   endmission: Array<any> = new Array<any>();
   startmission: Array<any> = new Array<any>();
-
   first_missionMemberData: any;
   missionmember: Array<any> = new Array<any>();
   second_missionMemberData: any;
-
-
+  totaluserpoint: any = 0;
+  topBannerData: any;
 
   constructor(
     private fcm: FCM,
     public toastCtrl: ToastController,
     public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController,
-    public translateService: TranslateService, public bluetoothle: BluetoothLE, public viewCtrl: ViewController,
+    public translateService: TranslateService, 
+    public viewCtrl: ViewController,
     private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, public app: App, private callNumber: CallNumber
     , @Inject(DOCUMENT) document, public events: Events) {
     this.platform.ready().then((readySource) => {
-
-      // this.currentDate = new Date().toISOString();
-
-      // this.loadItems();
-      this.bannerData = this.roadbanner();
-      //this.roadcareZone();
-      // this.firstCarezoneData = this.firstLoadCareZone();
-      // this.secondCarezoneData = this.secondLoadCareZone();
-      // this.thirdCarezoneData = this.thirdLoadCareZone();
-      // this.roadbeauty();
-      // this.timerTick();
-      // this.timerTick2();
-
-
-      if (this.skin_diagnose_first_check === null || false) {
-        this.auth.setUserStoragediagnose_first_check(this.skin_diagnose_first_check);
-        // console.log("===================="+this.skin_diagnose_first_check);
-      }
-      // if (this.auth.bluetooth_connect() == true) {
-        //this.nav.push(SkinChartPage);
+      // if (this.skin_diagnose_first_check === null || false) {
+      //   this.auth.setUserStoragediagnose_first_check(this.skin_diagnose_first_check);
       // }
-
-
-      this.platform.registerBackButtonAction(() => {
-        let nav = app._appRoot._getActivePortal() || app.getActiveNav();
-        let activeView = nav.getActive();
-
-        console.log("activeView.name===================" + activeView.name);
-
-        if (activeView != null) {
-          if (this.nav.canGoBack()) {
-            this.nav.pop();
-          }
-          else if (activeView.isOverlay) {
-            activeView.dismiss();
-          }
-          else {
-            // backgroundMode.moveToBackground();
-            if (activeView.name === 'QnaPage'
-              || activeView.name === 'QnaReadPage'
-              || activeView.name === 'PersonalinfoPage'
-              || activeView.name === 'PlinicManualPage'
-              || activeView.name === 'MarketingPage'
-              || activeView.name === 'BluetoothConnectIngPage'
-              || activeView.name === 'BluetoothDisconnectPage'
-              || activeView.name === 'TermsPage'
-              || activeView.name === 'NoticePage'
-              || activeView.name === 'CareZoneMissionStartPage'
-              || activeView.name === 'CareZoneMissionIngPage'
-              || activeView.name === 'CareZoneMissionDeadlineEndPage'
-              || activeView.name === 'CareZoneMissionDeadlinePage'
-              || activeView.name === 'CareZoneMissionCompletePage'
-              || activeView.name === 'MyPage'
-              || activeView.name === 'MyCommunityModifyPage'
-              || activeView.name === 'SettingPage'
-            ) {
-              console.log("activeView.name===================111111111000000");
-              activeView.dismiss();
-            }
-            else if (
-              activeView.name === 'CareZonePage'
-              || activeView.name === 'CommunityPage'
-              || activeView.name === 'MyinfoPage'
-            ) {
-              console.log("activeView.name===================22222222000000");
-              this.nav.parent.select(0);
-            }
-            else {
-              let alert = this.alertCtrl.create({
-                cssClass: 'push_alert_cancel',
-                title: "plinic",
-                message: "앱을 종료하시겠습니까?",
-                buttons: [
-                  {
-                    text: '취소',
-                    role: 'cancel',
-                    handler: () => {
-                      console.log('취소');
-                    }
-                  },
-                  {
-                    text: '확인',
-                    handler: () => {
-                      console.log('확인'),
-                        this.platform.exitApp(); // IF IT'S THE ROOT, EXIT THE APP.
-                    }
-                  }]
-              });
-              alert.present();
-            }
-          }
-        }
-      });
-
-      if (this.platform.is('ios')) {
-        this.fcm.subscribeToTopic('plinic');
-
-        this.fcm.getToken().then(token => {
-          console.log("FCM iOS Token :::::::::::::" + token);
-        })
-
-        this.fcm.onNotification().subscribe((data) => {
-          if (data.wasTapped) {
-            //커뮤니티 (뷰티노트, 피부고민 알림 처리)
-            if (data.mode === 'qna' || data.mode === 'note') {
-              // this.nav.parent.select(3).then(() => {
-              let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
-              myModal.onDidDismiss(data => {
-                // this.ionViewWillEnter();
-                // this.nav.parent.select(3)
-              });
-              myModal.present();
-              // });
-            }
-            if (data.mode === 'myqna') {  //문의하기
-              // this.nav.parent.select(4).then(() => {
-              let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
-              myModal.onDidDismiss(data => {
-                // this.ionViewWillEnter();
-              });
-              myModal.present();
-              // });
-            }
-          } else {
-            if (data.mode === 'qna' || data.mode === 'note') {
-              const toast = this.toastCtrl.create({
-                showCloseButton: true,
-                closeButtonText: 'OK',
-                message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
-                duration: 10000
-              });
-              toast.present();
-              console.log("Received in foreground - iOS");
-            };
-
-            if (data.mode === 'myqna') {
-              const toast = this.toastCtrl.create({
-                showCloseButton: true,
-                closeButtonText: 'OK',
-                message: "문의하신 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
-                duration: 10000
-              });
-              toast.present();
-              console.log("Received in foreground - iOS");
-            }
-          };
-        });
-
-        this.fcm.onTokenRefresh().subscribe(token => {
-          console.log("FCM iOS Refresh Token :::::::::::::" + token);
-        });
-      }
-      if (this.platform.is('android')) {
-        console.log("android platform");
-        this.fcm.subscribeToTopic('all');
-
-        this.fcm.getToken().then(token => {
-          console.log("FCM Token :::::::::::::" + token);
-        })
-
-        this.fcm.onNotification().subscribe(data => {
-          console.log("FCM data ::::::::::::::" + JSON.stringify(data));
-          if (data.wasTapped) {
-            if (data.mode === 'qna' || data.mode === 'note') {
-              // this.nav.parent.select(3).then(() => {
-              let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
-              myModal.onDidDismiss(data => {
-                // this.ionViewWillEnter();
-                this.nav.parent.select(3)
-              });
-              myModal.present();
-              // });
-            }
-            if (data.mode === 'myqna') {
-              // this.nav.parent.select(4).then(() => {
-              let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
-              myModal.onDidDismiss(data => {
-                // this.ionViewWillEnter();
-              });
-              myModal.present();
-              // });
-            }
-          } else {
-            if (data.mode === 'qna' || data.mode === 'note') {
-              const toast = this.toastCtrl.create({
-                showCloseButton: true,
-                closeButtonText: 'OK',
-                message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.title + '\n' + data.body,
-                duration: 10000
-              });
-              toast.present();
-            }
-            if (data.mode === 'myqna') {
-              const toast = this.toastCtrl.create({
-                showCloseButton: true,
-                closeButtonText: 'OK',
-                message: "문의하신 게시물에 댓글이 등록되었습니다. \n" + data.title + '\n' + data.body,
-                duration: 10000
-              });
-              toast.present();
-              // this.showAlert(JSON.stringify(data.aps.alert));
-              console.log("Received in foreground - android");
-            }
-          }
-        });
-
-        this.fcm.onTokenRefresh().subscribe(token => {
-          console.log("FCM Refresh Token :::::::::::::" + token);
-        });
-      }
-
-
     });
   }
-
-
-  ionViewDidLoad() {
-    this.skin_first_check();
-    this.skin_first_moisture_score();
-    this.skin_first_oil_score();
-    this.skin_oil_score();
-    this.skin_moisture_score();
+  
+  async ngOnInit() {
+    console.log('ngOnInit Home');
+    if(this.platform.is('android')) { //안드로이드 app.scss의 내용과 ios의 내용이 달라 분기로 구분함
+      setTimeout(() => {
+        this.auth.getHomePopUpCheck().then(result=> {
+          if(result != null) {
+            let setDate = new Date(result.date);
+            setDate.setDate(setDate.getDate()+2);
+            if(this.getCovertKoreaTime(setDate).substr(0,10) < this.getCovertKoreaTime(new Date()).substr(0,10)){
+              this.showAlertProduct_android('test', 'test'); //안드로이드 app.scss의 내용과 ios의 내용이 달라 분기로 구분함
+            }
+          } else {
+            this.showAlertProduct_android('test', 'test'); //안드로이드 app.scss의 내용과 ios의 내용이 달라 분기로 구분함
+          } 
+        }, error => {
+          console.log("팝업 가져오기 에러 : " + error);
+        })  
+      }, 3000);
+    } else {
+      setTimeout(() => {
+        this.auth.getHomePopUpCheck().then(result=> {
+          if(result != null) {
+            let setDate = new Date(result.date);
+            setDate.setDate(setDate.getDate()+2);
+            if(this.getCovertKoreaTime(setDate).substr(0,10) < this.getCovertKoreaTime(new Date()).substr(0,10)){
+              this.showAlertProduct_ios('test', 'test'); //안드로이드 app.scss의 내용과 ios의 내용이 달라 분기로 구분함
+            }
+          } else {
+            this.showAlertProduct_ios('test', 'test'); //안드로이드 app.scss의 내용과 ios의 내용이 달라 분기로 구분함
+          } 
+        }, error => {
+          console.log("팝업 가져오기 에러 : " + error);
+        })
+      }, 3000);
+    }
   }
 
+  async ionViewDidLoad() {
+    await this.loadItems();
+    await this.roadbeauty();
+    this.firstCarezoneData = await this.firstLoadCareZone();
+    this.bannerData = await this.roadbanner();
+    this.topbannerLoad();
+    if(this.userData) {
+      if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
+        this.reloadUserPoint(this.userData.snsid);
+      }
+      else {
+        this.reloadUserPoint(this.userData.email);
+      }
+    }
+    if(!this.appCheck) {
+      this.compareAppVersion();
+    }
+    this.auth.setUserStoragetab(0);
+  }
+
+  async ionViewWillEnter() {
+    await this.skinQnaLoad();
+    this.challengeChkMission(this.userData.email);
+    if(this.userData) {
+      if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
+        this.reloadUserPoint(this.userData.snsid);
+      }
+      else {
+        this.reloadUserPoint(this.userData.email);
+      }
+    }
+    this.secondCarezoneData = this.secondLoadCareZone();
+    // this.timerTick();
+    // this.timerTick2();
+  }
+
+  async ionViewDidEnter() {
+    this.inItFCM();
+    // setTimeout(() => {
+    // this.flip();
+    // }, 3000)
+  }
+
+
   ionViewWillLeave() {
-    this.subscriptionTimer.complete();
-    this.subscriptionTimer2.complete();
-    console.log("Timer Clear!");
+    this.isFlip= true;
   }
 
   public community_qna_modify(id) {
@@ -436,8 +304,6 @@ export class HomePage {
   public skin_first_check() {
     this.auth.getUserStoragediagnose_first_check().then(items => {
       this.skin_diagnose_first_check = items;
-      // console.log("skin_diagnose_first_check========" + this.skin_diagnose_first_check);
-      //console.log("items" + items);
     });
   }
 
@@ -445,9 +311,6 @@ export class HomePage {
     this.auth.getUserStoragediagnose_moisture().then(items => {
       this.all_moisture_score = items;
       this.all_total_score += this.all_moisture_score / 2;
-      // console.log("all_moisture_score==========" + this.all_moisture_score);
-      // console.log("all_total_score=========" + this.all_total_score);
-      //console.log("items" + items);
     });
   }
 
@@ -455,9 +318,6 @@ export class HomePage {
     this.auth.getUserStoragediagnose_oil().then(items => {
       this.all_oil_score = items;
       this.all_total_score += this.all_oil_score / 2;
-      // console.log("all_oil_score=========" + this.all_oil_score);
-      // console.log("all_total_score=========" + this.all_total_score);
-      //console.log("items" + items);
     });
   }
 
@@ -465,9 +325,6 @@ export class HomePage {
     this.auth.getUserStoragediagnose_first_moisture().then(items => {
       this.all_first_moisture_score = items;
       this.all_first_total_score += this.all_first_moisture_score / 2;
-      // console.log("all_first_moisture_score==========" + this.all_first_moisture_score);
-      // console.log("all_first_total_score==========" + this.all_first_total_score);
-      //console.log("items" + items);
     });
   }
 
@@ -475,24 +332,12 @@ export class HomePage {
     this.auth.getUserStoragediagnose_first_oil().then(items => {
       this.all_first_oil_score = items;
       this.all_first_total_score += this.all_first_oil_score / 2;
-      // console.log("all_first_oil_score=======" + this.all_first_oil_score);
-      // console.log("all_first_total_score=======" + this.all_first_total_score);
-      //console.log("items" + items);
     });
   }
 
 
 
   public skin_measure() {
-    // let alert = this.alertCtrl.create({
-    //   cssClass: 'push_alert',
-    //   title: "plinic",
-    //   message: "준비중입니다.",
-    //   buttons: [{
-    //     text: '확인'
-    //   }]
-    // });
-    // alert.present();
     if (this.skin_diagnose_first_check) {
       let myModal = this.modalCtrl.create(SkinDiagnoseMoisturePage);
       myModal.present();
@@ -504,7 +349,6 @@ export class HomePage {
   }
 
   public beauty_add() {
-    // this.nav.push(BeautyTipAddPage);
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
       title: "plinic",
@@ -522,7 +366,6 @@ export class HomePage {
 
   public loadItems() {
     this.auth.getUserStorage().then(items => {
-
       if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
         this.userData = {
           accessToken: items.accessToken,
@@ -534,14 +377,17 @@ export class HomePage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: items.from,
+          snsid: items.snsid
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           // this.thumb_image = false;
         } else {
           // this.thumb_image = true;
         }
-        this.chkmission(this.userData.email);
-
+        // this.chkmission(this.userData.email); 2020-02-10 챌린지 체크로 변경되어 주석 처리
+        this.challengeChkMission(this.userData.email);
+        this.reloadUserPoint(this.userData.snsid);
 
       } else {
         this.userData = {
@@ -553,53 +399,57 @@ export class HomePage {
           skincomplaint: this.jwtHelper.decodeToken(items).skincomplaint,
           email: this.jwtHelper.decodeToken(items).email,
           nickname: this.jwtHelper.decodeToken(items).name,
+          totaluserpoint: this.jwtHelper.decodeToken(items).totaluserpoint,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
         };
-        this.chkmission(this.userData.email);
-
+        // console.log("totaluserpoint : " + this.userData.totaluserpoint);
+        // this.chkmission(this.userData.email); 2020-02-10 챌린지 체크로 변경되어 주석 처리
+        this.challengeChkMission(this.userData.email);
+        this.reloadUserPoint(this.userData.email);
       }
-      this.auth.getSkinScore(this.userData.email).subscribe(items => {
-        this.skinScoreData = items;
+      // this.auth.getSkinScore(this.userData.email).subscribe(items => {
+      //   this.skinScoreData = items;
 
-        if (items !== '') {
-          this.skinScoreChk = true;
-          var i = (parseInt(this.skinScoreData.score.length) - 1);
-          // console.log("ii" + i);
-          var k = (parseInt(this.skinScoreData.score.length) - 2);
-          // console.log("kk" + i);
+      //   if (items !== '') {
+      //     this.skinScoreChk = true;
+      //     var i = (parseInt(this.skinScoreData.score.length) - 1);
+      //     // console.log("ii" + i);
+      //     var k = (parseInt(this.skinScoreData.score.length) - 2);
+      //     // console.log("kk" + i);
 
-          if (i >= 0) {
+      //     if (i >= 0) {
 
-            this.circle_moisture = this.skinScoreData.score[i].moisture;
-            this.circle_oil = this.skinScoreData.score[i].oil;
-            this.circle_date = this.skinScoreData.score[i].saveDate.substr(0, 10);
+      //       this.circle_moisture = this.skinScoreData.score[i].moisture;
+      //       this.circle_oil = this.skinScoreData.score[i].oil;
+      //       this.circle_date = this.skinScoreData.score[i].saveDate.substr(0, 10);
 
-            this.total_score = (parseInt(this.circle_moisture) + parseInt(this.circle_oil)) / 2;
-            // console.log("total :" + this.total_score);
+      //       this.total_score = (parseInt(this.circle_moisture) + parseInt(this.circle_oil)) / 2;
+      //       // console.log("total :" + this.total_score);
 
-          }
-          if (k >= 0) {
-            this.pre_circle_moisture = this.skinScoreData.score[k].moisture;
-            this.pre_circle_oil = this.skinScoreData.score[k].oil;
-            this.pre_circle_date = this.skinScoreData.score[k].saveDate.substr(0, 10);
+      //     }
+      //     if (k >= 0) {
+      //       this.pre_circle_moisture = this.skinScoreData.score[k].moisture;
+      //       this.pre_circle_oil = this.skinScoreData.score[k].oil;
+      //       this.pre_circle_date = this.skinScoreData.score[k].saveDate.substr(0, 10);
 
-            this.pre_total_score = (parseInt(this.pre_circle_moisture) + parseInt(this.pre_circle_oil)) / 2;
-            // console.log("pre_total :" + this.pre_total_score);
+      //       this.pre_total_score = (parseInt(this.pre_circle_moisture) + parseInt(this.pre_circle_oil)) / 2;
+      //       // console.log("pre_total :" + this.pre_total_score);
 
-          }
-          // console.log("this.circle_moisture" + this.circle_moisture);
+      //     }
+      //     // console.log("this.circle_moisture" + this.circle_moisture);
 
-          // console.log("moisture:::::::" + this.skinScoreData.score[i].moisture);
-          // console.log("oil:::::::" + this.skinScoreData.score[i].oil);
-        }
-      });
+      //     // console.log("moisture:::::::" + this.skinScoreData.score[i].moisture);
+      //     // console.log("oil:::::::" + this.skinScoreData.score[i].oil);
+      //   }
+      // });
     });
   }
 
+  openBrowser_ios(url, title, id) {
 
-  openBrowser_ios(url, title) {
-    // https://ionicframework.com/docs/native/themeable-browser/
+    this.images.communityBeautyViewsUpdate(id).subscribe(data => {
+    });
 
     const options: ThemeableBrowserOptions = {
       toolbar: {
@@ -607,14 +457,24 @@ export class HomePage {
         color: '#6562b9'
       },
       title: {
-        color: '#ffffffff',
-        showPageTitle: false,
+        color: '#FFFFFF',
+        showPageTitle: true,
         staticText: title
       },
       closeButton: {
         wwwImage: 'assets/img/close.png',
         align: 'left',
         event: 'closePressed'
+      },
+      backButton: {
+        wwwImage: 'assets/img/back.png',
+        align: 'right',
+        event: 'backPressed'
+      },
+      forwardButton: {
+        wwwImage: 'assets/img/forward.png',
+        align: 'right',
+        event: 'forwardPressed'
       },
     };
 
@@ -630,7 +490,6 @@ export class HomePage {
   }
 
   openBrowser_android(url, title) {
-    // https://ionicframework.com/docs/native/themeable-browser/
 
     const options: ThemeableBrowserOptions = {
       toolbar: {
@@ -638,9 +497,24 @@ export class HomePage {
         color: '#6562b9'
       },
       title: {
-        color: '#ffffffff',
-        showPageTitle: false,
+        color: '#FFFFFF',
+        showPageTitle: true,
         staticText: title
+      },
+      closeButton: {
+        wwwImage: 'assets/img/close.png',
+        align: 'left',
+        event: 'closePressed'
+      },
+      backButton: {
+        wwwImage: 'assets/img/back.png',
+        align: 'right',
+        event: 'backPressed'
+      },
+      forwardButton: {
+        wwwImage: 'assets/img/forward.png',
+        align: 'right',
+        event: 'forwardPressed'
       },
     };
 
@@ -656,41 +530,32 @@ export class HomePage {
   }
 
 
-  ionViewWillEnter() {
-    this.loadItems();
-    this.skinQnaLoad();
-    this.firstCarezoneData = this.firstLoadCareZone();
-    this.secondCarezoneData = this.secondLoadCareZone();
-    // this.thirdCarezoneData = this.thirdLoadCareZone();
-    this.roadbeauty();
-    this.timerTick();
-    this.timerTick2();
-    // console.log("Enter Home");
-    //this.nav.parent.select(0);
-    //this.loadItems();
-    // this.showLoading();
-    //this.bannerData = this.roadbanner();
-    //this.roadcareZone();
-    //this.roadbeauty();
-    //this.loading.dismiss();
-    //this.nav.setRoot(TabsPage);
-    // console.log("End Home");
+  
+
+  showAlertwithCancel(title, message) {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel2',
+      title: title,
+      message: message,
+      buttons: [{
+        text: '홈으로',
+        handler: () => {
+          console.log('마이페이지 확인');
+          this.nav.popToRoot();
+          }
+        },
+        {
+          text: '마이페이지 확인',
+          handler: () => {
+          this.nav.parent.select(1).then(() => this.nav.push(MyinfoPage));
+          console.log('홈으로 가기');
+          }
+        }]
+    });
+    alert.present();
+    this.nav.pop().then(() => this.nav.pop())
   }
 
-  ionViewDidEnter() {
-    // this.auth.registerSnS();
-
-    // this.translateService.get('helloWorld').subscribe(
-    //   hi => {
-    //     let alert = this.alertCtrl.create({
-    //       title: hi,
-    //       buttons: ['OK']
-    //     });
-    //     alert.present();
-    //   }beauty_add
-    // )
-
-  }
 
 
   public customer_service() {
@@ -701,8 +566,6 @@ export class HomePage {
       buttons: [{
         text: '연결하기',
         handler: () => {
-          // console.log('연결하기'),
-          //02.2038.4876
           this.callNumber.callNumber("18334870", true)
         }
       }]
@@ -712,15 +575,12 @@ export class HomePage {
 
 
   public moisture_help() {
-    // console.log('view');
     document.getElementById("view").style.display = "block";
   }
 
 
   public close() {
-    // console.log('close');
     document.getElementById("view").style.display = "none";
-    // document.getElementById("view2").style.display = "none";
   }
 
   openBasicModal() {
@@ -730,7 +590,6 @@ export class HomePage {
     }
 
     if (this.platform.is('ios') || this.platform.is('core')) {
-      // this.showAlert("ios 블루투스 기능 준비 중입니다. <br />감사합니다.")
       let myModal = this.modalCtrl.create(SkinMeasureStartPage);
       myModal.present();
     }
@@ -755,20 +614,12 @@ export class HomePage {
 
   //20190617 미션 참여자 인원 count
   public first_missionCount(id) {
-    // this.showLoading();
     this.images.missionCount(id).subscribe(data => {
-      // console.log(data);
     });
-
-    // this.images.getMissionMember(id).subscribe(data => {
-    //   this.first_missionMemberData = data;
-    // });
-
   }
 
   //20190617 미션 참여자 인원 count
   public second_missionCount(id) {
-    // this.showLoading();
     this.images.missionCount(id).subscribe(data => {
       this.second_carezone_missioncount = data;
       this.secondCount++;
@@ -782,7 +633,6 @@ export class HomePage {
 
   //20190617 미션 참여자 인원 count
   public third_missionCount(id) {
-    // this.showLoading();
     this.images.missionCount(id).subscribe(data => {
       this.third_carezone_missioncount = data;
     });
@@ -794,33 +644,14 @@ export class HomePage {
 
       if (data !== '') {
         for (let i = 0; i < data.length; i++) {
-
-          this.images.missionCount(data[i]._id).subscribe(counter => {
-            this.missionCounter[i] = counter;
-            // console.log(this.missionCounter[i]);
-          });
-
           this.timeremaining[i] = (new Date(data[i].endmission).getTime() - new Date().getTime()) / 1000;
-          // this.timeremaining = (new Date(data[0].endmission).getTime() - new Date().getTime()) / 1000;
         }
       }
 
       for (let i = 0; i < data.length; i++) {
-        //미션별로 참여자 수 구하기
-
-
-
         this.images.getMissionMember(data[i]._id).subscribe(data3 => {
           if (data3 !== '') {
             this.missionmember[i] = data3;
-            // for (var k = 0; k < data3.length; k++) {
-            //   this.memberRanking[i] = {
-            //     email: data3[k].email,
-            //     usetime: data3[k].usetime,
-            //     rank: i + 1,
-            //     image_url: data3[k].image_url
-            //   }
-            // }
           }
         });
 
@@ -834,63 +665,63 @@ export class HomePage {
     this.images.second_carezoneRoad().subscribe(data => {
       this.secondCarezoneData = data;
       for (let i = 0; i < data.length; i++) {
-        this.second_missionCount(data[i]._id);
+        // this.second_missionCount(data[i]._id);
         this.getthirdday[i] = new Date(data[i].startmission)
         this.timeremaining2 = (new Date(data[i].endmission).getTime() - new Date().getTime()) / 1000;
         if (this.diffdate(this.currentDate, this.getthirdday[i]) > -3 && this.diffdate(this.currentDate, this.getthirdday[i]) < -2) {
-          this.images.missionCount(data[i]._id).subscribe(data2 => {
-            this.missionCounter2[i] = data2;
-            this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
+          // this.images.missionCount(data[i]._id).subscribe(data2 => {
+          //   this.missionCounter2[i] = data2;
+          //   this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
 
-            if (this.percent[i] <= 50) {
-              this.ingmdchuchun[i] = true;
-              this.ingapproaching[i] = false;
-            }
-            if (this.percent[i] > 50) {
-              this.ingmdchuchun[i] = false;
-              this.ingapproaching[i] = true;
-            }
-          });
+          //   if (this.percent[i] <= 50) {
+          //     this.ingmdchuchun[i] = true;
+          //     this.ingapproaching[i] = false;
+          //   }
+          //   if (this.percent[i] > 50) {
+          //     this.ingmdchuchun[i] = false;
+          //     this.ingapproaching[i] = true;
+          //   }
+          // });
         } else if (this.diffdate(this.currentDate, this.getthirdday[i]) > -2 && this.diffdate(this.currentDate, this.getthirdday[i]) < -1) {
           // console.log("D-111111111111");
-          this.images.missionCount(data[i]._id).subscribe(data2 => {
-            this.missionCounter2[i] = data2;
-            //console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
-            //console.log("참여인원 백분율 구하기 : " + parseInt(this.missionCounter[i]));
-            this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
-            //console.log(this.percent[i])
+          // this.images.missionCount(data[i]._id).subscribe(data2 => {
+          //   this.missionCounter2[i] = data2;
+          //   //console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
+          //   //console.log("참여인원 백분율 구하기 : " + parseInt(this.missionCounter[i]));
+          //   this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
+          //   //console.log(this.percent[i])
 
-            if (this.percent[i] <= 50) {
-              //console.log("MD추천");
-              this.ingmdchuchun[i] = true;
-              this.ingapproaching[i] = false;
-            }
-            if (this.percent[i] > 50) {
-              //console.log("마감임박");
-              this.ingmdchuchun[i] = false;
-              this.ingapproaching[i] = true;
-            }
-          });
+          //   if (this.percent[i] <= 50) {
+          //     //console.log("MD추천");
+          //     this.ingmdchuchun[i] = true;
+          //     this.ingapproaching[i] = false;
+          //   }
+          //   if (this.percent[i] > 50) {
+          //     //console.log("마감임박");
+          //     this.ingmdchuchun[i] = false;
+          //     this.ingapproaching[i] = true;
+          //   }
+          // });
         } else if (this.diffdate(this.currentDate, this.getthirdday[i]) > -3 && this.diffdate(this.currentDate, this.getthirdday[i]) <= 0) {
           // console.log("모집중 ");
-          this.images.missionCount(data[i]._id).subscribe(data2 => {
-            this.missionCounter2[i] = data2;
-            // console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
-            // console.log("참여인원 백분율 구하기 : " + parseInt(this.missionCounter[i]));
-            this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
-            // console.log(this.percent[i])
+          // this.images.missionCount(data[i]._id).subscribe(data2 => {
+          //   this.missionCounter2[i] = data2;
+          //   // console.log("최대인원 백분율 구하기 : " + parseInt(data[i].maxmember));
+          //   // console.log("참여인원 백분율 구하기 : " + parseInt(this.missionCounter[i]));
+          //   this.percent[i] = (parseInt(this.missionCounter2[i]) / parseInt(data[i].maxmember) * 100)
+          //   // console.log(this.percent[i])
 
-            if (this.percent[i] <= 50) {
-              // console.log("MD추천");
-              this.ingmdchuchun[i] = true;
-              this.ingapproaching[i] = false;
-            }
-            if (this.percent[i] > 50) {
-              // console.log("마감임박");
-              this.ingmdchuchun[i] = false;
-              this.ingapproaching[i] = true;
-            }
-          });
+          //   if (this.percent[i] <= 50) {
+          //     // console.log("MD추천");
+          //     this.ingmdchuchun[i] = true;
+          //     this.ingapproaching[i] = false;
+          //   }
+          //   if (this.percent[i] > 50) {
+          //     // console.log("마감임박");
+          //     this.ingmdchuchun[i] = false;
+          //     this.ingapproaching[i] = true;
+          //   }
+          // });
 
         } else {
           // this.new[i] = false;thirdLoadCareZone
@@ -913,7 +744,6 @@ export class HomePage {
           this.third_missionCount(data[0]._id);
           this.getday = new Date(data[0].startmission);
           this.dday = this.diffdate(this.getday, this.currentDate);
-          // this.chkDay = this.dday
           this.dday = (parseInt(this.dday) - 2)
         }
       }
@@ -1062,44 +892,34 @@ export class HomePage {
       this.beauty_data_title1 = data[0].body;
       this.beauty_data_id1 = data[0].filename;
       this.beauty_data_url1 = data[0].posturl;
+      this.beauty_data_viewId1 = data[0]._id;
+      this.beauty_data_views1 = data[0].views;
+      this.beauty_data_midtext1 = data[0].midtext;
       this.beauty_data_type2 = data[1].title;
       this.beauty_data_title2 = data[1].body;
       this.beauty_data_id2 = data[1].filename;
       this.beauty_data_url2 = data[1].posturl;
+      this.beauty_data_viewId2 = data[1]._id;
+      this.beauty_data_views2 = data[1].views;
+      this.beauty_data_midtext2 = data[1].midtext;
       this.beauty_data_type3 = data[2].title;
       this.beauty_data_title3 = data[2].body;
       this.beauty_data_id3 = data[2].filename;
       this.beauty_data_url3 = data[2].posturl;
+      this.beauty_data_viewId3 = data[2]._id;
+      this.beauty_data_views3 = data[2].views;
+      this.beauty_data_midtext3 = data[2].midtext;
       this.beauty_data_type4 = data[3].title;
       this.beauty_data_title4 = data[3].body;
       this.beauty_data_id4 = data[3].filename;
       this.beauty_data_url4 = data[3].posturl;
+      this.beauty_data_viewId4 = data[3]._id;
+      this.beauty_data_views4 = data[3].views;
+      this.beauty_data_midtext4 = data[3].midtext;
+
       this.beautyData = data;
     });
   }
-
-  // public roadbeauty() {
-  //   this.images.mainbeautyRoad().subscribe(data => {
-  //     this.beauty_data_type1 = data[0].title;
-  //     this.beauty_data_title1 = data[0].body;
-  //     this.beauty_data_id1 = data[0]._id;
-  //     this.beauty_data_url1 = data[0].posturl;
-  //     this.beauty_data_type2 = data[1].title;
-  //     this.beauty_data_title2 = data[1].body;
-  //     this.beauty_data_id2 = data[1]._id;
-  //     this.beauty_data_url2 = data[1].posturl;
-  //     this.beauty_data_type3 = data[2].title;
-  //     this.beauty_data_title3 = data[2].body;
-  //     this.beauty_data_id3 = data[2]._id;
-  //     this.beauty_data_url3 = data[2].posturl;
-  //     this.beauty_data_type4 = data[3].title;
-  //     this.beauty_data_title4 = data[3].body;
-  //     this.beauty_data_id4 = data[3]._id;
-  //     this.beauty_data_url4 = data[3].posturl;
-  //     this.beautyData = data;
-  //   });
-  // }
-
 
 
   public kakao_request() {
@@ -1147,91 +967,67 @@ export class HomePage {
   }
   public mission_start(carezoneData) {
     //console.log(_id);
-
-    if (this.missionData === null || this.missionData === undefined) {
-      this.nav.push(CareZoneMissionStartPage, { carezoneData: carezoneData });
-    } else if (carezoneData._id === this.missionData.missionID) {
-      this.nav.push(CareZoneMissionIngPage, { carezoneData: carezoneData });
+    console.log("미션 아이디 :"  + this.missionID);
+    if (!this.missionID) {
+      this.nav.push(ChalMissionStartPage, { carezoneData: carezoneData });
+    } else if (carezoneData._id === this.challengeData.missionID) {
+      this.nav.push(ChalMissionIngPage, { carezoneData: carezoneData });
     } else {
-      this.nav.push(CareZoneMissionStartPage, { carezoneData: carezoneData });
+      this.nav.push(ChalMissionStartPage, { carezoneData: carezoneData });
     }
   }
   public mission_deadline_end(id) {
     this.nav.push(CareZoneMissionDeadlineEndPage, { _id: id });
   }
 
-  // public logout(){
-  //   this.auth.logout();
-  // }
-
-  // public roadstorage(){
-  //   this.userData = this.auth.getUserInfo();
-  //
-  // }
 
 
 
 
   public openCareZoneTab(): void {
-    // The second tab is the one with the index = 1
-    //this.nav.push(TabsPage, { selectedTab: 1 });
     this.nav.parent.select(1);
   }
 
-  public openCommunityTab1(): void {
-    this.nav.parent.select(3);
+  public async openCommunityTab1() {
+    await this.auth.setUserStoragetab(0); //그래서 스토리지에 저장을 하고 그것을 이동한 페이지에서 스토리지에 값을 불러와 슬라이드로 이동
+    this.nav.parent.select(3); //이벤트 처리 방법은 좋은 방법이나 페이지가 넘어가면 동작이 안되는 문제가 발생
     this.events.publish('tabs1', "tabs1");
-    this.auth.setUserStoragetab(true);
   }
 
-  public openCommunityTab3(): void {
+  public async openCommunityTab2() {
+    await this.auth.setUserStoragetab(2);
+    this.nav.parent.select(3);
+    this.events.publish('tabs2', "tabs2");
+  }
+
+  public async openCommunityTab3() {
+    await this.auth.setUserStoragetab(1);
     this.nav.parent.select(3);
     this.events.publish('tabs3', "tabs3");
-    this.auth.setUserStoragetab(false);
   }
 
-  //20190617 미션 참여중인지 체크 하기
-  public chkmission(email) {
-    // this.showLoading();
-    //console.log("chkBtn" + this.chkBtn);
-    this.images.chkMission(email).subscribe(data => {
+  //20200210 챌린지 참여 중인지 체크 하기    
+  public challengeChkMission(email) {
+    this.images.ChallengeChkMission(email).subscribe(data => {
       if (data.length <= 0) {
-        console.log("챌린지를 완료 했거나 참여중인게 없을때");
-        // this.chkBtn = true; //챌린지 미 참여 중일때
+        this.challengeData = '';
       } else if (data.length > 0) {
         for (let i = 0; i < data.length; i++) {
           if (!data[i].missioncomplete) { //완료하지 못한 미션이 있는 체크
-            this.missionData = data[i];
+            this.challengeData = data[i];
             this.missionID = data[i].missionID;
-            // if (this.carezoneData2._id === data[i].missionID) { //완료하지 못한 미션이 현재 미션과 동일한지 체크
-            //   this.chkBtn = true; //동일 하면 미션 시작할수 있도록 하고
-            // } else {
-            //   this.chkBtn = false; //동일하지 않으면 다른 챌림치 참여중이라고 한다.
-            // }
           }
         }
       } else {
         console.log("이상한 값이 들어 왔을때 챌린지 참여 안한걸로");
-        // this.chkBtn = false;
       }
-      // if (data !== '' || data !== null || data !== undefined) {
-      //   //this.chkBtn = true;
-      //   this.missionData = data;
-      //   //this.endDate = data.endmission.substr(0, 10);
-      //   //console.log(JSON.stringify(data));
-      //   // this.loading.dismiss();
-      // } else if (data === '' || data === null || data === undefined) {
-      //   //this.chkBtn = false;
-      // } else {
-      //   this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
-      // }
     });
 
   }
 
   showLoading() {
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: '잠시만 기다려주세요'
     });
     this.loading.present();
   }
@@ -1283,37 +1079,9 @@ export class HomePage {
 
       for (var i = 0; i < this.timeremaining.length; i++) {
         this.timeremaining[i]--;
-        // console.log(this.timeremaining[i]--);
         this.displayTime[i] = this.getSecondsAsDigitalClock(this.timeremaining[i]);
       }
-      // this.timeremaining--;
-      // this.displayTime = this.getSecondsAsDigitalClock(this.timeremaining);
-
     });
-
-
-    // var timer = setTimeout(() => {
-    //   if (!this.runTimer) {
-    //     clearTimeout(timer);
-    //     console.log("Clear Timeout");
-    //     return;
-    //   }
-    //   this.secondsRemaining--;
-    //   this.getSecondsAsDigitalClock(this.secondsRemaining);
-    //
-    //   if(this.secondsRemaining > 0) {
-    //     this.timerTick();
-    //   } else {
-    //     // this.hasFinished = true;
-    //   }
-    //
-    // }, 1000);
-    //
-    // if (!this.runTimer) {
-    //   clearTimeout(timer);
-    //   console.log("Clear Timeout");
-    //   return;
-    // }
   }
 
   timerTick2() {
@@ -1325,7 +1093,14 @@ export class HomePage {
   }
 
   ingCarezone(missionId) {
-    this.nav.push(CareZoneMissionIngPage, { carezoeId: missionId })
+    this.nav.push(ChalMissionIngPage, { carezoeId: missionId }).then(() => {
+      this.nav.getActive().onDidDismiss(data => {
+        console.log("진행중인 챌린치 창이 닫힘");
+        if(this.userData) {
+          this.challengeChkMission(this.userData.email)
+        }
+      });
+    });
   }
 
 
@@ -1335,6 +1110,358 @@ export class HomePage {
 
     });
     myModal.present();
+  }
+
+  test_noti() {
+
+    let myModal = this.modalCtrl.create(GuidePage, {mode : 'home'});
+    myModal.onDidDismiss(data => { 
+      console.log("케어 포인트 닫힘");
+      if(this.userData){
+        this.isFlip = true;
+        // console.log("사용자 포인트 리로드");
+        if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
+          this.reloadUserPoint(this.userData.snsid);
+        }
+        else {
+          this.reloadUserPoint(this.userData.email);
+        }
+      }
+    })
+    myModal.present();
+  }
+
+  flip() {
+    if (!this.flipAnim) {
+      this.flipAnim = new Flip({
+        node: this.flipbtn.nativeElement,
+        from: '00',
+        to: this.userData.totaluserpoint,
+        separator: ',',
+        duration: 1.5,
+        delay: 0.3,
+      })
+    }
+  }
+
+  public chulsuk_check() {
+    let myModal = this.modalCtrl.create(ChulsukCheckPage);
+    myModal.onDidDismiss(data => {
+      if(this.userData) {
+       this.isFlip = true; 
+       if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
+        this.reloadUserPoint(this.userData.snsid);
+      }
+      else {
+        this.reloadUserPoint(this.userData.email);
+      }
+      }
+      console.log("출석체크 페이지 닫음");
+    });
+    myModal.present();
+  }
+
+  public myinfo() {
+    //2020-05-28 마이페이지 하단탭 제거
+    let myModal = this.modalCtrl.create(MyinfoPage);
+    myModal.onDidDismiss(data => {
+      if(this.userData) {
+       this.isFlip = true; 
+       if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
+        this.reloadUserPoint(this.userData.snsid);
+      }
+      else {
+        this.reloadUserPoint(this.userData.email);
+      }
+      }
+      console.log("출석체크 페이지 닫음");
+    });
+    myModal.present();
+  }
+
+  private reloadUserPoint(email) {
+    this.auth.reloadUserPointfromPlincShop(email).subscribe(data=>{
+      this.userData.totaluserpoint = JSON.stringify(data.point);
+      this.totaluserpoint = JSON.stringify(data.point);
+      this.totaluserpoint = this.addComma(this.totaluserpoint);
+      // console.log("사용자 포인트 리로드 : " + this.userData.totaluserpoint);
+      setTimeout(() => {
+      this.flip();
+      }, 3000);
+    },error=>{
+      console.log("사용자 개인포인트 불러오기 에러발생 : " +JSON.stringify(error));
+    })
+  }
+
+  addComma(data_value) { //숫자 세자리 마다 컴마 붙히기
+    return Number(data_value).toLocaleString('en');
+  }
+
+  private topbannerLoad() {
+    this.images.topbannerLoad().subscribe(data => {
+      this.topBannerData = data;
+    })
+  }
+
+  private inItFCM() {
+    if (this.platform.is('ios')) {
+      this.fcm.subscribeToTopic('plinic');
+
+      this.fcm.getToken().then(token => {
+        console.log("FCM iOS Token :::::::::::::" + token);
+        if(this.userData) {
+          this.auth.updatePushToken(this.userData.email, token).subscribe(data => {
+          }, error =>{
+            console.log("푸쉬토큰 업데이트 실패 : " + JSON.stringify(error));
+          });
+        }
+      })
+
+      this.fcm.onNotification().subscribe((data) => {
+        if (data.wasTapped) { //앱 밖에서 알림을 클릭하여 접근 했을 시,
+          //커뮤니티 (뷰티노트, 피부고민 알림 처리)
+          if (data.mode === 'qna' || data.mode === 'note') {
+            // this.nav.parent.select(3).then(() => {
+            let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
+            myModal.onDidDismiss(data => {
+            });
+            myModal.present();
+            
+          }
+          if (data.mode === 'myqna') {  //문의하기
+            let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
+            myModal.onDidDismiss(data => {
+            });
+            myModal.present();
+          }
+        } else { // 앱 안에서 클릭했을시
+          if (data.mode === 'qna' || data.mode === 'note') {
+            const toast = this.toastCtrl.create({
+              showCloseButton: true,
+              closeButtonText: 'OK',
+              message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
+              duration: 10000
+            });
+            toast.present();
+            console.log("Received in foreground - iOS");
+          };
+
+          if (data.mode === 'myqna') {
+            const toast = this.toastCtrl.create({
+              showCloseButton: true,
+              closeButtonText: 'OK',
+              message: "문의하신 게시물에 댓글이 등록되었습니다. \n" + data.aps.alert.title + '\n' + data.aps.alert.body,
+              duration: 10000
+            });
+            toast.present();
+            console.log("Received in foreground - iOS");
+          }
+        };
+      });
+
+      this.fcm.onTokenRefresh().subscribe(token => {
+        if(this.userData) {
+          this.auth.updatePushToken(this.userData.email, token).subscribe(data => {
+          }, error =>{
+            console.log("푸쉬토큰 업데이트 실패 : " + JSON.stringify(error));
+          });
+        }
+        console.log("FCM iOS Refresh Token :::::::::::::" + token);
+      });
+    }
+    if (this.platform.is('android')) {
+      this.fcm.subscribeToTopic('all');
+
+      this.fcm.getToken().then(token => {
+        console.log("FCM Token :::::::::::::" + token);
+        if(this.userData) {
+          this.auth.updatePushToken(this.userData.email, token).subscribe(data => {
+          }, error =>{
+            console.log("푸쉬토큰 업데이트 실패 : " + JSON.stringify(error));
+          });
+        }
+      })
+
+      this.fcm.onNotification().subscribe(data => {
+        console.log("FCM data ::::::::::::::" + JSON.stringify(data));
+        if (data.wasTapped) { //앱 밖에서 클릭 했을 경우 처리
+          if (data.mode === 'qna' || data.mode === 'note') {
+            let myModal = this.modalCtrl.create(CommunityModifyPage, { id: data.id, mode: data.mode });
+            myModal.onDidDismiss(data => {
+              this.nav.parent.select(3)
+            });
+            myModal.present();
+            // });
+          }
+          if (data.mode === 'myqna') {
+            let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
+            myModal.onDidDismiss(data => {
+            });
+            myModal.present();
+            // });
+          }
+        } else { //앱 안에서 클릭 했을 경우 처리
+          if (data.mode === 'qna' || data.mode === 'note') {
+            const toast = this.toastCtrl.create({
+              showCloseButton: true,
+              closeButtonText: 'OK',
+              message: "작성한 게시물에 댓글이 등록되었습니다. \n" + data.title + '\n' + data.body,
+              duration: 10000
+            });
+            toast.present();
+          }
+          if (data.mode === 'myqna') {
+            const toast = this.toastCtrl.create({
+              showCloseButton: true,
+              closeButtonText: 'OK',
+              message: "문의하신 게시물에 댓글이 등록되었습니다. \n" + data.title + '\n' + data.body,
+              duration: 10000
+            });
+            toast.present();
+            console.log("Received in foreground - android");
+          }
+        }
+      });
+
+      this.fcm.onTokenRefresh().subscribe(token => {
+        console.log("FCM Refresh Token :::::::::::::" + token);
+        if(this.userData) {
+          this.auth.updatePushToken(this.userData.email, token).subscribe(data => {
+          }, error =>{
+            console.log("푸쉬토큰 업데이트 실패 : " + JSON.stringify(error));
+          });
+        }
+      });
+    }
+  }
+
+  public compareAppVersion() {
+    this.appCheck = true;
+    this.auth.compareAppVersion().subscribe(data => {
+      if(this.currentAppVer === data.appVersion) {
+        console.log("앱 버전이 같음");
+      } else {
+        console.log("앱 버전이 다름");
+        this.showAlertUpdate('업데이트', '새로운 버전이 <br> 업데이트 되었습니다.');
+      }
+    }, error => {
+      console.log("앱 버전 불러 오기 실패" + JSON.stringify(error));
+    })
+  }
+
+  showAlertUpdate(title, message) {
+    let alertUpdate = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel2',
+      message: message,
+      buttons: [{
+        text: '다음에하기',
+        handler: () => {
+          console.log('업데이트 다음에 하기');
+          }
+        },
+        {
+          text: '업데이트',
+          handler: () => {
+            if(this.platform.is('ios')) {
+              window.open("https://itunes.apple.com/app/id1470360506","_system");
+            } else if(this.platform.is('android')) {
+              window.open("https://play.google.com/store/apps/details?id=com.g1p.plinic&hl=ko","_system");
+            }
+          }
+        }]
+    });
+    alertUpdate.present();
+  }
+
+  showAlertProduct_android(title, message) {
+    let alertUpdate = this.alertCtrl.create({
+      cssClass: 'push_alert_product2_android',
+      
+      message: '<img class="product_android" src="assets/img/home/plinic_product2.png" />',
+      
+      inputs: [
+        {
+          type:'checkbox',
+          label:'3일간 보지 않기',
+          // value:'check',
+          handler: (data) => {
+            if(data.checked) {
+              var userPopup = {
+                checked : data.checked,
+                date : new Date().toISOString()
+              }
+              this.auth.setHomePopUpCheck(userPopup);
+            } else {
+              this.auth.setHomePopUpCheck(null);
+            }
+          }
+        },
+        {
+          type:'text',
+          label:'닫기',
+          handler: () => {
+            console.log("닫기버튼 선택");
+            alertUpdate.dismiss();
+          }
+        },
+      ],
+      buttons: [
+        {
+          text: '디바이스 구매하기',
+          handler: () => {
+            this.openBrowser_android('https://www.plinicshop.com/Products/Details/1834','플리닉');
+          }
+        },
+      ],
+    });
+    alertUpdate.present();
+  }
+
+  async showAlertProduct_ios(title, message) {
+    let alertUpdate = this.alertCtrl.create({
+      cssClass: 'push_alert_product2_ios',
+      
+      message: '<img class="product_ios" src="assets/img/home/plinic_product2.png" />',
+      
+      inputs: [
+        {
+          type:'checkbox',
+          label:'3일간 보지 않기',
+          handler: (data)  => {
+            if(data.checked) {
+              var userPopup = {
+                checked : data.checked,
+                date : new Date().toISOString()
+              }
+              this.auth.setHomePopUpCheck(userPopup);
+            } else {
+              this.auth.setHomePopUpCheck(null);
+            }
+          }
+        },
+        { 
+          type:'text',
+          label:'닫기',
+          handler: () => {
+            console.log("닫기버튼 선택");
+            alertUpdate.dismiss();
+          }
+        },
+      ],
+      buttons: [
+        {
+          text: '디바이스 구매하기',
+          handler: () => {
+            this.openBrowser_android('https://www.plinicshop.com/Products/Details/1834','플리닉');
+          }
+        },
+      ],
+    });
+    alertUpdate.present();
+  }
+  
+  getCovertKoreaTime(time) {
+    return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000).toISOString()
   }
 
 }

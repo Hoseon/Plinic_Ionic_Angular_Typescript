@@ -8,7 +8,7 @@
 
   <ion-item *ngIf="platform.is('android')" no-lines>
     <ion-grid style="height: 46px;">
-      <ion-row>
+      <ion-row class="down">
         <ion-col>
           <ion-img class="close" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
                     assets/img/agreement/ic-system-back-black@3x.png" (click)="navpop()"></ion-img>
@@ -70,7 +70,8 @@
         <ion-label class="email_label" stacked>이메일</ion-label>
         <ion-input (ionChange)="changeImage(signupform.controls.email.valid && signupform.controls.email.dirty)" mode="ios" type="email" class="email_input" [(ngModel)]="userData.email" formControlName="email" placeholder="이메일을 입력해주세요."
           [class.error1]="(!signupform.controls.email.valid && signupform.controls.email.dirty) ||
-                           (signupform.get('email').hasError('required') && signupform.get('email').touched)" [class.error2]="signupform.controls.email.valid" required> </ion-input>
+                           (signupform.get('email').hasError('required') && signupform.get('email').touched)" 
+          [class.error2]="signupform.controls.email.valid" required> </ion-input>
         <ion-img class="email_img" src="{{myImage}}" item-right (click)="email_delete()"></ion-img>
       </ion-item>
 
@@ -88,8 +89,10 @@
       <ion-item class="password_align">
         <ion-label class="password_label" stacked>비밀번호 </ion-label>
         <ion-input (ionChange)="changeImage2(signupform.controls.password.valid && signupform.controls.password.dirty)" mode="ios" type="password" class="password_input" [(ngModel)]="userData.password" formControlName="password" name="password"
-          placeholder="비밀번호를 입력해주세요." [class.error1]="(!signupform.controls.password.valid && signupform.controls.password.dirty) ||
-                           (signupform.get('password').hasError('required') && signupform.get('password').touched)" [class.error2]="signupform.controls.password.valid" required></ion-input>
+          placeholder="8자 이상, 하나 이상의 숫자,특수 문자를 포함" 
+          [class.error1]="(!signupform.controls.password.valid && signupform.controls.password.dirty) ||
+                           (signupform.get('password').hasError('required') && signupform.get('password').touched)" 
+          [class.error2]="signupform.controls.password.valid" required></ion-input>
         <ion-img class="email_img" src="{{myImage2}}" item-right (click)="password_delete()"></ion-img>
       </ion-item>
 
@@ -98,11 +101,11 @@
         <div class="error" *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
           비밀번호를 입력해주세요.
         </div>
-        <div class="error" *ngIf="signupform.get('password').hasError('minlength') && signupform.get('password').touched">
-          ·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.
+        <div class="error" *ngIf="signupform.get('password').hasError('pattern') && signupform.get('password').hasError('minlength') && signupform.get('password').touched">
+          ·8자 이상, 하나 이상의 숫자 및 특수 문자를 포함해야합니다..
         </div>
-        <div class="error" *ngIf="signupform.get('password').hasError('maxlength') && signupform.get('password').touched">
-          ·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.
+        <div class="error" *ngIf="signupform.get('password').hasError('pattern') && signupform.get('password').hasError('maxlength') && signupform.get('password').touched">
+          ·8자 이상, 하나 이상의 숫자 및 특수 문자를 포함해야합니다..
         </div>
       </ion-item><br>
 
@@ -119,22 +122,22 @@
         <div class="error" *ngIf="signupform.get('passwordconfirm').hasError('required') && signupform.get('passwordconfirm').touched">
           비밀번호를 입력해주세요.
         </div>
-        <div class="error" *ngIf="signupform.get('passwordconfirm').hasError('minlength') && signupform.get('passwordconfirm').touched">
-          ·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.
+        <div class="error" *ngIf="signupform.get('passwordconfirm').hasError('pattern') && signupform.get('passwordconfirm').hasError('minlength') && signupform.get('passwordconfirm').touched">
+          ·8자 이상, 하나 이상의 숫자 및 특수 문자를 포함해야합니다..
         </div>
-        <div class="error" *ngIf="signupform.get('passwordconfirm').hasError('maxlength') && signupform.get('passwordconfirm').touched">
-          ·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.
+        <div class="error" *ngIf="signupform.get('passwordconfirm').hasError('pattern') && signupform.get('passwordconfirm').hasError('maxlength') && signupform.get('passwordconfirm').touched">
+          ·8자 이상, 하나 이상의 숫자 및 특수 문자를 포함해야합니다..
         </div>
       </ion-item><br>
 
 
-      <p class="sub">·정확한 이메일 주소를 입력해주세요.<br>·비밀번호는 영문, 숫자조합 6~15자로 입력해주세요.</p><br>
+      <p class="sub">·정확한 이메일 주소를 입력해주세요.<br>·비밀번호는 8자 이상, 하나 이상의 숫자 및 특수 문자를 <br>포함해야합니다..</p><br>
 
-      <button type="submit" *ngIf="(signupform.controls.email.invalid) ||
+      <button type="submit" *ngIf="(signupform.controls.email.invalid) || signupform.get('password').hasError('pattern') ||
       (userData.passwordconfirm !== userData.password) || userData.password ==='' || userData.passwordconfirm ==='' " style="opacity:1" ion-button class="login_btn_invalid" name="next" [disabled]="signupform.invalid">다음</button>
 
       <button type="submit" *ngIf="
-      (signupform.controls.email.valid) &&
+      (signupform.controls.email.valid) && !signupform.get('password').hasError('pattern') &&
       (userData.passwordconfirm === userData.password) && userData.password !=='' && userData.passwordconfirm !=='' " style="opacity:1" ion-button class="login_btn2_valid" name="next" [disabled]="signupform.invalid">다음</button>
 
     </form>

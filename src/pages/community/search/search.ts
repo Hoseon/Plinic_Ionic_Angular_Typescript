@@ -54,9 +54,17 @@ export class SearchPage {
 
 
 
-  constructor(public modalCtrl: ModalController, private auth: AuthService, public nav: NavController, public navParams: NavParams, public platform: Platform, public viewCtrl: ViewController, public popoverCtrl: PopoverController,
-    private themeableBrowser: ThemeableBrowser, private images: ImagesProvider) {
-
+  constructor(
+    public modalCtrl: ModalController, 
+    private auth: AuthService, 
+    public nav: NavController, 
+    public navParams: NavParams, 
+    public platform: Platform, 
+    public viewCtrl: ViewController, 
+    public popoverCtrl: PopoverController,
+    private themeableBrowser: ThemeableBrowser, 
+    private images: ImagesProvider
+    ) {
     this.initializeItems();
   }
 
@@ -694,6 +702,8 @@ export class SearchPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: items.from,
+          snsid: items.snsid
         };
       } else {
         this.userData = {

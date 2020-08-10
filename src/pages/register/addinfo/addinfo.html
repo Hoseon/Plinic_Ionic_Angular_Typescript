@@ -8,7 +8,7 @@
 <ion-content no-padding>
 
 
-  <ion-item *ngIf="platform.is('android')" no-lines>
+  <ion-item class="down" *ngIf="platform.is('android')" no-lines>
      <ion-grid style="height: 46px;">
       <ion-row>
       <ion-col><ion-img class="close" src="assets/img/agreement/ic-system-back-black@3x.png" srcset="assets/img/agreement/ic-system-back-black@2x.png,
@@ -45,16 +45,22 @@
 
 
 
-  <form (ngSubmit)="register()" #registerForm="ngForm" no-lines>
+  <form (ngSubmit)="register()" #registerForm="ngForm" no-lines >
 
   <h1 class="h1" style="margin-top:0%;"(click)="selectANumber()" >부가정보를 입력해주세요. </h1>
 
   <ion-item class="item_align" style="background:#FFF">
-  <ion-label class="titlelabel" stacked>닉네임</ion-label>
-  <ion-input class="input_name" (ionChange)="changeImage()" mode="ios" type="text" name="name" placeholder="닉네임 입력해주세요." [(ngModel)]="registerCredentials.name" clearInput required></ion-input>
+  <ion-label class="titlelabel" stacked>이름</ion-label>
+  <ion-input class="input_name" (ionChange)="changeImage()" pattern="[가-힣]{2,4}|[a-zA-Z]{2,10}" mode="ios" type="text" name="name" placeholder="이름을 입력해주세요." [(ngModel)]="registerCredentials.name" clearInput required></ion-input>
   <!-- <ion-img class="email_img" src="assets/img/register/ic-system-clear-grey@3x.png" item-right (click)="name_delete()"></ion-img> -->
 
   </ion-item><br>
+
+  <ion-item class="item_align" style="background:#FFF">
+    <ion-label class="titlelabel" stacked>휴대전화</ion-label>
+    <ion-input class="input_name" (ionChange)="inputPhoneNumber(registerCredentials.phonenumber)" mode="ios" type="tel" name="phonenumber" placeholder="휴대번호를 입력해주세요." [(ngModel)]="registerCredentials.phonenumber" clearInput required></ion-input>
+    <!-- <ion-img class="email_img" src="assets/img/register/ic-system-clear-grey@3x.png" item-right (click)="name_delete()"></ion-img> -->
+    </ion-item><br>
 
   <ion-item class="item_align" style="margin-bottom:3%;">
     <ion-label class="birthdaylabel"  stacked> 생년월일</ion-label>
@@ -164,8 +170,8 @@
 
 
 
-  <button ion-button *ngIf="(!registerForm.form.valid)" class="complete_btn_invalid" name="register_invalid" type="submit" [disabled]="!registerForm.form.valid">완료</button>
-  <button ion-button *ngIf="(registerForm.form.valid)"  class="complete_btn_valid" name="register_valid" type="submit" [disabled]="!registerForm.form.valid">완료</button>
+  <button ion-button *ngIf="(!registerForm.form.valid)" class="complete_btn_invalid" name="register_invalid" type="submit" [disabled]="!registerForm.form.valid">플리닉 시작하기</button>
+  <button ion-button *ngIf="(registerForm.form.valid)"  class="complete_btn_valid" name="register_valid" type="submit" [disabled]="!registerForm.form.valid">플리닉 시작하기</button>
 
   </form>
 </ion-content>

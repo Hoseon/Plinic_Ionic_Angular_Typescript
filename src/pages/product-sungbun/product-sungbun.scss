@@ -1,0 +1,230 @@
+page-product-sungbun {
+
+    .header-md::after,
+    .tabs-md[tabsPlacement="top"]>.tabbar::after,
+    .footer-md::before,
+    .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
+      height: 1px;
+      margin-bottom: 5px;
+    }
+  
+    .item-md.item-block .item-inner {
+      padding-right: 12px;
+    }
+  
+    .header-ios::after,
+    .tabs-ios[tabsPlacement="top"]>.tabbar::after,
+    .footer-ios::before,
+    .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
+      height: 1px;
+      margin-bottom: 5px;
+    }
+  
+    .item-ios.item-block .item-inner {
+      padding-right: 12px;
+    }
+  
+    .toolbar-title-md {
+      font-weight: bold;
+      font-size: 17px;
+      background-color: #FFF;
+      font-family: NotoSansCJKkr;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+  
+    .toolbar-title-ios {
+      font-weight: bold;
+      font-size: 17px;
+      background-color: #FFF;
+      font-family: NotoSansCJKkr;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      margin-top: -5%;
+      color: #292929;
+    }
+  
+    .bar-button-clear-ios-default,
+    .bar-button-default-ios,
+    .bar-button-default.bar-button-ios-default {
+      margin-left: -15%;
+      margin-top: -15%;
+      color: transparent;
+    }
+  
+    .ios_nav {
+      background-color: #FFF;
+      width: 50px !important;
+      height: 25px !important;
+      object-fit: contain;
+    }
+  
+    .toolbar-background {
+      background-color: #FFF;
+    }
+  
+    .ion-md-arrow-back:before {
+      position: absolute;
+      content: "\f27d";
+      left: 10%;
+      top: 2px;
+      width: 25px;
+      height: 25px;
+    }
+  
+    .toolbar-ios {
+      margin-top: 8%;
+    }
+  
+    .back-button-text-ios {
+      font-size: 0;
+    }
+  
+    .android_title {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 70%;
+      color: #292929;
+    }
+  
+    .ios_title {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 80%;
+      color: #292929;
+      margin-top : 1%;
+    }
+  
+    .head_row {
+      display: flex;
+      align-items: center;
+      width: auto;
+      height: 45.5px;
+      background-color: #f9fafb;
+      margin-top: -1.5%;
+    }
+
+  .position {
+    position: relative;
+  }
+
+  .text1 {
+    position: relative;
+    left: 5%;
+    width: 121px;
+    height: 15px;
+    font-family: NotoSansCJKkr;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.19;
+    letter-spacing: -0.48px;
+    text-align: left;
+    color: #292929;
+  }
+
+  .text2 {
+    position: relative;
+    top: 40%;
+    left: -35%;
+    width: 150px;
+    height: 13.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 12.3px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: -0.37px;
+    text-align: left;
+    color: #5c59b6;
+
+  }
+
+  .text3 {
+    position: relative;
+    top: 65%;
+    left: -35%;
+    width: 152.5px;
+    height: 38.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 17.8px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.23;
+    letter-spacing: -0.53px;
+    text-align: left;
+    color: #292929;
+
+  }
+
+  .text4 {
+    position: relative;
+    margin-top: 2%;
+    left: 3%;
+    width: 100%;
+    height: 2.2em;
+    font-family: NotoSansCJKkr;
+    font-size: 13.8px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    letter-spacing: -0.41px;
+    text-align: left;
+    color: #939393;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .text5 {
+    position: relative;
+    margin-top: -5%;
+    left: 3%;
+    width: 90%;
+    height: 2.2em;
+    font-family: NotoSansCJKkr;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2em;
+    letter-spacing: -0.36px;
+    text-align: left;
+    color: #5c59b6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .img1 {
+    position: relative;
+    top: 41%;
+    left: 12%;
+    width: 72px;
+    height: 72px;
+    border-radius: 3px;
+    object-fit: contain;
+    background-color: #f1f1f1;
+  }
+
+}

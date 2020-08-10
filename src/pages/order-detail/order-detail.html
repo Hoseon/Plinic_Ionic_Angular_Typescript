@@ -1,0 +1,96 @@
+<!--
+  Generated template for the OrderDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="white-background">
+
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core') ">
+    <ion-buttons left>
+      <button (click)="close()" ion-button icon-only>
+        <!-- <img class="android_nav" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" /> -->
+      </button>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>주문/배송 내역</ion-title>
+    <ion-buttons (click)="myinfo()" right>
+      <!-- <button  ion-button>
+              <div class="button_left">{{totaluserpoint}}P &nbsp;<img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
+          </button> -->
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>피부진단</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<!-- 조회영역 -->
+<ion-content class="order-background" no-padding>
+  <ion-grid class="search-background" no-padding>
+    <ion-label class="text4">{{yearAgo.toISOString().substr(0,10)}} ~ {{today.toISOString().substr(0,10)}}</ion-label>
+    <ion-row class="center">
+      <ng-container *ngIf="all"><button class="float skin_btn" (click)="All()" ion-button>전체</button></ng-container>
+      <ng-container *ngIf="!all"><button class="float skin_btn_false" (click)="All()" ion-button>전체</button></ng-container>
+      <ng-container *ngIf="weekly"><button class="float skin_btn" (click)="weeklyy()" ion-button>1주일</button></ng-container>
+      <ng-container *ngIf="!weekly"><button class="float skin_btn_false" (click)="weeklyy()" ion-button>1주일</button></ng-container>
+      <ng-container *ngIf="monthly"><button class="float skin_btn" (click)="monthy()" ion-button>1개월</button></ng-container>
+      <ng-container *ngIf="!monthly"><button class="float skin_btn_false" (click)="monthy()" ion-button>1개월</button></ng-container>
+      <ng-container *ngIf="threemonthly"><button class="float skin_btn" (click)="threeMonthy()" ion-button>3개월</button></ng-container>
+      <ng-container *ngIf="!threemonthly"><button class="float skin_btn_false" (click)="threeMonthy()" ion-button>3개월</button></ng-container>
+    </ion-row>
+    <br>
+  </ion-grid>
+
+  <!-- 카드영역 -->
+  <ng-container *ngIf="!detailOrderData">
+    <div class="nodataText">주문내역이 없습니다.</div>
+  </ng-container>
+  <ng-container *ngFor="let detail of detailOrderData; let k = index;" class="order-background" no-padding>
+    <ion-row>
+      <ion-col col-6>
+        <ion-label class="text2">{{dateConvert(detail.odrRegDate)}}</ion-label>
+      </ion-col>
+      <ion-col class="right_text" col-6>
+        <ion-label class="text3">주문번호 {{detail.odrIndex}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-card>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-badge>{{detail.odsName}}</ion-badge>
+        </ion-row>
+        <ion-row>
+          <ion-col col-8><div class="productName">{{detail.odrName}}</div></ion-col>
+          <ion-col col-4><img class="prductImg" slot="start" src="https://s3.ap-northeast-2.amazonaws.com/plinic-realrumor/Main/{{detail.prdMainImg}}" /></ion-col>
+        </ion-row>
+        <ion-row><div class="text1">{{numberWithCommas(detail.odrTotalAmt)}}원</div></ion-row>
+        <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div>
+        <ion-row>
+          <ion-col col-2 class="text5">배송조회</ion-col>
+          <ion-col col-8 class="text6">주문취소</ion-col>
+          <ion-col col-2 class="text7">리뷰쓰기</ion-col>
+        </ion-row>
+        <!-- <ion-row>
+            <ionic3-star-rating #rating
+            activeIcon = "ios-star"
+            defaultIcon = "ios-star-outline"
+            activeColor = "#fae24c" 
+            defaultColor = "#f4f4f4"
+            readonly="false"
+            rating="3"
+            fontSize = "24px"
+            (ratingChanged)="logRatingChange($event)">
+        </ionic3-star-rating>
+        </ion-row> -->
+      </ion-grid>
+    </ion-card>
+  </ng-container>
+</ion-content>

@@ -1,12 +1,44 @@
-import { Component, ViewChild, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
-import { Chart } from 'chart.js';
-import { format } from 'date-fns';
+import {
+  Component,
+  ViewChild,
+  Inject
+} from '@angular/core';
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  Platform,
+  AlertController,
+  ModalController,
+  Slides
+} from 'ionic-angular';
+import {
+  Chart
+} from 'chart.js';
+import {
+  format
+} from 'date-fns';
 import 'chartjs-plugin-labels';
 import ko from 'date-fns/locale/ko';
-import { DOCUMENT } from '@angular/common';
-import { AuthService } from '../../providers/auth-service';
-import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import {
+  DOCUMENT
+} from '@angular/common';
+import {
+  AuthService
+} from '../../providers/auth-service';
+import {
+  SkinGuidePage
+} from '../skin-guide/skin-guide';
+import {
+  AuthHttp,
+  AuthModule,
+  JwtHelper,
+  tokenNotExpired
+} from 'angular2-jwt';
+import {
+  DeviceConnectSkinIngPage
+} from '../device-connect-skin-ing/device-connect-skin-ing'
+import { MyinfoPage } from '../myinfo/myinfo';
 
 
 /**
@@ -23,15 +55,21 @@ import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 })
 export class SkinChartPage {
 
+  page = "0";
+
+
   // @ViewChild('doughnutCanvas') doughnutCanvas;
   // @ViewChild('doughnutCanvas2') doughnutCanvas2;
+  @ViewChild(Slides) slides: Slides;
   @ViewChild('lineCanvas') lineCanvas;
   @ViewChild('lineCanvas2') lineCanvas2;
 
   lineChart: any;
   //chart
 
-  valueday = { "day": "1" }
+  valueday = {
+    "day": "1"
+  }
 
 
   today: any = new Date();
@@ -64,14 +102,282 @@ export class SkinChartPage {
   chartOilData = [];
   chartMoistureData = [];
   array1 = [];
-  chartDateData2: Array<any>;
+  chartDateData2: Array < any > ;
+  totaluserPoint: any = 0;
 
 
 
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, @Inject(DOCUMENT) document, public auth: AuthService, public alertCtrl: AlertController) {
+  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, @Inject(DOCUMENT) document, public auth: AuthService, public alertCtrl: AlertController) {
     this.segment_moisture = "수분"
+
+  }
+
+  async ionViewDidLoad() {
+    await this.loadItems();
+    
+
+    setTimeout(() => {
+      // this.selectedTab(-1);
+      this.getchartScore();
+      this.getskinScore();
+      this.initChart();
+    }, 500);
+    setTimeout(() => {
+      // this.selectedTab(0);
+    }, 500);
+
+
+    // this.skin_first_check();
+    // this.skin_first_moisture_score();
+    // this.skin_first_oil_score();
+    // this.skin_oil_score();
+    
+  }
+
+  ionViewDidEnter() {
+    //this.skin_moisture_score();
+    // console.log('ionViewDidLoad SkinChartPage');
+    // console.log('all_moisture_score=====================' + this.all_moisture_score);
+    if (this.skinScoreData) {
+
+    }
+
+  }
+
+  ionViewWillEnter() {
+    let tabs = document.querySelectorAll('.tabbar');
+    if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+        // tabs[ key ].style.transform = 'translateY(0)';
+        tabs[key].style.display = 'block';
+        tabs[key].style.display = '';
+      });
+    }
+  }
+
+  public initChart() {
+
+    ////처음 진입시 현재 월로 조회 되도록
+    this.skinbtnYear = format(new Date(), 'YYYY');
+    this.skinbtnMonth = format(new Date(), 'MM');
+    var e = this.skinbtnYear + "년" + this.skinbtnMonth;
+    var e2 = this.skinbtnMonth;
+
+    setTimeout(() => {
+      this.yearmonthselect(e);
+      this.yearmonthselect2(e2);
+    }, 500)
+
+
+    // console.log('ionViewDidLoad SkinChartPage');
+    // console.log('all_moisture_score=====================' + this.all_moisture_score);
+    document.getElementById("moisture").style.display = "block";
+    document.getElementById("oil").style.display = "none";
+
+
+    this.today = format(this.today, 'DD');
+
+    this.lineCanvas = new Chart(this.lineCanvas.nativeElement, {
+
+
+      type: 'bar',
+      data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
+        labels: this.chartDateData,
+        datasets: [
+          {
+            type: 'line',
+            // label: format(this.today, 'MM/DD', '유분'),
+            label: '20대 평균 수분 점수',
+            fill: false,
+            // lineTension: 0,
+            backgroundColor: "#00C6ED",
+            borderColor: "#00C6ED",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "#00C6ED",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#00C6ED",
+            pointHoverBorderColor: "#00C6ED",
+            pointHoverBorderWidth: 2,
+            pointRadius: 3,
+            pointHitRadius: 20,
+            data: this.chartMoistureData,
+            spanGaps: false,
+            // 수분은 하늘이랑 파랑
+            // 유분은 노랑이랑 주황!!
+            // label: format(this.today, 'MM/DD', '유분'),
+          },
+          {
+            // label: format(this.today, 'MM/DD', '유분'),
+            type: 'bar',
+            label: '내 수분 점수',
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "#FFA0D0",
+            borderColor: "#FFA0D0",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "#368AFF",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5, //클릭시 원크기
+            pointHoverBackgroundColor: "#368AFF",
+            pointHoverBorderColor: "#368AFF",
+            pointHoverBorderWidth: 2, //데이터 호버크기
+            pointRadius: 3,  //데이터 포인트크기
+            pointHitRadius: 100,
+            // data: this.chartMoistureData,
+            data: [50, 60, 70, 80, 90, 70, 50, 40, 60, 70, 90, 90, 70, 70],
+            spanGaps: false,
+          },
+        ],
+      },
+      options: {
+        animation: {
+          duration: 3000 // general animation time
+        },
+        responsive: true,
+        legend: {
+          display: false,     //라벨표시
+        },
+        scales: {
+          xAxes: [{
+            display: true,
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0
+            }
+          }],
+          yAxes: [{
+            display: true,
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0
+            }
+          }]
+        },
+        plugins: {
+          labels: {
+            render: 'text',
+            precision: 0,
+            fontSize: 0,
+            fontStyle: 'normal',
+            textShadow: true,
+            showActualPercentages: true
+          }
+        }
+      }
+    });
+
+    this.lineCanvas2 = new Chart(this.lineCanvas2.nativeElement, {
+
+
+      type: 'bar',
+      data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
+        labels: this.chartDateData,
+        datasets: [
+          {
+            type: 'line',
+            // label: format(this.today, 'MM/DD', '유분'),
+            label: '20대 평균 수분 점수',
+            fill: false,
+            // lineTension: 0,
+            backgroundColor: "#00C6ED",
+            borderColor: "#00C6ED",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "#00C6ED",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#00C6ED",
+            pointHoverBorderColor: "#00C6ED",
+            pointHoverBorderWidth: 2,
+            pointRadius: 3,
+            pointHitRadius: 20,
+            data: this.chartOilData,
+            spanGaps: false,
+            // 수분은 하늘이랑 파랑
+            // 유분은 노랑이랑 주황!!
+            // label: format(this.today, 'MM/DD', '유분'),
+          },
+          {
+            // label: format(this.today, 'MM/DD', '유분'),
+            type: 'bar',
+            label: '내 수분 점수',
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "#FFA0D0",
+            borderColor: "#FFA0D0",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "#368AFF",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5, //클릭시 원크기
+            pointHoverBackgroundColor: "#368AFF",
+            pointHoverBorderColor: "#368AFF",
+            pointHoverBorderWidth: 2, //데이터 호버크기
+            pointRadius: 3,  //데이터 포인트크기
+            pointHitRadius: 100,
+            // data: this.chartMoistureData,
+            data: [50, 60, 70, 80, 90, 70, 50, 40, 60, 70, 90, 90, 70, 70],
+            spanGaps: false,
+          },
+        ],
+      },
+      options: {
+        animation: {
+          duration: 3000 // general animation time
+        },
+        responsive: true,
+        legend: {
+          display: false,     //라벨표시
+        },
+        scales: {
+          xAxes: [{
+            display: true,
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0
+            }
+          }],
+          yAxes: [{
+            display: true,
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0
+            }
+          }]
+        },
+        plugins: {
+          labels: {
+            render: 'text',
+            precision: 0,
+            fontSize: 0,
+            fontStyle: 'normal',
+            textShadow: true,
+            showActualPercentages: true
+          }
+        }
+      }
+    });
+
 
   }
 
@@ -130,7 +436,6 @@ export class SkinChartPage {
         this.chartMoistureData.push(this.skinScoreData.score[i].moisture);
       }
     }
-    console.log("데이터 길이 : " + this.chartDateData.length)
     if (this.chartDateData.length > 0) {
       this.lineCanvas.data.labels = this.chartDateData;
       this.lineCanvas2.data.labels = this.chartDateData;
@@ -138,15 +443,48 @@ export class SkinChartPage {
       this.lineCanvas2.data.datasets[0].data = this.chartOilData;
       this.lineCanvas.update();
       this.lineCanvas2.update();
-
-      console.log(this.chartDateData);
-      console.log(this.chartMoistureData);
-      console.log(this.chartOilData);
     } else {
       this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
     }
+  }
 
-    // console.log("yearmonthselect===============" + e);
+  yearmonthselect2(e) {
+    var year = format(new Date(), 'YYYY');
+    var month = e.substr(0, 2);
+    var date = year + "-" + month;
+    // this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
+    this.auth.getChartScore(this.userData.email, date).subscribe(items => {
+      // if (items.length > 0) {
+        // this.update();
+        // this.totalusetime = this.getSecondsAsDigitalClock(items[0].sum);
+        // this.loadProgress = (Number(items[0].sum) / 16200) * 100;
+      // }
+      // else {
+        // this.totalusetime = false;
+        // this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
+      // }
+    });
+
+    this.auth.getRankTotalUseTime(date).subscribe(items => {
+      // if (items.length > 0) {
+      //   // this.update();
+      //   // this.memberRanking = new Array<any>();
+      //   // console.log(JSON.stringify(items));
+      //   for (let i = 0; i < items.length; i++) {
+      //     this.memberRanking[i] = {
+      //       email: items[i]._id,
+      //       sum: items[i].sum,
+      //       rank: i + 1
+      //     }
+      //   }
+      //   // console.log(this.memberRanking);
+      // }
+      // else {
+      //   // this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
+      // }
+    });
+
+
   }
 
   segmentChanged(ev: any) {
@@ -155,8 +493,7 @@ export class SkinChartPage {
       this.segment_status == true;
       document.getElementById("moisture").style.display = "block";
       document.getElementById("oil").style.display = "none";
-    }
-    else {
+    } else {
       // console.log('Segment changed2222222222==============', ev.value);
       this.segment_status == false;
       document.getElementById("oil").style.display = "block";
@@ -165,14 +502,7 @@ export class SkinChartPage {
   }
 
 
-  ionViewDidLoad() {
-    this.loadItems();
 
-    // this.skin_first_check();
-    // this.skin_first_moisture_score();
-    // this.skin_first_oil_score();
-    // this.skin_oil_score();
-  }
 
   public loadItems() {
     this.auth.getUserStorage().then(items => {
@@ -189,12 +519,14 @@ export class SkinChartPage {
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
           from: items.from,
+          snsid: items.snsid
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           //this.thumb_image = false;
         } else {
           //this.thumb_image = true;
         }
+        this.reloadUserPoint(this.userData.snsid);
       } else {
         this.userData = {
           accessToken: items.accessToken,
@@ -208,46 +540,51 @@ export class SkinChartPage {
           thumbnail_image: items.thumbnail_image,
           from: 'plinic',
         };
+        this.reloadUserPoint(this.userData.email);
       }
       this.auth.getSkinScore(this.userData.email).subscribe(items => {
-        this.skinScoreData = items;
-        // let array1 = [];
-        for (let i = 0; i < items.score.length; i++) {
-          // this.chartDateData.push({date : items.score[i].saveDate.substr(0,10) });
-          // this.chartOilData.push({oil : items.score[i].oil});
-          // this.chartMoistureData.push({moisture : items.score[i].moisture});
+        if (items) {
+          this.skinScoreData = items;
+          // let array1 = [];
+          for (let i = 0; i < items.score.length; i++) {
+            // this.chartDateData.push({date : items.score[i].saveDate.substr(0,10) });
+            // this.chartOilData.push({oil : items.score[i].oil});
+            // this.chartMoistureData.push({moisture : items.score[i].moisture});
 
-          // this.chartDateData2.push({date : items.score[i].saveDate.substr(0,10) });
-          this.chartDateData.push(items.score[i].saveDate.substr(0, 10));
-          this.chartOilData.push(items.score[i].oil);
-          this.chartMoistureData.push(items.score[i].moisture);
-          // console.log(this.chartDateData);
-          // console.log(this.chartOilData);
-          // console.log(this.chartMoistureData);
-        }
-
-        // console.log(this.array1);
-
-        if (items !== '') {
-          console.log("abcsdasd");
-          var i = (parseInt(this.skinScoreData.score.length) - 1);
-          // console.log("ii" + i);
-          var k = (parseInt(this.skinScoreData.score.length) - 2);
-          // console.log("kk" + i);
-
-          if (i >= 0) {
-            this.circle_moisture = this.skinScoreData.score[i].moisture;
-            this.circle_oil = this.skinScoreData.score[i].oil;
+            // this.chartDateData2.push({date : items.score[i].saveDate.substr(0,10) });
+            this.chartDateData.push(items.score[i].saveDate.substr(0, 10));
+            this.chartOilData.push(items.score[i].oil);
+            this.chartMoistureData.push(items.score[i].moisture);
+            // console.log(this.chartDateData);
+            // console.log(this.chartOilData);
+            // console.log(this.chartMoistureData);
           }
-          if (k >= 0) {
-            this.pre_circle_moisture = this.skinScoreData.score[k].moisture;
-            this.pre_circle_oil = this.skinScoreData.score[k].oil;
-          }
-          // console.log("this.circle_moisture" + this.circle_moisture);
 
-          // console.log("moisture:::::::" + this.skinScoreData.score[i].moisture);
-          // console.log("oil:::::::" + this.skinScoreData.score[i].oil);
-          // console.log("oil:::::::" + (parseInt(this.skinScoreData.score.length) - 1));
+          // console.log(this.array1);
+
+          if (items !== '') {
+            console.log("abcsdasd");
+            var i = (parseInt(this.skinScoreData.score.length) - 1); //오늘
+            // console.log("ii" + i);
+            var k = (parseInt(this.skinScoreData.score.length) - 2); //어제
+            // console.log("kk" + i);
+
+            if (i >= 0) {
+              this.circle_moisture = this.skinScoreData.score[i].moisture;
+              this.circle_oil = this.skinScoreData.score[i].oil;
+            }
+            if (k >= 0) {
+              this.pre_circle_moisture = this.skinScoreData.score[k].moisture;
+              this.pre_circle_oil = this.skinScoreData.score[k].oil;
+            }
+            // console.log("this.circle_moisture" + this.circle_moisture);
+
+            // console.log("moisture:::::::" + this.skinScoreData.score[i].moisture);
+            // console.log("oil:::::::" + this.skinScoreData.score[i].oil);
+            // console.log("oil:::::::" + (parseInt(this.skinScoreData.score.length) - 1));
+          }
+        } else {
+          this.skinScoreData = items;
         }
       });
       // this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
@@ -273,331 +610,173 @@ export class SkinChartPage {
     alert.present();
   }
 
-  ionViewDidEnter() {
-    //this.skin_moisture_score();
-    // console.log('ionViewDidLoad SkinChartPage');
-    // console.log('all_moisture_score=====================' + this.all_moisture_score);
-    document.getElementById("moisture").style.display = "block";
-    document.getElementById("oil").style.display = "none";
-
-
-    this.today = format(this.today, 'DD');
-
-    this.lineCanvas = new Chart(this.lineCanvas.nativeElement, {
-
-
-      type: 'line',
-      data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
-        labels: this.chartDateData,
-        datasets: [{
-          // label: format(this.today, 'MM/DD', '유분'),
-          label: '내 수분 점수',
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "#368AFF",
-          borderColor: "#368AFF",
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "#368AFF",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5, //클릭시 원크기
-          pointHoverBackgroundColor: "#368AFF",
-          pointHoverBorderColor: "#368AFF",
-          pointHoverBorderWidth: 2, //데이터 호버크기
-          pointRadius: 3,  //데이터 포인트크기
-          pointHitRadius: 100,
-          // data: [this.data1, this.data2, this.data3, this.data4],
-          data: this.chartMoistureData,
-          spanGaps: false,
-        },
-        {
-          // label: format(this.today, 'MM/DD', '유분'),
-          label: '20대 평균 수분 점수',
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "#00C6ED",
-          borderColor: "#00C6ED",
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "#00C6ED",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "#00C6ED",
-          pointHoverBorderColor: "#00C6ED",
-          pointHoverBorderWidth: 2,
-          pointRadius: 3,
-          pointHitRadius: 20,
-          data: [
-            // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
-            // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
-            //DB데이터 출력
-
-          ],
-          spanGaps: false,
-          // 수분은 하늘이랑 파랑
-          // 유분은 노랑이랑 주황!!
-          // label: format(this.today, 'MM/DD', '유분'),
-        }],
-      },
-      options: {
-        animation: {
-          duration: 3000 // general animation time
-        },
-        responsive: true,
-        legend: {
-          display: false,     //라벨표시
-        },
-        scales: {
-          xAxes: [{
-            display: true,
-            ticks: {
-              beginAtZero: true,
-              max: 100,
-              min: 0
-            }
-          }],
-          yAxes: [{
-            display: true,
-            ticks: {
-              beginAtZero: true,
-              max: 100,
-              min: 0
-            }
-          }]
-        },
-        // plugins: {
-        //     labels: {
-        //           render: this.percentage,
-        //           precision: 0,
-        //           fontSize: 15,
-        //           fontStyle: 'normal',
-        //           textShadow: true,
-        //           showActualPercentages: true
-        //       }
-        //   }
-      }
-    });
-
-    this.lineCanvas2 = new Chart(this.lineCanvas2.nativeElement, {
-
-
-      type: 'line',
-      data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
-        labels: this.chartDateData,
-        datasets: [{
-          // 수분은 하늘이랑 파랑
-          // 유분은 노랑이랑 주황!!
-          // label: format(this.today, 'MM/DD', '유분'),
-          label: '내 유분 점수',
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "#368AFF",
-          borderColor: "#368AFF",
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "#368AFF",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "#368AFF",
-          pointHoverBorderColor: "#368AFF",
-          pointHoverBorderWidth: 2,
-          pointRadius: 3,
-          pointHitRadius: 10,
-          data: this.chartOilData,
-          spanGaps: false,
-        },
-        {
-          // label: format(this.today, 'MM/DD', '유분'),
-          label: '20대 평균 유분 점수',
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "#00C6ED",
-          borderColor: "#00C6ED",
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "#00C6ED",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "#00C6ED",
-          pointHoverBorderColor: "#00C6ED",
-          pointHoverBorderWidth: 2,
-          pointRadius: 3,
-          pointHitRadius: 10,
-          data: [
-            // this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
-            // this.all_moisture_score='' ?  this.all_oil_score+10 : this.all_first_oil_score+10,
-          ],
-          spanGaps: false,
-        }],
-      },
-      options: {
-        animation: {
-          duration: 3000 // general animation time
-        },
-        responsive: true,
-        legend: {
-          display: false,     //라벨표시
-        },
-        scales: {
-          xAxes: [{
-            display: true,
-            ticks: {
-              beginAtZero: true,
-              max: 100,
-              min: 0
-            }
-          }],
-          yAxes: [{
-            display: true,
-            ticks: {
-              beginAtZero: true,
-              max: 100,
-              min: 0
-            }
-          }]
-        },
-        // plugins: {
-        //     labels: {
-        //           render: this.percentage,
-        //           precision: 0,
-        //           fontSize: 15,
-        //           fontStyle: 'normal',
-        //           textShadow: true,
-        //           showActualPercentages: true
-        //       }
-        //   }
-      }
-    });
-
-    ////처음 진입시 현재 월로 조회 되도록
-    this.skinbtnYear = format(new Date(), 'YYYY');
-    this.skinbtnMonth = format(new Date(), 'MM');
-    var e = this.skinbtnYear + "년" + this.skinbtnMonth;
-    this.yearmonthselect(e);
-  }
 
 
 
-  monthdate: any[] = [
-    {
-      "day": "2019년01월"
+
+  monthdate: any[] = [{
+      "day": "2020년01월"
     },
     {
-      "day": "2019년02월"
+      "day": "2020년02월"
     },
     {
-      "day": "2019년03월"
+      "day": "2020년03월"
     },
     {
-      "day": "2019년04월"
+      "day": "2020년04월"
     },
     {
-      "day": "2019년05월"
+      "day": "2020년05월"
     },
     {
-      "day": "2019년06월"
+      "day": "2020년06월"
     },
     {
-      "day": "2019년07월"
+      "day": "2020년07월"
     },
     {
-      "day": "2019년08월"
+      "day": "2020년08월"
     },
     {
-      "day": "2019년09월"
+      "day": "2020년09월"
     },
     {
-      "day": "2019년10월"
+      "day": "2020년10월"
     },
     {
-      "day": "2019년11월"
+      "day": "2020년11월"
     },
     {
-      "day": "2019년12월"
+      "day": "2020년12월"
     }
   ];
 
+  openguide() {
+    let modal = this.modalCtrl.create(SkinGuidePage);
+    modal.onDidDismiss(data => {
+      this.ionViewDidEnter();
+    });
+    modal.present();
+  }
 
+  start() {
+    let modal = this.modalCtrl.create(DeviceConnectSkinIngPage);
+    modal.onDidDismiss(data => {
+      let tabs = document.querySelectorAll('.tabbar');
+      if (tabs !== null) {
+        Object.keys(tabs).map((key) => {
+          // tabs[ key ].style.transform = 'translateY(0)';
+          tabs[key].style.display = 'block';
+          tabs[key].style.display = '';
+        });
+      }
+      this.ionViewDidLoad();
+    });
+    modal.present();
+  }
 
-  // this.OilChart = new Chart(this.doughnutCanvas2.nativeElement, {
-  //
-  //         type: 'doughnut',
-  //         data: {
-  //             labels: ["수분", "유분"],
-  //             datasets: [{
-  //                 label: '# of Votes',
-  //                 data: [30, 60],
-  //                 backgroundColor: [
-  //                     '#00D8FF',
-  //                     '#FFE400'
-  //
-  //                 ],
-  //                 hoverBackgroundColor: [
-  //                     "#00D8FF",
-  //                     "#FFE400"
-  //                 ],
-  //
-  //             }]
-  //         },
-  //       options: {
-  //         plugins: {
-  //             labels: {
-  //                   render: this.percentage,
-  //                   precision: 0,
-  //                   fontSize: 15,
-  //                   fontColor: '#000',
-  //                   fontStyle: 'normal',
-  //                   textShadow: true,
-  //                   showActualPercentages: true
-  //               }
-  //           }
-  //         }
-  //     });
-  //
-  //
-  //   this.MoistureChart = new Chart(this.doughnutCanvas.nativeElement, {
-  //
-  //             type: 'doughnut',
-  //             data: {
-  //                 labels: ["주름","탄력"],
-  //                 datasets: [{
-  //                     label: '# of Votes',
-  //                     data: [70,30],
-  //                     backgroundColor: [
-  //                         '#FF3636',
-  //                         "#FFD9EC"
-  //                     ],
-  //                     hoverBackgroundColor: [
-  //                         '#FFBB00',
-  //                         "#FFD9EC"
-  //                     ],
-  //                 }]
-  //             },
-  //             options: {
-  //               plugins: {
-  //                   labels: {
-  //                     render: this.percentage,
-  //                     precision: 0,
-  //                     fontSize: 15,
-  //                     fontColor: '#000',
-  //                     fontStyle: 'normal',
-  //                     textShadow: true,
-  //                     showActualPercentages: true
-  //                   }
-  //             }
-  //           }
-  //     });
-  //   }
+  selectedTab(tab) {
+    this.slides.slideTo(tab);
+
+    // console.log('  this.slides.slideTo(tab)===================' + this.slides.slideTo(tab));
+  }
+
+  slideChanged($event) {
+    //this.showLoading();
+    //this.content.scrollToTop();
+    this.page = $event._snapIndex.toString();
+    // console.log(this.page);
+
+    if (this.page !== '0' && this.page !== '1' && this.page !== '2') {
+      setTimeout(() => {
+        this.slides.slideTo(0, 0);
+      }, 100)
+    }
+  }
+
+  getchartScore() {
+    if (this.userData !== '') {
+      this.auth.getChartScore(this.userData.email, format(new Date(), 'YYYY') + '-' + format(new Date(), 'MM')).subscribe(items => {
+      })
+    }
+  }
+
+  getskinScore() {
+    if (this.userData !== '') {
+      this.auth.getSkinScore(this.userData.email).subscribe(items => {
+        this.skinScoreData = items;
+        // console.log("this.skinScoreData " + JSON.stringify(this.skinScoreData));
+        // let array1 = [];
+        for (let i = 0; i < items.score.length; i++) {
+          // this.chartDateData.push({date : items.score[i].saveDate.substr(0,10) });
+          // this.chartOilData.push({oil : items.score[i].oil});
+          // this.chartMoistureData.push({moisture : items.score[i].moisture});
+
+          // this.chartDateData2.push({date : items.score[i].saveDate.substr(0,10) });
+          this.chartDateData.push(items.score[i].saveDate.substr(0, 10));
+          this.chartOilData.push(items.score[i].oil);
+          this.chartMoistureData.push(items.score[i].moisture);
+          // console.log(this.chartDateData);
+          // console.log(this.chartOilData);
+          // console.log(this.chartMoistureData);
+        }
+
+        // console.log(this.array1);
+
+        if (items !== '') {
+          var i = (parseInt(this.skinScoreData.score.length) - 1);
+          // console.log("ii" + i);
+          var k = (parseInt(this.skinScoreData.score.length) - 2);
+          // console.log("kk" + i);
+
+          if (i >= 0) {
+            this.circle_moisture = this.skinScoreData.score[i].moisture;
+            this.circle_oil = this.skinScoreData.score[i].oil;
+          }
+          if (k >= 0) {
+            this.pre_circle_moisture = this.skinScoreData.score[k].moisture;
+            this.pre_circle_oil = this.skinScoreData.score[k].oil;
+          }
+          // console.log("this.circle_moisture" + this.circle_moisture);
+
+          // console.log("moisture:::::::" + this.skinScoreData.score[i].moisture);
+          // console.log("oil:::::::" + this.skinScoreData.score[i].oil);
+          // console.log("oil:::::::" + (parseInt(this.skinScoreData.score.length) - 1));
+        }
+      });
+    }
+  }
+
+  private reloadUserPoint(email) {
+    this.auth.reloadUserPoint(email).subscribe(data =>{
+      // console.log("커뮤니티 사용자 포인트 : " + data)
+      this.totaluserPoint = data;
+      this.totaluserPoint = this.addComma(this.totaluserPoint);
+    });
+  }
+
+  addComma(data_value) { //숫자 세자리 마다 컴마 붙히기
+    return Number(data_value).toLocaleString('en');
+  }
+
+  public myinfo() {
+    //2020-05-28 마이페이지 하단탭 제거
+    // this.nav.push(MyinfoPage); 
+
+    let myModal = this.modalCtrl.create(MyinfoPage);
+    myModal.onDidDismiss(data => {
+      if(this.userData) {
+        if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
+          this.reloadUserPoint(this.userData.snsid);
+        }
+        else {
+          this.reloadUserPoint(this.userData.email);
+        }
+      }
+      console.log("출석체크 페이지 닫음");
+    });
+    myModal.present();
+  }
+
 }

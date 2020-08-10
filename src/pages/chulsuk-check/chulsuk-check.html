@@ -1,0 +1,119 @@
+<!--
+  Generated template for the ChulsukCheckPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<!-- 헤더영역 안드로이드 아이폰 영역 구분 해서 적용 -->
+<ion-header>
+  <ion-navbar *ngIf="platform.is('android') ">
+    <ion-buttons left>
+      <button (click)="close()" ion-button icon-only>
+        <img class="android_nav" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>출석체크</ion-title>
+    <ion-buttons (click)="myinfo()" right>
+      <button  ion-button>
+          <div class="button_left">{{totaluserpoint}}P &nbsp;<img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')">
+    <ion-buttons left>
+      <button ion-button navPop icon-only>
+        <img class="ios_nav" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-buttons (click)="myinfo()" class="ios_nav2" right>
+        <div class="button_left_ios">{{totaluserpoint}}P &nbsp;<img class="ic_system_arrow_white_ios" src="assets/img/home/ic_arrow_black.png" /></div>
+      </ion-buttons>
+    <ion-title class="ios_title" text-wrap>출석체크</ion-title>
+    
+    
+  </ion-navbar>
+</ion-header>
+
+<!-- 출석체크 본문영역 20200206 -->
+
+<ion-content no-padding>
+  <ng-container>
+    <ion-grid no-padding>
+      <br><br>
+      <ion-row>
+        <img src="assets/img/chulsuk-check/ic-attendance-check@3x.png"class="ic-attendance-check">
+      </ion-row>
+      <br>
+      <ion-row>
+        <div class="text1" >매일 출석하면<br> 포인트가 쌓여요 ✍️</div>
+      </ion-row>
+      <br>
+      <ion-row>
+        <div class="text2">매일 출석 포인트 받고 상품으로 교환하세요.</div>
+      </ion-row>
+      <br>
+      <ion-row>
+        <ng-container *ngIf="!chkbtn">
+          <button (click)="saveToday()" ion-button class="cell"><div class="cell_text">출석체크</div></button>
+        </ng-container>
+        <ng-container *ngIf="chkbtn">
+            <button ion-button class="cell2"><div class="cell_text2">출석체크 완료</div></button>
+        </ng-container>
+      </ion-row>
+      <br><br>
+      <ion-row>
+          <div style="height:8px; width:100%; margin-top:-0.5%; background-color:#f1f1f1"></div>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+  <br><br>
+  <ng-container>
+    <ion-grid no-padding>
+      <ion-row>
+        <div class="text3" >{{viewTitle}} 출석체크 현황</div>
+      </ion-row>
+      <br>
+      
+      <ion-row class="has-header">
+          <calendar [eventSource]="eventSource"
+          [calendarMode]="calendar.mode"
+          [currentDate]="calendar.currentDate"
+          (onCurrentDateChanged)="onCurrentDateChanged($event)"
+          (onRangeChanged)="reloadSource(startTime, endTime)"
+          (onEventSelected)="onEventSelected($event)"
+          (onTitleChanged)="onViewTitleChanged($event)"
+          (onTimeSelected)="onTimeSelected($event)"
+          step="30">
+      </calendar>
+      </ion-row>
+      <!-- <ion-row class="Rectangle"> -->
+        <!-- 달력영역 -->
+        <!-- <ion-calendar #calendar></ion-calendar> -->
+      <!-- </ion-row> -->
+      <br><br>
+      <ion-row class="Rectangle2">
+          <ion-list>
+              <h3 class="guide"> 이용안내 </h3>
+          
+              <ion-item class="back" no-lines text-wrap>
+                <ion-col class="caution">
+                  • 출석 체크 포인트는 1일 1회 가능합니다.<br>
+                  • 적립된 포인트는 플리닉 포인트몰에서 사용 가능합니다. <br>
+                  • 포인트몰 적립까지 1~2일 정도가 소요될 수 있습니다.<br>
+                  • 비정상적인 참여/계정은 제재가 이루어질 수 있습니다.<br>
+                  • 보상상품 및 챌린지 정책은 변경될 수 있습니다.<br>
+                </ion-col>
+              </ion-item>
+            </ion-list>
+        <!-- 이용안내 -->
+        <!-- <div class="guide"><br><br>이용안내<br></div>
+        <div class="guide2">• 1일 1회 50P 제공됩니다. </div>
+        <div class="guide2">• 포인트는 매월 익일에 제공됩니다.</div>
+        <div class="guide2">• 적립된 포인트는 플리닉샵에서 이용가능합니다.</div>
+        <div class="guide2">• 당사정책에 따라 지급 포인트는 일별로 변경될 수 있습니다.</div> -->
+        </ion-row>
+    </ion-grid>
+  </ng-container>
+</ion-content>

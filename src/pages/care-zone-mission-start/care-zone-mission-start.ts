@@ -174,6 +174,8 @@ export class CareZoneMissionStartPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: items.from,
+          snsid: items.snsid
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           this.thumb_image = false;
@@ -212,7 +214,7 @@ export class CareZoneMissionStartPage {
     this.images.chkMission(email).subscribe(data => {
       console.log(data.length);
       if (data.length <= 0) {
-        console.log("챌린지를 완료 했거나 참여중인게 없을때");
+        // console.log("챌린지를 완료 했거나 참여중인게 없을때");
         this.chkBtn = true; //챌린지 미 참여 중일때
       } else if (data.length > 0) {
         for (let i = 0; i < data.length; i++) {
@@ -477,7 +479,7 @@ export class CareZoneMissionStartPage {
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert_cancel',
       title: "미션 참여",
-      message: "미션을 정말 참여하시겠습니까? <br> 미션은 1개만 참여가 가능합니다.",
+      message: "미션을 정말 참여하시겠습니까? <br> 참여한 후에는 일주일간 <br> 다른 챌린지 참여를 못합니다",
       buttons: [
         {
           text: '취소',

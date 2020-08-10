@@ -1,81 +1,125 @@
-<ion-content class="page_home" no-padding>
-
-  <ion-item style="padding-left:0px;" *ngIf="platform.is('android') || platform.is('core')">
+<ion-content class="page_home" no-bounce no-padding>
+  <ion-item no-lines style="padding-left:0px; background-color: #211f62;"
+    *ngIf="platform.is('android') || platform.is('core')">
     <img class="android_plinic_logo" src="assets/img/ic-system-logo-word/ic-system-logo-word@3x.png" />
-    <img class="android_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
+    <!-- 플립은 최초 1회만 보여 준다 -->
+      <ng-container *ngIf="!isFlip">
+        <div *ngIf="userData" class="android_search" (click)="myinfo()"><div class="flip_number" #numberbtn></div>
+          <div class="number_width"> P <img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_white.png" />
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="isFlip">
+          <div *ngIf="userData" class="android_search" (click)="myinfo()"><div class="flip_number2"></div>
+            <div class="number_width2">{{totaluserpoint}}P <img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_white.png" />
+            </div>
+          </div>
+      </ng-container>
+    <!-- <img class="android_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" /> -->
   </ion-item>
 
-  <ion-item style="padding-left:0px;" *ngIf="platform.is('ios')">
+  <ion-item no-lines style="padding-left:0px; background-color: #211f62;" *ngIf="platform.is('ios') ">
     <img class="ios_plinic_logo" src="assets/img/ic-system-logo-word/ic-system-logo-word@3x.png" />
-    <img class="ios_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
+    <!-- 플립은 최초 1회만 보여 준다 -->
+    <ng-container *ngIf="!isFlip"> 
+      <div *ngIf="userData" class="ios_search" (click)="myinfo()"><div class="flip_number" #numberbtn></div>
+        <div class="number_width">P <img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_white.png" /></div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isFlip"> 
+      <div *ngIf="userData" class="ios_search" (click)="myinfo()"><div class="flip_number2"></div>
+        <div class="number_width2">{{totaluserpoint}}P <img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_white.png" /></div>
+      </div>
+    </ng-container>
+    
+    <!-- <img class="ios_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" /> -->
   </ion-item>
 
-  <ion-slides *ngIf="bannerData && bannerData.length" class="img-banner_top_19000501" pager loop=true autoplay=2000>
-    <ion-slide *ngFor="let banner of bannerData">
-      <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{banner.filename}}' />
+
+
+  <ion-slides *ngIf="firstCarezoneData && firstCarezoneData.length" class="img-banner_top_19000501" pager loop=true autoplay=5000>
+    
+    <ion-slide  class="slide" *ngFor="let firstCarezone of firstCarezoneData; let i = index;">
+      <ng-container>
+      <!-- <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{banner.filename}}' /> -->
+      <!-- <div class="slide-time">{{displayTime[i]}}</div> -->
+      <!-- <div right class="back_circle"></div> -->
+      <img (click)="mission_start(firstCarezone)" class="slide_img" src='assets/img/home/newslide{{i+1}}.png' />
+      <!-- <img class="slide_img" src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{firstCarezone.filename}}' /> -->
+      <!-- <div class="slide-title">플리닉으로<br>피부 완성 챌린지</div> -->
+      <!-- <div class="slide-subtitle">성공하면 프리즘 앰플 무료 증정</div> -->
+    </ng-container>
     </ion-slide>
   </ion-slides>
-  <div style="height:8px; width:100%; margin-top:-1%; margin-bottom:5%; background-color:#f1f1f1"></div>
+  <!-- <div style="height:8px; width:100%; margin-top:-1%; margin-bottom:5%; background-color:#f1f1f1"></div> -->
 
 
-  <ion-item no-lines>
+  <!-- <ion-item no-lines>
     <ion-col class="font_skin_chart">
       챌린지 알림
     </ion-col>
-  </ion-item>
-  <ng-container *ngIf="missionData">
+  </ion-item> -->
+  <ng-container *ngIf="challengeData">
     <ng-container *ngIf="userData">
-      <div class="user_text"><span class="user_name">{{userData.nickname}}</span>님 참여한 챌린지가 있습니다. </div>
+      <!-- <div class="user_text"><span class="user_name">{{userData.nickname}}</span>님 참여한 챌린지가 있습니다. </div> -->
       <!-- <button ion-button class="skin_btn" (click)="skin_chart()">참여한 챌린지 바로가기 > </button> -->
-      <button ion-button class="skin_btn" (click)="ingCarezone(missionData.missionID)">바로가기</button>
+      <button ion-button icon-end class="skin_btn" (click)="ingCarezone(challengeData.missionID)">
+        <div class="ing_button">참여 중인 챌린지 바로가기</div>
+        <div class="end_button"><img class="ic_system_arrow_white" src="assets/img/home/ic-system-arrow-white@3x.png" />
+        </div>
+      </button>
     </ng-container>
   </ng-container>
 
-  <ng-container *ngIf="!missionData">
+  <ng-container *ngIf="!challengeData">
     <ng-container *ngIf="userData">
-      <div class="user_text"><span class="user_name">{{userData.nickname}}</span>님 챌린지에 도전하세요. </div>
-      <button ion-button class="skin_btn" (click)="openCareZoneTab()">바로가기</button>
+      <!-- <div class="user_text"><span class="user_name">{{userData.nickname}}</span>님 챌린지에 도전하세요. </div> -->
+      <button ion-button class="skin_btn" (click)="openCareZoneTab()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button>
     </ng-container>
   </ng-container>
 
-  <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
 
 
   <ion-list class="carezone">
-    <ion-row>
+    <!-- <ion-row>
       <ion-col class="font_carezone left-margin">
         케어 챌린지
       </ion-col>
-    </ion-row>
+    </ion-row> -->
+      <ion-row>
+        <ion-col>
+          <img class="chulsuk_check" (click)="chulsuk_check()" src="assets/img/home/img-home-check@3x.png">
+        </ion-col>
+      </ion-row>
 
+      <ion-row>
+        <ion-col>
+          <img class="care_2wk" (click)="test_noti()" src="assets/img/home/img-home-care@3x.png">
+        </ion-col>
+      </ion-row>
 
+    <!-- 20200129 버전3를 만들기 위해 주석 처리 함 향후 삭제 필요 -->
     <!--------------------- 챌린지 미션 종료기간이 안지났을때!!!! ------------------->
-    <div *ngFor="let firstCarezone of firstCarezoneData; let i = index;">
+    <!-- <div *ngFor="let firstCarezone of firstCarezoneData; let i = index;">
       <ng-container *ngIf="endmission[i] > currentDate">
         <ion-row>
           <ion-col *ngIf="firstCarezone._id" class="img_carezone_background" style="text-align: center" (click)="mission_start(firstCarezone)">
             <img class="img_carezone" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{firstCarezone.filename}}" />
-            <!-- 모집중, 모집마감 -->
-            <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #B7C9AF;" ion-button>진행 중</button> -->
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col *ngIf="firstCarezoneData" class="font_carezone2 left-margin">
-            <!-- {{first_carezone_title}} -->
             {{firstCarezone.title}}
           </ion-col>
-          <!-- 타이머 추가 -->
           <ion-col class="font_carezone2_page right-margin">
             {{displayTime[i]}}
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col *ngIf="firstCarezoneData" class="font_carezone2_sub left-margin">
-            <!-- {{first_carezone_body}} -->
             {{firstCarezone.body}}
           </ion-col>
         </ion-row>
-        <!-- 참가 인원 이미지 추가  -->
         <ion-row>
           <ng-container *ngIf="firstCarezoneData">
             <ng-container *ngFor="let mission of missionmember[i]; let i = index">
@@ -91,269 +135,156 @@
                   <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: -1%;" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
                 </ng-container>
               </ng-container>
-
-
-              <!-- {{mission.image_url}} -->
-              <!-- {{mission.userImageFilename}} -->
-
             </ng-container>
-            <!-- <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
-            <!-- <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
-            <!-- <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
               <ng-container *ngIf="missionCounter">
                 <div class="user_sub">&nbsp; <span class="user_name">{{missionCounter[i]}}</span>명이 참가 중입니다.</div>
-                <!-- <div *ngIf="first_carezone_missioncount" class="user_sub"><span class="user_name">{{first_carezone_missioncount}}</span>명이 참가 중입니다.</div> -->
-                <!-- <div *ngIf="!first_carezone_missioncount" class="user_sub"><span class="user_name">00</span>명이 참가 중입니다.</div> -->
               </ng-container>
           </ng-container>
         </ion-row>
       </ng-container>
-    </div>
+    </div> -->
 
 
     <!--------------- 챌린지 미션 종료일이 지났을때! ---------------------->
-    <div *ngFor="let firstCarezone of firstCarezoneData; let i = index;">
+    <!-- <div *ngFor="let firstCarezone of firstCarezoneData; let i = index;">
       <ng-container *ngIf="endmission[i] < currentDate">
 
         <ion-row>
           <ion-col *ngIf="firstCarezone._id" class="img_carezone_background" style="text-align: center" (click)="mission_start(firstCarezone)">
             <img class="img_carezone" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{firstCarezone.filename}}" />
-            <!-- 모집중, 모집마감 -->
-            <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #B7C9AF;" ion-button>진행 중</button> -->
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col *ngIf="firstCarezoneData" class="font_carezone2 left-margin">
-            <!-- {{first_carezone_title}} -->
             {{firstCarezone.title}}
           </ion-col>
-          <!-- 타이머 추가 -->
           <ion-col class="font_carezone2_page right-margin">
             챌린지 마감
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col *ngIf="firstCarezoneData" class="font_carezone2_sub left-margin">
-            <!-- {{first_carezone_body}} -->
             {{firstCarezone.body}}
           </ion-col>
         </ion-row>
-        <!-- 참가 인원 이미지 추가  -->
         <ion-row>
           <ng-container *ngIf="firstCarezoneData">
-            <!-- <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
-            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-            <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
             <div class="user_sub"><span class="user_name">&nbsp;&nbsp;&nbsp;</span>챌린지가 종료 되었습니다.</div>
           </ng-container>
         </ion-row>
       </ng-container>
-    </div>
-
-
-    <!-- <div *ngFor="let secondCarezone of secondCarezoneData let i = index">
-      <ion-row>
-        <ion-col *ngIf="secondCarezone._id" class="img_carezone_background2" style="text-align: center" (click)="mission_start(secondCarezone)"> -->
-          <!-- 모집중, 모집마감 -->
-          <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #FFC3C3;" ion-button>모집 중</button>
-          <button *ngIf="ingmdchuchun[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>MD추천</button>
-          <button *ngIf="ingapproaching[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #87B5FF;" ion-button>마감임박</button> -->
-          <!-- <img class="img_carezone2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{secondCarezone.filename}}" />
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="font_carezone3 left-margin">
-          {{secondCarezone.title}}
-        </ion-col> -->
-        <!-- 타이머 추가 -->
-        <!-- <ion-col class="font_carezone3_page right-margin">
-          {{displayTime2}}
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="font_carezone3_sub left-margin">
-          {{secondCarezone.body}}
-        </ion-col>
-      </ion-row> -->
-      <!-- 참가 인원 이미지 추가  -->
-      <!-- <ion-row>
-        <ng-container *ngIf="secondCarezoneData">
-          <ng-container *ngFor="let mission of second_missionMemberData; let i = index">
-            <ng-container *ngIf="i <= 3">
-              <ng-container *ngIf="i === 0">
-                <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:5%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
-                  onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
-                <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: 5%;" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
-              </ng-container>
-              <ng-container *ngIf="i > 0">
-                <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:-1%;" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
-                  onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
-                <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: -1%;" src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
-              </ng-container>
-            </ng-container> -->
-
-
-            <!-- {{mission.image_url}} -->
-            <!-- {{mission.userImageFilename}} -->
-
-          <!-- </ng-container> -->
-          <!-- <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
-          <!-- <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
-          <!-- <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
-          <!-- <div *ngIf="second_carezone_missioncount" class="user_sub"><span class="user_name">{{second_carezone_missioncount}}</span>명이 참가 중입니다.</div>
-          <div *ngIf="!second_carezone_missioncount" class="user_sub"><span class="user_name">00</span>명이 참가 중입니다.</div>
-        </ng-container> -->
-
-        <!-- <ng-container *ngIf="secondCarezoneData">
-          <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <div class="user_sub"><span class="user_name">01</span>명이 참가 중입니다.</div>
-        </ng-container> -->
-      <!-- </ion-row>
     </div> -->
 
 
-
-
-    <!-- <div *ngFor="let thirdCarezone of thirdCarezoneData">
-      <ion-row>
-        <ion-col *ngIf="thirdCarezone._id" class="img_carezone_background3" style="text-align: center" (click)="mission_start(thirdCarezone)"> -->
-          <!-- 모집중, 모집마감 -->
-          <!-- <button class="carezon_btn1_1" style="box-shadow: none; background-color: #644A99;" ion-button>모집 D-{{dday}}</button>
-
-          <button *ngIf="ingmdchuchun[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>MD추천</button>
-          <button *ngIf="ingapproaching[i]" class="carezon_status1_2" style="box-shadow: none; background-color: #94A3FF;" ion-button>마감임박</button> -->
-
-          <!-- <img *ngIf="thirdCarezone._id" class="img_carezone2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{thirdCarezoneData.filename}}" />
-        </ion-col> -->
-
-      <!-- </ion-row>
-      <ion-row>
-        <ion-col class="font_carezone4 left-margin">
-          {{thirdCarezone.title}}
-        </ion-col>
-        <ion-col class="font_carezone4_page right-margin">
-          113:47:34
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="font_carezone4_sub left-margin">
-          {{thirdCarezone.body}}
-        </ion-col>
-      </ion-row> -->
-      <!-- 참가 인원 이미지 추가  -->
-      <!-- <ion-row>
-        <ng-container *ngIf="thirdCarezoneData">
-          <img class="font_carezone2_img" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <img class="font_carezone2_img" style="margin-left:-2%;" src="assets/img/register/ic-system-profile-default@3x.png" />
-          <div class="user_sub"><span class="user_name">00</span>명이 참가 중입니다.</div>
-        </ng-container>
-      </ion-row>
-    </div> -->
-
-    <ion-row>
+    <!-- <ion-row>
       <ion-col style="text-align: center">
         <button ion-button class="mission_btn" outline (click)="openCareZoneTab()">챌린지 더 보기 > </button>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-list>
-  <br>
-  <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
-  <br>
 
-  <ion-grid *ngIf="platform.is('android')" class="beauty_tip">
-    <ion-row style="margin-bottom: -3%;">
-      <ion-col class="beauty_tip_title left-margin">
+
+  <ion-grid class="beauty_tip">
+    <ion-row>
+      <ion-col (click)="openCommunityTab1()" class="beauty_tip_title left-margin">
         뷰티 꿀팁
+        <img class="ic_system_arrow_white2" src="assets/img/home/ic-system-arrow-white@3x.png" />
       </ion-col>
     </ion-row>
     <ion-row class="beauty_grid_width">
-      <ion-col class=beauty_grid1 col-6 (click)="openBrowser_android(beauty_data_url1, beauty_data_title1)">
+      <ion-col class=beauty_grid1 col-6 (click)="openBrowser_ios(beauty_data_url1, beauty_data_title1, beauty_data_viewId1)">
         <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id1}}" />
-        <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
-        <div class="beauty_desc">{{beauty_data_title1}}</div>
-        <div class="beauty_count">조회 4,567</div>
       </ion-col>
-      <ion-col class=beauty_grid2 col-6 (click)="openBrowser_android(beauty_data_url2, beauty_data_title2)">
+      <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
+
+      <ion-col class=beauty_grid2 col-6 (click)="openBrowser_ios(beauty_data_url2, beauty_data_title2, beauty_data_viewId2)">
         <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id2}}" />
         <!-- <div class="beauty_title">{{beauty_data_type2}}</div> -->
-        <div class="beauty_desc">{{beauty_data_title2}}</div>
-        <div class="beauty_count">조회 4,567</div>
-      </ion-col>
-    </ion-row>
-    <ion-row class="beauty_grid_width">
-      <ion-col class="beauty_grid3" col-6 (click)="openBrowser_android(beauty_data_url3, beauty_data_title3)">
-        <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id3}}" />
-        <!-- <div class="beauty_title">{{beauty_data_type3}}</div> -->
-        <div class="beauty_desc">{{beauty_data_title3}}</div>
-        <div class="beauty_count">조회 4,567</div>
-      </ion-col>
-      <ion-col class="beauty_grid4" col-6 (click)="openBrowser_android(beauty_data_url4, beauty_data_title4)">
-        <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id4}}" />
-        <!-- <div class="beauty_title">{{beauty_data_type4}}</div> -->
-        <div class="beauty_desc">{{beauty_data_title4}}</div>
-        <div class="beauty_count">조회 4,567</div>
-      </ion-col>
-    </ion-row><br>
-    <ion-row>
-      <ion-col style="text-align: center">
-        <button ion-button outline class="beauty_btn" (click)="openCommunityTab1()">뷰티 꿀팁 더보기 > </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 
-  <ion-grid *ngIf="platform.is('ios')" class="beauty_tip">
+      </ion-col>
+    </ion-row>
     <ion-row>
-      <ion-col class="beauty_tip_title left-margin">
-        뷰티 꿀팁
-      </ion-col>
-    </ion-row>
-    <ion-row class="beauty_grid_width">
-      <ion-col class=beauty_grid1 col-6 (click)="openBrowser_ios(beauty_data_url1, beauty_data_title1)">
-        <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id1}}" />
-        <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
+      <ion-col col-6 class="beauty_desc_row">
         <div class="beauty_desc">{{beauty_data_title1}}</div>
-        <div class="beauty_count">조회 4,567</div>
+        <div class="beauty_subdesc">{{beauty_data_midtext1}}</div>
+        <div class="beauty_count">조회 {{beauty_data_views1}}</div>
       </ion-col>
-      <ion-col class=beauty_grid2 col-6 (click)="openBrowser_ios(beauty_data_url2, beauty_data_title2)">
-        <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id2}}" />
-        <!-- <div class="beauty_title">{{beauty_data_type2}}</div> -->
+      <ion-col col-6 class="beauty_desc_row2">
         <div class="beauty_desc">{{beauty_data_title2}}</div>
-        <div class="beauty_count">조회 4,567</div>
+        <div class="beauty_subdesc">{{beauty_data_midtext2}}</div>
+        <div class="beauty_count">조회 {{beauty_data_views2}}</div>
       </ion-col>
     </ion-row>
-    <ion-row class="beauty_grid_width">
+    <!-- <ion-row class="beauty_grid_width">
       <ion-col class="beauty_grid3" col-6 (click)="openBrowser_ios(beauty_data_url3, beauty_data_title3)">
         <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id3}}" />
-        <!-- <div class="beauty_title">{{beauty_data_type3}}</div> -->
         <div class="beauty_desc">{{beauty_data_title3}}</div>
         <div class="beauty_count">조회 4,567</div>
       </ion-col>
       <ion-col class="beauty_grid4" col-6 (click)="openBrowser_ios(beauty_data_url4, beauty_data_title4)">
         <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id4}}" />
-        <!-- <div class="beauty_title">{{beauty_data_type4}}</div> -->
         <div class="beauty_desc">{{beauty_data_title4}}</div>
         <div class="beauty_count">조회 4,567</div>
       </ion-col>
-    </ion-row><br>
-    <ion-row>
+    </ion-row><br> -->
+    <!-- <ion-row>
       <ion-col style="text-align: center">
         <button ion-button outline class="beauty_btn" (click)="openCommunityTab1()">뷰티 꿀팁 더보기 > </button>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-grid>
 
+  <ion-list class="chuchun" no-padding>
 
+    <ion-row class="chuchun_title2">
+      <ion-col class="chuchun_title left-margin">
+        추천 상품
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="height: 49vh;margin-top: -15%;">
+        <ion-slides *ngIf="bannerData && bannerData.length" pager loop=true autoplay=3000>
+          <ion-slide class="slide2" *ngFor="let banner of bannerData">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ng-container *ngIf="platform.is('ios')">
+                    <img (click)="openBrowser_ios(banner.url,'Plinic')" class="chuchun_slide"
+                      src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{banner.filename}}' />
+                  </ng-container>
+                  <ng-container *ngIf="platform.is('android')">
+                    <img (click)="openBrowser_android(banner.url,'Plinic')" class="chuchun_slide"
+                      src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{banner.filename}}' />
+                  </ng-container>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
 
-  <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
+    <!-- <ion-row>
+      <ion-col>
+        <img src="assets/img/home/img-home-check@3x.png">
+      </ion-col>
+    </ion-row> -->
+  </ion-list>
 
+  <!-- <ion-list class="chuchun">
+    <ion-item>
+    </ion-item>
+  </ion-list> -->
 
+  <!-- <div style="height:8px; width:100%; background-color:#f1f1f1"></div> -->
+
+  <br>
   <ion-list class="bottom-tip">
 
     <ion-row>
-      <ion-col class="tip_title left-margin">피부 고민</ion-col>
+      <ion-col (click)="openCommunityTab3()" class="tip_title left-margin">피부 고민
+        <img class="ic_system_arrow_white2" src="assets/img/home/ic-system-arrow-white@3x.png" />
+      </ion-col>
     </ion-row>
     <ng-container *ngFor="let skinqna of skinQnaData; let i = index">
       <ng-container *ngIf="(i < 4)">
@@ -362,17 +293,24 @@
           <ion-item class="line_item" no-lines>
             <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
               <ion-row class="beauty_row">
-                <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
+                <ion-col col-8 class="beauty_note_title_img">
+                  <span class="beauty_note_Q">Q. </span>{{skinqna.title}}
+                </ion-col>
+                <ion-col col-8 class="beauty_note_contents">
+                  {{skinqna.contents}}
+                </ion-col>
               </ion-row>
               <ion-col class="beauty_note_like">좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
 
-              <img *ngIf="platform.is('android')" class="beauty_worry_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
-              <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
+              <img *ngIf="platform.is('android')" class="beauty_worry_img"
+                src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
+              <img *ngIf="platform.is('ios') || platform.is('core')" class="beauty_worry_img_ios"
+                src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{skinqna.filename}}" />
             </ion-col>
           </ion-item>
-          <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+          <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#2b2973"></div>
         </ng-container>
         <ng-container *ngIf="!skinqna.filename">
           <!-- 피부 고민 이미지가 없을 때  -->
@@ -381,17 +319,21 @@
               <ion-row class="beauty_row">
                 <ion-col class="beauty_note_title"><span class="beauty_note_Q">Q. </span>{{skinqna.title}}</ion-col>
               </ion-row>
+              <ion-row>
+                <ion-col class="beauty_note_contents">{{skinqna.contents}}</ion-col>
+              </ion-row>
               <ion-col class="beauty_note_like">좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
             </ion-col>
           </ion-item>
-          <div style="height:1px; width:90%; margin:0 auto; margin-top:2%; display: block; background-color:#f1f1f1"></div>
+          <div style="height:1px; width:90%; margin:0 auto; margin-top:0%; display: block; background-color:#2b2973">
+          </div>
         </ng-container>
       </ng-container>
     </ng-container>
 
-    <button ion-button class="beauty_top_add" (click)="openCommunityTab3()"> 피부고민 더 보기 > </button>
+    <!-- <button ion-button class="beauty_top_add" (click)="openCommunityTab3()"> 피부고민 더 보기 > </button> -->
 
 
 

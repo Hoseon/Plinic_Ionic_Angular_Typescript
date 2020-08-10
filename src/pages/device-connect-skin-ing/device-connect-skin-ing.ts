@@ -161,7 +161,9 @@ export class DeviceConnectSkinIngPage {
     // this.navCtrl.push(DeviceConnectFailPage);
     //this.navCtrl.setRoot(TabsPage);
    // if (this.navParams.get('carezoneData')) {
-     this.viewCtrl.dismiss();
+    //  this.viewCtrl.dismiss();
+    //  this.navCtrl.popAll();
+     this.navCtrl.pop();
    // } else { //마이페이지에서는 parent select로 취소 되기 버튼이 되어야 한다.
      // this.navCtrl.parent.select(4);
    // }
@@ -190,7 +192,7 @@ export class DeviceConnectSkinIngPage {
     alert.present();
   }
 
-  scan() {
+  async scan() {
     console.log("start scan");
     this.setStatus('Scanning for Bluetooth LE Devices');
     this.devices = [];  // clear list
@@ -213,18 +215,22 @@ export class DeviceConnectSkinIngPage {
     //잡힐떄 까지 계속 스캔하는 방법
     this.ble.startScan([PLINIC_SERVICE]).subscribe(
       device => {
+      console.log("디바이스 스캔됨 :::::::::::::");
+
         // this.onDeviceDiscovered(device);
         // this.deviceSelected(device);
-        this.ble.stopScan();
-
+        this.ble.stopScan().then(()=>{
+          console.log("디바이스 스캔 정지 :::::::::::::");
+          console.log("디바이스 ID  : " + device.id);
         this.ble.connect(device.id).subscribe(
           peripheral => {
-            // console.log("1111111111111111111 커넥트 성공");
+            console.log("커넥트 성공 ::::::::::::::::::::::::");
             // this.onConnected(peripheral);
             this.ble.startNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
-              // console.log("333333333 노티피 성공");
+              console.log("노티피 성공 :::::::::::::::::::::::::::::");
               var data2 = new Uint8Array(buffer);
               var data16 = data2[0].toString()
+              console.log("노티피 구분은 ? : " + data16);
               if(data16 === '2'){
                 this.ble.stopNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(result => {
                   this.ble.disconnect(device.id).then(result1 =>{
@@ -234,13 +240,21 @@ export class DeviceConnectSkinIngPage {
                 })
               }
             },error => {
-              // console.log("444444444444 노티피 에러 " + error);
+              this.scan();
+              console.log("444444444444 노티피 에러 " + error);
             });
-          },
+          },error2 => {
+            this.scan();
+            console.log("커넥션 에러 : " + error2);
+          }
         );
+        }).catch((error)=>{
+          console.log("스탑 스캔 에러 : " + error);
+        });
+        
       },
       error => {
-        // console.log("22222222222 + error" + error);
+        console.log("22222222222 + error" + error);
         this.scanError(error);
         this.ble.stopScan();
         this.navCtrl.push(DeviceConnectFailPage);

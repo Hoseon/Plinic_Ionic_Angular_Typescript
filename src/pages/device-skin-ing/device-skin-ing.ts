@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
+import { MyinfoPage } from '../myinfo/myinfo';
 
 
 
@@ -100,37 +101,26 @@ export class DeviceSkinIngPage {
   hasStarted: boolean;
   hasFinished: boolean;
   displayTime: string = '';
-
   displayTime2: Observable<any>;
-
   step: any = '1단계';
   stepdesc: any = '좌측 볼 마사지(1분)';
   desc: any = '원을 그리듯 아래에서 위로 마사지해주세요.';
-
   // step: any = '0단계';
   // stepdesc: any = '화장품 도포';
   // desc: any = '사용하시는 화장품을 골구로 넉넉하게 도포하세요.';
-
   anipoint: boolean = true;
   // anipoint: boolean = false;
   animpoint: any = "anim-point";
-
   peripheral: any = {};
-
   carezoneData: any;
-
   userData: any;
-
   jwtHelper: JwtHelper = new JwtHelper();
-
   currentDate: Date = new Date();
-
   @Input() timeInSeconds: number;
-
   subscriptionFourth: any;
-
-
   updateId: any;
+  videoUrl: any;
+  mode: any;
 
 
   constructor(private images: ImagesProvider, private auth: AuthService, private alertCtrl: AlertController, private ble: BLE, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public modalCtrl: ModalController,
@@ -142,6 +132,10 @@ export class DeviceSkinIngPage {
 
       if (this.navParams.get('carezoneData')) {
         this.carezoneData = this.navParams.get('carezoneData');
+      }
+
+      if (this.navParams.get('mode')) {
+        this.mode = this.navParams.get('mode');
       }
 
       // if (this.navParams.get('device')) {
@@ -160,6 +154,10 @@ export class DeviceSkinIngPage {
 
   ionViewDidLeave() {
     // this.device_disconnect();
+  }
+
+  ionViewWillEnter(){
+    this.randomUrl();
   }
 
   ionViewDidEnter() {
@@ -196,13 +194,15 @@ export class DeviceSkinIngPage {
     // this.navCtrl.setRoot(TabsPage);
     this.ble.disconnect(this.device.id).then(result => {
       if (this.navParams.get('carezoneData')) {
-        this.pointUpdate();
+        // this.pointUpdate(); 2020-02-10 챌린지 2주차 기능 추가로 사용중단
+        this.challengeUpdate();
       } else {
         this.userTimeUpdate();
       }
     }, error => {
       if (this.navParams.get('carezoneData')) {
-        this.pointUpdate();
+        // this.pointUpdate(); 2020-02-10 챌린지 2주차 기능 추가로 사용중단
+        this.challengeUpdate();
       } else {
         this.userTimeUpdate();
       }
@@ -211,6 +211,54 @@ export class DeviceSkinIngPage {
 
   deviceSelected(device) {
 
+    // // ----------------------------------- 2020-01-31 충전중일때 블루투스 신호가 잡히는것 안잡히도록 작업 하기 위해서 주석 처리 함
+    // // ----------------------------------------------------------2020-01-20 케어하기 모드만 필요한
+    // // if (this.platform.is('ios')) {
+    // //   console.log("아이폰 블루투스");
+    // // } else if (this.platform.is('android')) {
+    // // console.log("안드로이드 블루투스");
+    // // this.ble.startScan([PLINIC_SERVICE]).subscribe(
+    //   // device => {
+    //     // console.log("스캔이 잘 되었는지?");
+    //     // this.ble.stopScan();
+    //     // this.ble.disconnect(this.device.id).then(result =>{
+    //     //   console.log("케어모드 커넥션 해제 : " + JSON.stringify(result));
+    //     // })
+    //     this.ble.connect(this.device.id).subscribe(
+    //       peripheral => {
+    //         console.log("커넥션이 정상적");
+    //         // console.log("커넥션이 잘 되었는지??");
+    //         // this.ble.refreshDeviceCache(device.id, 2000).then(result => {
+    //         //   console.log("refresh sucess : " + result);
+    //         //
+    //         // }).catch(error => {
+    //         //   console.log("refresh error : " + error);
+    //         // });
+    //         // this.onConnected(peripheral);
+    //       },
+    //       // this.onConnected(peripheral),
+    //       // peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
+    //       peripheral => { //디바이스 연결 중단되면 누적 처리 후 종료
+    //         console.log("커넥션이 종료처리 됨");
+
+    //         // console.log("연결이 종료됨 케어모드");
+    //         // this.bleshowAlert('Disconnected', '디바이스 연결이 중단 되었습니다.');
+    //         if (this.navParams.get('carezoneData')) {
+    //           this.pointUpdate();
+    //           // this.navCtrl.pop().then(() => this.navCtrl.pop())
+    //         } else {
+    //           this.userTimeUpdate();
+    //         //   this.navCtrl.pop().then(() => this.navCtrl.pop())
+    //         }
+    //       });
+    //   // });
+
+
+
+
+
+
+    // ---------------2020-01-20 버전 유수분,케어모드 두가지 존재 하는-----------------------------------------------
     // if (this.platform.is('ios')) {
     //   console.log("아이폰 블루투스");
     // } else if (this.platform.is('android')) {
@@ -224,6 +272,7 @@ export class DeviceSkinIngPage {
         // })
         this.ble.connect(this.device.id).subscribe(
           peripheral => {
+            console.log("커넥션이 정상적");
             // console.log("커넥션이 잘 되었는지??");
             // this.ble.refreshDeviceCache(device.id, 2000).then(result => {
             //   console.log("refresh sucess : " + result);
@@ -236,10 +285,13 @@ export class DeviceSkinIngPage {
           // this.onConnected(peripheral),
           // peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
           peripheral => { //디바이스 연결 중단되면 누적 처리 후 종료
+            console.log("커넥션이 종료처리 됨");
+    
             // console.log("연결이 종료됨 케어모드");
             // this.bleshowAlert('Disconnected', '디바이스 연결이 중단 되었습니다.');
             if (this.navParams.get('carezoneData')) {
-              this.pointUpdate();
+            // this.pointUpdate(); 2020-02-10 챌린지 2주차 기능 추가로 사용중단
+            this.challengeUpdate();
               // this.navCtrl.pop().then(() => this.navCtrl.pop())
             } else {
               this.userTimeUpdate();
@@ -326,9 +378,9 @@ export class DeviceSkinIngPage {
     // this.runTimer = false;
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
-      title: title,
+      // title: title,
       message: message,
-      buttons: ['OK']
+      buttons: ['확인']
     });
     alert.present();
     // this.viewCtrl.dismiss();
@@ -336,8 +388,110 @@ export class DeviceSkinIngPage {
     // this.navCtrl.parent.select(1);
     this.navCtrl.pop().then(() => this.navCtrl.pop())
     // this.navCtrl.remove(0, 5);
+  }
 
+  showAlertwithCancel(title, message) {
+    // this.runTimer = false;
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel2',
+      title: title,
+      message: message,
+      buttons: [{
+        text: '홈으로',
+          handler: () => {
+        // this.navCtrl.setRoot(TabsPage);
+        this.viewCtrl.dismiss().then(() => this.navCtrl.setRoot(TabsPage));
 
+          // this.viewCtrl.dismiss().then(() => this.viewCtrl.dismiss());
+          console.log('홈으로 가기');
+          }
+        },
+        {
+          text: '마이페이지 확인',
+          handler: () => {
+          this.viewCtrl.dismiss().then(() => this.navCtrl.push(MyinfoPage));
+          }
+        }]
+    });
+    alert.present();
+    this.navCtrl.pop().then(() => this.navCtrl.pop().then(()=> this.navCtrl.pop()));
+  }
+
+  showAlertwithCancelHome(title, message) {
+    // this.runTimer = false;
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel2',
+      title: title,
+      message: message,
+      buttons: [{
+        text: '홈으로',
+          handler: () => {
+        // this.navCtrl.setRoot(TabsPage);
+        this.viewCtrl.dismiss().then(() => this.navCtrl.setRoot(TabsPage));
+
+          // this.viewCtrl.dismiss().then(() => this.viewCtrl.dismiss());
+          console.log('홈으로 가기');
+          }
+        },
+        {
+          text: '마이페이지 확인',
+          handler: () => {
+          this.viewCtrl.dismiss().then(() => this.navCtrl.push(MyinfoPage));
+          }
+        }]
+    });
+    alert.present();
+    this.navCtrl.pop().then(() => this.navCtrl.pop().then(()=> this.navCtrl.pop()));
+  }
+
+  showAlertwithCancelMyinfo(title, message) {
+    // this.runTimer = false;
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel2',
+      title: title,
+      message: message,
+      buttons: [{
+        text: '홈으로',
+          handler: () => {
+          this.viewCtrl.dismiss().then(() => this.navCtrl.setRoot(TabsPage));
+          }
+        },
+        {
+          text: '마이페이지 확인',
+          handler: () => {
+          this.viewCtrl.dismiss().then(() => this.navCtrl.pop());
+          }
+        }]
+    });
+    alert.present();
+    this.navCtrl.pop().then(() => this.navCtrl.pop());
+  }
+
+  showAlertwithCancelChal(title, message) {
+    // this.runTimer = false;
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel2',
+      title: title,
+      message: message,
+      buttons: [{
+        text: '홈으로',
+          handler: () => {
+        // this.navCtrl.setRoot(TabsPage);
+        this.viewCtrl.dismiss().then(() => this.navCtrl.setRoot(TabsPage));
+
+          // this.viewCtrl.dismiss().then(() => this.viewCtrl.dismiss());
+          console.log('홈으로 가기');
+          }
+        },
+        {
+          text: '챌린지 확인',
+          handler: () => {
+          // this.viewCtrl.dismiss().then(() => this.navCtrl.push(MyinfoPage));
+          }
+        }]
+    });
+    alert.present();
+    this.navCtrl.pop().then(() => this.navCtrl.pop().then(()=> this.navCtrl.pop()));
   }
 
 
@@ -443,6 +597,9 @@ export class DeviceSkinIngPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          totaluserpoint: items.totaluserpoint,
+          from: items.from,
+          snsid: items.snsid
         };
       } else {
         this.userData = {
@@ -455,6 +612,7 @@ export class DeviceSkinIngPage {
           nickname: this.jwtHelper.decodeToken(items).name,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          totaluserpoint: items.totaluserpoint,
         };
       }
     });
@@ -467,21 +625,24 @@ export class DeviceSkinIngPage {
     if (this.platform.is('cordova')) {
       this.ble.disconnect(this.device.id).then(result => {
         if (this.navParams.get('carezoneData')) {
-          this.pointUpdate();
+          // this.pointUpdate(); 2020-02-10 챌린지 2주차 기능 추가로 사용중단
+          this.challengeUpdate();
         } else {
           this.userTimeUpdate();
         }
       }, error => {
         console.log("취소하기 블루투스 연결해제 에러" + error);
         if (this.navParams.get('carezoneData')) {
-          this.pointUpdate();
+          // this.pointUpdate(); 2020-02-10 챌린지 2주차 기능 추가로 사용중단
+          this.challengeUpdate();
         } else {
           this.userTimeUpdate();
         }
       });
     } else {
       if (this.navParams.get('carezoneData')) {
-        this.pointUpdate();
+          // this.pointUpdate(); 2020-02-10 챌린지 2주차 기능 추가로 사용중단
+        this.challengeUpdate();
       } else {
         this.userTimeUpdate();
       }
@@ -492,7 +653,20 @@ export class DeviceSkinIngPage {
   pointUpdate(): void {
     this.auth.missionPointUpdate(this.carezoneData._id, this.userData.email, this.secondsRemaining).subscribe(data => {
       this.subscriptionFourth.complete();
-      this.showAlert("플리닉 종료", JSON.stringify(data.msg).replace('"', ''));
+      this.showAlertwithCancel("플리닉 종료", JSON.stringify(data.msg).replace('"', '').replace('"', ''));
+    }, error => {
+      this.subscriptionFourth.complete();
+      this.showAlertwithCancel("플리닉 종료", JSON.parse(error._body).msg);
+    });
+  }
+  
+  
+  //2020-02-10 챌린지 기능 추가 챌린지에서 블루투스 사용후 적립 되는 부분
+  challengeUpdate(): void {
+    this.auth.challengeUpdate2(this.carezoneData._id, this.userData.email, this.secondsRemaining).subscribe(data => {
+      this.subscriptionFourth.complete();
+      this.showAlertwithCancelChal("챌린지 종료", JSON.stringify(data.msg).replace('"', ''));
+      // this.showAlert("플리닉 종료", JSON.stringify(data.msg).replace('"', ''));
     }, error => {
       this.subscriptionFourth.complete();
       this.showAlert("플리닉 종료", JSON.parse(error._body).msg);
@@ -500,9 +674,30 @@ export class DeviceSkinIngPage {
   }
 
   userTimeUpdate(): void {
-    this.auth.userTimeUpdate(this.userData.email, this.secondsRemaining).subscribe(data => {
+    this.auth.userPointUpdate(this.userData.email, this.secondsRemaining).subscribe(data => {
+    // this.auth.userTimeUpdate(this.userData.email, this.secondsRemaining).subscribe(data => {
+      this.subscriptionFourth.complete();
+      if(this.mode === 'home') {
+        this.showAlertwithCancelHome(JSON.stringify(data.point).replace('"', '').replace('"', ''), JSON.stringify(data.msg).replace('"', '').replace('"', ''));
+      } else if (this.mode === 'myinfo') {
+        this.showAlertwithCancelMyinfo(JSON.stringify(data.point).replace('"', '').replace('"', ''), JSON.stringify(data.msg).replace('"', '').replace('"', ''));
+      }
+    }, error => {
+      this.subscriptionFourth.complete();
+      this.showAlert("플리닉 종료", JSON.parse(error._body).msg);
+    });
+  }
+
+  userPlinicshopAddPoint(): void {
+    this.auth.userPointUpdate(this.userData.email, this.secondsRemaining).subscribe(data => {
+    // this.auth.userTimeUpdate(this.userData.email, this.secondsRemaining).subscribe(data => {
       this.subscriptionFourth.complete();
       this.showAlert("플리닉 종료", JSON.stringify(data.msg).replace('"', ''));
+      // if(data) {
+      //   this.auth.refreshUser(this.userData.email).subscribe(data2 => {
+      //     console.log("포인트 업데이트 후 사용자 리프레쉬를 진행했나? : " + JSON.stringify(data2));
+      //   });
+      // }
     }, error => {
       this.subscriptionFourth.complete();
       this.showAlert("플리닉 종료", JSON.parse(error._body).msg);
@@ -531,5 +726,36 @@ export class DeviceSkinIngPage {
   bytesToString(buffer) {
     return String.fromCharCode.apply(null, new Uint8Array(buffer));
   }
+
+
+  private makeRandom(min, max) {
+        var RandVal = Math.floor(Math.random() * (max - min + 1)) + min;
+        return RandVal;
+  }
+
+
+  randomUrl() {
+    var urlNo;
+    urlNo = this.makeRandom(1,5);
+    
+    switch(urlNo) {
+      case 1 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_use_v1_720.mp4';
+               break;
+      case 2 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/Plinic_SNS_Mini_Clipse_Ver02.mp4';
+               break;
+      case 3 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_guide_20200525.mp4';
+               break;   
+      case 4 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_eng.mp4';
+               break;   
+      case 5 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_clinic.mp4';
+               break;   
+      default : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_use_v1_720.mp4';
+    }
+    console.log("현재 비디오 주소 : " + this.videoUrl);
+  }
+
+
+
+
 
 }

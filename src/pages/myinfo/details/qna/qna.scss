@@ -1,32 +1,44 @@
 page-qna {
 
-  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
-    height: 1px;
-    margin-bottom: 5px;
-    background-color: #f1f1f1;
-    opacity: 0.3;
-  }
-  .item-md.item-block .item-inner{
-    padding-right: 12px;
-  }
-  .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+  .header-md::after,
+  .tabs-md[tabsPlacement="top"]>.tabbar::after,
+  .footer-md::before,
+  .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
     height: 1px;
     margin-bottom: 5px;
     background-color: #f1f1f1;
     opacity: 0.3;
   }
 
-  .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
-    height: 0px;
+  .item-md.item-block .item-inner {
+    padding-right: 12px;
   }
-  .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+
+  .header-ios::after,
+  .tabs-ios[tabsPlacement="top"]>.tabbar::after,
+  .footer-ios::before,
+  .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
+    height: 1px;
+    margin-bottom: 5px;
+    background-color: #f1f1f1;
+    opacity: 0.3;
+  }
+
+  .footer-md::before,
+  .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
     height: 0px;
   }
 
-  .item-ios.item-block .item-inner{
+  .footer-ios::before,
+  .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
+    height: 0px;
+  }
+
+  .item-ios.item-block .item-inner {
     padding-right: 12px;
   }
-  .toolbar-title-md{
+
+  .toolbar-title-md {
     font-weight: bold;
     font-size: 17px;
     background-color: #FFF;
@@ -37,7 +49,8 @@ page-qna {
     letter-spacing: normal;
     text-align: center;
   }
-  .toolbar-title-ios{
+
+  .toolbar-title-ios {
     font-weight: bold;
     font-size: 17px;
     background-color: #FFF;
@@ -51,13 +64,15 @@ page-qna {
     color: #292929;
   }
 
-  .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+  .bar-button-default-ios,
+  .bar-button-default.bar-button-ios-default,
+  .bar-button-clear-ios-default {
     margin-left: -15%;
     margin-top: -15%;
     color: transparent;
   }
 
-  .ios_nav{
+  .ios_nav {
     background-color: #FFF;
     width: 140px !important;
     height: 25px !important;
@@ -75,16 +90,17 @@ page-qna {
     top: 2px;
     width: 25px;
     height: 25px;
-}
+  }
 
-   .toolbar-ios{
-     margin-top: 8%;
-   }
+  .toolbar-ios {
+    margin-top: 8%;
+  }
 
-  .back-button-text-ios{
+  .back-button-text-ios {
     font-size: 0px;
   }
-  .android_title{
+
+  .android_title {
     position: absolute;
     left: 50%;
     top: 0;
@@ -93,7 +109,8 @@ page-qna {
     width: 70%;
     color: #292929;
   }
-  .ios_title{
+
+  .ios_title {
     position: absolute;
     left: 50%;
     top: 0;
@@ -103,7 +120,7 @@ page-qna {
     color: #292929;
   }
 
-  .no_list{
+  .no_list {
     position: absolute;
     font-family: NotoSansCJKkr;
     font-size: 15px;
@@ -118,7 +135,7 @@ page-qna {
     top: 45%;
   }
 
-  .qna_list{
+  .qna_list {
     width: 100%;
     height: 62.5px;
     background-color: #ffffff;
@@ -132,25 +149,25 @@ page-qna {
     color: #292929;
   }
 
-.item-ios.item-block .item-inner{
-  padding-right: 32px;
-}
+  .item-ios.item-block .item-inner {
+    padding-right: 32px;
+  }
 
-.item-md.item-block .item-inner{
-  padding-right: 32px;
-}
+  .item-md.item-block .item-inner {
+    padding-right: 32px;
+  }
 
-.button-ios{
-  margin: 0px;
-  padding: 0px;
-}
+  .button-ios {
+    margin: 0px;
+    padding: 0px;
+  }
 
-.button-md{
-  margin: 0px;
-  padding: 0px;
-}
+  .button-md {
+    margin: 0px;
+    padding: 0px;
+  }
 
-  .qna_btn{
+  .qna_btn {
     min-width: 100%;
     min-height: 55px;
     background-color: #5c59b6;

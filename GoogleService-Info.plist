@@ -7,7 +7,7 @@
 	<key>REVERSED_CLIENT_ID</key>
 	<string>com.googleusercontent.apps.459595514093-c65vv382re9hla7ifdom5044p1pbhmq9</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>459595514093-2b38aueke0037i14dib9rtpk3g48q6qm.apps.googleusercontent.com</string>
+	<string>459595514093-vta0u8fvs2kqmn486bn90rdmftorle7k.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCgqI4IhQcz6oBOHNEfbhgseKMIEqkp6wc</string>
 	<key>GCM_SENDER_ID</key>
@@ -34,5 +34,7 @@
 	<string>1:459595514093:ios:0ca10fecc3e87c4e</string>
 	<key>DATABASE_URL</key>
 	<string>https://plinic-73946.firebaseio.com</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-7820559752345148~8454737848</string>
 </dict>
 </plist>

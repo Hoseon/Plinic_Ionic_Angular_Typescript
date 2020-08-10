@@ -33,6 +33,7 @@ export class RewardPage {
   thumb_image: any;
   saveRewardData: any;
   postEmail: any;
+  review: any;
   jwtHelper: JwtHelper = new JwtHelper();
 
 
@@ -81,6 +82,8 @@ export class RewardPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: items.from,
+          snsid: items.snsid
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           this.thumb_image = false;
@@ -161,6 +164,80 @@ export class RewardPage {
     this.phoneNumber = phone;
   }
 
+  registerChallengeReward() {
+
+    if (this.carezoneData2) {
+      this.saveRewardData = {
+        name: this.name,
+        missionid: this.carezoneData2._id,
+        reward: true,
+        product: this.carezoneData2.product,
+        prodfilename: this.carezoneData2.prodfilename,
+        prodoriginalname: this.carezoneData2.prodoriginalname,
+        title: this.carezoneData2.title,
+        startmission: this.carezoneData2.startmission,
+        endmission: this.carezoneData2.endmission,
+        zonecode: this.zonecode,
+        address: this.address,
+        detailAddress: this.detailAddress,
+        desc: this.desc,
+        bname: this.bname,
+        buildingName: this.buildingName,
+        phoneNumber: this.phoneNumber,
+        postemail: this.postEmail,
+        review: this.review
+      }
+    }
+
+
+
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "보상받기",
+      message: "보상받기 작성을 완료 하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            this.auth.rewardChallengeSave(this.userData.email, this.saveRewardData).subscribe(data => {
+              if (data) {
+                let alert2 = this.alertCtrl.create({
+                  cssClass: 'push_alert',
+                  title: '글 작성',
+                  message: "보상받기가 저장되었습니다.<br>플리닉에서 발송정보를 Email로 보내 드릴게요.",
+                  buttons: [
+                    {
+                      text: '확인',
+                      handler: () => {
+                        //this.nav.pop();
+                        clearInterval(this.setInter);
+                        this.viewCtrl.dismiss({
+                          // page_modify: this.page_modify
+                        });
+                      }
+                    }
+                  ]
+                });
+                alert2.present();
+              }
+              // this.nav.push(CareZoneMissionIngPage, { _id: id });
+            },
+              error => {
+                this.showError(JSON.parse(error._body).msg);
+              });
+          }
+        }]
+    });
+    alert.present();
+  }
+
+
   registerReward() {
 
     if (this.carezoneData2) {
@@ -182,6 +259,7 @@ export class RewardPage {
         buildingName: this.buildingName,
         phoneNumber: this.phoneNumber,
         postemail: this.postEmail,
+        review: this.review
       }
     }
 

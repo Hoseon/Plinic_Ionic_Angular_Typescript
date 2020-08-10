@@ -1,20 +1,30 @@
 page-skin-chart {
 
-  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+  .header-md::after,
+  .tabs-md[tabsPlacement="top"]>.tabbar::after,
+  .footer-md::before,
+  .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
     height: 1px;
     margin-bottom: 5px;
   }
-  .item-md.item-block .item-inner{
+
+  .item-md.item-block .item-inner {
     padding-right: 12px;
   }
-  .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ios[tabsPlacement="bottom"] > .tabbar::before{
+
+  .header-ios::after,
+  .tabs-ios[tabsPlacement="top"]>.tabbar::after,
+  .footer-ios::before,
+  .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
     height: 1px;
     margin-bottom: 5px;
   }
-  .item-ios.item-block .item-inner{
+
+  .item-ios.item-block .item-inner {
     padding-right: 12px;
   }
-  .toolbar-title-md{
+
+  .toolbar-title-md {
     font-weight: bold;
     font-size: 17px;
     background-color: #FFF;
@@ -25,7 +35,8 @@ page-skin-chart {
     letter-spacing: normal;
     text-align: center;
   }
-  .toolbar-title-ios{
+
+  .toolbar-title-ios {
     font-weight: bold;
     font-size: 17px;
     background-color: #FFF;
@@ -39,17 +50,19 @@ page-skin-chart {
     color: #292929;
   }
 
-  tspan{
+  tspan {
     font-size: 0px;
   }
 
-  .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+  .bar-button-default-ios,
+  .bar-button-default.bar-button-ios-default,
+  .bar-button-clear-ios-default {
     margin-left: -15%;
     margin-top: -15%;
     color: transparent;
   }
 
-  .ios_nav{
+  .ios_nav {
     background-color: #FFF;
     width: 140px !important;
     height: 25px !important;
@@ -67,512 +80,720 @@ page-skin-chart {
     top: 2px;
     width: 25px;
     height: 25px;
-}
+  }
 
-   .toolbar-ios{
-     margin-top: 8%;
-   }
+  .toolbar-ios {
+    margin-top: 8%;
+  }
 
-  .back-button-text-ios{
+  .back-button-text-ios {
     font-size: 0px;
   }
-  .android_title{
+
+  .android_title {
     position: absolute;
     left: 50%;
     top: 0;
     transform: translateX(-50%);
     height: 100%;
-    width: 70%;
+    width: 55%;
     color: #292929;
+    font-family: NotoSansCJKkr;
+    font-size: 17px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    text-align: center;
   }
-  .ios_title{
+
+  .ios_title {
     position: absolute;
     left: 50%;
     top: 0;
     transform: translateX(-50%);
     height: 100%;
-    width: 120%;
+    width: 100%;
     color: #292929;
   }
-             .img-logo{
-                background-color: #ffffff;
-                width: 4px;
-                height: 4px;
-                margin-top: 2px;
-                margin-left: 3px;
-             }
+
+  .img-logo {
+    background-color: #ffffff;
+    width: 4px;
+    height: 4px;
+    margin-top: 2%;
+    margin-left: 1%;
+  }
 
 
-              .label-md{
-                 padding: 0px;
-                 margin: 0px;
-              }
-              .label-ios{
-                padding: 0px;
-                margin: 0px;
-              }
+  .label-md {
+    padding: 0px;
+    margin: 0px;
+  }
 
-              .gridstatus{
-                margin-bottom: 30px;
-              }
-              .secondstatus_good{
-              font-family: AppleSDGothicNeo;
-              font-size: 16px;
-              font-weight: normal;
-              font-style: normal;
-              font-stretch: normal;
-              line-height: normal;
-              letter-spacing: normal;
-              text-align: center;
-              color: #3b8efd;
-              padding: 0px;
-             }
-             .secondstatus_normal{
-             font-family: AppleSDGothicNeo;
-             font-size: 16px;
-             font-weight: normal;
-             font-style: normal;
-             font-stretch: normal;
-             line-height: normal;
-             letter-spacing: normal;
-             text-align: center;
-             color: #15b673;
-             padding: 0px;
-            }
-            .secondstatus_soso{
-            font-family: AppleSDGothicNeo;
-            font-size: 16px;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: center;
-            color: #ffa000;
-            padding: 0px;
-           }
-           .secondstatus_bad{
-           font-family: AppleSDGothicNeo;
-           font-size: 16px;
-           font-weight: normal;
-           font-style: normal;
-           font-stretch: normal;
-           line-height: normal;
-           letter-spacing: normal;
-           text-align: center;
-           color: #e9513c;
-           padding: 0px;
-          }
+  .label-ios {
+    padding: 0px;
+    margin: 0px;
+  }
 
+  .gridstatus {
+    margin-bottom: 30px;
+  }
 
-             .status_good{
-               font-family: AppleSDGothicNeo;
-               font-size: 16px;
-               font-weight: normal;
-               font-style: normal;
-               font-stretch: normal;
-               line-height: normal;
-               letter-spacing: normal;
-               text-align: center;
-               color: #3b8efd;
-              padding: 0px;
-             }
+  .secondstatus_good {
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3b8efd;
+    padding: 0px;
+  }
 
-             .status_normal{
-               font-family: AppleSDGothicNeo;
-               font-size: 16px;
-               font-weight: normal;
-               font-style: normal;
-               font-stretch: normal;
-               line-height: normal;
-               letter-spacing: normal;
-               text-align: center;
-               color: #15b673;
-              padding: 0px;
-             }
+  .secondstatus_normal {
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #15b673;
+    padding: 0px;
+  }
 
-             .status_soso{
-               font-family: AppleSDGothicNeo;
-               font-size: 16px;
-               font-weight: normal;
-               font-style: normal;
-               font-stretch: normal;
-               line-height: normal;
-               letter-spacing: normal;
-               text-align: center;
-               color: #ffa000;
-              padding: 0px;
-             }
+  .secondstatus_soso {
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffa000;
+    padding: 0px;
+  }
 
-             .status_bad{
-               font-family: AppleSDGothicNeo;
-               font-size: 16px;
-               font-weight: normal;
-               font-style: normal;
-               font-stretch: normal;
-               line-height: normal;
-               letter-spacing: normal;
-               text-align: center;
-               color: #e9513c;
-              padding: 0px;
-             }
+  .secondstatus_bad {
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #e9513c;
+    padding: 0px;
+  }
 
 
+  .status_good {
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3b8efd;
+    padding: 0px;
+  }
 
-          .item-md.item-block .item-inner{
-            padding: 0px;
-          }
-          .item-ios.item-block .item-inner{
-            padding: 0px;
-          }
-          ion-app.md [padding] .scroll-content{
-            padding: 20px;
-          }
-          ion-app.ios [padding] .scroll-content{
-            padding: 20px;
-          }
+  .status_normal {
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #15b673;
+    padding: 0px;
+  }
 
-          .griddata{
+  .status_soso {
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffa000;
+    padding: 0px;
+  }
 
-            text-align: center;
-           margin-left: auto;
-            margin-right: auto;
-            display: block;
-         }
-
-
-         .container {
-           position: relative;
-           width: 50%;
-         }
-
-
-         .container .containe_oil_score {
-           position: absolute;
-           top: 35%;
-           left: 50%;
-           -webkit-transform: translate(-50%, -50%);
-           transform: translate(-50%, -50%);
-           -ms-transform: translate(-50%, -50%);
-           font-family: AppleSDGothicNeo;
-           font-size: 15px;
-           font-weight: normal;
-           font-style: normal;
-           font-stretch: normal;
-           line-height: normal;
-           letter-spacing: normal;
-           text-align: center;
-           color: #939393;
-         }
-
-         .container .containe_oil_score2 {
-           position: absolute;
-           top: 55%;
-           left: 50%;
-           -webkit-transform: translate(-50%, -50%);
-           transform: translate(-50%, -50%);
-           -ms-transform: translate(-50%, -50%);
-           font-family: Roboto;
-           font-size: 19px;
-           font-weight: normal;
-           font-style: normal;
-           font-stretch: normal;
-           line-height: normal;
-           letter-spacing: normal;
-           text-align: center;
-           color: #292929;
-         }
+  .status_bad {
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #e9513c;
+    padding: 0px;
+  }
 
 
 
+  .item-md.item-block .item-inner {
+    padding: 0px;
+  }
 
-          .roundprogressbar{
-            width: 75%;
-            margin-left: 6%;
-            height: auto;
-            outerStrokeColor: 00af66;
-          }
+  .item-ios.item-block .item-inner {
+    padding: 0px;
+  }
 
+  ion-app.md [padding] .scroll-content {
+    padding: 20px;
+  }
 
-          .sub{
-            font-family: AppleSDGothicNeo;
-            font-size: 13px;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            color: #939393;
-          }
-          .data{
-            height: 16.5px;
-            font-family: Roboto;
-            font-size: 13px;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            color: #b6b6b6;
-          }
-          .data1{
-            position: absolute;
-            right:25%;
-            font-family: Roboto;
-            font-size: 14px;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            color: #292929;
-          }
-           .data2{
-            font-family: NotoSansCJKkr;
-            font-size: 14px;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: center;
-            color: #858585;
-           }
-          .data3{
-            position: absolute;
-            right:-25%;
-            font-family: Roboto;
-            font-size: 14px;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            color: #292929;
-          }
+  ion-app.ios [padding] .scroll-content {
+    padding: 20px;
+  }
 
-          .item-md{
-            padding: 0px;
-            margin: 0px;
-          }
-          .item-ios{
-            padding: 0px;
-            margin: 0px;
-          }
-          .skinscore{
-          height: 45px;
-          font-family: NotoSansCJKkr;
-          font-size: 15px;
-          font-style: normal;
-          font-stretch: normal;
-          line-height: normal;
-          letter-spacing: normal;
-          font-weight: bold;
-          color: #292929;
-         }
-          .select-ios .select-placeholder{
-              color: #292929;
-          }
-          .select-md .select-placeholder{
-              color: #292929;
-          }
-          .list-md{
-            margin: 0px;
-          }
-          .list-ios{
-            margin: 0px;
-          }
+  .griddata {
 
-           [padding] h1:first-child, [padding] h2:first-child,
-           [padding] h3:first-child, [padding] h4:first-child,
-           [padding] h5:first-child, [padding] h6:first-child
-           {
-            margin-top: 11px;
-           }
-
-          .chartWrapper {
-              position: relative;
-          }
-
-          .chartWrapper .chartWrapper_line {
-            position: absolute;
-            top: 35%;
-            left: 12%;
-            height:1px;
-            width:660px;
-            margin:0 auto;
-            display: block;
-            background-color:#00C6ED;
-          }
-
-          .chartWrapper > canvas {
-              position: absolute;
-              left: 0;
-              top: 0;
-              pointer-events:none;
-          }
-
-          .chart_js{
-            // width:1500px;
-            // height: 500px;
-            width: 130%;
-          }
-
-          .chartAreaWrapper {
-              width: 700px;
-          }
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
 
 
-          .segment_scroll{
-            // width: 100%;   //스크롤 크기
-            height: 400px !important;
-            margin-left: -7%;
-          }
-
-          .square_col{
-            margin-left:23%;
-            display:flex;
-          }
-          .square{
-            background: #368AFF;
-            width: 15px;
-            height: 15px;
-          }
-
-          .square2 {
-            background: #00C6ED;
-            width: 15px;
-            height: 15px;
-          }
-
-          .square_col_stats{
-            margin-left: 15%;
-            display:flex;
-          }
-          .square_good{
-            background: #3b8efd;
-            width: 15px;
-            height: 15px;
-          }
-
-          .square_normal{
-            background: #15b673;
-            width: 15px;
-            height: 15px;
-          }
-          .square_soso{
-            background: #ffa000;
-            width: 15px;
-            height: 15px;
-          }
-          .square_bad{
-            background: #e9513c;
-            width: 15px;
-            height: 15px;
-          }
-
-          .square_text{
-            padding-left: 2%;
-            padding-right: 5%;
-            font-family: NotoSansCJKkr;
-            font-size: 12px;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            font-weight: normal;
-            color: #292929;
-          }
+  .container {
+    position: relative;
+    width: 50%;
+  }
 
 
-          .linechart_btn{
-            position: absolute;
-            right: 0px;
-            min-width: 67%;
-            min-height: 36px;
-            border-radius: 2.5px;
-            border: solid 1px #e5e5e5;
-            font-family: Roboto;
-            font-size: 13px;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            }
+  .container .containe_oil_score {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-family: AppleSDGothicNeo;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+  }
 
-          .care{
-            width: 316px;
-            height: 54px;
-            margin-left: auto;
-            margin-right: auto;
-            font-family: Roboto;
-            font-size: 18px;
-            font-weight: bold;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: 1.5;
-            letter-spacing: normal;
-            text-align: center;
-            color: #5c59b6;
-            margin-top: -2.5%;
-            margin-bottom: -1%;
+  .container .containe_oil_score2 {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-family: Roboto;
+    font-size: 19px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #292929;
+  }
 
-          }
 
-          .ex{
-            width: 320px;
-            margin-left: auto;
-            margin-right: auto;
-            font-family: Roboto;
-            font-size: 14px;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: 1.79;
-            letter-spacing: normal;
-            color: #292929;
-          }
 
-          .item-ios h2:last-child, .item-ios h3:last-child, .item-ios h4:last-child, .item-ios h5:last-child, .item-ios h6:last-child, .item-ios p:last-child{
-            margin-top: auto;
-            margin-bottom: auto;
-          }
-          .button_outline {
-            font-size: 14px;
-            border: solid 0.5px #c7c7c7;
-            background-color:#FFF;
-            min-width: 100%;
-            min-height: 50px;
-            margin-top: auto;
-            margin-bottom: auto;
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: center;
-            color: #5c59b6;
-            margin-top: 5%;
-          }
 
-          .button_outlinetext{
-            font-size: 14px;
-            padding-left: 5px;
-            margin-top: auto;
-            margin-bottom: auto;
-            display: block;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: center;
-            color: #292929;
-          }
+  .roundprogressbar {
+    width: 75%;
+    margin-left: 6%;
+    height: auto;
+    outerStrokeColor: 00af66;
+  }
 
+
+  .sub {
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #939393;
+  }
+
+  .data {
+    height: 16.5px;
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #b6b6b6;
+  }
+
+  .data1 {
+    position: absolute;
+    right: 25%;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+  }
+
+  .data2 {
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #858585;
+  }
+
+  .data3 {
+    position: absolute;
+    right: -25%;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+  }
+
+  .item-md {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .item-ios {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .skinscore {
+    margin-top: 2%;
+    height: 45px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    font-weight: bold;
+    color: #292929;
+  }
+
+  .select-ios .select-placeholder {
+    color: #292929;
+  }
+
+  .select-md .select-placeholder {
+    color: #292929;
+  }
+
+  .list-md {
+    margin: 0px;
+  }
+
+  .list-ios {
+    margin: 0px;
+  }
+
+  [padding] h1:first-child,
+  [padding] h2:first-child,
+  [padding] h3:first-child,
+  [padding] h4:first-child,
+  [padding] h5:first-child,
+  [padding] h6:first-child {
+    margin-top: 11px;
+  }
+
+  .chartWrapper {
+    position: relative;
+    margin-left: 9%;
+    margin-top: 5%;
+    margin-right: 3%;
+    overflow-x: scroll !important;
+  }
+
+  .chartWrapper .chartWrapper_line {
+    position: absolute;
+    top: 55.5%;
+    left: 10%;
+    height: 1px;
+    width: 660px;
+    margin: 0 auto;
+    display: block;
+    background-color: #b6b6b6;
+  }
+
+  .chartWrapper>canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+  }
+
+  .chart_js {
+    // width:1500px;
+    // height: 500px;
+    width: 130%;
+    overflow-x: scroll;
+  }
+
+  .chartAreaWrapper {
+    width: 700px;
+  }
+
+
+  .segment_scroll {
+    // width: 100%;   //스크롤 크기
+    height: 400px !important;
+    margin-left: -7%;
+  }
+
+  .square_col {
+    margin-left: 23%;
+    display: flex;
+  }
+
+  .square {
+    background: #368AFF;
+    width: 15px;
+    height: 15px;
+  }
+
+  .square2 {
+    background: #00C6ED;
+    width: 15px;
+    height: 15px;
+  }
+
+  .square_col_stats {
+    margin-left: 15%;
+    display: flex;
+  }
+
+  .square_good {
+    background: #3b8efd;
+    width: 15px;
+    height: 15px;
+  }
+
+  .square_normal {
+    background: #15b673;
+    width: 15px;
+    height: 15px;
+  }
+
+  .square_soso {
+    background: #ffa000;
+    width: 15px;
+    height: 15px;
+  }
+
+  .square_bad {
+    background: #e9513c;
+    width: 15px;
+    height: 15px;
+  }
+
+  .square_text {
+    padding-left: 2%;
+    padding-right: 5%;
+    font-family: NotoSansCJKkr;
+    font-size: 12px;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    font-weight: normal;
+    color: #292929;
+  }
+
+
+  .linechart_btn {
+    position: absolute;
+    right: 0px;
+    min-width: 67%;
+    min-height: 36px;
+    border-radius: 2.5px;
+    border: solid 1px #e5e5e5;
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+  }
+
+  .care {
+    width: 316px;
+    height: 54px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5c59b6;
+    margin-top: -2.5%;
+    margin-bottom: -1%;
 
   }
+
+  .ex {
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.79;
+    letter-spacing: normal;
+    color: #292929;
+  }
+
+  .item-ios h2:last-child,
+  .item-ios h3:last-child,
+  .item-ios h4:last-child,
+  .item-ios h5:last-child,
+  .item-ios h6:last-child,
+  .item-ios p:last-child {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .button_outline {
+    font-size: 14px;
+    border: solid 0.5px #c7c7c7;
+    background-color: #FFF;
+    min-width: 100%;
+    min-height: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #5c59b6;
+    margin-top: 5%;
+  }
+
+  .button_outlinetext {
+    font-size: 14px;
+    padding-left: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: block;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #292929;
+  }
+
+  .nodata_text {
+    margin: 0 auto;
+    width: 300px;
+    height: 17.5px;
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+  }
+
+  .start {
+    margin: 0 auto;
+    width: 100px;
+    height: 45px;
+    border-radius: 4px;
+    background-color: #5c59b6;
+    box-shadow: none;
+  }
+
+  .time_skin_data {
+    margin-top: -2% !important;
+    margin: 0 auto;
+    width: 300px;
+    height: 19px;
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+  }
+
+  .no_solution {
+    margin: 0 auto;
+    width: 300px;
+    height: 19px;
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+  }
+
+  .fab_btn {
+    // position: fixed;
+    width: 91%;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #5c59b6;
+    font-size: 40px;
+    font-weight: 100;
+    -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    // bottom: 50%;
+    // margin-bottom: 20%;
+  }
+
+  .fab_btn_ios {
+    // position: fixed;
+    width: 91%;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #5c59b6;
+    font-size: 40px;
+    font-weight: 100;
+    -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    // bottom: 50%;
+    margin-bottom: 20%;
+  }
+
+  .footer-text {
+    width: 57.5px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .guide_android{
+    font-family: NotoSansCJKkr;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+    height: 18px;
+    position: absolute;
+    top: 30%;
+  }
+
+  .guide_ios{
+    height: 18px;
+    font-family: NotoSansCJKkr;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+    margin-top: -5%;
+  }
+
+  .android_search{
+    position: absolute;
+    height: 18px;
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+    margin-top: -2%;
+  }
+
+  .ios_search{
+    position: absolute;
+    height: 18px;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+    margin-top: -6%;
+  }
+
+
+}

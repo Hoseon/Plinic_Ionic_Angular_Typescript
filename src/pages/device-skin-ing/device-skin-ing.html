@@ -21,17 +21,26 @@
 
   <ion-item class="title" no-lines>
     <div class="font_title">
-      {{step}}<br />{{stepdesc}}
+      플리닉 디바이스로 <br />피부가 좋아지는 중이에요!
+      <!-- {{step}}<br />{{stepdesc}} -->
     </div>
   </ion-item>
 
     <!-- <div class="container"> -->
     <!-- 동영상 처리 -->
-    <video width="100%" id="videoPlayer" class="" webkit-playsinline playsinline autoplay loop preload="auto" >
-    <!-- <video width="100%" id="videoPlayer" class="" webkit-playsinline playsinline autoplay muted loop controls preload="auto" > -->
-    <!-- <video width="100%" id="videoPlayer" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" controls preload="auto"> -->
-      <source src="https://plinic.s3.ap-northeast-2.amazonaws.com/useplinic.mp4" type="video/mp4" />
-    </video>
+    <ng-container *ngIf="videoUrl">
+      <video width="100%" id="videoPlayer" class="" webkit-playsinline playsinline autoplay loop preload="auto" >
+      <!-- <video width="100%" id="videoPlayer" class="" webkit-playsinline playsinline autoplay muted loop controls preload="auto" > -->
+      <!-- <video width="100%" id="videoPlayer" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" controls preload="auto"> -->
+        <source src="{{videoUrl}}" type="video/mp4" />
+        <!-- https://plinic.s3.ap-northeast-2.amazonaws.com/use_plinic_v1.mp4 -->
+        <!-- https://plinic.s3.ap-northeast-2.amazonaws.com/use_plinic_v2.mp4 -->
+        <!-- https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_use_v1_480.mp4 -->
+        <!-- https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_use_v1_720.mp4 -->
+        <!-- https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_use_v1_SD.mp4 -->
+
+      </video>
+    </ng-container>
 
     <br /><br /><br />
 
@@ -45,7 +54,9 @@
   <ion-item class="subtitle" no-lines>
     <div class="font_sub">
       <!-- {{desc}} -->
-      플리닉 사용 동영상을 참고 하세요.
+      양볼, 이마, 턱선까지 천천히 마사지해주세요.
+      <!-- <br> 하루 2분 이상 사용하면 챌린지 도전 1일에 성공합니다. -->
+
     </div>
     <!-- <div class="font_sub">
       정밀한 피부측정을 위해<br />
@@ -60,6 +71,10 @@
     <ion-item no-lines>
       <button *ngIf="displayTime" ion-button large full clear class="timer-button" >{{displayTime}}</button>
     </ion-item>
+
+    <!-- <ion-item no-lines>
+      <div class="font_sub">양볼, 이마, 턱선까지 천천히 마사지해주세요.</div>
+    </ion-item> -->
     <!-- <ion-item > -->
       <!-- <button ion-button icon-left clear color="danger" small (click)="initTimer()" item-left >
         <ion-icon name="refresh"></ion-icon>

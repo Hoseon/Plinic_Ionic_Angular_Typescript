@@ -13,9 +13,11 @@ page-loginpage {
     color: #e9513c;
     padding-left: 2%;
   }
-  .scroll-content{
+
+  .scroll-content {
     padding-bottom: 0px !important;
   }
+
   .error1 {
     margin-top: 2%;
     border-bottom-color: #e9513c !important;
@@ -37,7 +39,7 @@ page-loginpage {
     box-shadow: inset 0 -2px 0 0 #000 !important;
   }
 
-  .email_img{
+  .email_img {
     position: absolute;
     background-color: #FFF;
     width: 25px;
@@ -46,286 +48,347 @@ page-loginpage {
     right: -0.5%;
     top: -8%;
   }
-                  .h1{
 
-                     height: 80px;
-                     font-family: NotoSansCJKkr;
-                     font-size: 23px;
-                     font-weight: bold;
-                     font-style: normal;
-                     font-stretch: normal;
-                     line-height: normal;
-                     letter-spacing: normal;
-                     text-align: center;
-                     color: #292929;
-                     margin-bottom: -5%;
-                  }
+  .h1 {
 
-                  .titlelabel{
-                    width: 48px;
-                    height: 19px;
-                    font-family: NotoSansCJKkr;
-                    font-size: 13px;
-                    font-weight: bold;
-                    font-style: normal;
-                    font-stretch: normal;
-                    line-height: normal;
-                    letter-spacing: normal;
-                    padding-bottom: 10px;
-                    color: #292929;
-                  }
+    height: 80px;
+    font-family: NotoSansCJKkr;
+    font-size: 23px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #292929;
+    margin-bottom: -5%;
+  }
 
-                  .top_item{
-                    margin: 0px;
-                    padding: 0px;
-                  }
+  .titlelabel {
+    width: 48px;
+    height: 19px;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    padding-bottom: 10px;
+    color: #292929;
+  }
 
-                  .close{
-                  background-color: #FFF;
-                  width: 25px;
-                  height: 25px;
-                  object-fit: contain;
-                  margin-top: -1%;
-                  margin-left: -0.5%;
-                 }
+  .top_item {
+    margin: 0px;
+    padding: 0px;
+  }
 
-                  .submit-btn {
-                    margin-left: auto;
-                    margin-right: auto;
-                    display: block;
-                    border: solid 0.5px #c7c7c7;
-                    font-size: 14px;
-                    color: #292929;
-                    width: 97%;
-                    height: 50px;
-                    font-weight: normal;
-                    font-style: normal;
-                    font-stretch: normal;
-                    line-height: normal;
-                    letter-spacing: normal;
-                    text-align: center;
-                    border-radius: 4px;
-                    margin-bottom: 5%;
-                    margin-top: -2%;
-                    box-shadow: none;
+  .close {
+    background-color: #FFF;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    margin-top: -1%;
+    margin-left: -0.5%;
+  }
 
-                  }
-                  .col{
-                    padding: 0px;
-                  }
+  .submit-btn {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: solid 0.5px #c7c7c7;
+    font-size: 14px;
+    color: #292929;
+    width: 97%;
+    height: 50px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 5%;
+    margin-top: -2%;
+    box-shadow: none;
 
-                  .kakao_btn {
-                    text-align: center;
-                    width: 25px;
-                    height: 25px;
-                    margin-right: 5px;
-                    box-shadow: none;
-                    object-fit: contain;
-                  }
+  }
 
-                  .google_btn {
-                    width: 25px;
-                    height: 25px;
-                    text-align: center;
-                    margin-right: 5px;
-                    box-shadow: none;
-                    object-fit: contain;
-                  }
+  .submit-btn_apple {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: solid 0.5px #c7c7c7;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #000000;
+    width: 97%;
+    height: 50px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 5%;
+    margin-top: -2%;
+    box-shadow: none;
 
-                  .naver_btn{
-                    width: 25px;
-                    height: 25px;
-                    text-align: center;
-                    margin-right: 5px;
-                    box-shadow: none;
-                    object-fit: contain;
-                  }
+  }
 
-                  .Linetext{
-                    width: 88%;
-                    height: 1px;
-                    background-color: #FFF;
-                    display: table;
-                    white-space: nowrap;
-                    font-family: AppleSDGothicNeo;
-                    font-size: 13px;
-                    font-weight: normal;
-                    font-style: normal;
-                    font-stretch: normal;
-                    line-height: normal;
-                    letter-spacing: normal;
-                    color: #b6b6b6;
-                    margin-left: auto;
-                    margin-right: auto;
-                    margin-top: 10%;
-                    margin-bottom: 5%;
-                    &:before, &:after {
-                      border-top: 0.5px solid #b6b6b6;
-                      content: '';
-                      width: 45.37%;
-                      height: 1px;
-                      display: table-cell;
-                      position: relative;
-                      top: 0.7em;
+  .col {
+    padding: 0px;
+  }
 
-                    }
-                    &:before { right: 5.0%; }
-                    &:after { left: 5.0%; }
-                }
+  .kakao_btn {
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    box-shadow: none;
+    object-fit: contain;
+  }
 
-                .item-ios.item-block .item-inner{
-                  padding: 0px;
-                }
-                .item-md.item-block .item-inner{
-                  padding: 0px;
-                }
-                .item-ios{
-                  padding: 0px;
-                }
-                .item-md{
-                  padding: 0px;
-                }
-                .email_align{
-                  padding-left: 2%;
-                  padding-right: 2%;
-                }
-                .password_align{
-                  margin-top: 5%;
-                  padding-left: 2%;
-                  padding-right: 2%;
-                }
-                .text-input-md{
-                  margin-left: 0px;
-                  margin-top: 2%;
-                }
-                .text-input-ios{
-                  margin-left: 0px;
-                  margin-top: 2%;
-                }
-                .text-input::-webkit-input-placeholder {
-                  width: 55.5px;
-                  height: 22.5px;
-                  font-family: NotoSansCJKkr;
-                  font-size: 15px;
-                  font-weight: normal;
-                  font-style: normal;
-                  font-stretch: normal;
-                  line-height: normal;
-                  letter-spacing: normal;
-                  color: #c7c7c7;
-                  background-color: #FFF;
-                }
-                .input-md[clearInput] .text-input{
-                  width: 100%;
-                }
-                .input-ios[clearInput] .text-input{
-                  width: 100%;
-                }
+  .google_btn {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    margin-right: 5px;
+    box-shadow: none;
+    object-fit: contain;
+  }
 
-                .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
-                  border-bottom-color: transparent;
-                  -webkit-box-shadow: inset 0 -1px 0 0 transparent;
-                  box-shadow: inset 0 -1px 0 0 transparent;
-                }
-                .item-ios.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
-                  border-bottom-color: transparent;
-                  -webkit-box-shadow: inset 0 -1px 0 0 transparent;
-                  box-shadow: inset 0 -1px 0 0 transparent;
-                }
-                .item-md.item-input.item-has-focus .item-inner, .item-md.item-input.input-has-focus .item-inner{
-                  border-bottom-color: transparent;
-                  -webkit-box-shadow: inset 0 -2px 0 0 transparent;
-                  box-shadow: inset 0 -2px 0 0 transparent;
-                }
-                .item-ios.item-input.item-has-focus .item-inner, .item-ios.item-input.input-has-focus .item-inner{
-                  border-bottom-color: transparent;
-                  -webkit-box-shadow: inset 0 -2px 0 0 transparent;
-                  box-shadow: inset 0 -2px 0 0 transparent;
-                }
-                .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
-                 .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
-                   border-bottom-color: transparent;
-                   -webkit-box-shadow: inset 0 -2px 0 0 transparent;
-                   box-shadow: inset 0 -2px 0 0 transparent;
-                 }
-                 .item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
-                  .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
-                    border-bottom-color: transparent;
-                    -webkit-box-shadow: inset 0 -2px 0 0 transparent;
-                    box-shadow: inset 0 -2px 0 0 transparent;
-                  }
+  .naver_btn {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    margin-right: 5px;
+    box-shadow: none;
+    object-fit: contain;
+  }
 
-                  .sub{
-                    text-align:left;
-                    width: 100%;
-                    height: 48px;
-                    font-family: NotoSansCJKkr;
-                    font-size: 13px;
-                    font-weight: normal;
-                    font-style: normal;
-                    font-stretch: normal;
-                    line-height: 1.85;
-                    letter-spacing: normal;
-                    color: #b6b6b6;
-                  }
+  .Linetext {
+    width: 88%;
+    height: 1px;
+    background-color: #FFF;
+    display: table;
+    white-space: nowrap;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #b6b6b6;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    margin-bottom: 5%;
 
-                  .login_btn_invalid{
-                    margin-left: auto;
-                    margin-right: auto;
-                    display: block;
-                    border: solid 0.5px #d2d4d8;
-                    background-color:#d2d4d8;
-                    min-width: 97%;
-                    min-height: 50px;
-                    font-family: NotoSansCJKkr;
-                    font-size: 14px;
-                    font-weight: normal;
-                    font-style: normal;
-                    font-stretch: normal;
-                    line-height: normal;
-                    letter-spacing: normal;
-                    text-align: center;
-                    color: #ffffff;
-                    box-shadow: none;
-                    margin-top: 3%;
-                     border-radius: 4px;
-                  }
+    &:before,
+    &:after {
+      border-top: 0.5px solid #b6b6b6;
+      content: '';
+      width: 45.37%;
+      height: 1px;
+      display: table-cell;
+      position: relative;
+      top: 0.7em;
 
-                  .login_btn2_valid{
-                    margin-left: auto;
-                    margin-right: auto;
-                    display: block;
-                    border: solid 0.5px #5c59b6;
-                    background-color:#5c59b6;
-                    min-width: 97%;
-                    min-height: 50px;
-                    font-family: NotoSansCJKkr;
-                    font-size: 14px;
-                    font-weight: normal;
-                    font-style: normal;
-                    font-stretch: normal;
-                    line-height: normal;
-                    letter-spacing: normal;
-                    text-align: center;
-                    color: #ffffff;
-                    box-shadow: none;
-                    margin-top: 3%;
-                     border-radius: 4px;
-                  }
+    }
 
-                  .passwordfind{
-                    margin-left: auto;
-                    margin-right: auto;
-                    font-family: AppleSDGothicNeo;
-                    font-size: 14px;
-                    font-weight: normal;
-                    font-style: normal;
-                    font-stretch: normal;
-                    line-height: normal;
-                    letter-spacing: normal;
-                    text-align: center;
-                    color: #939393;
-                    box-shadow: none;
-                  }
+    &:before {
+      right: 5.0%;
+    }
+
+    &:after {
+      left: 5.0%;
+    }
+  }
+
+  .item-ios.item-block .item-inner {
+    padding: 0px;
+  }
+
+  .item-md.item-block .item-inner {
+    padding: 0px;
+  }
+
+  .item-ios {
+    padding: 0px;
+  }
+
+  .item-md {
+    padding: 0px;
+  }
+
+  .email_align {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+
+  .password_align {
+    margin-top: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+
+  .text-input-md {
+    margin-left: 0px;
+    margin-top: 2%;
+  }
+
+  .text-input-ios {
+    margin-left: 0px;
+    margin-top: 2%;
+  }
+
+  .text-input::-webkit-input-placeholder {
+    width: 55.5px;
+    height: 22.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #c7c7c7;
+    background-color: #FFF;
+  }
+
+  .input-md[clearInput] .text-input {
+    width: 100%;
+  }
+
+  .input-ios[clearInput] .text-input {
+    width: 100%;
+  }
+
+  .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    border-bottom-color: transparent;
+    -webkit-box-shadow: inset 0 -1px 0 0 transparent;
+    box-shadow: inset 0 -1px 0 0 transparent;
+  }
+
+  .item-ios.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    border-bottom-color: transparent;
+    -webkit-box-shadow: inset 0 -1px 0 0 transparent;
+    box-shadow: inset 0 -1px 0 0 transparent;
+  }
+
+  .item-md.item-input.item-has-focus .item-inner,
+  .item-md.item-input.input-has-focus .item-inner {
+    border-bottom-color: transparent;
+    -webkit-box-shadow: inset 0 -2px 0 0 transparent;
+    box-shadow: inset 0 -2px 0 0 transparent;
+  }
+
+  .item-ios.item-input.item-has-focus .item-inner,
+  .item-ios.item-input.input-has-focus .item-inner {
+    border-bottom-color: transparent;
+    -webkit-box-shadow: inset 0 -2px 0 0 transparent;
+    box-shadow: inset 0 -2px 0 0 transparent;
+  }
+
+  .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+  .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    border-bottom-color: transparent;
+    -webkit-box-shadow: inset 0 -2px 0 0 transparent;
+    box-shadow: inset 0 -2px 0 0 transparent;
+  }
+
+  .item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+  .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    border-bottom-color: transparent;
+    -webkit-box-shadow: inset 0 -2px 0 0 transparent;
+    box-shadow: inset 0 -2px 0 0 transparent;
+  }
+
+  .sub {
+    text-align: left;
+    width: 100%;
+    height: 48px;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.85;
+    letter-spacing: normal;
+    color: #b6b6b6;
+  }
+
+  .login_btn_invalid {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: solid 0.5px #d2d4d8;
+    background-color: #d2d4d8;
+    min-width: 97%;
+    min-height: 50px;
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: none;
+    margin-top: 3%;
+    border-radius: 4px;
+  }
+
+  .login_btn2_valid {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: solid 0.5px #5c59b6;
+    background-color: #5c59b6;
+    min-width: 97%;
+    min-height: 50px;
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: none;
+    margin-top: 3%;
+    border-radius: 4px;
+  }
+
+  .passwordfind {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+    box-shadow: none;
+  }
+
+  .apple_btn {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    text-align: center;
+    margin-right: 5px;
+    box-shadow: none;
+    object-fit: contain;
+    left : 19%;
+  }
 
 }

@@ -22,21 +22,21 @@ export class AgreementPage {
 createSuccess = false;
 agree: boolean;
 agree1: boolean;
-agree2: boolean;
+agree2: boolean = true;
 
   constructor(public nav: NavController, public navParams: NavParams, private alertCtrl: AlertController, public platform: Platform
   , public viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AgreementPage');
+    // console.log('ionViewDidLoad AgreementPage');
   }
 
 
   updateagree() {
-  console.log('agree new state:' + this.agree);
-  console.log('agree new state:' + this.agree1);
-  console.log('agree new state:' + this.agree2);
+  // console.log('agree new state:' + this.agree);
+  // console.log('agree new state:' + this.agree1);
+  // console.log('agree new state:' + this.agree2);
 
 }
 public dissmiss(){
@@ -60,7 +60,7 @@ public dissmiss(){
 
   if(this.agree===true && this.agree1===true){
       // this.viewCtrl.dismiss();
-       this.nav.push(RegisterPage);
+       this.nav.push(RegisterPage, {ispush : this.agree2});
   }
   else{
     let alert = this.alertCtrl.create({

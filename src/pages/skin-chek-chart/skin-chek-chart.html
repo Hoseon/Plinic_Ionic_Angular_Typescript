@@ -1,0 +1,407 @@
+<!--
+  Generated template for the SkinChekChartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core')" no-lines>
+    <ion-buttons (click)="chartguide()" end>
+      <div class="guide_android">이용안내</div>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>스킨 차트</ion-title>
+    <div class="android_search" style="right: 7%;">
+    </div>
+  </ion-navbar>
+
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+    <ion-title  class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <!-- <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" /> -->
+      </button>
+    </ion-buttons>
+    <ion-buttons (click)="chartguide()" end>
+      <div class="guide_ios">
+        이용안내
+      </div>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>스킨 차트</ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-padding>
+  <br><br>
+  <ion-grid no-padding>
+    <ion-row class="left">
+      <div class="dashboard"> 대시 보드</div>
+    </ion-row>
+    <br>
+    <ion-row class="left2">
+      <div class="float text1 bottom">오늘의 날씨</div>
+      <div class="float bottom text2">{{t1hResult}} ° {{skyResult}}</div>
+      <div class="line"></div>
+      <div class="float text1 bottom">미세먼지</div>
+      <div class="float bottom text3">{{pm10}} {{pm10Result}}</div>
+      <div class="line"></div>
+      <div class="float text1 bottom">습도</div>
+      <div class="float bottom text4">{{rehResult}} 보통</div>
+      <div class="line"></div>
+      <div class="float text1 bottom">자외선</div>
+      <div class="float bottom text3">{{uv}} {{uvResult}}</div>
+    </ion-row>
+    <br>
+    <div
+      style="height:1vh; width:100%; margin:0 auto; display: block; margin-bottom: 10%; margin-top: 3%; background-color:#f1f1f1">
+    </div>
+  </ion-grid>
+
+  <ion-grid no-padding>
+    <ion-row class="left">
+      <div class="dashboard">나의 피부 지수</div>
+    </ion-row>
+    <br>
+    <ion-row class="left2">
+      <div class="float text5 bottom">종합 피부 개선율</div>
+      <div class="float bottom text6">1.3</div>
+      <div class="float text7">%</div>
+      <div class="line"></div>
+      <div class="float text5 bottom">오늘 피부 나이</div>
+      <div class="float bottom text6">34.2</div>
+      <div class="float text7">세</div>
+      <div class="line"></div>
+      <div class="float text5 bottom">세부 지수</div>
+    </ion-row>
+    <ion-row class="center">
+      <ng-container *ngIf="btnCheek"><button class="float skin_btn" (click)="cheek()" ion-button>볼</button>
+      </ng-container>
+      <ng-container *ngIf="!btnCheek"><button class="float skin_btn_false" (click)="cheek()" ion-button>볼</button>
+      </ng-container>
+      <ng-container *ngIf="btnEye"><button class="float skin_btn" (click)="eye()" ion-button>눈가</button></ng-container>
+      <ng-container *ngIf="!btnEye"><button class="float skin_btn_false" (click)="eye()" ion-button>눈가</button>
+      </ng-container>
+      <ng-container *ngIf="btnForeHead"><button class="float skin_btn" (click)="forehead()" ion-button>이마</button>
+      </ng-container>
+      <ng-container *ngIf="!btnForeHead"><button class="float skin_btn_false" (click)="forehead()"
+          ion-button>이마</button></ng-container>
+    </ion-row>
+    <br>
+    <ion-row class="center">
+      <img class="img" src="assets/img/camera/warning.png" />
+    </ion-row>
+  </ion-grid>
+  <br>
+  <ion-grid no-padding>
+    <!-- <ion-row class="center">
+      <ion-col><div class="float skin_text">피부 개선율 평균</div></ion-col>
+      <ion-col><div class="float skin_text">직전 측정 경과일</div></ion-col>
+    </ion-row>
+    <br>
+    <ion-row class="center">
+      <ion-col><div class="float skin_text2">1.3</div><div class="float skin_text3">%</div></ion-col>
+      <ion-col><div class="float skin_text2">05</div><div class="float skin_text3">DAY</div></ion-col>
+    </ion-row> -->
+    <br>
+    <ion-row>
+      <ion-col class="chart_text_left">모공</ion-col>
+      <ion-col class="chart_text_right">개선율 1.2%</ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <div class="chart_line">
+        <div class="circle"></div>
+        <div class="circle2" [ngStyle]="{'left' : left1}"></div>
+        <div class="circle3" [ngStyle]="{'left' : left2}"></div>
+        <div class="circle_text" [ngStyle]="{'left' : left2}">0.7cm</div>
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-col class="circle_text2">나쁨</ion-col>
+      <ion-col class="circle_text3">좋음</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="chart_text_left">주름</ion-col>
+      <ion-col class="chart_text_right">개선율 -0.2%</ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <div class="chart_line">
+        <div class="circle"></div>
+        <div class="circle2" [ngStyle]="{'left' : left3}"></div>
+        <div class="circle3" [ngStyle]="{'left' : left4}"></div>
+        <div class="circle_text4" [ngStyle]="{'left' : left4}">8개</div>
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-col class="circle_text2">나쁨</ion-col>
+      <ion-col class="circle_text3">좋음</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="chart_text_left">피부톤</ion-col>
+      <ion-col class="chart_text_right">개선율 2.7%</ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <div class="chart_line">
+        <div class="circle"></div>
+        <div class="circle2" [ngStyle]="{'left' : left4}"></div>
+        <div class="circle3" [ngStyle]="{'left' : left5}"></div>
+        <div class="circle_text5" [ngStyle]="{'left' : left5}">{{left5}}</div>
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-col class="circle_text2">나쁨</ion-col>
+      <ion-col class="circle_text3">좋음</ion-col>
+    </ion-row>
+    <br>
+    <ion-row class="left">
+      <div class="float circle4">
+        <div class="float text8">오늘 측정 수치</div>
+      </div>
+      <div class="float circle5">
+        <div class="float text9">어제까지 내 평균</div>
+      </div>
+      <div class="float circle6">
+        <div class="float text10">내 나이대 전체 평균</div>
+      </div>
+    </ion-row>
+    <br>
+    <div
+      style="height:0.1vh; width:88%; margin:0 auto; display: block; margin-bottom: 10%; margin-top: 3%; background-color:#f1f1f1">
+    </div>
+  </ion-grid>
+
+
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col class="left">
+        <div class="gigan_text">기간별 피부 변화</div>
+      </ion-col>
+      <ion-col>
+        <ion-select (ionChange)="yearmonthselect($event)" placeholder="2020년5월" interface="popover"
+          [(ngModel)]="valueday.day" multiple="false" class="linechart_btn">
+          <ion-option *ngFor="let days of monthdate">{{days.day}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <br>
+    <br>
+    <ion-row>
+      <canvas class="chart_js" id="moisture" #lineCanvas></canvas>
+    </ion-row>
+    <br><br>
+    <ion-row class="left">
+      <div class="float circle7">
+        <div class="float text8">현재 측정 지수</div>
+      </div>
+      <div class="float circle8">
+        <div class="float text10">내 나이대 전체 평균</div>
+      </div>
+    </ion-row>
+    <br><br>
+    <ion-row>
+      <canvas class="chart_js2" id="moisture2" #lineCanvas2></canvas>
+    </ion-row>
+    <br><br>
+    <ion-row class="left">
+      <div class="float circle9">
+        <div class="float text11">수면량</div>
+      </div>
+      <div class="float circle10">
+        <div class="float text12">음주량</div>
+      </div>
+      <div class="float circle11">
+        <div class="float text13">운동량</div>
+      </div>
+    </ion-row>
+    <br><br>
+    <div
+      style="height:1vh; width:100%; margin:0 auto; display: block; margin-bottom: 10%; margin-top: 3%; background-color:#f1f1f1">
+    </div>
+  </ion-grid>
+
+
+
+  <ion-grid no-padding>
+    <br>
+    <ion-row>
+      <div class="text14 left">플리닉 어드바이스</div>
+    </ion-row>
+    <br><br>
+    <ion-row class="center">
+      <button class="float btn4" ion-button>
+        <div class="text15">이마</div>
+      </button>
+      <button class="float btn4" ion-button>
+        <div class="text15">모공</div>
+      </button>
+      <button class="float btn4" ion-button>
+        <div class="text15">음주</div>
+      </button>
+      <button class="float btn4" ion-button>
+        <div class="text15">플리닉케어</div>
+      </button>
+    </ion-row>
+    <br><br>
+    <ion-row class="center vertical">
+      <img class="float img_bag" src="assets/img/skin-chart/bag.png" />
+      <div class="float text16">이마 부분에 모공 개선이 필요합니다.</div>
+    </ion-row>
+    <br>
+    <ion-row class="center">
+      <div class="text17">
+        과도한 각질이 축적되어 모공이 폐쇄되는 것을 예방하기 위해 주 2회정도 각질 제거를 하시고,
+        모공수축, 진정, 소염작용을 하는 수렴 화장수와 지성 피부용 화장품을 사용하며,
+        유수분 밸런스의 정상화를 위해 균형적인 홈케어 습관을 길러야 합니다.
+      </div>
+    </ion-row>
+    <br>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row class="center">
+      <ion-col col-6>
+        <img class="float advice_img" src="assets/img/skin-chart/sample.png" />
+      </ion-col>
+      <ion-col col-6>
+        <img class="float advice_img" src="assets/img/skin-chart/sample.png" />
+      </ion-col>
+    </ion-row>
+    <ion-row class="center">
+      <ion-col col-6>
+        <div class="text-overfolw advice_text">모공 개선을 위한 식습관 가나다라</div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="text-overfolw advice_text">피부에 중요한 모공은 가나다라</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid no-padding>
+    <br><br><br>
+    <ion-row class="center vertical">
+      <img class="float img_bag2" src="assets/img/skin-chart/talk.png" />
+      <div class="float text18">음주를 줄이고 꾸준한 플리닉케어 하세요.</div>
+    </ion-row>
+    <br>
+    <ion-row class="center">
+      <div class="text17">
+        과도한 각질이 축적되어 모공이 폐쇄되는 것을 예방하기 위해 주 2회정도 각질 제거를 하시고,
+        모공수축, 진정, 소염작용을 하는 수렴 화장수와 지성 피부용 화장품을 사용하며,
+        유수분 밸런스의 정상화를 위해 균형적인 홈케어 습관을 길러야 합니다.
+      </div>
+    </ion-row>
+    <br>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row class="center">
+      <ion-col col-6>
+        <img class="float advice_img" src="assets/img/skin-chart/sample.png" />
+      </ion-col>
+      <ion-col col-6>
+        <img class="float advice_img" src="assets/img/skin-chart/sample.png" />
+      </ion-col>
+    </ion-row>
+    <ion-row class="center">
+      <ion-col col-6>
+        <div class="text-overfolw advice_text">음주가 피부에 미치는 가나다라</div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="text-overfolw advice_text">플리늑 플라즈마는 흡수 가나다라</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <br>
+  <br>
+  <div
+    style="height:1vh; width:100%; margin:0 auto; display: block; margin-bottom: 10%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+  <ion-grid no-padding>
+    <br>
+    <ion-row>
+      <div class="left text19">맞춤 화장품 추천</div>
+    </ion-row>
+    <br>
+    <br>
+    <ion-row class="background">
+      <div class="text20">현재 사용중인 화장품</div>
+      <img class="current_product" src="assets/img/skin-chart/sample.png" />
+      <div class="text21">플리닉</div>
+      <div class="text22">프리즘 이펙트 컨센트레이 가나다라</div>
+      <div class="text23">주요효능 ｜ 피부컨디셔닝제 </div>
+      <button class="btn5" ion-button>
+        <div class="btn5_text">변경</div>
+      </button>
+      <button class="btn6" ion-button>
+        <div class="btn6_text">보기</div>
+      </button>
+    </ion-row>
+  </ion-grid>
+  <br><Br>
+
+  <ion-grid no-padding>
+    <ion-row class="product_row">
+      <img class="product" src="assets/img/skin-chart/sample.png" />
+      <div class="text24">ILLIYOON</div>
+      <div class="text25">히알루론 모이스춰 수분크림 가나다라</div>
+      <button class="btn7" ion-button>
+        <div class="btn6_text">보기</div>
+      </button>
+    </ion-row>
+    <ion-row class="product_row">
+      <img class="product" src="assets/img/skin-chart/sample.png" />
+      <div class="text24">ILLIYOON</div>
+      <div class="text25">히알루론 모이스춰 수분크림 가나다라</div>
+      <button class="btn7" ion-button>
+        <div class="btn6_text">보기</div>
+      </button>
+    </ion-row>
+    <ion-row class="product_row">
+      <img class="product" src="assets/img/skin-chart/sample.png" />
+      <div class="text24">ILLIYOON</div>
+      <div class="text25">히알루론 모이스춰 수분크림 가나다라</div>
+      <button class="btn7" ion-button>
+        <div class="btn6_text">보기</div>
+      </button>
+    </ion-row>
+    <ion-row class="product_row">
+      <img class="product" src="assets/img/skin-chart/sample.png" />
+      <div class="text24">ILLIYOON</div>
+      <div class="text25">히알루론 모이스춰 수분크림 가나다라</div>
+      <button class="btn7" ion-button>
+        <div class="btn6_text">보기</div>
+      </button>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <br>
+  <br>
+  <br><br>
+  <br>
+  <!-- <ion-footer no-lines no-shadow>
+    <ion-grid>
+      <ion-row>
+        <button class="btn3" (click)="next()" ion-button><div class="btn_text2">피부진단 시작하기</div></button>
+      </ion-row>
+      </ion-grid>
+  </ion-footer> -->
+</ion-content>
+
+<ng-container>
+
+  <div style="position: absolute; bottom: 10%; width: 100%; z-index: 1000;">
+    <button ion-button class="fab_btn" full (click)="next()">
+      <div class="footer-text">피부진단 시작하기(개발중)</div>
+    </button>
+  </div>
+</ng-container>

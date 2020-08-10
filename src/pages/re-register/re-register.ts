@@ -124,6 +124,7 @@ export class ReRegisterPage {
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
           from: items.from,
+          snsid: items.snsid
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           this.thumb_image = false;

@@ -112,8 +112,8 @@ export class CareZoneMissionIngPage {
     this.missionMember(this.carezoneData2._id);
     this.timeremaining = (new Date(this.carezoneData2.endmission).getTime() - new Date().getTime()) / 1000;
     (new Date(this.carezoneData2.endmission).getTime() < new Date().getTime()) ? this.endCheck = true : this.endCheck = false;
-    console.log("this.endCheck : " + this.endCheck);
-    console.log("Your Ranking : " + this.rank);
+    // console.log("this.endCheck : " + this.endCheck);
+    // console.log("Your Ranking : " + this.rank);
     this.timerTick();
     this.missionCount(this.carezoneData2._id);
 
@@ -133,7 +133,7 @@ export class CareZoneMissionIngPage {
 
   ionViewWillLeave() {
     this.subscriptionFourth.complete();
-    console.log("Timer Clear!");
+    // console.log("Timer Clear!");
   }
 
   ionViewDidLeave() {
@@ -449,6 +449,8 @@ export class CareZoneMissionIngPage {
           nickname: items.nickname,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: items.from,
+          snsid: items.snsid
         };
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           this.thumb_image = false;
@@ -663,7 +665,7 @@ export class CareZoneMissionIngPage {
         for (var i = 0; i < data.length; i++) {
           if (data[i].email === this.userData.email) {  // 미션 성공, 실패시 랭킹 정보 가져오기
             this.rank = i + 1;
-            console.log("this ranking :" + this.rank);
+            // console.log("this ranking :" + this.rank);
           }
 
           this.memberRanking[i] = {
@@ -711,7 +713,7 @@ export class CareZoneMissionIngPage {
   mission_giveup() {
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert_cancel',
-      title: "미션 포기",
+      title: "챌린지 포기",
       message: "미션을 정말 포기 하시겠습니까? <br> 플리닉 사용시간이 초기화 되며, <br> 기간내에 재참여는 가능합니다.",
       buttons: [
         {
@@ -1061,7 +1063,12 @@ export class CareZoneMissionIngPage {
   getCommentTimeZone() {
     for (let i = 0; i < this.carezoneData2.comments.length; i++) {
       this.commentTimeZone[i] = new Date(this.carezoneData2.comments[i].createdAt).getFullYear() + "-" + new Date(this.carezoneData2.comments[i].createdAt).getMonth() + "-" + new Date(this.carezoneData2.comments[i].createdAt).getDay() + " " + new Date(this.carezoneData2.comments[i].createdAt).getHours() + ":" + new Date(this.carezoneData2.comments[i].createdAt).getMinutes() + ":" + new Date(this.carezoneData2.comments[i].createdAt).getSeconds()
-      console.log("abcd : " + this.commentTimeZone[i]);
+      // console.log("abcd : " + this.commentTimeZone[i]);
     }
   }
+
+  getCovertKoreaTime(time) {
+    return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000).toISOString()
+  }
+  
 }

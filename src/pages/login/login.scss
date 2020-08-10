@@ -2,159 +2,205 @@ page-login {
 
 
 
-      .inglogo{
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-      background-color: #FFF;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 20%;
-      display: block;
+  .inglogo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    background-color: #FFF;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    display: block;
 
-      }
-
-
-      .inglogo2{
-      width: 102px;
-      height: 40px;
-      object-fit: contain;
-      background-color: #FFF;
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-      margin-top: 5%;
-      margin-bottom: 15%;
-
-      }
-
-    .submit-btn {
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-      border: solid 0.5px #c7c7c7;
-      font-size: 14px;
-      color: #292929;
-      width: 100%;
-      height: 50px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: center;
-      border-radius: 4px;
-      margin-bottom: 10px;
-      box-shadow: none;
-    }
-
-
-    .register-btn {
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-      background-color: #5c59b6;
-      width: 100%;
-      height: 50px;
-      border-radius: 4px;
-      font-family: NotoSansCJKkr;
-      font-size: 14px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: center;
-      color: #ffffff;
-      box-shadow: none;
-    }
-
-
-
-
-    .Linetext{
-      width: 85%;
-      display: table;
-      white-space: nowrap;
-      font-family: AppleSDGothicNeo;
-      font-size: 13px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      color: #b6b6b6;
-      margin-left: auto;
-      margin-right: auto;
-      &:before, &:after {
-        border-top: 0.5px solid #b6b6b6;
-        content: '';
-        width: 45.3%;
-        height: 1px;
-        display: table-cell;
-        position: relative;
-        top: 0.7em;
-
-      }
-      &:before { right: 5.0%; }
-      &:after { left: 5.0%; }
   }
 
 
-        // .face_btn {
-        //   width: 10%;
-        //   height: 40%;
-        //   text-align: center;
-        //   padding-right: 5px;
-        //   margin-right: 5px;
-        // }
+  .inglogo2 {
+    width: 102px;
+    height: 40px;
+    object-fit: contain;
+    background-color: #FFF;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 5%;
+    margin-bottom: 15%;
+
+  }
+
+  .submit-btn {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: solid 0.5px #c7c7c7;
+    font-size: 14px;
+    color: #292929;
+    width: 100%;
+    height: 50px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: none;
+  }
 
 
-        .kakao_btn {
-          text-align: center;
-          width: 25px;
-          height: 25px;
-          margin-right: 5px;
-          box-shadow: none;
-          object-fit: contain;
-        }
+  .register-btn {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: #5c59b6;
+    width: 100%;
+    height: 50px;
+    border-radius: 4px;
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: none;
+  }
 
 
-        .google_btn {
-          width: 25px;
-          height: 25px;
-          text-align: center;
-          margin-right: 5px;
-          box-shadow: none;
-          object-fit: contain;
-        }
 
-        .naver_btn{
-          width: 25px;
-          height: 25px;
-          text-align: center;
-          margin-right: 5px;
-          box-shadow: none;
-          object-fit: contain;
-        }
 
-        .label-md{
-          margin: 0px;
-        }
-        .bottom_text{
-          margin-left: auto;
-          margin-right: auto;
-          display: block;
-          font-family: AppleSDGothicNeo;
-          font-size: 14px;
-          font-weight: normal;
-          font-style: normal;
-          font-stretch: normal;
-          line-height: normal;
-          letter-spacing: normal;
-          text-align: center;
-          color: #939393;
-          margin-top: -15px;
-        }
+  .Linetext {
+    width: 85%;
+    display: table;
+    white-space: nowrap;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #b6b6b6;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:before,
+    &:after {
+      border-top: 0.5px solid #b6b6b6;
+      content: '';
+      width: 45.3%;
+      height: 1px;
+      display: table-cell;
+      position: relative;
+      top: 0.7em;
+
+    }
+
+    &:before {
+      right: 5.0%;
+    }
+
+    &:after {
+      left: 5.0%;
+    }
+  }
+
+
+  // .face_btn {
+  //   width: 10%;
+  //   height: 40%;
+  //   text-align: center;
+  //   padding-right: 5px;
+  //   margin-right: 5px;
+  // }
+
+
+  .kakao_btn {
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    box-shadow: none;
+    object-fit: contain;
+  }
+
+
+  .google_btn {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    margin-right: 5px;
+    box-shadow: none;
+    object-fit: contain;
+  }
+
+  .apple_btn {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    text-align: center;
+    margin-right: 5px;
+    box-shadow: none;
+    object-fit: contain;
+    left : 19%;
+  }
+
+  .naver_btn {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    margin-right: 5px;
+    box-shadow: none;
+    object-fit: contain;
+  }
+
+  .label-md {
+    margin: 0px;
+  }
+
+  .bottom_text {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+    margin-top: -15px;
+  }
+
+  .signin-button {
+    width: 210px;
+    height: 40px;
+  }
+
+  .submit-btn_apple {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: solid 0.5px #c7c7c7;
+    background-color: #000000;
+    font-size: 14px;
+    color: #ffffff;
+    width: 100%;
+    height: 50px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: none;
+  }
 
 }

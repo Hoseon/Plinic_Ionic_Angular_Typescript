@@ -269,7 +269,7 @@ page-register {
     object-fit: contain;
     right: 7%;
     // top: -0.5%;
-    margin-top: -26%;
+    margin-top: -2%;
     }
 
     .toolaralign2{
@@ -280,7 +280,7 @@ page-register {
       object-fit: contain;
       right: 12%;
       // top: 17%;
-      margin-top: -15%;
+      // margin-top: -15%;
     }
     .toolaralign3{
       position: absolute;
@@ -290,7 +290,7 @@ page-register {
       object-fit: contain;
       // top: 17%;
       right: -3.5%;
-      margin-top: -15%;
+      // margin-top: -15%;
     }
 
   .h1{
@@ -370,4 +370,8 @@ page-register {
      box-shadow: none;
      margin-top: 1%
    }
+
+  .down {
+    margin-top: 5%;
+  }
 }

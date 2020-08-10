@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController, Platform  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, Platform, Loading, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -23,10 +23,18 @@ export class FaqPage {
   noticeData: any;
   selectedFilter = null;
   information: any[];
+  loading: Loading;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public popoverCtrl: PopoverController,
-     public authService: AuthService, public platform: Platform) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public http: Http, 
+    public popoverCtrl: PopoverController,
+    public authService: AuthService, 
+    public platform: Platform,
+    public loadingCtrl: LoadingController,
+  ) {
        let localData = http.get('assets/information.json').map(res => res.json().items);
        localData.subscribe(data => {
          this.information = data;
@@ -64,10 +72,22 @@ export class FaqPage {
   }
 
   loadNotice(){
-    this.authService.getAllNotice().subscribe(items =>{
+    this.showLoading();
+    this.authService.getAllFaq().subscribe(items =>{
+      this.loading.dismiss();
       this.noticeData = items;
       console.log(items);
+    }, error => {
+      this.loading.dismiss();
+      console.log("FAQ 데이터 로딩 에러 : " + error);
     })
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: '데이터를 불러오는 중입니다.'
+    });
+    this.loading.present();
   }
 
 

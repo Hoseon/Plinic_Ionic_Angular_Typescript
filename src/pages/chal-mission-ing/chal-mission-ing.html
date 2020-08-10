@@ -1,0 +1,766 @@
+<!--
+  Generated template for the ChalMissionIngPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android')">
+    <ion-buttons (click)="chalguide()" end>
+        <div class="guide_android">이용안내</div>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>챌린지</ion-title>
+  </ion-navbar>
+
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+    <ion-title  class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios')">
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-buttons (click)="chalguide()" end>
+        <div class="guide_ios">이용안내</div>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>챌린지</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-padding>
+  <ng-container *ngIf="carezoneData2">
+    <ion-slides *ngIf="bannerData && bannerData.length" class="img-banner_top_19000501" pager loop=true autoplay=2000>
+      <ion-slide *ngIf="carezoneData2.challenge_image1_filename">
+        <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData2.challenge_image1_filename}}' />
+      </ion-slide>
+
+      <ion-slide *ngIf="carezoneData2.challenge_image2_filename">
+        <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData2.challenge_image2_filename}}' />
+      </ion-slide>
+
+      <ion-slide *ngIf="carezoneData2.challenge_image3_filename">
+        <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData2.challenge_image3_filename}}' />
+      </ion-slide>
+
+      <ion-slide *ngIf="carezoneData2.challenge_image4_filename">
+        <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData2.challenge_image4_filename}}' />
+      </ion-slide>
+
+      <ion-slide *ngIf="carezoneData2.challenge_image5_filename">
+        <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezoneData2.challenge_image5_filename}}' />
+      </ion-slide>
+    </ion-slides>
+  </ng-container>
+
+  <ng-container>
+    <ion-grid *ngIf="carezoneData"no-padding>
+      <br><br>
+      <ion-row>
+        <div class="text1">{{carezoneData.title}}</div>
+      </ion-row>
+      <ion-row>
+        <div class="text2">{{carezoneData.body}}</div>
+      </ion-row>
+      <br>
+      <ion-row>
+        <ng-container *ngIf="!isFail && challengeuseTime">
+          <ng-container *ngIf="!isReward">
+            <button ion-button class="cell1" text-align="center" (click)="mission_start()">
+              <div class="cell_text1">시작하기</div>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="isReward">
+            <ng-container *ngIf="!challengeReward">
+              <button ion-button class="cell2" text-align="center" (click)="showMissionsuccess()">
+                <div class="cell_text1">보상받기</div>
+              </button>
+            </ng-container>
+            <ng-container *ngIf="challengeReward">
+              <button ion-button class="cell3" text-align="center">
+                <div class="cell_text1">종료</div>
+              </button>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="isFail">
+          <ng-container *ngIf="!challengeReward">
+            <button (click)="showChallengefail()" ion-button class="cell3" text-align="center">
+              <div class="cell_text1">챌린지 실패</div>
+            </button>
+          </ng-container>
+        </ng-container>
+      </ion-row>
+      <br>
+      <div class="line1" style="height:8px; width:100%; background-color:#f1f1f1"></div>
+    </ion-grid>
+  </ng-container>
+
+  <ng-container>
+    <ion-grid no-padding>
+      <br><br>
+      <ion-row >
+        <div class="text3">챌린지 현황</div>
+      </ion-row>
+      <br>
+      <div class="circle-wrapper">
+
+        <!-- 0 -->
+        <ng-container *ngIf="useCount === 0">
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+        </ng-container>
+        
+        <!-- 1 -->
+  
+        <ng-container *ngIf="useCount === 1">
+          <div class="circle2"><div class="circle2_in">1</div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+        </ng-container>
+
+        <!-- 2 -->
+        
+        <ng-container *ngIf="useCount === 2">
+          <div class="circle2"><div class="circle2_in">1</div></div>
+          <div class="circle2"><div class="circle2_in">2</div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+        </ng-container>
+
+        <!-- 3 -->
+        <ng-container *ngIf="useCount === 3">
+          <div class="circle2"><div class="circle2_in">1</div></div>
+          <div class="circle2"><div class="circle2_in">2</div></div>
+          <div class="circle2"><div class="circle2_in">3</div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+        </ng-container>
+
+        <!-- 4 -->
+        <ng-container *ngIf="useCount === 4">
+          <div class="circle2"><div class="circle2_in">1</div></div>
+          <div class="circle2"><div class="circle2_in">2</div></div>
+          <div class="circle2"><div class="circle2_in">3</div></div>
+          <div class="circle2"><div class="circle2_in">4</div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+
+        </ng-container>
+
+        <!-- 5 -->
+        <ng-container *ngIf="useCount === 5">
+          <div class="circle2"><div class="circle2_in">1</div></div>
+          <div class="circle2"><div class="circle2_in">2</div></div>
+          <div class="circle2"><div class="circle2_in">3</div></div>
+          <div class="circle2"><div class="circle2_in">4</div></div>
+          <div class="circle2"><div class="circle2_in">5</div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+
+        </ng-container>
+
+        <!-- 6 -->
+        <ng-container *ngIf="useCount === 6">
+          <div class="circle2"><div class="circle2_in">1</div></div>
+          <div class="circle2"><div class="circle2_in">2</div></div>
+          <div class="circle2"><div class="circle2_in">3</div></div>
+          <div class="circle2"><div class="circle2_in">4</div></div>
+          <div class="circle2"><div class="circle2_in">5</div></div>
+          <div class="circle2"><div class="circle2_in">6</div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+        </ng-container>
+
+        <!-- 7 -->
+        <ng-container *ngIf="useCount >= 7">
+          <div class="circle2"><div class="circle2_in">1</div></div>
+          <div class="circle2"><div class="circle2_in">2</div></div>
+          <div class="circle2"><div class="circle2_in">3</div></div>
+          <div class="circle2"><div class="circle2_in">4</div></div>
+          <div class="circle2"><div class="circle2_in">5</div></div>
+          <div class="circle2"><div class="circle2_in">6</div></div>
+          <div class="circle2"><div class="circle2_in">7</div></div>
+        </ng-container>
+      </div>
+
+        <!-- <div class="circle-wrapper2"> -->
+
+          <!-- <ng-container *ngIf="7 >= useCount">
+            <div class="circle1"><div class="circle1_in"></div></div>
+            <div class="circle1"><div class="circle1_in"></div></div>
+            <div class="circle1"><div class="circle1_in"></div></div>
+            <div class="circle1"><div class="circle1_in"></div></div>
+            <div class="circle1"><div class="circle1_in"></div></div>
+            <div class="circle1"><div class="circle1_in"></div></div>
+            <div class="circle1"><div class="circle1_in"></div></div>
+          </ng-container> -->
+
+          <!-- 8 -->
+          <!-- <ng-container *ngIf="useCount === 8">
+              <div class="circle2"><div class="circle2_in">8</div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+          </ng-container> -->
+  
+          <!-- 9 -->
+          <!-- <ng-container *ngIf="useCount === 9">
+              <div class="circle2"><div class="circle2_in">8</div></div>
+              <div class="circle2"><div class="circle2_in">9</div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+          </ng-container> -->
+  
+          <!-- 10 -->
+          <!-- <ng-container *ngIf="useCount === 10">
+              <div class="circle2"><div class="circle2_in">8</div></div>
+              <div class="circle2"><div class="circle2_in">9</div></div>
+              <div class="circle2"><div class="circle2_in">10</div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+          </ng-container> -->
+  
+          <!-- 11 -->
+          <!-- <ng-container *ngIf="useCount === 11">
+              <div class="circle2"><div class="circle2_in">8</div></div>
+              <div class="circle2"><div class="circle2_in">9</div></div>
+              <div class="circle2"><div class="circle2_in">10</div></div>
+              <div class="circle2"><div class="circle2_in">11</div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+          </ng-container> -->
+  
+          <!-- 12 -->
+          <!-- <ng-container *ngIf="useCount === 12">
+              <div class="circle2"><div class="circle2_in">8</div></div>
+              <div class="circle2"><div class="circle2_in">9</div></div>
+              <div class="circle2"><div class="circle2_in">10</div></div>
+              <div class="circle2"><div class="circle2_in">11</div></div>
+              <div class="circle2"><div class="circle2_in">12</div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+          </ng-container> -->
+  
+          <!-- 13 -->
+          <!-- <ng-container *ngIf="useCount === 13">
+              <div class="circle2"><div class="circle2_in">8</div></div>
+              <div class="circle2"><div class="circle2_in">9</div></div>
+              <div class="circle2"><div class="circle2_in">10</div></div>
+              <div class="circle2"><div class="circle2_in">11</div></div>
+              <div class="circle2"><div class="circle2_in">12</div></div>
+              <div class="circle2"><div class="circle2_in">13</div></div>
+              <div class="circle1"><div class="circle1_in"></div></div>
+          </ng-container> -->
+  
+          <!-- 14 -->
+          <!-- <ng-container *ngIf="useCount === 14">
+              <div class="circle2"><div class="circle2_in">8</div></div>
+              <div class="circle2"><div class="circle2_in">9</div></div>
+              <div class="circle2"><div class="circle2_in">10</div></div>
+              <div class="circle2"><div class="circle2_in">11</div></div>
+              <div class="circle2"><div class="circle2_in">12</div></div>
+              <div class="circle2"><div class="circle2_in">13</div></div>
+              <div class="circle2"><div class="circle2_in">14</div></div>
+          </ng-container> -->
+        <!-- </div> -->
+
+      <!-- <br>
+      <ion-row class="circle_margin-top">
+          <ng-container class="center">
+          <div class="circle2"><div class="circle2_in">8</div></div>
+          <div class="circle2"><div class="circle2_in">9</div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+          <div class="circle1"><div class="circle1_in"></div></div>
+        </ng-container>
+        </ion-row> -->
+      <br>
+      <ion-row>
+        <div class="text4">※ 케어 획득은 상황에 따라 지연현상이 있을 수 있습니다.</div>
+      </ion-row>
+      
+      <ng-container *ngIf="!isReward">
+        <br>
+        <ion-row>
+            <button ion-button class="btn_giveup" text-align="center" (click)="challenge_giveup()"><div class="text5">포기하기</div></button>
+        </ion-row>
+      </ng-container>
+      <br>
+      <ion-row>
+        <div class="line2" style="height:8px; width:100%; background-color:#f1f1f1"></div>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+
+  <ng-container>
+      <ion-grid no-padding *ngIf="carezoneData">
+        <br><br>
+        <ion-row>
+          <div class="chal-info">챌린지 정보</div>
+        </ion-row>
+        <ion-row>
+          <ion-col class="chal-info_text1" col-2>참여기간</ion-col>
+          <ion-col class="chal-info_text2" col-8>{{carezoneData.gigan}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="chal-info_text1" col-2>참여인원</ion-col>
+          <ion-col class="chal-info_text2" col-8>{{carezoneData.inwon}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="chal-info_text1" col-3>챌린지조건</ion-col>
+          <ion-col class="chal-info_text3" col-7>{{carezoneData.chaljogun}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="chal-info_text1" col-3>챌린지기간</ion-col>
+          <ion-col class="chal-info_text3" col-7>{{carezoneData.chalgigan}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="chal-info_text1" col-2>보상상품</ion-col>
+          <ion-col class="chal-info_text2" col-8 style="color: #5c59b6">{{carezoneData.product}}</ion-col>
+        </ion-row>
+        <ng-container *ngIf="platform.is('android') || platform.is('core')">
+          <ion-row>
+            <button ion-button class="detail_btn" (click)="openBrowser_android(carezoneData2.purchase_url, carezoneData2.product)">
+            <div class=" btn_text1">보상 제품 상세정보</div>
+            </button>
+          </ion-row>
+          <ion-row>
+            <button ion-button class="checkout" (click)="openBrowser_android(carezoneData2.purchase_url, carezoneData2.product)">
+              <div class="btn_text2">제품 바로 구매</div>
+            </button>
+          </ion-row>
+        </ng-container>
+        <ng-container *ngIf="platform.is('ios')">
+          <ion-row>
+            <button ion-button class="detail_btn"(click)="openBrowser_ios(carezoneData2.purchase_url, carezoneData2.product)">
+            <div class=" btn_text1">보상 제품 상세정보</div>
+            </button>
+          </ion-row>
+          <ion-row>
+            <button ion-button class="checkout" (click)="openBrowser_ios(carezoneData2.purchase_url, carezoneData2.product)">
+              <div class="btn_text2">제품 바로 구매</div>
+            </button>
+          </ion-row>
+        </ng-container>
+        <ion-row>
+          <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+
+    <ng-container>
+        <ion-list>
+
+            <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
+        
+        
+            <h3 class="bottom_text"> 참여자 </h3>
+        
+        
+            <!-- 참여자만큼 반복문 -->
+            <!-- 내 리스트 -->
+            <ng-container *ngIf="missionmember">
+              <ng-container *ngFor="let mission of memberRanking; let i = index">
+                <ion-grid *ngIf="mission.email===userData.email" class="eventgrid">
+                  <ion-row class="my_list">
+                    <ion-col class="event-col12">{{(i) + 1}}</ion-col>
+                    <img *ngIf="!memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img"
+                      src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{memberRanking[i].userImageFilename}}"
+                      onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+                    <img *ngIf="memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img"
+                      src="{{memberRanking[i].image_url}}"
+                      onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+                    <ion-col class="event-col13">{{mission.email}}(나)</ion-col>
+                    <ion-col class="event-col14" style="color:#5c59b6;">{{displayUseTimeList[i]}}</ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ng-container>
+            </ng-container>
+
+            
+            <ng-container *ngIf="memberRanking">
+              <ion-item *ngFor="let mission of memberRanking; let i = index" no-lines>
+                <ion-grid class="eventgrid">
+                  <ion-row>
+                    <ion-col class="event-col0">{{(i) + 1}}</ion-col>
+                    <img *ngIf="!memberRanking[i].image_url" class="profile-img"
+                      src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{memberRanking[i].userImageFilename}}"
+                      onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+                    <img *ngIf="memberRanking[i].image_url" class="profile-img" src="{{memberRanking[i].image_url}}"
+                      onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+                    <ion-col *ngIf="mission.email" class="event-col8">{{emailSecurity(mission.email)}}</ion-col>
+                    <ion-col class="event-col6">{{displayUseTimeList[i]}}</ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+            </ng-container>
+        
+        
+            <ion-item no-lines>
+              <button ion-button class="button_add" style="font-size: 14px; box-shadow:none;" outline>더보기</button>
+            </ion-item><br>
+        
+            <!-- <div style="height:8px; width:100%; background-color:#f1f1f1"></div> -->
+        
+          </ion-list>
+    </ng-container>
+
+    <!-- 광고 -->
+    <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
+    <img *ngIf="platform.is('android')" (click)="openBrowser_android()" class="beauty_ad_img" src="{{adUrl}}" />
+    <img *ngIf="!platform.is('android')" (click)="openBrowser_android()" class="beauty_ad_img" src="{{adUrl}}" />
+    <div style="height:8px; width:100%; margin-top:-0.5%; background-color:#f1f1f1"></div>
+
+
+    <!-- 댓글등록 -->
+    <ng-container *ngIf="comment_popover_option==='보기' || comment_popover_option ==='삭제'">
+        <img *ngIf="profileimg_url" class="profile_comment" style="margin-top: 7%;" [src]="profileimg_url"
+          onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+        <img *ngIf="!profileimg_url" class="profile_comment" style="margin-top: 7%;" src="userData.thumbnail_image"
+          onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+        <!-- <img *ngIf="userData.thumbnail_image" class="profile_comment" style="margin-top: 7%;" [src]="userData.thumbnail_image" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" /> -->
+        <!-- <img *ngIf="!userData.thumbnail_image && !profileimg_url" style="margin-top: 7%;" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
+        <div class="container">
+          <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300"
+            autoGrow="true" placeholder="댓글 등록" (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea>
+          <button *ngIf="registerReply.comment.length >= 1" ion-button class="comment_input_enroll"
+            (click)="saveSkinQnaReply()">등록</button>
+          <button *ngIf="registerReply.comment.length < 1" ion-button class="comment_input_enroll" disabled
+            (click)="saveSkinQnaReply()">등록</button>
+        </div>
+        <div style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1">
+        </div>
+      </ng-container>
+    
+    
+      <!-- 댓글  -->
+      <ng-container *ngIf="carezoneData2">
+        <ng-container *ngFor="let registerReply of carezoneData2.comments; let i = index">
+          <img *ngIf="registerReply.img_url" class="profile_comment" [src]="registerReply.img_url"
+            onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+          <img *ngIf="!registerReply.img_url" class="profile_comment" [src]="plinicUserImages[i]"
+            onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+          <!-- <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
+          <ng-container *ngIf="userData">
+            <ng-container *ngIf="userData.email === registerReply.email">
+              <button ion-button class="comment_btn"
+                (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
+            </ng-container>
+          </ng-container>
+          <div class="container">
+            <div *ngIf="registerReply.email" class="nickname_comment">{{emailSecurity(registerReply.email)}}</div>
+            <button *ngIf="comment_popover_option_textarea === i"
+              (click)="replySkinQnaUpdate(registerReply.email, registerReply._id)" ion-button
+              class="comment_enroll">수정</button>
+          </div>
+          <div class="time_comment">{{getCovertKoreaTime(registerReply.updatedAt).substr(0,16).replace('T', ' ')}}</div>
+          <!-- <div class="time_comment">{{registerReply.createdAt.substr(0,19)}}</div> -->
+          <!-- 보기 -->
+          <!-- <textarea *ngIf="comment_popover_option==='보기'" class="content_comment" readonly autoGrow autoresize value="{{reply.comment}}"></textarea> -->
+          <ng-container *ngIf="comment_popover_option_textarea !== i ">
+            <div class="content_comment" text-wrap>{{registerReply.comment}}</div>
+          </ng-container>
+          <!-- 수정 -->
+          <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea"
+            #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment"
+            (input)="adjustTextareaUpdate($event)" autofocus="true"></textarea>
+    
+          <div
+            style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 5%; background-color:#f1f1f1">
+          </div>
+        </ng-container>
+      </ng-container>
+  <br><br><br><br><br>
+
+  <!-- <ion-grid *ngIf="carezoneData2">
+
+    <h1 class="top_text"> {{carezoneData2.title}} </h1><br>
+    <div text-wrap class="top_sub">{{carezoneData2.body}}</div>
+
+    <ng-container *ngIf="missionuseTime">
+      <ion-col *ngIf="missionuseTime.usetime > 0" class="top_time">{{displayUseTime}}</ion-col>
+      <ion-col *ngIf="missionuseTime.usetime <= 0" class="top_time">0초</ion-col>
+    </ng-container>
+    <ng-container *ngIf="memberRanking">
+      <ng-container *ngFor="let ranking of memberRanking; let i = index">
+        <ion-col *ngIf="ranking.email === userData.email" class="top_rank">현재 등수 {{ranking.rank}}위</ion-col>
+      </ng-container>
+    </ng-container>
+    <progress-bar [color]="mycolor" [progress]="loadProgress"></progress-bar><br><br><br>
+
+
+    <ion-item style="width:97%">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col4">보상 상품명</ion-col>
+          <ion-col class="event-col7">{{carezoneData2.product}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col4">상품 수량</ion-col>
+          <ion-col class="event-col5">{{carezoneData2.productcount}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col4">참여 방법</ion-col>
+          <ion-col class="event-col5">{{carezoneData2.howtojoin}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%; height:100px;">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col11">보상 조건</ion-col>
+          <ion-col class="event-col9" style="color:#5c59b6">
+            <textarea readonly style="text-align: right" rows="3" cols="35">{{carezoneData2.condition}}</textarea>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%;">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col4">참여기간</ion-col>
+          <ion-col class="event-col5">{{carezoneData2.startmission.substr(0,10)}} ~
+            {{carezoneData2.endmission.substr(0,10)}} (x주)</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%;">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col4">남은시간</ion-col>
+          <ion-col *ngIf="timeremaining >= 0" class="event-col7">{{displayTime}}</ion-col>
+          <ion-col *ngIf="timeremaining < 0" class="event-col7">챌린지 종료</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item style="width:97%; height:100px;">
+      <ion-grid class="gridtext">
+        <ion-row style="width:89.7%">
+          <ion-col class="event-col11">보너스</ion-col>
+          <ion-col class="event-col9">
+            <textarea readonly style="text-align: right" rows="3" cols="35">
+              카카오톡 공유하면 +{{carezoneData2.bonuskakao}}초/명
+              페이스북 공유하면 +{{carezoneData2.bonusface}}초/명
+              인스타그램 공유하면 +{{carezoneData2.bonusinstar}}초/명
+            </textarea>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-col class="sub" text-wrap>
+        ※&nbsp;유의사항과 일정 등을 반드시 확인하고 참여해주세요.
+      </ion-col>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ng-container *ngIf="endCheck === false">
+        미션 진행중일 때(주석)
+        <button ion-button class="button_start" text-align="center" outline (click)="mission_start()">시작하기</button>
+        <button ion-button class="button_giveup" text-align="center" outline (click)="mission_giveup()">포기하기</button>
+      </ng-container>
+      <ng-container *ngIf="endCheck === true">
+        <ng-container *ngIf="carezoneData2.productcount >= rank">
+          미션 완료일 떄(주석)
+          보상받기가 완료 된 경우(주석)
+          <ng-container *ngIf="reward">
+            <button ion-button class="button_end" text-align="center" outline>보상받기 완료</button>
+          </ng-container>
+          보상받기가 아직 완료되지 않은 경우(주석)
+          <ng-container *ngIf="!reward">
+            <button ion-button class="button_start" text-align="center" outline
+              (click)="showMissionsuccess()">보상받기</button>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="carezoneData2.productcount < rank">
+          미션 종료일 때(주석)
+          <ng-container *ngIf="platform.is('ios')">
+            <button ion-button class="button_end" text-align="center" outline (click)="showMissionfail()">챌린지
+              종료</button>
+            <button ion-button class="button_detail" text-align="center" outline
+              (click)="openBrowser_ios(carezoneData2.product_url, carezoneData2.product)">보상 제품 상세정보</button>
+          </ng-container>
+          <ng-container *ngIf="platform.is('android')">
+            <button ion-button class="button_end" text-align="center" outline (click)="showMissionfail()">챌린지
+              종료</button>
+            <button ion-button class="button_detail" text-align="center" outline
+              (click)="openBrowser_android(carezoneData2.product_url, carezoneData2.product)">보상 제품 상세정보</button>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+
+    </ion-item>
+  </ion-grid>
+
+  <ng-container *ngIf="endCheck === false">
+    <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br><br>
+
+    <ion-list>
+      <ion-item no-lines>
+        <ion-grid>
+          <ion-row class="sns_row">
+            <ion-col>
+              <img class="mission-img" (click)="kakaoLink(carezoneData2)"
+                src="assets/img/care-zone/sns/ic-sns-kakao@3x.png" />
+              <ion-col>
+                <img class="mission-img" (click)="share_facebook(carezoneData2)"
+                  src="assets/img/care-zone/sns/ic-sns-fb@3x.png" />
+                <ion-col>
+                  <img class="mission-img" (click)="share()" src="assets/img/care-zone/sns/ic-sns-band@3x.png" />
+                </ion-col>
+              </ion-col>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
+  <ion-list>
+
+    <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
+
+
+    <h3 class="bottom_text"> 참여자 </h3>
+
+
+    참여자만큼 반복문(주석)
+    내 리스트(주석)
+    <ng-container *ngIf="missionmember">
+      <ng-container *ngFor="let mission of missionmember; let i = index">
+        <ion-grid *ngIf="mission.email===userData.email" class="eventgrid">
+          <ion-row class="my_list">
+            <ion-col class="event-col12">{{(i) + 1}}</ion-col>
+            <img *ngIf="!memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img"
+              src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{memberRanking[i].userImageFilename}}"
+              onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            <img *ngIf="memberRanking[i].image_url" style="margin-top:-3%;" class="profile-img"
+              src="{{memberRanking[i].image_url}}"
+              onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            <ion-col class="event-col13">{{mission.email}}(나)</ion-col>
+            <ion-col class="event-col14" style="color:#5c59b6;">{{displayUseTimeList[i]}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="missionmember">
+      <ion-item *ngFor="let mission of missionmember; let i = index" no-lines>
+        <ion-grid class="eventgrid">
+          <ion-row>
+            <ion-col class="event-col0">{{(i) + 1}}</ion-col>
+            <img *ngIf="!memberRanking[i].image_url" class="profile-img"
+              src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{memberRanking[i].userImageFilename}}"
+              onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            <img *ngIf="memberRanking[i].image_url" class="profile-img" src="{{memberRanking[i].image_url}}"
+              onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
+            <ion-col class="event-col8">{{mission.email}}</ion-col>
+            <ion-col class="event-col6">{{displayUseTimeList[i]}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ng-container>
+
+
+    <ion-item no-lines>
+      <button ion-button class="button_add" style="font-size: 14px; box-shadow:none;" outline>더보기</button>
+    </ion-item><br>
+
+    <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
+
+  </ion-list>
+
+  <ng-container *ngIf="comment_popover_option==='보기' || comment_popover_option ==='삭제'">
+    <img *ngIf="profileimg_url" class="profile_comment" style="margin-top: 7%;" [src]="profileimg_url"
+      onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+    <img *ngIf="!profileimg_url" class="profile_comment" style="margin-top: 7%;" src="userData.thumbnail_image"
+      onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+    <div class="container">
+      <textarea class="content_comment" style="margin-top: 9%;" rows="3" cols="20" #myInput maxLength="300"
+        autoGrow="true" placeholder="댓글 등록" (input)="adjustTextarea()" [(ngModel)]="registerReply.comment"></textarea>
+      <button *ngIf="registerReply.comment.length >= 1" ion-button class="comment_input_enroll"
+        (click)="saveSkinQnaReply()">등록</button>
+      <button *ngIf="registerReply.comment.length < 1" ion-button class="comment_input_enroll" disabled
+        (click)="saveSkinQnaReply()">등록</button>
+    </div>
+    <div style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1">
+    </div>
+  </ng-container>
+
+
+  댓글(주석) 
+  <ng-container *ngIf="carezoneData2">
+    <ng-container *ngFor="let registerReply of carezoneData2.comments; let i = index">
+      <img *ngIf="registerReply.img_url" class="profile_comment" [src]="registerReply.img_url"
+        onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+      <img *ngIf="!registerReply.img_url" class="profile_comment" [src]="plinicUserImages[i]"
+        onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+      <ng-container *ngIf="userData">
+        <ng-container *ngIf="userData.email === registerReply.email">
+          <button ion-button class="comment_btn"
+            (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
+        </ng-container>
+      </ng-container>
+      <div class="container">
+        <div class="nickname_comment">{{registerReply.email}}</div>
+        <button *ngIf="comment_popover_option_textarea === i"
+          (click)="replySkinQnaUpdate(registerReply.email, registerReply._id)" ion-button
+          class="comment_enroll">수정</button>
+      </div>
+      <div class="time_comment">{{commentTimeZone[i]}}</div>
+      보기(주석)
+      <ng-container *ngIf="comment_popover_option_textarea !== i ">
+        <div class="content_comment" text-wrap>{{registerReply.comment}}</div>
+      </ng-container>
+      수정(주석)
+      <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea"
+        #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment"
+        (input)="adjustTextareaUpdate($event)" autofocus="true"></textarea>
+
+      <div
+        style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 2%; background-color:#f1f1f1">
+      </div>
+    </ng-container>
+  </ng-container> -->
+
+
+
+
+</ion-content>
