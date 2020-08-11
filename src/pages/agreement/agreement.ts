@@ -37,8 +37,7 @@ agree2: boolean = true;
   // console.log('agree new state:' + this.agree);
   // console.log('agree new state:' + this.agree1);
   // console.log('agree new state:' + this.agree2);
-
-}
+  }
 public dissmiss(){
   this.viewCtrl.dismiss();
 }

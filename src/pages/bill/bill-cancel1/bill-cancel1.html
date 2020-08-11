@@ -1,0 +1,83 @@
+<!--
+  Generated template for the BillCancel1Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core') ">
+    <ion-buttons left>
+      <button (click)="close()" ion-button icon-only>
+        <!-- <img class="android_nav" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" /> -->
+      </button>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>정기결제 해제 신청</ion-title>
+    <ion-buttons (click)="myinfo()" right>
+      <!-- <button  ion-button>
+                  <div class="button_left">{{totaluserpoint}}P &nbsp;<img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
+              </button> -->
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>정기결제 해지 신청</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-card class="card">
+    <ion-grid>
+      <ion-row class="text2">[자동결제]월 정기결제 멤버십</ion-row>
+      <ion-row>
+        <ion-col class="text3" col-8>자동결제</ion-col>
+        <ion-col col-4><button class="btn1" ion-button (click)="bill2()" >해지 신청</button></ion-col>
+      </ion-row>
+      <ion-row>
+        <div
+          style="height:1px; width:95%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 5%; background-color:#f1f1f1">
+        </div>
+      </ion-row>
+      <ion-row>
+        <ion-col class="text5" col-6>서비스명</ion-col>
+        <ion-col class="text6" col-6>플리닉 듀얼 서비스</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="text5" col-6>고객번호</ion-col>
+        <ion-col class="text6" col-6>A125901</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="text5" col-6>월 정기결제 기간</ion-col>
+        <ion-col class="text6" col-6>2020.06.10 ~ 2020.07.10</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="text5" col-6>멤버십 금액</ion-col>
+        <ion-col class="text6" col-6>9,900원</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="text5 colorText" col-6>결제 예정일</ion-col>
+        <ion-col class="text6 colorText" col-6>2020.08.10</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <pre class="text7">
+      ·자동결제 해지 시 기간 만료일까지 사용이 가능합니다.
+      ·기간 만료일이 되면 일주일 안에 제품을 반납해 주셔야 합니다.
+      ·일주일 내에 기기가 도착하고 제품에 이상이 없다고 판단되면 해지가 
+       승인되어 해지가 최종 완료됩니다.
+      ·기타 문의 사항은 플리닉 카카오채널에 1:1 상담을 남겨 주시거나 
+       고객센터로 문의를 주세요.
+      ·해지가 최종 완료되지 않으면 결제일 연장 됩니다.</pre>
+    </ion-row>
+  </ion-grid>
+</ion-content>

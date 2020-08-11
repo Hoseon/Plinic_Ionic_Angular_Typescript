@@ -34,5 +34,209 @@
 
 
 <ion-content no-padding>
-  
+  <ion-grid>
+
+    <!----------- 데이터가 없을때 시작 ----------->
+    <ng-container>
+      <ion-row class="center">
+        <div class="center2">내역이 없습니다.</div>
+        <div><button class="center3" ion-button>정기결제 신청하기</button></div>
+        
+      </ion-row>
+      <!-- <ion-row class="center">
+        <button class="center2" ion-button>정기결제 신청하기</button>
+      </ion-row> -->
+    </ng-container>
+    <!----------- 데이터가 없을때 종료 ----------->
+
+    <!----------- 데이터가 존재할때 시작 ----------->
+    <!-- 
+      <ion-row>
+      <div class="text1">전체 내역</div>
+      </ion-row>
+      <ion-row>
+      <ion-card class="card">
+        <ion-grid>
+          <ion-row class="text2">[자동결제]월 정기결제 멤버십</ion-row>
+          <ion-row>
+            <ion-col class="text3" col-6>결제완료일</ion-col>
+            <ion-col class="text4" col-6>2020년 7월 10일</ion-col>
+          </ion-row>
+          <ion-row>
+            <div
+              style="height:1px; width:95%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 8%; background-color:#f1f1f1">
+            </div>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>서비스명</ion-col>
+            <ion-col class="text6" col-6>플리닉 듀얼 서비스</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>고객번호</ion-col>
+            <ion-col class="text6" col-6>A125901</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>월 정기결제 기간</ion-col>
+            <ion-col class="text6" col-6>2020.06.10 ~ 2020.07.10</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>멤버십 금액</ion-col>
+            <ion-col class="text6" col-6>9,900원</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+      <ion-card class="card">
+        <ion-grid>
+          <ion-row class="text2">[자동결제]월 정기결제 멤버십</ion-row>
+          <ion-row>
+            <ion-col class="text3" col-6>결제완료일</ion-col>
+            <ion-col class="text4" col-6>2020년 7월 10일</ion-col>
+          </ion-row>
+          <ion-row>
+            <div
+              style="height:1px; width:95%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 8%; background-color:#f1f1f1">
+            </div>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>서비스명</ion-col>
+            <ion-col class="text6" col-6>플리닉 듀얼 서비스</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>고객번호</ion-col>
+            <ion-col class="text6" col-6>A125901</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>월 정기결제 기간</ion-col>
+            <ion-col class="text6" col-6>2020.06.10 ~ 2020.07.10</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>멤버십 금액</ion-col>
+            <ion-col class="text6" col-6>9,900원</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+      <ion-card class="card">
+        <ion-grid>
+          <ion-row class="text2">[자동결제]월 정기결제 멤버십</ion-row>
+          <ion-row>
+            <ion-col class="text3" col-6>결제완료일</ion-col>
+            <ion-col class="text4" col-6>2020년 7월 10일</ion-col>
+          </ion-row>
+          <ion-row>
+            <div
+              style="height:1px; width:95%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 8%; background-color:#f1f1f1">
+            </div>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>서비스명</ion-col>
+            <ion-col class="text6" col-6>플리닉 듀얼 서비스</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>고객번호</ion-col>
+            <ion-col class="text6" col-6>A125901</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>월 정기결제 기간</ion-col>
+            <ion-col class="text6" col-6>2020.06.10 ~ 2020.07.10</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>멤버십 금액</ion-col>
+            <ion-col class="text6" col-6>9,900원</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+      <ion-card class="card">
+        <ion-grid>
+          <ion-row class="text2">[자동결제]월 정기결제 멤버십</ion-row>
+          <ion-row>
+            <ion-col class="text3" col-6>결제완료일</ion-col>
+            <ion-col class="text4" col-6>2020년 7월 10일</ion-col>
+          </ion-row>
+          <ion-row>
+            <div
+              style="height:1px; width:95%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 8%; background-color:#f1f1f1">
+            </div>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>서비스명</ion-col>
+            <ion-col class="text6" col-6>플리닉 듀얼 서비스</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>고객번호</ion-col>
+            <ion-col class="text6" col-6>A125901</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>월 정기결제 기간</ion-col>
+            <ion-col class="text6" col-6>2020.06.10 ~ 2020.07.10</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>멤버십 금액</ion-col>
+            <ion-col class="text6" col-6>9,900원</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+      <ion-card class="card">
+        <ion-grid>
+          <ion-row class="text2">[자동결제]월 정기결제 멤버십</ion-row>
+          <ion-row>
+            <ion-col class="text3" col-6>결제완료일</ion-col>
+            <ion-col class="text4" col-6>2020년 7월 10일</ion-col>
+          </ion-row>
+          <ion-row>
+            <div
+              style="height:1px; width:95%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 8%; background-color:#f1f1f1">
+            </div>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>서비스명</ion-col>
+            <ion-col class="text6" col-6>플리닉 듀얼 서비스</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>고객번호</ion-col>
+            <ion-col class="text6" col-6>A125901</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>월 정기결제 기간</ion-col>
+            <ion-col class="text6" col-6>2020.06.10 ~ 2020.07.10</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>멤버십 금액</ion-col>
+            <ion-col class="text6" col-6>9,900원</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+      <ion-card class="card">
+        <ion-grid>
+          <ion-row class="text2">[자동결제]월 정기결제 멤버십</ion-row>
+          <ion-row>
+            <ion-col class="text3" col-6>결제완료일</ion-col>
+            <ion-col class="text4" col-6>2020년 7월 10일</ion-col>
+          </ion-row>
+          <ion-row>
+            <div
+              style="height:1px; width:95%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 8%; background-color:#f1f1f1">
+            </div>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>서비스명</ion-col>
+            <ion-col class="text6" col-6>플리닉 듀얼 서비스</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>고객번호</ion-col>
+            <ion-col class="text6" col-6>A125901</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>월 정기결제 기간</ion-col>
+            <ion-col class="text6" col-6>2020.06.10 ~ 2020.07.10</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text5" col-6>멤버십 금액</ion-col>
+            <ion-col class="text6" col-6>9,900원</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-row> -->
+
+  <!----------- 데이터가 존재할때 종료 ----------->
+  </ion-grid>
 </ion-content>
