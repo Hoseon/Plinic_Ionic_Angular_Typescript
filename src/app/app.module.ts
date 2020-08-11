@@ -227,6 +227,10 @@ import { SkinDiagnoseFirstOilPageModule } from '../pages/skin-diagnose-first-oil
 //빌링 결제 
 import { MembershipManagePageModule } from '../pages/bill/membership-manage/membership-manage.module';
 import { MembershipListPageModule } from '../pages/bill/membership-list/membership-list.module';
+import { BillCancel1PageModule } from '../pages/bill/bill-cancel1/bill-cancel1.module'
+import { BillCancel2PageModule } from '../pages/bill/bill-cancel2/bill-cancel2.module'
+import { BillCancel3PageModule } from '../pages/bill/bill-cancel3/bill-cancel3.module'
+import { BillCancel4PageModule } from '../pages/bill/bill-cancel4/bill-cancel4.module'
 
 //태그
 import { RlTagInputModule } from 'angular2-tag-input';
@@ -279,6 +283,7 @@ import { ProductDetailPageModule } from '../pages/product-detail/product-detail.
 import { ProductSungbunPageModule } from '../pages/product-sungbun/product-sungbun.module'
 
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
+
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -456,6 +461,10 @@ export function getAuthHttp(http, storage) {
     ProductSungbunPageModule,
     MembershipManagePageModule,
     MembershipListPageModule,
+    BillCancel1PageModule,
+    BillCancel2PageModule,
+    BillCancel3PageModule,
+    BillCancel4PageModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

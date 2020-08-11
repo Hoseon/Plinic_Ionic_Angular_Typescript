@@ -1,4 +1,4 @@
-page-membership-manage {
+page-bill-cancel2 {
 
   .header-md::after,
   .tabs-md[tabsPlacement="top"]>.tabbar::after,
@@ -100,29 +100,117 @@ page-membership-manage {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    height: 150%;
-    top: -20%;
+    height: 100%;
+    top: 0%;
     width: 140%;
     color: #292929;
+    margin-top: 1%;
   }
 
-  ion-list .item-inner {
-    height: 8.3vh;
+  .center {
+    margin: 0 auto;
+  }
+
+  .left {
+    margin-left: 5%;
   }
 
   .text1 {
-    width: 200px;
-    // height: 14px;
+    width: 100%;
+    height: 58.5px;
     font-family: NotoSansCJKkr;
-    font-size: 15px;
+    font-size: 24.5px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: 2.23;
-    letter-spacing: -0.45px;
+    line-height: 1.37;
+    letter-spacing: -0.04px;
     text-align: left;
     color: #232323;
-    margin-left: 5%;
-
+    padding: 0;
   }
+
+  .text2 {
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .text3 {
+    font-size: 22.5px;
+    font-weight: 300;
+    letter-spacing: -0.68px;
+  }
+
+  .text4 {
+    width: 90%;
+    height: 56px;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.69;
+    letter-spacing: -0.39px;
+    text-align: left;
+    color: #232323;
+    margin: 0;
+    margin-left: 2%;
+  }
+
+  .text5 {
+    color: #5c59b6;
+    margin: 0;
+  }
+
+  .row1 {
+    margin-top: 6%;
+    margin-left: -4.5%;
+  }
+
+  .checkbox {
+    position: relative;
+    text-align: center;
+    width: 10px !important;
+    height: 10px !important;
+    left: 5%;
+    bottom: 4%;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    z-index: 1000 !important;
+    padding: 0;
+    border: 0;
+    margin: 0;
+  }
+
+  .footer {
+    position: absolute;
+    bottom : 3%;
+  }
+
+  .col-center {
+    left: 50%;
+    right: 50%;
+  }
+
+  .btn1 {
+    width: 100%;
+    height: 50px;
+    box-shadow: none;
+    border-radius: 3.5px;
+    background-color: #c8c8c8;
+  }
+
+  .btn2 {
+    box-shadow: none;
+    border-radius: 3.5px;
+    width: 100%;
+    height: 50px;
+  }
+
 }
