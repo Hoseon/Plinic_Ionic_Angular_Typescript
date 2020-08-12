@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { BillCancel3Page } from '../bill-cancel3/bill-cancel3';
 
 /**
  * Generated class for the BillCancel2Page page.
@@ -34,6 +35,14 @@ export class BillCancel2Page {
     // console.log('agree new state:' + this.agree1);
     // console.log('agree new state:' + this.agree2);
     }
+
+  bill3() {
+    this.navCtrl.push(BillCancel3Page).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+        console.log("멤버십 해지 신청 페이지 닫힘");
+      });
+    });
+  }
 
 
 
