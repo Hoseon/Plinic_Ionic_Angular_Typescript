@@ -6,32 +6,57 @@
 -->
 <ion-header>
 
-    <ion-navbar *ngIf="platform.is('android') || platform.is('core') ">
-        <ion-buttons left>
-          <button (click)="close()" ion-button icon-only>
-            <!-- <img class="android_nav" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" /> -->
-          </button>
-        </ion-buttons>
-        <ion-title class="android_title" text-wrap>정기결제 해지 신청</ion-title>
-        <ion-buttons (click)="myinfo()" right>
-          <!-- <button  ion-button>
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core') ">
+    <ion-buttons left>
+      <button (click)="close()" ion-button icon-only>
+        <!-- <img class="android_nav" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" /> -->
+      </button>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>정기결제 해지 신청</ion-title>
+    <ion-buttons (click)="myinfo()" right>
+      <!-- <button  ion-button>
                   <div class="button_left">{{totaluserpoint}}P &nbsp;<img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
               </button> -->
-        </ion-buttons>
-      </ion-navbar>
-    
-      <ion-navbar *ngIf="platform.is('ios')" no-lines>
-        <ion-buttons left no-lines>
-          <button ion-button navPop icon-only>
-            <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
-            <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
-          </button>
-        </ion-buttons>
-        <ion-title class="ios_title" text-wrap>정기결제 해지 신청</ion-title>
-      </ion-navbar>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>정기결제 해지 신청</ion-title>
+  </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content no-padding>
+  <ion-grid class="grid_background" no-padding>
+    <ion-label class="text1">주문번호 15901</ion-label>
+    <ion-card class="card">
+      정기결제
+    </ion-card>
+  </ion-grid>
+  <br><br><br>
+  <ion-grid class="select-border" no-padding>
+    <ion-item no-lines>
+      <ion-label>해지 사유 선택</ion-label>
+      <ion-select [(ngModel)]="os" submitText="확인" cancelText="Cancel">
+        <ion-option value="dos">금액이 부담됨</ion-option>
+        <ion-option value="lunix">생각만큼 사용을 잘 안함</ion-option>
+        <ion-option value="mac7">효과를 못 느낌</ion-option>
+        <ion-option value="mac8">다른 제품을 사용하고자 함</ion-option>
+        <ion-option value="win3.1">단순 변심</ion-option>
+        <ion-option value="win95">기타</ion-option>
+      </ion-select>
+    </ion-item>
 
+    <ion-item>
+      <ion-label position="stacked">Summary</ion-label>
+      <ion-textarea disabled readonly value="Ionic enables developers to build performant, high-quality mobile apps.">
+      </ion-textarea>
+    </ion-item>
+  </ion-grid>
 </ion-content>
