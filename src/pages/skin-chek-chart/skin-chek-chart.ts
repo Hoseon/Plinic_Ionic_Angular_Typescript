@@ -68,6 +68,9 @@ export class SkinChekChartPage {
   uvResult: any;
   loading: any;
 
+  skinTone: any = "#eecac3";
+
+
   // left1 : any = '0%';
   // left2 : any = '0%';
   // left3 : any = '0%';
