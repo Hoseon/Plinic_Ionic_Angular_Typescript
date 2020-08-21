@@ -1,0 +1,328 @@
+<!--
+  Generated template for the SkinCleanPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core')" no-lines>
+    <!-- <ion-buttons (click)="chartguide()" end>
+      <div class="guide_android">이용안내</div>
+    </ion-buttons> -->
+    <ion-title class="android_title" text-wrap>피부 클린 지수</ion-title>
+    <div class="android_search" style="right: 7%;">
+    </div>
+  </ion-navbar>
+
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+    <ion-title  class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <!-- <ion-buttons (click)="chartguide()" end>
+      <div class="guide_ios">
+        이용안내
+      </div>
+    </ion-buttons> -->
+    <ion-title class="ios_title" text-wrap>피부 클린 지수</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content no-padding>
+  <br>
+  <br>
+  <!-- <ion-segment>
+    <ion-segment-button >
+      Kittens
+    </ion-segment-button>
+    <ion-segment-button >
+      Puppies
+    </ion-segment-button>
+  </ion-segment> -->
+
+  <ion-grid no-padding>
+    <ion-row class="segment">
+      <ion-col *ngIf="button1" class="borderline1" col-6>
+        <div class="text1">볼 부위</div>
+      </ion-col>
+      <ion-col (click)="toggle_Btn('btn1')" *ngIf="!button1" class="borderline1_false" col-6>
+        <div class="text1">볼 부위</div>
+      </ion-col>
+      <ion-col *ngIf="button2" class="borderline2" col-6>
+        <div class="text2">이마 부위</div>
+      </ion-col>
+      <ion-col (click)="toggle_Btn('btn2')" *ngIf="!button2" class="borderline2_false" col-6>
+        <div class="text2">이마 부위</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="grid1">
+    <br><br>
+    <ion-row>
+      <ion-col class="clean_text1" col-11>피부 클린 상태</ion-col>
+      <ion-col col-2>
+        <div><img class="clean_img" src="assets/img/skin-chek-chart/clean.png" /></div>
+        <div class="clean_text2">맑음</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-9>
+        <pre class="clean_text3">등록된 이미지와 측정일 이미지를 비교한
+데이터로 <span class="clean_text4">낮을수록 클린한 편</span>입니다.</pre>
+      </ion-col>
+      <ion-col class="clean_text5" col-3>17.5 <span class="clean_text6">au</span></ion-col>
+    </ion-row>
+    <br>
+    <ion-row class="center">
+      <ion-col class="clean_text7" col-4>비교분석 이미지</ion-col>
+      <ion-col class="clean_text8" col-4>측정일 이미지</ion-col>
+      <ion-col class="clean_text9" col-4>등록된 이미지</ion-col>
+    </ion-row>
+    <br><br>
+    <ion-row class="clean_row2">
+      <img class="clean_img2" src="assets/img/skin-chek-chart/skin_clean_result.png" />
+    </ion-row>
+
+    <ion-row>
+      <pre class="clean_text10">※ 측정 환경에 따라 정확하지 않을 수 있습니다. 
+※ 분석 정확도를 높이려면 측정방법이 정확해야 합니다.</pre>
+    </ion-row>
+    <div
+      style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+    </div>
+    <br>
+    <ion-row>
+      <ion-col class="clean_text11" col-8>월별 Best & Worst 클린 지수</ion-col>
+      <ion-col class="clean_row3" col-4>
+        <ion-select (ionChange)="yearmonthselect($event)" placeholder="2020년5월" interface="popover"
+          [(ngModel)]="valueday.day" multiple="false" class="linechart_btn">
+          <ion-option *ngFor="let days of monthdate">{{days.day}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <br><br><br>
+    <ion-row>
+      <ion-col class="center" col-6>
+        <div class="rectangle1">
+          <img src="assets/img/skin-chek-chart/best_icon.png" class="clean_img3" />
+          <div class="clean_text12">Best</div>
+          <div class="clean_text13">2020.08.01</div>
+          <img src="assets/img/skin-chek-chart/clean_sun.png" class="clean_img5" />
+          <div class="clean_text14">맑음</div>
+          <div class="clean_text15">17.5<span class="clean_text16">&nbsp;&nbsp;au</span></div>
+        </div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="rectangle2">
+          <img src="assets/img/skin-chek-chart/worst_icon.png" class="clean_img4" />
+          <div class="clean_text12">worst</div>
+          <div class="clean_text13">2020.08.06</div>
+          <img src="assets/img/skin-chek-chart/clean_cloud.png" class="clean_img6" />
+          <div class="clean_text14">보통</div>
+          <div class="clean_text15">39.5<span class="clean_text16">&nbsp;&nbsp;au</span></div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+  <br><br>
+
+  <ion-grid>
+    <ion-row class="movie_row1">
+      <pre class="movie_text1">내 피부 맞춤
+어드바이스를 확인하세요
+      </pre>
+    </ion-row>
+    <ion-row class="movie_row2">
+      <div class="movie_text2">피부에 도움이 되는 다양한 콘텐츠를 추천드립니다</div>
+    </ion-row>
+    <br><br>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">추천 영상</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <ion-col col-6>
+        <img src="assets/img/skin-chek-chart/youtube1.png" class="movie_frame" />
+      </ion-col>
+      <ion-col col-6>
+        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
+        <div class="movie_text10">피부과 전문의 이하은</div>
+        <div class="movie_text11">조회수 143</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <img src="assets/img/skin-chek-chart/youtube2.png" class="movie_frame" />
+      </ion-col>
+      <ion-col col-6>
+        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
+        <div class="movie_text10">피부과 전문의 이하은</div>
+        <div class="movie_text11">조회수 143</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <img src="assets/img/skin-chek-chart/youtube3.png" class="movie_frame" />
+      </ion-col>
+      <ion-col col-6>
+        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
+        <div class="movie_text10">피부과 전문의 이하은</div>
+        <div class="movie_text11">조회수 143</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+  <div
+    style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">추천 뷰티 꿀팁</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-slides *ngIf="communityEditorBeautyLoadData" class="tip_slide_row" slidesPerView=2.5>
+        <ng-container *ngFor="let community of communityEditorBeautyLoadData; let i = index">
+          <ion-slide (click)="openBrowser_android(community.posturl, community.body, community._id)"
+            class="tip_slide_row2">
+            <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" class="tip_img" />
+            <div class="tip_text1">{{community.body}}</div>
+            <div class="tip_text2">조회수 {{community.views}}</div>
+          </ion-slide>
+        </ng-container>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <div
+    style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+  <br>
+
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">추천 화장품</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <br>
+    <ion-row class="product_row1">
+      <ion-col col-3>
+        <div class="product_img"><img class="prd_img" src="assets/img/skin-chek-chart/product1.png"></div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="product_text1">올데이 클렌징 밤</div>
+        <div class="product_text2">라디셀</div>
+      </ion-col>
+      <ion-col col-3>
+        <div class="product_box">
+          <div class="product_text">보기</div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="product_row1">
+      <ion-col col-3>
+        <div class="product_img"><img class="prd_img" src="assets/img/skin-chek-chart/product2.png"></div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="product_text1">제로 모공 패드</div>
+        <div class="product_text2">메디큐브</div>
+      </ion-col>
+      <ion-col col-3>
+        <div class="product_box">
+          <div class="product_text">보기</div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="product_row1">
+      <ion-col col-3>
+        <div class="product_img"><img class="prd_img" src="assets/img/skin-chek-chart/product3.png"></div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="product_text1">에스투드 프로덱터 3.2</div>
+        <div class="product_text2">디마르3</div>
+      </ion-col>
+      <ion-col col-3>
+        <div class="product_box">
+          <div class="product_text">보기</div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="product_row1">
+      <ion-col col-3>
+        <div class="product_img"><img class="prd_img" src="assets/img/skin-chek-chart/product4.png"></div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="product_text1">슈퍼 화산송이 모공 마스크 2X</div>
+        <div class="product_text2">이니스프리</div>
+      </ion-col>
+      <ion-col col-3>
+        <div class="product_box">
+          <div class="product_text">보기</div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+  <div
+    style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">베스트 피부 고민</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <br><br>
+    <ion-row>
+      <ion-slides pager>
+        <ng-container *ngFor="let skinqnaMain of skinQnaMainData; let i = index">
+          <ion-slide (click)="community_qna_modify(skinqnaMain._id)">
+            <ion-card class="card">
+              <div><span class="beauty_note_Q">Q </span> <span class="card-title">{{skinqnaMain.title}}</span></div><br>
+              <!-- <div class="card-subtitle"><span class="beauty_note_Q">A </span>{{skinqnaMain.comments[0].body}}</div> -->
+              <div *ngIf="skinqnaMain.comments.length > 0">
+                <span class="beauty_note_A">A</span>
+                <span class="card-subtitle">{{skinqnaMain.comments[0].comment}}</span></div>
+            </ion-card>
+          </ion-slide>
+        </ng-container>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+
+  <br><br><br><br>
+
+  <br><br><br><br><br><br>
+</ion-content>

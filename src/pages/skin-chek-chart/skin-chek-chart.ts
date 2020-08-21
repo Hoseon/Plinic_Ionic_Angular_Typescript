@@ -12,6 +12,9 @@ import { format } from 'date-fns';
 import 'chartjs-plugin-labels';
 import { SkincheckGuidePage } from '../skincheck-guide/skincheck-guide'
 import { CameraGuidePage } from '../camera-guide/camera-guide'
+import { PoreSizePage } from '../pore-size/pore-size'
+import { PoreCountPage } from '../pore-count/pore-count'
+import { SkinCleanPage } from '../skin-clean/skin-clean'
 
 /**
  * Generated class for the SkinChekChartPage page.
@@ -551,4 +554,27 @@ export class SkinChekChartPage {
     this.loading.present();
   }
 
+  poreSize() {
+    this.navCtrl.push(PoreSizePage).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+        console.log("모공 크기 닫힘");
+      });
+    });
+  }
+
+  poreCount() {
+    this.navCtrl.push(PoreCountPage).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+        console.log("모공 갯수 닫힘");
+      });
+    });
+  }
+
+  skinClean() {
+    this.navCtrl.push(SkinCleanPage).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+        console.log("피부 클린 지수 닫힘");
+      });
+    });
+  }
 }

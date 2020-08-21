@@ -283,7 +283,9 @@ import { ProductDetailPageModule } from '../pages/product-detail/product-detail.
 import { ProductSungbunPageModule } from '../pages/product-sungbun/product-sungbun.module'
 
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
-
+import { PoreSizePageModule } from '../pages/pore-size/pore-size.module'
+import { PoreCountPageModule } from '../pages/pore-count/pore-count.module'
+import { SkinCleanPageModule } from '../pages/skin-clean/skin-clean.module'
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -465,6 +467,9 @@ export function getAuthHttp(http, storage) {
     BillCancel2PageModule,
     BillCancel3PageModule,
     BillCancel4PageModule,
+    PoreSizePageModule,
+    PoreCountPageModule,
+    SkinCleanPageModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
