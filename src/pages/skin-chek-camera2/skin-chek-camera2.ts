@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, LoadingController, Loading, IonicPage, NavController, NavParams, Platform, ViewController } from 'ionic-angular';
+import { IonicApp, AlertController, LoadingController, Loading, IonicPage, NavController, NavParams, Platform, ViewController } from 'ionic-angular';
 import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture'
 import { SkinChekCamera3Page } from '../skin-chek-camera3/skin-chek-camera3'
 import { AuthService } from '../../providers/auth-service';
@@ -47,6 +47,10 @@ export class SkinChekCamera2Page {
   camerafile2: any;
   camerafile3: any;
 
+  result1: any;
+  result2: any;
+  ageRange: any;
+  step: any;
 
 
   constructor(
@@ -59,12 +63,19 @@ export class SkinChekCamera2Page {
     private loadingCtrl: LoadingController,
     private transfer: Transfer,
     private alertCtrl: AlertController,
+    public ionicApp: IonicApp,
   ) {
+    
   }
 
   async ionViewDidLoad() {
 
     this.camerafile = this.navParams.get('file1');
+
+    if(this.navParams.get('step')) {
+      this.step = this.navParams.get('step')
+    }
+    console.log("현재 스텝 상태는? : " + this.step);
 
     console.log('ionViewDidLoad SkinChekMunJinPage');
     await this.loadItems();
@@ -92,6 +103,7 @@ export class SkinChekCamera2Page {
           id: items.id,
           age_range: items.age_range,
           birthday: items.birthday,
+          skincomplaint: items.skincomplaint,
           email: items.email,
           gender: items.gender,
           nickname: items.nickname,
@@ -103,16 +115,18 @@ export class SkinChekCamera2Page {
       } else {
         this.userData = {
           accessToken: items.accessToken,
-          id: items.id,
+          id: this.jwtHelper.decodeToken(items).id,
           age_range: items.age_range,
-          birthday: items.birthday,
+          birthday: this.jwtHelper.decodeToken(items).birthday,
+          skincomplaint: this.jwtHelper.decodeToken(items).skincomplaint,
           email: this.jwtHelper.decodeToken(items).email,
-          gender: items.gender,
+          gender: this.jwtHelper.decodeToken(items).gender,
           nickname: this.jwtHelper.decodeToken(items).name,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
         };
       }
+      this.getAgeRange();
     });
   }
 
@@ -145,8 +159,8 @@ export class SkinChekCamera2Page {
   macro_player() {
     var i = 0;
     this.cameraTimer = Observable.interval(300).subscribe(x => {
-      // this.cameraCount = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=&random+\=' + Math.random();
-      this.cameraCount = 'http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin&random+\=' + Math.random();
+      // this.cameraCount = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=&random+\=' + Math.random(); //회색 카메라
+      this.cameraCount = 'http://192.168.1.1/protocol.csp?opt=snap&function=set&random+\=' + Math.random(); //중국 카메라 테스트 2020-09-09
       //http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin
       i++;
     });
@@ -154,7 +168,7 @@ export class SkinChekCamera2Page {
 
   showLoading() {
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: '피부촬영 분석중입니다'
     });
     this.loading.present();
   }
@@ -162,17 +176,86 @@ export class SkinChekCamera2Page {
   camera2() {
     // this.showLoading();
     const fileTransfer: TransferObject = this.transfer.create();
-    let url = 'http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin';
-    // let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=';
+    let url = 'http://192.168.1.1/protocol.csp?opt=snap&function=set'; //중국 카메라 2020-09-09
+    // let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd='; //회색 카메라
     fileTransfer.download(url, cordova.file.dataDirectory + 'file2.jpg').then((entry) => {
+      this.cameraCount = 'http://192.168.1.1/protocol.csp?opt=shutdown&function=set';
+      this.cameraTimer.complete();
       console.log('download complete: ' + entry.toURL());
       this.camerafile2 = entry.toURL();
-      if(this.camerafile2 !== "") {
-        this.navCtrl.push(SkinChekCamera3Page,{file1:this.camerafile, file2:this.camerafile2}).then(() => {
-          this.navCtrl.getActive().onDidDismiss(data => {
-            console.log("카메라2 페이지 닫힘");
-          });
-        });
+      if(this.userData && this.camerafile2 !== "") {
+        this.showLoading();
+        setTimeout(() => {
+          if(this.step ==='first') {
+            this.auth.cameraTest(this.camerafile, this.camerafile2, this.userData).then(data => {
+              // if (!data) {
+              if(data) {
+                this.result1 = data.result1;
+                this.result2 = data.result2;
+                console.log("실제 데이터는? : " + JSON.stringify(data));
+              }          
+                this.loading.dismiss();
+                if(data) {
+                  this.auth.skinAnaly(this.result1, this.result2, this.ageRange, this.userData).subscribe(data => {
+                    console.log("데이터 저장 완료")
+                  }, error => {
+                    console.log("데이터 저장 완료")
+                  })
+                }
+                  
+                let alert2 = this.alertCtrl.create({
+                  cssClass: 'push_alert',
+                  title: '사진 촬영',
+                  message: "피부 분석이 완료 되었습니다",
+                  buttons: [
+                    // {
+                    //   text: '취소',
+                    //   role: 'cancel',
+                    //   handler: () => {
+                    //   }
+                    // },
+                    {
+                      text: '확인',
+                      handler: () => {
+                        this.navCtrl.parent.select(4);
+                      }
+                    }
+                  ]
+                });
+                alert2.present();
+            });
+          } else if (this.step ==='second') {
+            this.auth.skinAnalySecondSave(this.camerafile, this.camerafile2, this.userData, this.step).then(data => {
+              // if (!data) {
+                this.loading.dismiss();
+                  
+                let alert2 = this.alertCtrl.create({
+                  cssClass: 'push_alert',
+                  title: '사진 촬영',
+                  message: "피부 분석이 완료 되었습니다",
+                  buttons: [
+                    // {
+                    //   text: '취소',
+                    //   role: 'cancel',
+                    //   handler: () => {
+                    //   }
+                    // },
+                    {
+                      text: '확인',
+                      handler: () => {
+                        this.navCtrl.parent.select(4);
+                      }
+                    }
+                  ]
+                });
+                alert2.present();
+            },error => {
+              alert("에러 발생");
+            });
+          }
+        }, 10000);
+        
+
       } else {
         let alert2 = this.alertCtrl.create({
           cssClass: 'push_alert',
@@ -194,4 +277,21 @@ export class SkinChekCamera2Page {
     });
   }
   
+
+  public dismissAllModal() {
+    let activeModal = this.ionicApp._modalPortal.getActive();
+    if (activeModal) {
+      activeModal.dismiss().then(() => {
+        this.dismissAllModal()
+      });
+    }
+  }
+
+  getAgeRange() {
+    var age = 0;
+    var age_range = '';
+    age = Number(new Date().getFullYear()) - Number(this.userData.birthday.substr(0,4)) + 1 ;
+    this.ageRange = String(age).substr(0,1) + '0';
+  }
+
 }

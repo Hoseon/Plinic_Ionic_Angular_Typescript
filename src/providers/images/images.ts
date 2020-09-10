@@ -439,6 +439,11 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public getAvgPore(age, gender) {
+    return this.http.get(this.apiURL + 'getSkinAnalyAge/' + age + '/' + gender) 
+      .map(response => response.json());
+  }
+
   
 
 

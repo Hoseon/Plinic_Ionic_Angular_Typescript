@@ -67,76 +67,160 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid class="grid1">
-    <br><br>
-    <ion-row>
-      <ion-col class="clean_text1" col-11>피부 클린 상태</ion-col>
-      <ion-col col-2>
-        <div><img class="clean_img" src="assets/img/skin-chek-chart/clean.png" /></div>
-        <div class="clean_text2">맑음</div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-9>
-        <pre class="clean_text3">등록된 이미지와 측정일 이미지를 비교한
+
+  <ng-container *ngIf="button1">
+    <ion-grid class="grid1">
+      <br><br>
+      <ion-row>
+        <ion-col class="clean_text1" col-11>피부 클린 상태</ion-col>
+        <ion-col col-2>
+          <div><img class="clean_img" src="assets/img/skin-chek-chart/clean.png" /></div>
+          <div class="clean_text2">맑음</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-9>
+          <pre class="clean_text3">등록된 이미지와 측정일 이미지를 비교한
 데이터로 <span class="clean_text4">낮을수록 클린한 편</span>입니다.</pre>
-      </ion-col>
-      <ion-col class="clean_text5" col-3>17.5 <span class="clean_text6">au</span></ion-col>
-    </ion-row>
-    <br>
-    <ion-row class="center">
-      <ion-col class="clean_text7" col-4>비교분석 이미지</ion-col>
-      <ion-col class="clean_text8" col-4>측정일 이미지</ion-col>
-      <ion-col class="clean_text9" col-4>등록된 이미지</ion-col>
-    </ion-row>
-    <br><br>
-    <ion-row class="clean_row2">
-      <img class="clean_img2" src="assets/img/skin-chek-chart/skin_clean_result.png" />
-    </ion-row>
+        </ion-col>
+        <ion-col col-3>
+          <div class="clean_text5">{{skinCleanCheekScore}}&nbsp;<span class="clean_text6">au</span></div>
+        </ion-col>
+      </ion-row>
+      <br>
 
-    <ion-row>
-      <pre class="clean_text10">※ 측정 환경에 따라 정확하지 않을 수 있습니다. 
+      <!-- [ngClass]="{'fadeOut': !show, 'fadeIn': show}" -->
+      <ion-row class="center">
+        <ion-col (click)="image_toggle('image1')" [ngClass]="{ 'clean_text7' : image1, 'clean_text7_false' : !image1}" col-4>비교분석 이미지</ion-col>
+        <ion-col (click)="image_toggle('image2')" [ngClass]="{ 'clean_text8' : image2, 'clean_text8_false' : !image2}" col-4>측정일 이미지</ion-col>
+        <ion-col (click)="image_toggle('image3')" [ngClass]="{ 'clean_text9' : image3, 'clean_text9_false' : !image3}" col-4>등록된 이미지</ion-col>
+      </ion-row>
+      <br><br>
+      <ion-row class="clean_row2">
+        <img *ngIf="image1" class="clean_img2" src="assets/img/skin-chek-chart/skin_clean_result.png" />
+        <img *ngIf="image2" class="clean_img2" src="{{image2CheekUrl}}" />
+        <img *ngIf="image3" class="clean_img2" src="{{image3CheekUrl}}" />
+      </ion-row>
+  
+      <ion-row>
+        <pre class="clean_text10">※ 측정 환경에 따라 정확하지 않을 수 있습니다. 
 ※ 분석 정확도를 높이려면 측정방법이 정확해야 합니다.</pre>
-    </ion-row>
-    <div
-      style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
-    </div>
-    <br>
-    <ion-row>
-      <ion-col class="clean_text11" col-8>월별 Best & Worst 클린 지수</ion-col>
-      <ion-col class="clean_row3" col-4>
-        <ion-select (ionChange)="yearmonthselect($event)" placeholder="2020년5월" interface="popover"
-          [(ngModel)]="valueday.day" multiple="false" class="linechart_btn">
-          <ion-option *ngFor="let days of monthdate">{{days.day}}</ion-option>
-        </ion-select>
-      </ion-col>
-    </ion-row>
-    <br><br><br>
-    <ion-row>
-      <ion-col class="center" col-6>
-        <div class="rectangle1">
-          <img src="assets/img/skin-chek-chart/best_icon.png" class="clean_img3" />
-          <div class="clean_text12">Best</div>
-          <div class="clean_text13">2020.08.01</div>
-          <img src="assets/img/skin-chek-chart/clean_sun.png" class="clean_img5" />
-          <div class="clean_text14">맑음</div>
-          <div class="clean_text15">17.5<span class="clean_text16">&nbsp;&nbsp;au</span></div>
-        </div>
-      </ion-col>
-      <ion-col col-6>
-        <div class="rectangle2">
-          <img src="assets/img/skin-chek-chart/worst_icon.png" class="clean_img4" />
-          <div class="clean_text12">worst</div>
-          <div class="clean_text13">2020.08.06</div>
-          <img src="assets/img/skin-chek-chart/clean_cloud.png" class="clean_img6" />
-          <div class="clean_text14">보통</div>
-          <div class="clean_text15">39.5<span class="clean_text16">&nbsp;&nbsp;au</span></div>
-        </div>
-      </ion-col>
-    </ion-row>
+      </ion-row>
+      <div
+        style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+      </div>
+      <br>
+      <ion-row>
+        <ion-col class="clean_text11" col-8>월별 Best & Worst 클린 지수</ion-col>
+        <ion-col class="clean_row3" col-4>
+          <ion-select (ionChange)="yearmonthselect($event)" placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover"
+            [(ngModel)]="valueday.day" multiple="false" class="linechart_btn">
+            <ion-option *ngFor="let days of monthdate">{{days.day}}</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <br><br><br>
+      <ion-row>
+        <ion-col class="center" col-6>
+          <div class="rectangle1">
+            <img src="assets/img/skin-chek-chart/best_icon.png" class="clean_img3" />
+            <div class="clean_text12">Best</div>
+            <div class="clean_text13">2020.08.01</div>
+            <img src="assets/img/skin-chek-chart/clean_sun.png" class="clean_img5" />
+            <div class="clean_text14">맑음</div>
+            <div class="clean_text15">17.5<span class="clean_text16">&nbsp;&nbsp;au</span></div>
+          </div>
+        </ion-col>
+        <ion-col col-6>
+          <div class="rectangle2">
+            <img src="assets/img/skin-chek-chart/worst_icon.png" class="clean_img4" />
+            <div class="clean_text12">worst</div>
+            <div class="clean_text13">2020.08.06</div>
+            <img src="assets/img/skin-chek-chart/clean_cloud.png" class="clean_img6" />
+            <div class="clean_text14">보통</div>
+            <div class="clean_text15">39.5<span class="clean_text16">&nbsp;&nbsp;au</span></div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <br><br>
+  </ng-container>
 
-  </ion-grid>
-  <br><br>
+  <ng-container *ngIf="button2">
+    <ion-grid class="grid1">
+      <br><br>
+      <ion-row>
+        <ion-col class="clean_text1" col-11>피부 클린 상태</ion-col>
+        <ion-col col-2>
+          <div><img class="clean_img" src="assets/img/skin-chek-chart/clean.png" /></div>
+          <div class="clean_text2">맑음</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-9>
+          <pre class="clean_text3">등록된 이미지와 측정일 이미지를 비교한
+  데이터로 <span class="clean_text4">낮을수록 클린한 편</span>입니다.</pre>
+        </ion-col>
+        <ion-col col-3>
+          <div class="clean_text5">{{skinCleanForeHeadScore}}&nbsp;<span class="clean_text6">au</span></div>
+        </ion-col>
+      </ion-row>
+      <br>
+      <ion-row class="center">
+        <ion-col (click)="image_toggle('image1')" [ngClass]="{ 'clean_text7' : image1, 'clean_text7_false' : !image1}" col-4>비교분석 이미지</ion-col>
+        <ion-col (click)="image_toggle('image2')" [ngClass]="{ 'clean_text8' : image2, 'clean_text8_false' : !image2}" col-4>측정일 이미지</ion-col>
+        <ion-col (click)="image_toggle('image3')" [ngClass]="{ 'clean_text9' : image3, 'clean_text9_false' : !image3}" col-4>등록된 이미지</ion-col>
+      </ion-row>
+      <br><br>
+      <ion-row class="clean_row2">
+        <img *ngIf="image1" class="clean_img2" src="assets/img/skin-chek-chart/skin_clean_result.png" />
+        <img *ngIf="image2" class="clean_img2" src="{{image2ForeHeadUrl}}" />
+        <img *ngIf="image3" class="clean_img2" src="{{image3ForeHeadUrl}}" />
+      </ion-row>
+      <ion-row>
+        <pre class="clean_text10">※ 측정 환경에 따라 정확하지 않을 수 있습니다. 
+※ 분석 정확도를 높이려면 측정방법이 정확해야 합니다.</pre>
+      </ion-row>
+      <div
+        style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+      </div>
+      <br>
+      <ion-row>
+        <ion-col class="clean_text11" col-8>월별 Best & Worst 클린 지수</ion-col>
+        <ion-col class="clean_row3" col-4>
+          <ion-select (ionChange)="yearmonthselect($event)" placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover"
+            [(ngModel)]="valueday.day" multiple="false" class="linechart_btn">
+            <ion-option *ngFor="let days of monthdate">{{days.day}}</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <br><br><br>
+      <ion-row>
+        <ion-col class="center" col-6>
+          <div class="rectangle1">
+            <img src="assets/img/skin-chek-chart/best_icon.png" class="clean_img3" />
+            <div class="clean_text12">Best</div>
+            <div class="clean_text13">2020.08.01</div>
+            <img src="assets/img/skin-chek-chart/clean_sun.png" class="clean_img5" />
+            <div class="clean_text14">맑음</div>
+            <div class="clean_text15">17.5<span class="clean_text16">&nbsp;&nbsp;au</span></div>
+          </div>
+        </ion-col>
+        <ion-col col-6>
+          <div class="rectangle2">
+            <img src="assets/img/skin-chek-chart/worst_icon.png" class="clean_img4" />
+            <div class="clean_text12">worst</div>
+            <div class="clean_text13">2020.08.06</div>
+            <img src="assets/img/skin-chek-chart/clean_cloud.png" class="clean_img6" />
+            <div class="clean_text14">보통</div>
+            <div class="clean_text15">39.5<span class="clean_text16">&nbsp;&nbsp;au</span></div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <br><br>
+  </ng-container>
+  
 
   <ion-grid>
     <ion-row class="movie_row1">
@@ -203,8 +287,8 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-slides *ngIf="communityEditorBeautyLoadData" class="tip_slide_row" slidesPerView=2.5>
-        <ng-container *ngFor="let community of communityEditorBeautyLoadData; let i = index">
+      <ion-slides *ngIf="randomTip2" class="tip_slide_row" slidesPerView=2.5>
+        <ng-container *ngFor="let community of randomTip2; let i = index">
           <ion-slide (click)="openBrowser_android(community.posturl, community.body, community._id)"
             class="tip_slide_row2">
             <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" class="tip_img" />
@@ -233,57 +317,16 @@
       </ion-col>
     </ion-row>
     <br>
-    <ion-row class="product_row1">
+
+    <ion-row *ngFor="let product of randomProduct2" class="product_row1">
       <ion-col col-3>
-        <div class="product_img"><img class="prd_img" src="assets/img/skin-chek-chart/product1.png"></div>
+        <div class="product_img"><img class="prd_img" src="{{product.image_url}}"></div>
       </ion-col>
       <ion-col col-6>
-        <div class="product_text1">올데이 클렌징 밤</div>
-        <div class="product_text2">라디셀</div>
+        <div class="product_text1">{{product.product_name}}</div>
+        <div class="product_text2">{{product.brand_name}}</div>
       </ion-col>
-      <ion-col col-3>
-        <div class="product_box">
-          <div class="product_text">보기</div>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row class="product_row1">
-      <ion-col col-3>
-        <div class="product_img"><img class="prd_img" src="assets/img/skin-chek-chart/product2.png"></div>
-      </ion-col>
-      <ion-col col-6>
-        <div class="product_text1">제로 모공 패드</div>
-        <div class="product_text2">메디큐브</div>
-      </ion-col>
-      <ion-col col-3>
-        <div class="product_box">
-          <div class="product_text">보기</div>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row class="product_row1">
-      <ion-col col-3>
-        <div class="product_img"><img class="prd_img" src="assets/img/skin-chek-chart/product3.png"></div>
-      </ion-col>
-      <ion-col col-6>
-        <div class="product_text1">에스투드 프로덱터 3.2</div>
-        <div class="product_text2">디마르3</div>
-      </ion-col>
-      <ion-col col-3>
-        <div class="product_box">
-          <div class="product_text">보기</div>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row class="product_row1">
-      <ion-col col-3>
-        <div class="product_img"><img class="prd_img" src="assets/img/skin-chek-chart/product4.png"></div>
-      </ion-col>
-      <ion-col col-6>
-        <div class="product_text1">슈퍼 화산송이 모공 마스크 2X</div>
-        <div class="product_text2">이니스프리</div>
-      </ion-col>
-      <ion-col col-3>
+      <ion-col (click)="product_detail(product.product_num)" col-3>
         <div class="product_box">
           <div class="product_text">보기</div>
         </div>
@@ -321,8 +364,4 @@
     </ion-row>
   </ion-grid>
   <br><br>
-
-  <br><br><br><br>
-
-  <br><br><br><br><br><br>
 </ion-content>

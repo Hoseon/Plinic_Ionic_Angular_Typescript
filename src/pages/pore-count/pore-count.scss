@@ -28,7 +28,7 @@ page-pore-count {
     font-weight: bold;
     font-size: 17px;
     background-color: #FFF;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -40,7 +40,7 @@ page-pore-count {
     font-weight: bold;
     font-size: 17px;
     background-color: #FFF;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -168,7 +168,7 @@ page-pore-count {
   .text1 {
     width: 64.5px;
     height: 14px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 14.8px;
     font-weight: normal;
     font-stretch: normal;
@@ -183,7 +183,7 @@ page-pore-count {
   .text2 {
     width: 77.5px;
     height: 14px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 14.8px;
     font-weight: normal;
     font-stretch: normal;
@@ -202,9 +202,11 @@ page-pore-count {
   }
 
   .text3 {
-    width: 229.5px;
-    height: 55.5px;
-    font-family: NotoSansCJKkr;
+    position: relative;
+    margin-bottom: 5%;
+    width: 329.5px;
+    height: 65.5px;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 21px;
     font-weight: 500;
     font-stretch: normal;
@@ -213,18 +215,31 @@ page-pore-count {
     letter-spacing: -0.63px;
     text-align: left;
     color: #343434;
-    overflow: hidden;
+    // overflow: hidden;
   }
 
   .text4 {
-    color: #5c59b6;
-    border: solid 1px #5c59b6;
+    width: 79px;
+    height: 29.5px;
+    border: solid 5px #5c59b6;
+    background-color: #5c59b6;
+    // width: 291.5px;
+    // height: 50.5px;
+    font-family: AppleSDGothicNeo-Bold;
+    font-size: 22.3px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: -0.67px;
+    text-align: left;
+    color: #ffffff;
   }
 
   .text5 {
-    width: 200.5px;
+    width: 250.5px;
     height: 11.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 12.5px;
     font-weight: 400;
     font-stretch: normal;
@@ -271,7 +286,7 @@ page-pore-count {
     float: left;
     width: 140px;
     height: 25px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 13.8px;
     font-weight: normal;
     font-stretch: normal;
@@ -281,7 +296,6 @@ page-pore-count {
     text-align: left;
     color: #939393;
     margin-left: 4%;
-
   }
 
   .row3 {
@@ -291,9 +305,10 @@ page-pore-count {
   }
 
   .text7 {
-    width: 50.5px;
+    margin-left: -65%;
+    width: 100.5px;
     height: 20.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 18.5px;
     font-weight: bold;
     font-stretch: normal;
@@ -306,6 +321,7 @@ page-pore-count {
 
   .text8 {
     font-size: 13.8px;
+    width: 50px;
     font-weight: normal;
     letter-spacing: -0.41px;
     margin-left: 5%;
@@ -315,7 +331,7 @@ page-pore-count {
   .row4 {
     right: -1%;
     //   margin-right: 1%;
-    margin-top: -7%;
+    margin-top: -5%;
     margin-bottom: -5%;
   }
 
@@ -355,14 +371,32 @@ page-pore-count {
 
   .chart_circle3 {
     position: relative;
-    width: 3.6vw;
-    height: 3.6vw;
-    border-radius: 50%;
+    width: 11.6vw;
+    height: 11.6vw;
+    // border-radius: 50%;
     // margin: 0 auto;
-    margin-top: -4.4%;
-    margin-left: -2%;
+    margin-top: -15.4%;
+    margin-left: -6.8%;
     // left: 100%;
-    background-color: #e4007f;
+    // background-color: #e4007f;
+    z-index: 100;
+  }
+
+  .chart_circle4 {
+    position: relative;
+    width: 38px;
+    height: 14.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.93;
+    letter-spacing: -1.8px;
+    text-align: center;
+    color: #6562b9;
+    margin-top: -14%;
+    margin-left: -6%;
     z-index: 100;
   }
 
@@ -370,7 +404,7 @@ page-pore-count {
     position: relative;
     width: 12.9vw;
     height: 12.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 4.5vw;
     font-weight: 500;
     font-stretch: normal;
@@ -384,7 +418,7 @@ page-pore-count {
   }
 
   .rectangle {
-    width: 159px;
+    width: 101%;
     height: 94.5px;
     border-radius: 5.7px;
     background-color: #f1f1f1;
@@ -401,9 +435,9 @@ page-pore-count {
   .text9 {
     position: relative;
     top: 15%;
-    width: 109.5px;
+    width: 67%;
     height: 12px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 12.8px;
     font-weight: normal;
     font-stretch: normal;
@@ -418,9 +452,9 @@ page-pore-count {
   .text10 {
     position: relative;
     top: 45%;
-    width: 100.5px;
+    width: 45%;
     height: 27.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 35.8px;
     font-weight: 500;
     font-stretch: normal;
@@ -435,7 +469,7 @@ page-pore-count {
   .text11 {
     // width: 27px;
     // height: 13.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 13.5px;
     font-weight: normal;
     font-stretch: normal;
@@ -456,7 +490,7 @@ page-pore-count {
     width: 27.3vw;
     height: 14px;
     object-fit: contain;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 15px;
     font-weight: normal;
     font-stretch: normal;
@@ -518,7 +552,7 @@ page-pore-count {
     //측정일
     width: 25vw;
     height: 11px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 3.3vw;
     font-weight: normal;
     font-stretch: normal;
@@ -526,7 +560,7 @@ page-pore-count {
     line-height: 2.1vh;
     letter-spacing: 0px;
     text-align: center;
-    margin-left: -90%;
+    margin-left: -10%;
     color: #939393;
   }
 
@@ -538,9 +572,9 @@ page-pore-count {
     border-radius: 50%;
     // margin: 0 auto;
     margin-top: -4.7%;
-    margin-left: -2%;
+    margin-left: 3%;
     // left: 100%;
-    background-color: #ff597c;
+    background-color: #dddddd;
     left: 18%;
     z-index: 100;
   }
@@ -549,7 +583,7 @@ page-pore-count {
     //직전까지 내 평균
     width: 28vw;
     height: 11px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 3.3vw;
     font-weight: normal;
     font-stretch: normal;
@@ -557,7 +591,7 @@ page-pore-count {
     line-height: 2.1vh;
     letter-spacing: 0px;
     text-align: center;
-    margin-left: 45%;
+    margin-left: 25%;
     color: #939393;
   }
 
@@ -579,7 +613,7 @@ page-pore-count {
     // 내 나이대 평균
     width: 28vw;
     height: 11px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 3.3vw;
     font-weight: normal;
     font-stretch: normal;
@@ -616,9 +650,9 @@ page-pore-count {
 
   //추천 영상 스타일 시트 시작
   .movie_text1 {
-    width: 208.5px;
-    height: 50.5px;
-    font-family: NotoSansCJKkr;
+    width: 100%;
+    height: 55.5px;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 21px;
     font-weight: 500;
     font-stretch: normal;
@@ -627,13 +661,13 @@ page-pore-count {
     letter-spacing: -0.63px;
     text-align: left;
     color: #343434;
-    overflow: hidden;
+    // overflow: hidden;
   }
 
   .movie_text2 {
-    width: 250px;
+    width: 300px;
     height: 11.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 12.5px;
     font-weight: 300;
     font-stretch: normal;
@@ -648,7 +682,7 @@ page-pore-count {
   .movie_text3 {
     width: 55.5px;
     height: 14px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 15px;
     font-weight: 500;
     font-stretch: normal;
@@ -661,8 +695,8 @@ page-pore-count {
 
   .movie_frame {
     position: relative;
-    width: 157.5px;
-    height: 88.5px;
+    width: 95%;
+    height: auto;
     // background-color: #ffffff;
     // border: solid 1em;
     margin-left: 7%;
@@ -671,8 +705,8 @@ page-pore-count {
 
   .movie_text4 {
     width: 130.5px;
-    height: 30px;
-    font-family: NotoSansCJKkr;
+    height: 50px;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 12.5px;
     font-weight: normal;
     font-stretch: normal;
@@ -686,7 +720,7 @@ page-pore-count {
   .movie_text5 {
     width: 92.5px;
     height: 10.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 11px;
     font-weight: normal;
     font-stretch: normal;
@@ -700,7 +734,7 @@ page-pore-count {
   .movie_text6 {
     width: 84px;
     height: 9.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 10px;
     font-weight: 300;
     font-stretch: normal;
@@ -721,9 +755,9 @@ page-pore-count {
   }
 
   .movie_text7 {
-    width: 100.5px;
+    width: 250.5px;
     height: 14px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 15px;
     font-weight: 500;
     font-stretch: normal;
@@ -743,7 +777,7 @@ page-pore-count {
     margin-top: 37%;
     font-size: 20px;
     text-align: right;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-weight: 300;
   }
 
@@ -751,7 +785,7 @@ page-pore-count {
     position: relative;
     width: 75%;
     height: 3em;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 12.5px;
     font-weight: normal;
     font-stretch: normal;
@@ -771,9 +805,9 @@ page-pore-count {
 
   .movie_text10 {
     position: relative;
-    width: 110.5px;
+    width: 300.5px;
     height: 10.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 11px;
     font-weight: normal;
     font-stretch: normal;
@@ -788,9 +822,9 @@ page-pore-count {
 
   .movie_text11 {
     position: relative;
-    width: 44px;
+    width: 100px;
     height: 9.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 10px;
     font-weight: 300;
     font-stretch: normal;
@@ -810,8 +844,8 @@ page-pore-count {
   //추천 뷰티 꿀팁 시작
   .tip_img {
     // float: left;
-    width: 123.4px;
-    height: 117.3px;
+    width: 90%;
+    height: auto;
     border-radius: 5px;
     background-color: #939393;
   }
@@ -834,8 +868,8 @@ page-pore-count {
   .tip_text1 {
     position: relative;
     width: 120.5px;
-    height: 2.5em;
-    font-family: NotoSansCJKkr;
+    height: 2.8em;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 12.5px;
     font-weight: normal;
     font-stretch: normal;
@@ -859,7 +893,7 @@ page-pore-count {
     margin-left: 3%;
     width: 68px;
     height: 15px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 11px;
     font-weight: 300;
     font-stretch: normal;
@@ -905,7 +939,7 @@ page-pore-count {
   .product_text1 {
     width: 200.5px;
     height: 30px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 13.5px;
     font-weight: normal;
     font-stretch: normal;
@@ -916,6 +950,9 @@ page-pore-count {
     color: #292929;
     margin-left: -10%;
     margin-top: 5%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .product_text2 {
@@ -944,7 +981,7 @@ page-pore-count {
   .product_text {
     width: 100%;
     height: 13px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
@@ -1054,6 +1091,127 @@ page-pore-count {
   .swiper-pagination-custom,
   .swiper-container-horizontal>.swiper-pagination-bullets {
     bottom: 13%;
+  }
+
+  .img_bottom {
+    width: 89%;
+    height: 76px;
+    border: solid 1px #e4e4e4;
+    background-color: #f2f2f2;
+    margin: 0 auto;
+    margin-top: -2%;
+  }
+
+  .img_bottom_text1 {
+    width: 100px;
+    height: 16px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 17.5px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.64;
+    letter-spacing: -0.53px;
+    text-align: left;
+    color: #555555;
+    margin-left : 3%;
+    margin-top: 6%;
+  }
+
+  .img_bottom_text2 {
+    width: 25.5px;
+    height: 15.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 19.8px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.76;
+    letter-spacing: -0.59px;
+    text-align: right;
+    color: #525252;
+    margin-left: -6%;
+    margin-top: 3%;
+  }
+
+  .img_bottom_text3 {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: -0.42px;
+    width: 55.5px;
+    height: 15.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.76;
+    text-align: right;
+    color: #525252;
+  }
+
+  .img_bottom_text4 {
+    width: 250px;
+    height: 11px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -0.36px;
+    text-align: left;
+    color: #9c9c9c;
+    margin-left: 3%;
+    margin-top: -4%;
+  }
+
+  .guide_text1 {
+    width: 323px;
+    height: 20px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.58;
+    letter-spacing: -0.36px;
+    text-align: left;
+    color: #b0b0b0;
+    margin-left: 5%;
+  }
+
+  .guide_text2 {
+    width: 323px;
+    height: 20px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.58;
+    letter-spacing: -0.36px;
+    text-align: left;
+    color: #b0b0b0;
+    margin-left: 5%;
+  }
+
+  .linechart_btn {
+    position: absolute;
+    width: 117.5px;
+    height: 36px;
+    right: 10%;
+    top: 20%;
+    border-radius: 2.5px;
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    border: solid 1px #e5e5e5;
+    padding-top: 4%;
+    text-align: center;
+    padding-right: 10%;
   }
 
 

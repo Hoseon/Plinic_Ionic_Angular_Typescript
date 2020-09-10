@@ -18,7 +18,7 @@ import { SkinChekPage } from '../skin-chek/skin-chek';
   templateUrl: 'camera-guide.html',
 })
 export class CameraGuidePage {
-
+  step: any;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -26,6 +26,11 @@ export class CameraGuidePage {
     public viewCtrl: ViewController,
     public modalCtrl: ModalController,
   ) {
+    if(this.navParams.get('step')) {
+      this.step = this.navParams.get('step')
+    }
+    console.log("현재 스텝 상태는 : "  + this.step);
+
 }
   
   ionViewDidLoad() {
@@ -46,7 +51,7 @@ export class CameraGuidePage {
   }
 
   start() {
-    this.navCtrl.push(SkinChekPage).then(() => {
+    this.navCtrl.push(SkinChekPage, {step : this.step }).then(() => {
       this.navCtrl.getActive().onDidDismiss(data => {
         console.log("페이지 닫힘");
       });

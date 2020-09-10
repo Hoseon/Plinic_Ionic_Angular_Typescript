@@ -46,7 +46,7 @@
   <ion-grid>
       <ng-container *ngIf="videoUrl">
       <ion-row>
-          <video muted width="90%" id="videoPlayer" class="video" controls  webkit-playsinline playsinline autoplay loop preload="auto">
+          <video muted width="90%" id="videoPlayer" class="video" autoplay loop muted controls playsinline preload="auto">
               <!-- <video width="100%" id="videoPlayer" class="" webkit-playsinline playsinline autoplay muted loop controls preload="auto" > -->
               <!-- <video width="100%" id="videoPlayer" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" controls preload="auto"> -->
                 <source src="{{videoUrl}}" type="video/mp4" />

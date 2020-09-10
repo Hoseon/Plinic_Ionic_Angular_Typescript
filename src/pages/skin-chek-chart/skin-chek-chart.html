@@ -44,7 +44,7 @@
         <ion-label class="ptext1">오늘의 날씨</ion-label>
       </ion-col>
       <ion-col col-6>
-        <ion-label class="ptext2">실시간 2020-08-07</ion-label>
+        <ion-label *ngIf="skinAnalyData" class="ptext2">실시간 {{getCovertKoreaTime(skinAnalyData.updated_at).substr(0,10)}}</ion-label>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -89,97 +89,113 @@
       </ion-card>
     </ion-row>
   </ion-grid>
-
-  <ion-grid class="grid_backColor2" no-padding>
-    <br>
-    <ion-row>
-      <ion-col col-6>
-        <ion-label class="ptext6">피부 리포트</ion-label>
-      </ion-col>
-      <ion-col col-6>
-        <ion-label class="ptext7">측정 기준일 2020-07-14</ion-label>
-      </ion-col>
-    </ion-row>
-
-    <ion-card (click)="poreSize()" class="card2">
-      <img src="assets/img/skin-chek-chart/skin-size.png" class="img1" />
-      <ion-label class="ptext8">모공 크기</ion-label>
-      <div class="arrow">></div>
-      <div class="ptext11">평균</div>
-      <div class="ptext9">27</div>
-      <div class="ptext10">/ um</div>
-      <div class="ptext12">직전까지 평균 31um</div>
-      <div class="ptext13">30대 여성 평균 24um</div>
-      <div class="ptext14">-1</div>
-      <div class="ptext15">+3</div>
-
-      <div></div>
-    </ion-card>
-    <br>
-    <ion-card (click)="poreCount()" class="card2">
-      <img src="assets/img/skin-chek-chart/pore-count.png" class="img2" />
-      <ion-label class="ptext8">모공 수</ion-label>
-      <div class="arrow">></div>
-      <div class="ptext9">35</div>
-      <div class="ptext10">/ 개</div>
-      <div class="ptext12">직전까지 평균 31um</div>
-      <div class="ptext13">30대 여성 평균 24um</div>
-      <div class="ptext14">-1</div>
-      <div class="ptext15">+3</div>
-    </ion-card>
-    <br>
-    <ion-card class="card2">
-      <img src="assets/img/skin-chek-chart/skin-tone.png" class="img3" />
-      <ion-label class="ptext8">피부톤</ion-label>
-      <div class="skintone" [style.background-color]="skinTone"></div>
-      <div class="ptext16">/ hex</div>
-      <div class="ptext12">직전까지 평균</div>
-      <div class="ptext13">내 나이대 평균</div>
-      <div class="ptext14">-1</div>
-      <div class="ptext15">+3</div>
-      <div class="arrow">></div>
-    </ion-card>
-    <br>
-    <ion-card (click)="skinClean()" class="card2">
-      <img src="assets/img/skin-chek-chart/skin-clean.png" class="img4" />
-      <img src="assets/img/skin-chek-chart/skin-weather.png" class="img7" />
-      <ion-label class="ptext8">피부 클린 지수</ion-label>
-      <div class="ptext16">/맑음</div>
-      <!-- <div class="ptext12">최초 측정 피부 비교지수</div> -->
-      <div class="ptext17">최초 측정 피부 비교지수</div>
-      <!-- <div class="ptext14">-1</div> -->
-      <div class="ptext15">+3</div>
-      <div class="arrow">></div>
-    </ion-card>
-    <br>
-    <ion-card class="card2">
-      <img src="assets/img/skin-chek-chart/skin-report.png" class="img5" />
-      <ion-label class="ptext8">피부 관리 생활 문진</ion-label>
-      <div class="ptext18">수면 습관</div>
-      <div class="ptext19">일일 음주량</div>
-      <div class="ptext20">일일 운동량</div>
-      <div class="ptext21">3~7시간</div>
-      <div class="ptext22">소량</div>
-      <div class="ptext23">없음</div>
-      <div class="arrow">></div>
-    </ion-card>
-    <br>
-    <div
-      style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; margin-top: 3%; background-color:#f1f1f1">
-    </div>
-    <ion-card class="card2">
-      <ion-label class="ptext8">사용중인 화장품</ion-label>
-      <img src="assets/img/skin-chek-chart/user_product.png" class="img6" />
-      <!-- user_product.png -->
-      <div class="arrow">></div>
-      <div class="ptext24">구달</div>
-      <div class="ptext25">청귤 비타C 잡티세럼</div>
-      <div><button class="pbtn1" ion-button>보기</button></div>
-      <div class="ptext26">리뷰<span class="ptext27">24</span></div>
-      <div class="ptext28">좋아요<span class="ptext29">128</span></div>
-    </ion-card>
-  </ion-grid>
-
+  <ng-container *ngIf="!skinAnalyData">
+    <ion-label class="ptext6_nodata">피부 리포트</ion-label>
+    <div class="nodataText">피부 측정 이력이 없습니다 <br>내 피부를 확인해보세요</div>
+  </ng-container>
+  <ng-container *ngIf="skinAnalyData">
+    <ion-grid class="grid_backColor2" no-padding>
+      <br>
+      <ion-row>
+        <ion-col col-6>
+          <ion-label class="ptext6">피부 리포트</ion-label>
+        </ion-col>
+        <ion-col col-6>
+          <ion-label *ngIf="skinAnalyData" class="ptext7">측정 기준일 {{getCovertKoreaTime(skinAnalyData.updated_at).substr(0,10)}}</ion-label>
+        </ion-col>
+      </ion-row>
+        <ion-card (click)="poreSize()" class="card2">
+          <img src="assets/img/skin-chek-chart/skin-size.png" class="img1" />
+          <ion-label class="ptext8">모공 크기 (볼)</ion-label>
+          <div class="arrow">></div>
+          <div class="ptext11">평균</div>
+          <div *ngIf="skinAnalyData" class="ptext9">{{skinAnalyPoreSize}}</div>
+          <div class="ptext10">/ μm</div>
+          <!-- <div *ngIf="skinAnalyData" class="ptext12">직전까지 평균 {{skinAnalyPoreBeforeSizeAvg}} μm</div> -->
+          <div *ngIf="skinAnalyData" class="ptext12">측정 전체 내 평균 대비</div>
+          <!-- <div *ngIf="skinAnalyData" class="ptext13">{{ageRange}}대 {{userData.gender}} 평균 {{avgCheekPoreSize}} μm</div> -->
+          <div *ngIf="skinAnalyData" class="ptext13">내 나이대 평균 대비</div>
+          <!-- <div *ngIf="skinAnalyData" class="ptext14">{{skinAnalyPoreCompareSize}}</div> -->
+          <div *ngIf="skinAnalyData" class="ptext14">{{skinAnalyPoreCompareAvg}}</div>
+          <div *ngIf="skinAnalyData" class="ptext15">{{skinAnalyAvgCompare}}</div>
+        </ion-card>
+      <br>
+      <ion-card (click)="poreCount()" class="card2">
+        <img src="assets/img/skin-chek-chart/pore-count.png" class="img2" />
+        <ion-label class="ptext8">모공 수 (볼)</ion-label>
+        <div class="arrow">></div>
+        <div *ngIf="skinAnalyData" class="ptext9">{{skinAnalyPoreOneCount}}</div>
+        <div class="ptext10">/ 개</div>
+        <!-- <div *ngIf="skinAnalyData" class="ptext12">직전까지 평균 {{skinAnalyPoreBeforeCount}}개</div> -->
+        <div *ngIf="skinAnalyData" class="ptext12">측정 전체 내 평균 대비</div>
+        <!-- <div *ngIf="skinAnalyData" class="ptext13">{{ageRange}}대 {{userData.gender}} 평균 {{avgCheekPoreCount}}개</div> -->
+        <div *ngIf="skinAnalyData" class="ptext13">내 나이대 평균 대비</div>
+        <div *ngIf="skinAnalyData" class="ptext14_1">{{skinAnalyPoreCompareCount}}</div>
+        <div class="ptext15_1">{{skinAnalyAvgComparePoreCount}}</div>
+      </ion-card>
+      <br>
+      <ion-card class="card2">
+        <img src="assets/img/skin-chek-chart/skin-tone.png" class="img3" />
+        <ion-label class="ptext8">피부톤</ion-label>
+        <div *ngIf="skinAnalyData" class="skintone" [style.background-color]="skinTone"></div>
+        <div class="ptext16">/ hex</div>
+        <!-- <div class="ptext12">직전까지 평균</div> -->
+        <div class="ptext13">비슷한 피부톤을 가진 사람수</div>
+        <!-- <div class="ptext14">-1</div> -->
+        <div class="ptext15_2">95</div>
+        <div class="arrow">></div>
+      </ion-card>
+      <br>
+      <ion-card (click)="skinClean()" class="card2">
+        <img src="assets/img/skin-chek-chart/skin-clean.png" class="img4" />
+        <img src="assets/img/skin-chek-chart/skin-weather.png" class="img7" />
+        <ion-label class="ptext8">피부 클린 지수</ion-label>
+        <div class="ptext16">/맑음</div>
+        <!-- <div class="ptext12">최초 측정 피부 비교지수</div> -->
+        <div class="ptext17">최초 측정 피부 비교지수</div>
+        <!-- <div class="ptext14">-1</div> -->
+        <div *ngIf="skinCleanScore" class="ptext15">{{skinCleanScore}}</div>
+        <div class="arrow">></div>
+      </ion-card>
+      <br>
+      <ion-card class="card2">
+        <img src="assets/img/skin-chek-chart/skin-report.png" class="img5" />
+        <ion-label class="ptext8">피부 관리 생활 문진</ion-label>
+        <div class="ptext18">수면 습관</div>
+        <div class="ptext19">일일 음주량</div>
+        <div class="ptext20">일일 운동량</div>
+        <div class="ptext21">3~7시간</div>
+        <div class="ptext22">소량</div>
+        <div class="ptext23">없음</div>
+        <div class="arrow">></div>
+      </ion-card>
+      <br>
+      <div
+        style="height:1.5px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; margin-top: 3%; background-color:#f1f1f1">
+      </div>
+      <ion-card class="card2">
+        <ion-label class="ptext8">사용중인 화장품</ion-label>
+            <div class="arrow">></div>
+            <ng-container *ngIf="isLoadMain">
+              <img src="assets/img/skin-chek-chart/user_product.png" class="img6" />
+              <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/{{loadMainData[0].product_num}}.jpg" class="img_product"/>
+              <div class="ptext24">{{loadMainData[0].brand_name}}</div>
+              <div class="ptext25">{{loadMainData[0].product_name}}</div>
+              <div><button class="pbtn1" (click)="product_detail(loadMainData[0].product_num)" ion-button><div class="btn_text_product">보기</div></button></div>
+              <div class="ptext26">리뷰<span class="ptext27">24</span></div>
+              <div class="ptext28">좋아요<span class="ptext29">128</span></div>
+            </ng-container>
+            <!-- <ng-container *ngIf="!isLoadMain">
+                <img src="assets/img/skin-chek-chart/user_product.png" class="img6" />
+                <div class="ptext24">-</div>
+                <div class="ptext25">-</div>
+                <div><button class="pbtn1" ion-button>보기</button></div>
+                <div class="ptext26">리뷰<span class="ptext27">-</span></div>
+                <div class="ptext28">좋아요<span class="ptext29">-</span></div>
+            </ng-container> -->
+      </ion-card>
+    </ion-grid>
+  </ng-container>
   <!-- <ion-grid no-padding>
     <ion-row class="left">
       <div class="dashboard"> 대시 보드</div>
@@ -528,27 +544,16 @@
       </ion-grid>
   </ion-footer> -->
 </ion-content>
-
-<ion-footer no-padding no-lines>
-  <ion-grid no-padding>
-    <ion-row>
-      <ion-col no-padding col-6><button class="qna_btn" ion-button (click)="next();">최초 진단 시작하기</button></ion-col>
-      <ion-col no-padding col-6><button class="qna_btn2" ion-button (click)="next();">진단 시작하기</button></ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-footer>
-
-<!-- <ng-container>
-
-  <div style="position: absolute; bottom: 10%; width: 100%; z-index: 1000;">
-    <ion-col col-6><button ion-button class="fab_btn" (click)="next()">
-        <div class="footer-text">최초진단 시작하기</div>
-      </button>
-    </ion-col>
-    <ion-col col-6>
-      <button ion-button class="fab_btn" (click)="next()">
-        <div class="footer-text">진단 시작하기</div>
-      </button>
-    </ion-col>
-  </div>
-</ng-container> -->
+  <ion-footer no-padding no-lines>
+    <ion-grid no-padding>
+      <ion-row>
+        <ng-container *ngIf="skinAnalyData">
+            <ion-col no-padding col-6><button class="qna_btn" ion-button (click)="alert('준비중')">최초 진단 시작하기</button></ion-col>
+            <ion-col no-padding col-6><button class="qna_btn2" ion-button (click)="next('second')">진단 시작하기</button></ion-col>
+        </ng-container>
+        <ng-container *ngIf="!skinAnalyData">
+          <ion-col no-padding col-12><button class="qna_btn2" ion-button (click)="next('first');">피부측정 시작하기</button></ion-col>
+        </ng-container>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>

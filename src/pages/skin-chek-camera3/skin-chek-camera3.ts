@@ -114,65 +114,65 @@ export class SkinChekCamera3Page {
     });
   }
 
-  public next() {
-    if(this.camerafile !=='' && this.camerafile2 !== "") {
-     // this.showLoading();
-      const fileTransfer: TransferObject = this.transfer.create();
-      let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=';
-      fileTransfer.download(url, cordova.file.dataDirectory + 'file3.jpg').then((entry) => {
-        console.log('download complete: ' + entry.toURL());
-        this.camerafile3 = entry.toURL();
-        if(this.userData) {
-          this.auth.cameraTest(this.camerafile, this.camerafile2, this.camerafile3, this.userData).then(data => {
-            // if (!data) {
-              this.loading.dismiss();
-              let alert2 = this.alertCtrl.create({
-                cssClass: 'push_alert',
-                title: '사진 촬영',
-                message: "사진이 저장 되었습니다.",
-                buttons: [
-                  {
-                    text: '확인',
-                    handler: () => {
-                    }
-                  }
-                ]
-              });
-              alert2.present();
-            // }
-          });
-        }
-    }, (error) => {
-      // handle error
-    });
-    } else {
-      let alert2 = this.alertCtrl.create({
-        cssClass: 'push_alert',
-        title: '알림',
-        message: "사진 촬영이 실패 했습니다!!",
-        buttons: [
-          {
-            text: '확인',
-            handler: () => {
-            }
-          }
-        ]
-      });
-      alert2.present();
-    }
-    this.navCtrl.push(SkinDiagnoseFirstMoisturePage).then(() => {
-      this.navCtrl.getActive().onDidDismiss(data => {
-        console.log("설문 페이지 닫힘");
-      });
-    });
-  }
+  // public next() {
+  //   if(this.camerafile !=='' && this.camerafile2 !== "") {
+  //    // this.showLoading();
+  //     const fileTransfer: TransferObject = this.transfer.create();
+  //     let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=';
+  //     fileTransfer.download(url, cordova.file.dataDirectory + 'file3.jpg').then((entry) => {
+  //       console.log('download complete: ' + entry.toURL());
+  //       this.camerafile3 = entry.toURL();
+  //       if(this.userData) {
+  //         this.auth.cameraTest(this.camerafile, this.camerafile2, this.camerafile3, this.userData).then(data => {
+  //           // if (!data) {
+  //             this.loading.dismiss();
+  //             let alert2 = this.alertCtrl.create({
+  //               cssClass: 'push_alert',
+  //               title: '사진 촬영',
+  //               message: "사진이 저장 되었습니다.",
+  //               buttons: [
+  //                 {
+  //                   text: '확인',
+  //                   handler: () => {
+  //                   }
+  //                 }
+  //               ]
+  //             });
+  //             alert2.present();
+  //           // }
+  //         });
+  //       }
+  //   }, (error) => {
+  //     // handle error
+  //   });
+  //   } else {
+  //     let alert2 = this.alertCtrl.create({
+  //       cssClass: 'push_alert',
+  //       title: '알림',
+  //       message: "사진 촬영이 실패 했습니다!!",
+  //       buttons: [
+  //         {
+  //           text: '확인',
+  //           handler: () => {
+  //           }
+  //         }
+  //       ]
+  //     });
+  //     alert2.present();
+  //   }
+  //   this.navCtrl.push(SkinDiagnoseFirstMoisturePage).then(() => {
+  //     this.navCtrl.getActive().onDidDismiss(data => {
+  //       console.log("설문 페이지 닫힘");
+  //     });
+  //   });
+  // }
 
   // 2020-05-13 근접카메라 실시간으로 앱에 보여주는 로직
   macro_player() {
     var i = 0;
     this.cameraTimer = Observable.interval(300).subscribe(x => {
-      // this.cameraCount = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=&random+\=' + Math.random();
-      this.cameraCount = 'http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin&random+\=' + Math.random();
+      this.cameraCount = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=&random+\=' + Math.random(); //회색 카메라
+      // this.cameraCount = 'http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin&random+\=' + Math.random(); //중국 카메라
       //http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin
       i++;
     });
@@ -188,14 +188,14 @@ export class SkinChekCamera3Page {
   camera3() {
     this.showLoading();
     const fileTransfer: TransferObject = this.transfer.create();
-    let url = 'http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin';
-    // let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=';
+    // let url = 'http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin'; //중국 카메라
+    let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd='; //회색 카메라
     fileTransfer.download(url, cordova.file.dataDirectory + 'file3.jpg').then((entry) => {
       console.log('download complete: ' + entry.toURL());
       this.camerafile3 = entry.toURL();
 
       if(this.userData && this.camerafile3 !== '') {
-        this.auth.cameraTest(this.camerafile, this.camerafile2, this.camerafile3, this.userData).then(data => {
+        // this.auth.cameraTest(this.camerafile, this.camerafile2, this.camerafile3, this.userData).then(data => {
           // if (!data) {
             this.loading.dismiss();
             let alert2 = this.alertCtrl.create({
@@ -212,7 +212,7 @@ export class SkinChekCamera3Page {
             });
             alert2.present();
           // }
-        });
+        // });
       }
 
       // if(this.userData) {
@@ -241,27 +241,27 @@ export class SkinChekCamera3Page {
     });
   }
 
-  camera4(){
-    // this.showLoading();
-      if(this.userData) {
-        this.auth.cameraTest(this.camerafile, this.camerafile2, this.camerafile3, this.userData).then(data => {
-          // if (!data) {
-            this.loading.dismiss();
-            let alert2 = this.alertCtrl.create({
-              cssClass: 'push_alert',
-              title: '사진 촬영',
-              message: "사진이 저장 되었습니다.",
-              buttons: [
-                {
-                  text: '확인',
-                  handler: () => {
-                  }
-                }
-              ]
-            });
-            alert2.present();
-          // }
-        });
-      }
-  }
+  // camera4(){
+  //   // this.showLoading();
+  //     if(this.userData) {
+  //       this.auth.cameraTest(this.camerafile, this.camerafile2, this.camerafile3, this.userData).then(data => {
+  //         // if (!data) {
+  //           this.loading.dismiss();
+  //           let alert2 = this.alertCtrl.create({
+  //             cssClass: 'push_alert',
+  //             title: '사진 촬영',
+  //             message: "사진이 저장 되었습니다.",
+  //             buttons: [
+  //               {
+  //                 text: '확인',
+  //                 handler: () => {
+  //                 }
+  //               }
+  //             ]
+  //           });
+  //           alert2.present();
+  //         // }
+  //       });
+  //     }
+  // }
 }

@@ -41,6 +41,195 @@ export class SkinCleanPage {
   button1 : boolean = true;
   button2 : boolean = false;
 
+  image1 : boolean = true;
+  image2 : boolean = false;
+  image3 : boolean = false;
+
+  image1CheekUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image2CheekUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image3CheekUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
+
+  image1ForeHeadUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image2ForeHeadUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image3ForeHeadUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
+
+  randomProduct1: any = [];
+  randomProduct2: any = [];
+  randomProduct: any = [
+    {
+      _id : '5f101ef3b9769796a1ee85ed',
+      brand_name : '바이오더마 (BIODERMA)',
+      big_category : '메이크업클렌저',
+      small_category : '클렌징워터',
+      product_name : '센시비오 H2O',
+      seller : '시코르, 올리브영, 롭스',
+      color_type : '100ml / 250ml / 500ml / 850ml',
+      function : '수분공급, 저자극, 피부결정돈, 피부진정',
+      ingredient : '',
+      image_url : 'https://d9vmi5fxk1gsw.cloudfront.net/home/glowmee/upload/20180323/1521783853442.png',
+      product_num : 'MA100000958',
+      weight : '250ml',
+      price : '25,000원',
+    },
+
+    {
+      _id : '5f102085b9769796a1efd2c7',
+      brand_name : '비플레인 (BE PLAIN)',
+      big_category : '페이셜클렌저',
+      small_category : '클렌징폼',
+      product_name : '녹두 약산성 클렌징폼',
+      seller : '',
+      color_type : '',
+      function : '보습, 수분공급, 저자극, 피부진정',
+      ingredient : '',
+      image_url : 'https://d9vmi5fxk1gsw.cloudfront.net/home/glowmee/upload/20190808/1565234101372.png',
+      product_num : 'PA100124510',
+      weight : '80ml',
+      price : '16,000원',
+    },
+
+    {
+      _id : '5f102083b9769796a1efce4c',
+      brand_name : '배드스킨 (BADSKIN)',
+      big_category : '메이크업클렌저',
+      small_category : '클렌징오일',
+      product_name : '히알루로닉 딥 포어 클렌징오일',
+      seller : '',
+      color_type : '',
+      function : '딥클렌징, 모공관리, 보습, 저자극, 피부진정',
+      ingredient : '',
+      image_url : 'https://d9vmi5fxk1gsw.cloudfront.net/home/glowmee/upload/20190627/1561623375120.png',
+      product_num : 'MA100123323',
+      weight : '144ml',
+      price : '23,000원',
+    },
+
+    {
+      _id : '5f10207eb9769796a1efc2f0',
+      brand_name : '셀비엔 (CELLBN)',
+      big_category : '에센스/세럼',
+      small_category : '수분에센스',
+      product_name : '갈락토미세스 나이아신 에센스',
+      seller : '',
+      color_type : '',
+      function : '미백, 보습, 유수분조절, 저자극, 주름개선',
+      ingredient : '',
+      image_url : 'https://d9vmi5fxk1gsw.cloudfront.net/home/glowmee/upload/20190415/1555306150452.png',
+      product_num : 'NG100120271',
+      weight : '150ml',
+      price : '17,000원',
+    },
+
+    {
+      _id : '5f101f37b9769796a1eed606',
+      brand_name : '폰즈 (PONDS)',
+      big_category : '포인트리무버',
+      small_category : '',
+      product_name : '클리어 훼이스 스파 립앤아이 메이크업 리무버',
+      seller : '올리브영, 랄라블라, 롭스',
+      color_type : '120ml / 300ml',
+      function : '수분공급',
+      ingredient : '',
+      image_url : 'https://d9vmi5fxk1gsw.cloudfront.net/home/glowmee/upload/20150106/1420508873321.jpg',
+      product_num : 'PA100023465',
+      weight : '120ml',
+      price : '9,900원',
+    },
+
+    {
+      _id : '5f10204fb9769796a1ef9c90',
+      brand_name : '셀퓨전씨 (Cell Fusion C)',
+      big_category : '페이셜클렌저',
+      small_category : '버블클렌저',
+      product_name : '트리악 포어 딜리트 버블 팩',
+      seller : '올리브영',
+      color_type : '',
+      function : '딥클렌징, 저자극',
+      ingredient : '',
+      image_url : 'https://d9vmi5fxk1gsw.cloudfront.net/home/glowmee/upload/20180720/1532064724723.png',
+      product_num : 'PA100109414',
+      weight : '5g*12',
+      price : '13,000원',
+    },
+
+    {
+      _id : '5f101f39b9769796a1eedb40',
+      brand_name : '시드물 (SIDMOOL)',
+      big_category : '각질케어',
+      small_category : '필링젤',
+      product_name : '녹차 필링젤',
+      seller : '롭스',
+      color_type : '',
+      function : '수분공급, 영양공급, 피부유연, 피부진정, 피지조절',
+      ingredient : '',
+      image_url : 'https://d9vmi5fxk1gsw.cloudfront.net/home/glowmee/upload/20150123/1421987488669.jpg',
+      product_num : 'GA100024890',
+      weight : '120ml',
+      price : '4,800원',
+    },
+
+    {
+      _id : '5f101f39b9769796a1eedb40',
+      brand_name : '앰플엔 (AMPLEN)',
+      big_category : '에센스/세럼',
+      small_category : '수분에센스',
+      product_name : '히알루론샷 앰플',
+      seller : '',
+      color_type : '30ml / 100ml',
+      function : '고보습, 보습, 수분공급, 앰플, 윤기부여, 피부활력',
+      ingredient : '',
+      image_url : 'https://d9vmi5fxk1gsw.cloudfront.net/home/glowmee/upload/20170425/1493104688736.png',
+      product_num : 'NG100090746',
+      weight : '30ml',
+      price : '29,000원',
+    },
+  ]
+
+  randomTip1 : any =[];
+  randomTip2 : any =[];
+  randomTip : any = [
+    {
+      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=27605449&memberNo=45335922&searchKeyword=%23%EC%84%B8%EC%95%88&searchRank=2",
+      body : "피부에 도움이되는 좋은 습관 TOP5",
+      _id : "5ec4c9c94f693c262a959c59",
+      filename : "image-1592966037608",
+      views : "88"
+    },
+    {
+      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=27921248&memberNo=45335922",
+      body : "얼굴이 작아지는 마사지",
+      _id : "5e8ed397fcc124203fe306e6",
+      filename : "image-1592965617760",
+      views : "98"
+    },
+    {
+      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=28663331&memberNo=45335922",
+      body : "튼 살 예방 및 치료에 좋은 음식 TOP5",
+      _id : "5efaddadd24bad43fc440b56",
+      filename : "image-1593499053023",
+      views : "14"
+    },
+    {
+      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=28919373&memberNo=45335922",
+      body : "장마철 피부 관리 방법 TOP5",
+      _id : "5f1fe383001c2849fd2f637f",
+      filename : "image-1595925376080",
+      views : "15"
+    },
+    {
+      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=29068090&memberNo=45335922",
+      body : "모공 관리 방법 TOP5!",
+      _id : "5f33b440df245a516e1a1aac",
+      filename : "image-1597224000351",
+      views : "8"
+    },
+  ]
+
+  skinAnalyData: any;
+  userData: any;
+  skinCleanCheekScore: any;
+  skinCleanForeHeadScore: any;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -52,7 +241,22 @@ export class SkinCleanPage {
     ) {
   }
 
-  ionViewDidLoad() {
+  async ionViewDidLoad() {
+    
+    this.navParams.get('userData') ? this.userData = this.navParams.get('userData') : this.userData = "";
+    this.navParams.get('skinAnalyData') ? this.skinAnalyData = this.navParams.get('skinAnalyData') : this.skinAnalyData = "";
+
+    console.log(this.skinAnalyData);
+    this.skinCleanCheekScore = Math.floor(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff[0].value);
+    this.skinCleanCheekScore > 0 ? this.skinCleanCheekScore = "+" + String(this.skinCleanCheekScore) : this.skinCleanCheekScore;
+    this.skinCleanForeHeadScore = Math.floor(this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].diff[0].value);
+    this.skinCleanForeHeadScore > 0 ? this.skinCleanForeHeadScore = "+" + String(this.skinCleanForeHeadScore) : this.skinCleanForeHeadScore;
+    this.image3CheekUrl = this.image3CheekUrl.concat(this.skinAnalyData.firstcheek);
+    this.image3ForeHeadUrl = this.image3ForeHeadUrl.concat(this.skinAnalyData.firstforhead);
+    this.image2CheekUrl = this.image2CheekUrl.concat(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].input[0].filename);
+    this.image2ForeHeadUrl = this.image2ForeHeadUrl.concat(this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].input[0].filename);
+    this.lottoNum();
+    this.lottoTip();
     this.skinQnaMainLoad();
     this.communityEditorBeautyLoad();
     console.log('ionViewDidLoad PoreSizePage');
@@ -387,6 +591,44 @@ export class SkinCleanPage {
     } else if (btn === 'btn2') {
       this.button1 = false;
       this.button2 = true;
+    }
+  }
+
+  lottoNum () {
+    let n = Math.floor(Math.random() * 6) + 1;
+
+    if (this.randomProduct2.length < 4 ) {
+      if(this.randomProduct1.indexOf(n) < 0) {
+        this.randomProduct1.push(n);
+        this.randomProduct2.push(this.randomProduct[n]);
+      }
+      return this.lottoNum();
+    } else {
+      return this.randomProduct2;
+    }
+  }
+
+  lottoTip () {
+    let z = Math.floor(Math.random() * 5) + 0;
+
+    if (this.randomTip2.length < 5 ) {
+      if(this.randomTip1.indexOf(z) < 0) {
+        this.randomTip1.push(z);
+        this.randomTip2.push(this.randomTip[z]);
+      }
+      return this.lottoTip();
+    } else {
+      console.log(this.randomTip2);
+      return this.randomTip2;
+    }
+  }
+
+  image_toggle(toggle) {
+    switch(toggle) { 
+      case 'image1' : this.image1 = true; this.image2 = false; this.image3 = false; break;
+      case 'image2' : this.image1 = false; this.image2 = true; this.image3 = false; break;
+      case 'image3' : this.image1 = false; this.image2 = false; this.image3 = true; break;
+      default : this.image1 = true; this.image2 = false; this.image3 = false;
     }
   }
 

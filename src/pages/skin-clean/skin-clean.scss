@@ -28,7 +28,7 @@ page-skin-clean {
     font-weight: bold;
     font-size: 17px;
     background-color: #FFF;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -40,7 +40,7 @@ page-skin-clean {
     font-weight: bold;
     font-size: 17px;
     background-color: #FFF;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -161,9 +161,9 @@ page-skin-clean {
   }
 
   .text1 {
-    width: 44.5px;
+    width: 50.5px;
     height: 14px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 14.8px;
     font-weight: normal;
     font-stretch: normal;
@@ -176,9 +176,9 @@ page-skin-clean {
   }
 
   .text2 {
-    width: 57.5px;
+    width: 60.5px;
     height: 14px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 14.8px;
     font-weight: normal;
     font-stretch: normal;
@@ -192,9 +192,9 @@ page-skin-clean {
 
   //추천 영상 스타일 시트 시작
   .movie_text1 {
-    width: 208.5px;
-    height: 50.5px;
-    font-family: NotoSansCJKkr;
+    width: 100%;
+    height: 55.5px;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 21px;
     font-weight: 500;
     font-stretch: normal;
@@ -203,13 +203,13 @@ page-skin-clean {
     letter-spacing: -0.63px;
     text-align: left;
     color: #343434;
-    overflow: hidden;
+    // overflow: hidden;
   }
 
   .movie_text2 {
-    width: 250px;
+    width: 300px;
     height: 11.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 12.5px;
     font-weight: 300;
     font-stretch: normal;
@@ -224,7 +224,7 @@ page-skin-clean {
   .movie_text3 {
     width: 55.5px;
     height: 14px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 15px;
     font-weight: 500;
     font-stretch: normal;
@@ -237,8 +237,8 @@ page-skin-clean {
 
   .movie_frame {
     position: relative;
-    width: 157.5px;
-    height: 88.5px;
+    width: 95%;
+    height: auto;
     // background-color: #ffffff;
     // border: solid 1em;
     margin-left: 7%;
@@ -247,8 +247,8 @@ page-skin-clean {
 
   .movie_text4 {
     width: 130.5px;
-    height: 30px;
-    font-family: NotoSansCJKkr;
+    height: 50px;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 12.5px;
     font-weight: normal;
     font-stretch: normal;
@@ -262,7 +262,7 @@ page-skin-clean {
   .movie_text5 {
     width: 92.5px;
     height: 10.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 11px;
     font-weight: normal;
     font-stretch: normal;
@@ -276,7 +276,7 @@ page-skin-clean {
   .movie_text6 {
     width: 84px;
     height: 9.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 10px;
     font-weight: 300;
     font-stretch: normal;
@@ -297,9 +297,9 @@ page-skin-clean {
   }
 
   .movie_text7 {
-    width: 100.5px;
+    width: 250.5px;
     height: 14px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 15px;
     font-weight: 500;
     font-stretch: normal;
@@ -319,7 +319,7 @@ page-skin-clean {
     margin-top: 37%;
     font-size: 20px;
     text-align: right;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-weight: 300;
   }
 
@@ -327,7 +327,7 @@ page-skin-clean {
     position: relative;
     width: 75%;
     height: 3em;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 12.5px;
     font-weight: normal;
     font-stretch: normal;
@@ -347,9 +347,9 @@ page-skin-clean {
 
   .movie_text10 {
     position: relative;
-    width: 110.5px;
+    width: 300.5px;
     height: 10.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 11px;
     font-weight: normal;
     font-stretch: normal;
@@ -364,9 +364,9 @@ page-skin-clean {
 
   .movie_text11 {
     position: relative;
-    width: 44px;
+    width: 100px;
     height: 9.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 10px;
     font-weight: 300;
     font-stretch: normal;
@@ -386,8 +386,8 @@ page-skin-clean {
   //추천 뷰티 꿀팁 시작
   .tip_img {
     // float: left;
-    width: 123.4px;
-    height: 117.3px;
+    width: 90%;
+    height: auto;
     border-radius: 5px;
     background-color: #939393;
   }
@@ -410,8 +410,8 @@ page-skin-clean {
   .tip_text1 {
     position: relative;
     width: 120.5px;
-    height: 2.5em;
-    font-family: NotoSansCJKkr;
+    height: 2.8em;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 12.5px;
     font-weight: normal;
     font-stretch: normal;
@@ -435,7 +435,7 @@ page-skin-clean {
     margin-left: 3%;
     width: 68px;
     height: 15px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 11px;
     font-weight: 300;
     font-stretch: normal;
@@ -468,10 +468,10 @@ page-skin-clean {
   }
 
   .prd_img {
-    position: absolute;
+      position: absolute;
     //   left: 5%;
-    width: 50px;
-    height: 45px;
+      width: 50px;
+      height: 45px;
     //   align-items: center !important;
     //   align-content: center !important;
     //   vertical-align: middle;
@@ -481,7 +481,7 @@ page-skin-clean {
   .product_text1 {
     width: 200.5px;
     height: 30px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 13.5px;
     font-weight: normal;
     font-stretch: normal;
@@ -492,6 +492,9 @@ page-skin-clean {
     color: #292929;
     margin-left: -10%;
     margin-top: 5%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .product_text2 {
@@ -520,7 +523,7 @@ page-skin-clean {
   .product_text {
     width: 100%;
     height: 13px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
@@ -615,7 +618,7 @@ page-skin-clean {
     margin: 0px;
   }
 
-
+  
 
   .card {
     position: relative;
@@ -658,9 +661,9 @@ page-skin-clean {
     margin-right: -10%;
     width: 118px;
     height: 19.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 21px;
-    font-weight: 500;
+    font-weight: 600;
     font-stretch: normal;
     font-style: normal;
     line-height: 0.71;
@@ -675,7 +678,7 @@ page-skin-clean {
     right: -22%;
     width: 30px;
     height: 10px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 10.5px;
     font-weight: normal;
     font-stretch: normal;
@@ -693,7 +696,7 @@ page-skin-clean {
     overflow: hidden;
     width: 200.5px;
     height: 38px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 11.5px;
     font-weight: 300;
     font-stretch: normal;
@@ -710,11 +713,11 @@ page-skin-clean {
 
   .clean_text5 {
     position: relative;
-    margin-top: 4%;
-    right: 2%;
-    width: 74.5px;
+    margin-top: 20%;
+    right: 20%;
+    width: 120.5px;
     height: 22.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 29.8px;
     font-weight: 600;
     font-stretch: normal;
@@ -736,7 +739,7 @@ page-skin-clean {
     margin-left: -8%;
     width: 85px;
     height: 12px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 12px;
     font-weight: bold;
     font-stretch: normal;
@@ -754,7 +757,59 @@ page-skin-clean {
     margin-right: -3%;
     width: 85px;
     height: 11px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 3.02;
+    letter-spacing: -0.36px;
+    text-align: left;
+    color: #252525;
+  }
+
+  .clean_text9 {
+    position: relative;
+    // right: %;
+    margin-left: 11%;
+    margin-right: -20%;
+    width: 85px;
+    height: 11px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 3.02;
+    letter-spacing: -0.36px;
+    text-align: left;
+    color: #252525;
+  }
+
+  .clean_text7_false {
+    position: relative;
+    margin-left: -8%;
+    width: 85px;
+    height: 12px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 3.02;
+    letter-spacing: -0.36px;
+    text-align: left;
+    color: #a0a0a0;
+
+  }
+
+  .clean_text8_false {
+    position: relative;
+    margin-left: 13%;
+    margin-right: -3%;
+    width: 85px;
+    height: 11px;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
@@ -765,14 +820,14 @@ page-skin-clean {
     color: #a0a0a0;
   }
 
-  .clean_text9 {
+  .clean_text9_false {
     position: relative;
     // right: %;
     margin-left: 11%;
     margin-right: -20%;
     width: 85px;
     height: 11px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
@@ -803,7 +858,7 @@ page-skin-clean {
     overflow: hidden;
     width: 251px;
     height: 38.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 11px;
     font-weight: 300;
     font-stretch: normal;
@@ -823,7 +878,7 @@ page-skin-clean {
     width: 159px;
     height: 12.5px;
     object-fit: contain;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 14px;
     font-weight: normal;
     font-stretch: normal;
@@ -941,7 +996,7 @@ page-skin-clean {
     left: 24%;
     width: 50px;
     height: 10.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 13.5px;
     font-weight: 500;
     font-stretch: normal;
@@ -957,9 +1012,9 @@ page-skin-clean {
     position: absolute;
     top:20%;
     left:32%;
-    width: 54.5px;
+    width: 74.5px;
     height: 9px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 11px;
     font-weight: normal;
     font-stretch: normal;
@@ -976,7 +1031,7 @@ page-skin-clean {
     left:44%;
     width: 38.5px;
     height: 9.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 10.5px;
     font-weight: 300;
     font-stretch: normal;
@@ -993,7 +1048,7 @@ page-skin-clean {
     left: 36%;
     width: 100px;
     height: 15.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 20.3px;
     font-weight: 500;
     font-stretch: normal;

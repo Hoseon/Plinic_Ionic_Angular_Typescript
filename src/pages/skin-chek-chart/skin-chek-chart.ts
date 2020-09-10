@@ -15,6 +15,7 @@ import { CameraGuidePage } from '../camera-guide/camera-guide'
 import { PoreSizePage } from '../pore-size/pore-size'
 import { PoreCountPage } from '../pore-count/pore-count'
 import { SkinCleanPage } from '../skin-clean/skin-clean'
+import { ProductDetailPage } from '../product-detail/product-detail'
 
 /**
  * Generated class for the SkinChekChartPage page.
@@ -29,7 +30,13 @@ import { SkinCleanPage } from '../skin-clean/skin-clean'
   templateUrl: 'skin-chek-chart.html',
 })
 export class SkinChekChartPage {
-
+  skinAnalyAvgComparePoreCount: any;
+  ageRange: any;
+  avgCheekPoreSize: any;
+  avgCheekPoreCount: any;
+  avgForeHeadPoreSize: any;
+  avgForeHeadPoreCount: any;
+  skinAnalyAvgCompare
   userData: any; 
   jwtHelper: JwtHelper = new JwtHelper();
   isLoadMain : boolean = false;
@@ -74,6 +81,23 @@ export class SkinChekChartPage {
   skinTone: any = "#eecac3";
 
 
+  skinAnalyData: any;
+
+  skinAnalyToneHex: any;
+  skinAnalyPoreSize: any; // 측정 후 평균
+  skinAnalyPoreSizeAvg: any; //측정 후 평균
+  skinAnalyPoreBeforeSizeAvg: any; //측정 이전 평균
+  skinAnalyPoreCompareSize: any; //모공 사이즈 전후 차이
+  skinAnalyPoreCompareAvg: any; //측정 전체 내 평균 대비
+
+  skinAnalyPoreOneCount: any; // 마지막 측정된 모공 카운트
+  skinAnalyPoreCount: any; // 모공 카운트
+  skinAnalyPoreBeforeCount: any; // 모공 크기 측정 이전 카운트
+  skinAnalyPoreCompareCount: any; //모공 크기 전후 차이
+
+  skinCleanScore: any = 0; //피부 클린 점수
+
+
   // left1 : any = '0%';
   // left2 : any = '0%';
   // left3 : any = '0%';
@@ -93,30 +117,35 @@ export class SkinChekChartPage {
     public modalCtrl: ModalController,
     public loadingCtrl: LoadingController,
   ) {
+    
+  }
+
+  async ionViewCanEnter(){
+   await this.loadItems();
   }
 
   async ionViewDidLoad() {
-    this.showLoading();
-    console.log('ionViewDidLoad SkinChekChartPage');
-    await this.loadItems();
-    // await this.loadProduct('date');
-    await this.getWeather();
-    await this.getMise();
-    await this.getUv();
-    this.loading.dismiss();
+    // this.showLoading();
+    // this.loading.dismiss();
+    if(this.userData) {
+      await this.getSkinAnaly();
+      // this.ageRange = this.getAgeRange();
+      // this.getAvgSkinPore(this.ageRange);
+      this.loadMyMainProduct();
+    }
+    
   }
 
   async ionViewDidEnter(){
-      ////처음 진입시 현재 월로 조회 되도록
+    await this.getWeather();
+    await this.getMise();
     this.skinbtnYear = format(new Date(), 'YYYY');
     this.skinbtnMonth = format(new Date(), 'MM');
     var e = this.skinbtnYear + "년" + this.skinbtnMonth;
-    
-    await this.yearmonthselect(e);
+  }
 
-    await this.initChart();
-    await this.initChart2();
-    console.log('ionViewDidEnter SkinChekChartPage');
+  async ionViewWillEnter(){
+    
   }
 
   dismiss() {
@@ -124,8 +153,7 @@ export class SkinChekChartPage {
   }
 
   public loadItems() {
-    this.auth.getUserStorage().then(items => {
-
+    this.auth.getUserStorage().then(async items => {
       if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
         this.userData = {
           accessToken: items.accessToken,
@@ -143,23 +171,26 @@ export class SkinChekChartPage {
       } else {
         this.userData = {
           accessToken: items.accessToken,
-          id: items.id,
+          id: this.jwtHelper.decodeToken(items).id,
           age_range: items.age_range,
-          birthday: items.birthday,
+          birthday: this.jwtHelper.decodeToken(items).birthday,
           email: this.jwtHelper.decodeToken(items).email,
-          gender: items.gender,
+          gender: this.jwtHelper.decodeToken(items).gender,
           nickname: this.jwtHelper.decodeToken(items).name,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
         };
       }
+      await this.getSkinAnaly();
+      // this.ageRange = this.getAgeRange();
+      // this.getAvgSkinPore(this.ageRange);
+      this.loadMyMainProduct();
     });
   }
 
-  public next() {
-    this.navCtrl.push(CameraGuidePage).then(() => {
-      this.navCtrl.getActive().onDidDismiss(data => {
-        console.log("설문 페이지 닫힘");
+  public next(_step) {
+    this.navCtrl.push(CameraGuidePage, { step : _step }).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data  => {
       });
     });
   }
@@ -173,7 +204,6 @@ export class SkinChekChartPage {
     var year = e.substr(0, 4);
     var month = e.substr(5, 2);
     var date = year + "-" + month;
-    console.log(this.skinScoreData);
     this.chartDateData = [];
     this.chartOilData = [];
     this.chartMoistureData = [];
@@ -184,7 +214,6 @@ export class SkinChekChartPage {
     //     this.chartMoistureData.push(this.skinScoreData.score[i].moisture);
     //   }
     // }
-    console.log("데이터 길이 : " + this.chartDateData.length)
     // if (this.chartDateData.length > 0) {
     //   this.lineCanvas.data.labels = this.chartDateData;
     //   this.lineCanvas2.data.labels = this.chartDateData;
@@ -542,39 +571,162 @@ export class SkinChekChartPage {
   chartguide() {
     let modal = this.modalCtrl.create(SkincheckGuidePage);
     modal.onDidDismiss(data => {
-      console.log("이용안내 페이지 닫힘");
     });
     modal.present();
   }
 
   showLoading() {
     this.loading = this.loadingCtrl.create({
-      content : "데이터를 불러오는중입니다"
+      content : "피부데이터를 불러오는중입니다"
     })
     this.loading.present();
   }
 
   poreSize() {
-    this.navCtrl.push(PoreSizePage).then(() => {
+    this.navCtrl.push(PoreSizePage, {skinAnalyData : this.skinAnalyData, userData : this.userData}).then(() => {
       this.navCtrl.getActive().onDidDismiss(data => {
-        console.log("모공 크기 닫힘");
       });
     });
   }
 
   poreCount() {
-    this.navCtrl.push(PoreCountPage).then(() => {
+    this.navCtrl.push(PoreCountPage, {skinAnalyData : this.skinAnalyData, userData : this.userData}).then(() => {
       this.navCtrl.getActive().onDidDismiss(data => {
-        console.log("모공 갯수 닫힘");
       });
     });
   }
 
   skinClean() {
-    this.navCtrl.push(SkinCleanPage).then(() => {
+    this.navCtrl.push(SkinCleanPage, {skinAnalyData : this.skinAnalyData, userData : this.userData} ).then(() => {
       this.navCtrl.getActive().onDidDismiss(data => {
-        console.log("피부 클린 지수 닫힘");
       });
     });
   }
+
+  getSkinAnaly() {
+    // if(this.userData) {
+      var sizeSum = 0;
+      var beforeSum = 0;
+      var poreCountSum = 0;
+      var poreBeforCountSum = 0;
+      this.showLoading();
+      this.auth.getSkinAnaly(this.userData.email).subscribe(data=>{
+        if(data) {
+          this.skinAnalyData = data;
+
+          this.skinAnalyPoreSize = Math.floor(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].pore[0].average_pore);
+  
+          //현재 모공 사이즈 총 합
+          for(let i= 0; i < this.skinAnalyData.cheek.length; i++) {
+             sizeSum += this.skinAnalyData.cheek[i].pore[0].average_pore;
+          }
+          this.skinAnalyPoreSizeAvg = Math.floor(Number(sizeSum / this.skinAnalyData.cheek.length)); //전체 모공사이즈 평균
+
+          this.skinAnalyPoreCompareAvg = Math.floor(this.skinAnalyPoreSize - this.skinAnalyPoreSizeAvg);
+          this.skinAnalyPoreCompareAvg > 0 ? this.skinAnalyPoreCompareAvg = "+" + String(this.skinAnalyPoreCompareAvg) : this.skinAnalyPoreCompareAvg;
+          
+          //이전 모공 사이즈 총 합
+          for(let i= 0; i < (this.skinAnalyData.cheek.length-1); i++) {
+            beforeSum += this.skinAnalyData.cheek[i].pore[0].average_pore;
+          }
+          this.skinAnalyPoreBeforeSizeAvg = Math.floor(Number(beforeSum / (this.skinAnalyData.cheek.length-1))); //직전까지 모공사이즈 평균
+          this.skinAnalyPoreBeforeSizeAvg >= 0 ? this.skinAnalyPoreBeforeSizeAvg : this.skinAnalyPoreBeforeSizeAvg = '--';
+          if(this.skinAnalyPoreBeforeSizeAvg >= 0) {
+            this.skinAnalyPoreCompareSize = this.skinAnalyPoreSizeAvg - this.skinAnalyPoreBeforeSizeAvg;
+            this.skinAnalyPoreCompareSize > 0 ? this.skinAnalyPoreCompareSize = "+" + String(this.skinAnalyPoreCompareSize) : this.skinAnalyPoreCompareSize;
+          }
+
+
+
+          //현재 모공 갯수 총합
+
+          this.skinAnalyPoreOneCount = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].pore[0].pore_count
+
+          for(let i= 0; i < this.skinAnalyData.cheek.length; i++) {
+            poreCountSum += this.skinAnalyData.cheek[i].pore[0].pore_count;
+          }
+          this.skinAnalyPoreCount = Math.floor(Number(poreCountSum / this.skinAnalyData.cheek.length)); //전체 모공사이즈 평균
+          
+          //이전 모공 갯수 총 합
+          for(let i= 0; i < (this.skinAnalyData.cheek.length-1); i++) {
+            poreBeforCountSum += this.skinAnalyData.cheek[i].pore[0].pore_count;
+          }
+          this.skinAnalyPoreBeforeCount = Math.floor(Number(poreBeforCountSum / (this.skinAnalyData.cheek.length-1))); //전체 모공사이즈 평균
+          this.skinAnalyPoreBeforeCount >= 0 ? this.skinAnalyPoreBeforeCount : this.skinAnalyPoreBeforeCount = '--';
+          
+          //모공 직전까지 평균
+          if(this.skinAnalyPoreBeforeCount >= 0) {
+            this.skinAnalyPoreCompareCount = this.skinAnalyPoreOneCount - this.skinAnalyPoreBeforeCount;
+            this.skinAnalyPoreCompareCount > 0 ? this.skinAnalyPoreCompareCount = "+" + String(this.skinAnalyPoreCompareCount) : this.skinAnalyPoreCompareCount;
+            this.skinTone = this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].tone[0].avgrage_color_hex;
+          }
+
+          this.skinCleanScore = Math.floor(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff[0].value);
+          this.skinCleanScore > 0 ? this.skinCleanScore = "+" + String(this.skinCleanScore) : this.skinCleanScore;
+
+          this.ageRange = this.getAgeRange();
+          this.getAvgSkinPore(this.ageRange);
+          this.loading.dismiss();
+        } else {
+          this.loading.dismiss();
+        }
+      },error => {
+        console.log("피부 분석 데이터 가져 오기 에러 : " +error);
+      })
+    // }
+  }
+
+  getAgeRange() {
+    var age = 0;
+    var age_range = '';
+    age = Number(new Date().getFullYear()) - Number(this.userData.birthday.substr(0,4)) + 1 ;
+    return String(age).substr(0,1) + '0';
+  }
+
+
+  getAvgSkinPore(ageRange) {
+
+    this.images.getAvgPore(ageRange, this.userData.gender).subscribe(data => {
+      this.avgCheekPoreSize = Math.floor(data.avgCheekPoreSize); //연령대 성별 평균
+      this.avgCheekPoreCount = Math.floor(data.avgCheekPoreCount);
+      this.avgForeHeadPoreSize = Math.floor(data.avgForeHeadPoreSize);
+      this.avgForeHeadPoreCount = Math.floor(data.avgForeHeadPoreCount);
+
+      this.skinAnalyAvgCompare = Math.floor(Number(this.skinAnalyPoreSizeAvg) - Number(this.avgCheekPoreSize));
+      this.skinAnalyAvgCompare >= 0 ? this.skinAnalyAvgCompare : this.skinAnalyAvgCompare = '--';
+      if(this.skinAnalyAvgCompare > 0) {
+        this.skinAnalyAvgCompare > 0 ? this.skinAnalyAvgCompare = "+" + String(this.skinAnalyAvgCompare) : this.skinAnalyAvgCompare;
+      }
+      
+      this.skinAnalyAvgComparePoreCount = Math.floor(Number(this.skinAnalyPoreCount) - Number(this.avgCheekPoreCount));
+      this.skinAnalyAvgComparePoreCount >= 0 ? this.skinAnalyAvgComparePoreCount : this.skinAnalyAvgComparePoreCount = '--';
+      if(this.skinAnalyAvgComparePoreCount > 0) {
+        this.skinAnalyAvgComparePoreCount > 0 ? this.skinAnalyAvgComparePoreCount = "+" + String(this.skinAnalyAvgComparePoreCount) : this.skinAnalyAvgComparePoreCount;
+      }
+
+      // this.left1 = (Number(this.skinAnalyPoreSizeAvg) / Number(this.avgCheekPoreSize));
+      // this.left2 = this.skinAnalyPoreBeforeSizeAvg;
+    },error => {
+      console.log(error);
+    })
+  }
+
+  public loadMyMainProduct() {
+    this.images.myMainProductLoad(this.userData.email).subscribe(data => {
+      if(data != '') {
+        this.isLoadMain = true;
+        this.loadMainData = data;
+      }
+    }, error => {
+      this.loading.dismiss();
+    })
+  }
+
+  product_detail(id) {
+    let modal = this.modalCtrl.create(ProductDetailPage, { Product_Num: id });
+    modal.onDidDismiss(data => {
+    });
+    modal.present();
+  }
+
 }
