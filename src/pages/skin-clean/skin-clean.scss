@@ -193,7 +193,8 @@ page-skin-clean {
   //추천 영상 스타일 시트 시작
   .movie_text1 {
     width: 100%;
-    height: 55.5px;
+    height: auto;
+    overflow: auto;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 21px;
     font-weight: 500;
@@ -207,6 +208,8 @@ page-skin-clean {
   }
 
   .movie_text2 {
+    position: relative;
+    margin-top: -8%;
     width: 300px;
     height: 11.5px;
     font-family: AppleSDGothicNeo-Regular;
@@ -656,6 +659,16 @@ page-skin-clean {
     object-fit: contain;
   }
 
+  .clean_img_opacity {
+    position: relative;
+    margin-top: -48%;
+    right: 5%;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    opacity: 0.3;
+  }
+
   .clean_text1 {
     margin-left: 1%;
     margin-right: -10%;
@@ -675,7 +688,7 @@ page-skin-clean {
   .clean_text2 {
     position: relative;
     margin-top: 7%;
-    right: -22%;
+    right: -40%;
     width: 30px;
     height: 10px;
     font-family: AppleSDGothicNeo-Regular;
@@ -695,7 +708,7 @@ page-skin-clean {
     margin-left: 2%;
     overflow: hidden;
     width: 200.5px;
-    height: 38px;
+    height: auto;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 11.5px;
     font-weight: 300;
@@ -705,6 +718,7 @@ page-skin-clean {
     letter-spacing: -0.35px;
     text-align: left;
     color: #626262;
+    overflow: auto;
   }
 
   .clean_text4 {
@@ -714,8 +728,8 @@ page-skin-clean {
   .clean_text5 {
     position: relative;
     margin-top: 20%;
-    right: 20%;
-    width: 120.5px;
+    right: 59%;
+    width: 100.5px;
     height: 22.5px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 29.8px;
@@ -724,7 +738,7 @@ page-skin-clean {
     font-style: normal;
     line-height: 0.52;
     letter-spacing: -0.89px;
-    text-align: left;
+    text-align: right;
     color: #222222;
   }
 
@@ -847,6 +861,12 @@ page-skin-clean {
     height: 163.8px;
   }
 
+  .clean_no_img2 {
+    width: 290.9px;
+    height: 163.8px;
+    background-color: #f4f4f4;
+  }
+
   .clean_row2 {
     position: relative;
     margin: 0 auto !important;
@@ -934,6 +954,7 @@ page-skin-clean {
   }
 
   .rectangle1 {
+    position: relative;
     width: 40vw;
     height: 20vh;
     // object-fit: contain;
@@ -955,7 +976,7 @@ page-skin-clean {
 
   .clean_img3 {
     position: absolute;
-    top: 10%;
+    top: 11%;
     left: 10%;
     width: 15px;
     height: 15px;
@@ -964,7 +985,7 @@ page-skin-clean {
 
   .clean_img4 {
     position: absolute;
-    top: 10%;
+    top: 11%;
     left: 10%;
     width: 15px;
     height: 15px;
@@ -972,21 +993,57 @@ page-skin-clean {
   }
 
   .clean_img5 {
-    position: absolute;
-    top:36%;
-    left:37%;
+    position: relative;
+    // top:36%;
+    // left:37%;
     width: 39.5px;
     height: 39.5px;
     object-fit: contain;
   }
 
-  .clean_img6 {
-    position: absolute;
-    top:36%;
-    left:37%;
+  .div_clean_img5 {
+    position: relative;
+    margin: 0 auto !important;
+    width: 39.5px;
+    height: 39.5px;
+    top:30%;
+  }
+
+  .div_clean_img5_opacity {
+    position: relative;
+    width: 39.5px;
+    height: 39.5px;
+    top: 30%;
+    margin: 0 auto !important;
+  }
+
+  .clean_img5_opacity {
+    position: relative;
+    // top:36%;
+    // left:37%;
     width: 39.5px;
     height: 39.5px;
     object-fit: contain;
+    opacity: 0.3;
+  }
+
+  .clean_img6 {
+    position: absolute;
+    // top:36%;
+    // left:37%;
+    width: 39.5px;
+    height: 39.5px;
+    object-fit: contain;
+  }
+
+  .clean_img6_opacity {
+    position: absolute;
+    // top:36%;
+    // left:37%;
+    width: 39.5px;
+    height: 39.5px;
+    object-fit: contain;
+    opacity: 0.3;
   }
 
   .clean_text12 {
@@ -1009,9 +1066,8 @@ page-skin-clean {
 
   .clean_text13 {
     //날짜
-    position: absolute;
+    position: relative;
     top:20%;
-    left:32%;
     width: 74.5px;
     height: 9px;
     font-family: AppleSDGothicNeo-Regular;
@@ -1021,14 +1077,16 @@ page-skin-clean {
     font-style: normal;
     line-height: 2.73;
     letter-spacing: -0.33px;
-    text-align: left;
+    text-align: center;
     color: #939393;
+    margin: 0 auto;
   }
 
   .clean_text14 { //맑음 흐림
-    position: absolute;
-    top:64%;
-    left:44%;
+    position: relative;
+    top:35%;
+    // left:44%;
+    margin: 0 auto !important;
     width: 38.5px;
     height: 9.5px;
     font-family: AppleSDGothicNeo-Regular;
@@ -1038,14 +1096,33 @@ page-skin-clean {
     font-style: normal;
     line-height: 1;
     letter-spacing: -0.32px;
-    text-align: left;
+    text-align: center;
+    color: #908f8f;
+  }
+
+  .clean_text14_data { //맑음 흐림
+    position: relative;
+    top:60%;
+    // left:44%;
+    margin: 0 auto !important;
+    width: 38.5px;
+    height: 9.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 10.5px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: -0.32px;
+    text-align: center;
     color: #908f8f;
   }
 
   .clean_text15 { //수치
-    position: absolute;
-    top: 77%;
-    left: 36%;
+    position: relative;
+    top: 44%;
+    // left: 36%;
+    margin: 0 auto !important;
     width: 100px;
     height: 15.5px;
     font-family: AppleSDGothicNeo-Regular;
@@ -1055,7 +1132,25 @@ page-skin-clean {
     font-style: normal;
     line-height: 0.52;
     letter-spacing: -0.61px;
-    text-align: left;
+    text-align: center;
+    color: #222222;
+  }
+
+  .clean_text15_data { //수치
+    position: relative;
+    top: 70%;
+    // left: 36%;
+    margin: 0 auto !important;
+    width: 100px;
+    height: 15.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 20.3px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.52;
+    letter-spacing: -0.61px;
+    text-align: center;
     color: #222222;
   }
 
@@ -1063,6 +1158,24 @@ page-skin-clean {
     font-size: 11.8px;
     font-weight: 300;
     letter-spacing: -0.35px;
+  }
+
+  .img_text {
+    position: absolute;
+    top: 40%;
+    left: 25%;
+    // width: 144.5px;
+    // height: 10.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 11.3px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 3.22;
+    letter-spacing: -0.34px;
+    text-align: left;
+    color: #a0a0a0;
+    margin: 0 auto !important;
   }
 
 

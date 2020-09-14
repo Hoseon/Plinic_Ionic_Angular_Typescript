@@ -230,6 +230,11 @@ export class SkinCleanPage {
   skinCleanCheekScore: any;
   skinCleanForeHeadScore: any;
 
+  diffValue: any = [];
+  diffValueDate: any = [];
+  bestValue: any;
+  worstValue: any;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -246,7 +251,35 @@ export class SkinCleanPage {
     this.navParams.get('userData') ? this.userData = this.navParams.get('userData') : this.userData = "";
     this.navParams.get('skinAnalyData') ? this.skinAnalyData = this.navParams.get('skinAnalyData') : this.skinAnalyData = "";
 
-    console.log(this.skinAnalyData);
+    for(let i = 1; i < this.skinAnalyData.cheek.length; i++){
+      //월별 조건 추가
+      if(this.skinbtnMonth ===  this.skinAnalyData.cheek[i].input[0].upload_date.substr(5,2)) {
+        this.diffValue.push({
+          value : this.skinAnalyData.cheek[i].diff[0].value,
+          date: this.skinAnalyData.cheek[i].input[0].upload_date
+        })  
+      }
+    }
+
+    this.worstValue = Math.min.apply(Math, this.diffValue.map(function(o) { return o.value }));
+    this.diffValue.forEach(element => {
+      if(element.value == this.worstValue) {
+        this.worstValue = {
+          value : Number(element.value).toFixed(1),
+          date : element.date
+        }
+      }
+    });
+    this.bestValue = Math.max.apply(Math, this.diffValue.map(function(o) { return o.value }));
+    this.diffValue.forEach(element => {
+      if(element.value == this.bestValue) {
+        this.bestValue = {
+          value : Number(element.value).toFixed(1),
+          date : element.date
+        }
+      }
+    });
+  
     this.skinCleanCheekScore = Math.floor(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff[0].value);
     this.skinCleanCheekScore > 0 ? this.skinCleanCheekScore = "+" + String(this.skinCleanCheekScore) : this.skinCleanCheekScore;
     this.skinCleanForeHeadScore = Math.floor(this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].diff[0].value);
@@ -288,60 +321,66 @@ export class SkinCleanPage {
     this.chartDateData = [];
     this.chartOilData = [];
     this.chartMoistureData = [];
-    // for (let i = 0; i < this.skinScoreData.score.length; i++) {
-    //   if (this.skinScoreData.score[i].saveDate.indexOf(date) !== -1) {
-    //     this.chartDateData.push(this.skinScoreData.score[i].saveDate.substr(5, 5));
-    //     this.chartOilData.push(this.skinScoreData.score[i].oil);
-    //     this.chartMoistureData.push(this.skinScoreData.score[i].moisture);
-    //   }
-    // }
-    console.log("데이터 길이 : " + this.chartDateData.length)
-    // if (this.chartDateData.length > 0) {
-    //   this.lineCanvas.data.labels = this.chartDateData;
-    //   this.lineCanvas2.data.labels = this.chartDateData;
-    //   this.lineCanvas.data.datasets[0].data = this.chartMoistureData;
-    //   this.lineCanvas2.data.datasets[0].data = this.chartOilData;
-    //   this.lineCanvas.update();
-    //   this.lineCanvas2.update();
-  
-    //   console.log(this.chartDateData);
-    //   console.log(this.chartMoistureData);
-    //   console.log(this.chartOilData);
-    // } else {
-    //   setTimeout(() => {
-    //   // this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
-    //   }, 3000)
-    // }
-    // console.log("yearmonthselect===============" + e);
+    this.diffValue = [];
+    for(let i = 1; i < this.skinAnalyData.cheek.length; i++){
+      //월별 조건 추가
+      if(month ===  this.skinAnalyData.cheek[i].input[0].upload_date.substr(5,2)) {
+        this.diffValue.push({
+          value : this.skinAnalyData.cheek[i].diff[0].value,
+          date: this.skinAnalyData.cheek[i].input[0].upload_date
+        })  
+      }
+    }
+
+    this.worstValue = Math.min.apply(Math, this.diffValue.map(function(o) { return o.value }));
+    this.diffValue.forEach(element => {
+      if(element.value == this.worstValue) {
+        this.worstValue = {
+          value : Number(element.value).toFixed(1),
+          date : element.date
+        }
+      }
+    });
+    this.bestValue = Math.max.apply(Math, this.diffValue.map(function(o) { return o.value }));
+    this.diffValue.forEach(element => {
+      if(element.value == this.bestValue) {
+        this.bestValue = {
+          value : Number(element.value).toFixed(1),
+          date : element.date
+        }
+      }
+    });
+
+    console.log(this.diffValue);
   }
 
   monthdate: any[] = [
     {
-      "day": this.skinbtnYear + "년1월"
+      "day": this.skinbtnYear + "년01월"
     },
     {
-      "day": this.skinbtnYear + "년2월"
+      "day": this.skinbtnYear + "년02월"
     },
     {
-      "day": this.skinbtnYear + "년3월"
+      "day": this.skinbtnYear + "년03월"
     },
     {
-      "day": this.skinbtnYear + "년4월"
+      "day": this.skinbtnYear + "년04월"
     },
     {
-      "day": this.skinbtnYear + "년5월"
+      "day": this.skinbtnYear + "년05월"
     },
     {
-      "day": this.skinbtnYear + "년6월"
+      "day": this.skinbtnYear + "년06월"
     },
     {
-      "day": this.skinbtnYear + "년7월"
+      "day": this.skinbtnYear + "년07월"
     },
     {
-      "day": this.skinbtnYear + "년8월"
+      "day": this.skinbtnYear + "년08월"
     },
     {
-      "day": this.skinbtnYear + "년9월"
+      "day": this.skinbtnYear + "년09월"
     },
     {
       "day": this.skinbtnYear + "년10월"
