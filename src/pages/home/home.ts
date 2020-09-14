@@ -264,8 +264,9 @@ export class HomePage {
 
   async ionViewWillEnter() {
     await this.skinQnaLoad();
-    this.challengeChkMission(this.userData.email);
     if(this.userData) {
+      this.challengeChkMission(this.userData.email);
+
       if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
         this.reloadUserPoint(this.userData.snsid);
       }
@@ -274,15 +275,12 @@ export class HomePage {
       }
     }
     this.secondCarezoneData = this.secondLoadCareZone();
-    // this.timerTick();
-    // this.timerTick2();
   }
 
   async ionViewDidEnter() {
-    this.inItFCM();
-    // setTimeout(() => {
-    // this.flip();
-    // }, 3000)
+    if(this.platform.is('ios') || this.platform.is('android')) {
+      this.inItFCM();
+    }
   }
 
 

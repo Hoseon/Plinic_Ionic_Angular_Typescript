@@ -2318,36 +2318,13 @@ export class AuthService {
       });
   }
 
-
-  public cameraTest(img, img2, img3, user) { // 여러장이 올라 가는지 확인 필요
-
-    console.log(img);
-    console.log(img2);
-    console.log(img3);
-    let headers = new Headers();
-    headers.append("Content-Type", "application/json");
-
-    var age = 37;
-    // console.log("사용자 생일 데이터는?" + age);
-    // age = age.substr(0,4);
-    // age = Number(2020) - Number(age);
-    // console.log("나이는? :" + age);
-    // age = 37;
-    // let body = {
-    //   email: email,
-    //   select: content.select,
-    //   title: content.title,
-    //   contents: content.contents,
-    //   tags: content.tags,
-    //   pushtoken: this.pushToken,
-    // };
-
-    // let url = CONFIG.apiUrl + 'hairskin';
-    let url = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/api/?skin_feature=skin_tone,pores,wrinkles,diff';
-
+  
+  public skinAnalySecondSave (img, img2, user, step) { // 여러장이 올라 가는지 확인 필요
+    // let url = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/api/';
+    let cheekUrl = CONFIG.apiUrl + 'skinAnalySecondCheekSave';
+    let forheadUrl = CONFIG.apiUrl + 'skinAnalySecondForeheadSave';
     var targetPath = img;
     var targetPath2 = img2;
-    var targetPath3 = img3;
     var options: FileUploadOptions = {
       // fileKey: 'hairimage',
       fileKey: 'image',
@@ -2355,17 +2332,40 @@ export class AuthService {
       mimeType: 'multipart/form-data',
       params: {
         'email': user.email,
-        'gender': user.gender,
-        'skincomplaint': user.skincomplaint,
-        'nickname': user.nickname,
-        'birthday': user.birthday,
-        'age': age,
-        // 'select': body.select,
-        // 'title': body.title,
-        // 'contents': body.contents,
-        // 'pushtoken': body.pushtoken,
-        // 'tags': JSON.stringify(body.tags),
+        'step': step,
       }
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+    return fileTransfer.upload(targetPath, cheekUrl, options).then(data=>{
+      var result1 = JSON.parse(data.response);
+      console.log("첫 번째 (볼) 전송  성공 : " + JSON.stringify(result1));
+      return fileTransfer.upload(targetPath2, forheadUrl, options).then(data2=> {
+        var result2 = JSON.parse(data2.response);
+        console.log("두 번째 (이마) 전송  성공 : " + JSON.stringify(result2));
+        console.log("피부 분석 데이터 저장 시작");
+        return {
+          result1 : result1,
+          result2 : result2
+        }
+      },fail2=> {
+        console.log("두 번째  전송  실패 : " + JSON.stringify(fail2));
+      })
+    }, fail1=> {
+      console.log("첫 번째  전송  실패 : " + JSON.stringify(fail1));
+    });
+  }
+
+  public cameraTest(img, img2, user) { // 여러장이 올라 가는지 확인 필요
+    var age = 37;
+    let url = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/api/';
+    var targetPath = img;
+    var targetPath2 = img2;
+    var options: FileUploadOptions = {
+      // fileKey: 'hairimage',
+      fileKey: 'image',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
     };
     const fileTransfer: TransferObject = this.transfer.create();
     return fileTransfer.upload(targetPath, url, options).then(data=>{
@@ -2374,18 +2374,57 @@ export class AuthService {
       return fileTransfer.upload(targetPath2, url, options).then(data2=> {
         var result2 = JSON.parse(data2.response);
         console.log("두 번째 (이마) 전송  성공 : " + JSON.stringify(result2));
-        return fileTransfer.upload(targetPath3, url, options).then(data3=> {
-          var result3 = JSON.parse(data3.response);
-          console.log("세 번째 (눈가) 전송  성공 : " + JSON.stringify(result3));
-        }, fail3=> {
-          console.log("세 번째  전송  실패 : " + JSON.stringify(fail3));
-        })
+        console.log("피부 분석 데이터 저장 시작");
+        return {
+          result1 : result1,
+          result2 : result2
+        }
       },fail2=> {
         console.log("두 번째  전송  실패 : " + JSON.stringify(fail2));
       })
     }, fail1=> {
       console.log("첫 번째  전송  실패 : " + JSON.stringify(fail1));
     });
+  }
+
+  public skinAnaly(result1, result2, ageRange, userData) {
+    console.log("피부 분석 데이터 저장 시작");
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    var cheek = {
+      input : result1.input,
+      skin_analy : result1.output.skin_analy,
+      created_at: result1.output.created_at,
+      email: userData.email,
+    }
+
+    var forehead = {
+      input : result2.input,
+      skin_analy : result2.output.skin_analy,
+      created_at: result2.output.created_at,
+      email: userData.email,
+    }
+    
+    let body = {
+      email: userData.email,
+      agerange : ageRange,
+      gender: userData.gender,
+      skincomplaint: userData.skincomplaint,
+      cheek: cheek,
+      forehead : forehead,
+    };
+    console.log("피부 분석 데이터 저장 종료");
+    return this.http.post(CONFIG.apiUrl + 'api/saveskinanaly', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
+  public getSkinAnaly(email) {
+    return this.http.get(CONFIG.apiUrl + 'getSkinAnaly/' + email)
+      .map(response => response.json());
   }
 
 

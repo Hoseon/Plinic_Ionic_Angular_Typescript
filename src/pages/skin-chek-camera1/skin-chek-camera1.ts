@@ -46,6 +46,8 @@ export class SkinChekCamera1Page {
   camerafile: any;
   camerafile2: any;
   camerafile3: any;
+  
+  step: any;
 
 
 
@@ -60,6 +62,10 @@ export class SkinChekCamera1Page {
     private transfer: Transfer,
     private alertCtrl: AlertController,
   ) {
+    if(this.navParams.get('step')) {
+      this.step = this.navParams.get('step');
+    }
+    console.log("현재 스텝 상태는 : "  + this.step);
   }
 
   async ionViewDidLoad() {
@@ -115,7 +121,7 @@ export class SkinChekCamera1Page {
 
   public next() {
     if(this.camerafile !== "") {
-      this.navCtrl.push(SkinChekCamera2Page,{file1:this.camerafile}).then(() => {
+      this.navCtrl.push(SkinChekCamera2Page,{ file1 : this.camerafile, step : this.step }).then(() => {
         this.navCtrl.getActive().onDidDismiss(data => {
           console.log("카메라1 페이지 닫힘");
         });
@@ -142,8 +148,8 @@ export class SkinChekCamera1Page {
   macro_player() {
     var i = 0;
     this.cameraTimer = Observable.interval(300).subscribe(x => {
-      // this.cameraCount = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=&random+\=' + Math.random();
-      this.cameraCount = 'http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin&random+\=' + Math.random();
+      // this.cameraCount = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=&random+\=' + Math.random(); //회색 카메라 테스트
+      this.cameraCount = 'http://192.168.1.1/protocol.csp?opt=snap&function=set&random+\=' + Math.random(); //중국 테스트 2020-09-09
       //http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin
       i++;
     });
@@ -160,7 +166,7 @@ export class SkinChekCamera1Page {
   camera() {
     // this.showLoading();
     const fileTransfer: TransferObject = this.transfer.create();
-    let url = 'http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin';
+    let url = 'http://192.168.1.1/protocol.csp?opt=snap&function=set'; //중국 카메라 2020-09-09
     // let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=';
     
     fileTransfer.download(url, cordova.file.dataDirectory + 'file1.jpg').then((entry) => {
@@ -168,7 +174,7 @@ export class SkinChekCamera1Page {
       this.camerafile = entry.toURL();
 
       if(this.camerafile !== "") {
-        this.navCtrl.push(SkinChekCamera2Page,{file1:this.camerafile}).then(() => {
+        this.navCtrl.push(SkinChekCamera2Page,{ file1:this.camerafile, step: this.step }).then(() => {
           this.navCtrl.getActive().onDidDismiss(data => {
             console.log("카메라1 페이지 닫힘");
           });
@@ -217,8 +223,8 @@ export class SkinChekCamera1Page {
   camera2() {
     // this.showLoading();
     const fileTransfer: TransferObject = this.transfer.create();
-    let url = 'http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin';
-    // let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=';
+    // let url = 'http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin'; //중국카메라
+    let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd='; //회색카메라
     fileTransfer.download(url, cordova.file.dataDirectory + 'file2.jpg').then((entry) => {
       console.log('download complete: ' + entry.toURL());
       this.camerafile2 = entry.toURL();
@@ -250,8 +256,8 @@ export class SkinChekCamera1Page {
   camera3() {
     // this.showLoading();
     const fileTransfer: TransferObject = this.transfer.create();
-    let url = 'http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin';
-    // let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=';
+    // let url = 'http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin'; //중국카메라
+    let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd='; //회색 카메라
     fileTransfer.download(url, cordova.file.dataDirectory + 'file3.jpg').then((entry) => {
       console.log('download complete: ' + entry.toURL());
       this.camerafile3 = entry.toURL();
@@ -281,27 +287,27 @@ export class SkinChekCamera1Page {
     });
   }
 
-  camera4(){
-    // this.showLoading();
-      if(this.userData) {
-        this.auth.cameraTest(this.camerafile, this.camerafile2, this.camerafile3, this.userData).then(data => {
-          // if (!data) {
-            this.loading.dismiss();
-            let alert2 = this.alertCtrl.create({
-              cssClass: 'push_alert',
-              title: '사진 촬영',
-              message: "사진이 저장 되었습니다.",
-              buttons: [
-                {
-                  text: '확인',
-                  handler: () => {
-                  }
-                }
-              ]
-            });
-            alert2.present();
-          // }
-        });
-      }
-  }
+  // camera4(){
+  //   // this.showLoading();
+  //     if(this.userData) {
+  //       this.auth.cameraTest(this.camerafile, this.camerafile2, this.camerafile3, this.userData).then(data => {
+  //         // if (!data) {
+  //           this.loading.dismiss();
+  //           let alert2 = this.alertCtrl.create({
+  //             cssClass: 'push_alert',
+  //             title: '사진 촬영',
+  //             message: "사진이 저장 되었습니다.",
+  //             buttons: [
+  //               {
+  //                 text: '확인',
+  //                 handler: () => {
+  //                 }
+  //               }
+  //             ]
+  //           });
+  //           alert2.present();
+  //         // }
+  //       });
+  //     }
+  // }
 }

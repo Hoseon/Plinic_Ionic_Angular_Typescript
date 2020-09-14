@@ -36,6 +36,7 @@ export class SkinChekConnectPage {
   isDisabledRange3 : boolean = true;
   isNext: boolean = false;
   videoUrl: any;
+  step : any;
 
   constructor(
     public navCtrl: NavController, 
@@ -45,6 +46,10 @@ export class SkinChekConnectPage {
     public auth: AuthService,
     public images: ImagesProvider,
   ) {
+    if(this.navParams.get('step')) {
+      this.step = this.navParams.get('step');
+    }
+    console.log("현재 스텝 상태는 : "  + this.step);
   }
 
   async ionViewDidLoad() {
@@ -98,7 +103,7 @@ export class SkinChekConnectPage {
   }
 
   public next() {
-    this.navCtrl.push(SkinChekCamera1Page).then(() => {
+    this.navCtrl.push(SkinChekCamera1Page, { step : this.step }).then(() => {
       this.navCtrl.getActive().onDidDismiss(data => {
         console.log("페이지 닫힘");
       });

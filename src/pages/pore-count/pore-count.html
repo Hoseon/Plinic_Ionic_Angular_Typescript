@@ -1,0 +1,339 @@
+<!--
+  Generated template for the PoreCountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core')" no-lines>
+    <!-- <ion-buttons (click)="chartguide()" end>
+      <div class="guide_android">이용안내</div>
+    </ion-buttons> -->
+    <ion-title class="android_title" text-wrap>모공 수</ion-title>
+    <div class="android_search" style="right: 7%;">
+    </div>
+  </ion-navbar>
+
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+    <ion-title  class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <!-- <ion-buttons (click)="chartguide()" end>
+      <div class="guide_ios">
+        이용안내
+      </div>
+    </ion-buttons> -->
+    <ion-title class="ios_title" text-wrap>모공 수</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content no-padding>
+  <br>
+  <br>
+  <!-- <ion-segment>
+    <ion-segment-button >
+      Kittens
+    </ion-segment-button>
+    <ion-segment-button >
+      Puppies
+    </ion-segment-button>
+  </ion-segment> -->
+
+  <ion-grid no-padding>
+    <ion-row class="segment">
+      <ion-col *ngIf="button1" class="borderline1" col-6>
+        <div class="text1">볼 이미지</div>
+      </ion-col>
+      <ion-col (click)="toggle_Btn('btn1')" *ngIf="!button1" class="borderline1_false" col-6>
+        <div class="text1">볼 이미지</div>
+      </ion-col>
+      <ion-col *ngIf="button2" class="borderline2" col-6>
+        <div class="text2">이마 이미지</div>
+      </ion-col>
+      <ion-col (click)="toggle_Btn('btn2')" *ngIf="!button2" class="borderline2_false" col-6>
+        <div class="text2">이마 이미지</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-slides *ngIf="button1" pager loop=true autoplay=3000>
+        <ion-slide *ngFor="let cheekimages of cheekImages">
+          <img src="{{cheekimages}}" class="img1" />
+        </ion-slide>
+      </ion-slides>
+      <ion-slides *ngIf="button2" pager loop=true autoplay=3000>
+        <ion-slide *ngFor="let foreheadimages of foreheadImages">
+          <img src="{{foreheadimages}}" class="img1" />
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+    <ion-row class="img_bottom">
+      <ion-col class="img_bottom_text1" col-9>측정 당일(1회) 모공크기</ion-col>
+      <ion-col class="img_bottom_text2" *ngIf="skinAnalyPoreCurrentCount" col-3>{{skinAnalyPoreCurrentCount}} <span class="img_bottom_text3">개</span></ion-col>
+      <div class="img_bottom_text4">※ 측정 환경에 따라 정확하지 않을 수 있습니다. </div>   
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row class="row1">
+      <pre *ngIf="userData" class="text3">{{ageRange}}대 {{userData.gender}} 대비
+평균 모공 수가 <span *ngIf="mogongSize" class="text4">{{mogongSize}}</span> 입니다</pre>
+    </ion-row>
+    <!-- <ion-row class="row2 text5">
+      인공지능 피부 분석 결과를 확인하세요
+    </ion-row> -->
+    <ion-row class="row3">
+      <ion-col col-9>
+        <div class="circle1"></div>
+        <div class="text6">측정 전체 합산한 내 평균</div>
+      </ion-col>
+      <ion-col class="row4" col-3>
+        <p class="text7">{{skinAnalyPoreCount}}<span class="text8">개</span></p>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row class="row3">
+      <ion-col col-9>
+        <div class="circle1"></div>
+        <div class="text6">측정일 수치</div>
+      </ion-col>
+      <ion-col class="row4" col-3>
+        <p *ngIf="skinAnalyPoreCount" class="text7">{{skinAnalyPoreCount}}<span class="text8">개</span></p>
+      </ion-col>
+    </ion-row> -->
+    <!-- <ion-row class="row3">
+      <ion-col col-9>
+        <div class="circle2"></div>
+        <div class="text6">직전까지 내 평균 수치</div>
+      </ion-col>
+      <ion-col class="row4" col-3>
+        <p *ngIf="skinAnalyPoreBeforeCount" class="text7">{{skinAnalyPoreBeforeCount}}<span class="text8">개</span></p>
+      </ion-col>
+    </ion-row> -->
+    <ion-row class="row3">
+      <ion-col col-9>
+        <div class="circle3"></div>
+        <div *ngIf="ageRange || userData" class="text6">{{ageRange}}대 {{userData.gender}} 평균</div>
+      </ion-col>
+      <ion-col class="row4" col-3>
+        <p *ngIf="avgCheekPoreCount" class="text7">{{avgCheekPoreCount}}<span class="text8">개</span></p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <div class="chart_line">
+        <div class="chart_circle"></div>
+        <div class="chart_circle2" [ngStyle]="{'left' : left1}"></div>
+        <div class="chart_circle3" [ngStyle]="{'left' : left1}"><img src="assets/img/skin-chek-chart/bloon.png" /></div>
+        <div class="chart_circle4" [ngStyle]="{'left' : left1}">{{skinAnalyAvgComparePoreCount}}</div>
+        <!-- <div class="chart_circle_text" [ngStyle]="{'left' : left2}">0.7cm</div> -->
+      </div>
+    </ion-row>
+    <!-- <ion-row class="row5">
+      <ion-col col-6>
+        <div class="rectangle">
+          <div class="text9">직전까지 내 평균 대비</div>
+          <div class="text10">{{skinAnalyPoreCompareCount}} <span class="text11">/ 개</span></div>
+        </div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="rectangle">
+          <div *ngIf="ageRange || userData" class="text9">{{ageRange}}대 {{userData.gender}} 평균 대비</div>
+          <div class="text10">{{skinAnalyAvgComparePoreCount}} <span class="text11">/ 개</span></div>
+        </div>
+      </ion-col>
+    </ion-row> -->
+    <ion-row>
+      <div class="guide_text1">※ 보통 모공 갯수는 적을수록 좋은 편으로 봅니다.</div>
+      <div class="guide_text2">※ 합산한 내 평균은 측정당일을 포함한 측정전체 평균 값입니다.</div>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+
+  <div
+    style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 10%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="left">
+        <div class="gigan_text">월별 피부 변화</div>
+      </ion-col>
+      <ion-col>
+        <ion-select (ionChange)="yearmonthselect($event)" placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover"
+          [(ngModel)]="valueday.day" multiple="false" class="linechart_btn">
+          <ion-option *ngFor="let days of monthdate">{{days.day}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <br>
+    <br>
+    <ion-row>
+      <canvas class="chart_js" id="moisture" #lineCanvas></canvas>
+    </ion-row>
+    <br><br>
+    <ion-row class="row6">
+      <div class="float circle6">
+        <div class="float text12">내 전체 평균</div>
+      </div>
+      <!-- <div class="float circle7">
+        <div class="float text13">직전까지 내 평균</div>
+      </div> -->
+      <div class="float circle7">
+        <div *ngIf="ageRange || userData" class="float text13">{{ageRange}}대 {{userData.gender}} 평균</div>
+      </div>
+    </ion-row>
+    <br><br>
+  </ion-grid>
+
+  <div
+    style="height:1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+
+  <ion-grid>
+    <ion-row class="movie_row1">
+      <pre class="movie_text1">내 피부 맞춤
+어드바이스를 확인하세요
+      </pre>
+    </ion-row>
+    <ion-row class="movie_row2">
+      <div class="movie_text2">피부에 도움이 되는 다양한 콘텐츠를 추천드립니다</div>
+    </ion-row>
+    <br><br>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">추천 영상</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <ion-col col-6>
+        <img src="assets/img/skin-chek-chart/youtube1.png" class="movie_frame" />
+      </ion-col>
+      <ion-col col-6>
+        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
+        <div class="movie_text10">피부과 전문의 이하은</div>
+        <div class="movie_text11">조회수 143</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <img src="assets/img/skin-chek-chart/youtube2.png" class="movie_frame" />
+      </ion-col>
+      <ion-col col-6>
+        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
+        <div class="movie_text10">피부과 전문의 이하은</div>
+        <div class="movie_text11">조회수 143</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <img src="assets/img/skin-chek-chart/youtube3.png" class="movie_frame" />
+      </ion-col>
+      <ion-col col-6>
+        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
+        <div class="movie_text10">피부과 전문의 이하은</div>
+        <div class="movie_text11">조회수 143</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+  <div
+    style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">추천 뷰티 꿀팁</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-slides *ngIf="randomTip2" class="tip_slide_row" slidesPerView=2.5>
+        <ng-container *ngFor="let community of randomTip2; let i = index">
+          <ion-slide (click)="openBrowser_android(community.posturl, community.body, community._id)"
+            class="tip_slide_row2">
+            <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" class="tip_img" />
+            <div class="tip_text1">{{community.body}}</div>
+            <div class="tip_text2">조회수 {{community.views}}</div>
+          </ion-slide>
+        </ng-container>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <div
+    style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">추천 화장품</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <br>
+    <ion-row *ngFor="let product of randomProduct2" class="product_row1">
+      <ion-col col-3>
+        <div class="product_img"><img class="prd_img" src="{{product.image_url}}"></div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="product_text1">{{product.product_name}}</div>
+        <div class="product_text2">{{product.brand_name}}</div>
+      </ion-col>
+      <ion-col (click)="product_detail(product.product_num)" col-3>
+        <div class="product_box">
+          <div class="product_text">보기</div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+  <div
+    style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">베스트 피부 고민</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <br><br>
+    <ion-row>
+      <ion-slides pager>
+        <ng-container *ngFor="let skinqnaMain of skinQnaMainData; let i = index">
+          <ion-slide (click)="community_qna_modify(skinqnaMain._id)">
+            <ion-card class="card">
+              <div><span class="beauty_note_Q">Q </span> <span class="card-title">{{skinqnaMain.title}}</span></div><br>
+              <!-- <div class="card-subtitle"><span class="beauty_note_Q">A </span>{{skinqnaMain.comments[0].body}}</div> -->
+              <div *ngIf="skinqnaMain.comments.length > 0">
+                <span class="beauty_note_A">A</span>
+                <span class="card-subtitle">{{skinqnaMain.comments[0].comment}}</span></div>
+            </ion-card>
+          </ion-slide>
+        </ng-container>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+</ion-content>
