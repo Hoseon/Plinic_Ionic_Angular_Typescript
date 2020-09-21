@@ -1,0 +1,275 @@
+<!--
+  Generated template for the SkinTonePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core')" no-lines>
+    <!-- <ion-buttons (click)="chartguide()" end>
+      <div class="guide_android">이용안내</div>
+    </ion-buttons> -->
+    <ion-title class="android_title" text-wrap>피부톤</ion-title>
+    <div class="android_search" style="right: 7%;">
+    </div>
+  </ion-navbar>
+
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+    <ion-title  class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <!-- <ion-buttons (click)="chartguide()" end>
+      <div class="guide_ios">
+        이용안내
+      </div>
+    </ion-buttons> -->
+    <ion-title class="ios_title" text-wrap>피부톤</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content no-padding>
+  <br>
+  <br>
+  <br>
+  <ion-grid>
+    <ion-row>
+      <div class="tone_text1">나의 피부톤 확인</div>
+      <div class="tone_text2">디스플레이 마다 실제 피부톤과 <span class="tone_text2_color">차이가 있을 수</span>있습니다.</div>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row class="tone_face center">
+      <ion-col class="center" col-6>
+        <img class="hiar" src="assets/img/skin-chek-chart/hiar.png" />
+        <img class="face" src="assets/img/skin-chek-chart/face2.png" [ngStyle]="{'background-color' : faceColor}" />
+        <img class="eye" src="assets/img/skin-chek-chart/eye.png" />
+        <img class="lip" src="assets/img/skin-chek-chart/lip4.png" [ngStyle]="{'background-color' : shapeColor}" />
+      </ion-col>
+      <ion-col class="center" col-6>
+        <div (click)="color_toggle('color1')" [ngClass]="{ 'color1_select' : skinColor1, 'color1' : !skinColor1}">측정일 피부톤</div>
+        <div (click)="color_toggle('color2')" [ngClass]="{ 'color2_select' : skinColor2, 'color2' : !skinColor2}" >15호</div>
+        <div (click)="color_toggle('color3')" [ngClass]="{ 'color3_select' : skinColor3, 'color3' : !skinColor3}" >17호</div>
+        <div (click)="color_toggle('color4')" [ngClass]="{ 'color4_select' : skinColor4, 'color4' : !skinColor4}" >21호</div>
+        <div (click)="color_toggle('color5')" [ngClass]="{ 'color5_select' : skinColor5, 'color5' : !skinColor5}" >23호</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <ion-grid>
+    <ion-row>
+      <div class="find_lip">립스틱 컬러 찾기</div>
+    </ion-row>
+    <br>
+    <ion-row>
+      <div class="center">
+        <div (click)="toggle_shape('shape1')" [ngClass]="{ 'shape1_border' : shape[0].border, 'shape1' : !shape[0].border}" ></div>
+        <div (click)="toggle_shape('shape2')" [ngClass]="{ 'shape2_border' : shape[1].border, 'shape2' : !shape[1].border}"></div>
+        <div (click)="toggle_shape('shape3')" [ngClass]="{ 'shape3_border' : shape[2].border, 'shape3' : !shape[2].border}"></div>
+        <div (click)="toggle_shape('shape4')" [ngClass]="{ 'shape4_border' : shape[3].border, 'shape4' : !shape[3].border}"></div>
+        <div (click)="toggle_shape('shape5')" [ngClass]="{ 'shape5_border' : shape[4].border, 'shape5' : !shape[4].border}"></div>
+        <div (click)="toggle_shape('shape6')" [ngClass]="{ 'shape6_border' : shape[5].border, 'shape6' : !shape[5].border}"></div>
+        <div (click)="toggle_shape('shape7')" [ngClass]="{ 'shape7_border' : shape[6].border, 'shape7' : !shape[6].border}"></div>
+        <div (click)="toggle_shape('shape8')" [ngClass]="{ 'shape8_border' : shape[7].border, 'shape8' : !shape[7].border}"></div>
+        <div (click)="toggle_shape('shape9')" [ngClass]="{ 'shape9_border' : shape[8].border, 'shape9' : !shape[8].border}"></div>
+        <div (click)="toggle_shape('shape10')" [ngClass]="{ 'shape10_border' : shape[9].border, 'shape10' : !shape[9].border}"></div>
+        <div (click)="toggle_shape('shape11')" [ngClass]="{ 'shape11_border' : shape[10].border, 'shape11' : !shape[10].border}"></div>
+        <div (click)="toggle_shape('shape12')" [ngClass]="{ 'shape12_border' : shape[11].border, 'shape12' : !shape[11].border}"></div>
+      </div>
+      <div class="center">
+        <div (click)="toggle_shape('shape13')" [ngClass]="{ 'shape13_border' : shape[12].border, 'shape13' : !shape[12].border}"></div>
+        <div (click)="toggle_shape('shape14')" [ngClass]="{ 'shape14_border' : shape[13].border, 'shape14' : !shape[13].border}"></div>
+        <div (click)="toggle_shape('shape15')" [ngClass]="{ 'shape15_border' : shape[14].border, 'shape15' : !shape[14].border}"></div>
+        <div (click)="toggle_shape('shape16')" [ngClass]="{ 'shape16_border' : shape[15].border, 'shape16' : !shape[15].border}"></div>
+        <div (click)="toggle_shape('shape17')" [ngClass]="{ 'shape17_border' : shape[16].border, 'shape17' : !shape[16].border}"></div>
+        <div (click)="toggle_shape('shape18')" [ngClass]="{ 'shape18_border' : shape[17].border, 'shape18' : !shape[17].border}"></div>
+        <div (click)="toggle_shape('shape20')" [ngClass]="{ 'shape20_border' : shape[18].border, 'shape19' : !shape[18].border}"></div>
+        <div (click)="toggle_shape('shape19')" [ngClass]="{ 'shape19_border' : shape[19].border, 'shape20' : !shape[19].border}"></div>
+        <div (click)="toggle_shape('shape21')" [ngClass]="{ 'shape21_border' : shape[20].border, 'shape21' : !shape[20].border}"></div>
+        <div (click)="toggle_shape('shape22')" [ngClass]="{ 'shape22_border' : shape[21].border, 'shape22' : !shape[21].border}"></div>
+        <div (click)="toggle_shape('shape23')" [ngClass]="{ 'shape23_border' : shape[22].border, 'shape23' : !shape[22].border}"></div>
+        <div (click)="toggle_shape('shape24')" [ngClass]="{ 'shape24_border' : shape[23].border, 'shape24' : !shape[23].border}"></div>
+      </div>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6><div class="month_skintone" >월별 피부톤 모아보기</div></ion-col>
+      <ion-col col-6>
+        <ion-select (ionChange)="yearmonthselect($event)" placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover"
+          [(ngModel)]="valueday.day" multiple="false" class="linechart_btn">
+          <ion-option *ngFor="let days of monthdate">{{days.day}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <div class="nodata" *ngIf="skinTone.length == 0">데이터가 존재하지 않습니다</div>
+        <ion-slides *ngIf="skinTone" class="tip_slide_row_tone" slidesPerView=3>
+          <ng-container *ngFor="let skintone of skinTone; let i = index">
+            <ion-slide class="tip_slide_row3">
+              <div class="tone_rectangle" [ngStyle]="{'background-color' : skintone.value}"></div>
+              <div class="tone_text1_slide">{{skintone.date.substr(0,10)}}</div>
+            </ion-slide>
+          </ng-container>
+        </ion-slides>
+      </ion-row>
+
+
+  </ion-grid>
+  
+  <ion-grid>
+    <ion-row class="movie_row1">
+      <pre class="movie_text1">내 피부 맞춤
+어드바이스를 확인하세요
+      </pre>
+    </ion-row>
+    <ion-row class="movie_row2">
+      <div class="movie_text2">피부에 도움이 되는 다양한 콘텐츠를 추천드립니다</div>
+    </ion-row>
+    <br><br>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">추천 영상</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <ion-col col-6>
+        <img src="assets/img/skin-chek-chart/youtube1.png" class="movie_frame" />
+      </ion-col>
+      <ion-col col-6>
+        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
+        <div class="movie_text10">피부과 전문의 이하은</div>
+        <div class="movie_text11">조회수 143</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <img src="assets/img/skin-chek-chart/youtube2.png" class="movie_frame" />
+      </ion-col>
+      <ion-col col-6>
+        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
+        <div class="movie_text10">피부과 전문의 이하은</div>
+        <div class="movie_text11">조회수 143</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <img src="assets/img/skin-chek-chart/youtube3.png" class="movie_frame" />
+      </ion-col>
+      <ion-col col-6>
+        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
+        <div class="movie_text10">피부과 전문의 이하은</div>
+        <div class="movie_text11">조회수 143</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+  <div
+    style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">추천 뷰티 꿀팁</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-slides *ngIf="randomTip2" class="tip_slide_row" slidesPerView=2.5>
+        <ng-container *ngFor="let community of randomTip2; let i = index">
+          <ion-slide (click)="openBrowser_android(community.posturl, community.body, community._id)"
+            class="tip_slide_row2">
+            <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" class="tip_img" />
+            <div class="tip_text1">{{community.body}}</div>
+            <div class="tip_text2">조회수 {{community.views}}</div>
+          </ion-slide>
+        </ng-container>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <div
+    style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+  <br>
+
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">추천 화장품</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <br>
+
+    <ion-row *ngFor="let product of randomProduct2" class="product_row1">
+      <ion-col col-3>
+        <div class="product_img"><img class="prd_img" src="{{product.image_url}}"></div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="product_text1">{{product.product_name}}</div>
+        <div class="product_text2">{{product.brand_name}}</div>
+      </ion-col>
+      <ion-col (click)="product_detail(product.product_num)" col-3>
+        <div class="product_box">
+          <div class="product_text">보기</div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+  <div
+    style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">베스트 피부 고민</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <br><br>
+    <ion-row>
+      <ion-slides pager>
+        <ng-container *ngFor="let skinqnaMain of skinQnaMainData; let i = index">
+          <ion-slide (click)="community_qna_modify(skinqnaMain._id)">
+            <ion-card class="card">
+              <div><span class="beauty_note_Q">Q </span> <span class="card-title">{{skinqnaMain.title}}</span></div><br>
+              <!-- <div class="card-subtitle"><span class="beauty_note_Q">A </span>{{skinqnaMain.comments[0].body}}</div> -->
+              <div *ngIf="skinqnaMain.comments.length > 0">
+                <span class="beauty_note_A">A</span>
+                <span class="card-subtitle">{{skinqnaMain.comments[0].comment}}</span></div>
+            </ion-card>
+          </ion-slide>
+        </ng-container>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+</ion-content>

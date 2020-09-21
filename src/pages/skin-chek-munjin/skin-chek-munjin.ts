@@ -27,10 +27,17 @@ export class SkinChekMunjinPage {
   isLoadSub : boolean = false;
   loadMainData : any;
   loadSubData : any;
-  diagnose_score: number = 2;
-  diagnose_score2: number = 2;
-  diagnose_score3: number = 2;
-  diagnose_score4: number = 2;
+  diagnose_score = {
+    diagnose_score1 : 22,
+    diagnose_score2 : 22,
+    diagnose_score3 : 22,
+  }
+  diagnose_score_default1: number = 2;
+  diagnose_score_default2: number = 2;
+  diagnose_score_default3: number = 2;
+  diagnose_score2: number = 22;
+  diagnose_score3: number = 22;
+  diagnose_score4: number = 22;
   all_score: number = 0;
   isDisabledRange1 : boolean = true;
   isDisabledRange2 : boolean = true;
@@ -99,24 +106,54 @@ export class SkinChekMunjinPage {
   }
 
   public next() {
-    this.navCtrl.push(SkinChekConnectPage, { step : this.step }).then(() => {
+    this.navCtrl.push(SkinChekConnectPage, { step : this.step, munjin : this.diagnose_score }).then(() => {
       this.navCtrl.getActive().onDidDismiss(data => {
         console.log("설문 페이지 닫힘");
       });
     });
   }
 
-  public range_change(range) {
-    if (this.diagnose_score === 1) {
-      this.all_score = this.all_score - 1;
+  public range_change1(range) {
+    if (range._value === 1) {
+      this.diagnose_score.diagnose_score1 = 11;
     }
-    if (this.diagnose_score === 2) {
-      this.all_score = this.all_score + 0;
+    if (range._value === 2) {
+      this.diagnose_score.diagnose_score1 = 22;
     }
-    if (this.diagnose_score === 3) {
-      this.all_score = this.all_score + 1;
+    if (range._value === 3) {
+      this.diagnose_score.diagnose_score1 = 33;
     }
-    // console.log("first_range" + range.value);
+    // console.log("first_range" + range._value);
+    // console.log("this.first_all_score=============" + this.all_score);
+    // console.log("this.first_diagnose_score=============" + this.diagnose_score);
+  }
+
+  public range_change2(range) {
+    if (range._value === 1) {
+      this.diagnose_score.diagnose_score2 = 33;
+    }
+    if (range._value === 2) {
+      this.diagnose_score.diagnose_score2 = 22;
+    }
+    if (range._value === 3) {
+      this.diagnose_score.diagnose_score2 = 11;
+    }
+    // console.log("first_range" + range._value);
+    // console.log("this.first_all_score=============" + this.all_score);
+    // console.log("this.first_diagnose_score=============" + this.diagnose_score);
+  }
+
+  public range_change3(range) {
+    if (range._value === 1) {
+      this.diagnose_score.diagnose_score3 = 11;
+    }
+    if (range._value === 2) {
+      this.diagnose_score.diagnose_score3 = 22;
+    }
+    if (range._value === 3) {
+      this.diagnose_score.diagnose_score3 = 33;
+    }
+    // console.log("first_range" + range._value);
     // console.log("this.first_all_score=============" + this.all_score);
     // console.log("this.first_diagnose_score=============" + this.diagnose_score);
   }

@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import 'chartjs-plugin-labels';
 import { ImagesProvider } from '../../providers/images/images'
 import { CommunityModifyPage } from '../community/community-modify/community-modify'
+import { ProductDetailPage } from '../product-detail/product-detail'
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 
  /**
@@ -288,6 +289,8 @@ export class SkinCleanPage {
     this.image3ForeHeadUrl = this.image3ForeHeadUrl.concat(this.skinAnalyData.firstforhead);
     this.image2CheekUrl = this.image2CheekUrl.concat(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].input[0].filename);
     this.image2ForeHeadUrl = this.image2ForeHeadUrl.concat(this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].input[0].filename);
+    this.image1CheekUrl = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff[0].output_image;
+    this.image1ForeHeadUrl = this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].diff[0].output_image;
     this.lottoNum();
     this.lottoTip();
     this.skinQnaMainLoad();
@@ -669,6 +672,15 @@ export class SkinCleanPage {
       case 'image3' : this.image1 = false; this.image2 = false; this.image3 = true; break;
       default : this.image1 = true; this.image2 = false; this.image3 = false;
     }
+  }
+
+  product_detail(id) {
+    let modal = this.modalCtrl.create(ProductDetailPage, { Product_Num: id });
+    modal.onDidDismiss(data => {
+      // this.ionViewDidEnter();
+      console.log("화장품 상세정보 페이지 닫힘");
+    });
+    modal.present();
   }
 
  

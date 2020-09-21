@@ -295,31 +295,8 @@ export class PoreSizePage {
       type: 'line',
       data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
         labels: this.chartAvgCheekPoreUserSizeDate,
-        datasets: [{
-          // label: format(this.today, 'MM/DD', '유분'),
-          label: this.ageRange +'대' + this.userData.gender + '평균',
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "#dddddd",
-          borderColor: "#dddddd",
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "#dddddd",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5, //클릭시 원크기
-          pointHoverBackgroundColor: "#dddddd",
-          pointHoverBorderColor: "#dddddd",
-          pointHoverBorderWidth: 2, //데이터 호버크기
-          pointRadius: 0.1,  //데이터 포인트크기
-          pointHitRadius: 100,
-          // data: [this.data1, this.data2, this.data3, this.data4],
-          data: this.chartAvgCheekPoreSize,
-          spanGaps: false,
-        },
-       {
+        datasets: [
+        {
           // label: format(this.today, 'MM/DD', '유분'),
           label: '내 평균',
           fill: false,
@@ -344,7 +321,32 @@ export class PoreSizePage {
           // 수분은 하늘이랑 파랑
           // 유분은 노랑이랑 주황!!
           // label: format(this.today, 'MM/DD', '유분'),
-        }],
+        },
+        {
+          // label: format(this.today, 'MM/DD', '유분'),
+          label: this.ageRange +'대' + this.userData.gender + '평균',
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "#dddddd",
+          borderColor: "#dddddd",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "#dddddd",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5, //클릭시 원크기
+          pointHoverBackgroundColor: "#dddddd",
+          pointHoverBorderColor: "#dddddd",
+          pointHoverBorderWidth: 2, //데이터 호버크기
+          pointRadius: 0.1,  //데이터 포인트크기
+          pointHitRadius: 100,
+          // data: [this.data1, this.data2, this.data3, this.data4],
+          data: this.chartAvgCheekPoreSize,
+          spanGaps: false,
+        }
+        ],
       },
       options: {
         animation: {

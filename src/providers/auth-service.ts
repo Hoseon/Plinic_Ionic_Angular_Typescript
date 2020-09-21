@@ -2319,7 +2319,7 @@ export class AuthService {
   }
 
   
-  public skinAnalySecondSave (img, img2, user, step) { // 여러장이 올라 가는지 확인 필요
+  public skinAnalySecondSave (img, img2, user, step, munjin) { // 여러장이 올라 가는지 확인 필요
     // let url = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/api/';
     let cheekUrl = CONFIG.apiUrl + 'skinAnalySecondCheekSave';
     let forheadUrl = CONFIG.apiUrl + 'skinAnalySecondForeheadSave';
@@ -2333,6 +2333,9 @@ export class AuthService {
       params: {
         'email': user.email,
         'step': step,
+        'sleep' : JSON.stringify(munjin.diagnose_score1),
+        'alcohol' : JSON.stringify(munjin.diagnose_score2),
+        'fitness' : JSON.stringify(munjin.diagnose_score3),
       }
     };
 
@@ -2356,7 +2359,7 @@ export class AuthService {
     });
   }
 
-  public cameraTest(img, img2, user) { // 여러장이 올라 가는지 확인 필요
+  public cameraTest(img, img2, user, munjin) { // 여러장이 올라 가는지 확인 필요
     var age = 37;
     let url = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/api/';
     var targetPath = img;
@@ -2387,7 +2390,7 @@ export class AuthService {
     });
   }
 
-  public skinAnaly(result1, result2, ageRange, userData) {
+  public skinAnaly(result1, result2, ageRange, userData, munjin) {
     console.log("피부 분석 데이터 저장 시작");
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -2405,6 +2408,12 @@ export class AuthService {
       created_at: result2.output.created_at,
       email: userData.email,
     }
+
+    var munjin_Score = {
+      sleep : munjin.diagnose_score1,
+      alcohol : munjin.diagnose_score2,
+      fitness : munjin.diagnose_score3,
+    }
     
     let body = {
       email: userData.email,
@@ -2413,6 +2422,7 @@ export class AuthService {
       skincomplaint: userData.skincomplaint,
       cheek: cheek,
       forehead : forehead,
+      munjin : munjin_Score
     };
     console.log("피부 분석 데이터 저장 종료");
     return this.http.post(CONFIG.apiUrl + 'api/saveskinanaly', JSON.stringify(body), { headers: headers })

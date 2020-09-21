@@ -296,61 +296,7 @@ export class PoreCountPage {
       type: 'line',
       data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
         labels: this.chartAvgCheekPoreUserCountDate,
-        datasets: [{
-          // label: format(this.today, 'MM/DD', '유분'),
-          label: this.ageRange +'대' + this.userData.gender + '평균',
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "#dddddd",
-          borderColor: "#dddddd",
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "#dddddd",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5, //클릭시 원크기
-          pointHoverBackgroundColor: "#dddddd",
-          pointHoverBorderColor: "#dddddd",
-          pointHoverBorderWidth: 2, //데이터 호버크기
-          pointRadius: 0.1,  //데이터 포인트크기
-          pointHitRadius: 100,
-          // data: [this.data1, this.data2, this.data3, this.data4],
-          data: this.chartAvgCheekPoreCount,
-          spanGaps: false,
-        },
-        // {
-        //   // label: format(this.today, 'MM/DD', '유분'),
-        //   label: '20대 평균 수분 점수',
-        //   fill: false,
-        //   lineTension: 0,
-        //   backgroundColor: "#ff597c",
-        //   borderColor: "#ff597c",
-        //   borderCapStyle: 'butt',
-        //   borderDash: [],
-        //   borderDashOffset: 0.0,
-        //   borderJoinStyle: 'miter',
-        //   pointBorderColor: "#ff597c",
-        //   pointBackgroundColor: "#fff",
-        //   pointBorderWidth: 1,
-        //   pointHoverRadius: 5,
-        //   pointHoverBackgroundColor: "#ff597c",
-        //   pointHoverBorderColor: "#ff597c",
-        //   pointHoverBorderWidth: 2,
-        //   pointRadius: 3,
-        //   pointHitRadius: 20,
-        //   data: [50, 80, -20, 40, 50 ,10 ,60, 30, -20, 50
-        //     // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
-        //     // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
-        //     //DB데이터 출력
-  
-        //   ],
-        //   spanGaps: false,
-        //   // 수분은 하늘이랑 파랑
-        //   // 유분은 노랑이랑 주황!!
-        //   // label: format(this.today, 'MM/DD', '유분'),
-        // },
+        datasets: [
         {
           // label: format(this.today, 'MM/DD', '유분'),
           label: '내 평균',
@@ -376,7 +322,33 @@ export class PoreCountPage {
           // 수분은 하늘이랑 파랑
           // 유분은 노랑이랑 주황!!
           // label: format(this.today, 'MM/DD', '유분'),
-        }],
+        },
+        {
+          // label: format(this.today, 'MM/DD', '유분'),
+          label: this.ageRange +'대' + this.userData.gender + '평균',
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "#dddddd",
+          borderColor: "#dddddd",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "#dddddd",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5, //클릭시 원크기
+          pointHoverBackgroundColor: "#dddddd",
+          pointHoverBorderColor: "#dddddd",
+          pointHoverBorderWidth: 2, //데이터 호버크기
+          pointRadius: 0.1,  //데이터 포인트크기
+          pointHitRadius: 100,
+          // data: [this.data1, this.data2, this.data3, this.data4],
+          data: this.chartAvgCheekPoreCount,
+          spanGaps: false,
+        },
+        
+      ],
       },
       options: {
         animation: {

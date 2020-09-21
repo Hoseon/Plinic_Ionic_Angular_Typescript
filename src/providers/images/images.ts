@@ -444,6 +444,11 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public getAllMunjinData(value) {
+    return this.http.get(this.apiURL + 'getAllMunjinData/' + value)
+    .map(response => response.json());
+  }
+
   
 
 

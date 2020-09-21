@@ -283,9 +283,11 @@ import { ProductDetailPageModule } from '../pages/product-detail/product-detail.
 import { ProductSungbunPageModule } from '../pages/product-sungbun/product-sungbun.module'
 
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
-import { PoreSizePageModule } from '../pages/pore-size/pore-size.module'
-import { PoreCountPageModule } from '../pages/pore-count/pore-count.module'
-import { SkinCleanPageModule } from '../pages/skin-clean/skin-clean.module'
+import { PoreSizePageModule } from '../pages/pore-size/pore-size.module';
+import { PoreCountPageModule } from '../pages/pore-count/pore-count.module';
+import { SkinCleanPageModule } from '../pages/skin-clean/skin-clean.module';
+import { SkinTonePageModule } from '../pages/skin-tone/skin-tone.module';
+import { SkinMunjinPageModule } from '../pages/skin-munjin/skin-munjin.module';
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -470,6 +472,8 @@ export function getAuthHttp(http, storage) {
     PoreSizePageModule,
     PoreCountPageModule,
     SkinCleanPageModule,
+    SkinTonePageModule,
+    SkinMunjinPageModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
