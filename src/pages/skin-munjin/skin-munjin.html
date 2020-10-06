@@ -1,0 +1,298 @@
+<!--
+  Generated template for the SkinMunjinPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core')" no-lines>
+    <!-- <ion-buttons (click)="chartguide()" end>
+      <div class="guide_android">이용안내</div>
+    </ion-buttons> -->
+    <ion-title class="android_title" text-wrap>피부관리 생활문진</ion-title>
+    <div class="android_search" style="right: 7%;">
+    </div>
+  </ion-navbar>
+
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+    <ion-title  class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <!-- <ion-buttons (click)="chartguide()" end>
+      <div class="guide_ios">
+        이용안내
+      </div>
+    </ion-buttons> -->
+    <ion-title class="ios_title" text-wrap>피부관리 생활문진</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content no-padding>
+  <ion-grid no-padding>
+      <br><br><br><br>
+      <ion-row>
+        <ion-col col-8><div class="munjin_text1">생활문진 종합점수</div></ion-col>
+        <ion-col col-4>
+          <ion-select (ionChange)="yearmonthselect($event)" placeholder="{{skinbtnYear}}년{{skinbtnMonth}}월" interface="popover"
+            [(ngModel)]="valueday.day" multiple="false" class="linechart_btn">
+            <ion-option *ngFor="let days of monthdate">{{days.day}}</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <br>
+      <ion-row><p class="munjin_text2">피부 측정 시 <span class="munjin_text2_1">문진표에 체크</span>한 내용을 바탕으로 점수를 산정 하였습니다.</p></ion-row>
+      <ion-row>
+          <ion-card class="card2">
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col class="center" col-4>
+                  <div class="ptext3_1">최근측정일</div>
+                </ion-col>
+                <ion-col class="center" col-4>
+                  <div class="ptext3_2">월 평균</div>
+                </ion-col>
+                <ion-col class="center" col-4>
+                  <div class="ptext3_3">상위</div>
+                </ion-col>
+              </ion-row>
+              <br>
+              <div class="guide"></div>
+              <ion-row>
+                <ion-col col-4>
+                  <div *ngIf="munjinLastScore" class="ptext4_1">{{munjinLastScore}}<span class="ptext4_11">&nbsp;점</span></div>
+                  <div *ngIf="!munjinLastScore" class="ptext4_1">--<span class="ptext4_11">&nbsp;점</span></div>
+                </ion-col>
+                <ion-col col-4>
+                  <div *ngIf="monthTotalAvg > 0"class="ptext4_2">{{monthTotalAvg}}<span class="ptext4_11">&nbsp;점</span></div>
+                  <div *ngIf="0 >= monthTotalAvg"class="ptext4_2">--<span class="ptext4_11">&nbsp;점</span></div>
+                </ion-col>
+                <ion-col col-4>
+                  <div *ngIf="percentRank >= 0" class="ptext4_3">{{percentRank}}<span class="ptext4_11">&nbsp;%</span></div>
+                  <div *ngIf="0 > percentRank" class="ptext4_3">--<span class="ptext4_11">&nbsp;%</span></div>
+                </ion-col>
+              </ion-row>
+              <div class="guide2"></div>
+              <br><br>
+            </ion-grid>
+          </ion-card>
+        </ion-row>
+  </ion-grid>
+  <br>
+  <br>
+  <ion-grid no-padding>
+    <ion-row><div class="munjin_text3">수면량</div></ion-row>
+    <br>
+    <ion-row>
+      <ion-slides class="" slidesPerView=4>
+        <ng-container *ngFor="let sleep of skinAnalyData.munjin">
+          <ion-slide class="munjin_slide">
+            <div class="munjin_rectangle tip_text2">{{sleep.created_at.substr(0,10)}}
+              <div>
+                <img *ngIf="sleep.sleep === 11" class="sun" src="assets/img/skin-chek-chart/cloud.png" />
+                <img *ngIf="sleep.sleep === 22" class="sun" src="assets/img/skin-chek-chart/suncloud.png" />
+                <img *ngIf="sleep.sleep === 33" class="sun" src="assets/img/skin-chek-chart/sun.png" />
+              </div>
+              <div class="munjin_text4" >{{getSleepText(sleep.sleep)}}</div>
+            </div>
+          </ion-slide>
+        </ng-container>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <ion-grid no-padding>
+    <ion-row><div class="munjin_text3">음주량</div></ion-row>
+    <br>
+    <ion-row>
+      <ion-slides class="" slidesPerView=4>
+        <ng-container *ngFor="let alcohol of skinAnalyData.munjin">
+          <ion-slide class="munjin_slide">
+            <div class="munjin_rectangle tip_text2">{{alcohol.created_at.substr(0,10)}}
+              <div>
+                <img *ngIf="alcohol.alcohol === 11" class="sun" src="assets/img/skin-chek-chart/cloud.png" />
+                <img *ngIf="alcohol.alcohol === 22" class="sun" src="assets/img/skin-chek-chart/suncloud.png" />
+                <img *ngIf="alcohol.alcohol === 33" class="sun" src="assets/img/skin-chek-chart/sun.png" />
+              </div>
+              <div class="munjin_text4" >{{getAlcoholText(alcohol.alcohol)}}</div>
+            </div>
+          </ion-slide>
+        </ng-container>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <ion-grid no-padding>
+    <ion-row><div class="munjin_text3">운동량</div></ion-row>
+    <br>
+    <ion-row>
+      <ion-slides class="" slidesPerView=4>
+        <ng-container *ngFor="let fitness of skinAnalyData.munjin">
+          <ion-slide class="munjin_slide">
+            <div class="munjin_rectangle tip_text2">{{fitness.created_at.substr(0,10)}}
+              <div>
+                  <img *ngIf="fitness.fitness === 11" class="sun" src="assets/img/skin-chek-chart/cloud.png" />
+                  <img *ngIf="fitness.fitness === 22" class="sun" src="assets/img/skin-chek-chart/suncloud.png" />
+                  <img *ngIf="fitness.fitness === 33" class="sun" src="assets/img/skin-chek-chart/sun.png" />
+              </div>
+              <div class="munjin_text4" >{{getFitnessText(fitness.fitness)}}</div>
+            </div>
+          </ion-slide>
+        </ng-container>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <br><br><br><br>
+  <div
+    style="height:1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+
+  <ion-grid>
+    <ion-row class="movie_row1">
+      <pre class="movie_text1">내 피부 맞춤
+어드바이스를 확인하세요
+      </pre>
+    </ion-row>
+    <ion-row class="movie_row2">
+      <div class="movie_text2">피부에 도움이 되는 다양한 콘텐츠를 추천드립니다</div>
+    </ion-row>
+    <br><br>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">추천 영상</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <ion-col col-6>
+        <img src="assets/img/skin-chek-chart/youtube1.png" class="movie_frame" />
+      </ion-col>
+      <ion-col col-6>
+        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
+        <div class="movie_text10">피부과 전문의 이하은</div>
+        <div class="movie_text11">조회수 143</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <img src="assets/img/skin-chek-chart/youtube2.png" class="movie_frame" />
+      </ion-col>
+      <ion-col col-6>
+        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
+        <div class="movie_text10">피부과 전문의 이하은</div>
+        <div class="movie_text11">조회수 143</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <img src="assets/img/skin-chek-chart/youtube3.png" class="movie_frame" />
+      </ion-col>
+      <ion-col col-6>
+        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
+        <div class="movie_text10">피부과 전문의 이하은</div>
+        <div class="movie_text11">조회수 143</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+  <div
+    style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">추천 뷰티 꿀팁</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-slides *ngIf="randomTip2" class="tip_slide_row" slidesPerView=2.5>
+        <ng-container *ngFor="let community of randomTip2; let i = index">
+          <ion-slide (click)="openBrowser_android(community.posturl, community.body, community._id)"
+            class="tip_slide_row2">
+            <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" class="tip_img" />
+            <div class="tip_text1">{{community.body}}</div>
+            <div class="tip_text2">조회수 {{community.views}}</div>
+          </ion-slide>
+        </ng-container>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <div
+    style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">추천 화장품</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <br>
+    <ion-row *ngFor="let product of randomProduct2" class="product_row1">
+      <ion-col col-3>
+        <div class="product_img"><img class="prd_img" src="{{product.image_url}}"></div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="product_text1">{{product.product_name}}</div>
+        <div class="product_text2">{{product.brand_name}}</div>
+      </ion-col>
+      <ion-col (click)="product_detail(product.product_num)" col-3>
+        <div class="product_box">
+          <div class="product_text">보기</div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+  <div
+    style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <div class="movie_text7">베스트 피부 고민</div>
+      </ion-col>
+      <ion-col col-2>
+        <div class="movie_text8">></div>
+      </ion-col>
+    </ion-row>
+    <br><br>
+    <ion-row>
+      <ion-slides pager>
+        <ng-container *ngFor="let skinqnaMain of skinQnaMainData; let i = index">
+          <ion-slide (click)="community_qna_modify(skinqnaMain._id)">
+            <ion-card class="card">
+              <div><span class="beauty_note_Q">Q </span> <span class="card-title">{{skinqnaMain.title}}</span></div><br>
+              <!-- <div class="card-subtitle"><span class="beauty_note_Q">A </span>{{skinqnaMain.comments[0].body}}</div> -->
+              <div *ngIf="skinqnaMain.comments.length > 0">
+                <span class="beauty_note_A">A</span>
+                <span class="card-subtitle">{{skinqnaMain.comments[0].comment}}</span></div>
+            </ion-card>
+          </ion-slide>
+        </ng-container>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <br><br>
+</ion-content>

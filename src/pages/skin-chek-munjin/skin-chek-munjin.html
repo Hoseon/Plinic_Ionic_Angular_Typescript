@@ -28,7 +28,7 @@
 
 
 <ion-content no-bounce no-padding>
-  <ion-grid>
+  <ion-grid >
     <ion-row class="head_row">
       <div class="text1">잠깐! <b>정확한 정보를 등록</b>해야 정확한 스킨차트를 제공합니다.</div>
     </ion-row>
@@ -40,7 +40,7 @@
       <div class="q1_bold">Q1.</div>
       <div class="q1">&nbsp;진단 전일(어제) 수면량은?</div>
     </ion-label>
-    <ion-range (click)="enable_Range('1')" (ionChange)="range_change($event)" [disabled]=isDisabledRange1 min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score"></ion-range>
+    <ion-range (click)="enable_Range('1')" (ionChange)="range_change1($event)" [disabled]=isDisabledRange1 min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score_default1"></ion-range>
   </ion-item>
 
   <ion-row class="dianose_row">
@@ -54,7 +54,7 @@
       <div class="q1_bold">Q2.</div>
       <div class="q1">&nbsp;진단 전일 드신 음주량은?</div>
     </ion-label>
-    <ion-range (click)="enable_Range('2')" (ionChange)="range_change($event)" [disabled]=isDisabledRange2 min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score2"></ion-range>
+    <ion-range (click)="enable_Range('2')" (ionChange)="range_change2($event)" [disabled]=isDisabledRange2 min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score_default2"></ion-range>
   </ion-item>
   
   <ion-row class="dianose_row">
@@ -65,10 +65,10 @@
 
   <ion-item no-lines>
       <ion-label class="q_grid">
-        <div class="q1_bold">Q3.</div>
-        <div class="q1">&nbsp;진단 전일 땀이 난 수준의 운동량은?</div>
+        <p class="q3_bold">Q3.<span class="q3">&nbsp;진단 전일 땀이 난 수준의 운동량은?</span></p>
+        
       </ion-label>
-      <ion-range (click)="enable_Range('3')" (ionChange)="range_change($event)" [disabled]=isDisabledRange3 min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score3"></ion-range>
+      <ion-range (click)="enable_Range('3')" (ionChange)="range_change3($event)" [disabled]=isDisabledRange3 min="1" max="3" snaps="true" class="diagnose_range" mode="ios" [(ngModel)]="diagnose_score_default3"></ion-range>
     </ion-item>
     
     <ion-row class="dianose_row">

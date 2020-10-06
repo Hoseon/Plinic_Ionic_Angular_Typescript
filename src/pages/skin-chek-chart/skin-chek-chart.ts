@@ -10,12 +10,14 @@ import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Chart } from 'chart.js';
 import { format } from 'date-fns';
 import 'chartjs-plugin-labels';
-import { SkincheckGuidePage } from '../skincheck-guide/skincheck-guide'
-import { CameraGuidePage } from '../camera-guide/camera-guide'
-import { PoreSizePage } from '../pore-size/pore-size'
-import { PoreCountPage } from '../pore-count/pore-count'
-import { SkinCleanPage } from '../skin-clean/skin-clean'
-import { ProductDetailPage } from '../product-detail/product-detail'
+import { SkincheckGuidePage } from '../skincheck-guide/skincheck-guide';
+import { CameraGuidePage } from '../camera-guide/camera-guide';
+import { PoreSizePage } from '../pore-size/pore-size';
+import { PoreCountPage } from '../pore-count/pore-count';
+import { SkinCleanPage } from '../skin-clean/skin-clean';
+import { ProductDetailPage } from '../product-detail/product-detail';
+import { SkinTonePage } from '../skin-tone/skin-tone';
+import { SkinMunjinPage } from '../skin-munjin/skin-munjin';
 
 /**
  * Generated class for the SkinChekChartPage page.
@@ -97,7 +99,10 @@ export class SkinChekChartPage {
 
   skinCleanScore: any = 0; //피부 클린 점수
 
-
+  munjinSleep: any;
+  munjinAlcohol: any;
+  munjinFitness: any;
+  munjinCreateAt: any;
   // left1 : any = '0%';
   // left2 : any = '0%';
   // left3 : any = '0%';
@@ -603,6 +608,20 @@ export class SkinChekChartPage {
     });
   }
 
+  skinTonePage() {
+    this.navCtrl.push(SkinTonePage, {skinAnalyData : this.skinAnalyData, userData : this.userData} ).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+      });
+    });
+  }
+
+  skinMunjinPage() {
+    this.navCtrl.push(SkinMunjinPage, {skinAnalyData : this.skinAnalyData, userData : this.userData} ).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+      });
+    });
+  }
+
   getSkinAnaly() {
     // if(this.userData) {
       var sizeSum = 0;
@@ -661,8 +680,36 @@ export class SkinChekChartPage {
             this.skinTone = this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].tone[0].avgrage_color_hex;
           }
 
-          this.skinCleanScore = Math.floor(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff[0].value);
-          this.skinCleanScore > 0 ? this.skinCleanScore = "+" + String(this.skinCleanScore) : this.skinCleanScore;
+          if(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff.length > 0) {
+            this.skinCleanScore = Math.floor(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff[0].value);
+            this.skinCleanScore > 0 ? this.skinCleanScore = "+" + String(this.skinCleanScore) : this.skinCleanScore;
+          }
+
+          //문진표 결과
+          if(this.skinAnalyData.munjin[this.skinAnalyData.cheek.length-1].sleep === 11) {
+            this.munjinSleep = '3시간 이하'
+          } else if(this.skinAnalyData.munjin[this.skinAnalyData.cheek.length-1].sleep === 22) {
+            this.munjinSleep = '3~7 시간'
+          } else {
+            this.munjinSleep = '7시간 이상'
+          }
+
+          if(this.skinAnalyData.munjin[this.skinAnalyData.cheek.length-1].alcohol === 11) {
+            this.munjinAlcohol = '대량'
+          } else if(this.skinAnalyData.munjin[this.skinAnalyData.cheek.length-1].alcohol === 22) {
+            this.munjinAlcohol = '소량(반병 이하)'
+          } else {
+            this.munjinAlcohol = '없음'
+          }
+
+          if(this.skinAnalyData.munjin[this.skinAnalyData.cheek.length-1].fitness === 11) {
+            this.munjinFitness = '없음'
+          } else if(this.skinAnalyData.munjin[this.skinAnalyData.cheek.length-1].fitness === 22) {
+            this.munjinFitness = '1시간 이하'
+          } else {
+            this.munjinFitness = '1시간 이상'
+          }
+          this.munjinCreateAt =  this.skinAnalyData.munjin[this.skinAnalyData.cheek.length-1].created_at;
 
           this.ageRange = this.getAgeRange();
           this.getAvgSkinPore(this.ageRange);

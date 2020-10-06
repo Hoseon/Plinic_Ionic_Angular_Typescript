@@ -30,10 +30,6 @@ export class SkinChekCamera1Page {
   isLoadSub : boolean = false;
   loadMainData : any;
   loadSubData : any;
-  diagnose_score: number = 2;
-  diagnose_score2: number = 2;
-  diagnose_score3: number = 2;
-  diagnose_score4: number = 2;
   all_score: number = 0;
   isDisabledRange1 : boolean = true;
   isDisabledRange2 : boolean = true;
@@ -48,6 +44,8 @@ export class SkinChekCamera1Page {
   camerafile3: any;
   
   step: any;
+
+  diagnose_score : any;
 
 
 
@@ -65,7 +63,8 @@ export class SkinChekCamera1Page {
     if(this.navParams.get('step')) {
       this.step = this.navParams.get('step');
     }
-    console.log("현재 스텝 상태는 : "  + this.step);
+
+    this.navParams.get('munjin') ? this.diagnose_score = this.navParams.get('munjin') : this.diagnose_score;
   }
 
   async ionViewDidLoad() {
@@ -121,7 +120,7 @@ export class SkinChekCamera1Page {
 
   public next() {
     if(this.camerafile !== "") {
-      this.navCtrl.push(SkinChekCamera2Page,{ file1 : this.camerafile, step : this.step }).then(() => {
+      this.navCtrl.push(SkinChekCamera2Page,{ file1 : this.camerafile, step : this.step, munjin: this.diagnose_score }).then(() => {
         this.navCtrl.getActive().onDidDismiss(data => {
           console.log("카메라1 페이지 닫힘");
         });
@@ -147,7 +146,7 @@ export class SkinChekCamera1Page {
   // 2020-05-13 근접카메라 실시간으로 앱에 보여주는 로직
   macro_player() {
     var i = 0;
-    this.cameraTimer = Observable.interval(300).subscribe(x => {
+    this.cameraTimer = Observable.interval(200).subscribe(x => {
       // this.cameraCount = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=&random+\=' + Math.random(); //회색 카메라 테스트
       this.cameraCount = 'http://192.168.1.1/protocol.csp?opt=snap&function=set&random+\=' + Math.random(); //중국 테스트 2020-09-09
       //http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin
@@ -167,14 +166,14 @@ export class SkinChekCamera1Page {
     // this.showLoading();
     const fileTransfer: TransferObject = this.transfer.create();
     let url = 'http://192.168.1.1/protocol.csp?opt=snap&function=set'; //중국 카메라 2020-09-09
-    // let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=';
+    // let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd='; //회색카메라
     
     fileTransfer.download(url, cordova.file.dataDirectory + 'file1.jpg').then((entry) => {
       console.log('download complete: ' + entry.toURL());
       this.camerafile = entry.toURL();
 
       if(this.camerafile !== "") {
-        this.navCtrl.push(SkinChekCamera2Page,{ file1:this.camerafile, step: this.step }).then(() => {
+        this.navCtrl.push(SkinChekCamera2Page,{ file1:this.camerafile, step: this.step, munjin: this.diagnose_score }).then(() => {
           this.navCtrl.getActive().onDidDismiss(data => {
             console.log("카메라1 페이지 닫힘");
           });

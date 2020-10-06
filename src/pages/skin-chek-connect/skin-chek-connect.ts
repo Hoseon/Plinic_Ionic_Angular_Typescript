@@ -26,10 +26,6 @@ export class SkinChekConnectPage {
   isLoadSub : boolean = false;
   loadMainData : any;
   loadSubData : any;
-  diagnose_score: number = 2;
-  diagnose_score2: number = 2;
-  diagnose_score3: number = 2;
-  diagnose_score4: number = 2;
   all_score: number = 0;
   isDisabledRange1 : boolean = true;
   isDisabledRange2 : boolean = true;
@@ -37,6 +33,7 @@ export class SkinChekConnectPage {
   isNext: boolean = false;
   videoUrl: any;
   step : any;
+  diagnose_score: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -49,7 +46,8 @@ export class SkinChekConnectPage {
     if(this.navParams.get('step')) {
       this.step = this.navParams.get('step');
     }
-    console.log("현재 스텝 상태는 : "  + this.step);
+
+    this.navParams.get('munjin') ? this.diagnose_score = this.navParams.get('munjin') : this.diagnose_score;
   }
 
   async ionViewDidLoad() {
@@ -103,44 +101,12 @@ export class SkinChekConnectPage {
   }
 
   public next() {
-    this.navCtrl.push(SkinChekCamera1Page, { step : this.step }).then(() => {
+    this.navCtrl.push(SkinChekCamera1Page, { step : this.step, munjin: this.diagnose_score }).then(() => {
       this.navCtrl.getActive().onDidDismiss(data => {
         console.log("페이지 닫힘");
       });
     });
   }
-
-  public range_change(range) {
-    if (this.diagnose_score === 1) {
-      this.all_score = this.all_score - 1;
-    }
-    if (this.diagnose_score === 2) {
-      this.all_score = this.all_score + 0;
-    }
-    if (this.diagnose_score === 3) {
-      this.all_score = this.all_score + 1;
-    }
-    // console.log("first_range" + range.value);
-    // console.log("this.first_all_score=============" + this.all_score);
-    // console.log("this.first_diagnose_score=============" + this.diagnose_score);
-  }
-
-  public enable_Range(num) {
-    if(num === '1') {
-    this.isDisabledRange1 = false
-    } else if(num === '2') { 
-      this.isDisabledRange2 = false;
-    }  else if(num === '3') {
-      this.isDisabledRange3 = false;
-    }
-
-    if(!this.isDisabledRange1 && !this.isDisabledRange2 && !this.isDisabledRange3) {
-      console.log("모두 오케이");
-      this.isNext = true;
-
-    }
-  }
-
 
   private makeRandom(min, max) {
         var RandVal = Math.floor(Math.random() * (max - min + 1)) + min;

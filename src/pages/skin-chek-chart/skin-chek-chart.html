@@ -134,7 +134,7 @@
         <div class="ptext15_1">{{skinAnalyAvgComparePoreCount}}</div>
       </ion-card>
       <br>
-      <ion-card class="card2">
+      <ion-card (click)="skinTonePage()" class="card2">
         <img src="assets/img/skin-chek-chart/skin-tone.png" class="img3" />
         <ion-label class="ptext8">피부톤</ion-label>
         <div *ngIf="skinAnalyData" class="skintone" [style.background-color]="skinTone"></div>
@@ -158,15 +158,16 @@
         <div class="arrow">></div>
       </ion-card>
       <br>
-      <ion-card class="card2">
+      <ion-card (click)="skinMunjinPage()" class="card2">
         <img src="assets/img/skin-chek-chart/skin-report.png" class="img5" />
         <ion-label class="ptext8">피부 관리 생활 문진</ion-label>
         <div class="ptext18">수면 습관</div>
         <div class="ptext19">일일 음주량</div>
         <div class="ptext20">일일 운동량</div>
-        <div class="ptext21">3~7시간</div>
-        <div class="ptext22">소량</div>
-        <div class="ptext23">없음</div>
+
+        <div class="ptext21">{{munjinSleep}}</div>
+        <div class="ptext22">{{munjinAlcohol}}</div>
+        <div class="ptext23">{{munjinFitness}}</div>
         <div class="arrow">></div>
       </ion-card>
       <br>

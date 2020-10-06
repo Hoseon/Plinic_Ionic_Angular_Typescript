@@ -30,10 +30,6 @@ export class SkinChekCamera2Page {
   isLoadSub : boolean = false;
   loadMainData : any;
   loadSubData : any;
-  diagnose_score: number = 2;
-  diagnose_score2: number = 2;
-  diagnose_score3: number = 2;
-  diagnose_score4: number = 2;
   all_score: number = 0;
   isDisabledRange1 : boolean = true;
   isDisabledRange2 : boolean = true;
@@ -52,6 +48,8 @@ export class SkinChekCamera2Page {
   ageRange: any;
   step: any;
 
+  diagnose_score: any;
+
 
   constructor(
     public navCtrl: NavController, 
@@ -65,18 +63,21 @@ export class SkinChekCamera2Page {
     private alertCtrl: AlertController,
     public ionicApp: IonicApp,
   ) {
+    if(this.navParams.get('step')) {
+      this.step = this.navParams.get('step')
+    }
     
+
   }
 
   async ionViewDidLoad() {
 
     this.camerafile = this.navParams.get('file1');
-
-    if(this.navParams.get('step')) {
-      this.step = this.navParams.get('step')
+    console.log(this.navParams.get('munjin'));
+    if(this.navParams.get('munjin')) {
+      this.diagnose_score = this.navParams.get('munjin');
     }
-    console.log("현재 스텝 상태는? : " + this.step);
-
+    
     console.log('ionViewDidLoad SkinChekMunJinPage');
     await this.loadItems();
     this.macro_player();
@@ -158,7 +159,7 @@ export class SkinChekCamera2Page {
   // 2020-05-13 근접카메라 실시간으로 앱에 보여주는 로직
   macro_player() {
     var i = 0;
-    this.cameraTimer = Observable.interval(300).subscribe(x => {
+    this.cameraTimer = Observable.interval(200).subscribe(x => {
       // this.cameraCount = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=&random+\=' + Math.random(); //회색 카메라
       this.cameraCount = 'http://192.168.1.1/protocol.csp?opt=snap&function=set&random+\=' + Math.random(); //중국 카메라 테스트 2020-09-09
       //http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin
@@ -187,7 +188,7 @@ export class SkinChekCamera2Page {
         this.showLoading();
         setTimeout(() => {
           if(this.step ==='first') {
-            this.auth.cameraTest(this.camerafile, this.camerafile2, this.userData).then(data => {
+            this.auth.cameraTest(this.camerafile, this.camerafile2, this.userData, this.diagnose_score).then(data => {
               // if (!data) {
               if(data) {
                 this.result1 = data.result1;
@@ -196,7 +197,7 @@ export class SkinChekCamera2Page {
               }          
                 this.loading.dismiss();
                 if(data) {
-                  this.auth.skinAnaly(this.result1, this.result2, this.ageRange, this.userData).subscribe(data => {
+                  this.auth.skinAnaly(this.result1, this.result2, this.ageRange, this.userData, this.diagnose_score).subscribe(data => {
                     console.log("데이터 저장 완료")
                   }, error => {
                     console.log("데이터 저장 완료")
@@ -225,7 +226,7 @@ export class SkinChekCamera2Page {
                 alert2.present();
             });
           } else if (this.step ==='second') {
-            this.auth.skinAnalySecondSave(this.camerafile, this.camerafile2, this.userData, this.step).then(data => {
+            this.auth.skinAnalySecondSave(this.camerafile, this.camerafile2, this.userData, this.step, this.diagnose_score).then(data => {
               // if (!data) {
                 this.loading.dismiss();
                   
@@ -253,7 +254,7 @@ export class SkinChekCamera2Page {
               alert("에러 발생");
             });
           }
-        }, 10000);
+        }, 5000);
         
 
       } else {
