@@ -146,7 +146,7 @@ export class SkinChekCamera1Page {
   // 2020-05-13 근접카메라 실시간으로 앱에 보여주는 로직
   macro_player() {
     var i = 0;
-    this.cameraTimer = Observable.interval(300).subscribe(x => {
+    this.cameraTimer = Observable.interval(200).subscribe(x => {
       // this.cameraCount = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd=&random+\=' + Math.random(); //회색 카메라 테스트
       this.cameraCount = 'http://192.168.1.1/protocol.csp?opt=snap&function=set&random+\=' + Math.random(); //중국 테스트 2020-09-09
       //http://192.168.1.1/snapshot.cgi?resolution=0&user=admin&pwd=admin
