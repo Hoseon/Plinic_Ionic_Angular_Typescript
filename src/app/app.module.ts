@@ -478,14 +478,11 @@ export function getAuthHttp(http, storage) {
     BillCancel2PageModule,
     BillCancel3PageModule,
     BillCancel4PageModule,
-<<<<<<< HEAD
     PoreSizePageModule,
     PoreCountPageModule,
     SkinCleanPageModule,
     SkinTonePageModule,
     SkinMunjinPageModule,
-=======
->>>>>>> c288bbcdc2bacc61330a3ab96b2cd3053195270e
     SungwooSettingPageModule,
     SungwooOrderPageModule,
     SungwooCartPageModule,

@@ -398,24 +398,6 @@ export class SettingPage {
     });
   }
 
-  sungWoo_Setting() {
-    // 기본으로 쓰는 방법
-    // Push는 페이지 이동 비슷하게 modal 이 있음
-    // Pop는  Push 의 반대 개념 --> 전페이지로 넘어간다
-    this.navCtrl.push(SungwooSettingPage, {userData : this.userData});
-    console.log("ㅋㅋㅋㅋ 페이지 ㅋㅋㅋㅋㅋ")
-
-      
-    
-    // //고급형
-    // this.navCtrl.push(SungwooSettingPage).then(() => {
-    //   this.navCtrl.getActive().onDidDismiss(data => {
-    //     //페이지 pop 이되거나 닫혔을대 아래 코드가 실행
-    //     console.log("멤버십 관리 페이지 닫힘");
-    //   });
-    // });
-    
-  }
 
 sungWoo_Setting() {
   // 기본으로 쓰는 방법
