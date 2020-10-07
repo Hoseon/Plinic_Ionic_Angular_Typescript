@@ -285,6 +285,15 @@ import { ProductSungbunPageModule } from '../pages/product-sungbun/product-sungb
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 
 
+//20200903 성우 연습
+import { SungwooSettingPageModule } from '../pages/sungwoo-setting/sungwoo-setting.module';
+//20200903 성우 오더 페이지 모듈 화 선언
+import { SungwooOrderPageModule } from '../pages/sungwoo-order/sungwoo-order.module';
+//20200921 성우 장바구니 페이지
+import { SungwooCartPageModule } from '../pages/sungwoo-cart/sungwoo-cart.module';
+//20200928 성우 상품 선택 페이지
+import { SungwooPickPageModule } from '../pages/sungwoo-pick/sungwoo-pick.module';
+
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
     headerPrefix: '',
@@ -465,6 +474,10 @@ export function getAuthHttp(http, storage) {
     BillCancel2PageModule,
     BillCancel3PageModule,
     BillCancel4PageModule,
+    SungwooSettingPageModule,
+    SungwooOrderPageModule,
+    SungwooCartPageModule,
+    SungwooPickPageModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
