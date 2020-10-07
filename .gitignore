@@ -8,6 +8,7 @@
 log.txt
 
 .idea/
+.sourcemaps/
 .sass-cache/
 .tmp/
 .versions/
@@ -23,6 +24,7 @@ hooks/
 platforms/
 plugins/
 www/
+
 
 .DS_Store
 Thumbs.db

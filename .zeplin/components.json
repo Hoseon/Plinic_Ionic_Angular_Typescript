@@ -1,0 +1,10 @@
+{
+    "projects": [],
+    "styleguides": [],
+    "components": [
+        {
+            "path": "src/pages/skin-chek-chart/skin-chek-chart.html",
+            "zeplinNames": []
+        }
+    ]
+}
