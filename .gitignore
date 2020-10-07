@@ -11,6 +11,10 @@ log.txt
 .sass-cache/
 .tmp/
 .versions/
+.sourcemaps/
+.gradle/
+.zeplin/
+.vscode/
 coverage/
 node_modules/
 tmp/
