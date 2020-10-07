@@ -14,7 +14,6 @@ import { NavController, NavParams, Platform } from 'ionic-angular';
 
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { ImageLoader } from 'ionic-image-loader';
-import { createPublicKey } from 'crypto';
 
 
 @IonicPage() @Component({

@@ -21,12 +21,12 @@
 
 <ion-content>
 
-  <ion-list *ngIf="userData" class="top_list">
+  <ion-list class="top_list">
 
     <div class="title">계정정보</div>
-    <button class="terms" mode="ios" no-lines ion-item icon-start (click)="Reregiter()">{{userData.nickname}}({{userData.email}})
-      <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-      <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
+    <button class="terms" mode="ios" no-lines ion-item icon-start (click)="Reregiter()">김성우(sorcerer10@naver.com)
+      <!-- <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
+      <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/> -->
     </button>
 
     <button class="terms" mode="ios" no-lines ion-item icon-start (click)="bill()">정기결제 멤버십 관리</button>
@@ -37,22 +37,15 @@
   </ion-list>
 
 
-  <!-- <div *ngIf="platform.is('ios')" style="height: 1px;width: 91%;margin-top: 2%;margin: 0 auto; background-color:#000"></div>
-  <div *ngIf="platform.is('android')" style="height: 1px;width: 91%;margin-top: 2%;margin: 0 auto; background-color:#000"></div> -->
-
 
   <ion-list no-lines>
     <ion-item mode="ios" class="title2">디바이스</ion-item><br>
-    <!-- <ion-item class="connect_status" mode="ios" no-lines>연동상태
-      <button mode="ios" *ngIf="blu_connect" style="width: 115px;" class="blue_status" no-lines ion-item (click)="blue_connect()">연동 중</button>
-      <button mode="ios" *ngIf="!blu_connect" class="blue_status" no-lines ion-item (click)="blue_disconnect()">연동 해제</button>
-    </ion-item> -->
-    <button class="care_zone" mode="ios" no-lines ion-item (click)="sungWoo_Setting()" icon-start>성우 셋팅</button>
-    <button class="plinic_use" mode="ios" no-lines ion-item (click)="plinic_manual()" icon-start>플리닉 사용법</button>
-    <button class="care_zone" mode="ios" no-lines ion-item (click)="plinic_FAQ()" icon-start>FAQ</button>
-    <button class="inquiry" mode="ios" no-lines ion-item (click)="plinic_qna()" icon-start>문의하기</button>
+
+    <button class="plinic_use" mode="ios" no-lines ion-item (click)="sungWoo_Order()" icon-start>성우 주문서</button>
+    <button class="care_zone" mode="ios" no-lines ion-item (click)="sungWoo_Cart()" icon-start>성우 장바구니</button>
+    <button class="inquiry" mode="ios" no-lines ion-item (click)="sungWoo_Pick()" icon-start>성우 상품 선택</button>
     <ion-item no-lines>
-      <ion-toggle mode="md" [(ngModel)]="push_check" (ionChange)="push_change()"></ion-toggle>
+      <ion-toggle mode="md" (ionChange)="push_change()"></ion-toggle>
       <ion-label class="text">추천 알림</ion-label>
     </ion-item>
   </ion-list>

@@ -288,6 +288,15 @@ import { PoreCountPageModule } from '../pages/pore-count/pore-count.module';
 import { SkinCleanPageModule } from '../pages/skin-clean/skin-clean.module';
 import { SkinTonePageModule } from '../pages/skin-tone/skin-tone.module';
 import { SkinMunjinPageModule } from '../pages/skin-munjin/skin-munjin.module';
+//20200903 성우 연습
+import { SungwooSettingPageModule } from '../pages/sungwoo-setting/sungwoo-setting.module';
+//20200903 성우 오더 페이지 모듈 화 선언
+import { SungwooOrderPageModule } from '../pages/sungwoo-order/sungwoo-order.module';
+//20200921 성우 장바구니 페이지
+import { SungwooCartPageModule } from '../pages/sungwoo-cart/sungwoo-cart.module';
+//20200928 성우 상품 선택 페이지
+import { SungwooPickPageModule } from '../pages/sungwoo-pick/sungwoo-pick.module';
+
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -474,6 +483,10 @@ export function getAuthHttp(http, storage) {
     SkinCleanPageModule,
     SkinTonePageModule,
     SkinMunjinPageModule,
+    SungwooSettingPageModule,
+    SungwooOrderPageModule,
+    SungwooCartPageModule,
+    SungwooPickPageModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
