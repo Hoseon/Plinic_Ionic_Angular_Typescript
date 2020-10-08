@@ -124,9 +124,13 @@
         <div class="cart_title2">결제 예정 금액</div>
       </ng-container>
 
-      <button (click)="saveToday()" ion-button class="cell"><div class="cell_text">주문하기</div></button>
+      <!-- <button (click)="saveToday()" ion-button class="cell"><div class="cell_text">주문하기</div></button> -->
       
       <div class="gon2"></div>
     </form>
   </ng-container>
 </ion-content>
+
+<ion-footer mode="ios" keyboard-attach no-bounce no-lines>
+  <button (click)="saveToday()" ion-button class="cell"><div class="cell_text">주문하기</div></button>
+</ion-footer>
