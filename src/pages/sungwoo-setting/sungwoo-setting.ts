@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
 import { SungwooOrderPage } from '../sungwoo-order/sungwoo-order';
 import { SungwooCartPage } from '../sungwoo-cart/sungwoo-cart';
 import { SungwooPickPage } from '../sungwoo-pick/sungwoo-pick';
-
+import { SungwooProductDetailPage } from '../sungwoo-product-detail/sungwoo-product-detail';
+import { SungwooDeliveryPage } from '../sungwoo-delivery/sungwoo-delivery';
 
 /**
  * Generated class for the SungwooSettingPage page.
@@ -51,6 +52,16 @@ export class SungwooSettingPage {
   sungWoo_Pick() {
     this.navCtrl.push(SungwooPickPage);
     console.log("성우 상품선택 페이지")
+  }
+
+  sungWoo_Product_Detail() {
+    this.navCtrl.push(SungwooProductDetailPage);
+    console.log("성우 상품정보 페이지")
+  }
+
+  sungWoo_Delivery() {
+    this.navCtrl.push(SungwooDeliveryPage);
+    console.log("성우 배송조회 페이지")
   }
 
   //추가

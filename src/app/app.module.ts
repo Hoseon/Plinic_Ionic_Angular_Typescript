@@ -296,7 +296,10 @@ import { SungwooOrderPageModule } from '../pages/sungwoo-order/sungwoo-order.mod
 import { SungwooCartPageModule } from '../pages/sungwoo-cart/sungwoo-cart.module';
 //20200928 성우 상품 선택 페이지
 import { SungwooPickPageModule } from '../pages/sungwoo-pick/sungwoo-pick.module';
-
+//20201012 성우 상품 정보 페이지
+import { SungwooProductDetailPageModule } from '../pages/sungwoo-product-detail/sungwoo-product-detail.module';
+//20201020 성우 배송 조회 페이지
+import { SungwooDeliveryPageModule } from '../pages/sungwoo-delivery/sungwoo-delivery.module';
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -487,6 +490,8 @@ export function getAuthHttp(http, storage) {
     SungwooOrderPageModule,
     SungwooCartPageModule,
     SungwooPickPageModule,
+    SungwooProductDetailPageModule,
+    SungwooDeliveryPageModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
