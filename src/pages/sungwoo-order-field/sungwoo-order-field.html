@@ -1,0 +1,171 @@
+<!--
+  Generated template for the SungwooOrderFieldPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar  *ngIf="platform.is('android')" no-lines>
+    <ion-title class="android_title" text-wrap >주문서</ion-title>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
+  	<ion-buttons left>
+  		<button ion-button navPop icon-only>
+        <img class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
+  		</button>
+  	</ion-buttons>
+    <ion-title class="ios_title" text-wrap>주문서</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <!-- <form #registerForm="ngForm" no-lines >
+    <ion-grid>
+      <ion-row>
+        <ion-item class="item_align" style="background:#FFF">
+          <ion-label class="titlelabel" stacked>받는분</ion-label>
+          <ion-input class="input_name" (ionChange)="changeImage()" mode="ios"
+            type="text" name="name" placeholder="입력" clearInput required>
+          </ion-input>
+        </ion-item><br>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-grid>
+      <ion-row>
+        <ion-item class="item_align" style="background:#FFF">
+          <ion-label class="titlelabel" stacked>연락처</ion-label>
+          <ion-input class="input_name" (ionChange)="changeImage()" mode="ios"
+            type="text" name="name" placeholder="입력" clearInput required>
+          </ion-input>
+        </ion-item><br>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <button class="btn1" ion-button (click)="bill2()" >주소 검색</button>
+        <ion-item class="item_align" style="background:#FFF">
+          <ion-label class="titlelabel" stacked>주소</ion-label>
+          <ion-input class="input_name" (ionChange)="changeImage()" mode="ios"
+            type="text" name="name" placeholder="주소를 검색해주세요" clearInput required>
+          </ion-input>
+        </ion-item><br>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-grid no-padding>
+      <ion-row>
+        <button ion-button *ngIf="(!registerForm.form.valid)" class="complete_btn_invalid" name="register_invalid"
+          type="submit" [disabled]="!registerForm.form.valid">확인</button>
+        <button ion-button *ngIf="(registerForm.form.valid)" class="complete_btn_valid" name="register_valid"
+        (click)="idFind()" [disabled]="!registerForm.form.valid">확인</button>
+      </ion-row>
+    </ion-grid>
+  </form> -->
+  <ng-container>
+
+  <ion-grid no-padding>
+    <ion-row class="line_item1" no-lines>
+      받는분
+    </ion-row>
+    <ion-input class="input_name" (ionChange)="changeImage()" mode="ios"
+    type="text" name="name" placeholder="입력" clearInput required>
+    </ion-input>
+    <div style="height:0.1vh; width:100vw; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+  </ion-grid>
+  
+    
+  <ion-grid no-padding>
+    <ion-row class="line_item2" no-lines>
+      연락처
+    </ion-row>
+    <ion-input class="input_name2" (ionChange)="changeImage()" mode="ios"
+    type="text" name="name" placeholder="입력" clearInput required>
+    </ion-input>
+    <div style="height:0.1vh; width:100vw; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+  </ion-grid>
+  
+        
+  <ion-grid no-padding>
+    <ion-row class="line_item3" no-lines>
+      주소
+      <button class="btn1" ion-button (click)="bill2()" >주소 검색</button>
+    </ion-row>
+    <ion-input class="input_name3" (ionFocus)="changeImage()" mode="ios"
+    type="text" name="name" placeholder="주소를 검색해주세요" clearInput required>
+    </ion-input>
+    <div style="height:0.1vh; width: 86vw; margin-top: -1.6vh; margin-left: 9.5vw; display: block; background-color:#f1f1f1"></div>
+    <ion-input class="input_name3" (ionFocus)="changeImage()" mode="ios"
+    type="text" name="name" placeholder="" clearInput required>
+    </ion-input>
+    <div style="height:0.1vh; width: 86vw; margin-top: -1.1vh; margin-left: 9.5vw; display: block;background-color:#f1f1f1"></div>
+  </ion-grid>
+  
+  <div style="height:0.1vh; width:100vw; margin-top: 7.5vh; display: block; background-color:#f1f1f1;"></div>
+  
+  <ion-grid no-padding>
+    <ion-row class="line_item4" no-lines>
+      배송메세지(100자 이내)
+    </ion-row>
+    <ion-input class="input_name4" (ionChange)="changeImage()" mode="ios"
+    type="text" name="name" placeholder="입력해주세요" clearInput required>
+    </ion-input>
+    <div style="height:0.1vh; width: 86vw; margin-top: -1.6vh; margin-left: 9.5vw; display: block; background-color:#f1f1f1"></div>
+  </ion-grid>
+
+  <ion-row>
+    <div style="height:1.3vh; width:100vw; margin-top:4.2vh; background-color:#f1f1f1"></div>
+  </ion-row>
+
+
+
+
+  <!-- <ion-item no-padding class="item_align" style="background:#FFF">
+    <ion-label mode="ios" class="title_left password_label" stacked>주소</ion-label>
+    <button class="btn1" ion-button (click)="bill2()" >주소 검색</button>
+    <ion-input no-padding (ionFocus)="postFocusOut()" class="title_left input_name4" mode="ios" type="text" name="base_password" placeholder="주소를 검색해주세요" clearInput required></ion-input>
+  </ion-item>
+
+  <ion-item no-padding class="item_align" style="background:#FFF">
+    <ion-label mode="ios" class="title_left password_label" stacked>상세주소</ion-label>
+    <ion-input no-padding (ionFocus)="postFocusOut()" class="title_left input_name4" mode="ios" type="text" name="base_password" placeholder="나머지 주소를 입력해주세요." clearInput required></ion-input>
+  </ion-item>
+
+  <ion-item no-padding class="item_align" style="background:#FFF">
+    <ion-label mode="ios" class="title_left password_label" stacked>배송 시 특이사항</ion-label>
+    <ion-input no-padding (ionFocus)="postFocusOut()" class="title_left input_name4" mode="ios" type="text" name="base_password" placeholder="배송시 특이사항을 입력해주세요." clearInput required></ion-input>
+  </ion-item> -->
+
+
+
+    <!-- <div class="gon"></div>
+
+
+      <ion-row>
+        <div style="height:1.3vh; width:100vw; background-color:#f1f1f1"></div>
+      </ion-row> -->
+  </ng-container> 
+  <ion-grid>
+    <ion-row>
+      <h2 class="guide-title">배송지 이용 안내</h2>
+      <pre class="guide">
+      · 주소를 검색하여 정확하게 입력해주세요.
+      · 연락처를 정확하게 입력해주시고 개인 사정으로 받기 어려우실
+        때는 택배사와 연락을 취하셔서 조율하시길 바랍니다.
+      · 배송지를 정확히 입력하지 않으면 제품 배송이 어려워집니다.
+      · 모든 상품은 입금확인 후 순차적으로 상품이 발송됩니다.</pre>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer mode="ios" keyboard-attach no-bounce no-lines>
+  <button  class="field_btn" ion-button (click)="delivery_submit();"> 확인 </button>
+  <!-- <button  *ngIf="qna_input!=='' && qna_select !==''"  class="qna_btn" ion-button (click)="qna_submit();"> 카카오 1:1 상담 바로가기</button>
+  <button  *ngIf="qna_input==='' || qna_select ===''" class="qna_btn2" ion-button (click)="qna_submit();"> 카카오 1:1 상담 바로가기</button> -->
+</ion-footer>

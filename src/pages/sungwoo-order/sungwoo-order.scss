@@ -594,14 +594,14 @@ page-sungwoo-order {
       margin-top: 0.7vh;
       margin-left: 11.8vw;
       margin-right: 6vw;
-      margin-bottom: 5.7vh;
+      margin-bottom: 15.7vh;
       letter-spacing: -0.3vw;
     }
 
     .cell {
       position: fixed;
       bottom: 0;
-      min-width: 100%;
+      min-width: 92%;
       min-height: 55px;
       background-color: #5c59b6;
       font-family: AppleSDGothicNeo-Regular;
@@ -612,6 +612,7 @@ page-sungwoo-order {
       line-height: normal;
       letter-spacing: normal;
       text-align: center;
+      margin-left: 4vw;
       color: #ffffff;
     }
 
