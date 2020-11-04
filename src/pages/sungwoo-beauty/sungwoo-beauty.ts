@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 
 /**
- * Generated class for the SungwooOrderFieldPage page.
+ * Generated class for the SungwooBeautyPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,18 +10,16 @@ import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-sungwoo-order-field',
-  templateUrl: 'sungwoo-order-field.html',
+  selector: 'page-sungwoo-beauty',
+  templateUrl: 'sungwoo-beauty.html',
 })
-export class SungwooOrderFieldPage {
+export class SungwooBeautyPage {
 
-  // cucumber: boolean;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public platform: Platform
-    
     ) {
 
       this.platform.ready().then(() => {});
@@ -29,11 +27,7 @@ export class SungwooOrderFieldPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SungwooOrderFieldPage');
+    console.log('ionViewDidLoad SungwooBeautyPage');
   }
-
-  // updateCucumber() {
-  //   console.log('Cucumbers new state:' + this.cucumber);
-  // }
 
 }

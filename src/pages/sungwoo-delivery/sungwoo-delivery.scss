@@ -55,7 +55,7 @@ page-sungwoo-delivery {
     }
 
     .delivery_co {
-        font-family: NotoSansCJKsc;
+        font-family: AppleSDGothicNeo;
         font-size: 12px;
         font-weight: 300;
         font-stretch: normal;
@@ -174,18 +174,6 @@ page-sungwoo-delivery {
         margin-left: 3.8vw;
       }
 
-      // .nodataText {
-      //   font-family: AppleSDGothicNeo-Regular;
-      //   font-size: 14px;
-      //   font-weight: 500;
-      //   font-stretch: normal;
-      //   font-style: normal;
-      //   line-height: 1.57;
-      //   letter-spacing: -0.12vw;
-      //   text-align: center;
-      //   color: #979797;
-      //   margin: 50% auto;
-      // }
 
       .grid_backColor2 {
         position: absolute;
@@ -198,13 +186,6 @@ page-sungwoo-delivery {
         color: #a9a9a9;
       }
 
-      // div.vertical-line{
-      //   width: 0.1vw; 
-      //   background-color: #a9a9a9; 
-      //   height: 100%;
-      //   margin-top: 1vh;
-      //   float: left;
-      // }
 
       #your_col {
         border-left: 1px solid #a9a9a9;
@@ -218,7 +199,7 @@ page-sungwoo-delivery {
       }
 
       .caution {
-        position: relative;
+        position: static;
         text-align: left;
         font-family: AppleSDGothicNeo-Regular;
         font-size: 13px;
@@ -235,30 +216,37 @@ page-sungwoo-delivery {
       }
 
       .delivery_text1 {
+        font-family: AppleSDGothicNeo-Regular;
         font-size: 13px !important;
         color: #5c59b6 !important;
       }
 
       .lctn {
+        position: static;
         margin-top: -1vh;
         margin-left: -2.8vw;
         text-align: center;
+        font-family: AppleSDGothicNeo-Regular;
         font-size: 13px;
         color: #5c59b6;
       }
 
       .lctn2 {
+        position: static;
         margin-top: -1vh;
         // margin-left: 4.8vw;
         text-align: right;
+        font-family: AppleSDGothicNeo-Regular;
         font-size: 13px;
         color: #5c59b6;
       }
 
       .lctn3 {
+        position: static;
         margin-top: -1vh;
         margin-left: -2.8vw;
         text-align: center;
+        font-family: AppleSDGothicNeo-Regular;
         font-size: 13px;
         color: #a9a9a9;
       }
@@ -267,33 +255,73 @@ page-sungwoo-delivery {
         margin-top: -1vh;
         // margin-left: 4.8vw;
         text-align: right;
+        font-family: AppleSDGothicNeo-Regular;
         font-size: 13px;
         color: #a9a9a9;
       }
 
-      // .cell {
-      //   width: 88%;
-      //   height: 8vh;
-      //   margin-top: 54vh;
-      //   margin-left: 6vw;
-      //   border-radius: 3.5px;
-      //   background-color: #5c59b6;
-      //   font-family: AppleSDGothicNeo-Regular;
+      // .grid_backColor2 {
+      //   position: relative;
+      //   // margin-top: 5.5vh;
       // }
 
-      // .cell_text {
-      //   height: 4vh;
+      // #your_col {
+      //   border-left: 1px solid #a9a9a9;
+      //   margin-top: 2vh;
+      //   margin-left: -2vw;
+      // }
+
+      // .delivery_icon {
+      //   position: static;
+      //   text-align: left;
+      //   color: #a9a9a9;
+      // }
+      
+      // .caution {
+      //   position: static;
+      //   text-align: left;
       //   font-family: AppleSDGothicNeo-Regular;
-      //   font-size: 12px;
-      //   font-weight: 600;
+      //   font-size: 13px;
+      //   font-weight: 500;
       //   font-stretch: normal;
       //   font-style: normal;
-      //   line-height: normal;
-      //   // letter-spacing: 0.5px;
-      //   text-align: center;
-      //   color: #ffffff;
-      //   margin-top: 1.5vh;
+      //   line-height: 1.57;
+      //   letter-spacing: -0.12vw;
+      //   color: #a9a9a9;
+      //   // margin-top: -0.8vh;
+      //   // margin-bottom: 4.8vh;
+      //   // margin-left: 4.5vw;
+      //   // margin: 50% auto;
       // }
+
+      // .delivery_text1 {
+      //   position: static;
+      //   text-align: right;
+      //   font-size: 13px !important;
+      //   color: #5c59b6 !important;
+      // }
+
+      // .lctn {
+      //   position: static;
+      //   text-align: right;
+      //   font-size: 13px;
+      //   color: #a9a9a9;
+      // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       .delivery_btn{
         position: fixed;

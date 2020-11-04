@@ -29,7 +29,7 @@
       <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/> -->
     </button>
 
-    <button class="terms" mode="ios" no-lines ion-item icon-start (click)="bill()">정기결제 멤버십 관리</button>
+    <button class="terms" mode="ios" no-lines ion-item icon-start (click)="sungWoo_Beauty()">성우 뷰티영상</button>
 
     <div *ngIf="platform.is('ios') || platform.is('core')" style="height: 1px;width: 92%;margin: 0 auto; margin-top: 4%; background-color:#f1f1f1"></div>
     <div *ngIf="platform.is('android')" style="height: 1px;width: 92%; margin: 0 auto; margin-top: 4%; background-color:#f1f1f1"></div>
@@ -50,6 +50,14 @@
     </ion-item>
   </ion-list>
 
+  <ion-list no-lines>
+    <ion-item mode="ios" class="title2">디바이스</ion-item><br>
+    <button class="plinic_use" mode="ios" no-lines ion-item (click)="sungWoo_Cosmetics()" icon-start>화장품 모아보기</button>
+    <button class="care_zone" mode="ios" no-lines ion-item (click)="sungWoo_Cart()" icon-start>-</button>
+    <button class="inquiry" mode="ios" no-lines ion-item (click)="sungWoo_Pick()" icon-start>-</button>
+    <button class="inquiry" mode="ios" no-lines ion-item (click)="sungWoo_Pick()" icon-start>-</button>
+  </ion-list>
+
 
   <div *ngIf="platform.is('ios') || platform.is('core')" style=" height: 1px; width: 92%; margin: 0 auto; margin-top: -4%; background-color:#f1f1f1"></div>
   <div *ngIf="platform.is('android')" style=" height: 1px; width: 92%; margin: 0 auto; margin-top: 0%; background-color:#f1f1f1"></div>
@@ -59,15 +67,11 @@
     <div class="title">일반</div>
     <button class="terms" mode="ios" ion-item icon-start (click)="sungWoo_Product_Detail()">성우 상품 정보</button>
     <button class="terms" mode="ios" ion-item (click)="sungWoo_Delivery()" icon-start>성우 배송 조회</button>
-    <button class="text" mode="ios" ion-item (click)="sungWoo_Order_Field()" icon-start>성우 입력주문서</button>
+    <button class="text" mode="ios" ion-item (click)="sungWoo_Cosmetics_Main()" icon-start>성우 화장품 메인</button>
     <ion-item class="current_version" no-lines>현재 버전 <ion-note item-end>1.0.11</ion-note>
     </ion-item>
     <button class="logout" mode="md" ion-item (click)="logout()" icon-start>로그아웃</button>
   </ion-list>
-
-
-
-
 
 
 

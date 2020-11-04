@@ -61,7 +61,8 @@
     <div class="star_group2">
       <ion-col class="good">1,127개</ion-col>
       <button ion-button color="light" clear class="wc">
-      <ion-icon ios="ios-heart" class="heart1" md="ios-heart-outline"></ion-icon>
+      <!-- <ion-icon ios="ios-heart" class="heart1" md="ios-heart-outline"></ion-icon> -->
+      <img class="heart1" src="assets/img/sungwoo_img/17.png"/>
       </button>
     </div>
     </ion-row>
@@ -121,6 +122,7 @@
     </ion-grid>
   </ng-container>
 
+
   <ion-list>
     <ng-container>
       <ng-container>
@@ -151,8 +153,8 @@
         <!-- 수정 -->
         <!-- <textarea id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" (input)="adjustTextareaUpdate($event)"
           autofocus="true" (focus)="focus($event)"></textarea> -->
-        <div style="height:1px; width:100%; display: block; margin-bottom:1vh; background-color:#f1f1f1"></div>
       </ng-container>
+      <div style="height:1px; width:100%; display: block; margin-top: 6vh; background-color:#f1f1f1"></div>
     </ng-container>
 
 
@@ -205,6 +207,7 @@
         <!-- <ng-container>
           <button ion-button class="comment_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
         </ng-container> -->
+        <div class="dis"></div>
         <div class="container">
           <div class="nik"></div>
             <div class="nickname_comment">za******@naver.com</div>
@@ -229,16 +232,31 @@
         <ng-container>
           <div class="content_comment">점성이 가벼운거 좋아하시면 추천해요</div>
         </ng-container>
+        <ion-row>
+        </ion-row>
         <!-- 수정 -->
         <!-- <textarea id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" (input)="adjustTextareaUpdate($event)"
           autofocus="true" (focus)="focus($event)"></textarea> -->
       <ion-row>
-        <div style="height:1px; width:100%; margin-bottom: 1.1vh; margin-top: -1.1vh; background-color:#f1f1f1"></div>
+        <div style="height:1px; width:100%; margin-bottom: 1.1vh; margin-top: 5.5vh; background-color:#f1f1f1"></div>
       </ion-row>
       </ng-container>
+      <!--       <ion-row>
+                <ng-container *ngIf="!isShowMore">
+                  <button ion-button (click)="showMore(true)" class="button_add" outline >
+                    5개 리뷰 더보기 ▼
+                  </button>
+                </ng-container>
+                <ng-container *ngIf="isShowMore">
+                  <button ion-button (click)="showMore(false)" class="button_add" outline >
+                    리뷰 접기 ▲
+                  </button>
+                </ng-container>
+              </ion-row> -->
     </ng-container>
       <button ion-button class="button_add" style="font-size: 14px; box-shadow:none;" outline>5개 리뷰 더보기 ▼</button>
-  </ion-list>
+
+    </ion-list>
   <ion-row>
     <div style="height:1.2vh; width:100vw; background-color:#f1f1f1"></div>
   </ion-row>

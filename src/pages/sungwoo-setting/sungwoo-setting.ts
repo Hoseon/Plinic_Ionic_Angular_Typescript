@@ -5,7 +5,8 @@ import { SungwooCartPage } from '../sungwoo-cart/sungwoo-cart';
 import { SungwooPickPage } from '../sungwoo-pick/sungwoo-pick';
 import { SungwooProductDetailPage } from '../sungwoo-product-detail/sungwoo-product-detail';
 import { SungwooDeliveryPage } from '../sungwoo-delivery/sungwoo-delivery';
-import { SungwooOrderFieldPage } from '../sungwoo-order-field/sungwoo-order-field';
+import { SungwooBeautyPage } from '../sungwoo-beauty/sungwoo-beauty';
+import { SungwooCosmeticsMainPage } from '../sungwoo-cosmetics-main/sungwoo-cosmetics-main';
 
 /**
  * Generated class for the SungwooSettingPage page.
@@ -64,10 +65,15 @@ export class SungwooSettingPage {
     this.navCtrl.push(SungwooDeliveryPage);
     console.log("성우 배송조회 페이지")
   }
+  
+  sungWoo_Beauty() {
+    this.navCtrl.push(SungwooBeautyPage);
+    console.log("성우 뷰티영상 페이지")
+  }
 
-  sungWoo_Order_Field() {
-    this.navCtrl.push(SungwooOrderFieldPage);
-    console.log("성우 입력주문서 페이지")
+  sungWoo_Cosmetics_Main() {
+    this.navCtrl.push(SungwooCosmeticsMainPage);
+    console.log("성우 화장품메인 페이지")
   }
 
   //추가

@@ -300,9 +300,10 @@ import { SungwooPickPageModule } from '../pages/sungwoo-pick/sungwoo-pick.module
 import { SungwooProductDetailPageModule } from '../pages/sungwoo-product-detail/sungwoo-product-detail.module';
 //20201020 성우 배송 조회 페이지
 import { SungwooDeliveryPageModule } from '../pages/sungwoo-delivery/sungwoo-delivery.module';
-//20201023 성우 입력주문서 페이지
-import { SungwooOrderFieldPageModule } from '../pages/sungwoo-order-field/sungwoo-order-field.module';
-
+//20201028 성우 뷰티 영상 페이지
+import { SungwooBeautyPageModule } from '../pages/sungwoo-beauty/sungwoo-beauty.module';
+//20201030 성우 화장품 메인 페이지
+import { SungwooCosmeticsMainPageModule } from '../pages/sungwoo-cosmetics-main/sungwoo-cosmetics-main.module';
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -495,7 +496,8 @@ export function getAuthHttp(http, storage) {
     SungwooPickPageModule,
     SungwooProductDetailPageModule,
     SungwooDeliveryPageModule,
-    SungwooOrderFieldPageModule,
+    SungwooBeautyPageModule,
+    SungwooCosmeticsMainPageModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
