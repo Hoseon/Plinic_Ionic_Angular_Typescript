@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicApp, AlertController, LoadingController, Loading, IonicPage, NavController, NavParams, Platform, ViewController } from 'ionic-angular';
+import { IonicApp, AlertController, LoadingController, Loading, IonicPage, NavController, NavParams, Platform, ViewController, ModalController } from 'ionic-angular';
 import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture'
 import { SkinChekCamera3Page } from '../skin-chek-camera3/skin-chek-camera3'
 import { AuthService } from '../../providers/auth-service';
@@ -7,6 +7,8 @@ import { ImagesProvider } from '../../providers/images/images';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Transfer, TransferObject, FileUploadOptions } from '@ionic-native/transfer';
 import { Observable } from 'rxjs/Rx';
+import { PointLogPage } from '../point-log/point-log';
+import { TabsPage } from '../tabs/tabs';
 declare var cordova: any;
 
 
@@ -37,6 +39,7 @@ export class SkinChekCamera2Page {
   isNext: boolean = false;
   cameraTimer: any;
   cameraCount: any;
+  cameraCountShutdown: any;
   loading: Loading;
 
   camerafile: any;
@@ -50,6 +53,10 @@ export class SkinChekCamera2Page {
 
   diagnose_score: any;
 
+  isSkinAnaly: boolean = false;
+  isMainLoading: boolean = false;
+  isSubLoading: boolean = false;
+
 
   constructor(
     public navCtrl: NavController, 
@@ -62,6 +69,7 @@ export class SkinChekCamera2Page {
     private transfer: Transfer,
     private alertCtrl: AlertController,
     public ionicApp: IonicApp,
+    public modalCtrl: ModalController,
   ) {
     if(this.navParams.get('step')) {
       this.step = this.navParams.get('step')
@@ -174,18 +182,25 @@ export class SkinChekCamera2Page {
     this.loading.present();
   }
   
-  camera2() {
+  public async camera2() {
     // this.showLoading();
+    this.isSkinAnaly = true;
+    this.isMainLoading = true;
+    this.isSubLoading = true;
     const fileTransfer: TransferObject = this.transfer.create();
     let url = 'http://192.168.1.1/protocol.csp?opt=snap&function=set'; //중국 카메라 2020-09-09
     // let url = 'http://192.168.1.1/snapshot.cgi?resolution=11&user=admin&pwd='; //회색 카메라
     fileTransfer.download(url, cordova.file.dataDirectory + 'file2.jpg').then((entry) => {
-      this.cameraCount = 'http://192.168.1.1/protocol.csp?opt=shutdown&function=set';
-      this.cameraTimer.complete();
+      this.cameraCountShutdown = 'http://192.168.1.1/protocol.csp?opt=shutdown&function=set';
+      setTimeout(() => {
+        this.cameraTimer.complete();  
+        console.log("전원 OFF 타이머 종료");
+      }, 1000);
+      // this.cameraTimer.complete();
       console.log('download complete: ' + entry.toURL());
       this.camerafile2 = entry.toURL();
       if(this.userData && this.camerafile2 !== "") {
-        this.showLoading();
+        // this.showLoading();
         setTimeout(() => {
           if(this.step ==='first') {
             this.auth.cameraTest(this.camerafile, this.camerafile2, this.userData, this.diagnose_score).then(data => {
@@ -195,68 +210,359 @@ export class SkinChekCamera2Page {
                 this.result2 = data.result2;
                 console.log("실제 데이터는? : " + JSON.stringify(data));
               }          
-                this.loading.dismiss();
+                // this.loading.dismiss();////////////////////
+                this.isMainLoading = false;
+                this.isSubLoading = false;
+
                 if(data) {
-                  this.auth.skinAnaly(this.result1, this.result2, this.ageRange, this.userData, this.diagnose_score).subscribe(data => {
+                  this.auth.skinAnaly(this.result1, this.result2, this.ageRange, this.userData, this.diagnose_score).subscribe(data2 => {
                     console.log("데이터 저장 완료")
+                    this.images.getCheckSkinReport(this.userData.email).subscribe(data3 => {
+
+                      var skinreport = {
+                        isreport : true,
+                        updatedAt : new Date()
+                      }
+                      
+                      if(data3 === null) {
+                        //사용자가 처음 등록한 사용자라면 무조건 세이브 처리 해준다.
+                        if(this.userData.from === 'naver' || this.userData.from === 'kakao' || this.userData.from === 'google') { //sns회원인지 구분
+                          this.auth.plinicShopAddPoint(this.userData.snsid, 100, '피부 측정').subscribe(data4 => {
+                            console.log("플리닉샵 포인트 누적 : " + data4);
+                          }, error => {
+                            console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
+                          });
+                          this.auth.skinReportUpdate(this.userData.email, skinreport).subscribe(data5 => {
+                            console.log("Skin-Chek-Camera2 : skinReportUpdate 포인트 누적 완료")
+                          }, error => {
+                  
+                          });
+                        } else {
+                          this.auth.plinicShopAddPoint(this.userData.email, 100, '피부 측정').subscribe(data4 => {
+                            console.log("플리닉샵 포인트 누적 : " + data4);
+                          }, error => {
+                            console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
+                          });
+                          this.auth.skinReportUpdate(this.userData.email, skinreport).subscribe(data5 => {
+                            console.log("Skin-Chek-Camera2 : skinReportUpdate 포인트 누적 완료")
+                          }, error => {
+
+                          });
+                        }
+                      }
+                    }, error => {
+                      //에러 처리
+                    });
+
                   }, error => {
                     console.log("데이터 저장 완료")
                   })
                 }
                   
                 let alert2 = this.alertCtrl.create({
-                  cssClass: 'push_alert',
-                  title: '사진 촬영',
-                  message: "피부 분석이 완료 되었습니다",
-                  buttons: [
-                    // {
-                    //   text: '취소',
-                    //   role: 'cancel',
-                    //   handler: () => {
-                    //   }
-                    // },
+                  cssClass: 'push_alert_cancel2',
+                  title: '피부 측정이 완료되었습니다',
+                  message: "100P가 적립 되었습니다.",
+
+                  buttons: [{
+                    text: '포인트 적립 확인',
+                      handler: () => {
+                        this.navCtrl.setRoot(TabsPage).then(() => {
+                          let myModal = this.modalCtrl.create(PointLogPage);
+                            myModal.onDidDismiss(data => {
+                            });
+                            myModal.present();
+                        });
+                      }
+                    },
                     {
-                      text: '확인',
+                      text: '피부리포트 확인',  
                       handler: () => {
                         this.navCtrl.parent.select(4);
                       }
-                    }
-                  ]
+                    }]
                 });
                 alert2.present();
             });
           } else if (this.step ==='second') {
             this.auth.skinAnalySecondSave(this.camerafile, this.camerafile2, this.userData, this.step, this.diagnose_score).then(data => {
-              // if (!data) {
-                this.loading.dismiss();
-                  
-                let alert2 = this.alertCtrl.create({
-                  cssClass: 'push_alert',
-                  title: '사진 촬영',
-                  message: "피부 분석이 완료 되었습니다",
-                  buttons: [
-                    // {
-                    //   text: '취소',
-                    //   role: 'cancel',
-                    //   handler: () => {
-                    //   }
-                    // },
-                    {
-                      text: '확인',
-                      handler: () => {
-                        this.navCtrl.parent.select(4);
-                      }
+
+              this.images.getCheckSkinReport(this.userData.email).subscribe(data2 => {
+
+                var skinreport = {
+                  isreport : true,
+                  updatedAt : new Date()
+                }
+
+                if(data2 === null) {
+                  //사용자가 처음 등록한 사용자라면 무조건 세이브 처리 해준다.
+                  if(this.userData.from === 'naver' || this.userData.from === 'kakao' || this.userData.from === 'google') { //sns회원인지 구분
+                    this.auth.plinicShopAddPoint(this.userData.snsid, 100, '피부 측정').subscribe(data3 => {
+                      console.log("플리닉샵 포인트 누적 : " + data3);
+                    }, error => {
+                      console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
+                    });
+                    this.auth.skinReportUpdate(this.userData.email, skinreport).subscribe(data3 => {
+
+                      this.isMainLoading = false;
+                      this.isSubLoading = false;
+
+                      let alert2 = this.alertCtrl.create({
+                        cssClass: 'push_alert_cancel2',
+                        title: '피부 측정이 완료되었습니다',
+                        message: "100P가 적립 되었습니다.",
+                        buttons: [{
+                          text: '포인트 적립 확인', 
+                            handler: () => {
+                              this.navCtrl.setRoot(TabsPage).then(() => {
+                                let myModal = this.modalCtrl.create(PointLogPage);
+                                  myModal.onDidDismiss(data => {
+                                  });
+                                  myModal.present();
+                              });
+                            }
+                          },
+                          {
+                            text: '피부리포트 확인',
+                            handler: () => {
+                              this.navCtrl.parent.select(4);
+                            }
+                          }]
+                      });
+                      alert2.present();
+                    }, error => {
+            
+                    });
+                  } else {
+                    this.auth.plinicShopAddPoint(this.userData.email, 100, '피부 측정').subscribe(data2 => {
+                      console.log("플리닉샵 포인트 누적 : " + data2);
+                    }, error => {
+                      console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
+                    });
+                    this.auth.skinReportUpdate(this.userData.email, skinreport).subscribe(data => {
+                      this.isMainLoading = false;
+                      this.isSubLoading = false;
+
+                      let alert2 = this.alertCtrl.create({
+                        cssClass: 'push_alert_cancel2',
+                        title: '피부 측정이 완료되었습니다',
+                        message: "100P가 적립 되었습니다.",
+                        buttons: [{
+                          text: '포인트 적립 확인', 
+                            handler: () => {
+                              this.navCtrl.setRoot(TabsPage).then(() => {
+                                let myModal = this.modalCtrl.create(PointLogPage);
+                                  myModal.onDidDismiss(data => {
+                                  });
+                                  myModal.present();
+                              });
+                            }
+                          },
+                          {
+                            text: '피부리포트 확인',
+                            handler: () => {
+                              this.navCtrl.parent.select(4);
+                            }
+                          }]
+                      });
+                      alert2.present();
+                    }, error => {
+
+                    });
+                  }
+                } else {
+                  //사용자의 데이터가 존재 한다면 제일 마지막 측정 날짜를 비교한다.
+                  // console.log(JSON.stringify(data));
+                  // console.log("스킨리포트 날짜 : " + data.skinreport[0].updatedAt);
+                  // console.log("데이터의 날짜" + this.getCovertKoreaTime(data.skinreport[0].updatedAt).substr(0,10));
+                  // console.log("오늘의 날짜 : " + this.getCovertKoreaTime(new Date()).substr(0,10));
+                  if(this.getCovertKoreaTime(data2.skinreport[(data2.skinreport.length)-1].updatedAt).substr(0,10) === this.getCovertKoreaTime(new Date()).substr(0,10)) {
+                    //같은 날짜는 포인트 누적을 하지 않음
+                    console.log("날짜가 같음");
+                    this.isMainLoading = false;
+                    this.isSubLoading = false;
+
+                    let alert2 = this.alertCtrl.create({
+                      cssClass: 'push_alert_cancel2',
+                      title: '피부 측정이 완료되었습니다',
+                      message: "오늘은 이미 100P가 누적되었습니다",
+                      buttons: [{
+                        text: '포인트 적립 확인', 
+                          handler: () => {
+                            this.navCtrl.setRoot(TabsPage).then(() => {
+                              let myModal = this.modalCtrl.create(PointLogPage);
+                                myModal.onDidDismiss(data => {
+                                });
+                                myModal.present();
+                            });
+                          }
+                        },
+                        {
+                          text: '피부리포트 확인',
+                          handler: () => {
+                            this.navCtrl.parent.select(4);
+                          }
+                        }]
+                    });
+                    alert2.present();
+                  } else if (data) {
+                    //날짜가 같지 않을댄 누적을 한다.
+                    if(this.userData.from === 'naver' || this.userData.from === 'kakao' || this.userData.from === 'google') { //sns회원인지 구분
+                      this.auth.plinicShopAddPoint(this.userData.snsid, 100, '피부 측정').subscribe(data2 => {
+                        console.log("플리닉샵 포인트 누적 : " + data2);
+                      }, error => {
+                        console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
+                      });
+                      this.auth.skinReportUpdate(this.userData.email, skinreport).subscribe(data => {
+  
+                        this.isMainLoading = false;
+                        this.isSubLoading = false;
+  
+                        let alert2 = this.alertCtrl.create({
+                          cssClass: 'push_alert_cancel2',
+                          title: '피부 측정이 완료되었습니다',
+                          message: "100P가 적립 되었습니다.",
+                          buttons: [{
+                            text: '포인트 적립 확인', 
+                              handler: () => {
+                                this.navCtrl.setRoot(TabsPage).then(() => {
+                                  let myModal = this.modalCtrl.create(PointLogPage);
+                                    myModal.onDidDismiss(data => {
+                                    });
+                                    myModal.present();
+                                });
+                              }
+                            },
+                            {
+                              text: '피부리포트 확인',
+                              handler: () => {
+                                this.navCtrl.parent.select(4);
+                              }
+                            }]
+                        });
+                        alert2.present();
+                      }, error => {
+              
+                      });
+                    } else {
+                      this.auth.plinicShopAddPoint(this.userData.email, 100, '피부 측정').subscribe(data2 => {
+                        console.log("플리닉샵 포인트 누적 : " + data2);
+                      }, error => {
+                        console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
+                      });
+                      this.auth.skinReportUpdate(this.userData.email, skinreport).subscribe(data => {
+                        this.isMainLoading = false;
+                        this.isSubLoading = false;
+  
+                        let alert2 = this.alertCtrl.create({
+                          cssClass: 'push_alert_cancel2',
+                          title: '피부 측정이 완료되었습니다',
+                          message: "100P가 적립 되었습니다.",
+                          buttons: [{
+                            text: '포인트 적립 확인', 
+                              handler: () => {
+                                this.navCtrl.setRoot(TabsPage).then(() => {
+                                  let myModal = this.modalCtrl.create(PointLogPage);
+                                    myModal.onDidDismiss(data => {
+                                    });
+                                    myModal.present();
+                                });
+                              }
+                            },
+                            {
+                              text: '피부리포트 확인',
+                              handler: () => {
+                                this.navCtrl.parent.select(4);
+                              }
+                            }]
+                        });
+                        alert2.present();
+                      }, error => {
+  
+                      });
                     }
-                  ]
-                });
-                alert2.present();
+                  }
+                }
+              }, error => {
+                //에러 처리
+              });
+
+                // this.isMainLoading = false;
+                // this.isSubLoading = false;
+
+                // let alert2 = this.alertCtrl.create({
+                //   cssClass: 'push_alert_cancel2',
+                //   title: '피부 측정이 완료되었습니다',
+                //   message: "100P가 적립 되었습니다.",
+                //   buttons: [{
+                //     text: '포인트 적립 확인', 
+                //       handler: () => {
+                //         this.navCtrl.setRoot(TabsPage).then(() => {
+                //           let myModal = this.modalCtrl.create(PointLogPage);
+                //             myModal.onDidDismiss(data => {
+                //             });
+                //             myModal.present();
+                //         });
+                //       }
+                //     },
+                //     {
+                //       text: '피부리포트 확인',
+                //       handler: () => {
+                //         this.navCtrl.parent.select(4);
+                //       }
+                //     }]
+                // });
+                // alert2.present();
             },error => {
               alert("에러 발생");
             });
-          }
-        }, 5000);
-        
+          } else if (this.step ==='first_update') { //비교 이미지 변경할때 필요한 기능 정의 필요
+            this.auth.cameraTest(this.camerafile, this.camerafile2, this.userData, this.diagnose_score).then(data => {
+              // if (!data) {
+              if(data) {
+                this.result1 = data.result1;
+                this.result2 = data.result2;
+                console.log("실제 데이터는? : " + JSON.stringify(data));
+              }          
+                // this.loading.dismiss();////////////////////
+                this.isMainLoading = false;
+                this.isSubLoading = false;
 
+                if(data) {
+                  this.auth.updateSkinAnaly(this.result1, this.result2, this.ageRange, this.userData, this.diagnose_score).subscribe(data2 => {
+                    console.log("데이터 저장 완료")
+
+                  }, error => {
+                    console.log("데이터 저장 완료")
+                  })
+                }
+                let alert2 = this.alertCtrl.create({
+                  cssClass: 'push_alert_cancel2',
+                  title: '최초 측정이 변경되었습니다',
+                  message: "최초 이미지가 변경되었습니다",
+
+                  buttons: [{
+                    text: '임시테스트',
+                      handler: () => {
+                        this.navCtrl.setRoot(TabsPage).then(() => {
+                          let myModal = this.modalCtrl.create(PointLogPage);
+                            myModal.onDidDismiss(data3 => {
+                            });
+                            myModal.present();
+                        });
+                      }
+                    },
+                    {
+                      text: '피부리포트 확인',  
+                      handler: () => {
+                        this.navCtrl.parent.select(4);
+                      }
+                    }]
+                });
+                alert2.present();
+            });
+          }
+        }, 10000);
       } else {
         let alert2 = this.alertCtrl.create({
           cssClass: 'push_alert',
@@ -293,6 +599,14 @@ export class SkinChekCamera2Page {
     var age_range = '';
     age = Number(new Date().getFullYear()) - Number(this.userData.birthday.substr(0,4)) + 1 ;
     this.ageRange = String(age).substr(0,1) + '0';
+  }
+
+  goToReport () {
+    this.navCtrl.parent.select(4);
+  }
+
+  getCovertKoreaTime(time) {
+    return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000).toISOString()
   }
 
 }

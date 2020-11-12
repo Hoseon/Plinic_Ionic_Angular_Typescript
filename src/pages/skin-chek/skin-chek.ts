@@ -30,6 +30,7 @@ export class SkinChekPage {
   loadSubData : any;
   loading: Loading;
   step: any;
+  isChange: boolean = false;
 
 
   constructor(
@@ -44,6 +45,10 @@ export class SkinChekPage {
   ) {
     if(this.navParams.get('step')) {
       this.step = this.navParams.get('step');
+    }
+
+    if(this.navParams.get('changeProduct')) {
+      this.isChange = this.navParams.get('changeProduct');
     }
     console.log("현재 스텝 상태는 : "  + this.step);
   }

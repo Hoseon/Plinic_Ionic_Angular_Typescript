@@ -12,12 +12,14 @@ import { format } from 'date-fns';
 import 'chartjs-plugin-labels';
 import { SkincheckGuidePage } from '../skincheck-guide/skincheck-guide';
 import { CameraGuidePage } from '../camera-guide/camera-guide';
+import { CameraGuideFirstPage } from '../camera-guide-first/camera-guide-first';
 import { PoreSizePage } from '../pore-size/pore-size';
 import { PoreCountPage } from '../pore-count/pore-count';
 import { SkinCleanPage } from '../skin-clean/skin-clean';
 import { ProductDetailPage } from '../product-detail/product-detail';
 import { SkinTonePage } from '../skin-tone/skin-tone';
 import { SkinMunjinPage } from '../skin-munjin/skin-munjin';
+import { SkinChekPage } from '../skin-chek/skin-chek';
 
 /**
  * Generated class for the SkinChekChartPage page.
@@ -32,6 +34,8 @@ import { SkinMunjinPage } from '../skin-munjin/skin-munjin';
   templateUrl: 'skin-chek-chart.html',
 })
 export class SkinChekChartPage {
+  faceText: any;
+  faceImgUrl: any;
   skinAnalyAvgComparePoreCount: any;
   ageRange: any;
   avgCheekPoreSize: any;
@@ -72,12 +76,17 @@ export class SkinChekChartPage {
   t1h: Array<any> = new Array<any>();
   reh: Array<any> = new Array<any>();
   skyResult: any;
+  skyColor: any;
   t1hResult: any;
   rehResult: any;
+  rehTextResult: any;
+  rehColor: any;
   pm10: any;
   pm10Result: any;
+  pm10Color: any;
   uv: any;
   uvResult: any;
+  uvColor: any;
   loading: any;
 
   skinTone: any = "#eecac3";
@@ -143,7 +152,8 @@ export class SkinChekChartPage {
 
   async ionViewDidEnter(){
     await this.getWeather();
-    await this.getMise();
+    // await this.getMise();
+    // await this.getUv();
     this.skinbtnYear = format(new Date(), 'YYYY');
     this.skinbtnMonth = format(new Date(), 'MM');
     var e = this.skinbtnYear + "년" + this.skinbtnMonth;
@@ -194,10 +204,18 @@ export class SkinChekChartPage {
   }
 
   public next(_step) {
-    this.navCtrl.push(CameraGuidePage, { step : _step }).then(() => {
-      this.navCtrl.getActive().onDidDismiss(data  => {
+    if(_step === 'first_update') {
+      this.navCtrl.push(CameraGuideFirstPage, { step : _step }).then(() => {
+        this.navCtrl.getActive().onDidDismiss(data  => {
+        });
       });
-    });
+    } else {
+      this.navCtrl.push(CameraGuidePage, { step : _step }).then(() => {
+        this.navCtrl.getActive().onDidDismiss(data  => {
+        });
+      });
+    }
+    
   }
 
   private makeRandom(min, max) {
@@ -527,11 +545,21 @@ export class SkinChekChartPage {
 
        }
 
-      if(this.sky[0] ==="1"){ this.skyResult="맑음"} else if(this.sky[0] ==="3") {this.skyResult="구름많음"} else {this.skyResult="흐림"}
+      if(this.sky[0] ==="1"){ this.skyResult="맑음"; this.skyColor="#4c68e0"} else if(this.sky[0] ==="3") {this.skyResult="구름많음"; this.skyColor="#ff3939" } else {this.skyResult="흐림"; this.skyColor="#ac0000"}
       this.t1hResult = this.t1h[0];
       this.rehResult = this.reh[0];
-
-      
+      if(Number(this.rehResult) > 45) {
+        this.rehTextResult = "낮음"; 
+        this.rehColor = "#4c68e0";
+      } 
+      else if(Number(this.rehResult) <= 45 || Number(this.rehResult) > 55 ) {
+        this.rehTextResult ="보통";
+        this.rehColor = "#0ca28f";
+      }
+      else if(Number(this.rehResult) <= 55 || Number(this.rehResult) >= 100 ) {
+        this.rehTextResult = "높음";
+        this.rehColor = "#ff3939";
+      }
     });
    }
 
@@ -541,12 +569,16 @@ export class SkinChekChartPage {
       this.pm10 = Number(data.response.body.items.item[0].seoul._text);
       if((Number(PM10) >= 0) && (Number(PM10) <= 30)) {
         this.pm10Result = '좋음';
+        this.pm10Color = '#4c68e0';
       } else if((Number(PM10) >= 31) && (Number(PM10) <= 80)) {
         this.pm10Result = '보통';
+        this.pm10Color = '#0ca28f';
       } else if((Number(PM10) >= 81) && (Number(PM10) <= 150)) {
         this.pm10Result = '나쁨';
+        this.pm10Color = '#ff3939';
       } else if(Number(PM10) >= 151) {
         this.pm10Result = '매우나쁨';
+        this.pm10Color = '#ac0000';
       }
     });
    }
@@ -554,18 +586,25 @@ export class SkinChekChartPage {
 
    getUv() {
     this.images.getUv().subscribe(data => {
+      console.log(data);
       var UV = Number(data.response.body.items.item[0].today);
       this.uv = Number(data.response.body.items.item[0].today);
+      console.log("자외선 지수? " + this.uv);
       if((Number(UV) >= 0) && (Number(UV) <= 2)) {
         this.uvResult = '낮음';
+        this.uvColor ='#142fa3';
       } else if((Number(UV) >= 3) && (Number(UV) <= 5)) {
         this.uvResult = '보통';
+        this.uvColor ='#4c68e0';
       } else if((Number(UV) >= 6) && (Number(UV) <= 7)) {
         this.uvResult = '높음';
+        this.uvColor ='#0ca28f';
       } else if((Number(UV) >= 8) && (Number(UV) <= 10)) {
         this.uvResult = '매우높음';
+        this.uvColor ='#ff3939';
       } else if(Number(UV) >= 11) {
         this.uvResult = '위험';
+        this.uvColor ='#ac0000';
       }
 
     })
@@ -634,6 +673,8 @@ export class SkinChekChartPage {
           this.skinAnalyData = data;
 
           this.skinAnalyPoreSize = Math.floor(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].pore[0].average_pore);
+
+          this.skinTone = this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].tone[0].avgrage_color_hex;
   
           //현재 모공 사이즈 총 합
           for(let i= 0; i < this.skinAnalyData.cheek.length; i++) {
@@ -677,21 +718,34 @@ export class SkinChekChartPage {
           if(this.skinAnalyPoreBeforeCount >= 0) {
             this.skinAnalyPoreCompareCount = this.skinAnalyPoreOneCount - this.skinAnalyPoreBeforeCount;
             this.skinAnalyPoreCompareCount > 0 ? this.skinAnalyPoreCompareCount = "+" + String(this.skinAnalyPoreCompareCount) : this.skinAnalyPoreCompareCount;
-            this.skinTone = this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].tone[0].avgrage_color_hex;
+            // this.skinTone = this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].tone[0].avgrage_color_hex;
           }
 
           if(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff.length > 0) {
             this.skinCleanScore = Math.floor(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff[0].value);
+            if(this.skinCleanScore < 15) {
+              this.faceText = "좋음";
+              this.faceImgUrl = "assets/img/skin-chek-chart/face_good.png";
+            } else if (this.skinCleanScore >= 15 && this.skinCleanScore <= 30) {
+              this.faceText = "보통";
+              this.faceImgUrl = "assets/img/skin-chek-chart/face_normal.png";
+            } else if (this.skinCleanScore > 31) {
+              this.faceText = "나쁨";
+              this.faceImgUrl = "assets/img/skin-chek-chart/face_bad.png";
+            } 
             this.skinCleanScore > 0 ? this.skinCleanScore = "+" + String(this.skinCleanScore) : this.skinCleanScore;
+          } else {
+            this.faceText = "--";
+            this.faceImgUrl = "assets/img/skin-chek-chart/face_good.png";
           }
 
           //문진표 결과
           if(this.skinAnalyData.munjin[this.skinAnalyData.cheek.length-1].sleep === 11) {
-            this.munjinSleep = '3시간 이하'
+            this.munjinSleep = '5시간 이하'
           } else if(this.skinAnalyData.munjin[this.skinAnalyData.cheek.length-1].sleep === 22) {
-            this.munjinSleep = '3~7 시간'
+            this.munjinSleep = '6~7 시간'
           } else {
-            this.munjinSleep = '7시간 이상'
+            this.munjinSleep = '8시간 이상'
           }
 
           if(this.skinAnalyData.munjin[this.skinAnalyData.cheek.length-1].alcohol === 11) {
@@ -705,9 +759,9 @@ export class SkinChekChartPage {
           if(this.skinAnalyData.munjin[this.skinAnalyData.cheek.length-1].fitness === 11) {
             this.munjinFitness = '없음'
           } else if(this.skinAnalyData.munjin[this.skinAnalyData.cheek.length-1].fitness === 22) {
-            this.munjinFitness = '1시간 이하'
+            this.munjinFitness = '90분 이하'
           } else {
-            this.munjinFitness = '1시간 이상'
+            this.munjinFitness = '90분 이상'
           }
           this.munjinCreateAt =  this.skinAnalyData.munjin[this.skinAnalyData.cheek.length-1].created_at;
 
@@ -772,6 +826,14 @@ export class SkinChekChartPage {
   product_detail(id) {
     let modal = this.modalCtrl.create(ProductDetailPage, { Product_Num: id });
     modal.onDidDismiss(data => {
+    });
+    modal.present();
+  }
+
+  change_Product() {
+    let modal = this.modalCtrl.create(SkinChekPage, { changeProduct: true });
+    modal.onDidDismiss(data => {
+      this.loadMyMainProduct();
     });
     modal.present();
   }

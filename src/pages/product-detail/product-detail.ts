@@ -4,6 +4,7 @@ import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { ProductSungbunPage } from '../product-sungbun/product-sungbun';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
+import { ProductReviewPage } from '../product-review/product-review';
 
 
 /**
@@ -25,6 +26,8 @@ export class ProductDetailPage {
   productURL: any;
   productData: any;
   ingredient: Array<any> = new Array<any>();
+  preFunction: Array<any> = new Array<any>();
+  function: Array<any> = new Array<any>();
   preIngredient: any;
   orderStyle: any = "최신순 ∨"; 
 
@@ -176,9 +179,17 @@ export class ProductDetailPage {
         for(let i = 0; i < data.ingredient.length; i++) {
           this.ingredient[i] = data.ingredient[i].korean_name 
         }
-
-        console.log(this.productData);
+        // console.log(this.productData.function.length);
+        this.preFunction = data.function.split(',');
+        if(this.preFunction.length >= 4) {
+          this.function[0] = this.preFunction[0];
+          this.function[1] = this.preFunction[1];
+          this.function[2] = this.preFunction[2];
+        } else {
+          this.function = this.preFunction;
+        }
       }
+      console.log(this.function);
     }, error => {
       alert("상품 데이터 가져오기 에러");
     })
@@ -266,6 +277,14 @@ export class ProductDetailPage {
       modal.present();
       modal.onDidDismiss(data => {
         console.log("전성분 페이지 닫힘");
+    });
+  }
+
+  write_Review(product_num) {
+    this.navCtrl.push(ProductReviewPage, {productData : this.productData }).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+        console.log("페이지 닫힘");
+      });
     });
   }
 

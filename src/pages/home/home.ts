@@ -34,12 +34,13 @@ import { Flip } from 'number-flip'; //숫자 카운트 되는 애니메이션 �
 import { ChulsukCheckPage } from '../chulsuk-check/chulsuk-check'; //숫자 카운트 되는 애니메이션 적용 
 import { MyinfoPage } from '../myinfo/myinfo'
 import { GuidePage } from '../guide/guide'
-import { RegistercompletePage } from '../register/registercomplete/registercomplete'
+import { RegistercompletePage } from '../register/registercomplete/registercomplete';
 import { RewardPage } from '../reward/reward';
 import { textDef } from '@angular/core/src/view';
-
-
-
+import { SkinChekCamera2Page } from '../skin-chek-camera2/skin-chek-camera2';
+import { Geolocation } from '@ionic-native/geolocation'; //안드로이드 API 29버전에서 BLE 연결 이슈로 인하여 위치정보 수집을 미리 한다. 2020-11-10
+import { ProductReviewPage } from '../product-review/product-review';
+ 
 
 @IonicPage()
 @Component({
@@ -191,6 +192,7 @@ export class HomePage {
 
   constructor(
     private fcm: FCM,
+    private geolocation: Geolocation,
     public toastCtrl: ToastController,
     public platform: Platform, public nav: NavController, public auth: AuthService, public _kakaoCordovaSDK: KakaoCordovaSDK,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private images: ImagesProvider, private modalCtrl: ModalController,
@@ -199,6 +201,16 @@ export class HomePage {
     private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, public app: App, private callNumber: CallNumber
     , @Inject(DOCUMENT) document, public events: Events) {
     this.platform.ready().then((readySource) => {
+
+      this.geolocation.getCurrentPosition().then((resp) => {
+        console.log(resp.coords.latitude);
+        console.log(resp.coords.longitude);
+        // resp.coords.latitude
+        // resp.coords.longitude
+       }).catch((error) => {
+         console.log('Error getting location', error);
+       });
+       
       // if (this.skin_diagnose_first_check === null || false) {
       //   this.auth.setUserStoragediagnose_first_check(this.skin_diagnose_first_check);
       // }
@@ -1460,6 +1472,12 @@ export class HomePage {
   
   getCovertKoreaTime(time) {
     return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000).toISOString()
+  }
+
+  //20201016 페이지 개발용 화장품 임시
+  productMain(){
+    this.nav.push(ProductReviewPage);
+    //20201104 페이지 개발용 wifi기기 커넥션
   }
 
 }

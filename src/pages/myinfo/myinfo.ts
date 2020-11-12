@@ -61,6 +61,8 @@ declare var cordova: any;
 
 export class MyinfoPage {
 
+  isShowMore: boolean = false;
+
   flipAnim = null;
 
   page = "0";
@@ -2138,4 +2140,9 @@ export class MyinfoPage {
     console.log("changed rating: ",rating);
     // do your stuff
   }
+
+  showMore(isTrue) {
+    isTrue ? this.isShowMore = true : this.isShowMore = false;
+  }
+  
 }

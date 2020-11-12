@@ -5,6 +5,8 @@ import { DeviceSkinSensorIngPage } from '../device-skinsensor-ing/device-skinsen
 import { DeviceConnectFailPage } from '../device-connect-fail/device-connect-fail';
 import { TabsPage } from '../tabs/tabs';
 import { AuthService } from '../../providers/auth-service';
+// import { Geolocation } from '@ionic-native/geolocation';
+
 
 
 
@@ -74,7 +76,14 @@ export class DeviceConnectSkinIngPage {
 
   spintime: any = 0;
 
-  constructor(public auth: AuthService, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private ngZone: NgZone,
+  constructor(
+    // private geolocation: Geolocation, 
+    public auth: AuthService, 
+    public viewCtrl: ViewController, 
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public toastCtrl: ToastController, 
+    private ngZone: NgZone,
     // public bluetoothle: BluetoothLE,
     public ble: BLE,
     public platform: Platform, private alertCtrl: AlertController
@@ -125,6 +134,15 @@ export class DeviceConnectSkinIngPage {
       //   }
       // }, 3500);
     });
+
+    // this.geolocation.getCurrentPosition().then((resp) => {
+    //   console.log(resp.coords.latitude);
+    //   console.log(resp.coords.longitude);
+    //   // resp.coords.latitude
+    //   // resp.coords.longitude
+    //  }).catch((error) => {
+    //    console.log('Error getting location', error);
+    //  });
 
   }
 

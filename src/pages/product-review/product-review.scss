@@ -1,0 +1,202 @@
+page-product-review {
+
+  .header-md::after,
+  .tabs-md[tabsPlacement="top"]>.tabbar::after,
+  .footer-md::before,
+  .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
+    height: 1px;
+    margin-bottom: 5px;
+  }
+
+  .item-md.item-block .item-inner {
+    padding-right: 12px;
+  }
+
+  .header-ios::after,
+  .tabs-ios[tabsPlacement="top"]>.tabbar::after,
+  .footer-ios::before,
+  .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
+    height: 0px;
+    margin-bottom: 5px;
+  }
+
+  .item-ios.item-block .item-inner {
+    padding-right: 12px;
+  }
+
+  .toolbar-title-md {
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: AppleSDGothicNeo-Regular;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+  }
+
+  .toolbar-title-ios {
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: AppleSDGothicNeo-Regular;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    margin-top: -5%;
+    color: #292929;
+  }
+
+  .bar-button-clear-ios-default,
+  .bar-button-default-ios,
+  .bar-button-default.bar-button-ios-default {
+    margin-left: -15%;
+    margin-top: -15%;
+    color: transparent;
+  }
+
+  .ios_nav {
+    background-color: #FFF;
+    width: 140px !important;
+    height: 25px !important;
+    object-fit: contain;
+  }
+
+  .toolbar-background {
+    background-color: #FFF;
+  }
+
+  .ion-md-arrow-back:before {
+    position: absolute;
+    content: "\f27d";
+    left: 10%;
+    top: 2px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .toolbar-ios {
+    margin-top: 10%;
+  }
+
+  .back-button-text-ios {
+    font-size: 0;
+  }
+
+  .android_title {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 70%;
+    color: #292929;
+  }
+
+  .ios_title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    top: 0%;
+    width: 140%;
+    color: #292929;
+    margin-top: 1%;
+  }
+
+  .center {
+    margin: 0 auto !important;
+  }
+
+  .product_img {
+    width: 102px;
+    height: 102px;
+    border-radius: 5.7px;
+    border: solid 0.5px #e8e8e8;
+    background-color: #ffffff;
+    margin-top: -2%;
+  }
+
+  .text1 {
+    width: 320px;
+    height: 5vh;
+    font-family: AppleSDGothicNeo-SemiBold;
+    font-size: 15.5px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 3.37;
+    letter-spacing: -0.47px;
+    text-align: center;
+    color: #292929;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 auto;
+  }
+
+  .border_textarea {
+    width: 326px;
+    height: 211px;
+    border: solid 0.5px #c8c8c8;
+    background-color: #f1f1f1;
+    margin: 0 auto !important;
+    border-radius: 5.7px;
+  }
+
+  .text2 {
+    width: 300px;
+    height: 14.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15.5px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 3.37;
+    letter-spacing: -0.47px;
+    text-align: left;
+    color: #292929;
+    margin-left: 8%;
+  }
+
+  .text3 {
+    width: 350.5px;
+    height: 90.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12.3px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.73;
+    letter-spacing: -0.37px;
+    text-align: left;
+    color: #989898;
+    overflow-y: hidden;
+    margin-top: 8% !important;
+    margin-left: 8%;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 3%;
+  }
+
+  .btn1 {
+    width: 326px;
+    height: 50px;
+    border-radius: 3.5px;
+    background-color: #5c59b6;
+    box-shadow: none;
+  }
+
+  .btn1_false {
+    width: 326px;
+    height: 50px;
+    border-radius: 3.5px;
+    background-color: #d2d4d6;
+    box-shadow: none;
+  }
+}

@@ -21,6 +21,22 @@ import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } fro
   templateUrl: 'skin-clean.html',
 })
 export class SkinCleanPage {
+  faceText: any; //볼 부위 
+  faceImgUrl: any;// 볼
+  faceText2: any; //이마
+  faceImgUrl2: any; //이마
+
+  worstFaceText: any;
+  worstFaceImgUrl: any;
+
+  worstFaceText2: any;
+  worstFaceImgUrl2: any;
+
+  bestFaceText: any;
+  bestFaceImgUrl: any;
+
+  bestFaceText2: any;
+  bestFaceImgUrl2: any;
 
   left1 : any = this.makeRandom(0,100) + '%';
   left2 : any = this.makeRandom(0,100) + '%';
@@ -233,8 +249,17 @@ export class SkinCleanPage {
 
   diffValue: any = [];
   diffValueDate: any = [];
+
+  diffForeheadValue: any = [];
+  diffForeheadValueDate: any = [];
+
   bestValue: any;
   worstValue: any;
+
+  bestForeheadValue: any;
+  worstForeheadValue: any;
+
+  isDiff: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -252,45 +277,155 @@ export class SkinCleanPage {
     this.navParams.get('userData') ? this.userData = this.navParams.get('userData') : this.userData = "";
     this.navParams.get('skinAnalyData') ? this.skinAnalyData = this.navParams.get('skinAnalyData') : this.skinAnalyData = "";
 
-    for(let i = 1; i < this.skinAnalyData.cheek.length; i++){
-      //월별 조건 추가
-      if(this.skinbtnMonth ===  this.skinAnalyData.cheek[i].input[0].upload_date.substr(5,2)) {
-        this.diffValue.push({
-          value : this.skinAnalyData.cheek[i].diff[0].value,
-          date: this.skinAnalyData.cheek[i].input[0].upload_date
-        })  
-      }
+    if(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff.length > 0) {
+      this.isDiff = true;
+    } else {
+      this.isDiff = false;
     }
 
-    this.worstValue = Math.min.apply(Math, this.diffValue.map(function(o) { return o.value }));
-    this.diffValue.forEach(element => {
-      if(element.value == this.worstValue) {
-        this.worstValue = {
-          value : Number(element.value).toFixed(1),
-          date : element.date
+
+    if(this.isDiff) {
+        //볼
+      for(let i = 1; i < this.skinAnalyData.cheek.length; i++){
+        //월별 조건 추가
+        if(this.skinbtnMonth ===  this.skinAnalyData.cheek[i].input[0].upload_date.substr(5,2)) {
+          this.diffValue.push({
+            value : this.skinAnalyData.cheek[i].diff[0].value,
+            date: this.skinAnalyData.cheek[i].input[0].upload_date
+          })  
         }
       }
-    });
-    this.bestValue = Math.max.apply(Math, this.diffValue.map(function(o) { return o.value }));
-    this.diffValue.forEach(element => {
-      if(element.value == this.bestValue) {
-        this.bestValue = {
-          value : Number(element.value).toFixed(1),
-          date : element.date
+      //볼 베스트, 워스트 값 구하기
+      this.worstValue = Math.min.apply(Math, this.diffValue.map(function(o) { return o.value }));
+      this.diffValue.forEach(element => {
+        if(element.value == this.worstValue) {
+          this.worstValue = {
+            value : Number(element.value).toFixed(1),
+            date : element.date
+          }
+          //검출 로직
+          if(this.worstValue.value < 15) {
+            this.worstFaceText = "좋음";
+            this.worstFaceImgUrl = "assets/img/skin-chek-chart/face_good.png";
+          } else if (this.worstValue.value >= 15 && this.worstValue.value <= 30) {
+            this.worstFaceText = "보통";
+            this.worstFaceImgUrl = "assets/img/skin-chek-chart/face_normal.png";
+          } else if (this.worstValue.value > 31) {
+            this.worstFaceText = "나쁨";
+            this.worstFaceImgUrl = "assets/img/skin-chek-chart/face_bad.png";
+          }
+        }
+      });
+      this.bestValue = Math.max.apply(Math, this.diffValue.map(function(o) { return o.value }));
+      this.diffValue.forEach(element => {
+        if(element.value == this.bestValue) {
+          this.bestValue = {
+            value : Number(element.value).toFixed(1),
+            date : element.date
+          }
+          if(this.bestValue.value < 15) {
+            this.bestFaceText = "좋음";
+            this.bestFaceImgUrl = "assets/img/skin-chek-chart/face_good.png";
+          } else if (this.bestValue.value >= 15 && this.bestValue.value <= 30) {
+            this.bestFaceText = "보통";
+            this.bestFaceImgUrl = "assets/img/skin-chek-chart/face_normal.png";
+          } else if (this.bestValue.value > 31) {
+            this.bestFaceText = "나쁨";
+            this.bestFaceImgUrl = "assets/img/skin-chek-chart/face_bad.png";
+          }
+
+        }
+      });
+
+      //이마 베스트, 워스트 값 구하기
+      for(let i = 1; i < this.skinAnalyData.forehead.length; i++){
+        //월별 조건 추가
+        if(this.skinbtnMonth ===  this.skinAnalyData.forehead[i].input[0].upload_date.substr(5,2)) {
+          this.diffForeheadValue.push({
+            value : this.skinAnalyData.forehead[i].diff[0].value,
+            date: this.skinAnalyData.forehead[i].input[0].upload_date
+          })  
         }
       }
-    });
-  
-    this.skinCleanCheekScore = Math.floor(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff[0].value);
-    this.skinCleanCheekScore > 0 ? this.skinCleanCheekScore = "+" + String(this.skinCleanCheekScore) : this.skinCleanCheekScore;
-    this.skinCleanForeHeadScore = Math.floor(this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].diff[0].value);
-    this.skinCleanForeHeadScore > 0 ? this.skinCleanForeHeadScore = "+" + String(this.skinCleanForeHeadScore) : this.skinCleanForeHeadScore;
-    this.image3CheekUrl = this.image3CheekUrl.concat(this.skinAnalyData.firstcheek);
-    this.image3ForeHeadUrl = this.image3ForeHeadUrl.concat(this.skinAnalyData.firstforhead);
-    this.image2CheekUrl = this.image2CheekUrl.concat(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].input[0].filename);
-    this.image2ForeHeadUrl = this.image2ForeHeadUrl.concat(this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].input[0].filename);
-    this.image1CheekUrl = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff[0].output_image;
-    this.image1ForeHeadUrl = this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].diff[0].output_image;
+
+
+      //이마 베스트, 워스트 값 구하기
+      this.worstForeheadValue = Math.min.apply(Math, this.diffForeheadValue.map(function(o) { return o.value }));
+      this.diffForeheadValue.forEach(element => {
+        if(element.value == this.worstForeheadValue) {
+          this.worstForeheadValue = {
+            value : Number(element.value).toFixed(1),
+            date : element.date
+          }
+          if(this.worstForeheadValue.value < 15) {
+            this.worstFaceText2 = "좋음";
+            this.worstFaceImgUrl2 = "assets/img/skin-chek-chart/face_good.png";
+          } else if (this.worstForeheadValue.value >= 15 && this.worstForeheadValue.value <= 30) {
+            this.worstFaceText2 = "보통";
+            this.worstFaceImgUrl2 = "assets/img/skin-chek-chart/face_normal.png";
+          } else if (this.worstForeheadValue.value > 31) {
+            this.worstFaceText2 = "나쁨";
+            this.worstFaceImgUrl2 = "assets/img/skin-chek-chart/face_bad.png";
+          }
+        }
+      });
+      this.bestForeheadValue = Math.max.apply(Math, this.diffForeheadValue.map(function(o) { return o.value }));
+      this.diffForeheadValue.forEach(element => {
+        if(element.value == this.bestForeheadValue) {
+          this.bestForeheadValue = {
+            value : Number(element.value).toFixed(1),
+            date : element.date
+          }
+          if(this.bestForeheadValue.value < 15) {
+            this.bestFaceText2 = "좋음";
+            this.bestFaceImgUrl2 = "assets/img/skin-chek-chart/face_good.png";
+          } else if (this.bestForeheadValue.value >= 15 && this.bestForeheadValue.value <= 30) {
+            this.bestFaceText2 = "보통";
+            this.bestFaceImgUrl2 = "assets/img/skin-chek-chart/face_normal.png";
+          } else if (this.bestForeheadValue.value > 31) {
+            this.bestFaceText2 = "나쁨";
+            this.bestFaceImgUrl2 = "assets/img/skin-chek-chart/face_bad.png";
+          }
+        }
+      });
+
+      
+    
+      this.skinCleanCheekScore = (this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff[0].value).toFixed(1);
+      if(this.skinCleanCheekScore < 15) {
+        this.faceText = "좋음";
+        this.faceImgUrl = "assets/img/skin-chek-chart/face_good.png";
+      } else if (this.skinCleanCheekScore >= 15 && this.skinCleanCheekScore <= 30) {
+        this.faceText = "보통";
+        this.faceImgUrl = "assets/img/skin-chek-chart/face_normal.png";
+      } else if (this.skinCleanCheekScore > 31) {
+        this.faceText = "나쁨";
+        this.faceImgUrl = "assets/img/skin-chek-chart/face_bad.png";
+      }
+      // this.skinCleanCheekScore > 0 ? this.skinCleanCheekScore = "+" + String(this.skinCleanCheekScore) : this.skinCleanCheekScore;
+      
+      
+      this.skinCleanForeHeadScore = (this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].diff[0].value).toFixed(1);
+      if(this.skinCleanForeHeadScore < 15) {
+        this.faceText2 = "좋음";
+        this.faceImgUrl2 = "assets/img/skin-chek-chart/face_good.png";
+      } else if (this.skinCleanForeHeadScore >= 15 && this.skinCleanForeHeadScore <= 30) {
+        this.faceText2 = "보통";
+        this.faceImgUrl2 = "assets/img/skin-chek-chart/face_normal.png";
+      } else if (this.skinCleanForeHeadScore > 31) {
+        this.faceText2 = "나쁨";
+        this.faceImgUrl2 = "assets/img/skin-chek-chart/face_bad.png";
+      }
+      // this.skinCleanForeHeadScore > 0 ? this.skinCleanForeHeadScore = "+" + String(this.skinCleanForeHeadScore) : this.skinCleanForeHeadScore;
+
+      this.image3CheekUrl = this.image3CheekUrl.concat(this.skinAnalyData.firstcheek);
+      this.image3ForeHeadUrl = this.image3ForeHeadUrl.concat(this.skinAnalyData.firstforhead);
+      this.image2CheekUrl = this.image2CheekUrl.concat(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].input[0].filename);
+      this.image2ForeHeadUrl = this.image2ForeHeadUrl.concat(this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].input[0].filename);
+      this.image1CheekUrl = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff[0].output_image;
+      this.image1ForeHeadUrl = this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].diff[0].output_image;
+    }
+    
     this.lottoNum();
     this.lottoTip();
     this.skinQnaMainLoad();
@@ -325,6 +460,9 @@ export class SkinCleanPage {
     this.chartOilData = [];
     this.chartMoistureData = [];
     this.diffValue = [];
+    this.diffForeheadValue = [];
+
+
     for(let i = 1; i < this.skinAnalyData.cheek.length; i++){
       //월별 조건 추가
       if(month ===  this.skinAnalyData.cheek[i].input[0].upload_date.substr(5,2)) {
@@ -354,7 +492,38 @@ export class SkinCleanPage {
       }
     });
 
-    console.log(this.diffValue);
+    //이마 베스트, 워스트 값 구하기
+    for(let i = 1; i < this.skinAnalyData.forehead.length; i++){
+      //월별 조건 추가
+      if(month ===  this.skinAnalyData.forehead[i].input[0].upload_date.substr(5,2)) {
+        this.diffForeheadValue.push({
+          value : this.skinAnalyData.forehead[i].diff[0].value,
+          date: this.skinAnalyData.forehead[i].input[0].upload_date
+        })  
+      }
+    }
+
+
+    //이마 베스트, 워스트 값 구하기
+    this.worstForeheadValue = Math.min.apply(Math, this.diffForeheadValue.map(function(o) { return o.value }));
+    this.diffForeheadValue.forEach(element => {
+      if(element.value == this.worstForeheadValue) {
+        this.worstForeheadValue = {
+          value : Number(element.value).toFixed(1),
+          date : element.date
+        }
+      }
+    });
+    this.bestForeheadValue = Math.max.apply(Math, this.diffForeheadValue.map(function(o) { return o.value }));
+    this.diffForeheadValue.forEach(element => {
+      if(element.value == this.bestForeheadValue) {
+        this.bestForeheadValue = {
+          value : Number(element.value).toFixed(1),
+          date : element.date
+        }
+      }
+    });
+
   }
 
   monthdate: any[] = [

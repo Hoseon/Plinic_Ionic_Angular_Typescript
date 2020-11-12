@@ -635,13 +635,15 @@ skin-munjin-size {
     height: 55.5px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 21px;
-    font-weight: 500;
+    font-weight: 600;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.29;
     letter-spacing: -0.63px;
     text-align: left;
     color: #343434;
+    overflow-x: hidden;
+    overflow-y: hidden;
     // overflow: hidden;
   }
 
@@ -834,7 +836,7 @@ skin-munjin-size {
   .tip_slide_row {
     position: relative;
     margin-top: 5%;
-    margin-left: 4%;
+    margin-left: 3%;
     margin-right: -5%;
 
   }
@@ -874,7 +876,7 @@ skin-munjin-size {
     margin-left: 3%;
     width: 50px;
     height: 8px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo;
     font-size: 9.5px;
     font-weight: normal;
     font-stretch: normal;
@@ -903,7 +905,7 @@ skin-munjin-size {
     border-radius: 3px;
     border: solid 0.5px #d5d5d5;
     background-color: #ffffff;
-    margin-left: 10%;
+    margin-left: 14%;
   }
 
   .prd_img {
@@ -919,7 +921,7 @@ skin-munjin-size {
 
   .product_text1 {
     width: 200.5px;
-    height: 30px;
+    // height: 30px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 13.5px;
     font-weight: normal;
@@ -930,7 +932,7 @@ skin-munjin-size {
     text-align: left;
     color: #292929;
     margin-left: -10%;
-    margin-top: 5%;
+    margin-top: 4%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -941,7 +943,7 @@ skin-munjin-size {
     font-weight: 400;
     letter-spacing: -0.35px;
     color: #939393;
-    margin-top: -7%;
+    margin-top: 2%;
     margin-left: -10%;
   }
 
@@ -1417,7 +1419,7 @@ skin-munjin-size {
     margin-top: 1%;
     width: 183px;
     height: 19.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo;
     font-size: 21px;
     font-weight: 500;
     font-stretch: normal;
@@ -1455,7 +1457,7 @@ skin-munjin-size {
   .munjin_text3 {
     width: 104px;
     height: 11.5px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo;
     font-size: 12.8px;
     font-weight: normal;
     font-stretch: normal;
@@ -1492,7 +1494,7 @@ skin-munjin-size {
   .munjin_text4 {
     width: 65px;
     height: 10px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo;
     font-size: 10.5px;
     font-weight: 500;
     font-stretch: normal;
@@ -1507,7 +1509,7 @@ skin-munjin-size {
   .munjin_text4_nodata {
     width: 45px;
     height: 10px;
-    font-family: NotoSansCJKkr;
+    font-family: AppleSDGothicNeo;
     font-size: 10.5px;
     font-weight: 500;
     font-stretch: normal;
@@ -1518,6 +1520,14 @@ skin-munjin-size {
     color: #515151;
     margin: 0 auto;
     margin-top: 50% !important;
+  }
+
+  .arrow2 {
+    // position: absolute;
+    width: 6.5px;
+    height: 11.5px;
+    margin-top:45%;
+    margin-left: 50%;
   }
 
 

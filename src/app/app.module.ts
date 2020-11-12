@@ -262,10 +262,12 @@ import { SkinGuidePageModule } from '../pages/skin-guide/skin-guide.module';
 
 //20200424 피부 진단
 import { CameraGuidePageModule } from '../pages/camera-guide/camera-guide.module';
+import { CameraGuideFirstPageModule } from '../pages/camera-guide-first/camera-guide-first.module';
 import { SkinChekPageModule } from '../pages/skin-chek/skin-chek.module';
 import { SkinChekMunjinPageModule } from '../pages/skin-chek-munjin/skin-chek-munjin.module'
 import { ItemSearchPage } from '../pages/item-search/item-search';
 import { SkinChekConnectPageModule } from '../pages/skin-chek-connect/skin-chek-connect.module';
+import { SkinChekConnect2PageModule } from '../pages/skin-chek-connect2/skin-chek-connect2.module';
 import { SkinChekCamera1PageModule } from '../pages/skin-chek-camera1/skin-chek-camera1.module';
 import { SkinChekCamera2PageModule } from '../pages/skin-chek-camera2/skin-chek-camera2.module';
 import { SkinChekCamera3PageModule } from '../pages/skin-chek-camera3/skin-chek-camera3.module';
@@ -296,6 +298,13 @@ import { SungwooOrderPageModule } from '../pages/sungwoo-order/sungwoo-order.mod
 import { SungwooCartPageModule } from '../pages/sungwoo-cart/sungwoo-cart.module';
 //20200928 성우 상품 선택 페이지
 import { SungwooPickPageModule } from '../pages/sungwoo-pick/sungwoo-pick.module';
+
+//20201014 상품리뷰 페이지
+import { ProductReviewPageModule } from '../pages/product-review/product-review.module';
+//20201016 화장품 메인 페이지
+import { ProductMainPageModule } from '../pages/product-main/product-main.module';
+
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 export function getAuthHttp(http, storage) {
@@ -456,9 +465,11 @@ export function getAuthHttp(http, storage) {
     NgCalendarModule,
     GuidePageModule,
     CameraGuidePageModule,
+    CameraGuideFirstPageModule,
     SkinChekPageModule,
     SkinChekMunjinPageModule,
     SkinChekConnectPageModule,
+    SkinChekConnect2PageModule,
     SkinGuidePageModule,
     SkinChekCamera1PageModule,
     SkinChekCamera2PageModule,
@@ -487,6 +498,8 @@ export function getAuthHttp(http, storage) {
     SungwooOrderPageModule,
     SungwooCartPageModule,
     SungwooPickPageModule,
+    ProductReviewPageModule,
+    ProductMainPageModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
@@ -572,6 +585,7 @@ export function getAuthHttp(http, storage) {
     BLE,
     SocialSharing,
     Device,
+    Geolocation,
     OpenNativeSettings,
     {
       provide: AuthHttp,

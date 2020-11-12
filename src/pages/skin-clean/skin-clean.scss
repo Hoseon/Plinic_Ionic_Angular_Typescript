@@ -197,7 +197,7 @@ page-skin-clean {
     overflow: auto;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 21px;
-    font-weight: 500;
+    font-weight: 600;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.29;
@@ -398,7 +398,7 @@ page-skin-clean {
   .tip_slide_row {
     position: relative;
     margin-top: 5%;
-    margin-left: 4%;
+    margin-left: 3%;
     margin-right: -5%;
 
   }
@@ -467,7 +467,7 @@ page-skin-clean {
     border-radius: 3px;
     border: solid 0.5px #d5d5d5;
     background-color: #ffffff;
-    margin-left: 10%;
+    margin-left: 14%;
   }
 
   .prd_img {
@@ -483,7 +483,7 @@ page-skin-clean {
 
   .product_text1 {
     width: 200.5px;
-    height: 30px;
+    // height: 30px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 13.5px;
     font-weight: normal;
@@ -494,7 +494,7 @@ page-skin-clean {
     text-align: left;
     color: #292929;
     margin-left: -10%;
-    margin-top: 5%;
+    margin-top: 4%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -505,7 +505,7 @@ page-skin-clean {
     font-weight: 400;
     letter-spacing: -0.35px;
     color: #939393;
-    margin-top: -7%;
+    margin-top: 2%;
     margin-left: -10%;
   }
 
@@ -688,17 +688,17 @@ page-skin-clean {
   .clean_text2 {
     position: relative;
     margin-top: 7%;
-    right: -40%;
-    width: 30px;
-    height: 10px;
-    font-family: AppleSDGothicNeo-Regular;
-    font-size: 10.5px;
+    right: 55%;
+    width: 60px;
+    height: auto;
+    font-family: AppleSDGothicNeo;
+    font-size: 11.5px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: 0.88;
-    letter-spacing: -0.32px;
-    text-align: left;
+    line-height: 0.8;
+    letter-spacing: -0.35px;
+    text-align: right;
     color: #4b4b4b;
   }
 
@@ -726,9 +726,9 @@ page-skin-clean {
   }
 
   .clean_text5 {
-    position: relative;
+    position: absolute;
     margin-top: 20%;
-    right: 59%;
+    right: 10%;
     width: 100.5px;
     height: 22.5px;
     font-family: AppleSDGothicNeo-Regular;
@@ -749,9 +749,9 @@ page-skin-clean {
   }
 
   .clean_text7 {
-    position: relative;
-    margin-left: -8%;
-    width: 85px;
+    position: absolute;
+    left: 4%;
+    width: 95px;
     height: 12px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 12px;
@@ -766,10 +766,10 @@ page-skin-clean {
   }
 
   .clean_text8 {
-    position: relative;
-    margin-left: 13%;
-    margin-right: -3%;
-    width: 85px;
+    position: absolute;
+    left: 40%;
+    // right: -3%;
+    width: 95px;
     height: 11px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 12px;
@@ -778,16 +778,14 @@ page-skin-clean {
     font-style: normal;
     line-height: 3.02;
     letter-spacing: -0.36px;
-    text-align: left;
+    text-align: center;
     color: #252525;
   }
 
   .clean_text9 {
-    position: relative;
-    // right: %;
-    margin-left: 11%;
-    margin-right: -20%;
-    width: 85px;
+    position: absolute;
+    right: 4%;
+    width: 95px;
     height: 11px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 12px;
@@ -796,14 +794,14 @@ page-skin-clean {
     font-style: normal;
     line-height: 3.02;
     letter-spacing: -0.36px;
-    text-align: left;
+    text-align: right;
     color: #252525;
   }
 
   .clean_text7_false {
-    position: relative;
-    margin-left: -8%;
-    width: 85px;
+    position: absolute;
+    left: 4%;
+    width: 95px;
     height: 12px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 12px;
@@ -818,10 +816,10 @@ page-skin-clean {
   }
 
   .clean_text8_false {
-    position: relative;
-    margin-left: 13%;
-    margin-right: -3%;
-    width: 85px;
+    position: absolute;
+    left: 40%;
+    // margin-right: -3%;
+    width: 95px;
     height: 11px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 12px;
@@ -830,16 +828,16 @@ page-skin-clean {
     font-style: normal;
     line-height: 3.02;
     letter-spacing: -0.36px;
-    text-align: left;
+    text-align: center;
     color: #a0a0a0;
   }
 
   .clean_text9_false {
-    position: relative;
-    // right: %;
-    margin-left: 11%;
-    margin-right: -20%;
-    width: 85px;
+    position: absolute;
+    right: 4%;
+    // margin-left: 11%;
+    // margin-right: -20%;
+    width: 95px;
     height: 11px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 12px;
@@ -848,7 +846,7 @@ page-skin-clean {
     font-style: normal;
     line-height: 3.02;
     letter-spacing: -0.36px;
-    text-align: left;
+    text-align: right;
     color: #a0a0a0;
   }
 
@@ -857,12 +855,13 @@ page-skin-clean {
   }
 
   .clean_img2 {
-    width: 290.9px;
-    height: 163.8px;
+    width: 93%;
+    height: 100%;
+    margin: 0 auto;
   }
 
   .clean_no_img2 {
-    width: 290.9px;
+    width: 79vw;
     height: 163.8px;
     background-color: #f4f4f4;
   }
@@ -1123,9 +1122,9 @@ page-skin-clean {
     top: 44%;
     // left: 36%;
     margin: 0 auto !important;
-    width: 100px;
-    height: 15.5px;
-    font-family: AppleSDGothicNeo-Regular;
+    width: 70.5px;
+    height: 18.5px;
+    font-family: AppleSDGothicNeo;
     font-size: 20.3px;
     font-weight: 500;
     font-stretch: normal;
@@ -1176,6 +1175,14 @@ page-skin-clean {
     text-align: left;
     color: #a0a0a0;
     margin: 0 auto !important;
+  }
+
+  .arrow2 {
+    // position: absolute;
+    width: 6.5px;
+    height: 11.5px;
+    margin-top:45%;
+    margin-left: 50%;
   }
 
 

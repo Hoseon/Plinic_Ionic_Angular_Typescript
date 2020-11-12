@@ -53,16 +53,16 @@
   <ion-grid no-padding>
     <ion-row class="segment">
       <ion-col *ngIf="button1" class="borderline1" col-6>
-        <div class="text1">볼 이미지</div>
+        <div class="text1">볼 부위</div>
       </ion-col>
       <ion-col (click)="toggle_Btn('btn1')" *ngIf="!button1" class="borderline1_false" col-6>
-        <div class="text1">볼 이미지</div>
+        <div class="text1">볼 부위</div>
       </ion-col>
       <ion-col *ngIf="button2" class="borderline2" col-6>
-        <div class="text2">이마 이미지</div>
+        <div class="text2">이마 부위</div>
       </ion-col>
       <ion-col (click)="toggle_Btn('btn2')" *ngIf="!button2" class="borderline2_false" col-6>
-        <div class="text2">이마 이미지</div>
+        <div class="text2">이마 부위</div>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -77,30 +77,60 @@
         </ion-slide>
       </ion-slides>
     </ion-row>
-    <ion-row class="img_bottom">
-      <ion-col class="img_bottom_text1" col-9>측정 당일(1회) 모공크기</ion-col>
-      <ion-col class="img_bottom_text2" *ngIf="skinAnalyPoreCurrentCount" col-3>{{skinAnalyPoreCurrentCount}} <span class="img_bottom_text3">개</span></ion-col>
-      <div class="img_bottom_text4">※ 측정 환경에 따라 정확하지 않을 수 있습니다. </div>   
-    </ion-row>
+    <ng-container *ngIf="button1">
+      <ion-row class="img_bottom">
+        <ion-col class="img_bottom_text1" col-9>측정 당일(1회) 모공크기</ion-col>
+        <ion-col class="img_bottom_text2" *ngIf="skinAnalyPoreCurrentCount" col-3>{{skinAnalyPoreCurrentCount}} <span class="img_bottom_text3">개</span></ion-col>
+        <div class="img_bottom_text4">※ 측정 환경에 따라 정확하지 않을 수 있습니다. </div>   
+      </ion-row>
+    </ng-container>
+    <ng-container *ngIf="button2">
+        <ion-row class="img_bottom">
+          <ion-col class="img_bottom_text1" col-9>측정 당일(1회) 모공크기</ion-col>
+          <ion-col class="img_bottom_text2" *ngIf="skinAnalyPoreCurrentCount" col-3>{{skinAnalyPoreCurrentCount2}} <span class="img_bottom_text3">개</span></ion-col>
+          <div class="img_bottom_text4">※ 측정 환경에 따라 정확하지 않을 수 있습니다. </div>   
+        </ion-row>
+    </ng-container>
   </ion-grid>
 
   <ion-grid>
-    <ion-row class="row1">
-      <pre *ngIf="userData" class="text3">{{ageRange}}대 {{userData.gender}} 대비
+    <ng-container *ngIf="button1">
+      <ion-row class="row1">
+        <pre *ngIf="userData" class="text3">{{ageRange}}대 {{userData.gender}} 대비
 평균 모공 수가 <span *ngIf="mogongSize" class="text4">{{mogongSize}}</span> 입니다</pre>
-    </ion-row>
+      </ion-row>
+    </ng-container>
+    <ng-container *ngIf="button2">
+      <ion-row class="row1">
+        <pre *ngIf="userData" class="text3">{{ageRange}}대 {{userData.gender}} 대비
+평균 모공 수가 <span *ngIf="mogongSize" class="text4">{{mogongForeheadSize}}</span> 입니다</pre>
+      </ion-row>
+    </ng-container>
     <!-- <ion-row class="row2 text5">
       인공지능 피부 분석 결과를 확인하세요
     </ion-row> -->
-    <ion-row class="row3">
-      <ion-col col-9>
-        <div class="circle1"></div>
-        <div class="text6">측정 전체 합산한 내 평균</div>
-      </ion-col>
-      <ion-col class="row4" col-3>
-        <p class="text7">{{skinAnalyPoreCount}}<span class="text8">개</span></p>
-      </ion-col>
-    </ion-row>
+    <ng-container *ngIf="button1">
+      <ion-row class="row3">
+        <ion-col col-9>
+          <div class="circle1"></div>
+          <div class="text6">측정 전체 합산한 내 평균</div>
+        </ion-col>
+        <ion-col class="row4" col-3>
+          <p class="text7">{{skinAnalyPoreCount}}<span class="text8">개</span></p>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+    <ng-container *ngIf="button2">
+      <ion-row class="row3">
+        <ion-col col-9>
+          <div class="circle1"></div>
+          <div class="text6">측정 전체 합산한 내 평균</div>
+        </ion-col>
+        <ion-col class="row4" col-3>
+          <p class="text7">{{skinAnalyPoreCount2}}<span class="text8">개</span></p>
+        </ion-col>
+      </ion-row>
+    </ng-container>
     <!-- <ion-row class="row3">
       <ion-col col-9>
         <div class="circle1"></div>
@@ -119,24 +149,53 @@
         <p *ngIf="skinAnalyPoreBeforeCount" class="text7">{{skinAnalyPoreBeforeCount}}<span class="text8">개</span></p>
       </ion-col>
     </ion-row> -->
-    <ion-row class="row3">
-      <ion-col col-9>
-        <div class="circle3"></div>
-        <div *ngIf="ageRange || userData" class="text6">{{ageRange}}대 {{userData.gender}} 평균</div>
-      </ion-col>
-      <ion-col class="row4" col-3>
-        <p *ngIf="avgCheekPoreCount" class="text7">{{avgCheekPoreCount}}<span class="text8">개</span></p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <div class="chart_line">
-        <div class="chart_circle"></div>
-        <div class="chart_circle2" [ngStyle]="{'left' : left1}"></div>
-        <div class="chart_circle3" [ngStyle]="{'left' : left1}"><img src="assets/img/skin-chek-chart/bloon.png" /></div>
-        <div class="chart_circle4" [ngStyle]="{'left' : left1}">{{skinAnalyAvgComparePoreCount}}</div>
-        <!-- <div class="chart_circle_text" [ngStyle]="{'left' : left2}">0.7cm</div> -->
-      </div>
-    </ion-row>
+    <ng-container *ngIf="button1">
+      <ion-row class="row3">
+        <ion-col col-9>
+          <div class="circle3"></div>
+          <div *ngIf="ageRange || userData" class="text6">{{ageRange}}대 {{userData.gender}} 평균</div>
+        </ion-col>
+        <ion-col class="row4" col-3>
+          <p *ngIf="avgCheekPoreCount" class="text7">{{avgCheekPoreCount}}<span class="text8">개</span></p>
+        </ion-col>
+      </ion-row>
+      <br>
+    </ng-container>
+    <ng-container *ngIf="button2">
+      <ion-row class="row3">
+        <ion-col col-9>
+          <div class="circle3"></div>
+          <div *ngIf="ageRange || userData" class="text6">{{ageRange}}대 {{userData.gender}} 평균</div>
+        </ion-col>
+        <ion-col class="row4" col-3>
+          <p *ngIf="avgCheekPoreCount" class="text7">{{avgForeHeadPoreCount}}<span class="text8">개</span></p>
+        </ion-col>
+      </ion-row>
+      <br>
+    </ng-container>
+
+    <ng-container *ngIf="button1">
+      <ion-row>
+        <div class="chart_line">
+          <div class="chart_circle"></div>
+          <div class="chart_circle2" [ngStyle]="{'left' : left1}"></div>
+          <div class="chart_circle3" [ngStyle]="{'left' : left1}"><img src="assets/img/skin-chek-chart/bloon.png" /></div>
+          <div class="chart_circle4" [ngStyle]="{'left' : left1}">{{skinAnalyAvgComparePoreCount}}</div>
+          <!-- <div class="chart_circle_text" [ngStyle]="{'left' : left2}">0.7cm</div> -->
+        </div>
+      </ion-row>
+    </ng-container>
+    <ng-container *ngIf="button2">
+      <ion-row>
+        <div class="chart_line">
+          <div class="chart_circle"></div>
+          <div class="chart_circle2" [ngStyle]="{'left' : leftForehead1}"></div>
+          <div class="chart_circle3" [ngStyle]="{'left' : leftForehead1}"><img src="assets/img/skin-chek-chart/bloon.png" /></div>
+          <div class="chart_circle4" [ngStyle]="{'left' : leftForehead1}">{{skinAnalyAvgComparePoreCount2}}</div>
+          <!-- <div class="chart_circle_text" [ngStyle]="{'left' : left2}">0.7cm</div> -->
+        </div>
+      </ion-row>
+    </ng-container>
     <!-- <ion-row class="row5">
       <ion-col col-6>
         <div class="rectangle">
@@ -177,7 +236,12 @@
     <br>
     <br>
     <ion-row>
-      <canvas class="chart_js" id="moisture" #lineCanvas></canvas>
+      <ng-container *ngIf="button1">
+        <canvas class="chart_js" id="moisture" #lineCanvas></canvas>
+      </ng-container>
+      <ng-container *ngIf="button2">
+        <canvas class="chart_js" id="oil" #lineCanvas2></canvas>
+      </ng-container>
     </ion-row>
     <br><br>
     <ion-row class="row6">
@@ -213,7 +277,8 @@
         <div class="movie_text7">추천 영상</div>
       </ion-col>
       <ion-col col-2>
-        <div class="movie_text8">></div>
+        <img src="assets/img/ic_system_arrow.png" class="arrow2" />
+        <!-- <div class="movie_text8">></div> -->
       </ion-col>
     </ion-row>
     <br>
@@ -259,7 +324,7 @@
         <div class="movie_text7">추천 뷰티 꿀팁</div>
       </ion-col>
       <ion-col col-2>
-        <div class="movie_text8">></div>
+        <img src="assets/img/ic_system_arrow.png" class="arrow2" />
       </ion-col>
     </ion-row>
     <ion-row>
@@ -286,7 +351,7 @@
         <div class="movie_text7">추천 화장품</div>
       </ion-col>
       <ion-col col-2>
-        <div class="movie_text8">></div>
+        <img src="assets/img/ic_system_arrow.png" class="arrow2" />
       </ion-col>
     </ion-row>
     <br>
@@ -315,7 +380,7 @@
         <div class="movie_text7">베스트 피부 고민</div>
       </ion-col>
       <ion-col col-2>
-        <div class="movie_text8">></div>
+        <img src="assets/img/ic_system_arrow.png" class="arrow2" />
       </ion-col>
     </ion-row>
     <br><br>
