@@ -175,7 +175,7 @@ page-pore-count {
     font-style: normal;
     line-height: 2.61;
     letter-spacing: -0.44px;
-    text-align: left;
+    text-align: center;
     color: #ffffff;
     margin: 0 auto;
   }
@@ -190,7 +190,7 @@ page-pore-count {
     font-style: normal;
     line-height: 2.61;
     letter-spacing: -0.44px;
-    text-align: left;
+    text-align: center;
     color: #ffffff;
     margin: 0 auto;
   }
@@ -208,7 +208,7 @@ page-pore-count {
     height: 65.5px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 21px;
-    font-weight: 500;
+    font-weight: 600;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.33;
@@ -284,7 +284,7 @@ page-pore-count {
 
   .text6 {
     float: left;
-    width: 140px;
+    width: 180px;
     height: 25px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 13.8px;
@@ -551,7 +551,7 @@ page-pore-count {
   .text12 {
     //측정일
     width: 25vw;
-    height: 11px;
+    // height: 11px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 3.3vw;
     font-weight: normal;
@@ -560,7 +560,7 @@ page-pore-count {
     line-height: 2.1vh;
     letter-spacing: 0px;
     text-align: center;
-    margin-left: -10%;
+    margin-left: 20%;
     color: #939393;
   }
 
@@ -572,7 +572,7 @@ page-pore-count {
     border-radius: 50%;
     // margin: 0 auto;
     margin-top: -4.7%;
-    margin-left: 3%;
+    margin-left:5%;
     // left: 100%;
     background-color: #dddddd;
     left: 18%;
@@ -582,7 +582,7 @@ page-pore-count {
   .text13 {
     //직전까지 내 평균
     width: 28vw;
-    height: 11px;
+    // height: 11px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 3.3vw;
     font-weight: normal;
@@ -591,7 +591,7 @@ page-pore-count {
     line-height: 2.1vh;
     letter-spacing: 0px;
     text-align: center;
-    margin-left: 25%;
+    margin-left: 30%;
     color: #939393;
   }
 
@@ -654,7 +654,7 @@ page-pore-count {
     height: 55.5px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 21px;
-    font-weight: 500;
+    font-weight: 600;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.29;
@@ -853,7 +853,7 @@ page-pore-count {
   .tip_slide_row {
     position: relative;
     margin-top: 5%;
-    margin-left: 4%;
+    margin-left: 3%;
     margin-right: -5%;
 
   }
@@ -922,7 +922,7 @@ page-pore-count {
     border-radius: 3px;
     border: solid 0.5px #d5d5d5;
     background-color: #ffffff;
-    margin-left: 10%;
+    margin-left: 14%;
   }
 
   .prd_img {
@@ -938,7 +938,7 @@ page-pore-count {
 
   .product_text1 {
     width: 200.5px;
-    height: 30px;
+    // height: 30px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 13.5px;
     font-weight: normal;
@@ -949,7 +949,7 @@ page-pore-count {
     text-align: left;
     color: #292929;
     margin-left: -10%;
-    margin-top: 5%;
+    margin-top: 4%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -960,7 +960,7 @@ page-pore-count {
     font-weight: 400;
     letter-spacing: -0.35px;
     color: #939393;
-    margin-top: -7%;
+    margin-top: 2%;
     margin-left: -10%;
   }
 
@@ -1212,6 +1212,19 @@ page-pore-count {
     padding-top: 4%;
     text-align: center;
     padding-right: 10%;
+  }
+
+  .movie_text1 {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .arrow2 {
+    // position: absolute;
+    width: 6.5px;
+    height: 11.5px;
+    margin-top:45%;
+    margin-left: 50%;
   }
 
 

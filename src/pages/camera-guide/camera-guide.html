@@ -20,7 +20,7 @@
     <ng-container>
       <ion-grid>
         <ion-row class="title">
-            <div class="font_title">근접촬영 피부진단</div>
+            <div class="font_title">{{title_line1}}<br>{{title_line2}}</div>
         </ion-row>
       </ion-grid>
     </ng-container>
@@ -28,7 +28,7 @@
     <ng-container>
         <ion-grid>
           <ion-row class="subtitle">
-              <div class="font_sub">나의 스킨차트를 확인하기 위해<br>피부 진단을 시작할까요?</div>
+              <div class="font_sub">{{sub_line1}}<br>{{sub_line2}}</div>
           </ion-row>
         </ion-grid>
       </ng-container>
@@ -46,7 +46,7 @@
     <ng-container>
       <ion-grid>
         <ion-row class="layer2">
-            <div class="content">피부진단 이용안내</div>
+            <div (click)="chartguide()" class="content" >피부진단 이용안내</div>
         </ion-row>
       </ion-grid>
     </ng-container>
@@ -56,7 +56,7 @@
         <ion-grid>
           <ion-row>
               <button class="font_button" ion-button (click)="start();">
-                <div>시작하기</div>
+                시작하기
               </button>
           </ion-row>
         </ion-grid>
@@ -66,7 +66,7 @@
           <ion-grid>
             <ion-row>
                 <button class="cancel_button" clear ion-button (click)="dismiss()">
-                  <div>취소하기</div>
+                  취소하기
                 </button>
             </ion-row>
           </ion-grid>

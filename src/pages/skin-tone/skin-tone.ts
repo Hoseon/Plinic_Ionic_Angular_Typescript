@@ -272,7 +272,7 @@ export class SkinTonePage {
     this.faceColor = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].tone[0].avgrage_color_hex;
     this.currentSkinTone = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].tone[0].avgrage_color_hex;
 
-    for(let i = 1; i < this.skinAnalyData.cheek.length; i++){
+    for(let i = 0; i < this.skinAnalyData.cheek.length; i++){
       //월별 조건 추가
       if(this.skinbtnMonth ===  this.skinAnalyData.cheek[i].input[0].upload_date.substr(5,2)) {
         this.skinTone.push({
@@ -282,10 +282,10 @@ export class SkinTonePage {
       }
     }
   
-    this.skinCleanCheekScore = Math.floor(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff[0].value);
-    this.skinCleanCheekScore > 0 ? this.skinCleanCheekScore = "+" + String(this.skinCleanCheekScore) : this.skinCleanCheekScore;
-    this.skinCleanForeHeadScore = Math.floor(this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].diff[0].value);
-    this.skinCleanForeHeadScore > 0 ? this.skinCleanForeHeadScore = "+" + String(this.skinCleanForeHeadScore) : this.skinCleanForeHeadScore;
+    // this.skinCleanCheekScore = Math.floor(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].diff[0].value);
+    // this.skinCleanCheekScore > 0 ? this.skinCleanCheekScore = "+" + String(this.skinCleanCheekScore) : this.skinCleanCheekScore;
+    // this.skinCleanForeHeadScore = Math.floor(this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].diff[0].value);
+    // this.skinCleanForeHeadScore > 0 ? this.skinCleanForeHeadScore = "+" + String(this.skinCleanForeHeadScore) : this.skinCleanForeHeadScore;
     this.image3CheekUrl = this.image3CheekUrl.concat(this.skinAnalyData.firstcheek);
     this.image3ForeHeadUrl = this.image3ForeHeadUrl.concat(this.skinAnalyData.firstforhead);
     this.image2CheekUrl = this.image2CheekUrl.concat(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].input[0].filename);
@@ -324,7 +324,7 @@ export class SkinTonePage {
     this.chartOilData = [];
     this.chartMoistureData = [];
     this.skinTone = [];
-    for(let i = 1; i < this.skinAnalyData.cheek.length; i++){
+    for(let i = 0; i < this.skinAnalyData.cheek.length; i++){
       //월별 조건 추가
       if(month ===  this.skinAnalyData.cheek[i].input[0].upload_date.substr(5,2)) {
         this.skinTone.push({

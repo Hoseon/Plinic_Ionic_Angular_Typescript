@@ -24,13 +24,21 @@ import { AuthService } from '../../providers/auth-service';
 export class PoreSizePage {
 
   skinAnalyPoreSize: any;
+  skinAnalyPoreSize2: any;
   skinAnalyPoreSizeAvg: any;
+  skinAnalyPoreSizeAvg2: any;
   skinAnalyPoreBeforeSizeAvg: any;
+  skinAnalyPoreBeforeSizeAvg2: any;
   skinAnalyPoreCompareSize: any;
+  skinAnalyPoreCompareSize2: any;
   skinAnalyPoreCount: any;
+  skinAnalyPoreCount2: any;
   skinAnalyPoreBeforeCount: any;
+  skinAnalyPoreBeforeCount2: any;
   skinAnalyPoreCompareCount: any;
+  skinAnalyPoreCompareCount2: any;
   skinAnalyAvgCompare: any; //00대 성별 평균 대비
+  skinAnalyAvgCompare2: any; //00대 성별 평균 대비
   skinTone: any;
 
   cheekImages: Array<any> = new Array<any>();
@@ -40,6 +48,12 @@ export class PoreSizePage {
   left1 : any;
   left2 : any;
   left3 : any;
+
+  left_forehead1 : any;
+  left_forehead2 : any;
+  left_forehead3 : any;
+
+
   @ViewChild('lineCanvas') lineCanvas;
   @ViewChild('lineCanvas2') lineCanvas2;
   valueday = { "day": "1" };
@@ -222,14 +236,21 @@ export class PoreSizePage {
   avgForeHeadPoreCount: any;
   allAgeAvgData: any;
   mogongSize: any;
+  mogongSize2: any;
 
   chartAvgCheekPoreSize: any = []; //차트에 보여지는 나이대 평균
   chartAvgCheekPoreUserSize: any = []; //차트에 보여지는 나의 결과
   chartAvgCheekPoreUserSizeDate: any = []; //차트에 보여지는 나의 결과 날짜
 
+  chartAvgForeheadPoreSize: any = []; //차트에 보여지는 나이대 평균
+  chartAvgForeheadPoreUserSize: any = []; //차트에 보여지는 나의 결과
+  chartAvgForeheadPoreUserSizeDate: any = []; //차트에 보여지는 나의 결과 날짜
+
   chartAvgCheekPoreCount: any = [];
   chartAvgForeHeadPoreSize: any = [];
   chartAvgForeHeadPoreCount: any = [];
+
+  
 
   constructor(
     public navCtrl: NavController, 
@@ -250,6 +271,7 @@ export class PoreSizePage {
     this.lottoNum();
     this.lottoTip();
     this.getSkinAnaly();
+    this.getSkinAnalyForehead();
     this.getAgeRange();
     this.getAvgSkinPore(this.ageRange);
     this.skinQnaMainLoad();
@@ -261,7 +283,9 @@ export class PoreSizePage {
      this.skinbtnMonth = format(new Date(), 'MM');
      var e = this.skinbtnYear + "년" + this.skinbtnMonth;
     //  await this.yearmonthselect(e);
-     await this.initChart();
+    await this.initChart();
+    // await this.initChart2();
+
   }
 
   private makeRandom(min, max) {
@@ -276,17 +300,34 @@ export class PoreSizePage {
     this.chartAvgCheekPoreUserSize = [];
     this.chartAvgCheekPoreUserSizeDate = [];
 
+    this.chartAvgForeheadPoreUserSize = [];
+    this.chartAvgForeheadPoreUserSizeDate = [];
+
     for(let i= 0; i < this.skinAnalyData.cheek.length; i++) {
       //현재 달을 확인해서 가져 온다
       if(month ===  this.skinAnalyData.cheek[i].input[0].upload_date.substr(5,2)) {
        this.chartAvgCheekPoreUserSize.push(this.skinAnalyData.cheek[i].pore[0].average_pore);
        this.chartAvgCheekPoreUserSizeDate.push(this.skinAnalyData.cheek[i].input[0].upload_date.substr(8,2)+"일"); //업로드한 날짜 기준 현재 달의 데이터만 가져 온다
       }
-      
-   }
-      this.lineCanvas.data.labels = this.chartAvgCheekPoreUserSizeDate;
-      this.lineCanvas.data.datasets[1].data = this.chartAvgCheekPoreUserSize;
-      this.lineCanvas.update();
+    }
+
+    for(let i= 0; i < this.skinAnalyData.forehead.length; i++) {
+      //현재 달을 확인해서 가져 온다
+      if(month ===  this.skinAnalyData.forehead[i].input[0].upload_date.substr(5,2)) {
+       this.chartAvgForeheadPoreUserSize.push(this.skinAnalyData.forehead[i].pore[0].average_pore);
+       this.chartAvgForeheadPoreUserSizeDate.push(this.skinAnalyData.forehead[i].input[0].upload_date.substr(8,2)+"일"); //업로드한 날짜 기준 현재 달의 데이터만 가져 온다
+      }
+    }
+
+      if(this.button1) {
+        this.lineCanvas.data.labels = this.chartAvgCheekPoreUserSizeDate;
+        this.lineCanvas.data.datasets[0].data = this.chartAvgCheekPoreUserSize;
+        this.lineCanvas.update();
+      } else if (this.button2) {
+        this.lineCanvas2.data.labels = this.chartAvgForeheadPoreUserSizeDate;
+        this.lineCanvas2.data.datasets[0].data = this.chartAvgForeheadPoreUserSize;
+        this.lineCanvas2.update();
+      }
   }
 
 
@@ -344,6 +385,107 @@ export class PoreSizePage {
           pointHitRadius: 100,
           // data: [this.data1, this.data2, this.data3, this.data4],
           data: this.chartAvgCheekPoreSize,
+          spanGaps: false,
+        }
+        ],
+      },
+      options: {
+        animation: {
+          duration: 3000 // general animation time
+        },
+        responsive: true,
+        legend: {
+          display: false,     //라벨표시
+        },
+        scales: {
+          xAxes: [{               //아래측 가로 범위
+            display: true,
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0
+            }
+          }],
+          yAxes: [{              //좌측 세로 범위
+            display: true,
+            ticks: {
+              beginAtZero: true,
+              max: 1000,
+              min: 0
+            }
+          }]
+        },
+        // plugins: {
+        //     labels: {
+        //           render: this.percentage,
+        //           precision: 0,
+        //           fontSize: 15,
+        //           fontStyle: 'normal',
+        //           textShadow: true,
+        //           showActualPercentages: true
+        //       }
+        //   }
+      }
+    });
+
+    //두번째 차트
+    
+  }
+
+  initChart2() {
+    this.lineCanvas2 = new Chart(this.lineCanvas2.nativeElement, {
+      type: 'line',
+      data: {        //this.skinbtnMonth+"월"+this.valueday.day+"일"
+        labels: this.chartAvgForeheadPoreUserSizeDate,
+        datasets: [
+        {
+          // label: format(this.today, 'MM/DD', '유분'),
+          label: '내 평균',
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "#5c59b6",
+          borderColor: "#5c59b6",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "#5c59b6",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "#5c59b6",
+          pointHoverBorderColor: "#5c59b6",
+          pointHoverBorderWidth: 2,
+          pointRadius: 3,
+          pointHitRadius: 20,
+          data: this.chartAvgForeheadPoreUserSize,
+          spanGaps: false,
+          // 수분은 하늘이랑 파랑
+          // 유분은 노랑이랑 주황!!
+          // label: format(this.today, 'MM/DD', '유분'),
+        },
+        {
+          // label: format(this.today, 'MM/DD', '유분'),
+          label: this.ageRange +'대' + this.userData.gender + '평균',
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "#dddddd",
+          borderColor: "#dddddd",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "#dddddd",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5, //클릭시 원크기
+          pointHoverBackgroundColor: "#dddddd",
+          pointHoverBorderColor: "#dddddd",
+          pointHoverBorderWidth: 2, //데이터 호버크기
+          pointRadius: 0.1,  //데이터 포인트크기
+          pointHitRadius: 100,
+          // data: [this.data1, this.data2, this.data3, this.data4],
+          data: this.chartAvgForeheadPoreSize,
           spanGaps: false,
         }
         ],
@@ -490,9 +632,15 @@ export class PoreSizePage {
     if(btn === 'btn1') {
       this.button1 = true;
       this.button2 = false;
+      setTimeout(() => {
+        this.initChart();  
+      }, 500);
     } else if (btn === 'btn2') {
       this.button1 = false;
       this.button2 = true;
+      setTimeout(() => {
+        this.initChart2();  
+      }, 500);
     }
   }
 
@@ -532,6 +680,84 @@ export class PoreSizePage {
       console.log("화장품 상세정보 페이지 닫힘");
     });
     modal.present();
+  }
+
+  getSkinAnalyForehead() {
+    // if(this.userData) {
+      var sizeSum = 0;
+      var beforeSum = 0;
+      var poreCountSum = 0;
+      var poreBeforCountSum = 0;
+      // this.auth.getSkinAnaly(this.userData.email).subscribe(data=>{
+        // console.log(this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].input[0].filename);
+        // console.log(this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].pore[0].average_pore);
+
+        //현재 모공 사이즈 총 합
+        for(let i= 0; i < this.skinAnalyData.forehead.length; i++) {
+           sizeSum += this.skinAnalyData.forehead[i].pore[0].average_pore;
+           
+           //현재 달을 확인해서 가져 온다
+           if(this.skinbtnMonth ===  this.skinAnalyData.forehead[i].input[0].upload_date.substr(5,2)) {
+            this.chartAvgForeheadPoreUserSize.push(this.skinAnalyData.forehead[i].pore[0].average_pore);
+            this.chartAvgForeheadPoreUserSizeDate.push(this.skinAnalyData.forehead[i].input[0].upload_date.substr(8,2)+"일"); //업로드한 날짜 기준 현재 달의 데이터만 가져 온다
+           }
+           
+        }
+        this.skinAnalyPoreSizeAvg2 = Math.floor(Number(sizeSum / this.skinAnalyData.forehead.length)); //전체 모공사이즈 평균
+
+        this.skinAnalyPoreSize2 = Math.floor(this.skinAnalyData.forehead[this.skinAnalyData.forehead.length-1].pore[0].average_pore);//측정일 당일 모공 사이즈
+        
+        //이전 모공 사이즈 총 합
+        for(let i= 0; i < (this.skinAnalyData.forehead.length-1); i++) {
+          beforeSum += this.skinAnalyData.forehead[i].pore[0].average_pore;
+        }
+        this.skinAnalyPoreBeforeSizeAvg2 = Math.floor(Number(beforeSum / (this.skinAnalyData.forehead.length-1))); //전체 모공사이즈 평균
+        
+        this.skinAnalyPoreCompareSize2 =  Number(this.skinAnalyPoreSizeAvg2) - Number(this.skinAnalyPoreBeforeSizeAvg2);
+        this.skinAnalyPoreCompareSize2 > 0 ? this.skinAnalyPoreCompareSize2 = "+" + String(this.skinAnalyPoreCompareSize2) : this.skinAnalyPoreCompareSize2;
+        
+        //현재 모공 갯수 총합
+        for(let i= 0; i < this.skinAnalyData.forehead.length; i++) {
+          poreCountSum += this.skinAnalyData.forehead[i].pore[0].pore_count;
+        }
+        this.skinAnalyPoreCount2 = Math.floor(Number(poreCountSum / this.skinAnalyData.forehead.length)); //전체 모공사이즈 평균
+        
+        //이전 모공 갯수 총 합
+        for(let i= 0; i < (this.skinAnalyData.forehead.length-1); i++) {
+          poreBeforCountSum += this.skinAnalyData.forehead[i].pore[0].pore_count;
+        }
+        this.skinAnalyPoreBeforeCount2 = Math.floor(Number(poreBeforCountSum / (this.skinAnalyData.forehead.length-1))); //직전까지 내 평균 모공 갯수
+        
+        this.skinAnalyPoreCompareCount2 = this.skinAnalyPoreCount2 - this.skinAnalyPoreBeforeCount2;
+        this.skinAnalyPoreCompareCount2 > 0 ? this.skinAnalyPoreCompareCount2 = "+" + String(this.skinAnalyPoreCompareCount2) : this.skinAnalyPoreCompareCount2;
+
+        this.skinTone = this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].tone[0].avgrage_color_hex;
+
+        // this.cheekImages.push('http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].input[0].filename);
+        // this.cheekImages.push(this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].pore[0].output_image);
+
+        this.foreheadImages.push('http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].input[0].filename);
+        this.foreheadImages.push(this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].pore[0].output_image);
+
+        
+
+        console.log("cheekimages : " + this.cheekImages);
+        // this.skinAnalyPoreCount = this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].pore[0].pore_count
+
+        // this.skinAnalyPoreSizeAvg = Math.floor(this.skinAnalyPoreSizeAvg);
+
+        // console.log("총 합계는? : " + sizeSum);
+        // console.log("평균은? : " + Math.floor(this.skinAnalyPoreSizeAvg));
+        // this.skinAnalyPoreSizeAvg = (Number(this.skinAnalyPoreSize) / (this.skinAnalyData.cheek.length))
+        
+        // console.log(this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].pore[0].pore_count);
+        // console.log(this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].tone[0].avgrage_color_hex);
+        // console.log(this.skinAnalyData);
+      // },error => {
+      //   console.log(error);
+      // })
+    // }
+    
   }
 
   getSkinAnaly() {
@@ -588,8 +814,8 @@ export class PoreSizePage {
         this.cheekImages.push('http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].input[0].filename);
         this.cheekImages.push(this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].pore[0].output_image);
 
-        this.foreheadImages.push('http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].input[0].filename);
-        this.foreheadImages.push(this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].pore[0].output_image);
+        // this.foreheadImages.push('http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].input[0].filename);
+        // this.foreheadImages.push(this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].pore[0].output_image);
 
         
 
@@ -633,11 +859,19 @@ export class PoreSizePage {
         this.chartAvgCheekPoreSize.push(this.avgCheekPoreSize);
       }
 
+      for(let k = 0; this.chartAvgForeheadPoreSize.length < 31; k++) {
+        this.chartAvgForeheadPoreSize.push(this.avgForeHeadPoreSize);
+      }
+
       this.skinAnalyAvgCompare = Math.floor(Number(this.skinAnalyPoreSizeAvg) - Number(this.avgCheekPoreSize));
+      this.skinAnalyAvgCompare2 = Math.floor(Number(this.skinAnalyPoreSizeAvg2) - Number(this.avgForeHeadPoreSize));
       // this.left1 = this.skinAnalyPoreSizeAvg - this.avgCheekPoreSize;
       // this.left2 = (this.skinAnalyPoreBeforeSizeAvg - this.avgCheekPoreSize) / this.avgCheekPoreSize * 100 + 50;
       this.left1 = this.barPercent(this.skinAnalyPoreSizeAvg, this.avgCheekPoreSize);
       this.left2 = this.barPercent(this.skinAnalyPoreBeforeSizeAvg, this.avgCheekPoreSize);
+
+      this.left_forehead1 = this.barPercent(this.skinAnalyPoreSizeAvg2, this.avgForeHeadPoreSize);
+      this.left_forehead2 = this.barPercent(this.skinAnalyPoreBeforeSizeAvg2, this.avgForeHeadPoreSize);
 
       if(this.skinAnalyPoreSizeAvg > this.avgCheekPoreSize) {
         this.mogongSize = "넓은 편";
@@ -645,6 +879,14 @@ export class PoreSizePage {
         this.mogongSize = "보통인 편";
       } else {
         this.mogongSize = "좁은 편";
+      }
+
+      if(this.skinAnalyPoreSizeAvg2 > this.avgForeHeadPoreSize) {
+        this.mogongSize2 = "넓은 편";
+      } else if (this.skinAnalyPoreSizeAvg2 === this.avgForeHeadPoreSize) {
+        this.mogongSize2 = "보통인 편";
+      } else {
+        this.mogongSize2 = "좁은 편";
       }
 
     },error => {

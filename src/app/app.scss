@@ -1651,6 +1651,110 @@ scroll-content {
   }
 }
 
+.push_alert_cancel3 {
+  background-color: rgba(0, 0, 0, 0.4);
+
+  .alert-wrapper {
+    height: 35%;
+    width: 100% !important;
+    border-radius: 8px;
+    box-shadow: none !important;
+    transform: scale(1.07, 1.08) !important;
+
+    .alert-head {
+      padding-top: 20px;
+      // padding-right: 24px;
+      padding-bottom: 10px;
+      // padding-left: 24px;
+      // border-style: solid;
+      // border-width: 0px 0px 1px 0px;
+      // border-color: #e5e5e5;
+
+      .alert-title {
+        // background-image: url(../assets/img/ic_system_logo_symbol.png);
+        // background-repeat: no-repeat;
+        // background-size: 35px 35px;
+        min-height: 35px;
+        padding-top: 4%;
+        padding-left: 0%;
+        font-family: AppleSDGothicNeo-Regular;
+        font-size: 17px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        margin: 0 auto !important;
+        display: table;
+        color: #292929;
+      }
+    }
+
+    .alert-message {
+      width: 290px;
+      height: auto;
+      overflow-y: hidden;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 14px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: 0.5px;
+      text-align: center;
+      color: #7a7a7a;
+      // padding-top: -20%;
+      margin: 0 auto !important;
+      // padding-bottom: -200px;
+    }
+
+    .button-inner {
+      justify-content: center;
+    }
+
+    .alert-button-group {
+      padding: 0;
+      border: 0;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      //  margin: auto auto;
+      // margin: 0 auto;
+      // margin-top: -2%;
+
+      .alert-button {
+        width: 95%;
+        color: #FFF;
+        background-color: #6562b9;
+        border-radius: 0px;
+        margin: 0 auto;
+        transform: translate(0.1%) !important;
+      }
+
+      button.alert-button:nth-child(1) {
+        margin: auto 24px;
+        margin-bottom: 3%;
+        width: 87%;
+        background-color: #FFFFFF;
+        border: solid 0.5px #c7c7c7;
+        border-radius: 3.8px;
+        transform: translate(0.1%) !important;
+        color: #292929;
+      }
+
+      button.alert-button:nth-child(2) {
+        margin: auto 24px;
+        margin-bottom: 3%;
+        width: 87%;
+        background-color: #6562b9;
+        border-radius: 3.8px;
+        transform: translate(0.1%) !important;
+        color: #FFFFFF;
+      }
+    }
+
+  }
+}
+
 .push_alert_product {
   background-color: rgba(0, 0, 0, 0.4);
 
@@ -1759,6 +1863,85 @@ scroll-content {
       // }
     }
 
+  }
+}
+
+.push_alert_bill {
+  background-color: rgba(0, 0, 0, 0.4);
+
+  // width: 300px;
+  .alert-wrapper {
+    width: 100%;
+    height: 35%;
+    border-radius: 8px;
+    box-shadow: none !important;
+
+    .alert-head {
+      // padding-top: 10px;
+      // padding-right: 24px;
+      // padding-bottom: 10px;
+      // padding-left: 24px;
+      // border-style: solid;
+      // border-width: 0px 0px 1px 0px;
+      // border-color: #e5e5e5;
+
+      .alert-title {
+        width: 100%;
+        height: 16px;
+        font-family: AppleSDGothicNeo;
+        font-size: 17px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.41;
+        letter-spacing: -0.68px;
+        text-align: center;
+        color: #000000;
+
+      }
+    }
+
+    .alert-message {
+      width: 100%;
+      // height: 19px;
+      height: auto;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 14px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.36;
+      letter-spacing: 0.6px;
+      text-align: center;
+      color: #292929;
+      overflow-y: hidden;
+      border: 0;
+      padding: 0;
+      padding-top: 2%;
+      padding-bottom: 10%;
+      margin: 0 auto !important;
+      margin-top: -3% !important;
+    }
+
+    .button-inner {
+      justify-content: center;
+    }
+
+    .alert-button-group {
+      padding: 0px;
+
+      .alert-button {
+        width: 89%;
+        height: 45px;
+        color: #FFF;
+        background-color: #6562b9;
+        border-radius: 3.8px;
+        margin: 0 24px;
+        margin-bottom: 20px;
+        border: 0;
+        padding: 0;
+      }
+    }
   }
 }
 

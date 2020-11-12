@@ -88,16 +88,28 @@
 
   <ion-footer no-lines no-shadow>
       <ion-grid>
-          
-          <ion-row *ngIf="!isLoadMain">
-            <button class="btn1" ion-button><div class="btn_text2">다음</div></button>
-          </ion-row>
-          <ion-row *ngIf="isLoadMain">
-            <button class="btn3" (click)="next()" ion-button><div class="btn_text2">다음</div></button>
-          </ion-row>
-          <ion-row (click)="dismiss()">
-            <div class="btn_text3">취소하기</div>
-          </ion-row>
+          <ng-container *ngIf="!isChange">
+            <ion-row *ngIf="!isLoadMain">
+              <button class="btn1" ion-button><div class="btn_text2">다음</div></button>
+            </ion-row>
+            <ion-row *ngIf="isLoadMain">
+              <button class="btn3" (click)="next()" ion-button><div class="btn_text2">다음</div></button>
+            </ion-row>
+            <ion-row (click)="dismiss()">
+              <div class="btn_text3">취소하기</div>
+            </ion-row>
+          </ng-container>
+          <ng-container *ngIf="isChange">
+            <ion-row *ngIf="!isLoadMain">
+              <button class="btn1" ion-button><div class="btn_text2">저장</div></button>
+            </ion-row>
+            <ion-row *ngIf="isLoadMain">
+              <button class="btn3" (click)="dismiss()" ion-button><div class="btn_text2">저장</div></button>
+            </ion-row>
+            <ion-row (click)="dismiss()">
+              <div class="btn_text3">취소하기</div>
+            </ion-row>
+          </ng-container>
       </ion-grid>
   </ion-footer>
 </ion-content>

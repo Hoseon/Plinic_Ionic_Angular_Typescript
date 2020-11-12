@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, Platform, AlertController, ToastCo
 import { AuthService } from '../../providers/auth-service';
 import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing'
 import { SkinChekPage } from '../skin-chek/skin-chek';
+import { SkincheckGuidePage } from '../skincheck-guide/skincheck-guide';
+import { SkinChekMunjinPage } from '../skin-chek-munjin/skin-chek-munjin';
 
 
 /**
@@ -19,6 +21,10 @@ import { SkinChekPage } from '../skin-chek/skin-chek';
 })
 export class CameraGuidePage {
   step: any;
+  title_line1: any;
+  title_line2: any;
+  sub_line1: any;
+  sub_line2: any;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -28,6 +34,17 @@ export class CameraGuidePage {
   ) {
     if(this.navParams.get('step')) {
       this.step = this.navParams.get('step')
+    }
+    if(this.step === 'first') {
+      this.title_line1 = "서비스 이용을 위해";
+      this.title_line2 = "최초 피부를 측정해볼까요?";
+      this.sub_line1 = "정확한 피부리포트를 제공 받으시려면";
+      this.sub_line2 = "설명을 잘 보시고 측정해주세요.";
+    } else {
+      this.title_line1 = "데일리 피부 측정을";
+      this.title_line2 = "시작해볼까요?";
+      this.sub_line1 = "정확한 피부리포트를 제공 받으시려면";
+      this.sub_line2 = "설명을 잘 보시고 측정해주세요.";
     }
     console.log("현재 스텝 상태는 : "  + this.step);
 
@@ -51,23 +68,29 @@ export class CameraGuidePage {
   }
 
   start() {
-    this.navCtrl.push(SkinChekPage, {step : this.step }).then(() => {
-      this.navCtrl.getActive().onDidDismiss(data => {
-        console.log("페이지 닫힘");
+    if(this.step ==='first') { 
+      this.navCtrl.push(SkinChekPage, {step : this.step }).then(() => {
+        this.navCtrl.getActive().onDidDismiss(data => {
+          console.log("페이지 닫힘");
+        });
       });
+    } else {
+      this.navCtrl.push(SkinChekMunjinPage, {step : this.step }).then(() => {
+        this.navCtrl.getActive().onDidDismiss(data => {
+          console.log("페이지 닫힘");
+        });
+      });
+    }
+
+    
+  }
+
+  //20200521 이용안내 페이지로 이동
+  chartguide() {
+    let modal = this.modalCtrl.create(SkincheckGuidePage);
+    modal.onDidDismiss(data => {
     });
-    // let myModal = this.modalCtrl.create(SkinChekPage);
-    // myModal.onDidDismiss(data => {
-    //   let tabs = document.querySelectorAll('.tabbar');
-    //   if (tabs !== null) {
-    //     Object.keys(tabs).map((key) => {
-    //       // tabs[ key ].style.transform = 'translateY(0)';
-    //       tabs[key].style.display = 'block';
-    //       tabs[key].style.display = '';
-    //     });
-    //   }
-    // })
-    // myModal.present();
+    modal.present();
   }
 
 }

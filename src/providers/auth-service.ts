@@ -1677,6 +1677,23 @@ export class AuthService {
         return data;
       });
   }
+
+  public skinReportUpdate(email, skinreport) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      skinreport: skinreport,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/skinReport', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
   
 
   public userTimeUpdate(email, points) {
@@ -2432,6 +2449,48 @@ export class AuthService {
       });
   }
 
+  public updateSkinAnaly(result1, result2, ageRange, userData, munjin) {
+    console.log("피부 분석 데이터 저장 시작");
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    var cheek = {
+      input : result1.input,
+      skin_analy : result1.output.skin_analy,
+      created_at: result1.output.created_at,
+      email: userData.email,
+    }
+
+    var forehead = {
+      input : result2.input,
+      skin_analy : result2.output.skin_analy,
+      created_at: result2.output.created_at,
+      email: userData.email,
+    }
+
+    var munjin_Score = {
+      sleep : munjin.diagnose_score1,
+      alcohol : munjin.diagnose_score2,
+      fitness : munjin.diagnose_score3,
+    }
+    
+    let body = {
+      email: userData.email,
+      agerange : ageRange,
+      gender: userData.gender,
+      skincomplaint: userData.skincomplaint,
+      cheek: cheek,
+      forehead : forehead,
+      munjin : munjin_Score
+    };
+    console.log("피부 분석 데이터 저장 종료");
+    return this.http.post(CONFIG.apiUrl + 'api/updateskinanaly', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
   public getSkinAnaly(email) {
     return this.http.get(CONFIG.apiUrl + 'getSkinAnaly/' + email)
       .map(response => response.json());
@@ -2601,4 +2660,25 @@ export class AuthService {
         return data;
       });
   }
+
+  public registerReview (email, review) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      review : review
+    };
+
+    console.log("qna : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/registerReview', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  
 }

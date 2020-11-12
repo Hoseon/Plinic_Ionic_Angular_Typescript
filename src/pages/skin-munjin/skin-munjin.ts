@@ -649,9 +649,9 @@ export class SkinMunjinPage {
 
   getSleepText(text) {
     switch(text) {
-      case 11 : return '4시간 이하';
-      case 22 : return '5~6시간';
-      case 33 : return '7시간 이상';
+      case 11 : return '5시간 이하';
+      case 22 : return '6~7시간';
+      case 33 : return '8시간 이상';
       default : return '-';
     } 
   }
@@ -668,8 +668,8 @@ export class SkinMunjinPage {
   getFitnessText(text) {
     switch(text) {
       case 11 : return '없음';
-      case 22 : return '1시간 이하';
-      case 33 : return '1시간 이상';
+      case 22 : return '90분 이하';
+      case 33 : return '90분 이상';
       default : return '-';
     } 
   }
