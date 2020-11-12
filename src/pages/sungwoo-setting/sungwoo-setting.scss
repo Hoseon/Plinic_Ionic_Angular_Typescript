@@ -33,7 +33,7 @@ page-sungwoo-setting {
       font-weight: bold;
       font-size: 17px;
       background-color: #FFF;
-      font-family: AppleSDGothicNeo;
+      font-family: AppleSDGothicNeo-Regular;
       font-style: normal;
       font-stretch: normal;
       line-height: normal;
@@ -49,7 +49,7 @@ page-sungwoo-setting {
       font-weight: bold;
       font-size: 17px;
       background-color: #FFF;
-      font-family: AppleSDGothicNeo;
+      font-family: AppleSDGothicNeo-Regular;
       font-style: normal;
       font-stretch: normal;
       line-height: normal;
@@ -116,118 +116,11 @@ page-sungwoo-setting {
       color: #292929;
     }
 
-    .info_text {
-      height: 29px;
-      font-family: AppleSDGothicNeo;
-      font-size: 23px;
-      font-weight: bold;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: 1.26;
-      letter-spacing: normal;
-      color: #292929;
-      margin-top: 5%;
-    }
-  
-    .info_change {
-      position: absolute;
-      right: 5%;
-      bottom: 15%;
-      width: 65px;
-      height: 35.5px !important;
-      margin-top: -5% !important;
-      background-color: #FFF !important;
-      border-radius: 3px;
-      border: solid 1px #dddddd;
-      font-family: AppleSDGothicNeo;
-      font-size: 13px !important;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      color: #292929;
-      box-shadow: none !important;
-    }
-  
-  
-    .noti_text {
-      margin-top: 0%;
-      font-size: 15px;
-    }
-  
-    .nickname {
-      position: absolute;
-      left: 25%;
-      top: 20%;
-      height: 22.5px;
-      font-family: AppleSDGothicNeo;
-      font-size: 15px;
-      font-weight: bold;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      color: #292929;
-    }
-  
-  
-    .email {
-      position: absolute;
-      left: 25%;
-      top: 40%;
-      height: 20px;
-      font-family: AppleSDGothicNeo;
-      font-size: 13px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      padding-top: 1%;
-      color: #919191;
-    }
-  
-  
-    .top_list {
-      margin-bottom: 5%;
-    }
-  
-  
-  
-    .blue_status {
-      position: absolute;
-      right: 0%;
-      top: 0%;
-      width: 125px;
-      height: 18.5px;
-      font-family: AppleSDGothicNeo;
-      font-size: 15px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      // text-align: right;
-      color: #5c59b6;
-    }
-  
     .text {
-      font-family: AppleSDGothicNeo;
-      font-size: 15px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      color: #292929;
-    }
-  
-    .connect_status {
-      margin-top: -6%;
-      height: 22.5px;
-      font-family: AppleSDGothicNeo;
-      font-size: 15px;
+      height: 21.5px;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 14.5px;
+
       font-weight: normal;
       font-style: normal;
       font-stretch: normal;
@@ -237,9 +130,8 @@ page-sungwoo-setting {
     }
   
     .plinic_use {
-      margin-top: -6%;
       height: 21.5px;
-      font-family: AppleSDGothicNeo;
+      font-family: AppleSDGothicNeo-Regular;
       font-size: 14.5px;
       font-weight: normal;
       font-style: normal;
@@ -250,7 +142,6 @@ page-sungwoo-setting {
     }
   
     .care_zone {
-      // margin-top: 3%;
       height: 22.5px;
       font-family: AppleSDGothicNeo;
       font-size: 15px;
@@ -298,7 +189,7 @@ page-sungwoo-setting {
   
     .title {
       height: 19px;
-      font-family: AppleSDGothicNeo;
+      font-family: AppleSDGothicNeo-Regular;
       font-size: 13px;
       font-weight: normal;
       font-style: normal;
@@ -312,7 +203,7 @@ page-sungwoo-setting {
   
     .title2 {
       height: 19px;
-      font-family: AppleSDGothicNeo;
+      font-family: AppleSDGothicNeo-Regular;
       font-size: 13px;
       font-weight: normal;
       font-style: normal;
@@ -324,7 +215,7 @@ page-sungwoo-setting {
   
     .note-md {
       margin-right: 1%;
-      font-family: Roboto;
+      font-family: AppleSDGothicNeo-Regular;
       font-size: 15px;
       font-weight: normal;
       font-style: normal;
@@ -337,7 +228,7 @@ page-sungwoo-setting {
   
     .note-ios {
       margin-right: 1%;
-      font-family: Roboto;
+      font-family: AppleSDGothicNeo-Regular;
       font-size: 15px;
       font-weight: normal;
       font-style: normal;
@@ -350,7 +241,7 @@ page-sungwoo-setting {
   
     .current_version {
       margin-top: 1%;
-      font-family: AppleSDGothicNeo;
+      font-family: AppleSDGothicNeo-Regular;
       font-size: 15px;
       font-weight: normal;
       font-style: normal;
@@ -362,7 +253,7 @@ page-sungwoo-setting {
   
     .logout {
       margin-top: 2%;
-      font-family: AppleSDGothicNeo;
+      font-family: AppleSDGothicNeo-Regular;
       font-size: 15px;
       font-weight: normal;
       font-style: normal;

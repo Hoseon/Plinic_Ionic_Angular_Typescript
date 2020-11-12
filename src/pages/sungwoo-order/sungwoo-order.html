@@ -39,11 +39,13 @@
       <ion-row>
         <ion-col class="order-little_text1" col-2>옵션</ion-col>
       </ion-row>
-      <ion-row>
-        <div style="height:1.3vh; width:100vw; background-color:#f1f1f1"></div>
-      </ion-row>
     </ion-grid>
+    <ion-row>
+      <div style="height:1.3vh; width:100vw; background-color:#f1f1f1"></div>
+    </ion-row>
   </ng-container>
+
+  
 
 
   <ng-container>
@@ -114,10 +116,11 @@
       <div class="gon2"></div>
 
       <ion-grid no-padding>
+      </ion-grid>
+
       <ion-row>
         <div style="height:1.3vh; width:100vw; background-color:#f1f1f1"></div>
       </ion-row>
-      </ion-grid>
     
   </ng-container>
 
@@ -142,7 +145,7 @@
           <ion-list>
             <ion-item class="order_card1">
               <!-- <ion-label class="order-card_text">카드를 선택해주세요</ion-label> -->
-              <ion-select okText="Okay" cancelTest="Dismiss" id="select" class="s_icon" placeholder="카드를 선택해주세요.">
+              <ion-select okText="Okay" cancelTest="Dismiss" id="select" class="s_icon" placeholder="카드를 선택해주세요">
                 <!-- <ion-option disabled selected value="">카드를 선택해주세요</ion-option> -->
                 <ion-option value="nes">KB국민카드</ion-option>
                 <ion-option value="n64">롯데카드</ion-option>
@@ -157,7 +160,7 @@
           <ion-list>
             <ion-item class="order_card2">
               <!-- <ion-label class="order-card_text">할부 기간을 선택해주세요</ion-label> -->
-              <ion-select okText="Okay" cancelTest="Dismiss" id="select" class="s_icon" placeholder="할부 기간을 선택해주세요.">
+              <ion-select okText="Okay" cancelTest="Dismiss" id="select" class="s_icon" placeholder="할부 기간을 선택해주세요">
                 <!-- <ion-option disabled selected value="">할부 기간을 선택해주세요</ion-option> -->
                 <ion-option value="Lump">일시불</ion-option>
                 <ion-option value="twomonth">2개월(무)</ion-option>
@@ -199,7 +202,7 @@
         </ion-row>
       </ion-grid>
 
-      <button (click)="saveToday()" ion-button class="cell"><div class="cell_text">결제하기</div></button>
+      <!-- <button (click)="saveToday()" ion-button class="cell"><div class="cell_text">결제하기</div></button> -->
 
       <div class="gon"></div>
       
@@ -213,3 +216,7 @@
   </ng-container>
 
 </ion-content>
+
+<ion-footer mode="ios" keyboard-attach no-bounce no-lines>
+  <button (click)="saveToday()" ion-button class="cell"><div class="cell_text">결제하기</div></button>
+</ion-footer>

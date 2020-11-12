@@ -298,6 +298,16 @@ import { SungwooOrderPageModule } from '../pages/sungwoo-order/sungwoo-order.mod
 import { SungwooCartPageModule } from '../pages/sungwoo-cart/sungwoo-cart.module';
 //20200928 성우 상품 선택 페이지
 import { SungwooPickPageModule } from '../pages/sungwoo-pick/sungwoo-pick.module';
+//20201012 성우 상품 정보 페이지
+import { SungwooProductDetailPageModule } from '../pages/sungwoo-product-detail/sungwoo-product-detail.module';
+//20201020 성우 배송 조회 페이지
+import { SungwooDeliveryPageModule } from '../pages/sungwoo-delivery/sungwoo-delivery.module';
+//20201028 성우 뷰티 영상 페이지
+import { SungwooBeautyPageModule } from '../pages/sungwoo-beauty/sungwoo-beauty.module';
+//20201030 성우 화장품 메인 페이지
+import { SungwooCosmeticsMainPageModule } from '../pages/sungwoo-cosmetics-main/sungwoo-cosmetics-main.module';
+//20201104 성우 화장품 모아보기 페이지
+import { SungwooCosmeticsTabPageModule } from '../pages/sungwoo-cosmetics-tab/sungwoo-cosmetics-tab.module';
 
 //20201014 상품리뷰 페이지
 import { ProductReviewPageModule } from '../pages/product-review/product-review.module';
@@ -305,7 +315,6 @@ import { ProductReviewPageModule } from '../pages/product-review/product-review.
 import { ProductMainPageModule } from '../pages/product-main/product-main.module';
 
 import { Geolocation } from '@ionic-native/geolocation';
-
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -498,6 +507,11 @@ export function getAuthHttp(http, storage) {
     SungwooOrderPageModule,
     SungwooCartPageModule,
     SungwooPickPageModule,
+    SungwooProductDetailPageModule,
+    SungwooDeliveryPageModule,
+    SungwooBeautyPageModule,
+    SungwooCosmeticsMainPageModule,
+    SungwooCosmeticsTabPageModule,
     ProductReviewPageModule,
     ProductMainPageModule,
   ],
