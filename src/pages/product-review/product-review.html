@@ -1,0 +1,88 @@
+<!--
+  Generated template for the ProductReviewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core') ">
+    <ion-buttons left>
+      <button (click)="close()" ion-button icon-only>
+        <!-- <img class="android_nav" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" /> -->
+      </button>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>상품 리뷰</ion-title>
+    <ion-buttons (click)="myinfo()" right>
+      <!-- <button  ion-button>
+              <div class="button_left">{{totaluserpoint}}P &nbsp;<img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
+          </button> -->
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>상품 리뷰</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-grid no-padding>
+    <br><br>
+    <ion-row class="center">
+      <img class="product_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/{{productData.product_num}}.jpg" />
+    </ion-row>
+    <br>
+    <ion-row class="center">
+      <div class="text1">{{productData.product_name}}</div>
+    </ion-row>
+    <br>
+    <ion-row class="center">
+      <ionic3-star-rating #rating
+        activeIcon = "ios-star"
+        defaultIcon = "ios-star-outline"
+        activeColor = "#fae24c" 
+        defaultColor = "#f4f4f4"
+        readonly="false"
+        rating="3"
+        fontSize = "26px"
+        (ratingChanged)="logRatingChange($event)">
+      </ionic3-star-rating>
+    </ion-row>
+    <br>
+    <ion-row>
+      <div class="border_textarea" no-lines>
+        <!-- <ion-textarea value="더 나은 플리닉을 만들 수 있도록 사유를 남겨주세요.">
+        </ion-textarea> -->
+        <ion-textarea class="textarea" [(ngModel)]="review.content" no-lines placeholder="고객님의 후기가 큰 힘이 됩니다.(최대 1,000자)" maxlength="200" wrap="hard" cols="10" rows="10" (input)="checkTextarea($event)" ></ion-textarea>
+      </div>
+    </ion-row>
+    <br>
+    <ion-row>
+      <div class="text2">상품 리뷰 작성 유의사항</div>
+    </ion-row>
+    <ion-row>
+      <pre class="text3">·개인정보 유출, 업체 및 상품에 대한 비방, 저자권 침해, 욕설, 음란 
+  등의 부적절한 내용, 상업적 과대선전 및 홍보 등 상품과 관련 없는 
+  내용에 경우 안내없이 임의 삭제 되거나 중단 될 수 있습니다.
+·위 내용으로 발생되는 모든 분쟁은 게시자에게 책임이 있습니다.</pre>
+    </ion-row>
+    <br><br>
+    <ion-row class="center">
+      <ng-container *ngIf="!isRegisterBtn">
+        <ion-col col-6><button class="center btn1_false" ion-button>상품 리뷰 등록</button></ion-col>
+      </ng-container>
+      <ng-container *ngIf="isRegisterBtn">
+        <ion-col col-6><button class="center btn1" (click)="registerReview()" ion-button>상품 리뷰 등록</button></ion-col>
+      </ng-container>
+    </ion-row> 
+  </ion-grid>
+  <br><br><br>
+</ion-content>

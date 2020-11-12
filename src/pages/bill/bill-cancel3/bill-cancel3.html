@@ -34,16 +34,24 @@
 
 <ion-content no-padding>
   <ion-grid class="grid_background" no-padding>
-    <ion-label class="text1">주문번호 15901</ion-label>
-    <ion-card class="card">
-      정기결제
-    </ion-card>
+    <ion-row>
+      <div class="text1">주문번호 15901</div>
+    </ion-row>
+    <ion-row>
+      <ion-card class="card">
+        <ion-row class="card_row1" ><div class="text2">정기결제</div></ion-row>
+        <ion-row class="card_row2" ><div class="text3">[자동결제]월 정기결제 멤버십</div></ion-row>
+        <ion-row class="card_row3"><div class="text4">9,900원 / 월</div></ion-row>
+        <ion-row class="card_row4"><img class="pliniclogo" src="assets/img/pliniclogo/ic-system-logo-symbol@3x.png" /> </ion-row>
+      </ion-card>
+    </ion-row>
+    
   </ion-grid>
   <br><br><br>
   <ion-grid class="select-border" no-padding>
     <ion-item no-lines>
       <ion-label>해지 사유 선택</ion-label>
-      <ion-select [(ngModel)]="os" submitText="확인" cancelText="Cancel">
+      <ion-select class="selectbox_text" [(ngModel)]="os" submitText="확인" cancelText="Cancel">
         <ion-option value="dos">금액이 부담됨</ion-option>
         <ion-option value="lunix">생각만큼 사용을 잘 안함</ion-option>
         <ion-option value="mac7">효과를 못 느낌</ion-option>
@@ -52,11 +60,19 @@
         <ion-option value="win95">기타</ion-option>
       </ion-select>
     </ion-item>
+    <br><br><br>
 
-    <ion-item>
-      <ion-label position="stacked">Summary</ion-label>
-      <ion-textarea disabled readonly value="Ionic enables developers to build performant, high-quality mobile apps.">
-      </ion-textarea>
-    </ion-item>
+    <div class="border_textarea" no-lines>
+      <!-- <ion-textarea value="더 나은 플리닉을 만들 수 있도록 사유를 남겨주세요.">
+      </ion-textarea> -->
+      <ion-textarea class="textarea" no-lines placeholder="더 나은 플리닉을 만들 수 있도록 사유를 남겨주세요." maxlength="200" wrap="hard" cols="10" rows="10" (input)="adjustTextarea($event)" ></ion-textarea>
+    </div>
+  </ion-grid>
+
+  <ion-grid class="footer">
+    <ion-row>
+      <ion-col col-6><button class="center btn1" ion-button>정기결제 유지</button></ion-col>
+      <ion-col col-6><button class="center btn2" (click)="showAlert()" ion-button>해지신청</button></ion-col>
+    </ion-row> 
   </ion-grid>
 </ion-content>

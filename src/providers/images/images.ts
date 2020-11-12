@@ -449,6 +449,11 @@ export class ImagesProvider {
     .map(response => response.json());
   }
 
+  public getCheckSkinReport(email) {
+    return this.http.get(this.apiURL + 'checkskinreport/' + email)
+    .map(response => response.json());
+  }
+
   
 
 

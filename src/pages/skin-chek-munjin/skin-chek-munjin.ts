@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ViewController } from 'ionic-angular';
 import { ItemSearchPage } from '../item-search/item-search'
 import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture'
-import { SkinChekConnectPage } from '../skin-chek-connect/skin-chek-connect'
+import { SkinChekConnectPage } from '../skin-chek-connect/skin-chek-connect';
+import { SkinChekConnect2Page } from '../skin-chek-connect2/skin-chek-connect2';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
@@ -33,16 +34,16 @@ export class SkinChekMunjinPage {
     diagnose_score3 : 22,
   }
   diagnose_score_default1: number = 2;
-  diagnose_score_default2: number = 2;
-  diagnose_score_default3: number = 2;
+  diagnose_score_default2: number = 1;
+  diagnose_score_default3: number = 1;
   diagnose_score2: number = 22;
   diagnose_score3: number = 22;
   diagnose_score4: number = 22;
   all_score: number = 0;
-  isDisabledRange1 : boolean = true;
-  isDisabledRange2 : boolean = true;
-  isDisabledRange3 : boolean = true;
-  isNext: boolean = false;
+  isDisabledRange1 : boolean = false;
+  isDisabledRange2 : boolean = false;
+  isDisabledRange3 : boolean = false;
+  isNext: boolean = true;
   step: any;
 
   constructor(
@@ -106,7 +107,7 @@ export class SkinChekMunjinPage {
   }
 
   public next() {
-    this.navCtrl.push(SkinChekConnectPage, { step : this.step, munjin : this.diagnose_score }).then(() => {
+    this.navCtrl.push(SkinChekConnect2Page, { step : this.step, munjin : this.diagnose_score }).then(() => {
       this.navCtrl.getActive().onDidDismiss(data => {
         console.log("설문 페이지 닫힘");
       });

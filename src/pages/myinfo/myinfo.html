@@ -161,7 +161,22 @@
 
   <!-- 진행중인 챌린지가 없을때 -->
   <ng-container *ngIf="!challengeMissionData">
-    <ion-grid (click)="ingCarezone(challengeMissionData)">
+    <ion-grid>
+      <!-- <ion-row [ngClass]="{ 'show_more1' : !isShowMore, 'show_more2' : isShowMore}">
+        <img  src="assets/img/myinfo/watch.jpg"/>
+      </ion-row>
+      <ion-row>
+        <ng-container *ngIf="!isShowMore">
+          <button ion-button (click)="showMore(true)" class="btn_show_more1" outline >
+            상품정보 더보기 ▼
+          </button>
+        </ng-container>
+        <ng-container *ngIf="isShowMore">
+          <button ion-button (click)="showMore(false)" class="btn_show_more1" outline >
+            상품정보 접기 ▲
+          </button>
+        </ng-container>
+      </ion-row> -->
       <ion-row>
         <div
           style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1">

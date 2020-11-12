@@ -99,9 +99,9 @@
           <ion-slide class="munjin_slide">
             <div class="munjin_rectangle tip_text2">{{sleep.created_at.substr(0,10)}}
               <div>
-                <img *ngIf="sleep.sleep === 11" class="sun" src="assets/img/skin-chek-chart/cloud.png" />
-                <img *ngIf="sleep.sleep === 22" class="sun" src="assets/img/skin-chek-chart/suncloud.png" />
-                <img *ngIf="sleep.sleep === 33" class="sun" src="assets/img/skin-chek-chart/sun.png" />
+                <img *ngIf="sleep.sleep === 11" class="sun" src="assets/img/skin-chek-chart/face_bad.png" />
+                <img *ngIf="sleep.sleep === 22" class="sun" src="assets/img/skin-chek-chart/face_normal.png" />
+                <img *ngIf="sleep.sleep === 33" class="sun" src="assets/img/skin-chek-chart/face_good.png" />
               </div>
               <div class="munjin_text4" >{{getSleepText(sleep.sleep)}}</div>
             </div>
@@ -120,9 +120,9 @@
           <ion-slide class="munjin_slide">
             <div class="munjin_rectangle tip_text2">{{alcohol.created_at.substr(0,10)}}
               <div>
-                <img *ngIf="alcohol.alcohol === 11" class="sun" src="assets/img/skin-chek-chart/cloud.png" />
-                <img *ngIf="alcohol.alcohol === 22" class="sun" src="assets/img/skin-chek-chart/suncloud.png" />
-                <img *ngIf="alcohol.alcohol === 33" class="sun" src="assets/img/skin-chek-chart/sun.png" />
+                <img *ngIf="alcohol.alcohol === 11" class="sun" src="assets/img/skin-chek-chart/face_bad.png" />
+                <img *ngIf="alcohol.alcohol === 22" class="sun" src="assets/img/skin-chek-chart/face_normal.png" />
+                <img *ngIf="alcohol.alcohol === 33" class="sun" src="assets/img/skin-chek-chart/face_good.png" />
               </div>
               <div class="munjin_text4" >{{getAlcoholText(alcohol.alcohol)}}</div>
             </div>
@@ -141,9 +141,9 @@
           <ion-slide class="munjin_slide">
             <div class="munjin_rectangle tip_text2">{{fitness.created_at.substr(0,10)}}
               <div>
-                  <img *ngIf="fitness.fitness === 11" class="sun" src="assets/img/skin-chek-chart/cloud.png" />
-                  <img *ngIf="fitness.fitness === 22" class="sun" src="assets/img/skin-chek-chart/suncloud.png" />
-                  <img *ngIf="fitness.fitness === 33" class="sun" src="assets/img/skin-chek-chart/sun.png" />
+                  <img *ngIf="fitness.fitness === 11" class="sun" src="assets/img/skin-chek-chart/face_bad.png" />
+                  <img *ngIf="fitness.fitness === 22" class="sun" src="assets/img/skin-chek-chart/face_normal.png" />
+                  <img *ngIf="fitness.fitness === 33" class="sun" src="assets/img/skin-chek-chart/face_good.png" />
               </div>
               <div class="munjin_text4" >{{getFitnessText(fitness.fitness)}}</div>
             </div>
@@ -172,7 +172,8 @@
         <div class="movie_text7">추천 영상</div>
       </ion-col>
       <ion-col col-2>
-        <div class="movie_text8">></div>
+        <!-- <div class="movie_text8">></div> -->
+        <img src="assets/img/ic_system_arrow.png" class="arrow2" />
       </ion-col>
     </ion-row>
     <br>
@@ -218,7 +219,8 @@
         <div class="movie_text7">추천 뷰티 꿀팁</div>
       </ion-col>
       <ion-col col-2>
-        <div class="movie_text8">></div>
+        <!-- <div class="movie_text8">></div> -->
+        <img src="assets/img/ic_system_arrow.png" class="arrow2" />
       </ion-col>
     </ion-row>
     <ion-row>
@@ -245,7 +247,8 @@
         <div class="movie_text7">추천 화장품</div>
       </ion-col>
       <ion-col col-2>
-        <div class="movie_text8">></div>
+        <!-- <div class="movie_text8">></div> -->
+        <img src="assets/img/ic_system_arrow.png" class="arrow2" />
       </ion-col>
     </ion-row>
     <br>
@@ -274,7 +277,8 @@
         <div class="movie_text7">베스트 피부 고민</div>
       </ion-col>
       <ion-col col-2>
-        <div class="movie_text8">></div>
+        <!-- <div class="movie_text8">></div> -->
+        <img src="assets/img/ic_system_arrow.png" class="arrow2" />
       </ion-col>
     </ion-row>
     <br><br>

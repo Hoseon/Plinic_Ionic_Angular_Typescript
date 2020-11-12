@@ -4,7 +4,7 @@ page-skin-chek-camera2 {
   .tabs-md[tabsPlacement="top"]>.tabbar::after,
   .footer-md::before,
   .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
-    height: 0px;
+    height: 1px;
     margin-bottom: 5px;
   }
 
@@ -16,7 +16,7 @@ page-skin-chek-camera2 {
   .tabs-ios[tabsPlacement="top"]>.tabbar::after,
   .footer-ios::before,
   .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
-    height: 0px;
+    height: 1px;
     margin-bottom: 5px;
   }
 
@@ -79,7 +79,7 @@ page-skin-chek-camera2 {
   }
 
   .toolbar-ios {
-    margin-top: 12%;
+    margin-top: 8%;
   }
 
   .back-button-text-ios {
@@ -104,7 +104,7 @@ page-skin-chek-camera2 {
     height: 100%;
     width: 120%;
     color: #292929;
-    margin-top : 1%;
+    margin-top: 1%;
   }
 
   .head_row {
@@ -117,17 +117,18 @@ page-skin-chek-camera2 {
   }
 
   .text1 {
-    width: 100%;
-    height: 13px;
-    font-family: AppleSDGothicNeo-Regular;
-    font-size: 13.5px;
-    font-weight: normal;
+    width: 300;
+    height: 14.5px;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: 300;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.28;
-    letter-spacing: 0px;
+    line-height: 1.58;
+    letter-spacing: -0.39px;
     text-align: center;
-    color: #292929;
+    color: #a9a9a9;
+
   }
 
   .text1_bold {
@@ -192,8 +193,8 @@ page-skin-chek-camera2 {
   }
 
   .btn_text2 {
-    width: 100px;
-    height: 14px;
+    width: 200px;
+    // height: 14px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 15px;
     font-weight: 500;
@@ -237,40 +238,41 @@ page-skin-chek-camera2 {
     color: #939393;
     margin: -21% auto 0 auto;
   }
-  
+
   .title_row {
-    margin : 0 auto;
-    margin-top : -2% !important;
+    margin: 0 auto;
+    margin-top: -2% !important;
   }
 
-  .title {
-    width: 300px;
-    height: 23px;
-    font-family: AppleSDGothicNeo-Regular;
-    font-size: 25px;
+  .main_title {
+    margin-top: 3%;
+    width: 300.5px;
+    height: 22px;
+    font-family: AppleSDGothicNeo;
+    font-size: 24px;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 0.96;
-    letter-spacing: 0px;
+    line-height: 1;
+    letter-spacing: -0.72px;
     text-align: center;
     color: #292929;
-    margin-top : -3.5%;
   }
 
   .subtitle {
+    margin-top: 1%;
     float: left;
-    // width: 216.5px;
-    height: 40.5px;
-    font-family: AppleSDGothicNeo-Regular;
+    width: 300.5px;
+    height: 15px;
+    font-family: AppleSDGothicNeo;
     font-size: 16px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.44;
-    letter-spacing: 0px;
+    line-height: 1.34;
+    letter-spacing: -0.48px;
     text-align: center;
-    color: #939393;
+    color: #a9a9a9;
   }
 
   .subtitle2 {
@@ -314,8 +316,10 @@ page-skin-chek-camera2 {
     margin: 0 auto;
     width: 90%;
     height: 100%;
-    top: 8vh;
+    top: 2.5vh;
   }
+
+
 
   // ion-footer {
   //   position: fixed;
@@ -323,5 +327,73 @@ page-skin-chek-camera2 {
   //   margin-bottom: -7vh;
   // }
 
-  
+  .subtitle_color {
+    color: #5c59b6;
+  }
+
+  .loading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10%;
+    margin: auto;
+  }
+
+  .loading_spinner {
+    width: 90%;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #dddddd;
+    box-shadow: none;
+    margin: -41.5% auto 0 auto;
+  }
+
+  .loading_spinner_completed {
+    width: 90%;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #5c59b6;
+    box-shadow: none;
+    margin: -41.5% auto 0 auto;
+  }
+
+  .ing_spinner{
+    position: absolute;
+    left : 36%;
+    // bottom: 20%;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 33%;
+    background-color: transparent;
+    color: #ffffff;
+    z-index: 3000;
+    font-weight: bold;
+  }
+
+  .lodaing_btn {
+    position: relative;
+  }
+
+  .spinner-md-crescent circle{
+    stroke: #FFF;
+    stroke-dasharray: 179px;
+  }
+
+  .spinner-ios-crescent circle{
+    stroke: #FFF;
+    stroke-dasharray: 179px;
+  }
+
+  .none_img {
+    display: none;
+  }
+
+  .img2 {
+    margin-top: -25%;
+    width: 40vw;
+    height: 14vh;
+  }
+
 }

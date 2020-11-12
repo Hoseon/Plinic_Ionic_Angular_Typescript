@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, AlertController, ToastController, ViewController, ModalController  } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing'
+// import { Geolocation } from '@ionic-native/geolocation';
 
 
 
@@ -22,12 +23,23 @@ export class GuidePage {
   mode: any;
 
   constructor(
+    // private geolocation: Geolocation,
     public navCtrl: NavController, 
     public navParams: NavParams,
     public platform: Platform,
     public viewCtrl: ViewController,
     public modalCtrl: ModalController,
     ) {
+
+      // this.geolocation.getCurrentPosition().then((resp) => {
+      //   console.log(resp.coords.latitude);
+      //   console.log(resp.coords.longitude);
+      //   // resp.coords.latitude
+      //   // resp.coords.longitude
+      //  }).catch((error) => {
+      //    console.log('Error getting location', error);
+      //  });
+
   }
 
   ionViewDidLoad() {

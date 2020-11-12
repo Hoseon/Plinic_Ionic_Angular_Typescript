@@ -1591,7 +1591,7 @@ page-skin-chek-chart {
   .ptext6 {
     position: relative;
     width: 50.4%;
-    height: 15px;
+    // height: 15px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 16px;
     font-weight: 500;
@@ -1608,7 +1608,7 @@ page-skin-chek-chart {
   .ptext6_nodata {
     position: relative;
     width: 50.4%;
-    height: 15px;
+    // height: 15px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 16px;
     font-weight: 500;
@@ -1647,6 +1647,15 @@ page-skin-chek-chart {
     box-shadow: none;
   }
 
+  .card3 {
+    width: 89%;
+    height: 165.5px;
+    object-fit: contain;
+    border-radius: 7.1px;
+    background-color: #ffffff;
+    box-shadow: none;
+  }
+
   .arrow {
     position: absolute;
     width: 20px;
@@ -1657,21 +1666,29 @@ page-skin-chek-chart {
     right: 2%;
   }
 
+  .arrow2 {
+    position: absolute;
+    width: 6.5px;
+    height: 11.5px;
+    font-size: 20px;
+    font-weight: 300;
+    top: 11%;
+    right: 5%;
+  }
+
   .ptext8 {
-    position: relative;
-    margin-top: 2.5%;
-    left: 12.5%;
-    width: 150px;
-    height: 25px;
+    position: absolute;
+    top: 13%;
+    left: 12.9%;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 13.5px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: 2.59;
     letter-spacing: -0.41px;
     text-align: left;
     color: #343434;
+    z-index: 10;
   }
 
   .ptext9 {
@@ -1693,7 +1710,7 @@ page-skin-chek-chart {
 
   .ptext10 {
     position: absolute;
-    left: 24%;
+    left: 23%;
     top: 65%;
     width: 50px;
     height: 13.5px;
@@ -1807,7 +1824,7 @@ page-skin-chek-chart {
     line-height: 1.37;
     letter-spacing: -0.41px;
     text-align: right;
-    color: #e4a64d;
+    color: #4c68e0;
   }
 
   .ptext15_2 {
@@ -1824,7 +1841,7 @@ page-skin-chek-chart {
     line-height: 1.37;
     letter-spacing: -0.41px;
     text-align: right;
-    color: #dc80b4;
+    color: #000000;
   }
 
   .ptext15_1 {
@@ -1841,7 +1858,7 @@ page-skin-chek-chart {
     line-height: 1.37;
     letter-spacing: -0.41px;
     text-align: right;
-    color: #4cd0eb;
+    color: #4c68e0;
   }
 
   .ptext16 {
@@ -1982,9 +1999,9 @@ page-skin-chek-chart {
 
   .ptext24 {
     position: absolute;
-    top: 35%;
+    top: 13%;
     left: 27%;
-    width: 101.5px;
+    width: 210.5px;
     height: 27.5px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 11.5px;
@@ -1995,13 +2012,16 @@ page-skin-chek-chart {
     letter-spacing: -0.6px;
     text-align: left;
     color: #6562b9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .ptext25 {
     position: absolute;
-    top: 47%;
+    top: 24%;
     left: 27%;
-    width: 121.5px;
+    width: 210.5px;
     height: 27.5px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 13.3px;
@@ -2012,11 +2032,14 @@ page-skin-chek-chart {
     letter-spacing: -0.6px;
     text-align: left;
     color: #292929;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .ptext26 {
     position: absolute;
-    top: 65%;
+    top: 42%;
     left: 27%;
     width: 80.5px;
     height: 10.5px;
@@ -2033,10 +2056,10 @@ page-skin-chek-chart {
 
   .ptext27 {
     position: absolute;
-    top: 6%;
+    top: 1%;
     left: 25%;
-    width: 80.5px;
-    height: 10.5px;
+    // width: 80.5px;
+    // height: 10.5px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 11px;
     font-weight: normal;
@@ -2050,7 +2073,7 @@ page-skin-chek-chart {
 
   .ptext28 {
     position: absolute;
-    top: 65%;
+    top: 42.8%;
     left: 38%;
     width: 80.5px;
     height: 10.5px;
@@ -2069,8 +2092,8 @@ page-skin-chek-chart {
     position: absolute;
     top: 1%;
     left: 37%;
-    width: 80.5px;
-    height: 10.5px;
+    // width: 80.5px;
+    // height: 10.5px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 11px;
     font-weight: normal;
@@ -2094,8 +2117,8 @@ page-skin-chek-chart {
   .img1 {
     //모공 크기
     position: absolute;
-    top: 12%;
-    left: 4%;
+    top: 12.4%;
+    left: 3.9%;
     width: 25px;
     height: 12.5px;
     object-fit: contain;
@@ -2233,9 +2256,9 @@ page-skin-chek-chart {
   }
 
   .img_product {
-    margin-top: 3%;
+    margin-top: 6%;
     margin-left: 4%;
-    width: 18%;
+    width: 19.5%;
     height: auto;
     border: 1px solid #d2d2d2;
     border-radius: 5px;
@@ -2254,6 +2277,69 @@ page-skin-chek-chart {
     text-align: center;
     color: #979797;
     margin : 28% auto;
+  }
+
+  .btn99 {
+    position: absolute;
+    bottom: 5%;
+    left: 3%;
+    width: 45%;
+    height: 45.5px;
+    border-radius: 5.7px;
+    border: solid 0.5px #dddddd;
+    background-color: #ffffff;
+    box-shadow: none;
+    // width: 45px;
+    // height: 12px;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: -0.59px;
+    text-align: left;
+    color: #a9a9a9;
+
+  }
+
+  .btn98 {
+    position: absolute;
+    bottom: 5%;
+    right: 3%;
+    width: 45%;
+    height: 45.5px;
+    border-radius: 5.7px;
+    border: solid 0.5px #dddddd;
+    background-color: #ffffff;
+    box-shadow: none;
+    // width: 56px;
+    // height: 12px;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: -0.59px;
+    text-align: left;
+    color: #a9a9a9;
+  }
+
+  .text99 {
+    width: 155px;
+    height: auto;
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.08;
+    letter-spacing: -0.48px;
+    text-align: left;
+    color: #292929;
+    margin-left: 6.5%;
+    margin-bottom: 4%;
   }
 
   

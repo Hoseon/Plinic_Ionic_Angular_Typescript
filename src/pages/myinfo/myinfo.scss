@@ -1905,4 +1905,20 @@ page-myinfo {
     white-space: nowrap;
   }
 
+  .show_more1 {
+    max-height: 300px !important;
+    overflow: hidden !important;
+    margin-bottom: 10%;
+  }
+
+  .btn_show_more1 {
+    width: 91%;
+    margin: 0 auto !important;
+  }
+
+  .show_more2 {
+    max-height: 100%;
+    margin-bottom: 10% !important;
+  }
+
 }

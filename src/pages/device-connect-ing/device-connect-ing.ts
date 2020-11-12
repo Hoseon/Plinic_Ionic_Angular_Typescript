@@ -5,6 +5,7 @@ import { DeviceSkinIngPage } from '../device-skin-ing/device-skin-ing';
 import { DeviceConnectFailPage } from '../device-connect-fail/device-connect-fail';
 import { TabsPage } from '../tabs/tabs';
 import { AuthService } from '../../providers/auth-service';
+// import { Geolocation } from '@ionic-native/geolocation';
 
 
 
@@ -40,6 +41,7 @@ export class DeviceConnectIngPage {
   timer: any;
 
   constructor(
+    // private geolocation: Geolocation,
     public auth: AuthService, 
     public viewCtrl: ViewController, 
     public navCtrl: NavController, 
@@ -98,6 +100,15 @@ export class DeviceConnectIngPage {
       //   }
       // }, 3500);
     });
+
+    // this.geolocation.getCurrentPosition().then((resp) => {
+    //   console.log(resp.coords.latitude);
+    //   console.log(resp.coords.longitude);
+    //   // resp.coords.latitude
+    //   // resp.coords.longitude
+    //  }).catch((error) => {
+    //    console.log('Error getting location', error);
+    //  });
 
   }
 

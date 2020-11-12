@@ -61,8 +61,6 @@
   </ion-item> -->
   <ng-container *ngIf="challengeData">
     <ng-container *ngIf="userData">
-      <!-- <div class="user_text"><span class="user_name">{{userData.nickname}}</span>님 참여한 챌린지가 있습니다. </div> -->
-      <!-- <button ion-button class="skin_btn" (click)="skin_chart()">참여한 챌린지 바로가기 > </button> -->
       <button ion-button icon-end class="skin_btn" (click)="ingCarezone(challengeData.missionID)">
         <div class="ing_button">참여 중인 챌린지 바로가기</div>
         <div class="end_button"><img class="ic_system_arrow_white" src="assets/img/home/ic-system-arrow-white@3x.png" />
@@ -73,8 +71,9 @@
 
   <ng-container *ngIf="!challengeData">
     <ng-container *ngIf="userData">
-      <!-- <div class="user_text"><span class="user_name">{{userData.nickname}}</span>님 챌린지에 도전하세요. </div> -->
-      <button ion-button class="skin_btn" (click)="openCareZoneTab()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button>
+      <!-- <button ion-button class="skin_btn" (click)="openCareZoneTab()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button> -->
+      <!-- <button ion-button class="skin_btn" (click)="review()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button> -->
+      <button ion-button class="skin_btn" (click)="productMain()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button>
     </ng-container>
   </ng-container>
 
