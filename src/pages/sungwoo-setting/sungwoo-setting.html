@@ -4,7 +4,7 @@
 <ion-header>
 
   <ion-navbar  *ngIf="platform.is('android')" no-lines>
-    <ion-title class="android_title" text-wrap >설정</ion-title>
+    <ion-title class="android_title" text-wrap >임시 페이지</ion-title>
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
@@ -13,7 +13,7 @@
         <img class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
   		</button>
   	</ion-buttons>
-    <ion-title class="ios_title" text-wrap>설정</ion-title>
+    <ion-title class="ios_title" text-wrap>임시 페이지</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -21,60 +21,21 @@
 
 <ion-content>
 
-  <ion-list class="top_list">
-
-    <div class="title">계정정보</div>
-    <button class="terms" mode="ios" no-lines ion-item icon-start (click)="Reregiter()">김성우(sorcerer10@naver.com)
-      <!-- <img *ngIf="userData.thumbnail_image" class="img-radius" [src]="userData.thumbnail_image" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
-      <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/> -->
-    </button>
-
-    <button class="terms" mode="ios" no-lines ion-item icon-start (click)="sungWoo_Beauty()">성우 뷰티영상</button>
-
-    <div *ngIf="platform.is('ios') || platform.is('core')" style="height: 1px;width: 92%;margin: 0 auto; margin-top: 4%; background-color:#f1f1f1"></div>
-    <div *ngIf="platform.is('android')" style="height: 1px;width: 92%; margin: 0 auto; margin-top: 4%; background-color:#f1f1f1"></div>
-
-  </ion-list>
-
-
-
   <ion-list no-lines>
-    <ion-item mode="ios" class="title2">디바이스</ion-item><br>
-
+    <ion-item mode="ios" class="title2">페이지 1</ion-item><br>
+    <button class="terms" mode="ios" no-lines ion-item icon-start (click)="sungWoo_Beauty()">성우 뷰티영상</button>
     <button class="plinic_use" mode="ios" no-lines ion-item (click)="sungWoo_Order()" icon-start>성우 주문서</button>
     <button class="care_zone" mode="ios" no-lines ion-item (click)="sungWoo_Cart()" icon-start>성우 장바구니</button>
-    <button class="inquiry" mode="ios" no-lines ion-item (click)="sungWoo_Pick()" icon-start>성우 상품 선택</button>
-    <ion-item no-lines>
-      <ion-toggle mode="md" (ionChange)="push_change()"></ion-toggle>
-      <ion-label class="text">추천 알림</ion-label>
-    </ion-item>
+    <button class="plinic_use" mode="ios" no-lines ion-item (click)="sungWoo_Cosmetics_tab()" icon-start>화장품 모아보기</button>
+    <button class="text" mode="ios" ion-item (click)="sungWoo_Cosmetics_Main()" icon-start>성우 화장품 메인</button>
   </ion-list>
 
   <ion-list no-lines>
-    <ion-item mode="ios" class="title2">디바이스</ion-item><br>
-    <button class="plinic_use" mode="ios" no-lines ion-item (click)="sungWoo_Cosmetics()" icon-start>화장품 모아보기</button>
-    <button class="care_zone" mode="ios" no-lines ion-item (click)="sungWoo_Cart()" icon-start>-</button>
-    <button class="inquiry" mode="ios" no-lines ion-item (click)="sungWoo_Pick()" icon-start>-</button>
-    <button class="inquiry" mode="ios" no-lines ion-item (click)="sungWoo_Pick()" icon-start>-</button>
-  </ion-list>
-
-
-  <div *ngIf="platform.is('ios') || platform.is('core')" style=" height: 1px; width: 92%; margin: 0 auto; margin-top: -4%; background-color:#f1f1f1"></div>
-  <div *ngIf="platform.is('android')" style=" height: 1px; width: 92%; margin: 0 auto; margin-top: 0%; background-color:#f1f1f1"></div>
-
-
-  <ion-list no-lines>
-    <div class="title">일반</div>
+    <ion-item mode="ios" class="title2">페이지 2</ion-item><br>
     <button class="terms" mode="ios" ion-item icon-start (click)="sungWoo_Product_Detail()">성우 상품 정보</button>
     <button class="terms" mode="ios" ion-item (click)="sungWoo_Delivery()" icon-start>성우 배송 조회</button>
-    <button class="text" mode="ios" ion-item (click)="sungWoo_Cosmetics_Main()" icon-start>성우 화장품 메인</button>
-    <ion-item class="current_version" no-lines>현재 버전 <ion-note item-end>1.0.11</ion-note>
-    </ion-item>
-    <button class="logout" mode="md" ion-item (click)="logout()" icon-start>로그아웃</button>
+    <button class="inquiry" mode="ios" no-lines ion-item (click)="sungWoo_Pick()" icon-start>성우 상품 선택</button>
+
   </ion-list>
-
-
-
-
 
 </ion-content>

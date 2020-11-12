@@ -304,6 +304,8 @@ import { SungwooDeliveryPageModule } from '../pages/sungwoo-delivery/sungwoo-del
 import { SungwooBeautyPageModule } from '../pages/sungwoo-beauty/sungwoo-beauty.module';
 //20201030 성우 화장품 메인 페이지
 import { SungwooCosmeticsMainPageModule } from '../pages/sungwoo-cosmetics-main/sungwoo-cosmetics-main.module';
+//20201104 성우 화장품 모아보기 페이지
+import { SungwooCosmeticsTabPageModule } from '../pages/sungwoo-cosmetics-tab/sungwoo-cosmetics-tab.module';
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -498,6 +500,7 @@ export function getAuthHttp(http, storage) {
     SungwooDeliveryPageModule,
     SungwooBeautyPageModule,
     SungwooCosmeticsMainPageModule,
+    SungwooCosmeticsTabPageModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

@@ -24,69 +24,56 @@
 
 <ion-content>
 
+<div class="iframe_div">
+  <iframe class="beauty_iframe" src="https://www.youtube.com/embed/3m56lQr3MsI" 
+  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+  gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 <ng-container>
-  <ion-row>
-    <iframe width="360vw" height="204vh" src="https://www.youtube.com/embed/3m56lQr3MsI" 
-    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
-    gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </ion-row>
-  <ion-grid no-padding>
-    <ion-item no-lines>
-      <div class="beauty_name" text-wrap>뷰티 꿀팁</div>
-      <div class="beauty_title" text-wrap>음주는 피부에 어떤 영향을 미칠까요?</div>
-      <div class="beauty_writer" text-wrap>피부과 전문의 이하은</div>
-    </ion-item>
-
-    <!-- <ion-row class="img_row">
-      <button ion-button color="light" clear>
-        <img src="assets/img/sungwoo_img/1433.png"/>
-      </button>
-      <button ion-button color="light" clear style="margin-left:-7vw;">
-        <img src="assets/img/sungwoo_img/벡터 고급 개체.png"/>
-      </button>
-    </ion-row> -->
-
-    <ion-item no-lines>
-      <ion-row class="sns_row">
-        <ion-col><img class="sns-img" src="assets/img/sungwoo_img/1433.png" (click)="kakaolink(skinQnaOneLoadData, 'qna')"/>
-          <ion-col><img class="sns-img" src="assets/img/sungwoo_img/벡터 고급 개체.png" (click)="share_facebook(skinQnaOneLoadData, 'qna')" />
-            <!-- <ion-col><img class="sns-img" src="assets/img/care-zone/sns/ic-sns-band@3x.png" /></ion-col> -->
+  <ion-grid class="beauty_div" no-padding>
+    <div class="beauty_container">
+      <ion-row class="beauty_nickname">뷰티 꿀팁</ion-row>
+      <ion-row class="beauty_title" text-wrap>음주는 피부에 어떤 영향을 미칠까요?</ion-row>
+      <ion-row class="beauty_name">피부과 전문의 이하은</ion-row>
+      <ion-row class="beauty_icon">
+        <ion-col no-padding><img src="assets/img/sungwoo_img/1433.png" (click)="kakaolink(skinQnaOneLoadData, 'qna')"/>
+          <ion-col no-padding><img class="beauty-img" src="assets/img/sungwoo_img/벡터 고급 개체.png" (click)="share_facebook(skinQnaOneLoadData, 'qna')" />
           </ion-col>
         </ion-col>
       </ion-row>
-      <ion-row class="beauty_text0">
-        <ion-col><span>조회 144</span>
-          <ion-col>
-            <span>좋아요 27</span>
-            <ion-col>
-              <span>댓글 2</span>
-            </ion-col>
-          </ion-col>
-        </ion-col>
-      </ion-row>
-    </ion-item>
+      <div class="count_container">
+        <ion-col class="cosmetics_text" col-6 no-padding>조회<span class="cosmetics_num">144</span></ion-col>
+        <ion-col class="cosmetics_text" col-6 no-padding>좋아요<span class="cosmetics_num">27</span></ion-col>
+        <ion-col class="cosmetics_text" col-6 no-padding>댓글<span class="cosmetics_num">2</span></ion-col>
+      </div>
+    </div>
   </ion-grid>
 </ng-container>
 
+<div style="height:8px; width:100%; display: block; background-color:#f1f1f1"></div>
+
   <!-- 댓글등록 -->
-  <ng-container >
-    <div style="height:8px; width:100%; margin-top: 3.3vh; margin-bottom: -1vh; display: block; background-color:#f1f1f1">
-    </div>
-    <!-- <img *ngIf="profileimg_url" class="profile_comment" style="margin-top: 7%;" [src]="profileimg_url"
-      onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" /> -->
-    <img class="profile_comment" style="margin-top: 7%;" src="userData.thumbnail_image"
-      onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
-    <div class="container">
-      <textarea class="content_comment" style="margin-top: 7.4%;" rows="3" cols="20" #myInput maxLength="300"
-        autoGrow="true" placeholder="댓글 달기...(50자 이내)" (input)="adjustTextarea()"></textarea>
-      <button ion-button class="comment_input_enroll"
-        (click)="saveSkinQnaReply()">게시</button>
-      <!-- <button *ngIf="registerReply.comment.length < 1" ion-button class="comment_input_enroll" disabled
-        (click)="saveSkinQnaReply()">게시</button> -->
-    </div>
-    <div style="height:8px; width:100%; margin:0 auto; display: block; background-color:#f1f1f1">
-    </div>
+  <ng-container>
+    <ion-grid no-padding>
+      <!-- <img *ngIf="profileimg_url" class="profile_comment" style="margin-top: 7%;" [src]="profileimg_url"
+        onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" /> -->
+      <ion-row class="comment_div">
+          <img class="profile_comment" src="userData.thumbnail_image"
+          onError="this.src='assets/img/register/ic-system-profile-default@3x.png'"/>
+        <div class="comment_container">
+          <textarea class="comment_box" rows="3" cols="30" #myInput maxLength="300"
+            autoGrow="true" placeholder="댓글 달기...(50자 이내)" (input)="adjustTextarea()"></textarea>
+          <button ion-button class="comment_input_enroll"
+            (click)="saveSkinQnaReply()">게시</button>
+          <!-- <button *ngIf="registerReply.comment.length < 1" ion-button class="comment_input_enroll" disabled
+            (click)="saveSkinQnaReply()">게시</button> -->
+        </div>
+      </ion-row>
+    </ion-grid>
   </ng-container>
+
+  <div style="height:8px; width:100%; display: block; background-color:#f1f1f1"></div>
 
   <!-- <ng-container>
     <button ion-button class="button_add" style="font-size: 14px; box-shadow:none;" outline>댓글 모두 보기</button>
@@ -97,81 +84,84 @@
   </ion-row> -->
 
   <ng-container>
-    <ion-list no-lines>
+    <ion-list style="margin:0 auto;" no-lines>
     <ion-row>
-    <ion-col>
       <button ion-button class="button_add" style="font-size: 14px; box-shadow:none;" outline>
-        댓글 모두 보기 <span class="dsp">∨</span></button>
-    </ion-col>
+        댓글 모두 보기 <span class="button_icon">∨</span></button>
     </ion-row>
-    <ion-row>
-      <div style="height:0.1vh; width:100vw; margin-top:0.1vh; display: block; background-color:#d7d7d7"></div>
-    </ion-row>
+      <div style="height:0.1vh; width:100vw; display: block; background-color:#f1f1f1"></div>
   </ion-list>
   </ng-container>
 
-  <ion-list>
+  <ion-list class="list_div" style="margin:0 auto;">
     <ng-container>
       <ng-container>
-        <img class="profile_comment2" src="assets/img/register/ic-system-profile-default@3x.png">
-        <ng-container>
-          <button ion-button class="comment_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
-        </ng-container>
-        <div class="container2">
-          <div class="nickname_comment">de******@naver.com</div>
-          <!-- <button ion-button class="comment_enroll" (click)="replySkinQnaUpdate(registerReply.email, registerReply._id)">수정</button> -->
-        <ng-container>
-          <div class="content_comment2" text-wrap>이 제품 사용하는데 화이트닝은 확실</div>
-        </ng-container>
-        <div class="time_comment">2020.07.07.<span class="comment_reply">답글 달기</span></div>
-      </div>
-        <!-- 수정 -->
-        <!-- <textarea id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" (input)="adjustTextareaUpdate($event)"
-          autofocus="true" (focus)="focus($event)"></textarea> -->
-        <div style="height:1px; width:100%; display: block; margin-top:4.4vh; margin-bottom:4vh; background-color:#f1f1f1"></div>
+        <div class="review_div">
+          <img class="profile_comment2" src="assets/img/register/ic-system-profile-default@3x.png">
+          <ng-container>
+            <button ion-button class="comment_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
+          </ng-container>
+          <div class="container2">
+            <div class="nickname_comment">de******@naver.com</div>
+            <!-- <button ion-button class="comment_enroll" (click)="replySkinQnaUpdate(registerReply.email, registerReply._id)">수정</button> -->
+          <ng-container>
+            <div class="content_comment" text-wrap>이 제품 사용하는데 화이트닝은 확실</div>
+            <div class="time_comment">2020.07.07.<span class="comment_reply">답글 달기</span></div>
+          
+          </ng-container>
+          </div>
+          <!-- 수정 -->
+          <!-- <textarea id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" (input)="adjustTextareaUpdate($event)"
+            autofocus="true" (focus)="focus($event)"></textarea> -->
+        </div>
       </ng-container>
     </ng-container>
-
+    <div style="height:1px; width:100%; margin-bottom:2vh; display: block; background-color:#f1f1f1"></div>
 
     <ng-container>
       <ng-container>
-        <img class="profile_comment2" src="assets/img/register/ic-system-profile-default@3x.png">
-        <div class="container2">
-          <div class="nickname_comment">de******@naver.com</div>
-          <!-- <button ion-button class="comment_enroll" (click)="replySkinQnaUpdate(registerReply.email, registerReply._id)">수정</button> -->
+        <div class="review_div">
+          <img class="profile_comment2" src="assets/img/register/ic-system-profile-default@3x.png">
+          <div class="container2">
+            <div class="nickname_comment">de******@naver.com</div>
+          <ng-container>
+            <div class="content_comment" text-wrap>점성이 가벼운거 좋아하시면 추천해요</div>
+            <div class="time_comment">2020.07.07.<span class="comment_reply">답글 달기</span></div>
+          
+          </ng-container>
+          </div>
+        </div>
+
         <ng-container>
-          <div class="content_comment2" text-wrap>점성이 가벼운거 좋아하시면 추천해요</div>
+          <div class="review_div2">
+            <img class="profile_comment3" src="assets/img/register/ic-system-profile-default@3x.png">
+            <div class="container2">
+            <ng-container>
+              <div class="content_comment" text-wrap>점성이 가벼운게 뭐에요?</div>
+              <div class="time_comment">2020.07.08.<span class="comment_reply">답글 달기</span></div>
+            
+            </ng-container>
+            </div>
+          </div>
         </ng-container>
-        <div class="time_comment">2020.07.07.<span class="comment_reply">답글 달기</span></div>
-      </div>
-      <img class="profile_comment3" src="assets/img/register/ic-system-profile-default@3x.png">
-      <div class="container3">
-        <!-- <div class="nickname_comment">de******@naver.com</div> -->
-        <!-- <button ion-button class="comment_enroll" (click)="replySkinQnaUpdate(registerReply.email, registerReply._id)">수정</button> -->
-      <ng-container>
-        <div class="content_comment2" text-wrap>점성이 가벼운게뭐에요?</div>
-      </ng-container>
-      <div class="time_comment">2020.07.08.<span class="comment_reply">답글 달기</span></div>
-    </div>
-    <img class="profile_comment4" src="assets/img/register/ic-system-profile-default@3x.png">
-    <div class="container4">
-      <!-- <div class="nickname_comment">de******@naver.com</div> -->
-      <!-- <button ion-button class="comment_enroll" (click)="replySkinQnaUpdate(registerReply.email, registerReply._id)">수정</button> -->
-    <ng-container>
-      <div class="content_comment2" text-wrap>쉽게 화장품의 끈적거림 입니다. 가볍다는 것은 물성이 더 있다는 얘기 입니다.</div>
-    </ng-container>
-    <div class="time_comment">2020.07.08.<span class="comment_reply">답글 달기</span></div>
-  </div>
-
-        <!-- 수정 -->
-        <!-- <textarea id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" (input)="adjustTextareaUpdate($event)"
-          autofocus="true" (focus)="focus($event)"></textarea> -->
-        <!-- <div style="height:1px; width:100%; display: block; margin-bottom:1vh; background-color:#f1f1f1"></div> -->
+          
+          <ng-container>
+            <div class="review_div3">
+              <img class="profile_comment3" src="assets/img/register/ic-system-profile-default@3x.png">
+              <div class="container2">
+              <ng-container>
+                <div class="content_comment" text-wrap>쉽게 화장품의 끈적거림 입니다. 가볍다는 것은 물성이 더 있다는 얘기 입니다.</div>
+                <div class="time_comment">2020.07.08.<span class="comment_reply">답글 달기</span></div>
+              
+              </ng-container>
+              </div>
+            </div>
+          </ng-container>
       </ng-container>
     </ng-container>
   </ion-list>
 
-  <div class="gon"></div>
+
 
 
 
@@ -185,13 +175,13 @@
     <!-- <h2 class="rcmd_text">인기 영상 추천</h2> -->
 
     <div class="rcmnd_product">
-    <a href="https://www.youtube.com/watch?v=fsRh7qt1IUA&ab_channel=%ED%94%BC%EB%B6%80%EA%B3%BC%EC%A0%84%EB%AC%B8%EC%9D%98%EC%9D%B4%ED%95%98%EC%9D%80">
+    <!-- <a href="https://www.youtube.com/watch?v=fsRh7qt1IUA&ab_channel=%ED%94%BC%EB%B6%80%EA%B3%BC%EC%A0%84%EB%AC%B8%EC%9D%98%EC%9D%B4%ED%95%98%EC%9D%80"> -->
     <!-- <img class="rcmnd_img" src="http://img.youtube.com/vi/fsRh7qt1IUA/0.jpg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/> -->
     <img class="rcmnd_img" src="assets/img/skin-chek-chart/youtube1.png">
     <p class="rcmnd_desc"><span class="rcmnd_desc_title">모공 개선을 위해서는 식습관을 바꾸세요?</span></p>
     <div class="txt_post">GRMD LEE</div>
-    <div class="rcmnd_count"></div>
-    </a>
+    <!-- <div class="rcmnd_count"></div> -->
+    <!-- </a> -->
     </div>
     
     <div class="rcmnd_product">
@@ -199,7 +189,7 @@
     <img class="rcmnd_img" src="assets/img/skin-chek-chart/youtube2.png">
     <p class="rcmnd_desc"><span class="rcmnd_desc_title">등드름 악화 개선 위해서 7가지 생활 습관</span></p>
     <div class="txt_post">화장품 읽어주는 남자</div>
-    <div class="rcmnd_count"></div>
+    <!-- <div class="rcmnd_count"></div> -->
     </div>
     
     <!-- <div class="rcmnd_product">

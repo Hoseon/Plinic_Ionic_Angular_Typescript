@@ -116,166 +116,195 @@ page-sungwoo-cart {
       color: #292929;
     }
 
+    .cart_div {
+      position: relative;
+      height: 9vh;
+      width: 100vw;
+    }
+
+    .cart_checkbox {
+      position: absolute;
+      top: 6vh;
+      left: 9vw;
+    }
+
     .all-check {
-        font-family: AppleSDGothicNeo;
-        font-weight: bold;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.4;
-        letter-spacing: -0.7vw;
-        color: #292929;
-        margin-top: 4.2vh;
-        margin-left: 1.3vw;
+      position: relative;
+      height: 4.5vh;
+      top: 4.8vh;
+      left: 14.6vw;
+      font-family: AppleSDGothicNeo;
+      font-size: 13px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.4;
+      letter-spacing: -1.7px;
+      color: #292929;
     }
 
     .check-cancel {
-        font-family: AppleSDGothicNeo-Regular;
-        font-size: 8px;
-        font-weight: 300;
-        font-stretch: normal;
-        font-style: normal;
-        letter-spacing: -0.2vh;
-        color: #575656;
-        height: 3vh;
-        border-radius: 2.8px;
-        margin-left: -1.6vw;
-        margin-top: 4.8vh;
-        border: solid 1px #ebe9e9;
-        background-color: rgb(252, 252, 252);
+      position: relative;
+      top: 5.3vh;
+      left: 13.7vw;
+      max-width: 15.3vw;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 8px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      // letter-spacing: -0.2vh;
+      color: #575656;
+      height: 3.1vh;
+      border-radius: 2.8px;
+      border: solid 1px #d1d1d1;
+      background-color: #ffffff;
+      ;
     }
 
-    .card-title {
-        font-family: AppleSDGothicNeo;
-        font-size: 15px;
-        font-weight: bold;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.4;
-        letter-spacing: normal;
-        color: #292929;
+    .cart_card {
+      position: relative;
+      height: 23.5vh;
+      width: 92.5vw;
+      left: 1vw;
+      top: 0.5vh;
+      margin-top: 1vh;
     }
 
-    .card-subtitle {
-        font-family: AppleSDGothicNeo;
-        font-size: 13px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.62;
-        letter-spacing: normal;
-        color: #939393;
+    .cart_checkbox2 {
+      position: relative;
+      top: 5vh;
+      left: 5vw;
+      display: inline-block;
     }
+
+    .x_icon {
+      position: relative;
+      float: right;
+      width: 8.5vw;
+      top: 0.7vh;
+      height: 3vh;
+      object-fit: contain;
+      background-color: white;
+  }
 
     .product_name {
-        // width: 200px;
-        // height: 20.5px;
-        font-family: AppleSDGothicNeo-Regular;
-        font-size: 11px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        margin-left: 11.9vw;
-        margin-top: -4.7vh;
-        // text-align: left;
-      }
+      position: relative;
+      top: 0.2vh;
+      left: 11vw;
+      max-width:  60vw;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 11px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+    }
+
+    .img_div {
+      position: relative;
+      float: right;
+      right: 4vw;
+      bottom: 2.2vh;
+      height: 10vh;
+      width: 17vw;
+    }
 
     .cart_img {
-        width: 17.5vw;
-        height: 10vh;
-        border-radius: 5.7px;
-        margin-top: -3.2vh;
-        margin-left: 72vw;
-        border: solid 0.5px #d2d2d2;
-        background-color: #ffffff;
+      // position: relative;
+      // right: 4vw;
+      // bottom: 2.2vh;
+      // width: 17.5vw;
+      // height: 10vh;
+      border-radius: 5.7px;
+      // margin-top: -3.2vh;
+      // margin-left: 72vw;
+      border: solid 0.5px #d2d2d2;
+      background-color: #ffffff;
     }
 
     .cart_name {
-        // width: 148.5px;
-        // height: 33px;
-        font-family: AppleSDGothicNeo-Regular;
-        font-size: 13.5px;
-        font-weight: normal;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 0.91;
-        letter-spacing: -2.2px;
-        text-align: left;
-        color: #292929;
-        margin-top: -8.7vh;
-        margin-left: 12vw;
-    }
-
-    .x_con {
-        width: 8.5vw;
-        height: 3vh;
-        margin-left: 85.5vw;
-        margin-top: -7.3vh;
-        background-color: white;
+      position: relative;
+      max-width: 55vw;
+      height: 6.5vh;
+      bottom: 1vh;
+      left: 11vw;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 13.5px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 0.91;
+      letter-spacing: -2.2px;
+      text-align: left;
+      color: #292929;
     }
 
     .price {
-        // width: 50.5px;
-        height: 5vh;
-        font-family: AppleSDGothicNeo-Regular;
-        font-size: 13.8px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.42;
-        letter-spacing: -0.62px;
-        margin-left: 12.5vw;
-        margin-top: -3.5vh;
-        text-align: left;
-        color: #505050;
+      position: relative;
+      bottom: 2vh;
+      left: 11vw;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 13.5px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.42;
+      letter-spacing: -0.02px;
+      text-align: left;
+      color: #505050;
     }
 
     .cart_count {
-        // width: 91.5px;
-        // height: 24.5px;
-        border-radius: 5.7px;
-        margin-top: -0.4vh;
-        margin-left: 8.7vw;
+      position: relative;
+      left: 7vw;
+      bottom: 2vh;
+      border-radius: 5.7px;
     }
 
     .cart_text1 {
-        font-family: AppleSDGothicNeo-Regular;
-        font-size: 14px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.13;
-        letter-spacing: -0.43vh;
-        color: #505050;
-        margin-left: 9.6vw;
-        margin-top: 0.5vh;
+      position: relative;
+      left: 18vw;
+      bottom: 1.3vh;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 12.8px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.13;
+      letter-spacing: -1.23px;
+      color: #505050;
     }
 
     .cart_text2 {
-        font-family: AppleSDGothicNeo-Regular;
-        font-size: 14px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.13;
-        letter-spacing: -0.3px;
-        color: #505050;
-        margin-top: 0.5vh;
-        margin-left: -3.15vw;
-        padding-left: 3.6vw;
+      position: relative;
+      left: 17.5vw;
+      bottom: 1.2vh;
+      text-align: left;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 13.2px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.13;
+      letter-spacing: 0.08px;
+      color: #505050;
+      // margin-top: 0.5vh;
+      // margin-left: -3.15vw;
+      // padding-left: 3.6vw;
     }
 
-    // .blank {
-    //     margin-bottom: 8%;
-    // }
-
-    .test {
-        height: 24vh;
+    .cart_price {
+      height: 21vh;
+      width: 100vw;
     }
 
-    .between {
-        margin-top: -1.2vh;
+    .text_row {
+      position: relative;
+      top: 2.5vh;
+      left: 8vw;
+      line-height: 1.84;
     }
 
     .cart_text3 {
@@ -284,77 +313,64 @@ page-sungwoo-cart {
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
-      line-height: 1.84;
-      letter-spacing: -0.71vw;
+      letter-spacing: -2.41px;
       text-align: left;
       color: #5d5d5d;
-      margin-left: 8.1vw;
     }
 
     .cart_text4 {
+      position: relative;
+      left: 2vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13.5px;
       font-weight: 300;
       font-stretch: normal;
       font-style: normal;
-      line-height: 1.84;
-      letter-spacing: -0.15vw;
+      letter-spacing: -0.71px;
       text-align: right;
       color: #5d5d5d;
-      margin-left: 2.1vw;
     }
 
-    .gon1 {
-      margin-top: 1.13vh;
-    }
-
-    .gon {
-      margin-top: 2.59vh;
+    .price_sum {
+      height: 24.5vh;
+      width: 100vw;
     }
 
     .cart_title1 {
-      // float: right;
+      position: relative;
+      top: 3.4vh;
+      left: 8vw;
       font-family: AppleSDGothicNeo-Regular;
-      font-size: 20px;
+      font-size: 14.2px;
       font-weight: bold;
       font-style: normal;
       font-stretch: normal;
-      line-height: 1.51;
       //글자 허리사이즈
-      letter-spacing: -0.34vw;
+      letter-spacing: -1.64px;
       color: #292929;
       // overflow-y: visible !important;
-      padding-top: 2vh;
-      padding-bottom: 0.5vh;
-      padding-left:71.5vw;
     }
 
     .cart_title2 {
-      float: left;
-      // position: relative;
-      // right: 5%;
+      position: relative;
+      bottom: 0.5vh;
+      right: 6.5vw;
+      float: right;
       font-family: AppleSDGothicNeo-Regular;
-      font-size: 13.9px;
+      font-size: 20px;
       font-weight: 600;
       font-style: normal;
       font-stretch: normal;
       line-height: normal;
-      letter-spacing: -0.38vw;
-      // color: #5c59b6;
-      // overflow-y: visible !important;
-      // padding-top: 6.7%;
-      padding-bottom: 6vh;
-      // padding-left: 2%;
-      margin-top: -4vh;
-      margin-left: 8vw;
-      margin-bottom: 10vh;
+      letter-spacing: -1.46px;
     }
 
     .cell {
       position: fixed;
+      left: 3.2vw;
       bottom: 0;
-      min-width: 92%;
-      min-height: 55px;
+      min-width: 92.8vw;
+      min-height: 7.5vh;
       background-color: #5c59b6;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 15px;
@@ -364,12 +380,10 @@ page-sungwoo-cart {
       line-height: normal;
       letter-spacing: normal;
       text-align: center;
-      margin-left: 4vw;
       color: #ffffff;
     }
 
     .cell_text {
-      height: 4vh;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 12px;
       font-weight: 600;
@@ -379,11 +393,6 @@ page-sungwoo-cart {
       // letter-spacing: 0.5px;
       text-align: center;
       color: #ffffff;
-      margin-top: 1.5vh;
-    }
-    
-    .gon2 {
-      margin-bottom: 3vh;
     }
 
 }
