@@ -40,7 +40,7 @@ page-sungwoo-order {
       letter-spacing: normal;
       text-align: center;
     //   margin-right: 14%;
-      margin-top: -18.8%;
+      margin-top: -12.8%;
     }
   
     .toolbar-title-ios {
@@ -116,9 +116,25 @@ page-sungwoo-order {
       color: #292929;
     }
 
+    .order_card {
+      position: relative;
+      height: 21.2vh;
+      width: 92.5vw;
+      left: 0.5vw;
+      background-color: #FFF;
+      box-shadow: none;
+    }
+
+    .text_col {
+      position: relative;
+      height: 15vh;
+      width: 50vw;
+    }
+
     .product_name {
-      // width: 200px;
-      // height: 20.5px;
+      position: relative;
+      top: 4vh;
+      left: 2vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 11px;
       font-weight: 500;
@@ -126,87 +142,80 @@ page-sungwoo-order {
       font-style: normal;
       line-height: normal;
       letter-spacing: normal;
-      margin-left: 6.56vw;
-      margin-top: 3.6vh;
       text-align: left;
-    }
-    
-    .order_img {
-      width: 16.8vw;
-      height: 10vh;
-      border-radius: 5.7px;
-      margin-top: 3.6vh;
-      margin-left: 4.2vw;
-      border: solid 0.5px #d2d2d2;
-      background-color: #ffffff;
     }
 
     .order_name {
-      // width: 148.5px;
-      // height: 33px;
+      position: relative;
+      top: 5.2vh;
+      left: 2vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 15.5px;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
       line-height: 1.8vh;
-      letter-spacing: -0.62vw;
+      letter-spacing: -0.72px;
       text-align: left;
       color: #292929;
-      margin-top: -6.4vh;
-      margin-left: 6.6vw;
     }
 
     .order-little_text1 {
-      // width: 52px;
-      height: 6.5vh;
+      position: relative;
+      top: 11.4vh;
+      left: 2vw;
       font-family: AppleSDGothicNeo-Regular;
-      font-size: 11px;
+      font-size: 11.2px;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
       line-height: normal;
       letter-spacing: normal;
       color: #939393;
-      margin-left: 6.6vw;
-      margin-right: -11vw;
-      margin-top: 1.35vh;
     }
 
-    //   .chal-info {
-    //     width: 64px;
-    //     height: 14px;
-    //     font-family: AppleSDGothicNeo;
-    //     font-size: 15px;
-    //     font-weight: 500;
-    //     font-stretch: normal;
-    //     font-style: normal;
-    //     line-height: 1.05;
-    //     letter-spacing: -0.68px;
-    //     text-align: right;
-    //     color: #5c59b6;
-    //   }
+    .order_img {
+      position: relative;
+      top: 4.2vh;
+      left: 3.2vw;
+      width: 16.8vw;
+      height: 9.7vh;
+      border-radius: 5.7px;
+      border: solid 0.5px #d2d2d2;
+      background-color: #ffffff;
+    }
 
-    //   .order-title_text {
-    //     // width: 36px;
-    //     height: 14px;
-    //     font-family: AppleSDGothicNeo;
-    //     font-size: 15px;
-    //     font-weight: 600;
-    //     font-stretch: normal;
-    //     font-style: normal;
-    //     line-height: 1.13;
-    //     letter-spacing: -0.68px;
-    //     text-align: left;
-    //     color: #292929;
-    //     margin-top: 1.5%;
-    //     margin-left: 6.6%;
-    //   }
+    .order_delivery_grid {
+      height: 33vh;
+      width: 100vw;
+    }
 
+    .title_div {
+      position: relative;
+      display: flex;
+      // 요소들 사이에 동일한 간격을 줌. 양 옆 끝선 정렬.
+      justify-content: space-between;
+      // 넓이 제거
+      width: calc(100vw - 9.5vw);
+      top: 4vh;
+      left: 3.5vw;
+    }
 
+    .order_title {
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 13.3px;
+      font-weight: 600;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      // overflow-y: visible !important;
+    }
 
-    .order_title1 {
-      float: right;
+    .order_title2 {
+      position: relative;
+      bottom: 1vh;
+      text-align: right;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13.5px;
       font-weight: 700;
@@ -215,329 +224,246 @@ page-sungwoo-order {
       line-height: normal;
       color: #5c59b6;
       // overflow-y: visible !important;
-      padding-top: 4.66vh;
-      padding-bottom: 1.29vh;
-      padding-left:75.5vw;
-      //글자 허리사이즈
-      letter-spacing: -0.32vw;
+      letter-spacing: -0.68px;
     }
+
+    /* 삼성 갤럭시 탭 S3, 아이패드 적용 (해상도 768 ~ 1024) */
+    // @media all and (min-width:768px) and (max-width:1024px) { 
+    // .order_title2 {
+    //   left: 41.5vw !important;
+    //   }
+    // }
+            
+    /* 삼성 갤럭시 탭 S4 적용 (해상도 1138px ~)*/
+    // @media all and (min-width:1137px) { 
+    // .order_title2 {
+    //   left: 45vw !important;
+    //   }
+    // }
   
-    .order_title2 {
-      float: left;
-      // position: relative;
-      // right: 5%;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13px;
-      font-weight: 600;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      // color: #5c59b6;
-      // overflow-y: visible !important;
-      padding-top: 1.1vh;
-      padding-bottom: 0.8vh;
-      // padding-left: 2%;
-      margin-top: -4.5vh;
-      margin-left: 6.4vw;
+    .delivery_list {
+      position: relative;
+      display: flex;
+      // 요소들을 컨테이너 좌측 정렬.
+      justify-content: flex-start;
+      top: 4.5vh;
+      left: 3.5vw;
+      height: 20vh;
+      width: calc(100vw - 9.5vw);
     }
 
-      // .ltex1 {
-      //   // width: 257px;
-      //   // height: 105px;
-      //   font-family: AppleSDGothicNeo;
-      //   font-size: 14.3px;
-      //   font-weight: normal;
-      //   font-stretch: normal;
-      //   font-style: normal;
-      //   line-height: 1.74;
-      //   letter-spacing: -0.43px;
-      //   text-align: left;
-      //   color: #343434;
-      //   margin-left: 6.5%;
-      // }
+    /* 삼성 갤럭시 탭 S3, 아이패드 적용 (해상도 768 ~ 1024) */
+    // @media all and (min-width:768px) and (max-width:1024px) { 
+    // .delivery_list {
+    //   width: 90vw !important;
+    //   }
+    // }
+          
+    /* 삼성 갤럭시 탭 S4 적용 (해상도 1138px ~)*/
+    // @media all and (min-width:1137px) { 
+    // .delivery_list {
+    //   width: 90vw !important;
+    //   }
+    // }
 
-    .line_item1 {
-      // width: 257px;
-      // height: 105px;
+    .line_item {
+      position: relative;
+      max-width: 80vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 14px;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
       line-height: 3.81vh;
-      letter-spacing: -0.31vw;
+      letter-spacing: -0.43px;
       text-align: left;
       color: #343434;
-      margin-top: -1.1vh;
-      margin-left: 6.4vw;
-      // margin-bottom: 1px;
     }
 
-    .line_item2 {
-      // width: 257px;
-      // height: 105px;
+    .order_price_grid {
+      height: 30.2vh;
+      width: 100vw;
+    }
+
+    .price_title {
       font-family: AppleSDGothicNeo-Regular;
-      font-size: 14.3px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 3.94vh;
-      letter-spacing: -0.13vw;
-      text-align: left;
-      color: #343434;
-      margin-left: 6.8vw;
-      margin-top: 1.3vh;
-      margin-bottom: 0.2vh;
+      font-weight: 600;
+      letter-spacing: -0.68px;
+      color: #292929;
+      position: relative;
+      display: flex;
+      // 요소들 사이에 동일한 간격을 줌. 양 옆 끝선 정렬.
+      justify-content: space-between;
+      // 넓이 제거
+      width: calc(100vw - 9.5vw);
+      top: 3.5vh;
+      left: 3.5vw;
     }
 
-    .line_item3 {
-      // width: 257px;
-      // height: 105px;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 14.3px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 3.64vh;
-      letter-spacing: -0.41vw;
-      text-align: left;
-      color: #343434;
-      margin-left: 6.7vw;
-      margin-top: 1.33vh;
-      margin-bottom: 1.4vh;
+    .price_div {
+      position: relative;
+      top: 7vh;
+      left: 3.5vw;
+      display: flex;
+      justify-content: space-between;
+      width: calc(100vw - 9.5vw);
     }
-      
-    .container {
-      position: inherit;
-    }
-
-    .gon {
-      margin-top: 3.1vh;
-    }
-
-    .gon2 {
-      margin-bottom: 4.7vh;
-    }
-
-    // .order_text1 {
-    //   width: 200px;
-    //   height: 11px;
-    //   font-family: AppleSDGothicNeo;
-    //   font-size: 13.5px;
-    //   font-weight: normal;
-    //   font-stretch: normal;
-    //   font-style: normal;
-    //   line-height: normal;
-    //   letter-spacing: -2.2px;
-    //   color: #939393;
-    //   margin-left: 6.3%;
-    //   margin-right: -11%;
-    //   margin-top: 5%;
-    // }
-
-    // .order_text2 {
-    //   width: 52px;
-    //   // height: 20.5px;
-    //   font-family: AppleSDGothicNeo;
-    //   font-size: 14px;
-    //   font-weight: 500;
-    //   font-stretch: normal;
-    //   font-style: normal;
-    //   line-height: normal;
-    //   letter-spacing: normal;
-    //   text-align: right;
-    //   color: #292929;
-    //   margin-top: -1.5%;
-    //   margin-left: 18%;
-    //   margin-top: 3.6%;
-      
-    // }
 
     .order_text1 {
-      // width: 84.5px;
-      // height: 30px;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 12.5px;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal; 
-      line-height: 3.34vh;
-      letter-spacing: -0.27vw;
-      text-align: left;
+      line-height: 0.75;
+      letter-spacing: -0.64px;
       color: #5d5d5d;
-      margin-left: 6.3vw;
-      margin-top: 1.6vh;
-      margin-bottom: -2.5vh;
     }
 
     .order_text2 {
-      // width: 77.5px;
-      // height: 154px;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13.7px;
       font-weight: 300;
       font-stretch: normal;
       font-style: normal;
-      line-height: 2.2vh;
-      letter-spacing: -0.24vw;
+      line-height: 1.15;
+      letter-spacing: -0.64px;
       text-align: right;
       color: #5d5d5d;
-      margin-top: 1.99vh;
-      margin-left: 3.89vw;
     }
 
-    .order_title3 {
-      float: left;
-      // position: relative;
-      // right: 5%;
+    .price_grid {
+      height: 12vh;
+      width: 100vw;
+    }
+
+    .sum_div {
+      position: relative;
+      display: flex;
+      // 요소들 사이에 동일한 간격을 줌. 양 옆 끝선 정렬.
+      justify-content: space-between;
+      // 넓이 제거
+      width: calc(100vw - 9.5vw);
+      top: 1.5vh;
+      left: 3.5vw;
+    }
+    
+    .sum_text {
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13.9px;
-      font-weight: 600;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.4vw;
-      // color: #5c59b6;
-      // overflow-y: visible !important;
-      padding-top: 4.1vh;
-      padding-bottom: 2vh;
-      // padding-left: 2%;
-      margin-top: -4.8vh;
-      margin-left: 6.4vw;
-    }
-
-    .order_title4 {
-      // float: right;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 19.8px;
       font-weight: bold;
       font-style: normal;
       font-stretch: normal;
-      line-height: 4.71vh;
-      //글자 허리사이즈
-      letter-spacing: -0.42vw;
+      letter-spacing: -0.68px;
       color: #292929;
       // overflow-y: visible !important;
-      padding-top: 1.9vh;
-      padding-bottom: 1.2vh;
-      padding-left:72.4vw;
     }
 
-    .order_title5 {
-      float: left;
-      // position: relative;
-      // right: 5%;
+    .sum_price {
+      position: relative;
+      bottom: 1vh;
+      text-align: right;
       font-family: AppleSDGothicNeo-Regular;
-      font-size: 13.9px;
+      font-size: 18.7px;
       font-weight: 600;
       font-style: normal;
       font-stretch: normal;
       line-height: normal;
-      letter-spacing: -0.48vw;
-      // color: #5c59b6;
-      // overflow-y: visible !important;
-      // padding-top: 6.7%;
-      // padding-bottom: 6%;
-      // padding-left: 2%;
-      margin-top: -4.7vh;
-      margin-left: 6.4vw;
+      letter-spacing: -0.9px;
     }
 
-    .means {
-      width: 60pt;
-      height: 60pt;
+    /* 삼성 갤럭시 탭 S3, 아이패드 적용 (해상도 768 ~ 1024) */
+    // @media all and (min-width:768px) and (max-width:1024px) { 
+    // .sum_price {
+    //   left: 24.5vw !important;
+    //   }
+    // }
+                
+    /* 삼성 갤럭시 탭 S4 적용 (해상도 1138px ~)*/
+    // @media all and (min-width:1137px) { 
+    //   .sum_price {
+    //     left: 28.2vw !important;
+    //   }
+    // }
+
+    .order_payment_grid {
+      height: 55.5vh;
+      width: 100vw;
+    }
+
+    .payment_title {
+      font-family: AppleSDGothicNeo-Regular;
+      font-weight: 600;
+      letter-spacing: -0.68px;
+      color: #292929;
+      position: relative;
+      display: flex;
+      // 요소들 사이에 동일한 간격을 줌. 양 옆 끝선 정렬.
+      justify-content: space-between;
+      // 넓이 제거
+      width: calc(100vw - 9.5vw);
+      top: 3.5vh;
+      left: 3.5vw;
+    }
+
+    .payment_btn {
+      display: flex;
+      justify-content: center;
+      // width: calc(100vw - 9.5vw);
+      // left: 3.5vw;
     }
 
     .order_btn {
-      width: 87.2%;
+      position: relative;
+      top: 5.5vh;
+      width: 86.2vw;
       height: 7.1vh;
       border: solid 0.5px #c7c7c7;
       border-radius: 14.2px;
       box-shadow: none;
       background-color: #FFFFFF;
-      margin: 8% auto;
-      margin-top: 0.9vh;
-    }
-
-    .order_btn2 {
-      width: 87.2%;
-      height: 7.1vh;
-      border: solid 0.5px #c7c7c7;
-      border-radius: 14.2px;
-      box-shadow: none;
-      background-color: #FFFFFF;
-      margin: -5.5% auto;
-      margin-bottom: 4.3vh;
-      margin-top: -2.8vh;
+      margin: 1.5%;
     }
 
     .order-btn_text {
-      // width: 109.5px;
-      // height: 15px;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13.5px;
       font-weight: 500;
       font-stretch: normal;
       font-style: normal;
-      line-height: normal;
-      letter-spacing: -0.3vw;
-      margin-top: -0.6vh;
+      line-height: 1.07;
+      letter-spacing: -0.68px;
       text-align: center;
       color: #292929;
     }
 
     .grid_backColor2 {
+      position: relative;
+      top: 9vh;
       width: 87vw;
       height: 18vh;
       background-color: #eeeeee;
-      margin-bottom: 1.2vh;
+      display: flex;
       justify-content: center;
     }
 
-    // .order-card_text {
-    //   // width: 117px;
-    //   height: 4vh;
-    //   font-family: AppleSDGothicNeo;
-    //   font-size: 13.5px;
-    //   font-weight: normal;
-    //   font-stretch: normal;
-    //   font-style: normal;
-    //   // line-height: 1.07;
-    //   letter-spacing: -0.4vw;
-    //   text-align: left;
-    //   // color: #292929;
-    // }
-
-    .order_card1 {
-      width: 80vw;
-      height: 0.1vh;
-      border: solid 1px #c0c0c0;
-      background-color: #ffffff;
-      // margin: -1% auto;
-      margin-left: 3.7vw;
-      // margin-top: -1vh;
+    .select_div {
+      display: flex;
+      justify-content: center;
+      margin: 1%;
     }
 
-    .card_gon {
-      margin-top: -1.5vh;
-    }
-
-    .order_card2 {
-      width: 80vw;
-      height: 0.1vh ;
+    .order_select {
       border: solid 1px #c0c0c0;
       background-color: #ffffff;
-      // margin: -4% auto;
-      margin-left: 3.7vw;
-      // margin-top: -4vh;
+      height: 1vh;
+      width: 80vw;
     }
     
     .s_icon {
       margin-left: -4.5vw;
       min-width: 80vw;
-      width: 100%;
-      height: 8.3vh;
+      height: 7vh;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 12.3px;
       font-weight: normal;
@@ -546,7 +472,6 @@ page-sungwoo-order {
       line-height: normal;
       letter-spacing: normal;
       color: #292929;
-      margin-top: 2%;
     }
 
     .select-md .select-icon {
@@ -663,13 +588,6 @@ page-sungwoo-order {
         color: default-color;
       }
     }
-
-    // @media (min-width: 370px ) {
-    //   .ion-content {
-    //     width: auto;
-    //     display: flex;
-    //   }
-    // }
 
 
 

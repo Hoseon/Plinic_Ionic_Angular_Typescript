@@ -24,81 +24,75 @@
 
 <ion-content>
   <ng-container>
-    <form>
-      <ion-row class="cart_div">
+    <ion-grid class="cart_div" no-padding>
+      <ion-row class="title_div">
         <ion-checkbox class="cart_checkbox"></ion-checkbox>
         <div class="all-check" col-8>전체선택</div>
         <button class="check-cancel" col-2>선택삭제</button>
       </ion-row>
-      <ion-grid no-padding>
-            <ion-card class="cart_card">
-              <ion-checkbox class="cart_checkbox2"></ion-checkbox>
-              <ion-row class="x_icon">
-                <button style="background-color: #ffffff;">
-                  <img src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" />
-                </button>
-              </ion-row>
-              <ion-row>
-                <ion-col class="product_name" style="color: #5c59b6">구달</ion-col>
-              </ion-row>
-              <ion-row class="img_div">
-                <img class="cart_img" src="assets/img/order/order_img.jpg" />
-              </ion-row>
-              <ion-row>
-                <ion-col class="cart_name">청귤 비타C 잡티세럼청귤</ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col class="price">20,000원</ion-col> 
-              </ion-row>
-              <ion-row>
-                <div class="cart_count" col-5>
+      <ion-list no-padding>
+        <ion-card class="cart_card">
+          <ion-row class="cart_icon">
+            <ion-checkbox class="cart_checkbox2"></ion-checkbox>
+            <button class="cart_close">
+              <img src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" />
+            </button>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text_col" col-9>
+              <div class="product_name" style="color: #5c59b6">구달</div>
+              <div class="cart_name">청귤 비타C 잡티세럼청귤</div>
+              <div class="price">20,000원</div> 
+            </ion-col>
+            <ion-col class="img_col" col-3>  
+              <img class="cart_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000613.jpg" />
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="count_count" col-5>
                 <input type="button" value=" - " >
                 <input type="text" name="amount" value="2" size="3" style="text-align: center;">
                 <input type="button" value=" + " >
-                </div>
-                <ion-col class="cart_text1" col-2>합계</ion-col>
-                <ion-col class="cart_text2" col-3>40,000원</ion-col>
-              </ion-row>
-              <!-- <div class="blank"></div> -->
-            </ion-card>
+            </ion-col>
+            <ion-col class="count_sum" col-5>
+              <div class="cart_text1">합계</div>
+              <div class="cart_text2">40,000원</div>
+            </ion-col>
+          </ion-row>
+        </ion-card>
 
-
-              <ion-card class="cart_card">
-                <ion-checkbox class="cart_checkbox2"></ion-checkbox>
-                <ion-row class="x_icon">
-                  <button style="background-color: #ffffff;">
-                    <img src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" />
-                  </button>
-                </ion-row>
-                <ion-row>
-                  <ion-col class="product_name" style="color: #5c59b6">구달</ion-col>
-                </ion-row>
-                <ion-row class="img_div">
-                  <img class="cart_img" src="assets/img/order/order_img.jpg" />
-                </ion-row>
-                <ion-row>
-                  <ion-col class="cart_name">청귤 비타C 잡티세럼청귤</ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col class="price">20,000원</ion-col> 
-                </ion-row>
-                <ion-row>
-                  <div class="cart_count" col-5>
-                  <input type="button" value=" - " >
-                  <input type="text" name="amount" value="2" size="3" style="text-align: center;">
-                  <input type="button" value=" + " >
-                  </div>
-                  <ion-col class="cart_text1" col-2>합계</ion-col>
-                  <ion-col class="cart_text2" col-3>20,000원</ion-col>
-                </ion-row>
-                <!-- <div class="blank"></div> -->
-              </ion-card>
-  
-  
-      </ion-grid>
+        <ion-card class="cart_card">
+          <ion-row class="cart_icon">
+            <ion-checkbox class="cart_checkbox2"></ion-checkbox>
+            <button class="cart_close">
+              <img src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" />
+            </button>
+          </ion-row>
+          <ion-row>
+            <ion-col class="text_col" col-9>
+              <div class="product_name" style="color: #5c59b6">구달</div>
+              <div class="cart_name">청귤 비타C 잡티세럼청귤 비타청귤청귤청귤 비타</div>
+              <div class="price">20,000원</div> 
+            </ion-col>
+            <ion-col class="img_col" col-3>  
+              <img class="cart_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000614.jpg" />
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="count_count" col-5>
+                <input type="button" value=" - " >
+                <input type="text" name="amount" value="1" size="3" style="text-align: center;">
+                <input type="button" value=" + " >
+            </ion-col>
+            <ion-col class="count_sum" col-5>
+              <div class="cart_text1">합계</div>
+              <div class="cart_text2">20,000원</div>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-list>
       <ng-container>
         <ion-grid class="cart_price" no-padding>
-          
           <ion-row class="text_row">
             <ion-col class="cart_text3" col-7>상품 금액 합계</ion-col>
             <ion-col class="cart_text4" col-3>40,000 원</ion-col>
@@ -117,18 +111,15 @@
           </ion-row>
         </ion-grid>
 
-      
-        <div style="height:0.1vh; width:100vw; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+        <div style="height:0.1vh; width:100vw; display: block; background-color:#f1f1f1"></div>
 
         <div class="price_sum">
           <div class="cart_title1">결제 예정 금액</div>
           <div class="cart_title2">23,000 원</div>
         </div>
       </ng-container>
-
       <!-- <button (click)="saveToday()" ion-button class="cell"><div class="cell_text">주문하기</div></button> -->
-      
-    </form>
+    </ion-grid>
   </ng-container>
 </ion-content>
 
