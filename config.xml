@@ -114,8 +114,8 @@
         <variable name="BLUETOOTH_USAGE_DESCRIPTION" value=" " />
     </plugin>
     <plugin name="cordova-plugin-fcm-with-dependecy-updated" spec="^2.4.0" />
-    <engine name="ios" spec="5.0.1" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.2">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
+    <engine name="ios" spec="5.0.1" />
 </widget>

@@ -87,121 +87,50 @@
     <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
     <img *ngIf="platform.is('android')" (click)="openBrowser_android()" class="beauty_ad_img" src="{{adUrl}}" />
     <img *ngIf="!platform.is('android')" (click)="openBrowser_android()" class="beauty_ad_img" src="{{adUrl}}" />
-    <div style="height:8px; width:100%; margin-top:-0.5%; background-color:#f1f1f1"></div>
+    <div style="height:8px; width:100%; margin-top:-0.5%; margin-bottom:-10%; background-color:#f1f1f1"></div>
   </ion-grid>
   <ion-grid no-padding>
-      <!-- <ng-container *ngIf="skinQnaOneLoadData"> -->
-        <!-- <ng-container *ngFor="let registerReply of skinQnaOneLoadData.comments; let i = index"> -->
-              <img *ngIf="registerReply.img_url" class="profile_comment" [src]="registerReply.img_url" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'"/>
-              <img *ngIf="!registerReply.img_url" class="profile_comment" src="{{plinicUserImages[i]}}" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'"/>
-          
-          <!-- <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png" /> -->
-  
-          <ng-container *ngIf="userData.email === registerReply.email">
-            <button ion-button class="comment_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
-          </ng-container>
-          <div class="container">
-            <div *ngIf="registerReply.email" class="nickname_comment">{{emailSecurity(registerReply.email)}}</div>
-            <button *ngIf="comment_popover_option_textarea === i" (click)="replySkinQnaUpdate(registerReply.email, registerReply._id)" ion-button class="comment_enroll">수정</button>
-          </div>
-          <div class="time_comment">{{getCovertKoreaTime(registerReply.createdAt).substr(0,16).replace('T', ' ')}}</div>
-          <!-- 보기 -->
-          <!-- <textarea *ngIf="comment_popover_option==='보기'" class="content_comment" readonly autoGrow autoresize value="{{reply.comment}}"></textarea> -->
-          <ng-container *ngIf="comment_popover_option_textarea !== i ">
-            <div class="content_comment" text-wrap>{{registerReply.comment}}</div>
-          </ng-container>
-          <!-- 수정 -->
-          <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment" (input)="adjustTextareaUpdate($event)"
-            autofocus="true" (focus)="focus($event)"></textarea>
-  
-          <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 2%; background-color:#f1f1f1"></div>
-        <!-- </ng-container> -->
-      <!-- </ng-container> -->
     <!-- 총 몇개의 리뷰 영역 -->
-    <!-- <ion-row>
-      <ion-col col-8><p>총 <span>2개</span>의 리뷰</p>
-      </ion-col>
-      <ion-col col-4>
-        <button clear ion-button>최신순</button>
-        <ion-item no-lines>
+    <ion-row *ngIf="productReview" >
+      <div class="left" col-3><p>상품리뷰 <span class="left_color">{{productReview.length}}개</span></p>
+      </div>
+      <!-- <div class="right" col-5>
           <ion-label class="popover_text">{{orderStyle}}</ion-label>
           <ion-select [(ngModel)]="orderStyle" interface="popover">
             <ion-option value="최신순 ∨">최신순</ion-option>
             <ion-option value="인기순 ∨">인기순</ion-option>
           </ion-select>
-        </ion-item>
-      </ion-col>
-    </ion-row> -->
+        </div> -->
+    </ion-row>
+    <ion-row>
+      <div style="height:1px; width:100%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+    </ion-row>
   </ion-grid>
-  <!-- <ion-grid>
-    <ion-row>
-      <div class="text6">제품 사용자 분석</div>
-    </ion-row>
-    <br><br>
-    <ion-row>
-      <ion-col>
-        <div class="block">
-          <div class="text7">주요사용자</div>
-          <p class="center">
-            <img class="girl" src="assets/img/skin-chart/girl.png">
-            <span class="text8">여성</span>
-          </p>
-        </div>
-      </ion-col>
-      <ion-col>
-        <div class="block">
-          <div class="text7">피부 개선율</div>
-          <p class="center">
-            <img class="girl" src="assets/img/skin-chart/cloud.png">
-            <span class="text8">보통</span>
-          </p>
-        </div>
-      </ion-col>
-    </ion-row>
-    <br>
-    <ion-row>
-      <ion-col col-4 class="text4">모공 개선율</ion-col>
-      <ion-col col-8 class="text5">2.7%</ion-col>
-    </ion-row>
-    <br>
-    <ion-row>
-      <ion-col col-4 class="text4">주름 개선율</ion-col>
-      <ion-col col-8 class="text5">12.2%</ion-col>
-    </ion-row>
-    <br>
-    <ion-row>
-      <ion-col col-4 class="text4">피부톤 개선율</ion-col>
-      <ion-col col-8 class="text5">5.8%</ion-col>
-    </ion-row>
-  </ion-grid> -->
-  <br><br><br>
+  <br>
 
-  <ng-container *ngIf="beautyNoteOneLoadData">
-    <ng-container *ngFor="let registerReply of beautyNoteOneLoadData.comments; let i = index">
-      <img *ngIf="registerReply.img_url" class="profile_comment" [src]="registerReply.img_url"
-        onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
-      <img *ngIf="!registerReply.img_url" class="profile_comment" [src]="plinicUserImages[i]"
-        onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
-      <!-- <img *ngIf="!registerReply.originalName && !profileimg_url" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png"/> -->
+  <ng-container *ngIf="productReview">
+    <ng-container *ngFor="let review of productReview; let i = index">
+        <img *ngIf="review.img_url" class="profile_comment" [src]="userData.thumbnail_image" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'"/>
+        <img *ngIf="!review.img_url" class="profile_comment" src="{{plinicUserImages[i]}}" onError="this.src='assets/img/register/ic-system-profile-default@3x.png'"/>
+      <!-- <img *ngIf="!review.originalName && !profileimg_url" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png"/> -->
 
-      <ng-container *ngIf="userData.email === registerReply.email">
+      <ng-container *ngIf="userData.email === review.email">
         <button ion-button class="comment_btn"
-          (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
+          (click)="comment_popover($event, i, review.email, review._id);"></button>
       </ng-container>
       <div class="container">
-        <div class="nickname_comment">{{registerReply.email}}</div>
-        <button *ngIf="comment_popover_option_textarea === i"
-          (click)="replyUpdate(registerReply.email, registerReply._id)" ion-button class="comment_enroll">수정</button>
-      </div>
-      <div class="time_comment">{{registerReply.createdAt.substr(0,19)}}</div>
+          <div *ngIf="review.email" class="nickname_comment">{{emailSecurity(review.email)}}</div>
+          <button *ngIf="comment_popover_option_textarea === i" (click)="productReviewUpdate(review.email, review._id)" ion-button class="comment_enroll">수정</button>
+        </div>
+        <div class="time_comment">{{getCovertKoreaTime(review.createdAt).substr(0,16).replace('T', ' ')}}</div>
       <!-- 보기 -->
       <!-- <textarea *ngIf="comment_popover_option==='보기'" class="content_comment" readonly autoGrow autoresize value="{{reply.comment}}"></textarea> -->
       <ng-container *ngIf="comment_popover_option_textarea !== i ">
-        <div class="content_comment" text-wrap>{{registerReply.comment}}</div>
+        <div class="content_comment" text-wrap>{{review.content}}</div>
       </ng-container>
       <!-- 수정 -->
       <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea"
-        #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment"
+        #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="review.content"
         (input)="adjustTextareaUpdate($event)" autofocus="true" (focus)="focus($event)"></textarea>
 
       <div
