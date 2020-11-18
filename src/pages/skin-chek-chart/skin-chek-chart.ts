@@ -20,6 +20,7 @@ import { ProductDetailPage } from '../product-detail/product-detail';
 import { SkinTonePage } from '../skin-tone/skin-tone';
 import { SkinMunjinPage } from '../skin-munjin/skin-munjin';
 import { SkinChekPage } from '../skin-chek/skin-chek';
+import { MyinfoPage } from '../myinfo/myinfo';
 
 /**
  * Generated class for the SkinChekChartPage page.
@@ -119,6 +120,8 @@ export class SkinChekChartPage {
   // left5 : any = '0%';
   // left6 : any = '0%';
 
+  totaluserPoint: any = 0;
+
   
 
   constructor(
@@ -183,6 +186,8 @@ export class SkinChekChartPage {
           from: items.from,
           snsid: items.snsid
         };
+        this.reloadUserPoint(this.userData.snsid);
+
       } else {
         this.userData = {
           accessToken: items.accessToken,
@@ -194,7 +199,9 @@ export class SkinChekChartPage {
           nickname: this.jwtHelper.decodeToken(items).name,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
+          from: 'plinic',
         };
+        this.reloadUserPoint(this.userData.email);
       }
       await this.getSkinAnaly();
       // this.ageRange = this.getAgeRange();
@@ -836,6 +843,37 @@ export class SkinChekChartPage {
       this.loadMyMainProduct();
     });
     modal.present();
+  }
+
+  public myinfo() {
+    //2020-05-28 마이페이지 하단탭 제거
+    // this.nav.push(MyinfoPage); 
+
+    let myModal = this.modalCtrl.create(MyinfoPage);
+    myModal.onDidDismiss(data => {
+      if(this.userData) {
+        if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
+          this.reloadUserPoint(this.userData.snsid);
+        }
+        else {
+          this.reloadUserPoint(this.userData.email);
+        }
+      }
+      console.log("출석체크 페이지 닫음");
+    });
+    myModal.present();
+  }
+
+  private reloadUserPoint(email) {
+    this.auth.reloadUserPointfromPlincShop(email).subscribe(data =>{
+      // console.log("커뮤니티 사용자 포인트 : " + data)
+      this.userData.totaluserpoint = data.point;
+      this.userData.totaluserpoint = this.addComma(this.userData.totaluserpoint);
+    });
+  }
+
+  addComma(data_value) { //숫자 세자리 마다 컴마 붙히기
+    return Number(data_value).toLocaleString('en');
   }
 
 }

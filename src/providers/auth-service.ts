@@ -2680,5 +2680,45 @@ export class AuthService {
       });
   }
 
+  public productReviewDelete(content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: content.email,
+      id: content.id,
+      // comment: content.comment,
+    };
+
+    console.log("Replydelete : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/productReviewDelete', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public productReviewUpdate(review) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: review.email,
+      id: review.id,
+      content: review.content,
+    };
+
+    console.log("Replyupdate : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/productReviewUpdate', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
   
 }

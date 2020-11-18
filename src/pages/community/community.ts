@@ -65,6 +65,11 @@ export class CommunityPage {
   tab3: any;
   tab1: any;
   tabs_boolean: any;
+  movieData: any;
+  // youTubeData: any;
+  youTubeArrayData: Array<any> = new Array<any>();
+  isGetTube: boolean = false;
+
   @ViewChild(Slides) slides: Slides;
 
 
@@ -84,16 +89,34 @@ export class CommunityPage {
       this.events1();
       this.events2();
       this.events3();
+      
+      this.images.getBeautyMovie().subscribe(data=> {
+        this.movieData = data
+        if(data) {
+          for(let i = 0; i < data.length; i++) {
+            this.youTubeArrayData[i] = data[i].items[0].snippet;
+        }
+          console.log(this.youTubeArrayData);
+        }
+
+      })
     });
+  }
+
+  async ionViewDidLoad() {
+    console.log('ionViewDidLoad CommunityPage');
+    
+  }
+
+  ionViewDidEnter() {
+    this.content.resize();
   }
 
   ionViewCanEnter() {
     this.loadItems();
 
   }
-  ionViewDidEnter() {
-    this.content.resize();
-  }
+  
 
   ionViewDidLeave(){
    console.log("ionViewDidLeave Community");
@@ -227,9 +250,7 @@ export class CommunityPage {
   }
 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CommunityPage');
-  }
+  
 
   selectedTab(tab) {
     this.slides.slideTo(tab);
@@ -819,4 +840,8 @@ export class CommunityPage {
       this.userData.totaluserpoint = this.addComma(this.userData.totaluserpoint);
     });
   }
-}
+
+  async getMovieData() {
+    // this.images
+  }
+ }

@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ModalController } from 'ionic-angular';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Platform, ModalController, PopoverController, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { ProductSungbunPage } from '../product-sungbun/product-sungbun';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { ProductReviewPage } from '../product-review/product-review';
+import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { PopoverPage } from '../community/community-modify/popover/popover';
+
 
 
 /**
@@ -30,6 +33,13 @@ export class ProductDetailPage {
   function: Array<any> = new Array<any>();
   preIngredient: any;
   orderStyle: any = "최신순 ∨"; 
+  jwtHelper: JwtHelper = new JwtHelper();
+  profileimg_url: any;
+  comment_popover_option: any = "보기";
+  comment_popover_option_textarea: any;
+  @ViewChild('myInput') myInput: ElementRef;
+  reply = { content: '', id: '', email: '' };
+  updatevalue: any;
 
   randomProduct1: any = [];
   randomProduct2: any = [];
@@ -146,6 +156,12 @@ export class ProductDetailPage {
       price : '17,900원',
     },
   ]
+  userData: any;
+  thumb_image: any;
+  from: any;
+  productReview: any;
+  plinicUserImages: Array<any> = new Array<any>();
+
 
   constructor(
     public navCtrl: NavController, 
@@ -155,15 +171,21 @@ export class ProductDetailPage {
     private images: ImagesProvider,
     private themeableBrowser: ThemeableBrowser,
     private modalCtrl : ModalController,
+    public alertCtrl: AlertController,
+    public popoverCtrl: PopoverController,
+    public element: ElementRef,
+
   ) {
     if(this.navParams.get('Product_Num')){
       this.product_Num = this.navParams.get('Product_Num');
+      this.getProductReview(this.product_Num);
       console.log(this.product_Num);
     }
   }
 
   async ionViewDidLoad() {
     await this.loadProductData();
+    await this.loadItems();
     this.randomUrl();
     console.log('ionViewDidLoad ProductDetailPage');
   }
@@ -283,10 +305,366 @@ export class ProductDetailPage {
   write_Review(product_num) {
     this.navCtrl.push(ProductReviewPage, {productData : this.productData }).then(() => {
       this.navCtrl.getActive().onDidDismiss(data => {
-        console.log("페이지 닫힘");
+        this.getProductReview(this.product_Num);
       });
     });
   }
 
+  public loadItems() {
+    this.auth.getUserStorage().then(items => {
+  
+      if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: items.email,
+          gender: items.gender,
+          nickname: items.nickname,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+          from: items.from,
+          snsid: items.snsid
+        };
+        if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
+          this.thumb_image = false;
+        } else {
+          this.thumb_image = true;
+        }
+  
+      } else {
+        this.userData = {
+          accessToken: items.accessToken,
+          id: items.id,
+          age_range: items.age_range,
+          birthday: items.birthday,
+          email: this.jwtHelper.decodeToken(items).email,
+          gender: items.gender,
+          nickname: this.jwtHelper.decodeToken(items).name,
+          profile_image: items.profile_image,
+          thumbnail_image: items.thumbnail_image,
+          from: 'plinic',
+        };
+  
+        this.from= 'plinic';
+      }
+      this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
+      this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
+    });
+  }
 
+  getProductReview(product_num) {
+    this.images.getProductReview(product_num).subscribe(data => {
+      this.productReview = data;
+      console.log("상품 리뷰 : " + this.productReview);
+    })
+
+  }
+
+  // 댓글 수정
+  public comment_popover(event, i, email, id) {
+    // console.log(email);
+    // console.log(id);
+    if (this.platform.is('ios') || this.platform.is('core')) {
+      let popover = this.popoverCtrl.create(PopoverPage, {},
+        {
+          cssClass: "ios_comment_popover"
+        });
+      popover.present({
+        ev: event
+      });
+      popover.onDidDismiss(popoverData => {
+        this.comment_popover_option = popoverData;
+        if (popoverData === "수정") {
+          this.comment_popover_option_textarea = i;
+          setTimeout(() => {
+            // this.mytextarea.setFocus();
+            this.myInput.nativeElement.focus();
+            // this.presentLoading();
+            this.resize();
+          }, 100)
+        }
+        else if (popoverData === "삭제") {
+          // console.log('comment_popover_option==========' + this.comment_popover_option);
+          // this.reply.email = email;
+          // this.reply.id = id;
+
+          var content = {
+            email : email,
+            id : id
+          }
+
+          // this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
+
+          let alert = this.alertCtrl.create({
+            cssClass: 'push_alert_cancel',
+            title: "plinic",
+            message: "댓글을 정말로 삭제하시겠습니까?",
+            buttons: [
+              {
+                text: '취소',
+                role: 'cancel',
+                handler: () => {
+                  console.log('취소');
+                }
+              },
+              {
+                text: '확인',
+                handler: () => {
+                  this.auth.productReviewDelete(content).subscribe(data => {
+                    if (data !== "") {
+                      let alert2 = this.alertCtrl.create({
+                        cssClass: 'push_alert',
+                        title: '댓글삭제',
+                        message: "댓글이 정상적으로 삭제 되었습니다.",
+                        buttons: [
+                          {
+                            text: '확인',
+                            handler: () => {
+                              // this.registerReply.comment = '';
+                              this.comment_popover_option_textarea = -1;
+                              // this.textareaResize();
+                              this.update();
+                            }
+                          }
+                        ]
+                      });
+                      alert2.present();
+                    }
+                    // this.nav.push(CareZoneMissionIngPage, { _id: id });
+                  }, error => {
+                    this.showError(JSON.parse(error._body).msg);
+                  });
+                }
+              }]
+          });
+          alert.present();
+        }
+      });
+    }
+    else {
+
+      var content = {
+        email: email,
+        id: id
+      }
+      let popover = this.popoverCtrl.create(PopoverPage, {},
+        {
+          cssClass: "android_comment_popover"
+        });
+      popover.present({
+        ev: event
+      });
+
+      popover.onDidDismiss(popoverData => {
+        this.comment_popover_option = popoverData;
+        if (popoverData === "수정") {
+          this.comment_popover_option_textarea = i;
+          setTimeout(() => {
+            // this.mytextarea.setFocus();
+            this.myInput.nativeElement.focus();
+            // this.presentLoading();
+            this.resize();
+          }, 100)
+        }
+        else if (popoverData === "삭제") {
+          // console.log('comment_popover_option==========' + this.comment_popover_option);
+          // this.reply.email = email;
+          // this.reply.id = id;
+          // this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
+
+          let alert = this.alertCtrl.create({
+            cssClass: 'push_alert_cancel',
+            title: "plinic",
+            message: "댓글을 정말로 삭제하시겠습니까?",
+            buttons: [
+              {
+                text: '취소',
+                role: 'cancel',
+                handler: () => {
+                }
+              },
+              {
+                text: '확인',
+                handler: () => {
+                  this.auth.productReviewDelete(content).subscribe(data => {
+                    if (data !== "") {
+                      let alert2 = this.alertCtrl.create({
+                        cssClass: 'push_alert',
+                        title: '댓글삭제',
+                        message: "댓글이 정상적으로 삭제 되었습니다.",
+                        buttons: [
+                          {
+                            text: '확인',
+                            handler: () => {
+                              this.comment_popover_option_textarea = -1;
+                              // this.textareaResize();
+                              this.update();
+                            }
+                          }
+                        ]
+                      });
+                      alert2.present();
+                    }
+                    // this.nav.push(CareZoneMissionIngPage, { _id: id });
+                  }, error => {
+                    this.showError(JSON.parse(error._body).msg);
+                  });
+                }
+              }]
+          });
+          alert.present();
+        }
+      });
+    }
+  }
+
+  resize() {
+    setTimeout(() => {
+      this.myInput.nativeElement.style.height = 'auto'
+      this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
+    }, 100)
+  }
+
+  showError(text) {
+    // this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: 'Plinic',
+      message: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  getCovertKoreaTime(time) {
+    return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000).toISOString()
+  }
+
+
+  getUserimage() {
+    for (let i = 0; i < this.productReview.length; i++) {
+      this.images.chkUserImage(this.productReview[i].email).subscribe(data => {
+        if(data !== 'NOTFOUND'){
+          this.plinicUserImages[i] = 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + data
+        }
+      })
+    }
+
+    // return 'https://plinic.s3.ap-northeast-2.amazonaws.com/image-1574732479055';
+  }
+
+  // 이메일 마스킹 처리 2020-06-02
+  emailSecurity(userEmail){
+    var id = userEmail.split('@')[0]; 
+    var mail = userEmail.split('@')[1]; 
+    var maskingId = function(id){ 
+      var splitId = id.substring(0,2); 
+      for(var i = 1; i < id.length; i++){ 
+        splitId += '*'; 
+      } 
+      return splitId; 
+    }; 
+    var maskingMail = function(mail){ 
+      var splitMail = ''; 
+      for(var i = 1; i < mail.length; i++){ 
+        splitMail += '*'; 
+      } splitMail += mail.substring(mail.length-1,mail.length); 
+      return splitMail; 
+    }; 
+    userEmail = maskingId(id) + '@' + (mail); 
+    return userEmail; 
+  }
+
+  update() {
+    this.getProductReview(this.product_Num);
+    
+  }
+
+
+  productReviewUpdate(email, id) {
+    this.reply.email = email;
+    this.reply.id = id; 
+    this.reply.content = this.updatevalue;
+
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "plinic",
+      message: "댓글을 수정 하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            this.auth.productReviewUpdate(this.reply).subscribe(data => {
+              if (data !== "") {
+                let alert2 = this.alertCtrl.create({
+                  cssClass: 'push_alert',
+                  title: '댓글삭제',
+                  message: "댓글이 정상적으로 수정 되었습니다.",
+                  buttons: [
+                    {
+                      text: '확인',
+                      handler: () => {
+                        // this.registerReply.comment = '';
+                        this.comment_popover_option_textarea = -1;
+                        this.textareaResize();
+                        this.update();
+                      }
+                    }
+                  ]
+                });
+                this.comment_popover_option = "보기";
+                alert2.present();
+              }
+              // this.nav.push(CareZoneMissionIngPage, { _id: id });
+            }, error => {
+              this.showError(JSON.parse(error._body).msg);
+            });
+          }
+        }]
+    });
+    alert.present();
+  }
+
+  textareaResize() {
+    setTimeout(() => {
+      this.myInput.nativeElement.style.height = '40px'
+      this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
+    }, 100)
+  }
+
+  focus(event) {
+    // console.log(event.target.value)
+    // this.focusvalue = event.target.value
+    this.updatevalue = event.target.value
+    // console.log(event)
+    // console.log("focus focus")
+  }
+
+  protected adjustTextarea(): void {
+    let textArea = this.element.nativeElement.getElementsByTagName('textarea')[0];
+    textArea.style.overflow = 'hidden';
+    textArea.style.height = 'auto';
+    textArea.style.height = textArea.scrollHeight + 'px';
+    textArea.style.cursor = 'pointer';
+    return;
+  }
+
+  protected adjustTextareaUpdate(event): void {
+    let textArea = this.element.nativeElement.getElementsByTagName('textarea')[0];
+    textArea.style.overflow = 'hidden';
+    textArea.style.height = 'auto';
+    textArea.style.height = textArea.scrollHeight + 'px';
+    textArea.style.cursor = 'pointer';
+    this.updatevalue = event.target.value;
+    return;
+  }
 }
