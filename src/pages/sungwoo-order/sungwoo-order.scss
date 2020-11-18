@@ -116,25 +116,29 @@ page-sungwoo-order {
       color: #292929;
     }
 
-    .order_card {
+    .order_grid {
       position: relative;
-      height: 21.2vh;
-      width: 92.5vw;
-      left: 0.5vw;
+      height: 24.3vh;
+      width: 100vw;
       background-color: #FFF;
       box-shadow: none;
+      display: flex;
+      // 요소들 사이에 동일한 간격을 줌. 양 옆 끝선 정렬.
+      justify-content: space-between;
+      // 넓이 제거
+      width: calc(100vw - 9.5vw);
+      left: 3.5vw;
+      margin: 0;
     }
 
     .text_col {
       position: relative;
+      top: 5vh;
       height: 15vh;
       width: 50vw;
     }
 
     .product_name {
-      position: relative;
-      top: 4vh;
-      left: 2vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 11px;
       font-weight: 500;
@@ -146,38 +150,32 @@ page-sungwoo-order {
     }
 
     .order_name {
-      position: relative;
-      top: 5.2vh;
-      left: 2vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 15.5px;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
-      line-height: 1.8vh;
+      line-height: 1.8;
       letter-spacing: -0.72px;
       text-align: left;
       color: #292929;
     }
 
     .order-little_text1 {
-      position: relative;
-      top: 11.4vh;
-      left: 2vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 11.2px;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
-      line-height: normal;
+      line-height: 6.61;
       letter-spacing: normal;
       color: #939393;
     }
 
     .order_img {
-      position: relative;
-      top: 4.2vh;
-      left: 3.2vw;
+      position: absolute;
+      top: 5.8vh;
+      left: 6.8vw;
       width: 16.8vw;
       height: 9.7vh;
       border-radius: 5.7px;
@@ -387,7 +385,7 @@ page-sungwoo-order {
     // }
 
     .order_payment_grid {
-      height: 55.5vh;
+      height: 55.8vh;
       width: 100vw;
     }
 
@@ -461,9 +459,8 @@ page-sungwoo-order {
     }
     
     .s_icon {
-      margin-left: -4.5vw;
-      min-width: 80vw;
-      height: 7vh;
+      position: absolute;
+      min-width: 70vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 12.3px;
       font-weight: normal;
@@ -478,49 +475,56 @@ page-sungwoo-order {
       position: relative;
       width: 20px;
       height: 19px;
-  }
+    }
 
-    // .terms {
-    //   height: 33px;
-    //   font-family: AppleSDGothicNeo;
-    //   font-size: 15.5px;
-    //   font-weight: normal;
-    //   font-stretch: normal;
-    //   font-style: normal;
-    //   line-height: 0.91;
-    //   letter-spacing: -2.2px;
-    //   text-align: left;
-    //   color: #292929;
-    //   margin-top: 1.5%;
-    //   margin-left: 6.6%;
-    // }
+    .order_terms_grid {
+      position: absolute;
+      height: 35.5vh;
+      width: 100vw;
+    }
+
+    .terms_box {
+      position: absolute;
+      top: 7vh;
+      left: 5vw;
+    }
+
+    .terms {
+      position: relative;
+      display: flex;
+      // 요소들을 컨테이너 좌측 정렬.
+      justify-content: flex-start;
+      top: 4.5vh;
+      left: 8.5vw;
+      width: calc(100vw - 9.5vw);
+    }
 
     .card-title {
+      position: relative;
+      max-width: 90vw;
+      text-align: left;
       font-family: AppleSDGothicNeo;
       font-size: 15px;
       font-weight: bold;
       font-style: normal;
       font-stretch: normal;
-      line-height: 4.4vh;
-      letter-spacing: -0.7vw;
+      // line-height: 4.4vh;
+      letter-spacing: -0.68px;
       color: #292929;
-      margin-top: 0.5vh;
-      margin-left: 2.6vw;
     }
 
     .card-subtitle {
+      position: relative;
+      max-width: 90vw;
       font-family: AppleSDGothicNeo;
       font-size: 12px;
       font-weight: normal;
       font-style: normal;
       font-stretch: normal;
-      line-height: 3.3vh;
+      text-align: left;
+      // line-height: 3.3vh;
       color: #939393;
-      margin-top: 0.7vh;
-      margin-left: 11.8vw;
-      margin-right: 6vw;
-      margin-bottom: 15.7vh;
-      letter-spacing: -0.3vw;
+      letter-spacing: -0.59px;
     }
 
     .cell {
@@ -570,20 +574,20 @@ page-sungwoo-order {
       letter-spacing: -0.68px;
       text-align: left;
       // color: #292929;
-      
+        
       // The select element is set to required
       // as long as the selected options value
       // is empty the element is not valid.
       &:invalid {
         color: gray;
       }
-      
+        
       // Styling for browsers which do support
       // styling select option elements directly
       [disabled] {
         color: gray;
       }
-      
+        
       option {
         color: default-color;
       }
