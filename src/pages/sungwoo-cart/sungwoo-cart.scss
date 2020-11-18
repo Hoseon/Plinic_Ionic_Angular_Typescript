@@ -40,7 +40,7 @@ page-sungwoo-cart {
       letter-spacing: normal;
       text-align: center;
     //   margin-right: 14%;
-      margin-top: -18.8%;
+      margin-top: -12.8%;
     }
   
     .toolbar-title-ios {
@@ -117,6 +117,12 @@ page-sungwoo-cart {
     }
 
     .cart_div {
+      position: absolute;
+      height: 100vh;
+      width: 100vh;
+    }
+
+    .title_div {
       position: relative;
       height: 9vh;
       width: 100vw;
@@ -159,16 +165,28 @@ page-sungwoo-cart {
       border-radius: 2.8px;
       border: solid 1px #d1d1d1;
       background-color: #ffffff;
-      ;
     }
 
     .cart_card {
       position: relative;
-      height: 23.5vh;
+      height: 24vh;
       width: 92.5vw;
-      left: 1vw;
-      top: 0.5vh;
+      left: 0.5vw;
+      top: 2vh;
       margin-top: 1vh;
+      background-color: #FFF;
+      border-radius: 5.7px;
+      border: solid 0.5px #c8c8c8;
+      box-shadow: none;
+    }
+
+    .cart_icon {
+      position: relative;
+      width: 8.5vw;
+      top: 0.7vh;
+      height: 3vh;
+      object-fit: contain;
+      background-color: white;
     }
 
     .cart_checkbox2 {
@@ -178,21 +196,24 @@ page-sungwoo-cart {
       display: inline-block;
     }
 
-    .x_icon {
+    .cart_close {
       position: relative;
+      bottom: 2.3vh;
+      left: 84vw;
       float: right;
-      width: 8.5vw;
-      top: 0.7vh;
-      height: 3vh;
-      object-fit: contain;
-      background-color: white;
-  }
+      background-color: #ffffff;
+    }
+
+    .text_col {
+      position: absolute;
+      height: 15vh;
+      width: 50vw;
+    }
 
     .product_name {
       position: relative;
-      top: 0.2vh;
+      top: 0.5vh;
       left: 11vw;
-      max-width:  60vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 11px;
       font-weight: 500;
@@ -202,85 +223,98 @@ page-sungwoo-cart {
       letter-spacing: normal;
     }
 
-    .img_div {
-      position: relative;
-      float: right;
-      right: 4vw;
-      bottom: 2.2vh;
-      height: 10vh;
-      width: 17vw;
-    }
-
-    .cart_img {
-      // position: relative;
-      // right: 4vw;
-      // bottom: 2.2vh;
-      // width: 17.5vw;
-      // height: 10vh;
-      border-radius: 5.7px;
-      // margin-top: -3.2vh;
-      // margin-left: 72vw;
-      border: solid 0.5px #d2d2d2;
-      background-color: #ffffff;
-    }
-
     .cart_name {
       position: relative;
-      max-width: 55vw;
-      height: 6.5vh;
-      bottom: 1vh;
+      top: 1vh;
       left: 11vw;
+      height: 2vh;
+      width: 55vw;
       font-family: AppleSDGothicNeo-Regular;
-      font-size: 13.5px;
+      font-size: 12.5px;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
       line-height: 0.91;
-      letter-spacing: -2.2px;
+      letter-spacing: -1.22px;
       text-align: left;
+      white-space: normal;
       color: #292929;
     }
 
     .price {
       position: relative;
-      bottom: 2vh;
+      top: 4.5vh;
       left: 11vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13.5px;
       font-weight: 500;
       font-stretch: normal;
       font-style: normal;
-      line-height: 1.42;
+      line-height: 0.42;
       letter-spacing: -0.02px;
       text-align: left;
       color: #505050;
     }
 
-    .cart_count {
+    .img_col {
+      position: absolute;
+    }
+
+    /* 삼성 갤럭시 탭 S3, 아이패드 적용 (해상도 768 ~ 1024) */
+    @media all and (min-width:768px) and (max-width:1024px) { 
+    .cart_img {
+      left: 68vw !important;
+      }
+    }
+    
+    /* 삼성 갤럭시 탭 S4 적용 (해상도 1138px ~)*/
+    @media all and (min-width:1137px) { 
+    .cart_img {
+      left: 60vw !important;
+      }
+    }
+    
+    .cart_img {
       position: relative;
-      left: 7vw;
-      bottom: 2vh;
+      left: 71vw;
+      top: 2vh;
+      width: 17.5vw;
+      height: 9.5vh;
       border-radius: 5.7px;
+      border: solid 0.5px #d2d2d2;
+      background-color: #ffffff;
+    }
+
+    .count_count {
+      position: absolute;
+      top: 16vh;
+      left: 7vw;
+      border-radius: 5.7px;
+    }
+
+    .count_sum {
+      position: absolute;
+      height: 10vh;
+      top: 17.1vh;
+      left: 50vw;
     }
 
     .cart_text1 {
       position: relative;
-      left: 18vw;
-      bottom: 1.3vh;
+      left: 6.5vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 12.8px;
       font-weight: 500;
       font-stretch: normal;
       font-style: normal;
       line-height: 1.13;
-      letter-spacing: -1.23px;
       color: #505050;
     }
 
     .cart_text2 {
       position: relative;
-      left: 17.5vw;
-      bottom: 1.2vh;
+      left: 21.5vw;
+      bottom: 2.2vh;
       text-align: left;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13.2px;
@@ -290,19 +324,18 @@ page-sungwoo-cart {
       line-height: 1.13;
       letter-spacing: 0.08px;
       color: #505050;
-      // margin-top: 0.5vh;
-      // margin-left: -3.15vw;
-      // padding-left: 3.6vw;
     }
 
     .cart_price {
-      height: 21vh;
+      position: relative;
+      margin: 0;
+      height: 27vh;
       width: 100vw;
     }
 
     .text_row {
       position: relative;
-      top: 2.5vh;
+      top: 1.5vh;
       left: 8vw;
       line-height: 1.84;
     }
@@ -326,7 +359,7 @@ page-sungwoo-cart {
       font-weight: 300;
       font-stretch: normal;
       font-style: normal;
-      letter-spacing: -0.71px;
+      letter-spacing: 0.08px;
       text-align: right;
       color: #5d5d5d;
     }
@@ -362,7 +395,7 @@ page-sungwoo-cart {
       font-style: normal;
       font-stretch: normal;
       line-height: normal;
-      letter-spacing: -1.46px;
+      letter-spacing: -0.46px;
     }
 
     .cell {
