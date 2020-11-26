@@ -104,6 +104,7 @@ export class CareZonePage {
     public modalCtrl: ModalController,
   ) {
     this.platform.ready().then((readySource) => {
+      this.androidBackButton();
       // this.carezoneData = this.roadcareZone();
       // this.loadItems();
     });
@@ -584,7 +585,8 @@ export class CareZonePage {
           this.reloadUserPoint(this.userData.email);
         }
       }
-      console.log("출석체크 페이지 닫음");
+      console.log("내정보 페이지 닫음");
+      this.androidBackButton();
     });
     myModal.present();
   }
@@ -642,5 +644,14 @@ export class CareZonePage {
         }
       }
     });
+  }
+
+  //20201125 안드로이드 백 버튼 처리
+  androidBackButton() {
+    if(this.platform.is('android')) {
+      this.platform.registerBackButtonAction(()=>{
+        this.nav.parent.select(0);
+      });
+    }
   }
 }

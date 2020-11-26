@@ -15,6 +15,7 @@ import { NavController, NavParams, Platform } from 'ionic-angular';
 
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { ImageLoader } from 'ionic-image-loader';
+import { AuthService } from '../../providers/auth-service';
 
 
 @IonicPage() @Component({
@@ -36,7 +37,10 @@ export class TabsPage {
       private imageLoader: ImageLoader, 
       public platform: Platform,
       public navCtrl: NavController,
+      public auth: AuthService,
     ) {
+
+      
     // if (this.navParams.get('home') === 'successHome') {
     //   this.tab1Root = SuccessHomePage;
     // } else {

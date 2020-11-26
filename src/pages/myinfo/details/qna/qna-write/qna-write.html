@@ -45,7 +45,7 @@
 </ion-content>
 
 
-<ion-footer mode="ios" keyboard-attach no-bounce no-lines>
+<ion-footer mode="ios" no-bounce no-lines>
 <button  *ngIf="qna_input!=='' && qna_select !==''"  class="qna_btn" ion-button (click)="qna_submit();"> 문의하기</button>
 <button  *ngIf="qna_input==='' || qna_select ===''" class="qna_btn2" ion-button (click)="qna_submit();"> 문의하기</button>
 </ion-footer>

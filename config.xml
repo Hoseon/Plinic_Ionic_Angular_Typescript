@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.g1p.plinic" version="0.0.70" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.g1p.plinic" version="0.0.110" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Plinic</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -11,8 +11,6 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <preference name="KeyboardResize" value="true" />
-    <preference name="KeyboardResizeMode" value="native" />
     <preference name="ScrollEnabled" value="true" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
@@ -25,6 +23,8 @@
     <preference name="AutoHideSplashScreen" value="”false”" />
     <preference name="loadUrlTimeoutValue" value="60000" />
     <preference name="AllowInlineMediaPlayback" value="true" />
+    <preference name="KeyboardResize" value="true" />
+    <preference name="KeyboardResizeMode" value="native" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
@@ -87,13 +87,11 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
-    <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
     <plugin name="cordova-plugin-whitelist" spec="1.3.1" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
     <plugin name="cordova-plugin-themeablebrowser" spec="^0.2.18" />
-    <plugin name="cordova-plugin-ionic-keyboard" spec="^2.1.3" />
     <plugin name="cordova-plugin-googleplus" spec="^5.2.1">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.937070120101-rtaljkjdb19oiolebm1edfd5vugc778q" />
     </plugin>
@@ -117,5 +115,6 @@
     <plugin name="cordova-plugin-geolocation" spec="^4.0.2">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
+    <plugin name="cordova-plugin-ionic-keyboard" spec="~2.2.0" />
     <engine name="ios" spec="5.0.1" />
 </widget>
