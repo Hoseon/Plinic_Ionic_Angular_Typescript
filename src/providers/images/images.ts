@@ -29,6 +29,11 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public getOneBeautyMovie(id) { //플리닉 관리 되는 유튜브 영상 정보 가져 오기(조회수,댓글)
+    return this.http.get(this.apiURL + 'beautymovie/oneList/' + id)
+      .map(response => response.json());
+  }
+
   //유튜브 비디오 정보 가져 오기
   public getYoutubeVideos(videoId) {
     let params: string = [
@@ -479,6 +484,15 @@ export class ImagesProvider {
     .map(response => response.json());
   }
 
+  public movieLike(id, email) {
+    return this.http.get(this.apiURL + 'beautymovie/like/' + id + '/' + email)
+      .map(response => response.json());
+  }
+
+  public movieDisLike(id, email) {
+    return this.http.get(this.apiURL + 'beautymovie/dislike/' + id + '/' + email)
+      .map(response => response.json());
+  }
   
 
 

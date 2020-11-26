@@ -12,8 +12,7 @@ import { AuthService } from '../../providers/auth-service';
 import { Device } from '@ionic-native/device';
 import { MyinfoPage } from '../myinfo/myinfo'
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-
-
+import { SungwooBeautyPage } from '../sungwoo-beauty/sungwoo-beauty';
 
 
 /**
@@ -69,8 +68,9 @@ export class CommunityPage {
   // youTubeData: any;
   youTubeArrayData: Array<any> = new Array<any>();
   isGetTube: boolean = false;
-
   @ViewChild(Slides) slides: Slides;
+  videoDetailData: Array<any> = new Array<any>();
+
 
 
   constructor(
@@ -81,6 +81,12 @@ export class CommunityPage {
 
 
     this.platform.ready().then((readySource) => {
+      if(this.platform.is('android')) {
+        this.platform.registerBackButtonAction(()=>{
+          this.nav.parent.select(0);
+          this.authService.setUserStoragetab(0);
+        })
+      }
 
       console.log("루트페어런트 데이터 테스트 ::::::;" + JSON.stringify(navParams.data));
 
@@ -94,18 +100,16 @@ export class CommunityPage {
         this.movieData = data
         if(data) {
           for(let i = 0; i < data.length; i++) {
-            this.youTubeArrayData[i] = data[i].items[0].snippet;
+            this.youTubeArrayData[i] = data[i].items[0];
+            this.getOneMovieData(data[i].items[0].id, i);
+          }
         }
-          console.log(this.youTubeArrayData);
-        }
-
       })
     });
   }
 
   async ionViewDidLoad() {
     console.log('ionViewDidLoad CommunityPage');
-    
   }
 
   ionViewDidEnter() {
@@ -180,13 +184,13 @@ export class CommunityPage {
           this.selectedTab(0);
           this.page = "0";
         }, 100);
+      } else if (this.tabs_boolean === 2) {
+        setTimeout(() => {
+          this.selectedTab(2);
+          this.page = "2";
+        }, 100);
       } 
-      // else if (this.tabs_boolean === 2) {
-      //   setTimeout(() => {
-      //     this.selectedTab(2);
-      //     this.page = "2";
-      //   }, 100);
-      // } else if (this.tabs_boolean === 3) {
+      // else if (this.tabs_boolean === 3) {
       //   setTimeout(() => {
       //     this.selectedTab(3);
       //     this.page = "3";
@@ -823,7 +827,9 @@ export class CommunityPage {
           this.reloadUserPoint(this.userData.email);
         }
       }
-      console.log("출석체크 페이지 닫음");
+      console.log("내정보 페이지 닫음");
+      this.androidBackButton();
+
     });
     myModal.present();
   }
@@ -844,4 +850,36 @@ export class CommunityPage {
   async getMovieData() {
     // this.images
   }
+
+  public openMoviePage(youTubeData) {
+    let myModal = this.modalCtrl.create(SungwooBeautyPage, { youTubeData: youTubeData});
+    myModal.onDidDismiss(data => {
+      this.authService.setUserStoragetab(2);
+      this.ionViewWillEnter();
+    });
+    myModal.present();
+
+    // this.authService.setUserStoragetab(2);
+    // this.nav.push(SungwooBeautyPage,{mode:'main', isNew: 'new'}).then(() => {
+    //   this.nav.getActive().onDidDismiss(data => {
+    //     //code
+    //   });
+    // });
+  }
+
+  getOneMovieData(movieId, index) {
+    this.images.getOneBeautyMovie(movieId).subscribe(data=> {
+      this.videoDetailData[index] = data;
+    });  
+  }
+
+  //20201125 안드로이드 백 버튼 처리
+  androidBackButton() {
+    if(this.platform.is('android')) {
+      this.platform.registerBackButtonAction(()=>{
+        this.nav.parent.select(0);
+      });
+    }
+  }
+
  }

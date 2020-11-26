@@ -4,8 +4,7 @@ import { AuthService } from '../../../../../providers/auth-service';
 // import { KeyboardAttachDirective } from '../../../../../providers/keyboard-attach.directive'
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 // import { Keyboard } from '@ionic-native/keyboard';
-
-
+declare var cordova: any;
 
 
 /**
@@ -19,7 +18,6 @@ import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 @Component({
   selector: 'page-qna-write',
   templateUrl: 'qna-write.html',
-  // providers: [Keyboard]
 })
 export class QnaWritePage {
 
@@ -32,7 +30,6 @@ export class QnaWritePage {
   qnaDetailData: any;
   mode: any;
   unregisterBackButtonAction: Function
-
   @ViewChild('navbar') navBar: Navbar;
 
   constructor(
@@ -40,11 +37,13 @@ export class QnaWritePage {
     public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public alertCtrl: AlertController, private auth: AuthService
   , public viewCtrl: ViewController ) {
 
+    // cordova.plugins.Keyboard.setResizeMode('native');
+    console.log("키보드 셋팅");
       this.platform.ready().then((readySource) => {
-
           this.unregisterBackButtonAction = this.platform.registerBackButtonAction(() => {
               this.dissmiss();
           }, 99999);
+
       });
   }
 

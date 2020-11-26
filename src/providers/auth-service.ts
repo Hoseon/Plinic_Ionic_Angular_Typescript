@@ -18,12 +18,6 @@ import { reject } from 'q';
 declare var cordova: any;
 // declare var SignInWithApple: any;
 
-
-//Blue Mod S42
-// const PLINIC_SERVICE = 'FEFB';
-// const UUID_SERVICE = 'FEFB';
-// const SWITCH_CHARACTERISTIC = 'FF00';
-
 //HM Soft Bluetooth Mod
 const PLINIC_SERVICE = 'FFE0';
 const UUID_SERVICE = 'FFE0';
@@ -830,6 +824,46 @@ export class AuthService {
     console.log("Replydelete : " + JSON.stringify(body));
 
     return this.http.post(CONFIG.apiUrl + 'api/replydelete', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public replyMovieSave(userData, id, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: userData.email,
+      body: content.body,
+    };
+
+    console.log("ReplySave : " + JSON.stringify(body));
+    console.log("등록될 ID : " + id);
+
+    return this.http.post(CONFIG.apiUrl + 'beautymovie/'+ id+ '/topcomments', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public replyMovieReCommentSave(userData, id, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: userData.email,
+      body: content.body,
+    };
+
+    console.log("ReplySave : " + JSON.stringify(body));
+    console.log("등록될 ID : " + id);
+
+    return this.http.post(CONFIG.apiUrl + 'beautymovie/'+ id+ '/recomments', JSON.stringify(body), { headers: headers })
       .map(res => res.json())
       .map(data => {
         console.log(data);

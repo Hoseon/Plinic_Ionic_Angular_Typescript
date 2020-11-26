@@ -1,4 +1,4 @@
-import { IonicPage, App } from 'ionic-angular';
+import { IonicPage, App} from 'ionic-angular';
 import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
 import { NavController, Platform, AlertController, ModalController, Loading, LoadingController, ViewController, Events, ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
@@ -201,7 +201,6 @@ export class HomePage {
     private themeableBrowser: ThemeableBrowser, private imageLoader: ImageLoader, public app: App, private callNumber: CallNumber
     , @Inject(DOCUMENT) document, public events: Events) {
     this.platform.ready().then((readySource) => {
-
       this.geolocation.getCurrentPosition().then((resp) => {
         console.log(resp.coords.latitude);
         console.log(resp.coords.longitude);
@@ -275,6 +274,7 @@ export class HomePage {
   }
 
   async ionViewWillEnter() {
+    console.log("willEnter");
     await this.skinQnaLoad();
     if(this.userData) {
       this.challengeChkMission(this.userData.email);
@@ -292,6 +292,10 @@ export class HomePage {
   async ionViewDidEnter() {
     if(this.platform.is('ios') || this.platform.is('android')) {
       this.inItFCM();
+      if(this.platform.is('android')) {
+        this.androidBackButton();
+      }
+      
     }
   }
 
@@ -302,6 +306,9 @@ export class HomePage {
 
   public community_qna_modify(id) {
     let myModal = this.modalCtrl.create(CommunityModifyPage, { id: id, mode: 'qna' });
+    myModal.onDidDismiss(data => {
+      this.androidBackButton();
+    });
     myModal.present();
   }
 
@@ -1127,6 +1134,7 @@ export class HomePage {
     let myModal = this.modalCtrl.create(GuidePage, {mode : 'home'});
     myModal.onDidDismiss(data => { 
       console.log("케어 포인트 닫힘");
+      this.androidBackButton();
       if(this.userData){
         this.isFlip = true;
         // console.log("사용자 포인트 리로드");
@@ -1167,6 +1175,10 @@ export class HomePage {
       }
       }
       console.log("출석체크 페이지 닫음");
+      if(this.platform.is('android')) {
+        this.androidBackButton();
+      }
+
     });
     myModal.present();
   }
@@ -1184,7 +1196,10 @@ export class HomePage {
         this.reloadUserPoint(this.userData.email);
       }
       }
-      console.log("출석체크 페이지 닫음");
+      console.log("내정보 페이지 닫음");
+      if(this.platform.is('android')) {
+        this.androidBackButton();
+      }
     });
     myModal.present();
   }
@@ -1478,6 +1493,41 @@ export class HomePage {
   productMain(){
     this.nav.push(ProductReviewPage);
     //20201104 페이지 개발용 wifi기기 커넥션
+  }
+
+  androidBackButton() {
+    if(this.platform.is('android')) {
+      this.platform.registerBackButtonAction(()=>{
+        console.log("백버튼 호출");
+        // this.nav.parent.select(0);
+        this.auth.getUserStoragetab().then(result =>{
+          if(result === 0) {
+                let alert = this.alertCtrl.create({
+                  cssClass: 'push_alert_cancel',
+                  title: "plinic",
+                  message: "앱을 종료하시겠습니까?",
+                  buttons: [
+                    {
+                      text: '취소',
+                      role: 'cancel',
+                      handler: () => {
+                        console.log('취소');
+                      }
+                    },
+                    {
+                      text: '종료',
+                      handler: () => {
+                        console.log('확인'),
+                          this.platform.exitApp(); // IF IT'S THE ROOT, EXIT THE APP.
+                      }
+                    }]
+                });
+                alert.present();
+          }
+          
+        });
+      });
+    }
   }
 
 }

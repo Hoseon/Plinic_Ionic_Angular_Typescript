@@ -134,7 +134,7 @@ export class SkinChekChartPage {
     public modalCtrl: ModalController,
     public loadingCtrl: LoadingController,
   ) {
-    
+    this.androidBackButton();
   }
 
   async ionViewCanEnter(){
@@ -859,7 +859,8 @@ export class SkinChekChartPage {
           this.reloadUserPoint(this.userData.email);
         }
       }
-      console.log("출석체크 페이지 닫음");
+      console.log("내정보 페이지 닫음");
+      this.androidBackButton();
     });
     myModal.present();
   }
@@ -874,6 +875,15 @@ export class SkinChekChartPage {
 
   addComma(data_value) { //숫자 세자리 마다 컴마 붙히기
     return Number(data_value).toLocaleString('en');
+  }
+
+  //20201125 안드로이드 백 버튼 처리
+  androidBackButton() {
+    if(this.platform.is('android')) {
+      this.platform.registerBackButtonAction(()=>{
+        this.navCtrl.parent.select(0);
+      });
+    }
   }
 
 }

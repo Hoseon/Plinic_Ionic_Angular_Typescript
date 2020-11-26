@@ -76,8 +76,15 @@ export class ChulsukCheckPage {
   }
 
   ionViewDidEnter() { 
+    if(this.platform.is('android')) {
+      this.platform.registerBackButtonAction(()=>{
+        this.nav.pop();
+      })
+    }
+    
     console.log('ionViewDidEnter ChulsukCheckPage');
     this.loadEvents();
+    
   }
 
   ionViewWillLeave(){

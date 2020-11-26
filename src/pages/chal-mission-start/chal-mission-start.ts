@@ -116,8 +116,13 @@ export class ChalMissionStartPage {
       public popoverCtrl: PopoverController,
 
     ) {
-    this.platform.ready().then((readySource) => {
-
+      this.platform.ready().then((readySource) => {
+        if(this.platform.is('android')) {
+          this.platform.registerBackButtonAction(()=>{
+            this.nav.pop();
+            // this.auth.setUserStoragetab(0);
+        })
+      }
       this.bannerData = this.roadbanner();
     });
 
