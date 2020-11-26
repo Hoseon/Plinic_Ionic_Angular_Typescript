@@ -26,10 +26,8 @@
   <ion-list class="cosmetics_list" radio-group required>
     <ion-row class="row_align" no-padding>
       <ion-col col-3 no-padding>
-      <ion-label *ngIf="platform.is('android')" class="cosmetics_label" checked no-padding>기획전
-      <!-- <ion-radio class="radiobutton" name="A" id="건성" value="건성" checked></ion-radio> --></ion-label>
-      <ion-label *ngIf="platform.is('ios')" style="margin-bottom:1%;" class="cosmetics_label" checked no-padding>기획전
-      <!-- <ion-radio class="radiobutton" name="A" id="건성" value="건성" checked></ion-radio> --></ion-label> 
+      <ion-label *ngIf="platform.is('android')" class="cosmetics_label" checked no-padding>기획전</ion-label>
+      <ion-label *ngIf="platform.is('ios')" style="margin-bottom:1%;" class="cosmetics_label" checked no-padding>기획전</ion-label> 
       </ion-col>
       <ion-col col-3 no-padding> 
         <ion-label *ngIf="platform.is('android')" class="cosmetics_label" no-padding>MD추천</ion-label>
@@ -67,7 +65,9 @@
   <ng-container>
     <ion-grid no-padding>
       <div class="cosmetics_div">
-        <ion-col col-6 class="count_text">총 <span class="cosmetics_count">19개</span>의 상품
+        <ion-col col-6 class="count_text">총 
+          <span class="cosmetics_count">19</span>
+          <span class="cosmetics_count">개</span>의 상품
         </ion-col>
         <ion-col col-6 class="select_box">
         <ion-list>
@@ -86,106 +86,86 @@
 
       <ion-list style="margin:0 auto;">
         <ng-container>
-          <div class="list_div">
+          <ion-row class="list_div">
             <img class="cosmetics_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000641.jpg">
-            <ng-container>
-              <button ion-button class="cosmetics_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button>
-            </ng-container>
-            <div class="cosmetics_container">
+            <ion-row class="cosmetics_container" >
               <div class="cosmetics_nickname">구달</div>
-              <ng-container>
-                <div class="cosmetics_product" text-wrap>청귤 비타C 잡티세럼</div>
-              </ng-container>
+              <div class="cosmetics_product" text-wrap>청귤 비타C 잡티세럼</div>
               <div class="count_container">
                 <ion-col class="cosmetics_text" col-6 no-padding>리뷰<span class="cosmetics_num">24</span></ion-col>
                 <ion-col class="cosmetics_text" col-6 no-padding>좋아요<span class="cosmetics_num">127</span></ion-col>
               </div>
-            </div>
-          </div>
+            </ion-row>
+            <button ion-button class="cosmetics_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button>
+          </ion-row>
         </ng-container>
 
         <div style="height:1px; width:100%; display: block; background-color:#f1f1f1"></div>
 
         <ng-container>
-          <div class="list_div">
+          <ion-row class="list_div">
             <img class="cosmetics_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/PA100000766.jpg">
-            <ng-container>
-              <button ion-button class="cosmetics_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button>
-            </ng-container>
-            <div class="cosmetics_container">
+            <ion-row class="cosmetics_container">
               <div class="cosmetics_nickname">구달</div>
-              <ng-container>
-                <div class="cosmetics_product" text-wrap>프리즘 이펙트 컨센트레이트 크림</div>
-              </ng-container>
+              <div class="cosmetics_product" text-wrap>프리즘 이펙트 컨센트레이트 크림</div>
               <div class="count_container">
                 <ion-col class="cosmetics_text" col-6 no-padding>리뷰<span class="cosmetics_num">7</span></ion-col>
                 <ion-col class="cosmetics_text" col-6 no-padding>좋아요<span class="cosmetics_num">84</span></ion-col>
               </div>
-            </div>
-          </div>
+            </ion-row>
+            <button ion-button class="cosmetics_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button>
+          </ion-row>
         </ng-container>
 
         <div style="height:1px; width:100%; display: block; background-color:#f1f1f1"></div>
 
         <ng-container>
-          <div class="list_div">
+          <ion-row class="list_div">
             <img class="cosmetics_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000929.jpg">
-            <ng-container>
-              <button ion-button class="cosmetics_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button>
-            </ng-container>
-            <div class="cosmetics_container">
+            <ion-row class="cosmetics_container">
               <div class="cosmetics_nickname">라네즈</div>
-              <ng-container>
-                <div class="cosmetics_product" text-wrap>레디언-C크림</div>
-              </ng-container>
+              <div class="cosmetics_product" text-wrap>레디언-C크림</div>
               <div class="count_container">
                 <ion-col class="cosmetics_text" col-6 no-padding>리뷰<span class="cosmetics_num">-</span></ion-col>
                 <ion-col class="cosmetics_text" col-6 no-padding>좋아요<span class="cosmetics_num">3</span></ion-col>
               </div>
-            </div>
-          </div>
+            </ion-row>
+            <button ion-button class="cosmetics_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button>
+          </ion-row>
         </ng-container>
 
         <div style="height:1px; width:100%; display: block; background-color:#f1f1f1"></div>
 
         <ng-container>
-          <div class="list_div">
+          <ion-row class="list_div">
             <img class="cosmetics_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/PA100000930.jpg">
-            <ng-container>
-              <button ion-button class="cosmetics_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button>
-            </ng-container>
-            <div class="cosmetics_container">
+            <ion-row class="cosmetics_container">
               <div class="cosmetics_nickname">아리따움</div>
-              <ng-container>
-                <div class="cosmetics_product" text-wrap>프레시 파워 에센스</div>
-              </ng-container>
+              <div class="cosmetics_product" text-wrap>프레시 파워 에센스</div>
               <div class="count_container">
                 <ion-col class="cosmetics_text" col-6 no-padding>리뷰<span class="cosmetics_num">-</span></ion-col>
                 <ion-col class="cosmetics_text" col-6 no-padding>좋아요<span class="cosmetics_num">-</span></ion-col>
               </div>
-            </div>
-          </div>
+            </ion-row>
+            <button ion-button class="cosmetics_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button>
+          </ion-row>
         </ng-container>
         
         <div style="height:1px; width:100%; display: block; background-color:#f1f1f1"></div>
 
         <ng-container>
-          <div class="list_div">
+          <ion-row class="list_div">
             <img class="cosmetics_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000641.jpg">
-            <ng-container>
-              <button ion-button class="cosmetics_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button>
-            </ng-container>
-            <div class="cosmetics_container">
+            <ion-row class="cosmetics_container">
               <div class="cosmetics_nickname">구달</div>
-              <ng-container>
-                <div class="cosmetics_product" text-wrap>청귤 비타C 잡티세럼</div>
-              </ng-container>
+              <div class="cosmetics_product" text-wrap>청귤 비타C 잡티세럼</div>
               <div class="count_container">
                 <ion-col class="cosmetics_text" col-6 no-padding>리뷰<span class="cosmetics_num">-</span></ion-col>
                 <ion-col class="cosmetics_text" col-6 no-padding>좋아요<span class="cosmetics_num">-</span></ion-col>
               </div>
-            </div>
-          </div>
+            </ion-row>
+            <button ion-button class="cosmetics_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button>
+          </ion-row>
         </ng-container>
 
         <div style="height:1px; width:100%; display: block; background-color:#f1f1f1"></div>
