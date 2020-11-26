@@ -8,7 +8,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 
 import { GenderFilter } from './../pipes/gender-filter';
 //import { UserCard } from '../components/user-card/user-card';
-import { Keyboard } from '@ionic-native/keyboard';
+// import { Keyboard } from '@ionic-native/keyboard';
 
 //탭페이지 구성
 // import { LoginPage } from '../pages/login/login';
@@ -583,7 +583,7 @@ export function getAuthHttp(http, storage) {
   providers: [
     StatusBar,
     SplashScreen,
-    Keyboard,
+    // Keyboard,
     ScreenOrientation,
     KakaoCordovaSDK,
     AuthService,
