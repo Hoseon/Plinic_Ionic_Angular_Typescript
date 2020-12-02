@@ -14,29 +14,6 @@
     <img class="android_search" style="left:5%" (click)="community_search()"
       src="assets/img/beauty/ic-system-search@3x.png" />
     <ion-title class="android_title" text-wrap>커뮤니티</ion-title>
-    <!-- <ng-container *ngIf="page==='0'"> -->
-
-    <!-- <div class="android_my">MY</div> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='1'"> -->
-    <!-- <img class="android_search" src="assets/img/beauty/ic-system-search@3x.png" />
-    <div class="android_my">MY</div> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='2'"> -->
-    <!-- <img class="android_search" style="right:5%" (click)="community_search()" -->
-    <!-- src="assets/img/beauty/ic-system-search@3x.png" /> -->
-    <!-- <button ion-button class="android_my" (click)="community_my()">MY</button> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='3'"> -->
-    <!-- <img class="android_search" style="right:5%" (click)="community_search()" -->
-    <!-- src="assets/img/beauty/ic-system-search@3x.png" /> -->
-    <!-- <button ion-button class="android_my" (click)="community_my()">MY</button> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='4'"> -->
-    <!-- <img class="android_search" src="assets/img/beauty/ic-system-search@3x.png" />
-    <div class="android_my">MY</div> -->
-    <!-- </ng-container> -->
-
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios')" no-lines>
@@ -53,29 +30,6 @@
     </ion-buttons>
 
     <ion-title class="ios_title" text-wrap>커뮤니티</ion-title>
-
-    <!-- <ng-container *ngIf="page==='0'"> -->
-    <!-- <div class="ios_my">MY</div> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='1'"> -->
-    <!-- <img class="ios_search" src="assets/img/beauty/ic-system-search@3x.png" />
-    <div class="ios_my">MY</div> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='2'"> -->
-    <!-- <img class="ios_search" style="right:5%" (click)="community_search()" -->
-    <!-- src="assets/img/beauty/ic-system-search@3x.png" /> -->
-    <!-- <button ion-button class="ios_my" (click)="community_my()">MY</button> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='3'"> -->
-    <!-- <img class="ios_search" style="right:5%" (click)="community_search()" -->
-    <!-- src="assets/img/beauty/ic-system-search@3x.png" /> -->
-    <!-- <button ion-button class="ios_my" (click)="community_my()">MY</button> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='4'"> -->
-    <!-- <img class="ios_search" src="assets/img/beauty/ic-system-search@3x.png" />
-    <div class="ios_my">MY</div> -->
-    <!-- </ng-container> -->
-
   </ion-navbar>
   <div style="height:1px; width:100%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
   <ion-segment outline mode="md" [(ngModel)]="page" color="#5c59b6">
@@ -493,18 +447,20 @@
       </ion-slides>
 
       <ng-container *ngFor="let skinqna of skinQnaData; let i = index">
+
+
         <ng-container *ngIf="skinqna.filename">
           <!-- 피부 고민 이미지가 있을 때  -->
           <ion-item class="line_item" no-lines>
             <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
               <ion-row class="beauty_row">
-                <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">{{skinqna.select}}
-                  </span>{{skinqna.title}}</ion-col>
+                <div class="beauty_note_title_img2">{{skinqna.select}}</div>
+                <ion-col col-8 class="beauty_note_title_img3">{{skinqna.title}}</ion-col>
               </ion-row>
               <ion-row class="beauty_row">
                 <ion-col col-8 class="beauty_note_title_contents_img">{{skinqna.contents}}</ion-col>
               </ion-row>
-              <ion-col class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+              <ion-col class="beauty_note_like">조회 {{skinqna.views}} ∙ 좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
               <img *ngIf="platform.is('android')" class="beauty_worry_img"
@@ -515,22 +471,26 @@
           </ion-item>
           <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
         </ng-container>
+
+
         <ng-container *ngIf="!skinqna.filename">
           <!-- 피부 고민 이미지가 없을 때  -->
           <ion-item class="line_item" no-lines>
             <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
               <ion-row class="beauty_row">
-                <ion-col class="beauty_note_title"><span class="beauty_note_Q">{{skinqna.select}}
-                  </span>{{skinqna.title}}</ion-col>
+                <div class="beauty_note_title_img2">상품문의</div>
+                <ion-col class="beauty_note_title_img4">{{skinqna.title}}</ion-col>
                 <ion-col class="beauty_note_contents">{{skinqna.contents}}</ion-col>
               </ion-row>
-              <ion-col class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+              <ion-col class="beauty_note_like">조회 {{skinqna.views}} ∙ 좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
             </ion-col>
           </ion-item>
           <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
         </ng-container>
+
+
       </ng-container>
 
 

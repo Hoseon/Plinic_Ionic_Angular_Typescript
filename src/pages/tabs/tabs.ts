@@ -11,6 +11,7 @@ import { SkinChekChartPage } from '../skin-chek-chart/skin-chek-chart';
 import { SkinReadyPage } from '../skin-ready/skin-ready';
 import { CareZonePage } from '../care-zone/care-zone';
 import { ProductMainPage } from '../product-main/product-main';
+import { SungwooCosmeticsMainPage } from '../sungwoo-cosmetics-main/sungwoo-cosmetics-main';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
@@ -25,7 +26,8 @@ export class TabsPage {
 
   tab1Root = HomePage;
   tab2Root = CareZonePage;
-  tab3Root = ProductMainPage;
+  // tab3Root = ProductMainPage;
+  tab3Root = SungwooCosmeticsMainPage;
   tab4Root = CommunityPage;
   // tab5Root = MyinfoPage; 2020-03-23 스킨차트 페이지로 변경
   tab5Root = SkinChekChartPage; //2020-06-10 스킨차트 준비중으로 변경하기 위해 잠시 막아둠

@@ -28,52 +28,122 @@
 <ion-header>
 
   <ion-navbar *ngIf="platform.is('android') || platform.is('core')" no-lines>
-    <img class="android_search" style="right:5%" (click)="community_search()"
-    src="assets/img/beauty/ic-system-search@3x.png" />
     <ion-buttons (click)="chartguide()" left>
-      <button class="guide_android">이용안내</button>
+      <img class="guide_android" (click)="product_search()" src="assets/img/beauty/ic-system-search@3x.png" />
     </ion-buttons>
     <ion-title class="android_title" text-wrap>화장품</ion-title>
+    <ion-buttons (click)="myinfo()" end>
+      <div *ngIf="userData" class="android_point">{{userData.totaluserpoint}}P&nbsp;
+        <img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
+    </ion-buttons>
     <div class="android_search" style="right: 7%;">
     </div>
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios')" no-lines>
-    <img class="ios_search" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" />
-    <ion-buttons left no-lines>
-      <button ion-button navPop icon-only>
-      </button>
-    </ion-buttons>
     <ion-buttons (click)="chartguide()" left>
-      <button class="guide_ios">
-        이용안내
-      </button>
+      <img class="guide_ios" (click)="product_search()" src="assets/img/beauty/ic-system-search@3x.png" />
     </ion-buttons>
     <ion-title class="ios_title" text-wrap>화장품</ion-title>
+    <ion-buttons end>
+      <div *ngIf="userData" class="ios_point" (click)="myinfo()" style="right:5%">{{userData.totaluserpoint}}P&nbsp;
+        <img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" />
+      </div>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ng-container>
+  <ion-grid no-padding>
+    <img class="main_img" src="assets/img/sungwoo_img/topBanner.png" />
+  </ion-grid>
 
+  <ion-grid class="grid1" no-padding>
+    <br><br><br>
     <ion-row>
-      <img class="main_img" src="assets/img/sungwoo_img/상단 배너@3x.png"/>
+      <div class="left text1">기획전 상품</div>
+      <img class="img1" src="assets/img/sungwoo_img/ic-system-arrow-grey@3x.png" />
     </ion-row>
+    <ion-row>
+      <div class="left text2">선크림부터 화이트닝 제품까지,여름 화장품 3대장</div>
+    </ion-row>
+    <ion-row>
+      <ion-slides mode="ios" slidesPerView=3>
+        <ion-slide class="slide1">
+          <img class="detail_left img2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NG100131213.jpg" />
+          <div class="detail_left text3">구달 (goodal)</div>
+          <div class="detail_left text4">청귤 비타C 잡티 세럼 플러스</div>
+          <div class="detail_left sale_shape text5">최대50%포인트</div>
+        </ion-slide>
+        <ion-slide class="slide1">
+          <img class="detail_left img2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/BA100005246.jpg" />
+          <div class="detail_left text3">세타필 (Cetaphil)</div>
+          <div class="detail_left text4">모이스춰라이징</div>
+          <div class="detail_left sale_shape text5">최대50%포인트</div>
+        </ion-slide>
+        <ion-slide class="slide1">
+          <img class="detail_left img2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/LA100021587.jpg" />
+          <div class="detail_left text3">지방시 뷰티 (Givenchy Beauty)</div>
+          <div class="detail_left text4">르 루즈</div>
+          <div class="detail_left sale_shape text5">최대50%포인트</div>
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <div style="height:1vh; width:100vw; background-color:#f1f1f1"></div>
 
+  <ion-grid class="grid1" no-padding>
+    <br><br><br>
+    <ion-row>
+      <div class="left text1">MD 추천 상품</div>
+      <img class="img1" src="assets/img/sungwoo_img/ic-system-arrow-grey@3x.png" />
+    </ion-row>
+    <ion-row>
+      <div class="left text2">플리닉에서 엄선한 화장품을 특가로 제공</div>
+    </ion-row>
+    <ion-row>
+      <ion-slides mode="ios" slidesPerView=3>
+        <ion-slide class="slide1">
+          <img class="detail_left img2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/SA100134095.jpg" />
+          <div class="detail_left text3">웰스킨 (WELSKIN)</div>
+          <div class="detail_left text4">센텔라 목화솜 토너패드</div>
+          <div class="detail_left sale_shape text5">최대50%포인트</div>
+        </ion-slide>
+        <ion-slide class="slide1">
+          <img class="detail_left img2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/SA100124428.jpg" />
+          <div class="detail_left text3">코스알엑스 (COSRX)</div>
+          <div class="detail_left text4">풀핏 프로폴리스 시너지 토너</div>
+          <div class="detail_left sale_shape text5">최대50%포인트</div>
+        </ion-slide>
+        <ion-slide class="slide1">
+          <img class="detail_left img2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/PA100100197.jpg">
+          <div class="detail_left text3">셀퓨전씨 (Cell Fusion C)</div>
+          <div class="detail_left text4">파파야 그래뉼 필스</div>
+          <div class="detail_left sale_shape text5">최대50%포인트</div>
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <div style="height:1vh; width:100vw; background-color:#f1f1f1"></div>
+
+
+  <!-- <ng-container>
+    <ion-row>
+      <img class="main_img" src="assets/img/sungwoo_img/topBanner.png" />
+    </ion-row>
     <ion-grid class="planning_title_grid">
-      <ion-row (click)="openCommunityTab1()" class="planning_title">
-        기획전 상품
+      <ion-row (click)="openCommunityTab1()" >
+        <div class="planning_title">기획전 상품</div>
         <div>
           <img class="product_arrow" src="assets/img/sungwoo_img/ic-system-arrow-grey@3x.png" />
         </div>
       </ion-row>
-      <ion-row class="planning_text">
-        선크림부터 화이트닝 제품까지, 여름 화장품 3대장
+      <ion-row >
+        <div class="planning_text">선크림부터 화이트닝 제품까지, 여름 화장품 3대장</div>
       </ion-row>
     </ion-grid>
-
     <ion-slides class="slide_div">
       <ion-slide>
         <ion-grid class="planning_grid">
@@ -86,7 +156,7 @@
                 <div class="planning_border"><span class="planning_border_text">최대 50% 포인트</span></div>
               </ion-row>
             </ion-col>
-          
+
             <ion-col class="planning_div2">
               <img class="planning_img2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/HA100000831.jpg">
               <ion-row class="planning_text_div2">
@@ -94,7 +164,7 @@
                 <div class="planning_post2">프레시 파워 에센스 퍼펙팅 래스트 파운데이션&nbsp;</div>
                 <div class="planning_border2"><span class="planning_border_text2">최대 50% 포인트</span></div>
               </ion-row>
-            </ion-col>    
+            </ion-col>
 
             <ion-col class="planning_div3">
               <img class="planning_img3" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/BA100000828.jpg">
@@ -109,33 +179,35 @@
       </ion-slide>
     </ion-slides>
 
-    <div style="height:1.2vh; width:100vw; background-color:#f1f1f1"></div>
+    <div style="height:1vh; width:100vw; background-color:#f1f1f1"></div>
 
     <ion-grid class="merchandiser_title_grid">
       <ion-row (click)="openCommunityTab1()" class="merchandiser_title">
-        MD 추천 상품
+        <div>MD 추천 상품</div>
         <img class="product_arrow" src="assets/img/sungwoo_img/ic-system-arrow-grey@3x.png" />
       </ion-row>
       <ion-row class="merchandiser_text">
-          플리닉에서 엄선한 화장품을 특가로 제공
+        플리닉에서 엄선한 화장품을 특가로 제공
       </ion-row>
     </ion-grid>
-
+    <br><br><br><br>
     <ion-slides class="slide_div2">
       <ion-slide>
         <ion-grid class="merchandiser_grid">
           <ion-row class="merchandiser_product">
             <ion-col class="merchandiser_div">
-              <img class="merchandiser_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/BA100000639.jpg">
+              <img class="merchandiser_img"
+                src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/BA100000639.jpg">
               <ion-row class="merchandisesr_text_div">
                 <p class="merchandiser_desc"><span class="merchandiser_desc_title">라네즈&nbsp;</span></p>
                 <div class="merchandiser_post">레디언-C 크림&nbsp;</div>
                 <div class="merchandiser_border"><span class="merchandiser_border_text">최대 50% 포인트</span></div>
               </ion-row>
             </ion-col>
-          
+
             <ion-col class="merchandiser_div2">
-              <img class="merchandiser_img2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000640.jpg">
+              <img class="merchandiser_img2"
+                src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000640.jpg">
               <ion-row class="merchandisesr_text_div2">
                 <p class="merchandiser_desc2"><span class="merchandiser_desc_title">아리따움&nbsp;</span></p>
                 <div class="merchandiser_post2">프레시 파워 에센스 퍼펙팅 래스트 파운데이션&nbsp;</div>
@@ -144,7 +216,8 @@
             </ion-col>
 
             <ion-col class="merchandiser_div3">
-              <img class="merchandiser_img3" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000641.jpg">
+              <img class="merchandiser_img3"
+                src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000641.jpg">
               <ion-row class="merchandisesr_text_div3">
                 <p class="merchandiser_desc3"><span class="merchandiser_desc_title">구달&nbsp; </span></p>
                 <div class="merchandiser_post3">청귤 비타C 잡티세럼&nbsp;</div>
@@ -155,60 +228,45 @@
         </ion-grid>
       </ion-slide>
     </ion-slides>
-    
+
 
     <div style="height:0.8vh; width:100vw; background-color:#f1f1f1"></div>
 
-  </ng-container>
+  </ng-container> -->
 
   <ng-container>
     <ion-grid class="grid_backColor">
       <ion-grid class="card_title_grid">
-          <ion-row class="card_title">화장품 효능별 모아보기</ion-row>
-          <ion-row class="card_mini">효능 집중 관리를 위한 성분 분석</ion-row>
+        <ion-row class="card_title">화장품 효능별 모아보기</ion-row>
+        <ion-row class="card_mini">효능 집중 관리를 위한 성분 분석</ion-row>
       </ion-grid>
-   
+
       <ion-grid class="card_grid">
         <ion-card class="card">
           <ion-grid no-padding>
             <ion-row>
               <ion-col class="card_kind" col-7>
-                보습
+                <div class="card_desc">보습</div>
                 <img class="card_arrow" src="assets/img/sungwoo_img/ic-system-arrow-grey@3x.png" />
                 <div class="card_text">스킨케어 기초! 보습 효능 화장품</div>
               </ion-col>
               <ion-col col-5>
-                <img class="card_img" src="assets/img/sungwoo_img/woman@3x.png" />
+                <img class="card_img1" src="assets/img/sungwoo_img/woman@3x.png" />
               </ion-col>
             </ion-row>
           </ion-grid>
         </ion-card>
 
-        <!-- <ion-card class="card">
-          <ion-grid class="card_efficacy_grid" no-padding>
-            <ion-row class="card_kind">
-              보습
-              <img class="card_arrow" src="assets/img/sungwoo_img/ic-system-arrow-grey@3x.png" />
-            </ion-row>
-            <ion-row class="card_text">
-              스킨케어 기초! 보습 효능 화장품
-            </ion-row>
-            <ion-row class="card_img">
-              <img  src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/BA100000764.jpg" />
-            </ion-row>
-          </ion-grid>
-        </ion-card> -->
-        
         <ion-card class="card">
           <ion-grid no-padding>
             <ion-row>
               <ion-col class="card_kind" col-7>
-                미백
+                <div class="card_desc">미백</div>
                 <img class="card_arrow" src="assets/img/sungwoo_img/ic-system-arrow-grey@3x.png" />
                 <div class="card_text">화이트닝으로 피부를 맑게하는 화장품</div>
               </ion-col>
               <ion-col col-5>
-                <img class="card_img" src="assets/img/sungwoo_img/p@3x.png" />
+                <img class="card_img2" src="assets/img/sungwoo_img/p@3x.png" />
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -218,12 +276,12 @@
           <ion-grid no-padding>
             <ion-row>
               <ion-col class="card_kind" col-7>
-                주름/재생
+                <div class="card_desc">주름/재생</div>
                 <img class="card_arrow" src="assets/img/sungwoo_img/ic-system-arrow-grey@3x.png" />
                 <div class="card_text">주름 활성화를 늦추는 화장품</div>
               </ion-col>
               <ion-col col-5>
-                <img class="card_img" src="assets/img/sungwoo_img/group-1@3x.png" />
+                <img class="card_img3" src="assets/img/sungwoo_img/group-1@3x.png" />
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -233,12 +291,12 @@
           <ion-grid no-padding>
             <ion-row>
               <ion-col class="card_kind" col-7>
-                차단/커버
+                <div class="card_desc">차단/커버</div>
                 <img class="card_arrow" src="assets/img/sungwoo_img/ic-system-arrow-grey@3x.png" />
                 <div class="card_text">자외선을 차단하는 차단 화장품</div>
               </ion-col>
               <ion-col col-5>
-                <img class="card_img" src="assets/img/sungwoo_img/group-6@3x.png" />
+                <img class="card_img4" src="assets/img/sungwoo_img/group-6@3x.png" />
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -247,105 +305,98 @@
     </ion-grid>
   </ng-container>
 
-  <div style="height:1.2vh; width:100vw; background-color:#f1f1f1"></div>
+  <div style="height:1vh; width:100vw; background-color:#f1f1f1"></div>
 
   <ng-container>
     <ion-grid class="new_product">
-      <ion-grid class="new_product_grid">
-        <ion-row (click)="openCommunityTab1()" class="new_title">
-          신규 입점 상품
-          <img class="new_arrow" src="assets/img/sungwoo_img/ic-system-arrow-grey@3x.png" />
-        </ion-row>
-        <ion-row class="new_text">
-          플리닉에서 엄선한 화장품을 특가로 제공
-        </ion-row>
-      </ion-grid>
-
-      <ion-slides class="new_product_slide" pager loop=true>
-        <ion-slide>
-          <img class="new_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NA100000771.jpg">
-          <ion-row class="new_div">
-            <ion-col class="new_desc" col-8>
-              <div class="new_name">플리닉&nbsp;</div>
-              <div class="new_post">프리즘 이펙트 컨센트레이트 크림</div>
-            </ion-col>
-            <ion-col class="new_point_div" col-3>
-              <span class="new_point_text">최대 50% 포인트</span>
-            </ion-col>
-          </ion-row>
-        </ion-slide>
-      </ion-slides>
+      <br><br><br>
+      <ion-row class="left" (click)="openCommunityTab1()">
+        <div class="text6">신규 입점 상품</div>
+        <img class="img1" src="assets/img/sungwoo_img/ic-system-arrow-grey@3x.png" />
+      </ion-row>
+      <ion-row class="left">
+        <div class="text7">플리닉에서 엄선한 화장품을 특가로 제공</div>
+      </ion-row>
+      <ion-row>
+        <ion-slides class="slide2" pager loop=true>
+          <ion-slide>
+            <img class="img3" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NA100000771.jpg">
+            <ion-row class="rectangle">
+              <ion-col col-10>
+                <div class="text8">플리닉&nbsp;</div>
+                <div class="text9">프리즘 이펙트 컨센트레이트 크림</div>
+              </ion-col>
+              <ion-col class="rectangle2" col-2>
+                <div class="text10">최대 50% 포인트</div>
+              </ion-col>
+            </ion-row>
+          </ion-slide>
+        </ion-slides>
+      </ion-row>
     </ion-grid>
   </ng-container>
 
-  <div style="height:1.2vh; width:100vw; background-color:#f1f1f1"></div>
+  <div style="height:1vh; width:100vw; background-color:#f1f1f1"></div>
 
   <ng-container>
-    <ion-grid class="pplrt_product">
-      <ion-grid class="pplrt_product_grid">
-        <ion-row (click)="openCommunityTab1()" class="pplrt_title">
-          실시간 인기 상품
-          <img class="pplrt_arrow" src="assets/img/sungwoo_img/ic-system-arrow-grey@3x.png" />
-        </ion-row>
-        <ion-row class="pplrt_text">
-          플리닉에서 엄선한 화장품을 특가로 제공
-        </ion-row>
-      </ion-grid>
-
-      <ion-list style="margin:0 auto;">
-        <ng-container>
-          <ion-row class="list_div">
-            <img class="cosmetics_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000641.jpg">
-            <ion-row class="cosmetics_container">
-              <div class="cosmetics_nickname">구달</div>
-              <div class="cosmetics_product" text-wrap>청귤 비타C 잡티세럼</div>
-              <div class="count_container">
-                <ion-col class="cosmetics_text" col-6 no-padding>리뷰<span class="cosmetics_num">24</span></ion-col>
-                <ion-col class="cosmetics_text" col-6 no-padding>좋아요<span class="cosmetics_num">128</span></ion-col>
-              </div>
+    <ion-grid no-padding class="pplrt_product">
+      <br><br><br>
+      <ion-row (click)="openCommunityTab1()" class="pplrt_title">
+        <div class="left">실시간 인기 상품</div>
+        <img class="img1" src="assets/img/sungwoo_img/ic-system-arrow-grey@3x.png" />
+      </ion-row>
+      <ion-row class="pplrt_text">
+        <div class="left">플리닉에서 엄선한 화장품을 특가로 제공</div>
+      </ion-row>
+      <ion-row>
+        <ion-list style="margin:0 auto;">
+          <ng-container>
+            <ion-row class="list_div">
+              <ion-col col-3><img class="cosmetics_img"
+                  src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000641.jpg"></ion-col>
+              <ion-col col-6>
+                <div class="cosmetics_nickname">구달</div>
+                <div class="cosmetics_product" text-wrap>청귤 비타C 잡티세럼</div>
+                <div class="cosmetics_text" col-6 no-padding>리뷰<span class="cosmetics_num"> 24</span> 좋아요<span
+                    class="cosmetics_num"> 128</span></div>
+              </ion-col>
+              <ion-col col-3><button ion-button class="cosmetics_btn"
+                  (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button></ion-col>
+              <div style="height:1px; width:100%; display: block; margin-top: 10vw; background-color:#f1f1f1"></div>
             </ion-row>
-            <button ion-button class="cosmetics_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button>
-          </ion-row>
-        </ng-container>
-
-        <div style="height:1px; width:100%; display: block; background-color:#f1f1f1"></div>
-
-        <ng-container>
-          <ion-row class="list_div">
-            <img class="cosmetics_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/PA100000766.jpg">
-            <ion-row class="cosmetics_container">
-              <div class="cosmetics_nickname">구달</div>
-              <div class="cosmetics_product" text-wrap>컨센트레이트 크림</div>
-              <div class="count_container">
-                <ion-col class="cosmetics_text" col-6 no-padding>리뷰<span class="cosmetics_num">7</span></ion-col>
-                <ion-col class="cosmetics_text" col-6 no-padding>좋아요<span class="cosmetics_num">84</span></ion-col>
-              </div>
+          </ng-container>
+          <ng-container>
+            <ion-row class="list_div">
+              <ion-col col-3><img class="cosmetics_img"
+                  src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000641.jpg"></ion-col>
+              <ion-col col-6>
+                <div class="cosmetics_nickname">구달</div>
+                <div class="cosmetics_product" text-wrap>청귤 비타C 잡티세럼</div>
+                <div class="cosmetics_text" col-6 no-padding>리뷰<span class="cosmetics_num"> 24</span> 좋아요<span
+                    class="cosmetics_num"> 128</span></div>
+              </ion-col>
+              <ion-col col-3><button ion-button class="cosmetics_btn"
+                  (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button></ion-col>
+              <div style="height:1px; width:100%; display: block; margin-top: 10vw; background-color:#f1f1f1"></div>
             </ion-row>
-            <button ion-button class="cosmetics_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button>
-          </ion-row>
-        </ng-container>
-
-        <div style="height:1px; width:100%; display: block; background-color:#f1f1f1"></div>
-
-        <ng-container>
-          <ion-row class="list_div">
-            <img class="cosmetics_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000929.jpg">
-            <ion-row class="cosmetics_container">
-              <div class="cosmetics_nickname">라네즈</div>
-              <div class="cosmetics_product" text-wrap>레디언-C크림</div>
-              <div class="count_container">
-                <ion-col class="cosmetics_text" col-6 no-padding>리뷰<span class="cosmetics_num">-</span></ion-col>
-                <ion-col class="cosmetics_text" col-6 no-padding>좋아요<span class="cosmetics_num">-</span></ion-col>
-              </div>
+          </ng-container>
+          <ng-container>
+            <ion-row class="list_div">
+              <ion-col col-3><img class="cosmetics_img"
+                  src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000641.jpg"></ion-col>
+              <ion-col col-6>
+                <div class="cosmetics_nickname">구달</div>
+                <div class="cosmetics_product" text-wrap>청귤 비타C 잡티세럼</div>
+                <div class="cosmetics_text" col-6 no-padding>리뷰<span class="cosmetics_num"> 24</span> 좋아요<span
+                    class="cosmetics_num"> 128</span></div>
+              </ion-col>
+              <ion-col col-3><button ion-button class="cosmetics_btn"
+                  (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button></ion-col>
+              <div style="height:1px; width:100%; display: block; margin-top: 10vw; background-color:#f1f1f1"></div>
             </ion-row>
-            <button ion-button class="cosmetics_btn" (click)="comment_popover($event, i, registerReply.email, registerReply._id);">보기</button>
-          </ion-row>
-        </ng-container>
-
-        <div style="height:1px; width:100%; display: block; background-color:#f1f1f1"></div>
-
-      </ion-list>
+          </ng-container>
+        </ion-list>
+      </ion-row>
     </ion-grid>
   </ng-container>
-
 </ion-content>
