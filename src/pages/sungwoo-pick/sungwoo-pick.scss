@@ -262,9 +262,11 @@ page-sungwoo-pick {
     }
 
     .pick_btn2 {
+        position: relative;
         height: 8vh;
         width: 45.1vw;
         font-family: AppleSDGothicNeo;
+        z-index: 10000;
     }
 
 }

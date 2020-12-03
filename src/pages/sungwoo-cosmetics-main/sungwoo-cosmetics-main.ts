@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform , ModalController, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { SungwooProductDetailPage } from '../sungwoo-product-detail/sungwoo-product-detail';
+import { MyinfoPage } from '../myinfo/myinfo';
+import { ProductDetailBuyPage } from '../product-detail-buy/product-detail-buy';
 
 // import { SearchPage } from './search/search';
 
@@ -143,6 +146,43 @@ export class SungwooCosmeticsMainPage {
 
   addComma(data_value) { //숫자 세자리 마다 컴마 붙히기
     return Number(data_value).toLocaleString('en');
+  }
+
+  productDetail(product_Num) {
+    let modal = this.modalCtrl.create(ProductDetailBuyPage, {Product_Num : product_Num});
+      modal.present();
+      modal.onDidDismiss(data => {
+        //코드 작성
+      });
+  }
+
+  public myinfo() {
+    //2020-05-28 마이페이지 하단탭 제거
+    // this.nav.push(MyinfoPage); 
+
+    let myModal = this.modalCtrl.create(MyinfoPage);
+    myModal.onDidDismiss(data => {
+      if(this.userData) {
+        if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
+          this.reloadUserPoint(this.userData.snsid);
+        }
+        else {
+          this.reloadUserPoint(this.userData.email);
+        }
+      }
+      console.log("내정보 페이지 닫음");
+      this.androidBackButton();
+    });
+    myModal.present();
+  }
+
+  //20201125 안드로이드 백 버튼 처리
+  androidBackButton() {
+    if(this.platform.is('android')) {
+      this.platform.registerBackButtonAction(()=>{
+        this.navCtrl.parent.select(0);
+      });
+    }
   }
 
 
