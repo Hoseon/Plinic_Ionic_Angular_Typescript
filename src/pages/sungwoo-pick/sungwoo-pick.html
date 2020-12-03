@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar  *ngIf="platform.is('android')" no-lines>
-    <ion-title class="android_title" text-wrap >상품 선택</ion-title>
+    <ion-title class="android_title" text-wrap >상품 선택1</ion-title>
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
@@ -16,7 +16,7 @@
         <img class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
   		</button>
   	</ion-buttons>
-    <ion-title class="ios_title" text-wrap>상품 선택</ion-title>
+    <ion-title class="ios_title" text-wrap>상품 선택1</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -58,6 +58,6 @@
   <ion-row class="pick-btn">
     <!-- <button (click)="saveToday()" ion-button class="cell"><div class="cell_text">결제하기</div></button>-->
     <button ion-button class="pick_btn1">장바구니</button>
-    <button ion-button color="Purple" class="pick_btn2">구매하기</button>
+    <button ion-button (click)="buy()" color="Purple" class="pick_btn2">구매하기</button>
   </ion-row>
 </ion-content>
