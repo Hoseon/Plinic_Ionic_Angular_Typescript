@@ -116,192 +116,129 @@ page-sungwoo-cart {
       color: #292929;
     }
 
-    .cart_div {
-      position: absolute;
-      height: 100vh;
-      width: 100vh;
-    }
-
-    .title_div {
-      position: relative;
-      height: 9vh;
-      width: 100vw;
+    .check_col {
+      margin-top: -0.5vh;
+      margin-left: 7.5vw;
     }
 
     .cart_checkbox {
-      position: absolute;
-      top: 6vh;
-      left: 9vw;
+      float: left;
+      margin-right: 2vw;
     }
 
-    .all-check {
-      position: relative;
-      height: 4.5vh;
-      top: 4.8vh;
-      left: 14.6vw;
+    .all_check {
+      float: left;
       font-family: AppleSDGothicNeo;
       font-size: 13px;
       font-weight: bold;
       font-style: normal;
       font-stretch: normal;
-      line-height: 1.4;
-      letter-spacing: -1.7px;
+      text-align: left;
+      line-height: normal;
+      letter-spacing: -0.62px;
       color: #292929;
     }
 
-    .check-cancel {
-      position: relative;
-      top: 5.3vh;
-      left: 13.7vw;
-      max-width: 15.3vw;
+    .check_cancel {
+      margin-top: -0.6vh;
+      margin-right: 2vw;
+      float: right;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 8px;
       font-weight: 300;
       font-style: normal;
       font-stretch: normal;
-      // letter-spacing: -0.2vh;
       color: #575656;
-      height: 3.1vh;
+      height: 140%;
       border-radius: 2.8px;
       border: solid 1px #d1d1d1;
       background-color: #ffffff;
     }
 
     .cart_card {
-      position: relative;
-      height: 24vh;
-      width: 92.5vw;
-      left: 0.5vw;
-      top: 2vh;
-      margin-top: 1vh;
+      margin: 0 auto;
+      margin-top: 1.5vh;
+      height: 42.5vw;
+      width: 93vw;
       background-color: #FFF;
       border-radius: 5.7px;
       border: solid 0.5px #c8c8c8;
       box-shadow: none;
     }
 
-    .cart_icon {
-      position: relative;
-      width: 8.5vw;
-      top: 0.7vh;
-      height: 3vh;
-      object-fit: contain;
-      background-color: white;
-    }
-
     .cart_checkbox2 {
-      position: relative;
-      top: 5vh;
-      left: 5vw;
-      display: inline-block;
+      float: left;
+      margin-top: 5.5vh;
+      margin-left: 5vw;
+      margin-right: 2vw;
     }
 
-    .cart_close {
-      position: relative;
-      bottom: 2.3vh;
-      left: 84vw;
+    .close_img {
+      width: 6.5%;
+      height: 20%;
+      object-fit: contain;
       float: right;
       background-color: #ffffff;
     }
 
     .text_col {
-      position: absolute;
-      height: 15vh;
-      width: 50vw;
+      margin-top: 3.5vh;
     }
 
     .product_name {
-      position: relative;
-      top: 0.5vh;
-      left: 11vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 11px;
       font-weight: 500;
       font-stretch: normal;
       font-style: normal;
       line-height: normal;
-      letter-spacing: normal;
+      letter-spacing: -0.52px;
     }
 
     .cart_name {
-      position: relative;
-      top: 1vh;
-      left: 11vw;
-      height: 2vh;
-      width: 55vw;
+      width: 60vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 12.5px;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
-      line-height: 0.91;
-      letter-spacing: -1.22px;
-      text-align: left;
+      line-height: 1.28;
+      letter-spacing: -0.6px;
       white-space: normal;
       color: #292929;
     }
 
     .price {
-      position: relative;
-      top: 4.5vh;
-      left: 11vw;
+      position: absolute;
+      top: 9vh;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13.5px;
       font-weight: 500;
       font-stretch: normal;
       font-style: normal;
-      line-height: 0.42;
-      letter-spacing: -0.02px;
-      text-align: left;
+      line-height: 1.42;
+      letter-spacing: -0.62px;
       color: #505050;
     }
 
-    .img_col {
-      position: absolute;
-    }
-
-    /* 삼성 갤럭시 탭 S3, 아이패드 적용 (해상도 768 ~ 1024) */
-    @media all and (min-width:768px) and (max-width:1024px) { 
     .cart_img {
-      left: 68vw !important;
-      }
-    }
-    
-    /* 삼성 갤럭시 탭 S4 적용 (해상도 1138px ~)*/
-    @media all and (min-width:1137px) { 
-    .cart_img {
-      left: 60vw !important;
-      }
-    }
-    
-    .cart_img {
-      position: relative;
-      left: 71vw;
-      top: 2vh;
+      margin-top: 4vh;
+      margin-left: 8vw;
       width: 17.5vw;
-      height: 9.5vh;
       border-radius: 5.7px;
       border: solid 0.5px #d2d2d2;
       background-color: #ffffff;
+      display: inline-block;
     }
 
     .count_count {
-      position: absolute;
-      top: 16vh;
-      left: 7vw;
-      border-radius: 5.7px;
+      text-align: center;
+      // right: 3vw;
+      margin: 0 auto;
     }
 
-    .count_sum {
-      position: absolute;
-      height: 10vh;
-      top: 17.1vh;
-      left: 50vw;
-    }
-
-    .cart_text1 {
-      position: relative;
-      left: 6.5vw;
+    .text_col2 {
+      // margin-left: 4vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 12.8px;
       font-weight: 500;
@@ -309,123 +246,288 @@ page-sungwoo-cart {
       font-style: normal;
       line-height: 1.13;
       color: #505050;
+      margin: 0 auto;
     }
 
+    .cart_text1 {
+      margin-top: 1vh;
+      margin-left: 2.5vw;
+      float: left;
+    }
+    
     .cart_text2 {
-      position: relative;
-      left: 21.5vw;
-      bottom: 2.2vh;
-      text-align: left;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13.2px;
-      font-weight: 500;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 1.13;
-      letter-spacing: 0.08px;
-      color: #505050;
-    }
-
-    .cart_price {
-      position: relative;
-      margin: 0;
-      height: 27vh;
-      width: 100vw;
-    }
-
-    .text_row {
-      position: relative;
-      top: 1.5vh;
-      left: 8vw;
-      line-height: 1.84;
-    }
-
-    .cart_text3 {
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 14.3px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
-      letter-spacing: -2.41px;
-      text-align: left;
-      color: #5d5d5d;
-    }
-
-    .cart_text4 {
-      position: relative;
-      left: 2vw;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13.5px;
-      font-weight: 300;
-      font-stretch: normal;
-      font-style: normal;
-      letter-spacing: 0.08px;
-      text-align: right;
-      color: #5d5d5d;
-    }
-
-    .price_sum {
-      height: 24.5vh;
-      width: 100vw;
-    }
-
-    .cart_title1 {
-      position: relative;
-      top: 3.4vh;
-      left: 8vw;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 14.2px;
-      font-weight: bold;
-      font-style: normal;
-      font-stretch: normal;
-      //글자 허리사이즈
-      letter-spacing: -1.64px;
-      color: #292929;
-      // overflow-y: visible !important;
-    }
-
-    .cart_title2 {
-      position: relative;
-      bottom: 0.5vh;
-      right: 6.5vw;
+      margin-top: 1vh;
+      margin-right: 4vw;
       float: right;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 20px;
-      font-weight: 600;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.46px;
     }
 
-    .cell {
-      position: fixed;
-      left: 3.2vw;
-      bottom: 0;
-      min-width: 92.8vw;
-      min-height: 7.5vh;
-      background-color: #5c59b6;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 15px;
-      font-weight: 500;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: center;
-      color: #ffffff;
-    }
+    // .title_div {
+    //   position: relative;
+    //   height: 9vh;
+    //   display: flex;
+    //   justify-content: space-between;
+    // }
 
-    .cell_text {
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 12px;
-      font-weight: 600;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      // letter-spacing: 0.5px;
-      text-align: center;
-      color: #ffffff;
-    }
+    // .cart_checkbox {
+    //   top: 5.8vh;
+    //   left: 9vw;
+    // }
+
+    // .all-check {
+    //   top: 5.7vh;
+    //   left: 4.8vw;
+    //   font-family: AppleSDGothicNeo;
+    //   font-size: 13px;
+    //   font-weight: bold;
+    //   font-style: normal;
+    //   font-stretch: normal;
+    //   line-height: normal;
+    //   letter-spacing: -0.62px;
+    //   color: #292929;
+    // }
+
+    // .cart_cancel {
+    //   top: 5.6vh;
+    //   left: 5.6vw;
+    // }
+
+    // .check-cancel {
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 8px;
+    //   font-weight: 300;
+    //   font-style: normal;
+    //   font-stretch: normal;
+    //   color: #575656;
+    //   height: 33%;
+    //   border-radius: 2.8px;
+    //   border: solid 1px #d1d1d1;
+    //   background-color: #ffffff;
+    // }
+
+    // .cart_card {
+    //   position: relative;
+    //   height: 42.5vw;
+    //   width: 93%;
+    //   left: 0.5vw;
+    //   background-color: #FFF;
+    //   border-radius: 5.7px;
+    //   border: solid 0.5px #c8c8c8;
+    //   box-shadow: none;
+    // }
+
+
+    // .cart_checkbox2 {
+    //   position: relative;
+    //   top: 5.3vh;
+    //   left: 5.2vw;
+    //   display: inline-block;
+    // }
+
+    // .cart_close {
+    //   width: 6.5%;
+    //   height: 20%;
+    //   object-fit: contain;
+    //   float: right;
+    //   background-color: #ffffff;
+    // }
+
+    // .card_row {
+    //   position: absolute;
+    //   width: 100%;
+    // }
+
+    // .text_col {
+    // }
+
+    // .product_name {
+    //   position: relative;
+    //   top: 0.5vh;
+    //   left: 11vw;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 11px;
+    //   font-weight: 500;
+    //   font-stretch: normal;
+    //   font-style: normal;
+    //   line-height: normal;
+    //   letter-spacing: normal;
+    // }
+
+    // .cart_name {
+    //   position: relative;
+    //   top: 1vh;
+    //   left: 11vw;
+    //   height: 2vh;
+    //   width: 55vw;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 12.5px;
+    //   font-weight: normal;
+    //   font-stretch: normal;
+    //   font-style: normal;
+    //   line-height: 0.91;
+    //   letter-spacing: -1.22px;
+    //   text-align: left;
+    //   white-space: normal;
+    //   color: #292929;
+    // }
+
+    // .price {
+    //   position: relative;
+    //   top: 4.5vh;
+    //   left: 11vw;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13.5px;
+    //   font-weight: 500;
+    //   font-stretch: normal;
+    //   font-style: normal;
+    //   line-height: 0.42;
+    //   letter-spacing: -0.02px;
+    //   text-align: left;
+    //   color: #505050;
+    // }
+
+    // .img_col {
+    //   top: 1vh;
+    // }
+    
+    // .cart_img {
+    //   width: 17.5vw;
+    //   border-radius: 5.7px;
+    //   border: solid 0.5px #d2d2d2;
+    //   background-color: #ffffff;
+    //   display: inline-block;
+    // }
+
+    // .count_count {
+    //   position: absolute;
+    //   top: 16vh;
+    //   left: 7vw;
+    //   border-radius: 5.7px;
+    // }
+
+    // .count_sum {
+    //   position: absolute;
+    //   height: 10vh;
+    //   top: 17.1vh;
+    //   left: 50vw;
+    // }
+
+    // .cart_text1 {
+    //   position: relative;
+    //   left: 6.5vw;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 12.8px;
+    //   font-weight: 500;
+    //   font-stretch: normal;
+    //   font-style: normal;
+    //   line-height: 1.13;
+    //   color: #505050;
+    //   white-space:nowrap;
+    // }
+
+    // .cart_text2 {
+    //   position: relative;
+    //   left: 21.5vw;
+    //   bottom: 2.2vh;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13.2px;
+    //   font-weight: 500;
+    //   font-stretch: normal;
+    //   font-style: normal;
+    //   line-height: 1.13;
+    //   letter-spacing: 0.08px;
+    //   color: #505050;
+    // }
+
+    // .cart_price {
+    //   position: relative;
+    //   margin: 0;
+    //   height: 27vh;
+    //   width: 100vw;
+    // }
+
+    // .cart_text3 {
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 14.3px;
+    //   font-weight: normal;
+    //   font-stretch: normal;
+    //   font-style: normal;
+    //   letter-spacing: -2.41px;
+    //   text-align: left;
+    //   color: #5d5d5d;
+    // }
+
+    // .cart_text4 {
+    //   position: relative;
+    //   left: 2vw;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13.5px;
+    //   font-weight: 300;
+    //   font-stretch: normal;
+    //   font-style: normal;
+    //   letter-spacing: 0.08px;
+    //   text-align: right;
+    //   color: #5d5d5d;
+    // }
+
+    // .price_sum {
+    //   height: 24.5vh;
+    //   width: 100vw;
+    // }
+
+    // .cart_title1 {
+    //   position: relative;
+    //   top: 3.4vh;
+    //   left: 8vw;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 14.2px;
+    //   font-weight: bold;
+    //   font-style: normal;
+    //   font-stretch: normal;
+    //   letter-spacing: -1.64px;
+    //   color: #292929;
+    // }
+
+    // .cart_title2 {
+    //   position: relative;
+    //   bottom: 0.5vh;
+    //   right: 6.5vw;
+    //   float: right;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 20px;
+    //   font-weight: 600;
+    //   font-style: normal;
+    //   font-stretch: normal;
+    //   line-height: normal;
+    //   letter-spacing: -0.46px;
+    // }
+
+    // .cell {
+    //   position: fixed;
+    //   left: 3.2vw;
+    //   bottom: 0;
+    //   min-width: 92.8vw;
+    //   min-height: 7.5vh;
+    //   background-color: #5c59b6;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 15px;
+    //   font-weight: 500;
+    //   font-style: normal;
+    //   font-stretch: normal;
+    //   line-height: normal;
+    //   letter-spacing: normal;
+    //   text-align: center;
+    //   color: #ffffff;
+    // }
+
+    // .cell_text {
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 12px;
+    //   font-weight: 600;
+    //   font-stretch: normal;
+    //   font-style: normal;
+    //   line-height: normal;
+    //   text-align: center;
+    //   color: #ffffff;
+    // }
 
 }
