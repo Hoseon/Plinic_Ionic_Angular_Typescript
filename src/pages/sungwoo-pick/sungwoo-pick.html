@@ -23,13 +23,16 @@
 
 
 <ion-content no-padding>
-  <ion-slides no-padding mode="ios" #Slides (ionDrag)="onSlideDrag()" (ionSlideWillChange)="slideChanged($event)">
-  <ion-slide>
+  <!-- <ion-slides no-padding mode="ios" #Slides (ionDrag)="onSlideDrag()" (ionSlideWillChange)="slideChanged($event)">
+  <ion-slide> -->
+    <br>
     <ion-card class="card">
-      <ion-grid>
+      <ion-grid class="left">
+        <br>
         <ion-row class="pick-title">청귤 비타C 잡티세럼청귤 비타</ion-row>
+        <br>
          <ion-list>
-           <ion-item>
+           <ion-item no-padding>
             <ion-select okText="Okay" cancelTest="Dismiss" id="select"  class="s_icon" placeholder="옵션을 선택하세요">
               <ion-option value="nes">1</ion-option>
               <ion-option value="n64">2</ion-option>
@@ -40,24 +43,31 @@
             </ion-select>
            </ion-item>
          </ion-list>
+         <br>
         <ion-row>
-          <div class="pick_count" col-5>
-          <input type="button" value=" - " >
-          <input type="text" name="amount" value="2" size="3" style="text-align: center;">
-          <input type="button" value=" + " >
-          </div>
-          <ion-col class="pick_text1" col-2>합계</ion-col>
-          <ion-col class="pick_text2" col-3>40,000원</ion-col>
+          <ion-col class="pick_count" col-7 no-padding>
+            <input type="button" value=" - " >
+            <input type="text" name="amount" value="2" size="3" style="text-align: center;">
+            <input type="button" value=" + " >
+          </ion-col>
+          <ion-col class="text_col" col-5>
+            <div class="pick_text1">합계</div>
+            <div class="pick_text2">40,000원</div>
+          </ion-col>
         </ion-row>
+        <br>
       </ion-grid>
     </ion-card>
-    </ion-slide>
-  </ion-slides>
-  
+    <!-- </ion-slide>
+  </ion-slides> -->
 
-  <ion-row class="pick-btn">
-    <!-- <button (click)="saveToday()" ion-button class="cell"><div class="cell_text">결제하기</div></button>-->
+  <!-- <ion-row class="pick-btn">
     <button ion-button class="pick_btn1">장바구니</button>
-    <button ion-button color="Purple" class="pick_btn2">구매하기</button>
-  </ion-row>
+    <button ion-button (click)="buy()" color="Purple" class="pick_btn2">구매하기</button>
+  </ion-row> -->
 </ion-content>
+
+<ion-footer mode="ios" class="footer" keyboard-attach no-bounce no-lines>
+  <button ion-button class="pick_btn1">장바구니</button>
+  <button ion-button (click)="buy()" color="Purple" class="pick_btn2">구매하기</button>
+</ion-footer>

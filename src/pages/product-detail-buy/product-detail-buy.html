@@ -1,0 +1,234 @@
+<!--
+  Generated template for the ProductDetailBuyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android')  || platform.is('core')">
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav" src="assets/img/login/ic-system-close-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>상품 정보</ion-title>
+  </ion-navbar>
+
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+      <ion-title  class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+    </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav" src="assets/img/login/ic-system-close-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>상품 정보</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <br><br>
+  <ion-grid class="position">
+    <!-- <ion-row>
+      <div class="text1">제품 기본 정보</div>
+    </ion-row> -->
+    <ion-row class="img_center">
+      <ion-col class="img_center">
+        <img class="img1" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/{{product_Num}}.jpg" />
+      </ion-col>
+    </ion-row>
+    <br>
+    <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+    <br>
+    <ion-row>
+      <ion-col col-10>
+        <div *ngIf="productData" class="text2">{{productData.brand_name}}</div>
+        <div *ngIf="productData" class="text3">{{productData.product_name}}</div>
+        <div *ngIf="productData" class="text9">{{productData.price}}</div>
+      </ion-col>
+      <ion-col col-2>
+        <div><img class="img2" src="assets/img/like/dislike2.png" /></div>
+        <div class="text10">84개</div>
+      </ion-col>
+    </ion-row>
+    <br>
+    <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+
+    <ion-row>
+      <ion-col col-4 class="text4">용량 및 중량</ion-col>
+      <ion-col *ngIf="productData" col-8 class="text5">{{productData.weight}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 class="text4">주요효능</ion-col>
+      <ion-col col-8 *ngIf="productData" class="text5">{{function}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="text4">전성분</ion-col>
+      <ion-col (click)="junsungbun()" col-4 *ngIf="ingredient" class="text5">{{ingredient[0]}}&nbsp;&nbsp;></ion-col>
+      <ion-col col-8 *ngIf="!ingredient" class="text5">데이터 준비중&nbsp;&nbsp;></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-8 class="text4">등록된 주요 사용자 성별</ion-col>
+      <ion-col col-4 *ngIf="productData" class="text5">-</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-8 class="text4">피부평균 개선율</ion-col>
+      <ion-col col-4 *ngIf="productData" class="text5">-</ion-col>
+    </ion-row>
+    <br><br><br>
+    <!-- 광고 -->
+    <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
+    <img *ngIf="platform.is('android')" (click)="openBrowser_android()" class="beauty_ad_img" src="{{adUrl}}" />
+    <img *ngIf="!platform.is('android')" (click)="openBrowser_android()" class="beauty_ad_img" src="{{adUrl}}" />
+    <div style="height:8px; width:100%; margin-top:-0.5%; margin-bottom:-10%; background-color:#f1f1f1"></div>
+  </ion-grid>
+  <ion-grid no-padding>
+    <!-- 총 몇개의 리뷰 영역 -->
+    <ion-row *ngIf="productReview">
+      <div class="left" col-3><p>상품리뷰 <span class="left_color">{{productReview.length}}개</span></p>
+      </div>
+      <!-- <div class="right" col-5>
+          <ion-label class="popover_text">{{orderStyle}}</ion-label>
+          <ion-select [(ngModel)]="orderStyle" interface="popover">
+            <ion-option value="최신순 ∨">최신순</ion-option>
+            <ion-option value="인기순 ∨">인기순</ion-option>
+          </ion-select>
+        </div> -->
+    </ion-row>
+    <ion-row>
+      <div style="height:1px; width:100%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <ion-grid no-padding>
+
+
+    <ng-container *ngIf="productReview">
+      <ng-container *ngFor="let review of productReview; let i = index">
+        <img *ngIf="review.img_url" class="profile_comment" [src]="userData.thumbnail_image"
+          onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+        <img *ngIf="!review.img_url" class="profile_comment" src="{{plinicUserImages[i]}}"
+          onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+        <!-- <img *ngIf="!review.originalName && !profileimg_url" class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png"/> -->
+
+        <ng-container *ngIf="userData.email === review.email">
+          <button ion-button class="comment_btn"
+            (click)="comment_popover($event, i, review.email, review._id);"></button>
+        </ng-container>
+        <div class="container">
+          <div *ngIf="review.email" class="nickname_comment">{{emailSecurity(review.email)}}</div>
+          <button *ngIf="comment_popover_option_textarea === i" (click)="productReviewUpdate(review.email, review._id)"
+            ion-button class="comment_enroll">수정</button>
+        </div>
+        <div class="time_comment">{{getCovertKoreaTime(review.createdAt).substr(0,16).replace('T', ' ')}}</div>
+        <!-- 보기 -->
+        <!-- <textarea *ngIf="comment_popover_option==='보기'" class="content_comment" readonly autoGrow autoresize value="{{reply.comment}}"></textarea> -->
+        <ng-container *ngIf="comment_popover_option_textarea !== i ">
+          <div class="content_comment" text-wrap>{{review.content}}</div>
+        </ng-container>
+        <!-- 수정 -->
+        <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea"
+          #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="review.content"
+          (input)="adjustTextareaUpdate($event)" autofocus="true" (focus)="focus($event)"></textarea>
+
+        <div
+          style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 0%; margin-top: 2%; background-color:#f1f1f1">
+        </div>
+      </ng-container>
+    </ng-container>
+  </ion-grid>
+  <ion-grid no-padding>
+    <ion-row class="row_center">
+      <button ion-button class="btn2">5개 리뷰 더보기 ⋁</button>
+    </ion-row>
+    <div
+      style="height:1vh; width:100%; margin:0 auto; display: block; margin-bottom: 0%; margin-top: 0%; background-color:#f1f1f1">
+    </div>
+
+    <ion-list no-padding>
+      <ion-item class="item_row" no-padding>
+        <div class="detail_left">상품 상세 정보</div>
+        <ion-icon class="arrow-forward" item-end name="ios-arrow-forward"></ion-icon>
+        <!-- <ion-icon class="arrow-down" item-end name="ios-arrow-down" *ngIf="item.open"></ion-icon> -->
+      </ion-item>
+      <ion-item no-padding class="row_center" [ngClass]="{ 'show_more1' : !isShowMore, 'show_more2' : isShowMore}">
+        <img no-padding class="detail_img" no-padding src="assets/img/watch.png" />
+      </ion-item>
+      <!-- <div style="height:0.1ㅔ[]; width:100%; margin:0 auto; display: block; margin-bottom: 0%; margin-top: 0%; background-color:#f1f1f1"></div> -->
+      <ion-row>
+        <ng-container *ngIf="!isShowMore">
+          <button ion-button (click)="showMore(true)" class="btn2">상품설명 더보기 ⋁</button>
+        </ng-container>
+        <ng-container *ngIf="isShowMore">
+          <button ion-button (click)="showMore(false)" class="btn2">상품설명 접기 ⋁</button>
+        </ng-container>
+      </ion-row>
+      <div
+        style="height:1vh; width:100%; margin:0 auto; display: block; margin-bottom: 0%; margin-top: 0%; background-color:#f1f1f1">
+      </div>
+      <ion-item class="item_row" no-padding>
+        <div class="detail_left">1:1 문의 하기</div>
+        <ion-icon class="arrow-forward" item-end name="ios-arrow-forward"></ion-icon>
+        <!-- <ion-icon class="arrow-down" item-end name="ios-arrow-down" *ngIf="item.open"></ion-icon> -->
+      </ion-item>
+      <ion-item class="item_row" no-padding>
+        <div class="detail_left">상품 정보 고시</div>
+        <ion-icon class="arrow-forward" item-end name="ios-arrow-forward"></ion-icon>
+        <!-- <ion-icon class="arrow-down" item-end name="ios-arrow-down" *ngIf="item.open"></ion-icon> -->
+      </ion-item>
+      <ion-item class="item_row" no-padding>
+        <div class="detail_left">배송/교환/반품정보</div>
+        <ion-icon class="arrow-forward" item-end name="ios-arrow-forward"></ion-icon>
+        <!-- <ion-icon class="arrow-down" item-end name="ios-arrow-down" *ngIf="item.open"></ion-icon> -->
+      </ion-item>
+      <ion-item class="item_row" no-padding>
+        <div class="detail_left">이런 상품은 어떠세요?</div>
+        <ion-icon class="arrow-forward" item-end name="ios-arrow-forward"></ion-icon>
+        <!-- <ion-icon class="arrow-down" item-end name="ios-arrow-down" *ngIf="item.open"></ion-icon> -->
+      </ion-item>
+    </ion-list>
+    <ion-row>
+      <ion-slides mode="ios" slidesPerView=3>
+        <ion-slide class="slide1">
+          <img class="img3" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NG100131213.jpg" />
+          <div class="slide_left text11">라네즈</div>
+          <div class="slide_left text12">레디언-C 크림</div>
+          <div class="slide_left text13"><span class="slide_left text14">최대 50% 포인트</span></div>
+        </ion-slide>
+        <ion-slide class="slide1">
+          <img class="img3" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NG100131213.jpg" />
+          <div class="slide_left text11">라네즈</div>
+          <div class="slide_left text12">레디언-C 크림</div>
+          <div class="slide_left text13"><span class="slide_left text14">최대 50% 포인트</span></div>
+        </ion-slide>
+        <ion-slide class="slide1">
+          <img class="img3" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NG100131213.jpg" />
+          <div class="slide_left text11">라네즈</div>
+          <div class="slide_left text12">레디언-C 크림</div>
+          <div class="slide_left text13"><span class="slide_left text14">최대 50% 포인트</span></div>
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+
+  </ion-grid>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+</ion-content>
+
+<ion-footer no-lines no-padding>
+  <ion-grid no-padding>
+    <ion-row no-padding>
+      <ion-col no-padding col-6><button class="qna_btn" ion-button (click)="write_Review();">리뷰쓰고 1,000P 받기</button>
+      </ion-col>
+      <ion-col no-padding col-6><button class="buy_btn" ion-button (click)="buy();">구매하기</button></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

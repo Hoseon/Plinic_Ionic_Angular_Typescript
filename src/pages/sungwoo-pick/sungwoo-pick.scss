@@ -40,7 +40,7 @@ page-sungwoo-pick {
       letter-spacing: normal;
       text-align: center;
     //   margin-right: 14%;
-      margin-top: -18.8%;
+      margin-top: -12.8%;
     }
   
     .toolbar-title-ios {
@@ -117,11 +117,16 @@ page-sungwoo-pick {
     }
 
     .card {
-        margin-top: -43.5vh;
-        padding-bottom: 2vh; 
-        border-radius: 5.7px;
-        border: solid 1px #e4e4e4;
-        background-color: #ffffff;      
+      position: relative;
+      top: -2vw;
+      border-radius: 5.7px;
+      box-shadow: none;
+      border: solid 1px #e4e4e4;
+      background-color: #ffffff;      
+    }
+
+    .left {
+      margin-left: 3vw !important;
     }
 
     .pick-title {
@@ -130,141 +135,81 @@ page-sungwoo-pick {
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
-      line-height: 1.8vh;
-      letter-spacing: -0.62vw;
+      line-height: 1.13;
+      letter-spacing: -0.68px;
       text-align: left;
       color: #292929;
-      margin-top: 2.8vh;
-      margin-bottom: 3vh;
-      margin-left: 2.8vw;
+      margin-top: -1vw;
     }
-
-    // .card {
-    //     margin-left: 3.7vw;
-
-    // }
-
-    // .pick_card {
-    //     width: 80vw;
-    //     height: 0.1vh;
-    //     border: solid 1px #c0c0c0;
-    //     background-color: #ffffff;
-    //     // margin: -1% auto;
-    //     margin-left: 3.7vw;
-    //     margin-top: 2.5vh;
-    //     padding-bottom: 5vh;
-    //   }
-
-      .pick_count {
-        // width: 91.5px;
-        // height: 24.5px;
-        // border-radius: 5.7px;
-        margin-top: 2.7vh;
-        margin-left: 2.7vw;
-    }
-
-    .pick_text1 {
-        font-family: AppleSDGothicNeo;
-        font-size: 14px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.13;
-        // letter-spacing: -0.43vh;
-        color: #505050;
-        margin-left: 8.1vw;
-        margin-top: 3.6vh;
-    }
-
-    .pick_text2 {
-        font-family: AppleSDGothicNeo-Regular;
-        font-size: 14.8px;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        // line-height: 1.13;
-        // letter-spacing: -0.3px;
-        color: #505050;
-        margin-top: 3.1vh;
-        margin-left: 2.1vw;
-        padding-left: 3.6vw;
-    }
-
-    // .s_icon {
-    //     margin-left: 1vw;
-    //     min-width: 100%;
-    //     height: 55px;
-    //     border: 1px solid #999;
-    //     font-family: AppleSDGothicNeo;
-    //     font-size: 15px;
-    //     font-weight: normal;
-    //     font-style: normal;
-    //     font-stretch: normal;
-    //     line-height: normal;
-    //     letter-spacing: normal;
-    //     color: #292929;
-    //     margin-top: 2%;
-    //   }
 
     .s_icon {
-        max-width: 100%;
-        width: 85vw;
-        padding: .5vw .3vw;
-        border: 1px solid #999;
-        background-color: #e4e4e4;
-        font-family: AppleSDGothicNeo-Regular;
-        font-size: 11.1px;
-        border-radius: 0px;
-        margin-top: -2vh;
-        // -webkit-appearance: none;
-        // -moz-appearance: none;
-        // appearance: none;
+      min-width: 97%;
+      padding-top: 2vw;
+      padding-left: 3vw;
+      padding-bottom: 1vw;
+      background-color: #e4e4e4;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 11.1px;
+      border-radius: 0px;
+      margin-top: -3vh;
     }
 
     .select-md .select-icon {
-      position: relative;
-      width: 20px;
-      height: 19px;
-  }
+      width: 17px;
+    }
 
-    .s_icon::-ms-expand {
-        display: none;
-        }
+    .pick_count {
+      margin-top: 1vw;
+    }
 
-    // .select {
-    //     width: 200px;
-    //     padding: .8vw .5vw;
-    //     border: 1px solid #999;
-    //     font-family: inherit;
-    //     border-radius: 0px;
-    //     // -webkit-appearance: none;
-    //     // -moz-appearance: none;
-    //     appearance: none;
+    .text_col {
+      margin-top: 1vw;
+      margin-left: -4.8vw;
+      font-size: 15px;
+      font-family: AppleSDGothicNeo-Regular;
+      font-stretch: normal;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.68px;
+      color: #505050;
+    }
+
+    .pick_text1 {
+      float: left;
+    }
+
+    .pick_text2 {
+      font-weight: bold;
+      float: right;
+    }
+
+    // .pick-btn {
+    //   margin-top: -10vh;
+    //   margin-left: 2.2vh;
+    //   margin-bottom: 1vh;
     // }
 
-    // .select::-ms-expand {
-    //     display: none;
-    //     }
-
-    .pick-btn {
-        // margin-top: -10vh;
-        // display: inline;
-        margin-top: -10vh;
-        margin-left: 2.2vh;
-        margin-bottom: 1vh;
+    .footer {
+      text-align: center;
     }
 
     .pick_btn1 {
-        background-color: #4dd9f1;
-        height: 8vh;
-        width: 45.1vw;
-        font-family: AppleSDGothicNeo;
+      background-color: #4dd9f1;
+      min-height: 55px;
+      min-width: 45.1vw;
+      font-family: AppleSDGothicNeo;
+      border-radius: 3.5px;
+      box-shadow: none;
     }
 
     .pick_btn2 {
-        height: 8vh;
-        width: 45.1vw;
-        font-family: AppleSDGothicNeo;
+      min-height: 55px;
+      // height: 14vw;
+      min-width: 44.5vw;
+      font-family: AppleSDGothicNeo;
+      border-radius: 3.5px;
+      box-shadow: none;
     }
 
 }
