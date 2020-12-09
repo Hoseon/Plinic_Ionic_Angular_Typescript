@@ -9,264 +9,173 @@ page-sungwoo-delivery {
     .scroll-content {
       overflow: hidden;
     }
-    
-    .guide{
-      position: relative;
-    }
 
-    .all_div {
-      height: 100vh;
-    }
-
-    .grid_backColor {
-      width: 100vw;
-      height: 36.5vh;
+    .delivery_grid {
       background-color: #5c59b6;
     }
 
+    .close_div {
+      margin-top: 2.5vw;
+      margin-right: 2.8vw;
+      float: right;
+    }
+
     .ic-system-back-black {
-      position: relative;
+      height: 8vw;
       width: 10vw;
-      height: 5vh;
-      top: 2.5vh;
-      left: 85.7vw;
+      // left: 85.7vw;
+      float: right;
       object-fit: contain;
       background-color: transparent;
     }
 
-    .title_row {
-      position: relative;
-      top: 4.4vh;
-    }
-    
     .font_title {
+      margin: 0 auto;
       font-family: AppleSDGothicNeo-Regular;
-      font-size: 26px;
+      font-size: 28px;
       font-weight: bold;
       font-style: normal;
       font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -2.21px;
-      text-align: center;
+      line-height: 1.5;
+      letter-spacing: -2.9px;
       color: #ffffff;
-      margin: 0 auto;
     }
 
     .delivery_co {
+      margin: 0 auto;
       font-family: AppleSDGothicNeo;
       font-size: 12px;
       font-weight: 300;
       font-stretch: normal;
       font-style: normal;
-      line-height: 2.85;
+      line-height: normal;
       letter-spacing: normal;
-      text-align: center;
       color: #ffffff;
     }
 
-    .img_row {
-      position: relative;
-      top: 8.2vh;
-      text-align: center;
-      object-fit: contain;
-    }
-
-    .rcmnd_delivery {
-      display: block;
-      margin: auto;
-    }
-
-    .delivery-img1 {
-      position: relative;
-      right: 1vw;
+    .delivery-img {
+      margin-top: -1vw;
+      margin-left: -4.5vw;
       width: 10vw;
-      height: 6vh;
       background-color: #5c59b6;
     }
 
     .delivery-img2 {
-      width: 9.5vw;
-      height: 6vh;
+      margin-top: -1vw;
+      width: 10vw;
       background-color: #5c59b6;
     }
 
     .delivery-img3 {
-      position: relative;
-      bottom: 0.5vh;
-      width: 15vw;
-      height: 5vh;
+      margin-left: 1.2vw;
+      width: 16vw;
       background-color: #5c59b6;
     }
-    
+
     .delivery-img4 {
-      position: relative;
-      bottom: 0.8vh;
+      margin-top: -1vw;
+      margin-left: 1.5vw;
       width: 13vw;
-      height: 5.6vh;
       background-color: #5c59b6;
     }
-    
-    .delivery_desc {
-      position: relative;
-      left: 1.7vw;
-      bottom: 0.7vh;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      font-family: AppleSDGothicNeo;
-      font-size: 9px;
+
+    .delivery_desc_title {
+      // opacity: 0.3;
+      margin-right: 3vw;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 10.3px;
       font-weight: 500;
-      font-style: normal;
       font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -1.24px;
+      font-style: normal;
+      line-height: 1.82;
+      letter-spacing: -0.51px;
+      text-align: center;
       color: rgba(255, 255, 255, 0.3);
-      text-align: left;
     }
 
-    .delivery_desc2 {
-      position: relative;
-      left: 2vw;
-      bottom: 0.7vh;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      font-family: AppleSDGothicNeo;
-      font-size: 9px;
+    .delivery_desc_title2 {
+      margin-left: 1vw;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 10.3px;
       font-weight: 500;
-      font-style: normal;
       font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -1.24px;
-      color: rgba(255, 255, 255, 0.3);
-      text-align: left;
-    }
-    
-    .delivery_desc3 {
-      position: relative;
-      left: 4.8vw;
-      bottom: 0.2vh;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      font-family: AppleSDGothicNeo;
-      font-size: 4px;
-      font-weight: 500;
       font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -1.03px;
+      line-height: 1.82;
+      letter-spacing: -0.51px;
+      text-align: center;
       color: rgba(255, 255, 255, 0.3);
-      text-align: left;
     }
 
-    .delivery_desc4 {
-      position: relative;
-      left: 3.8vw;
-      bottom: 0.5vh;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      font-family: AppleSDGothicNeo;
-      font-size: 4px;
+    .delivery_desc_title3 {
+      margin-left: 2vw;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 10.3px;
       font-weight: 500;
-      font-style: normal;
       font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -1.03px;
+      font-style: normal;
+      line-height: 2.22;
+      letter-spacing: -0.51px;
+      text-align: center;
       color: rgba(255, 255, 255, 0.3);
-      text-align: left;
+    }
+
+    .delivery_desc_title4 {
+      margin-left: 4vw;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 10.3px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.82;
+      letter-spacing: -0.51px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 3vw;
     }
 
     .grid_backColor2 {
-      position: relative;
-      height: 54vh;
-      top: 7.5vh;
-      left: 4.5vw;
-    }
-
-    .delivery_icon {
-      position: relative;
-      top: 0.3vh;
-      left: 0.2vw;
-      text-align: left;
-      color: #5c59b6;
+      width: calc(100vw - 7vw);
+      text-align: center;
     }
 
     .your_col {
-      position: relative;
-      height: 9.6vh;
-      top: 2.7vh;
-      right: 1.8vw;
+      margin-left: 1.5vw;
+      height: 16vw;
+      // height: 58px;
       border-left: 1px solid #a9a9a9;
     }
 
-    .caution {
-      position: relative;
-      left: 2.4vw;
-      bottom: 1vh;
-      text-align: left;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13px;
-      font-weight: 500;
-      font-stretch: normal;
-      font-style: normal;
-      letter-spacing: -0.42px;
-      color: #a9a9a9;
-    }
+    // .your_col {
+    //   display: block;
+    //   width:10px;
+    //   background-color:#000;
+    //   position:absolute;
+    //   top:0;
+    //   bottom:0;
+    // }
 
-    .delivery_text1 {
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13px !important;
-      color: #5c59b6 !important;
-    }
-
-    .delivery_lctn {
-      position: relative;
-      left: 8.5vw;
-      bottom: 1vh;
-      letter-spacing: -0.52px;
-      text-align: center;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13px;
-      color: #5c59b6;
-    }
-
-    .delivery_result {
-      position: relative;
-      left: 17.4vw;
-      bottom: 0.9vh;
-      text-align: right;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 12.5px;
+    .delivery_icon {
+      margin-left: 1vw;
       color: #5c59b6;
     }
 
     .delivery_icon2 {
-      position: relative;
-      top: 1.8vh;
-      left: 0.2vw;
-      text-align: left;
+      margin-left: 1vw;
       color: #a9a9a9;
     }
-
-    .your_col2 {
-      position: relative;
-      height: 9.6vh;
-      top: 2.7vh;
-      right: 1.8vw;
-      border-left: 1px solid #a9a9a9;
+    
+    .caution {
+      margin-top: -1vw;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 13px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: -0.42px;
+      color: #5c59b6;
     }
 
     .caution2 {
-      position: relative;
-      left: 2.4vw;
-      bottom: 1.5vh;
-      text-align: left;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13px;
       font-weight: 500;
@@ -274,138 +183,430 @@ page-sungwoo-delivery {
       font-style: normal;
       letter-spacing: -0.42px;
       color: #a9a9a9;
+    }
+
+    .delivery_lctn {
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 13px;
+      color: #5c59b6;
     }
 
     .delivery_lctn2 {
-      position: relative;
-      margin-top: -1vh;
-      margin-left: -2.8vw;
-      text-align: center;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13px;
       color: #a9a9a9;
     }
 
-    .delivery_result2 {
-      margin-top: -1vh;
-      // margin-left: 4.8vw;
-      text-align: right;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13px;
-      color: #a9a9a9;
-    }
-
-    .delivery_icon3 {
-      position: relative;
-      top: 4.5vh;
-      left: 0.2vw;
-      text-align: left;
-      color: #a9a9a9;
-    }
-
-    .your_col3 {
-      position: relative;
-      height: 9.6vh;
-      top: 2.7vh;
-      right: 1.8vw;
-      border-left: 1px solid #a9a9a9;
-    }
-
-    .caution3 {
-      position: relative;
-      left: 2.4vw;
-      bottom: 1.5vh;
-      text-align: left;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13px;
-      font-weight: 500;
-      font-stretch: normal;
-      font-style: normal;
-      letter-spacing: -0.42px;
-      color: #a9a9a9;
-    }
-
-    .delivery_lctn3 {
-      position: relative;
-      margin-top: -1vh;
-      margin-left: -2.8vw;
-      text-align: center;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13px;
-      color: #a9a9a9;
-    }
-
-    .delivery_result3 {
-      margin-top: -1vh;
-      // margin-left: 4.8vw;
-      text-align: right;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13px;
-      color: #a9a9a9;
-    }
-
-    .delivery_icon4 {
-      position: relative;
-      top: 6.5vh;
-      left: 0.2vw;
-      text-align: left;
-      color: #a9a9a9;
-    }
-
-    // .adjst {
-    //   margin-top: 2vh;
-    //   margin-left: -2vw;
-    // }
-      
-    .caution4 {
-      position: relative;
-      left: 2.4vw;
-      bottom: 1.5vh;
-      text-align: left;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13px;
-      font-weight: 500;
-      font-stretch: normal;
-      font-style: normal;
-      letter-spacing: -0.42px;
-      color: #a9a9a9;
-    }
-
-    .delivery_lctn4 {
-      position: relative;
-      margin-top: -1vh;
-      margin-left: -2.8vw;
-      text-align: center;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13px;
-      color: #a9a9a9;
-    }
-
-    .delivery_result4 {
-      margin-top: -1vh;
-      // margin-left: 4.8vw;
-      text-align: right;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13px;
-      color: #a9a9a9;
-    }
-
-    .delivery_btn{
-      position: relative;
-      min-width: 88%;
-      min-height: 7.5vh;
-      margin-left: 5.5vw;
-      margin-bottom: 2vh;
+    .cell {
+      min-width: 92.8%;
+      min-height: 50px;
       background-color: #5c59b6;
+      border-radius: 3.5px;
+      margin-left: 4vw;
+      margin-bottom: 6vw;
       font-family: AppleSDGothicNeo-Regular;
-      font-size: 13px;
-      font-weight: 500;
-      font-style: normal;
+      font-size: 12px;
+      font-weight: 600;
       font-stretch: normal;
+      font-style: normal;
       line-height: normal;
-      letter-spacing: -0.2vw;
       text-align: center;
       color: #ffffff;
+      margin-top: 1.35vw;
     }
+  
+    .cell_text {
+
+    }
+
+    // .grid_backColor {
+    //   width: 100vw;
+    //   height: 36.5vh;
+    //   background-color: #5c59b6;
+    // }
+
+    // .ic-system-back-black {
+    //   position: relative;
+    //   width: 10vw;
+    //   height: 5vh;
+    //   top: 2.5vh;
+    //   left: 85.7vw;
+    //   object-fit: contain;
+    //   background-color: transparent;
+    // }
+
+    // .title_row {
+    //   position: relative;
+    //   top: 4.4vh;
+    // }
+    
+    // .font_title {
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 26px;
+    //   font-weight: bold;
+    //   font-style: normal;
+    //   font-stretch: normal;
+    //   line-height: normal;
+    //   letter-spacing: -2.21px;
+    //   text-align: center;
+    //   color: #ffffff;
+    //   margin: 0 auto;
+    // }
+
+    // .delivery_co {
+    //   font-family: AppleSDGothicNeo;
+    //   font-size: 12px;
+    //   font-weight: 300;
+    //   font-stretch: normal;
+    //   font-style: normal;
+    //   line-height: 2.85;
+    //   letter-spacing: normal;
+    //   text-align: center;
+    //   color: #ffffff;
+    // }
+
+    // .img_row {
+    //   position: relative;
+    //   top: 8.2vh;
+    //   text-align: center;
+    //   object-fit: contain;
+    // }
+
+    // .rcmnd_delivery {
+    //   display: block;
+    //   margin: auto;
+    // }
+
+    // .delivery-img1 {
+    //   position: relative;
+    //   right: 1vw;
+    //   width: 10vw;
+    //   height: 6vh;
+    //   background-color: #5c59b6;
+    // }
+
+    // .delivery-img2 {
+    //   width: 9.5vw;
+    //   height: 6vh;
+    //   background-color: #5c59b6;
+    // }
+
+    // .delivery-img3 {
+    //   position: relative;
+    //   bottom: 0.5vh;
+    //   width: 15vw;
+    //   height: 5vh;
+    //   background-color: #5c59b6;
+    // }
+    
+    // .delivery-img4 {
+    //   position: relative;
+    //   bottom: 0.8vh;
+    //   width: 13vw;
+    //   height: 5.6vh;
+    //   background-color: #5c59b6;
+    // }
+    
+    // .delivery_desc {
+    //   position: relative;
+    //   left: 1.7vw;
+    //   bottom: 0.7vh;
+    //   display: -webkit-box;
+    //   -webkit-line-clamp: 2;
+    //   -webkit-box-orient: vertical;
+    //   overflow: hidden;
+    //   font-family: AppleSDGothicNeo;
+    //   font-size: 9px;
+    //   font-weight: 500;
+    //   font-style: normal;
+    //   font-stretch: normal;
+    //   line-height: normal;
+    //   letter-spacing: -1.24px;
+    //   color: rgba(255, 255, 255, 0.3);
+    //   text-align: left;
+    // }
+
+    // .delivery_desc2 {
+    //   position: relative;
+    //   left: 2vw;
+    //   bottom: 0.7vh;
+    //   display: -webkit-box;
+    //   -webkit-line-clamp: 2;
+    //   -webkit-box-orient: vertical;
+    //   overflow: hidden;
+    //   font-family: AppleSDGothicNeo;
+    //   font-size: 9px;
+    //   font-weight: 500;
+    //   font-style: normal;
+    //   font-stretch: normal;
+    //   line-height: normal;
+    //   letter-spacing: -1.24px;
+    //   color: rgba(255, 255, 255, 0.3);
+    //   text-align: left;
+    // }
+    
+    // .delivery_desc3 {
+    //   position: relative;
+    //   left: 4.8vw;
+    //   bottom: 0.2vh;
+    //   display: -webkit-box;
+    //   -webkit-line-clamp: 2;
+    //   -webkit-box-orient: vertical;
+    //   overflow: hidden;
+    //   font-family: AppleSDGothicNeo;
+    //   font-size: 4px;
+    //   font-weight: 500;
+    //   font-style: normal;
+    //   font-stretch: normal;
+    //   line-height: normal;
+    //   letter-spacing: -1.03px;
+    //   color: rgba(255, 255, 255, 0.3);
+    //   text-align: left;
+    // }
+
+    // .delivery_desc4 {
+    //   position: relative;
+    //   left: 3.8vw;
+    //   bottom: 0.5vh;
+    //   display: -webkit-box;
+    //   -webkit-line-clamp: 2;
+    //   -webkit-box-orient: vertical;
+    //   overflow: hidden;
+    //   font-family: AppleSDGothicNeo;
+    //   font-size: 4px;
+    //   font-weight: 500;
+    //   font-style: normal;
+    //   font-stretch: normal;
+    //   line-height: normal;
+    //   letter-spacing: -1.03px;
+    //   color: rgba(255, 255, 255, 0.3);
+    //   text-align: left;
+    // }
+
+    // .grid_backColor2 {
+    //   position: relative;
+    //   height: 54vh;
+    //   top: 7.5vh;
+    //   left: 4.5vw;
+    // }
+
+    // .delivery_icon {
+    //   position: relative;
+    //   top: 0.3vh;
+    //   left: 0.2vw;
+    //   text-align: left;
+    //   color: #5c59b6;
+    // }
+
+    // .your_col {
+    //   position: relative;
+    //   height: 9.6vh;
+    //   top: 2.7vh;
+    //   right: 1.8vw;
+    //   border-left: 1px solid #a9a9a9;
+    // }
+
+    // .caution {
+    //   position: relative;
+    //   left: 2.4vw;
+    //   bottom: 1vh;
+    //   text-align: left;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13px;
+    //   font-weight: 500;
+    //   font-stretch: normal;
+    //   font-style: normal;
+    //   letter-spacing: -0.42px;
+    //   color: #a9a9a9;
+    // }
+
+    // .delivery_text1 {
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13px !important;
+    //   color: #5c59b6 !important;
+    // }
+
+    // .delivery_lctn {
+    //   position: relative;
+    //   left: 8.5vw;
+    //   bottom: 1vh;
+    //   letter-spacing: -0.52px;
+    //   text-align: center;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13px;
+    //   color: #5c59b6;
+    // }
+
+    // .delivery_result {
+    //   position: relative;
+    //   left: 17.4vw;
+    //   bottom: 0.9vh;
+    //   text-align: right;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 12.5px;
+    //   color: #5c59b6;
+    // }
+
+    // .delivery_icon2 {
+    //   position: relative;
+    //   top: 1.8vh;
+    //   left: 0.2vw;
+    //   text-align: left;
+    //   color: #a9a9a9;
+    // }
+
+    // .your_col2 {
+    //   position: relative;
+    //   height: 9.6vh;
+    //   top: 2.7vh;
+    //   right: 1.8vw;
+    //   border-left: 1px solid #a9a9a9;
+    // }
+
+    // .caution2 {
+    //   position: relative;
+    //   left: 2.4vw;
+    //   bottom: 1.5vh;
+    //   text-align: left;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13px;
+    //   font-weight: 500;
+    //   font-stretch: normal;
+    //   font-style: normal;
+    //   letter-spacing: -0.42px;
+    //   color: #a9a9a9;
+    // }
+
+    // .delivery_lctn2 {
+    //   position: relative;
+    //   margin-top: -1vh;
+    //   margin-left: -2.8vw;
+    //   text-align: center;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13px;
+    //   color: #a9a9a9;
+    // }
+
+    // .delivery_result2 {
+    //   margin-top: -1vh;
+    //   // margin-left: 4.8vw;
+    //   text-align: right;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13px;
+    //   color: #a9a9a9;
+    // }
+
+    // .delivery_icon3 {
+    //   position: relative;
+    //   top: 4.5vh;
+    //   left: 0.2vw;
+    //   text-align: left;
+    //   color: #a9a9a9;
+    // }
+
+    // .your_col3 {
+    //   position: relative;
+    //   height: 9.6vh;
+    //   top: 2.7vh;
+    //   right: 1.8vw;
+    //   border-left: 1px solid #a9a9a9;
+    // }
+
+    // .caution3 {
+    //   position: relative;
+    //   left: 2.4vw;
+    //   bottom: 1.5vh;
+    //   text-align: left;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13px;
+    //   font-weight: 500;
+    //   font-stretch: normal;
+    //   font-style: normal;
+    //   letter-spacing: -0.42px;
+    //   color: #a9a9a9;
+    // }
+
+    // .delivery_lctn3 {
+    //   position: relative;
+    //   margin-top: -1vh;
+    //   margin-left: -2.8vw;
+    //   text-align: center;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13px;
+    //   color: #a9a9a9;
+    // }
+
+    // .delivery_result3 {
+    //   margin-top: -1vh;
+    //   // margin-left: 4.8vw;
+    //   text-align: right;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13px;
+    //   color: #a9a9a9;
+    // }
+
+    // .delivery_icon4 {
+    //   position: relative;
+    //   top: 6.5vh;
+    //   left: 0.2vw;
+    //   text-align: left;
+    //   color: #a9a9a9;
+    // }
+
+    // // .adjst {
+    // //   margin-top: 2vh;
+    // //   margin-left: -2vw;
+    // // }
+      
+    // .caution4 {
+    //   position: relative;
+    //   left: 2.4vw;
+    //   bottom: 1.5vh;
+    //   text-align: left;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13px;
+    //   font-weight: 500;
+    //   font-stretch: normal;
+    //   font-style: normal;
+    //   letter-spacing: -0.42px;
+    //   color: #a9a9a9;
+    // }
+
+    // .delivery_lctn4 {
+    //   position: relative;
+    //   margin-top: -1vh;
+    //   margin-left: -2.8vw;
+    //   text-align: center;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13px;
+    //   color: #a9a9a9;
+    // }
+
+    // .delivery_result4 {
+    //   margin-top: -1vh;
+    //   // margin-left: 4.8vw;
+    //   text-align: right;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13px;
+    //   color: #a9a9a9;
+    // }
+
+    // .delivery_btn{
+    //   position: relative;
+    //   min-width: 88%;
+    //   min-height: 7.5vh;
+    //   margin-left: 5.5vw;
+    //   margin-bottom: 2vh;
+    //   background-color: #5c59b6;
+    //   font-family: AppleSDGothicNeo-Regular;
+    //   font-size: 13px;
+    //   font-weight: 500;
+    //   font-style: normal;
+    //   font-stretch: normal;
+    //   line-height: normal;
+    //   letter-spacing: -0.2vw;
+    //   text-align: center;
+    //   color: #ffffff;
+    // }
 
 }
