@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, PopoverController, ToastController, AlertController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, PopoverController, ToastController, AlertController, ViewController, ModalController } from 'ionic-angular';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { ImagesProvider } from '../../providers/images/images';
 import { AuthService } from '../../providers/auth-service';
@@ -61,6 +61,7 @@ export class SungwooBeautyPage {
     public viewCtrl: ViewController, 
     public element: ElementRef,
     public popoverCtrl: PopoverController,
+    public modalCtrl: ModalController,
     ) {
       this.platform.ready().then(() => {
         this.loadItems();
@@ -670,6 +671,17 @@ export class SungwooBeautyPage {
     this.myInput.nativeElement.focus();   
     this.toggleSection(); 
   }
+
+  openMoviePage(youTubeData) {
+    let myModal = this.modalCtrl.create(SungwooBeautyPage, { youTubeData: youTubeData});
+    myModal.onDidDismiss(data => {
+      // this.authService.setUserStoragetab(2);
+      // this.ionViewWillEnter();
+    });
+    myModal.present();
+  }
+
+
 
 
 

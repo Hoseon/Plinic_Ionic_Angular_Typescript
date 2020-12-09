@@ -140,7 +140,7 @@
       <div class="movie_text2">피부에 도움이 되는 다양한 콘텐츠를 추천드립니다</div>
     </ion-row>
     <br><br>
-    <ion-row>
+    <ion-row (click)="goToCommunityMovie()">
       <ion-col col-10>
         <div class="movie_text7">추천 영상</div>
       </ion-col>
@@ -150,36 +150,22 @@
       </ion-col>
     </ion-row>
     <br>
-    <ion-row>
-      <ion-col col-6>
-        <img src="assets/img/skin-chek-chart/youtube1.png" class="movie_frame" />
-      </ion-col>
-      <ion-col col-6>
-        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
-        <div class="movie_text10">피부과 전문의 이하은</div>
-        <div class="movie_text11">조회수 143</div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>
-        <img src="assets/img/skin-chek-chart/youtube2.png" class="movie_frame" />
-      </ion-col>
-      <ion-col col-6>
-        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
-        <div class="movie_text10">피부과 전문의 이하은</div>
-        <div class="movie_text11">조회수 143</div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>
-        <img src="assets/img/skin-chek-chart/youtube3.png" class="movie_frame" />
-      </ion-col>
-      <ion-col col-6>
-        <div class="movie_text9">모공 개선을 위해서는 식단을 규칙적으로 하는 것이 좋습니다.</div>
-        <div class="movie_text10">피부과 전문의 이하은</div>
-        <div class="movie_text11">조회수 143</div>
-      </ion-col>
-    </ion-row>
+    <ng-container *ngIf="movieData">
+      <ng-container *ngFor="let moviedata of youTubeArrayData; let i = index">
+        <ng-container *ngIf="3 > i">
+          <ion-row (click)="openMoviePage(moviedata)">
+            <ion-col col-6>
+              <img src="{{moviedata.snippet.thumbnails.maxres.url}}" class="movie_frame" />
+            </ion-col>
+            <ion-col col-6>
+              <div class="movie_text9">{{moviedata.snippet.title}}</div>
+              <div class="movie_text10">{{moviedata.snippet.channelTitle}}</div>
+              <div *ngIf="videoDetailData[i]" class="movie_text11">조회수 {{videoDetailData[i].views}}</div>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+      </ng-container>
+    </ng-container>
   </ion-grid>
   <br><br>
   <div
@@ -187,7 +173,7 @@
   </div>
 
   <ion-grid>
-    <ion-row>
+    <ion-row (click)="goToCommunity()">
       <ion-col col-10>
         <div class="movie_text7">추천 뷰티 꿀팁</div>
       </ion-col>
@@ -218,7 +204,7 @@
 
 
   <ion-grid>
-    <ion-row>
+    <ion-row (click)="goToProduct()">
       <ion-col col-10>
         <div class="movie_text7">추천 화장품</div>
       </ion-col>
@@ -249,7 +235,7 @@
     style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-bottom: 5%; margin-top: 3%; background-color:#f1f1f1">
   </div>
   <ion-grid>
-    <ion-row>
+    <ion-row (click)="goToCommunityGomin()">
       <ion-col col-10>
         <div class="movie_text7">베스트 피부 고민</div>
       </ion-col>

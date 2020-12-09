@@ -222,7 +222,7 @@
           <ion-row>
             <ion-slides class="movie_slide" mode="ios" slidesPerView=2.5>
               <ng-container *ngIf="youTubeArrayData">
-                <ion-slide *ngFor="let tubeData2 of youTubeArrayData; let i = index;" (click)="openMoviePage(tubeData)">
+                <ion-slide *ngFor="let tubeData2 of youTubeArrayData; let i = index;" (click)="openMoviePage(tubeData2)">
                   <img class="movie_img2" src="{{tubeData2.snippet.thumbnails.maxres.url}}" />
                   <div class="movie_text5">{{tubeData2.snippet.title}}</div>
                   <div class="movie_text6">{{tubeData2.snippet.channelTitle}}</div>

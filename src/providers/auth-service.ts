@@ -2412,7 +2412,8 @@ export class AuthService {
 
   public cameraTest(img, img2, user, munjin) { // 여러장이 올라 가는지 확인 필요
     var age = 37;
-    let url = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/api/';
+    // let url = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/api/'; //피쳐링 피부분석 API
+    let url = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/api/'; //지원파트너스 피부분석 API 2020-12-07
     var targetPath = img;
     var targetPath2 = img2;
     var options: FileUploadOptions = {

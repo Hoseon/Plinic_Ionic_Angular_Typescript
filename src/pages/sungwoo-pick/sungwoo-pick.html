@@ -5,60 +5,73 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar  *ngIf="platform.is('android')" no-lines>
-    <ion-title class="android_title" text-wrap >상품 선택</ion-title>
+  <ion-navbar *ngIf="platform.is('android')" no-lines>
+    <ion-title class="android_title" text-wrap>상품 선택</ion-title>
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
-  	<ion-buttons left>
-  		<button ion-button navPop icon-only>
-        <img class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
-  		</button>
-  	</ion-buttons>
+    <ion-buttons left>
+      <button ion-button navPop icon-only>
+        <img
+          class="ios_nav"
+          src="assets/img/agreement/ic-system-back-black@3x.png"
+        />
+      </button>
+    </ion-buttons>
     <ion-title class="ios_title" text-wrap>상품 선택</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content no-padding>
   <!-- <ion-slides no-padding mode="ios" #Slides (ionDrag)="onSlideDrag()" (ionSlideWillChange)="slideChanged($event)">
   <ion-slide> -->
-    <br>
-    <ion-card class="card">
-      <ion-grid class="left">
-        <br>
-        <ion-row class="pick-title">청귤 비타C 잡티세럼청귤 비타</ion-row>
-        <br>
-         <ion-list>
-           <ion-item no-padding>
-            <ion-select okText="Okay" cancelTest="Dismiss" id="select"  class="s_icon" placeholder="옵션을 선택하세요">
-              <ion-option value="nes">1</ion-option>
-              <ion-option value="n64">2</ion-option>
-              <ion-option value="ps">3</ion-option>
-              <ion-option value="genesis">4</ion-option>
-              <ion-option value="saturn">5</ion-option>
-              <ion-option value="snes">6</ion-option>
-            </ion-select>
-           </ion-item>
-         </ion-list>
-         <br>
-        <ion-row>
-          <ion-col class="pick_count" col-7 no-padding>
-            <input type="button" value=" - " >
-            <input type="text" name="amount" value="2" size="3" style="text-align: center;">
-            <input type="button" value=" + " >
-          </ion-col>
-          <ion-col class="text_col" col-5>
-            <div class="pick_text1">합계</div>
-            <div class="pick_text2">40,000원</div>
-          </ion-col>
-        </ion-row>
-        <br>
-      </ion-grid>
-    </ion-card>
-    <!-- </ion-slide>
+  <br />
+  <ion-card class="card">
+    <ion-grid class="left">
+      <br />
+      <ion-row class="pick-title">청귤 비타C 잡티세럼청귤 비타</ion-row>
+      <br />
+      <ion-list>
+        <ion-item no-padding>
+          <ion-select
+            okText="Okay"
+            cancelTest="Dismiss"
+            id="select"
+            class="s_icon"
+            placeholder="옵션을 선택하세요"
+          >
+            <ion-option value="nes">1</ion-option>
+            <ion-option value="n64">2</ion-option>
+            <ion-option value="ps">3</ion-option>
+            <ion-option value="genesis">4</ion-option>
+            <ion-option value="saturn">5</ion-option>
+            <ion-option value="snes">6</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <br />
+      <ion-row>
+        <ion-col class="pick_count" col-7 no-padding>
+          <input (click)="minus()" type="button" value=" - " />
+          <input
+            type="text"
+            name="amount"
+            value="{{ProductCount}}"
+            size="3"
+            style="text-align: center;"
+          />
+          <input (click)="plus()" type="button" value=" + " />
+        </ion-col>
+        <ion-col class="text_col" col-5>
+          <div class="pick_text1">합계</div>
+          <div class="pick_text2">{{ProductAmountString}}</div>
+        </ion-col>
+      </ion-row>
+      <br />
+    </ion-grid>
+  </ion-card>
+  <!-- </ion-slide>
   </ion-slides> -->
 
   <!-- <ion-row class="pick-btn">
@@ -69,5 +82,7 @@
 
 <ion-footer mode="ios" class="footer" keyboard-attach no-bounce no-lines>
   <button ion-button class="pick_btn1">장바구니</button>
-  <button ion-button (click)="buy()" color="Purple" class="pick_btn2">구매하기</button>
+  <button ion-button (click)="buy()" color="Purple" class="pick_btn2">
+    구매하기
+  </button>
 </ion-footer>

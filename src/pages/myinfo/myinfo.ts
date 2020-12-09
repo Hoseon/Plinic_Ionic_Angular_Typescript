@@ -250,7 +250,7 @@ export class MyinfoPage {
   }
 
   async ionViewDidEnter() {
-    this.getOrderList(this.userData.email);
+    // this.getOrderList(this.userData.email);
     console.log("init ionViewDidEnter");
     // setTimeout(() => {
       // this.flip();
