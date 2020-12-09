@@ -109,6 +109,7 @@
   "devDependencies": {
     "@ionic/app-scripts": "^3.2.3",
     "@types/node": "^11.13.8",
+    "prettier": "2.2.1",
     "typescript": "2.4.2",
     "ws": "3.3.2"
   },

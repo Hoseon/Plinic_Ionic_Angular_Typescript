@@ -3,26 +3,26 @@ page-sungwoo-cosmetics-tab {
   .tabs-md[tabsPlacement="top"]>.tabbar::after,
   .footer-md::before,
   .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
-    height: 0px;
+    height: 1px;
     margin-bottom: 5px;
   }
-  
+
   .item-md.item-block .item-inner {
     padding-right: 12px;
   }
-  
+
   .header-ios::after,
   .tabs-ios[tabsPlacement="top"]>.tabbar::after,
   .footer-ios::before,
   .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
-    height: 1px;
+    height: 0px;
     margin-bottom: 5px;
   }
-  
+
   .item-ios.item-block .item-inner {
     padding-right: 12px;
   }
-  
+
   .toolbar-title-md {
     font-weight: bold;
     font-size: 17px;
@@ -33,9 +33,8 @@ page-sungwoo-cosmetics-tab {
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    margin-top: -18.8%;
   }
-  
+
   .toolbar-title-ios {
     font-weight: bold;
     font-size: 17px;
@@ -49,7 +48,7 @@ page-sungwoo-cosmetics-tab {
     margin-top: -5%;
     color: #292929;
   }
-  
+
   .bar-button-clear-ios-default,
   .bar-button-default-ios,
   .bar-button-default.bar-button-ios-default {
@@ -57,18 +56,18 @@ page-sungwoo-cosmetics-tab {
     margin-top: -15%;
     color: transparent;
   }
-  
+
   .ios_nav {
     background-color: #FFF;
-    width: 140px !important;
+    width: 50px !important;
     height: 25px !important;
     object-fit: contain;
   }
-  
+
   .toolbar-background {
     background-color: #FFF;
   }
-  
+
   .ion-md-arrow-back:before {
     position: absolute;
     content: "\f27d";
@@ -77,15 +76,15 @@ page-sungwoo-cosmetics-tab {
     width: 25px;
     height: 25px;
   }
-  
+
   .toolbar-ios {
     margin-top: 8%;
   }
-  
+
   .back-button-text-ios {
     font-size: 0;
   }
-  
+
   .android_title {
     position: absolute;
     left: 50%;
@@ -95,7 +94,7 @@ page-sungwoo-cosmetics-tab {
     width: 70%;
     color: #292929;
   }
-  
+
   .ios_title {
     position: absolute;
     left: 50%;
@@ -105,6 +104,15 @@ page-sungwoo-cosmetics-tab {
     width: 120%;
     color: #292929;
     margin-top: 1%;
+  }
+
+  .head_row {
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 45.5px;
+    background-color: #f9fafb;
+    margin-top: -1.5%;
   }
   
   .guide_android {
@@ -116,13 +124,12 @@ page-sungwoo-cosmetics-tab {
     line-height: normal;
     letter-spacing: normal;
     color: #292929;
-    border-radius: 2px;
-    border: solid 1px #f1f1f1;
     background-color: #ffffff !important;
-    // box-shadow: none !important;
     height: 28px;
     position: relative;
     right: 80%;
+    left: 1vw;
+    float: left;
   }
   
   .guide_ios {
@@ -134,34 +141,11 @@ page-sungwoo-cosmetics-tab {
     line-height: normal;
     letter-spacing: normal;
     color: #292929;
-    border-radius: 2px;
-    border: solid 1px #f1f1f1;
     background-color: #ffffff !important;
-    // box-shadow: none !important;
     height: 28px;
     position: relative;
-    right: 80%;
-  }
-  
-  .android_search {
-    position: absolute;
-    margin-top: -3%;
-    right: 17%;
-    width: 25px;
-    height: 25px;
-    object-fit: contain;
-    z-index: 10;
-  }
-  
-  .ios_search {
-    position: relative;
-    margin-top: -5%;
-    right: 17%;
-    width: 25px;
-    height: 25px;
-    object-fit: contain;
-    z-index: 10;
-    left: 30%;
+    margin-left: 1vw;
+    float: left;
   }
 
   .cosmetics_list{
@@ -201,21 +185,15 @@ page-sungwoo-cosmetics-tab {
     color: #ffffff;
   }
 
-  .cosmetics_div {
-    position: relative;
-    margin:0 auto;
-    width: 100vw;
-    height: 9.5vh;
-  }
-
   .count_text {
-    position: absolute;
-    top: 2.6vh;
-    left: 4.3vw;
-    float: left;
+    margin-top: -1vw;
+    top: 1vw;
+    left: 2.8vw;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 15px;
+    line-height: 3.06;
     letter-spacing: -0.74px;
+    text-align: left;
     color:#383838;
   }
 
@@ -225,9 +203,8 @@ page-sungwoo-cosmetics-tab {
   }
 
   .select_box {
-    top: 0.6vh;
-    height: 8vh;
-    width: 28vw;
+    margin-top: 1vw;
+    margin-bottom: 0;
     float: right;
   }
 
@@ -243,44 +220,34 @@ page-sungwoo-cosmetics-tab {
     border-radius: 5px;
   }
 
-  .list_div {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    top: 1vh;
-    right: 1vw;
-    // align-items: flex-start;
-    width: 100vw;
-    height: 17.5vh;
+  .select-md .select-placeholder {
+    padding-top: 0.5vw;
+  }
+
+  .select-md .select-icon {
+    right: 2vw;
   }
 
   .cosmetics_img {
-    position: relative;
-    top: 3.2vh;
-    left: 6.5vw;
-    height: 9.5vh;
+    margin-top: 1vw;
+    margin-right: 1vw;
+    float: right;
     width: 17.4vw;
     border: solid 0.5px #d2d2d2;
     border-radius: 5.7px;
   }
 
-  .cosmetics_container {
-    align-self: center;
-    // position: relative;
-    // height: 9vh;
-    width: 53vw;
-    // bottom: 5.6vh;
-    // right: 5vw;
-    // margin: 0 auto;
+  .cosmetics_col {
+    top: 2vw;
+    right: 1.5vw;
   }
 
   .cosmetics_nickname {
-    width: 30vw;
     font-size: 10.4px;
     letter-spacing: -0.52px;
     color: #6562b9;
   }
-
+  
   .cosmetics_product {
     width: 53vw;
     font-family: AppleSDGothicNeo-Regular;
@@ -290,35 +257,24 @@ page-sungwoo-cosmetics-tab {
     color: #292929;
   }
 
-  .count_container {
-    // position: relative;
-    // top: 1.8vh;
-    // width: 30vw;
-    // right: 1.5vw;
-    letter-spacing: -0.5px;
-    line-height: 3.55;
-    font-size: 10.4px;
-  }
-
   .cosmetics_text {
-    font-family: AppleSDGothicNeo-Regular;
+    margin-top: 3vw;
+    padding-right: 1vw;
+    font-size: 10.4px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.55;
+    letter-spacing: -0.5px;
+    text-align: left;
     color: #afafaf;
   }
 
-  .cosmetics_num {
-    font-family: AppleSDGothicNeo-Regular;
-    color: #505050;
-  }
-
-  .select-icon {
-    right: 2vw;
-  }
-    
   .cosmetics_btn {
     width: 11.6vw;
-    height: 4vh;
-    top: 4.2vh;
-    right: 3.8vw;
+    height: 6.5vw;
+    top: 3.5vw;
+    right: 3.3vw;
     float: right;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 11px;
@@ -327,5 +283,122 @@ page-sungwoo-cosmetics-tab {
     box-shadow: none;
     background-color: #6562b9;
   }
+
+  // .cosmetics_div {
+  //   position: relative;
+  //   margin:0 auto;
+  //   width: 100vw;
+  //   height: 9.5vh;
+  // }
+
+  // .count_text {
+  //   position: absolute;
+  //   top: 2.6vh;
+  //   left: 4.3vw;
+  //   float: left;
+  //   font-family: AppleSDGothicNeo-Regular;
+  //   font-size: 15px;
+  //   letter-spacing: -0.74px;
+  //   color:#383838;
+  // }
+
+  // .cosmetics_count {
+  //   font-weight: bolder;
+  //   color:#383838;
+  // }
+
+  // .select_box {
+  //   top: 0.6vh;
+  //   height: 8vh;
+  //   width: 28vw;
+  //   float: right;
+  // }
+
+  // .cosmetics_select {
+  //   max-width: 100%;
+  //   width: 17.5vw;
+  //   padding: .6vw .3vw;
+  //   border: 1px solid #b8b8b8;
+  //   background-color: #ffffff;
+  //   font-family: AppleSDGothicNeo-Regular;
+  //   font-size: 11.1px;
+  //   text-align: center;
+  //   border-radius: 5px;
+  // }
+
+  // .list_div {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   position: relative;
+  //   top: 1vh;
+  //   right: 1vw;
+  //   width: 100vw;
+  //   height: 17.5vh;
+  // }
+
+  // .cosmetics_img {
+  //   position: relative;
+  //   top: 3.2vh;
+  //   left: 6.5vw;
+  //   height: 9.5vh;
+  //   width: 17.4vw;
+  //   border: solid 0.5px #d2d2d2;
+  //   border-radius: 5.7px;
+  // }
+
+  // .cosmetics_container {
+  //   align-self: center;
+  //   width: 53vw;
+  // }
+
+  // .cosmetics_nickname {
+  //   width: 30vw;
+  //   font-size: 10.4px;
+  //   letter-spacing: -0.52px;
+  //   color: #6562b9;
+  // }
+
+  // .cosmetics_product {
+  //   width: 53vw;
+  //   font-family: AppleSDGothicNeo-Regular;
+  //   font-size: 13.3px;
+  //   font-weight: bold;
+  //   letter-spacing: -0.6px;
+  //   color: #292929;
+  // }
+
+  // .count_container {
+  //   letter-spacing: -0.5px;
+  //   line-height: 3.55;
+  //   font-size: 10.4px;
+  // }
+
+  // .cosmetics_text {
+  //   font-family: AppleSDGothicNeo-Regular;
+  //   color: #afafaf;
+  // }
+
+  // .cosmetics_num {
+  //   font-family: AppleSDGothicNeo-Regular;
+  //   color: #505050;
+  // }
+
+  // .select-icon {
+  //   right: 2vw;
+  // }
+    
+  // .cosmetics_btn {
+  //   width: 11.6vw;
+  //   height: 4vh;
+  //   top: 4.2vh;
+  //   right: 3.8vw;
+  //   float: right;
+  //   font-family: AppleSDGothicNeo-Regular;
+  //   font-size: 11px;
+  //   font-weight: 500;
+  //   border-radius: 5.7px;
+  //   box-shadow: none;
+  //   background-color: #6562b9;
+  // }
 
 }
