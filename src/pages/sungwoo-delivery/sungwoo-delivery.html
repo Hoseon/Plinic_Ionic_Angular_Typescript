@@ -30,48 +30,55 @@
   </ion-navbar>
 </ion-header> -->
 
-
 <ion-content>
   <ng-container>
-    <ion-grid class="grid_backColor" no-padding="no-padding">
-      <ion-img
-        *ngIf="platform.is('android')"
-        class="ic-system-back-black"
-        (click)="measureBack()"
-        src="assets/img/ic-system-close-black/ic-system-close-black@3x.png"></ion-img>
-      <ion-img
-        *ngIf="platform.is('ios') || platform.is('core')"
-        class="ic-system-back-black"
-        (click)="measureBack()"
-        src="assets/img/ic-system-close-black/ic-system-close-black@3x.png"></ion-img>
-      <ion-row class="title_row">
-        <ion-col class="font_title" col-12>배송 조회</ion-col>
-        <ion-col class="delivery_co">CJ대한통운 ｜ <span class="co_num">운송장 1234 5678 9012 3456</span></ion-col>
+    <ion-grid class="delivery_grid">
+      <div class="close_div">
+        <ion-img
+          *ngIf="platform.is('android')"
+          class="ic-system-back-black"
+          (click)="measureBack()"
+          src="assets/img/ic-system-close-black/ic-system-close-black@3x.png"
+        ></ion-img>
+        <ion-img
+          *ngIf="platform.is('ios') || platform.is('core')"
+          class="ic-system-back-black"
+          (click)="measureBack()"
+          src="assets/img/ic-system-close-black/ic-system-close-black@3x.png"
+        ></ion-img>
+      </div>
+      <br />
+      <ion-row>
+        <div class="font_title">배송 조회</div>
       </ion-row>
-      <ion-row class="img_row">
-        <ion-col col-2="col-2" class="rcmnd_delivery">
-          <img class="delivery-img1" src="assets/img/delivery/729@3x.png">
-          <p class="delivery_desc">
-            <span class="delivery_desc_title">주문확인중&nbsp;</span>
-          </p>
+      <ion-row>
+        <div class="delivery_co">
+          CJ대한통운 ｜ <span>운송장 1234 5678 9012 3456</span>
+        </div>
+      </ion-row>
+      <br /><br />
+      <ion-row style="text-align: center">
+        <ion-col col-3>
+          <img class="delivery-img" src="assets/img/delivery/729@3x.png" />
+          <div class="delivery_desc_title">주문확인중&nbsp;</div>
         </ion-col>
-        <ion-col col-2="col-2" class="rcmnd_delivery">
-          <img class="delivery-img2" src="assets/img/delivery/shape-17@3x.png">
-          <p class="delivery_desc2">
-            <span class="delivery_desc_title">배송준비중&nbsp;</span>
-          </p>
+        <ion-col col-3>
+          <img
+            class="delivery-img2"
+            src="assets/img/delivery/shape-17@3x.png"
+          />
+          <div class="delivery_desc_title2">배송준비중&nbsp;</div>
         </ion-col>
-        <ion-col col-2="col-2" class="rcmnd_delivery">
-          <img class="delivery-img3" src="assets/img/delivery-white/shape-18@3x.png">
-          <p class="delivery_desc3">
-            <span class="delivery_desc_title">배송중&nbsp;</span>
-          </p>
+        <ion-col col-3>
+          <img
+            class="delivery-img3"
+            src="assets/img/delivery-white/shape-18@3x.png"
+          />
+          <div class="delivery_desc_title3">배송중&nbsp;</div>
         </ion-col>
-        <ion-col col-2="col-2" class="rcmnd_delivery">
-          <img class="delivery-img4" src="assets/img/delivery/689@3x.png">
-          <p class="delivery_desc4">
-            <span class="delivery_desc_title">배송완료&nbsp;</span>
-          </p>
+        <ion-col col-3>
+          <img class="delivery-img4" src="assets/img/delivery/689@3x.png" />
+          <div class="delivery_desc_title4">배송완료&nbsp;</div>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -79,46 +86,86 @@
 
   <ng-container>
     <ion-grid class="grid_backColor2">
+      <br /><br /><br />
       <ion-list>
-        <ion-row class="delivery_icon">
-          <ion-icon ios="ios-radio-button-on" md="md-radio-button-on" ></ion-icon>
-          <div class="your_col"></div>
-          <ion-col class="caution" col-3>
-            <span class="delivery_text1">2020-07-10<br> 13:49</span>
+        <ion-row>
+          <ion-icon
+            ios="ios-radio-button-on"
+            md="md-radio-button-on"
+            class="delivery_icon"
+          >
+            <div class="your_col"></div
+          ></ion-icon>
+
+          <ion-col class="caution" no-padding>
+            <span class="delivery_text1"
+              >2020-07-10<br />
+              13:49</span
+            >
           </ion-col>
-          <ion-col class="delivery_lctn" col-3>서울송파</ion-col>
-          <ion-col class="delivery_result" col-3>배송완료</ion-col>
+          <ion-col class="delivery_lctn" no-padding>서울송파</ion-col>
+          <ion-col class="delivery_lctn" no-padding>배송완료</ion-col>
         </ion-row>
-        <ion-row class="delivery_icon2">
-          <ion-icon ios="ios-radio-button-on" md="md-radio-button-on" ></ion-icon>
-          <div class="your_col2"></div>
-          <ion-col class="caution2">
-            <span class="delivery_text">2020-07-10<br> 13:49</span>
+
+        <ion-row>
+          <ion-icon
+            ios="ios-radio-button-on"
+            md="md-radio-button-on"
+            class="delivery_icon2"
+          >
+            <div class="your_col"></div
+          ></ion-icon>
+
+          <ion-col class="caution2" no-padding>
+            <span class="delivery_text"
+              >2020-07-10<br />
+              13:49</span
+            >
           </ion-col>
-          <ion-col class="delivery_lctn2">서울송파</ion-col>
-          <ion-col class="delivery_result2">배송출발 </ion-col>
+          <ion-col class="delivery_lctn2" no-padding>서울송파</ion-col>
+          <ion-col class="delivery_lctn2" no-padding>배송출발 </ion-col>
         </ion-row>
-        <ion-row class="delivery_icon3">
-          <ion-icon ios="ios-radio-button-on" md="md-radio-button-on" ></ion-icon>
-          <div class="your_col3"></div>
-          <ion-col class="caution3">
-            <span class="delivery_text">2020-07-10<br> 13:49</span>
+
+        <ion-row>
+          <ion-icon
+            ios="ios-radio-button-on"
+            md="md-radio-button-on"
+            class="delivery_icon2"
+          >
+            <div class="your_col"></div
+          ></ion-icon>
+
+          <ion-col class="caution2" no-padding>
+            <span class="delivery_text"
+              >2020-07-10<br />
+              13:49</span
+            >
           </ion-col>
-          <ion-col class="delivery_lctn3">이천센터</ion-col>
-          <ion-col class="delivery_result3">지점도착</ion-col>
+          <ion-col class="delivery_lctn2" no-padding>이천센터</ion-col>
+          <ion-col class="delivery_lctn2" no-padding>지점도착</ion-col>
         </ion-row>
-        <ion-row class="delivery_icon4">
-          <ion-icon ios="ios-radio-button-on" md="md-radio-button-on" ></ion-icon>
-          <ion-col class="caution4">
-            <span class="delivery_text">2020-07-10<br> 13:49</span>
+
+        <ion-row>
+          <ion-icon
+            ios="ios-radio-button-on"
+            md="md-radio-button-on"
+            class="delivery_icon2"
+          ></ion-icon>
+          <ion-col class="caution2" no-padding>
+            <span class="delivery_text"
+              >2020-07-10<br />
+              13:49</span
+            >
           </ion-col>
-          <ion-col class="delivery_lctn4">이천센터</ion-col>
-          <ion-col class="delivery_result4">배송진행중</ion-col>
+          <ion-col class="delivery_lctn2" no-padding>이천센터</ion-col>
+          <ion-col class="delivery_lctn2" no-padding>배송진행중</ion-col>
         </ion-row>
       </ion-list>
     </ion-grid>
   </ng-container>
 
-  <button  class="delivery_btn" ion-button (click)="delivery_submit();"> 카카오 1:1 상담 바로가기</button>
-
+  <button class="cell" ion-button (click)="delivery_submit();">
+    카카오 1:1 상담 바로가기
+  </button>
+  <br><br>
 </ion-content>

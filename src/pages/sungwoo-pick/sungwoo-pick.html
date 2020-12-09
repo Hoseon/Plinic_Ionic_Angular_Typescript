@@ -5,8 +5,8 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar *ngIf="platform.is('android')" no-lines>
-    <ion-title class="android_title" text-wrap>상품 선택</ion-title>
+  <!-- <ion-navbar  *ngIf="platform.is('android')" no-lines>
+    <ion-title class="android_title" text-wrap >상품 선택</ion-title>
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
@@ -16,6 +16,25 @@
           class="ios_nav"
           src="assets/img/agreement/ic-system-back-black@3x.png"
         />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>상품 선택</ion-title>
+  </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('android')  || platform.is('core')">
+
+    <ion-title class="android_title" text-wrap>상품 선택</ion-title>
+  </ion-navbar>
+
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+      <ion-title  class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+    </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
       </button>
     </ion-buttons>
     <ion-title class="ios_title" text-wrap>상품 선택</ion-title>
