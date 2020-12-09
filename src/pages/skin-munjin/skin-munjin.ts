@@ -8,6 +8,7 @@ import { CommunityModifyPage } from '../community/community-modify/community-mod
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { ProductDetailPage } from '../product-detail/product-detail';
 import { AuthService } from '../../providers/auth-service';
+import { SungwooBeautyPage } from '../sungwoo-beauty/sungwoo-beauty';
 
  /**
  * Generated class for the SkinMunjinPage page.
@@ -22,7 +23,9 @@ import { AuthService } from '../../providers/auth-service';
   templateUrl: 'skin-munjin.html',
 })
 export class SkinMunjinPage {
-
+  movieData: any;
+  youTubeArrayData: Array<any>  = new Array<any>();
+  videoDetailData: Array<any>  = new Array<any>();
   skinAnalyPoreSize: any;
   skinAnalyPoreSizeAvg: any;
   skinAnalyPoreBeforeSizeAvg: any;
@@ -274,7 +277,7 @@ export class SkinMunjinPage {
         
     }
 
-     this.monthTotalAvg  = Math.floor(this.monthTotalSum / this.skinAnalyData.munjin.length);
+     this.monthTotalAvg  = Math.floor(this.monthTotalSum / this.munjinLastAvgScore.length);
      if(this.monthTotalAvg) {
       this.images.getAllMunjinData(this.monthTotalAvg).subscribe(data => {
         this.percentRank = Number(data.rank);
@@ -294,6 +297,8 @@ export class SkinMunjinPage {
     this.getAvgSkinPore(this.ageRange);
     this.skinQnaMainLoad();
     this.communityEditorBeautyLoad();
+    this.getAllBeautyMovie();
+
   }
 
   async ionViewDidEnter(){
@@ -325,7 +330,7 @@ export class SkinMunjinPage {
         
     }
 
-    this.monthTotalAvg  = Math.floor(this.monthTotalSum / this.skinAnalyData.munjin.length);
+    this.monthTotalAvg  = Math.floor(this.monthTotalSum / this.munjinLastAvgScore.length);
      if(this.monthTotalAvg) {
       this.images.getAllMunjinData(this.monthTotalAvg).subscribe(data => {
         this.percentRank = Number(data.rank);
@@ -533,10 +538,10 @@ export class SkinMunjinPage {
 
         this.skinTone = this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].tone[0].avgrage_color_hex;
 
-        this.cheekImages.push('http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].input[0].filename);
+        this.cheekImages.push('http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].input[0].filename);
         this.cheekImages.push(this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].pore[0].output_image);
 
-        this.foreheadImages.push('http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].input[0].filename);
+        this.foreheadImages.push('http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].input[0].filename);
         this.foreheadImages.push(this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].pore[0].output_image);
 
         
@@ -675,6 +680,52 @@ export class SkinMunjinPage {
   }
   
   custonSort(a, b) { if(b.created_at == a.created_at){ return 0} return b.created_at > a.created_at ? 1 : -1; }
+
+  getAllBeautyMovie() {
+    this.images.getBeautyMovie().subscribe(data=> {
+      this.movieData = data
+      if(data) {
+        for(let i = 0; i < data.length; i++) {
+          this.youTubeArrayData[i] = data[i].items[0];
+          this.getOneMovieData(data[i].items[0].id, i);
+        }
+      }
+    })
+  }
+
+  getOneMovieData(movieId, index) {
+    this.images.getOneBeautyMovie(movieId).subscribe(data=> {
+      this.videoDetailData[index] = data;
+    });  
+  }
+
+  openMoviePage(youTubeData) {
+    let myModal = this.modalCtrl.create(SungwooBeautyPage, { youTubeData: youTubeData});
+    myModal.onDidDismiss(data => {
+      // this.authService.setUserStoragetab(2);
+      // this.ionViewWillEnter();
+    });
+    myModal.present();
+  }
+
+  goToCommunityMovie() {
+    this.auth.setUserStoragetab(2);
+    this.navCtrl.parent.select(3)
+  }
+
+  goToCommunity() {
+    this.auth.setUserStoragetab(0);
+    this.navCtrl.parent.select(3)
+  }
+
+  goToCommunityGomin() {
+    this.auth.setUserStoragetab(1);
+    this.navCtrl.parent.select(3)
+  }
+
+  goToProduct() {
+    this.navCtrl.parent.select(2)
+  }
 
 
 }

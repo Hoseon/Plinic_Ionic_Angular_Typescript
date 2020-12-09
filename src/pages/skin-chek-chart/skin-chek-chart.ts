@@ -681,7 +681,8 @@ export class SkinChekChartPage {
 
           this.skinAnalyPoreSize = Math.floor(this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].pore[0].average_pore);
 
-          this.skinTone = this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].tone[0].avgrage_color_hex;
+          // this.skinTone = this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].tone[0].avgrage_color_hex; //2020-12-07 밝은 컬러로 변경
+          this.skinTone = this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].tone[0].lightest_color_hex;
   
           //현재 모공 사이즈 총 합
           for(let i= 0; i < this.skinAnalyData.cheek.length; i++) {

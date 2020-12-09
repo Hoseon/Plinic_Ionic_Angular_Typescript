@@ -858,13 +858,7 @@ export class CommunityPage {
       this.ionViewWillEnter();
     });
     myModal.present();
-
-    // this.authService.setUserStoragetab(2);
-    // this.nav.push(SungwooBeautyPage,{mode:'main', isNew: 'new'}).then(() => {
-    //   this.nav.getActive().onDidDismiss(data => {
-    //     //code
-    //   });
-    // });
+    
   }
 
   getOneMovieData(movieId, index) {

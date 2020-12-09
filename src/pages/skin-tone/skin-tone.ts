@@ -4,9 +4,11 @@ import { Chart } from 'chart.js';
 import { format } from 'date-fns';
 import 'chartjs-plugin-labels';
 import { ImagesProvider } from '../../providers/images/images'
+import { AuthService } from '../../providers/auth-service';
 import { CommunityModifyPage } from '../community/community-modify/community-modify'
 import { ProductDetailPage } from '../product-detail/product-detail'
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
+import { SungwooBeautyPage } from '../sungwoo-beauty/sungwoo-beauty';
 
  /**
  * Generated class for the SkinTonePage page.
@@ -21,7 +23,9 @@ import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } fro
   templateUrl: 'skin-tone.html',
 })
 export class SkinTonePage {
-
+  movieData: any;
+  youTubeArrayData: Array<any>  = new Array<any>();
+  videoDetailData: Array<any>  = new Array<any>();
   left1 : any = this.makeRandom(0,100) + '%';
   left2 : any = this.makeRandom(0,100) + '%';
   left3 : any = this.makeRandom(0,100) + '%';
@@ -46,13 +50,13 @@ export class SkinTonePage {
   image2 : boolean = false;
   image3 : boolean = false;
 
-  image1CheekUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
-  image2CheekUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
-  image3CheekUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image1CheekUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image2CheekUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image3CheekUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
 
-  image1ForeHeadUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
-  image2ForeHeadUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
-  image3ForeHeadUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image1ForeHeadUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image2ForeHeadUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image3ForeHeadUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
 
   randomProduct1: any = [];
   randomProduct2: any = [];
@@ -253,6 +257,7 @@ export class SkinTonePage {
   
 
   constructor(
+    public auth: AuthService,
     public navCtrl: NavController, 
     public navParams: NavParams,
     public platform: Platform,
@@ -265,18 +270,24 @@ export class SkinTonePage {
   }
 
   async ionViewDidLoad() {
-    
+    this.getAllBeautyMovie();
     this.navParams.get('userData') ? this.userData = this.navParams.get('userData') : this.userData = "";
     this.navParams.get('skinAnalyData') ? this.skinAnalyData = this.navParams.get('skinAnalyData') : this.skinAnalyData = "";
 
-    this.faceColor = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].tone[0].avgrage_color_hex;
-    this.currentSkinTone = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].tone[0].avgrage_color_hex;
+    // this.faceColor = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].tone[0].avgrage_color_hex;
+
+    //2020-12-07 만일 밝은 피부 코드 값이 존재 하지 않는다면(과거데이터 경우) 평균 피부코드로 대체
+    this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].tone[0].lightest_color_hex ? this.faceColor = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].tone[0].lightest_color_hex : this.faceColor = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].tone[0].avgrage_color_hex;
+    
+    // this.currentSkinTone = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].tone[0].avgrage_color_hex;
+    this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].tone[0].lightest_color_hex ? this.currentSkinTone = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].tone[0].lightest_color_hex : this.currentSkinTone = this.skinAnalyData.cheek[this.skinAnalyData.cheek.length-1].tone[0].avgrage_color_hex;
 
     for(let i = 0; i < this.skinAnalyData.cheek.length; i++){
       //월별 조건 추가
       if(this.skinbtnMonth ===  this.skinAnalyData.cheek[i].input[0].upload_date.substr(5,2)) {
         this.skinTone.push({
-          value : this.skinAnalyData.cheek[i].tone[0].avgrage_color_hex,
+          // value : this.skinAnalyData.cheek[i].tone[0].avgrage_color_hex, 2020-12-07 밝은 피부톤으로 변경
+          value : this.skinAnalyData.cheek[i].tone[0].lightest_color_hex,
           date: this.skinAnalyData.cheek[i].input[0].upload_date
         })  
       }
@@ -328,7 +339,8 @@ export class SkinTonePage {
       //월별 조건 추가
       if(month ===  this.skinAnalyData.cheek[i].input[0].upload_date.substr(5,2)) {
         this.skinTone.push({
-          value : this.skinAnalyData.cheek[i].tone[0].avgrage_color_hex,
+          // value : this.skinAnalyData.cheek[i].tone[0].avgrage_color_hex, 2020-12-07 평균컬러 제외 하고 밝은 컬러로 변경
+          value : this.skinAnalyData.cheek[i].tone[0].lightest_color_hex,
           date: this.skinAnalyData.cheek[i].input[0].upload_date
         })  
       }
@@ -697,6 +709,52 @@ export class SkinTonePage {
       console.log("화장품 상세정보 페이지 닫힘");
     });
     modal.present();
+  }
+
+  getAllBeautyMovie() {
+    this.images.getBeautyMovie().subscribe(data=> {
+      this.movieData = data
+      if(data) {
+        for(let i = 0; i < data.length; i++) {
+          this.youTubeArrayData[i] = data[i].items[0];
+          this.getOneMovieData(data[i].items[0].id, i);
+        }
+      }
+    })
+  }
+
+  getOneMovieData(movieId, index) {
+    this.images.getOneBeautyMovie(movieId).subscribe(data=> {
+      this.videoDetailData[index] = data;
+    });  
+  }
+
+  openMoviePage(youTubeData) {
+    let myModal = this.modalCtrl.create(SungwooBeautyPage, { youTubeData: youTubeData});
+    myModal.onDidDismiss(data => {
+      // this.authService.setUserStoragetab(2);
+      // this.ionViewWillEnter();
+    });
+    myModal.present();
+  }
+
+  goToCommunityMovie() {
+    this.auth.setUserStoragetab(2);
+    this.navCtrl.parent.select(3)
+  }
+
+  goToCommunity() {
+    this.auth.setUserStoragetab(0);
+    this.navCtrl.parent.select(3)
+  }
+
+  goToCommunityGomin() {
+    this.auth.setUserStoragetab(1);
+    this.navCtrl.parent.select(3)
+  }
+
+  goToProduct() {
+    this.navCtrl.parent.select(2)
   }
   
 }
