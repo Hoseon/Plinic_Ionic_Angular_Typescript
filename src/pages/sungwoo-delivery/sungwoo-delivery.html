@@ -84,7 +84,7 @@
     </ion-grid>
   </ng-container>
 
-  <ng-container>
+  <!-- <ng-container>
     <ion-grid class="grid_backColor2">
       <br /><br /><br />
       <ion-list>
@@ -94,7 +94,7 @@
             md="md-radio-button-on"
             class="delivery_icon"
           >
-            <div class="your_col"></div
+            <div class="line"></div
           ></ion-icon>
 
           <ion-col class="caution" no-padding>
@@ -113,7 +113,7 @@
             md="md-radio-button-on"
             class="delivery_icon2"
           >
-            <div class="your_col"></div
+            <div class="line"></div
           ></ion-icon>
 
           <ion-col class="caution2" no-padding>
@@ -132,7 +132,7 @@
             md="md-radio-button-on"
             class="delivery_icon2"
           >
-            <div class="your_col"></div
+            <div class="line"></div
           ></ion-icon>
 
           <ion-col class="caution2" no-padding>
@@ -161,11 +161,96 @@
           <ion-col class="delivery_lctn2" no-padding>배송진행중</ion-col>
         </ion-row>
       </ion-list>
+      <br><br>
+    </ion-grid>
+  </ng-container> -->
+
+
+
+
+  <ng-container>
+    <ion-grid class="grid_backColor2">
+      <br /><br /><br />
+      <ion-list>
+        <div class="line"></div>
+        <ion-row>
+          <ion-icon
+            ios="ios-radio-button-on"
+            md="md-radio-button-on"
+            class="delivery_icon"
+          ></ion-icon>
+
+          <ion-col class="caution" no-padding>
+            <span class="delivery_text1"
+              >2020-07-10<br />
+              13:49</span
+            >
+          </ion-col>
+          <ion-col class="delivery_lctn" no-padding>서울송파</ion-col>
+          <ion-col class="delivery_lctn" no-padding>배송완료</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-icon
+            ios="ios-radio-button-on"
+            md="md-radio-button-on"
+            class="delivery_icon2"
+          ></ion-icon>
+
+          <ion-col class="caution2" no-padding>
+            <span class="delivery_text"
+              >2020-07-10<br />
+              13:49</span
+            >
+          </ion-col>
+          <ion-col class="delivery_lctn2" no-padding>서울송파</ion-col>
+          <ion-col class="delivery_lctn2" no-padding>배송출발 </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-icon
+            ios="ios-radio-button-on"
+            md="md-radio-button-on"
+            class="delivery_icon2"
+          ></ion-icon>
+
+          <ion-col class="caution2" no-padding>
+            <span class="delivery_text"
+              >2020-07-10<br />
+              13:49</span
+            >
+          </ion-col>
+          <ion-col class="delivery_lctn2" no-padding>이천센터</ion-col>
+          <ion-col class="delivery_lctn2" no-padding>지점도착</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-icon
+            ios="ios-radio-button-on"
+            md="md-radio-button-on"
+            class="delivery_icon2"
+          ></ion-icon>
+          <ion-col class="caution2" no-padding>
+            <span class="delivery_text"
+              >2020-07-10<br />
+              13:49</span
+            >
+          </ion-col>
+          <ion-col class="delivery_lctn2" no-padding>이천센터</ion-col>
+          <ion-col class="delivery_lctn2" no-padding>배송진행중</ion-col>
+        </ion-row>
+      </ion-list>
+      <br><br>
     </ion-grid>
   </ng-container>
+
+
+
+
+
 
   <button class="cell" ion-button (click)="delivery_submit();">
     카카오 1:1 상담 바로가기
   </button>
-  <br><br>
+  <br /><br />
 </ion-content>

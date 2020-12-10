@@ -21,12 +21,7 @@
   </ion-navbar> -->
 
   <ion-navbar *ngIf="platform.is('android')  || platform.is('core')">
-    <ion-buttons left no-lines>
-      <button ion-button navPop icon-only left>
-        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
-        <img class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
-      </button>
-    </ion-buttons>
+
     <ion-title class="android_title" text-wrap>화장품 모아보기</ion-title>
     <ion-buttons (click)="myinfo()" end>
       <img class="guide_android" (click)="product_search()" src="assets/img/beauty/ic-system-search@3x.png" />
@@ -219,8 +214,8 @@
               <div class="cosmetics_nickname">구달</div>
               <div class="cosmetics_product" text-wrap>청귤 비타C 잡티세럼</div>
               <ion-row>
-                <ion-col class="cosmetics_text">리뷰<span style="color:#505050">-</span></ion-col>
-                <ion-col class="cosmetics_text">좋아요<span style="color:#505050">-</span></ion-col>
+                <div class="cosmetics_text">리뷰<span style="color:#505050">-</span></div>
+                <div class="cosmetics_text">좋아요<span style="color:#505050">-</span></div>
               </ion-row>
             </ion-col>
             <ion-col col-3>

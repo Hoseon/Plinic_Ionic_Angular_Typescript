@@ -59,7 +59,7 @@ page-sungwoo-cart {
 
   .ios_nav {
     background-color: #FFF;
-    width: 50px !important;
+    width: 140px !important;
     height: 25px !important;
     object-fit: contain;
   }
@@ -103,7 +103,6 @@ page-sungwoo-cart {
     height: 100%;
     width: 120%;
     color: #292929;
-    margin-top: 1%;
   }
 
   .head_row {
@@ -140,7 +139,7 @@ page-sungwoo-cart {
 
     .check_cancel {
       margin-top: -1vw;
-      margin-right: 2vw;
+      margin-right: 2.2vw;
       float: right;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 8px;
@@ -148,7 +147,7 @@ page-sungwoo-cart {
       font-style: normal;
       font-stretch: normal;
       color: #575656;
-      height: 138%;
+      height: 5.5vw;
       border-radius: 2.8px;
       border: solid 1px #d1d1d1;
       background-color: #ffffff;
@@ -172,6 +171,8 @@ page-sungwoo-cart {
     }
 
     .close_img {
+      margin-top: 0.5vw;
+      margin-right: 1vw;
       width: 6.5%;
       object-fit: contain;
       float: right;
@@ -219,7 +220,7 @@ page-sungwoo-cart {
 
     .cart_img {
       margin-top: 6.5vw;
-      margin-right: -3.5vw;
+      margin-right: -4.5vw;
       float: right;
       width: 17.5vw;
       border-radius: 5.7px;
