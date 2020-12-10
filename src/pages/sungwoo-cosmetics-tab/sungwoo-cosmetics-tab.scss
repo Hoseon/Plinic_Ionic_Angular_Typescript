@@ -59,7 +59,7 @@ page-sungwoo-cosmetics-tab {
 
   .ios_nav {
     background-color: #FFF;
-    width: 50px !important;
+    width: 140px !important;
     height: 25px !important;
     object-fit: contain;
   }
@@ -103,7 +103,6 @@ page-sungwoo-cosmetics-tab {
     height: 100%;
     width: 120%;
     color: #292929;
-    margin-top: 1%;
   }
 
   .head_row {
@@ -128,7 +127,7 @@ page-sungwoo-cosmetics-tab {
     height: 28px;
     position: relative;
     right: 80%;
-    left: 1vw;
+    left: -1vw;
     float: left;
   }
   
@@ -144,7 +143,7 @@ page-sungwoo-cosmetics-tab {
     background-color: #ffffff !important;
     height: 28px;
     position: relative;
-    margin-left: 1vw;
+    margin-left: -1vw;
     float: left;
   }
 

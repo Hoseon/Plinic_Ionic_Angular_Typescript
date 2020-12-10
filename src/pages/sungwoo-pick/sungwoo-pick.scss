@@ -59,7 +59,7 @@ page-sungwoo-pick {
 
   .ios_nav {
     background-color: #FFF;
-    width: 50px !important;
+    width: 140px !important;
     height: 25px !important;
     object-fit: contain;
   }
@@ -103,7 +103,6 @@ page-sungwoo-pick {
     height: 100%;
     width: 120%;
     color: #292929;
-    margin-top: 1%;
   }
 
   .head_row {
@@ -140,6 +139,11 @@ page-sungwoo-pick {
       text-align: left;
       color: #292929;
       margin-top: -1vw;
+    }
+
+    .list-ios .item-block:first-child {
+      border-top: none;
+      border-bottom: none;
     }
 
     .s_icon {
