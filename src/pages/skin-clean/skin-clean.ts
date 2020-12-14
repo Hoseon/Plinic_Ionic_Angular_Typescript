@@ -3,10 +3,12 @@ import { IonicPage, NavController, NavParams, Platform, Slides, ModalController,
 import { Chart } from 'chart.js';
 import { format } from 'date-fns';
 import 'chartjs-plugin-labels';
+import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images'
 import { CommunityModifyPage } from '../community/community-modify/community-modify'
 import { ProductDetailPage } from '../product-detail/product-detail'
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
+import { SungwooBeautyPage } from '../sungwoo-beauty/sungwoo-beauty'; 
 
  /**
  * Generated class for the SkinCleanPage page.
@@ -21,6 +23,9 @@ import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } fro
   templateUrl: 'skin-clean.html',
 })
 export class SkinCleanPage {
+  movieData: any;
+  youTubeArrayData: Array<any>  = new Array<any>();
+  videoDetailData: Array<any>  = new Array<any>();
   faceText: any; //볼 부위 
   faceImgUrl: any;// 볼
   faceText2: any; //이마
@@ -62,13 +67,13 @@ export class SkinCleanPage {
   image2 : boolean = false;
   image3 : boolean = false;
 
-  image1CheekUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
-  image2CheekUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
-  image3CheekUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image1CheekUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image2CheekUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image3CheekUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
 
-  image1ForeHeadUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
-  image2ForeHeadUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
-  image3ForeHeadUrl : any = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image1ForeHeadUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image2ForeHeadUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image3ForeHeadUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
 
   randomProduct1: any = [];
   randomProduct2: any = [];
@@ -262,6 +267,7 @@ export class SkinCleanPage {
   isDiff: boolean = false;
 
   constructor(
+    public auth: AuthService,
     public navCtrl: NavController, 
     public navParams: NavParams,
     public platform: Platform,
@@ -273,6 +279,7 @@ export class SkinCleanPage {
   }
 
   async ionViewDidLoad() {
+    this.getAllBeautyMovie();
     
     this.navParams.get('userData') ? this.userData = this.navParams.get('userData') : this.userData = "";
     this.navParams.get('skinAnalyData') ? this.skinAnalyData = this.navParams.get('skinAnalyData') : this.skinAnalyData = "";
@@ -852,6 +859,51 @@ export class SkinCleanPage {
     modal.present();
   }
 
+  getAllBeautyMovie() {
+    this.images.getBeautyMovie().subscribe(data=> {
+      this.movieData = data
+      if(data) {
+        for(let i = 0; i < data.length; i++) {
+          this.youTubeArrayData[i] = data[i].items[0];
+          this.getOneMovieData(data[i].items[0].id, i);
+        }
+      }
+    })
+  }
+
+  getOneMovieData(movieId, index) {
+    this.images.getOneBeautyMovie(movieId).subscribe(data=> {
+      this.videoDetailData[index] = data;
+    });  
+  }
+
+  openMoviePage(youTubeData) {
+    let myModal = this.modalCtrl.create(SungwooBeautyPage, { youTubeData: youTubeData});
+    myModal.onDidDismiss(data => {
+      // this.authService.setUserStoragetab(2);
+      // this.ionViewWillEnter();
+    });
+    myModal.present();
+  }
+
+  goToCommunityMovie() {
+    this.auth.setUserStoragetab(2);
+    this.navCtrl.parent.select(3)
+  }
+
+  goToCommunity() {
+    this.auth.setUserStoragetab(0);
+    this.navCtrl.parent.select(3)
+  }
+
+  goToCommunityGomin() {
+    this.auth.setUserStoragetab(1);
+    this.navCtrl.parent.select(3)
+  }
+
+  goToProduct() {
+    this.navCtrl.parent.select(2)
+  }
  
   
 }

@@ -14,29 +14,6 @@
     <img class="android_search" style="left:5%" (click)="community_search()"
       src="assets/img/beauty/ic-system-search@3x.png" />
     <ion-title class="android_title" text-wrap>커뮤니티</ion-title>
-    <!-- <ng-container *ngIf="page==='0'"> -->
-
-    <!-- <div class="android_my">MY</div> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='1'"> -->
-    <!-- <img class="android_search" src="assets/img/beauty/ic-system-search@3x.png" />
-    <div class="android_my">MY</div> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='2'"> -->
-    <!-- <img class="android_search" style="right:5%" (click)="community_search()" -->
-    <!-- src="assets/img/beauty/ic-system-search@3x.png" /> -->
-    <!-- <button ion-button class="android_my" (click)="community_my()">MY</button> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='3'"> -->
-    <!-- <img class="android_search" style="right:5%" (click)="community_search()" -->
-    <!-- src="assets/img/beauty/ic-system-search@3x.png" /> -->
-    <!-- <button ion-button class="android_my" (click)="community_my()">MY</button> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='4'"> -->
-    <!-- <img class="android_search" src="assets/img/beauty/ic-system-search@3x.png" />
-    <div class="android_my">MY</div> -->
-    <!-- </ng-container> -->
-
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios')" no-lines>
@@ -53,29 +30,6 @@
     </ion-buttons>
 
     <ion-title class="ios_title" text-wrap>커뮤니티</ion-title>
-
-    <!-- <ng-container *ngIf="page==='0'"> -->
-    <!-- <div class="ios_my">MY</div> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='1'"> -->
-    <!-- <img class="ios_search" src="assets/img/beauty/ic-system-search@3x.png" />
-    <div class="ios_my">MY</div> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='2'"> -->
-    <!-- <img class="ios_search" style="right:5%" (click)="community_search()" -->
-    <!-- src="assets/img/beauty/ic-system-search@3x.png" /> -->
-    <!-- <button ion-button class="ios_my" (click)="community_my()">MY</button> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='3'"> -->
-    <!-- <img class="ios_search" style="right:5%" (click)="community_search()" -->
-    <!-- src="assets/img/beauty/ic-system-search@3x.png" /> -->
-    <!-- <button ion-button class="ios_my" (click)="community_my()">MY</button> -->
-    <!-- </ng-container> -->
-    <!-- <ng-container *ngIf="page==='4'"> -->
-    <!-- <img class="ios_search" src="assets/img/beauty/ic-system-search@3x.png" />
-    <div class="ios_my">MY</div> -->
-    <!-- </ng-container> -->
-
   </ion-navbar>
   <div style="height:1px; width:100%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
   <ion-segment outline mode="md" [(ngModel)]="page" color="#5c59b6">
@@ -83,13 +37,16 @@
       홈
     </ion-segment-button> -->
     <ion-segment-button value="0" (click)="selectedTab(0)">
-      뷰티 꿀팁
+      뷰티 포스트
     </ion-segment-button>
     <!-- <ion-segment-button value="2" (click)="selectedTab(2)">
       뷰티 노트
     </ion-segment-button> -->
     <ion-segment-button value="1" (click)="selectedTab(1)">
-      피부 고민
+      뷰티 고민
+    </ion-segment-button>
+    <ion-segment-button value="2" (click)="selectedTab(2)">
+      뷰티 영상
     </ion-segment-button>
     <!-- <ion-segment-button value="4" (click)="selectedTab(4)">
       기획전
@@ -490,18 +447,20 @@
       </ion-slides>
 
       <ng-container *ngFor="let skinqna of skinQnaData; let i = index">
+
+
         <ng-container *ngIf="skinqna.filename">
           <!-- 피부 고민 이미지가 있을 때  -->
           <ion-item class="line_item" no-lines>
             <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
               <ion-row class="beauty_row">
-                <ion-col col-8 class="beauty_note_title_img"><span class="beauty_note_Q">{{skinqna.select}}
-                  </span>{{skinqna.title}}</ion-col>
+                <div class="beauty_note_title_img2">{{skinqna.select}}</div>
+                <ion-col col-8 class="beauty_note_title_img3">{{skinqna.title}}</ion-col>
               </ion-row>
               <ion-row class="beauty_row">
                 <ion-col col-8 class="beauty_note_title_contents_img">{{skinqna.contents}}</ion-col>
               </ion-row>
-              <ion-col class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+              <ion-col class="beauty_note_like">조회 {{skinqna.views}} ∙ 좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
               <img *ngIf="platform.is('android')" class="beauty_worry_img"
@@ -512,28 +471,161 @@
           </ion-item>
           <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
         </ng-container>
+
+
         <ng-container *ngIf="!skinqna.filename">
           <!-- 피부 고민 이미지가 없을 때  -->
           <ion-item class="line_item" no-lines>
             <ion-col (click)="community_qna_modify(skinqna._id)" class="container">
               <ion-row class="beauty_row">
-                <ion-col class="beauty_note_title"><span class="beauty_note_Q">{{skinqna.select}}
-                  </span>{{skinqna.title}}</ion-col>
+                <div class="beauty_note_title_img2">상품문의</div>
+                <ion-col class="beauty_note_title_img4">{{skinqna.title}}</ion-col>
                 <ion-col class="beauty_note_contents">{{skinqna.contents}}</ion-col>
               </ion-row>
-              <ion-col class="beauty_note_like">좋아요 {{skinqna.like}} ∙
+              <ion-col class="beauty_note_like">조회 {{skinqna.views}} ∙ 좋아요 {{skinqna.like}} ∙
                 <ion-col class="beauty_note_answer">답변 {{skinqna.comments.length}}</ion-col>
               </ion-col>
             </ion-col>
           </ion-item>
           <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
         </ng-container>
+
+
       </ng-container>
 
 
       <!-- <button ion-button class="beauty_top_add" > 더보기 > </button>
 
     <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br> -->
+      <br><br><br><br>
+    </ion-slide>
+
+
+    <!-- 뷰티 영상 -------------------------------------------------------------------------------------->
+    <ion-slide>
+      <ion-grid no-padding class="movie_grid">
+        <div class="movie_title">에디터 추천</div>
+        <ion-slides mode="ios" id="movie" pager>
+          <ng-container *ngIf="youTubeArrayData">
+            <ion-slide *ngFor="let tubeData of youTubeArrayData; let i = index;" (click)="openMoviePage(tubeData)">
+              <img class="movie_img1" src="{{tubeData.snippet.thumbnails.maxres.url}}" />
+              <!-- <img class="movie_img1" src="https://img.youtube.com/vi/{{tubeData.id}}/maxresdefault.jpg" /> -->
+              <div class="movie_text1">뷰티꿀팁<span class="movie_text2"> {{tubeData.snippet.title}}</span></div>
+              <div class="movie_text3">{{tubeData.snippet.channelTitle}}</div>
+              <div *ngIf="videoDetailData[i]" class="movie_text4">조회 {{videoDetailData[i].views}} · 좋아요 {{videoDetailData[i].like}} · <span class="movie_text4_1">답변 {{videoDetailData[i].comments.length}}</span></div>
+              <br>
+            </ion-slide>
+          </ng-container>
+        </ion-slides>
+      </ion-grid>
+
+      <!-- 인기영상 추천 -->
+      <ion-grid no-padding>
+        <ion-row>
+          <div class="movie_title">인기영상 추천</div>
+        </ion-row>
+        <br>
+        <ion-row>
+          <ion-slides class="movie_slide" mode="ios" slidesPerView=2.5>
+            <ng-container *ngIf="youTubeArrayData">
+              <ion-slide *ngFor="let tubeData2 of youTubeArrayData; let i = index;" (click)="openMoviePage(tubeData2)">
+                <img class="movie_img1" src="{{tubeData2.snippet.thumbnails.maxres.url}}" />
+                <div class="movie_text5">{{tubeData2.snippet.title}}</div>
+                <div class="movie_text6">조회 113 · 좋아요 2</div>
+                <br>
+              </ion-slide>
+            </ng-container>
+          </ion-slides>
+        </ion-row>
+        <div
+          style="height:1vh; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 1%; background-color:#f1f1f1">
+        </div>
+      </ion-grid>
+
+
+      <!-- 꿀팁 영상 모아보기 -->
+      <ion-grid no-padding>
+        <ion-slide>
+          <ng-container *ngIf="communityEditorBeautyLoadData">
+            <h2 class="movie_ggul_tip">꿀팁 영상 모아보기</h2>
+            <ion-grid class="beauty_tip">
+              <ion-row>
+                <ng-container *ngIf="platform.is('android') || platform.is('core')">
+                  <ion-col col-6 *ngFor="let editor of youTubeArrayData" (click)="openMoviePage(editor)">
+                    <img class="beauty_img" src="{{editor.snippet.thumbnails.maxres.url}}" />
+                    <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
+                    <div class="movie_text7">뷰티 꿀팁</div>
+                    <p class="movie_text8">{{editor.snippet.title}}</p>
+                    <div class="movie_text9">{{editor.snippet.channelTitle}}</div>
+                    <div class="movie_text10">조회 113 · 좋아요 2</div>
+                    <!-- <div class="beauty_count"></div> -->
+                  </ion-col>
+                </ng-container>
+
+                <ng-container *ngIf="platform.is('ios')">
+                  <ion-col col-6 *ngFor="let editor of youTubeArrayData" (click)="openMoviePage(editor)">
+                    <img class="beauty_img" src="{{editor.snippet.thumbnails.maxres.url}}" />
+                    <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
+                    <div class="movie_text7">뷰티 꿀팁</div>
+                    <p class="movie_text8">{{editor.snippet.title}}</p>
+                    <div class="movie_text9">{{editor.snippet.channelTitle}}</div>
+                    <div class="movie_text10">조회 113 · 좋아요 2</div>
+                    <!-- <div class="beauty_count"></div> -->
+                  </ion-col>
+                </ng-container>
+              </ion-row>
+            </ion-grid>
+          </ng-container>
+          <!-- <button ion-button full class="movie_btn1" ><div class="btn_text1">꿀팁 영상 더보기 ⋁</div></button> -->
+          <div style="height:1vh; width:100%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+          <br>
+        </ion-slide>
+      </ion-grid>
+
+      <!-- 꿀템 영상 모아보기 -->
+      <ion-grid no-padding>
+        <ion-slide>
+          <ng-container *ngIf="youTubeArrayData">
+            <h2 class="movie_ggul_tip">꿀템 영상 모아보기</h2>
+            <ion-grid class="beauty_tip">
+              <ion-row>
+                <ng-container *ngIf="platform.is('android') || platform.is('core')">
+                  <ion-col col-6 *ngFor="let editor of youTubeArrayData" (click)="openMoviePage(editor)">
+                    <img class="beauty_img" src="{{editor.snippet.thumbnails.maxres.url}}" />
+                    <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
+                    <div class="movie_text7">뷰티 꿀팁</div>
+                    <p class="movie_text8">{{editor.snippet.title}}</p>
+                    <div class="movie_text9">{{editor.snippet.channelTitle}}</div>
+                    <div class="movie_text10">조회 113 · 좋아요 2</div>
+                  </ion-col>
+                </ng-container>
+
+                <ng-container *ngIf="platform.is('ios')">
+                  <ion-col col-6 *ngFor="let editor of youTubeArrayData" (click)="openMoviePage(editor)">
+                    <img class="beauty_img" src="{{editor.snippet.thumbnails.maxres.url}}" />
+                    <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
+                    <div class="movie_text7">뷰티 꿀팁</div>
+                    <p class="movie_text8">{{editor.snippet.title}}</p>
+                    <div class="movie_text9">{{editor.snippet.channelTitle}}</div>
+                    <div class="movie_text10">조회 113 · 좋아요 2</div>
+                  </ion-col>
+                </ng-container>
+              </ion-row>
+            </ion-grid>
+          </ng-container>
+          <!-- <button ion-button full class="movie_btn1" ><div class="btn_text1">꿀템 영상 더보기 ⋁</div></button> -->
+          <div style="height:1vh; width:100%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+          <br><br>
+        </ion-slide>
+      </ion-grid>
+
+      <ng-container *ngFor="let skinqna of skinQnaData; let i = index">
+      </ng-container>
+
+
+      <!-- <button ion-button class="beauty_top_add" > 더보기 > </button>
+  
+      <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br> -->
       <br><br><br><br>
     </ion-slide>
 

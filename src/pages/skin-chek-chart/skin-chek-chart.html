@@ -7,8 +7,12 @@
 <ion-header>
 
   <ion-navbar *ngIf="platform.is('android') || platform.is('core')" no-lines>
-    <ion-buttons (click)="chartguide()" end>
+    <ion-buttons (click)="chartguide()" left>
       <div class="guide_android">이용안내</div>
+    </ion-buttons>
+    <ion-buttons (click)="myinfo()" end>
+      <div *ngIf="userData" class="android_point">{{userData.totaluserpoint}}P&nbsp;
+        <img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
     </ion-buttons>
     <ion-title class="android_title" text-wrap>피부 리포트</ion-title>
     <div class="android_search" style="right: 7%;">
@@ -26,10 +30,14 @@
         <!-- <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" /> -->
       </button>
     </ion-buttons>
-    <ion-buttons (click)="chartguide()" end>
+    <ion-buttons (click)="chartguide()" left>
       <div class="guide_ios">
         이용안내
       </div>
+    </ion-buttons>
+    <ion-buttons (click)="myinfo()" end>
+      <div *ngIf="userData" class="ios_point">{{userData.totaluserpoint}}P&nbsp;
+        <img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
     </ion-buttons>
     <ion-title class="ios_title" text-wrap>피부 리포트</ion-title>
 

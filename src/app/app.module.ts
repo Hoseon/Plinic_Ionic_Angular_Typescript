@@ -8,7 +8,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 
 import { GenderFilter } from './../pipes/gender-filter';
 //import { UserCard } from '../components/user-card/user-card';
-
+// import { Keyboard } from '@ionic-native/keyboard';
 
 //탭페이지 구성
 // import { LoginPage } from '../pages/login/login';
@@ -282,6 +282,7 @@ import { PointLogPageModule } from '../pages/point-log/point-log.module';
 
 //20200709 화장품 상세정보
 import { ProductDetailPageModule } from '../pages/product-detail/product-detail.module'
+import { ProductDetailBuyPageModule } from '../pages/product-detail-buy/product-detail-buy.module';
 import { ProductSungbunPageModule } from '../pages/product-sungbun/product-sungbun.module'
 
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
@@ -491,6 +492,7 @@ export function getAuthHttp(http, storage) {
     PointGuidePageModule,
     SkincheckGuidePageModule,
     ProductDetailPageModule,
+    ProductDetailBuyPageModule,
     ProductSungbunPageModule,
     MembershipManagePageModule,
     MembershipListPageModule,
@@ -583,6 +585,7 @@ export function getAuthHttp(http, storage) {
   providers: [
     StatusBar,
     SplashScreen,
+    // Keyboard,
     ScreenOrientation,
     KakaoCordovaSDK,
     AuthService,

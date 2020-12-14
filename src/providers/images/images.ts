@@ -4,6 +4,8 @@ import { Http } from '@angular/http';
 //import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { AlertController } from 'ionic-angular';
 import { Transfer, TransferObject, FileUploadOptions } from '@ionic-native/transfer'
+export const YOUTUBE_API_KEY: string = 'AIzaSyCQ7I3wA7JDk9QFWMA7VaSMCCakpTN5K_U';
+
 
 /*
   Generated class for the ImagesProvider provider.
@@ -16,9 +18,32 @@ export class ImagesProvider {
 
   apiURL = 'http://plinic.cafe24app.com/';
   // apiURL = 'http://localhost:8001/';
+  youTubeApiUrl = 'https://www.googleapis.com/youtube/v3/videos?';
+  
 
   constructor(public http: Http, private transfer: Transfer, private alertCtrl: AlertController) { }
 
+  //현재 등록된 뷰티 영상 데이터 가져 오기 2020-11-17
+  public getBeautyMovie() {
+    return this.http.get(this.apiURL + 'beautyMovie/list')
+      .map(response => response.json());
+  }
+
+  public getOneBeautyMovie(id) { //플리닉 관리 되는 유튜브 영상 정보 가져 오기(조회수,댓글)
+    return this.http.get(this.apiURL + 'beautymovie/oneList/' + id)
+      .map(response => response.json());
+  }
+
+  //유튜브 비디오 정보 가져 오기
+  public getYoutubeVideos(videoId) {
+    let params: string = [
+      `key=${YOUTUBE_API_KEY}`,
+      `part=snippet`,
+      `id=${videoId}`,
+    ].join('&');
+    return this.http.get(this.youTubeApiUrl + params)
+    .map(response=> response.json());
+  }
 
   public bannerRoad() {
     return this.http.get(this.apiURL + 'banner/list')
@@ -454,6 +479,20 @@ export class ImagesProvider {
     .map(response => response.json());
   }
 
+  public getProductReview(product_num) {
+    return this.http.get(this.apiURL + 'getProductReview/' + product_num)
+    .map(response => response.json());
+  }
+
+  public movieLike(id, email) {
+    return this.http.get(this.apiURL + 'beautymovie/like/' + id + '/' + email)
+      .map(response => response.json());
+  }
+
+  public movieDisLike(id, email) {
+    return this.http.get(this.apiURL + 'beautymovie/dislike/' + id + '/' + email)
+      .map(response => response.json());
+  }
   
 
 

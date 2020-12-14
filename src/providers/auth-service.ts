@@ -18,12 +18,6 @@ import { reject } from 'q';
 declare var cordova: any;
 // declare var SignInWithApple: any;
 
-
-//Blue Mod S42
-// const PLINIC_SERVICE = 'FEFB';
-// const UUID_SERVICE = 'FEFB';
-// const SWITCH_CHARACTERISTIC = 'FF00';
-
 //HM Soft Bluetooth Mod
 const PLINIC_SERVICE = 'FFE0';
 const UUID_SERVICE = 'FFE0';
@@ -830,6 +824,46 @@ export class AuthService {
     console.log("Replydelete : " + JSON.stringify(body));
 
     return this.http.post(CONFIG.apiUrl + 'api/replydelete', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public replyMovieSave(userData, id, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: userData.email,
+      body: content.body,
+    };
+
+    console.log("ReplySave : " + JSON.stringify(body));
+    console.log("등록될 ID : " + id);
+
+    return this.http.post(CONFIG.apiUrl + 'beautymovie/'+ id+ '/topcomments', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public replyMovieReCommentSave(userData, id, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: userData.email,
+      body: content.body,
+    };
+
+    console.log("ReplySave : " + JSON.stringify(body));
+    console.log("등록될 ID : " + id);
+
+    return this.http.post(CONFIG.apiUrl + 'beautymovie/'+ id+ '/recomments', JSON.stringify(body), { headers: headers })
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -2378,7 +2412,8 @@ export class AuthService {
 
   public cameraTest(img, img2, user, munjin) { // 여러장이 올라 가는지 확인 필요
     var age = 37;
-    let url = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/api/';
+    // let url = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/api/'; //피쳐링 피부분석 API
+    let url = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/api/'; //지원파트너스 피부분석 API 2020-12-07
     var targetPath = img;
     var targetPath2 = img2;
     var options: FileUploadOptions = {
@@ -2673,6 +2708,46 @@ export class AuthService {
     console.log("qna : " + JSON.stringify(body));
 
     return this.http.post(CONFIG.apiUrl + 'api/registerReview', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public productReviewDelete(content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: content.email,
+      id: content.id,
+      // comment: content.comment,
+    };
+
+    console.log("Replydelete : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/productReviewDelete', JSON.stringify(body), { headers: headers })
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public productReviewUpdate(review) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: review.email,
+      id: review.id,
+      content: review.content,
+    };
+
+    console.log("Replyupdate : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/productReviewUpdate', JSON.stringify(body), { headers: headers })
       .map(res => res.json())
       .map(data => {
         console.log(data);

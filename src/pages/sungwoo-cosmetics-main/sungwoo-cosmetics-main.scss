@@ -1,4 +1,5 @@
 page-sungwoo-cosmetics-main {
+
   .header-md::after,
   .tabs-md[tabsPlacement="top"]>.tabbar::after,
   .footer-md::before,
@@ -115,13 +116,12 @@ page-sungwoo-cosmetics-main {
     line-height: normal;
     letter-spacing: normal;
     color: #292929;
-    border-radius: 2px;
-    border: solid 1px #f1f1f1;
     background-color: #ffffff !important;
-    // box-shadow: none !important;
     height: 28px;
     position: relative;
     right: 80%;
+    left: 1vw;
+    float: left;
   }
 
   .guide_ios {
@@ -133,1112 +133,1018 @@ page-sungwoo-cosmetics-main {
     line-height: normal;
     letter-spacing: normal;
     color: #292929;
-    border-radius: 2px;
-    border: solid 1px #f1f1f1;
     background-color: #ffffff !important;
-    // box-shadow: none !important;
     height: 28px;
     position: relative;
-    right: 80%;
+    margin-left: 1vw;
+    float: left;
   }
 
-    .android_search {
-        position: absolute;
-        margin-top: -3%;
-        right: 17%;
-        width: 25px;
-        height: 25px;
-        object-fit: contain;
-        z-index: 10;
-    }
-
-    .ios_search {
-        position: relative;
-        margin-top: -5%;
-        right: 17%;
-        width: 25px;
-        height: 25px;
-        object-fit: contain;
-        z-index: 10;
-        left: 30%;
-    }
-
-    .img_div {
-      position: relative;
-      width: 100vw;
-      height: 35.3vh;
-    }
-
-    .main_img {
-      position: absolute;
-      width: 100vw;
-      height: 35.3vh;
-    }
-
-    .planning {
-      width: 100vw;
-      height: 48vh;
-    }
-
-    .title_div {
-      height: 10vh;
-      width: 100vw;
-    }
-
-    .planning_title {
-      position: relative;
-      top: 6.2vh;
-      width: 35vw;
-      left: 4vw;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 15px;
-      font-weight: bold;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: -1.5px;
-      color: #202020;
-      white-space: nowrap;
-    }
-
-    .product_arrow {
-      position: relative;
-      width: 8vw;
-      height: 8vh;
-      right: 1vw;
-      bottom: 2.2vh;
-      object-fit: contain;
-      display: -webkit-inline-box;
-    }
-
-    .planning_text {
-      position: relative;
-      width: 70vw;
-      left: 0.2vw;
-      bottom: 3.7vh;
-      font-size: 11.4px;
-      font-family: AppleSDGothicNeo-Regular;
-      letter-spacing: -1px;
-      color: #6a6a6a;
-    }
-
-    .slide_div {
-      height: 35vh;
-      width: 100vw;
-    }
-
-    .planning_product {
-      position: relative;
-      height: 16vh;
-      top: 11.4vh;
-      right: 0.1vw;
-      width: 36.5vw;
-    }
-
-    .planning_img {
-      width: 29vw;
-      height: 38.5vh;
-      border-radius: 5px;
-      border: solid 0.5px #d2d2d2;
-      background-color: #f5f5f5;
-    }
-
-    .planning_text_div {
-      position: relative;
-      height: 10vh;
-      width: 28vw;
-      top: 0.5vh;
-      right: 0.4vw;
-      margin: 0 auto;
-    }
-
-    .planning_desc {
-      position: relative;
-      // width: 23vw;
-      // right: 10vw;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      text-align: left;
-      white-space:nowrap;
-      font-family: AppleSDGothicNeo;
-      font-size: 9px;
-      font-weight: 500;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -2px;
-      color: #292929;
-      // text-align: center;
-      margin: 0 auto;
-    }
-
-    .planning_post { 
-      position: relative;
-      // width:28vw;
-      // right: 5vw;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      text-align: left;
-      white-space:nowrap;
-      font-family: AppleSDGothicNeo;
-      font-size: 10.8px;
-      letter-spacing: -0.61px;
-      // line-height: 1.52;
-      // margin: 0 auto;
-      color: #555555;
-    }
-
-    .planning_border {
-      position: absolute;
-      height: 2.3vh;
-      bottom: 2vh;
-      width: 20vw;
-      border-radius: 2.8px;
-      background-color: #ebebeb;
-    }
-
-    .planning_border_text {
-      position: relative;
-      bottom: 0.8vh;
-      font-family: AppleSDGothicNeo;
-      font-size: 7px;
-      text-align: center;
-      letter-spacing: -1.41px;
-    }
-
-    .planning_product2 {
-      position: relative;
-      height: 16vh;
-      bottom: 4.6vh;
-      right: 1.4vw;
-      width: 100vw;
-    }
-
-    .planning_img2 {
-      width: 29vw;
-      height: 38.5vh;
-      border-radius: 5px;
-      border: solid 0.5px #d2d2d2;
-      background-color: #f5f5f5;
-    }
-
-    .planning_text_div2 {
-      position: relative;
-      height: 10vh;
-      width: 28vw;
-      top: 0.5vh;
-      right: 0.4vw;
-      margin: 0 auto;
-    }
-
-    .planning_desc2 {
-      position: relative;
-      // width: 23vw;
-      // right: 10vw;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      text-align: left;
-      white-space:nowrap;
-      font-family: AppleSDGothicNeo;
-      font-size: 9px;
-      font-weight: 500;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -1px;
-      color: #292929;
-      // text-align: center;
-      margin: 0 auto;
-    }
-
-    .planning_post2 { 
-      position: relative;
-      // width:28vw;
-      // right: 5vw;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      text-align: left;
-      white-space:nowrap;
-      font-family: AppleSDGothicNeo;
-      font-size: 10.8px;
-      letter-spacing: -0.81px;
-      // line-height: 1.52;
-      // margin: 0 auto;
-      color: #555555;
-    }
-
-    .planning_border2 {
-      position: absolute;
-      height: 2.3vh;
-      bottom: 2vh;
-      width: 20vw;
-      border-radius: 2.8px;
-      background-color: #ebebeb;
-    }
-
-    .planning_border_text2 {
-      position: relative;
-      bottom: 0.8vh;
-      font-family: AppleSDGothicNeo;
-      font-size: 7px;
-      text-align: center;
-      letter-spacing: -1.41px;
-    }
-
-    .planning_product3 {
-      position: relative;
-      height: 16vh;
-      bottom: 20.6vh;
-      left: 3.6vw;
-      width: 150vw;
-    }
-
-    .planning_img3 {
-      width: 29vw;
-      height: 38.5vh;
-      border-radius: 5px;
-      border: solid 0.5px #d2d2d2;
-      background-color: #f5f5f5;
-    }
-
-    .planning_text_div3 {
-      position: relative;
-      height: 10vh;
-      width: 28vw;
-      top: 0.5vh;
-      right: 0.4vw;
-      margin: 0 auto;
-    }
-
-    .planning_desc3 {
-      position: relative;
-      // width: 23vw;
-      // right: 10vw;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      text-align: left;
-      white-space:nowrap;
-      font-family: AppleSDGothicNeo;
-      font-size: 9px;
-      font-weight: 500;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -1px;
-      color: #292929;
-      // text-align: center;
-      margin: 0 auto;
-    }
-
-    .planning_post3 { 
-      position: relative;
-      // width:28vw;
-      // right: 5vw;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      text-align: left;
-      white-space:nowrap;
-      font-family: AppleSDGothicNeo;
-      font-size: 10.8px;
-      letter-spacing: -0.71px;
-      // line-height: 1.52;
-      // margin: 0 auto;
-      color: #555555;
-    }
-
-    .planning_border3 {
-      position: absolute;
-      height: 2.3vh;
-      bottom: 2vh;
-      width: 20vw;
-      border-radius: 2.8px;
-      background-color: #ebebeb;
-    }
-
-    .planning_border_text3 {
-      position: relative;
-      bottom: 0.8vh;
-      font-family: AppleSDGothicNeo;
-      font-size: 7px;
-      text-align: center;
-      letter-spacing: -1.41px;
-    }
-
-    
-    .planning_desc_title {
-      color: #6562b9;
-    }
-
-    a {
-      text-decoration:none;
-    }
-
-    .merchandiser {
-      width: 100vw;
-      height: 50.1vh;
-    }
-
-    .merchandiser_title {
-      position: relative;
-      top: 6.2vh;
-      width: 35vw;
-      left: 4vw;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 15px;
-      font-weight: bold;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: -1.5px;
-      color: #202020;
-      white-space: nowrap;
-    }
-
-    .merchandiser_text {
-      position: relative;
-      width: 70vw;
-      left: 0.2vw;
-      bottom: 3.7vh;
-      font-size: 11.4px;
-      font-family: AppleSDGothicNeo-Regular;
-      letter-spacing: -1px;
-      color: #6a6a6a;
-    }
-
-
-
-
-    .slide_div2 {
-      height: 35vh;
-      width: 100vw;
-    }
-
-
-    .merchandiser_product {
-      position: relative;
-      height: 16vh;
-      top: 11.4vh;
-      right: 0.1vw;
-      width: 36.5vw;
-    }
-
-    .merchandiser_img {
-      width: 29vw;
-      height: 38.5vh;
-      border-radius: 5px;
-      border: solid 0.5px #d2d2d2;
-      background-color: #f5f5f5;
-    }
-
-    .merchandiser_text_div {
-      position: relative;
-      height: 10vh;
-      width: 28vw;
-      top: 0.5vh;
-      right: 0.4vw;
-      margin: 0 auto;
-    }
-
-    .merchandiser_desc {
-      position: relative;
-      // width: 23vw;
-      // right: 10vw;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      text-align: left;
-      white-space:nowrap;
-      font-family: AppleSDGothicNeo;
-      font-size: 9px;
-      font-weight: 500;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -2px;
-      color: #292929;
-      // text-align: center;
-      margin: 0 auto;
-    }
-
-    .merchandiser_desc_title {
-      color: #6562b9;
-    }
-
-    .merchandiser_post { 
-      position: relative;
-      // width:28vw;
-      // right: 5vw;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      text-align: left;
-      white-space:nowrap;
-      font-family: AppleSDGothicNeo;
-      font-size: 10.8px;
-      letter-spacing: -0.61px;
-      // line-height: 1.52;
-      // margin: 0 auto;
-      color: #555555;
-    }
-
-    .merchandiser_border {
-      position: absolute;
-      height: 2.3vh;
-      bottom: 2vh;
-      width: 20vw;
-      border-radius: 2.8px;
-      background-color: #ebebeb;
-    }
-
-    .merchandiser_border_text {
-      position: relative;
-      bottom: 0.8vh;
-      font-family: AppleSDGothicNeo;
-      font-size: 7px;
-      text-align: center;
-      letter-spacing: -1.41px;
-    }
-
-    .merchandiser_product2 {
-      position: relative;
-      height: 16vh;
-      bottom: 4.6vh;
-      right: 1.4vw;
-      width: 100vw;
-    }
-
-    .merchandiser_img2 {
-      width: 29vw;
-      height: 38.5vh;
-      border-radius: 5px;
-      border: solid 0.5px #d2d2d2;
-      background-color: #f5f5f5;
-    }
-
-    .merchandiser_text_div2 {
-      position: relative;
-      height: 10vh;
-      width: 28vw;
-      top: 0.5vh;
-      right: 0.4vw;
-      margin: 0 auto;
-    }
-
-    .merchandiser_desc2 {
-      position: relative;
-      // width: 23vw;
-      // right: 10vw;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      text-align: left;
-      white-space:nowrap;
-      font-family: AppleSDGothicNeo;
-      font-size: 9px;
-      font-weight: 500;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -1px;
-      color: #292929;
-      // text-align: center;
-      margin: 0 auto;
-    }
-
-    .merchandiser_post2 { 
-      position: relative;
-      // width:28vw;
-      // right: 5vw;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      text-align: left;
-      white-space:nowrap;
-      font-family: AppleSDGothicNeo;
-      font-size: 10.8px;
-      letter-spacing: -0.81px;
-      // line-height: 1.52;
-      // margin: 0 auto;
-      color: #555555;
-    }
-
-    .merchandiser_border2 {
-      position: absolute;
-      height: 2.3vh;
-      bottom: 2vh;
-      width: 20vw;
-      border-radius: 2.8px;
-      background-color: #ebebeb;
-    }
-
-    .merchandiser_border_text2 {
-      position: relative;
-      bottom: 0.8vh;
-      font-family: AppleSDGothicNeo;
-      font-size: 7px;
-      text-align: center;
-      letter-spacing: -1.41px;
-    }
-
-    .merchandiser_product3 {
-      position: relative;
-      height: 16vh;
-      bottom: 20.6vh;
-      left: 3.6vw;
-      width: 150vw;
-    }
-
-    .merchandiser_img3 {
-      width: 29vw;
-      height: 38.5vh;
-      border-radius: 5px;
-      border: solid 0.5px #d2d2d2;
-      background-color: #f5f5f5;
-    }
-
-    .merchandiser_text_div3 {
-      position: relative;
-      height: 10vh;
-      width: 28vw;
-      top: 0.5vh;
-      right: 0.4vw;
-      margin: 0 auto;
-    }
-
-    .merchandiser_desc3 {
-      position: relative;
-      // width: 23vw;
-      // right: 10vw;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      text-align: left;
-      white-space:nowrap;
-      font-family: AppleSDGothicNeo;
-      font-size: 9px;
-      font-weight: 500;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -1px;
-      color: #292929;
-      // text-align: center;
-      margin: 0 auto;
-    }
-
-    .merchandiser_post3 { 
-      position: relative;
-      // width:28vw;
-      // right: 5vw;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      text-align: left;
-      white-space:nowrap;
-      font-family: AppleSDGothicNeo;
-      font-size: 10.8px;
-      letter-spacing: -0.71px;
-      // line-height: 1.52;
-      // margin: 0 auto;
-      color: #555555;
-    }
-
-    .merchandiser_border3 {
-      position: absolute;
-      height: 2.3vh;
-      bottom: 2vh;
-      width: 20vw;
-      border-radius: 2.8px;
-      background-color: #ebebeb;
-    }
-
-    .merchandiser_border_text3 {
-      position: relative;
-      bottom: 0.8vh;
-      font-family: AppleSDGothicNeo;
-      font-size: 7px;
-      text-align: center;
-      letter-spacing: -1.41px;
-    }
-
-    .grid_backColor {
-      position: relative;
-      width: 100vw;
-      height: 94.1vh;
-      background-color: #5c59b6;
-    }
-
-    .title_all {
-      position: relative;
-      height: 18.5vh;
-      width: 80vw;
-      top: 1.2vh;
-      left: 3vw;
-    }
-
-    .card_title {
-      position: relative;
-      width: 85vw;
-      top: 6vh;
-      right: 0.5vw;
-      // width: 100%;
-      // height: 100%;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 14.8px;
-      font-weight: bold;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -1.53px;
-      text-align: left;
-      color: #ffffff;
-
-    }
-
-    .card_mini {
-      position: relative;
-      width: 90vw !important;
-      top: 0.4vh;
-      // right: 1vw;
-      width: 50vw;
-      font-size: 11.4px;
-      font-family: AppleSDGothicNeo-Regular;
-      // line-height: 2.71;
-      letter-spacing: -1.19px;
-      color: #ffffff;
-    }
-
-    .card {
-      width: 88.3vw;
-      height: 15vh;
-      margin: 0 auto;
-      margin-bottom: 1.5vh;
-      text-align: left;
-      border-radius: 5.7px;
-      border: solid 1px #ebebeb;
-    }
-
-    .card_kind {
-      position: relative;
-      left: 5.6vw;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 22px;
-      font-weight: 500;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 0.2;
-      letter-spacing: -0.95px;
-      color: #575757;
-      white-space: nowrap;
-    }
-
+  .android_search {
+    position: absolute;
+    margin-top: -3%;
+    right: 3vw !important;
+    float: right;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    z-index: 10;
+  }
+
+  .ios_search {
+    position: relative;
+    margin-top: -5%;
+    right: 3vw !important;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    z-index: 10;
+    float: right;
+    // left: 30%;
+  }
+
+  .main_img {
+    width: 100vw;
+    height: 60vw;
+  }
+
+  .planning_all {
+    height: 48vh;
+  }
+
+  .planning_title_grid,
+  .merchandiser_title_grid {
+    // position: relative;
+    margin-top: -2vw;
+    margin-bottom: 8vw !important;
+    height: 20vw;
+    width: calc(100vw - 8vw);
+    margin-bottom: -10vw;
+    // float: left;
+  }
+
+  // 텍스트는 
+  // display: flex;
+  // justify-content: flex-end;
+  // width: calc(100vw - 8vw);
+
+  // 나머지는
+  // display: flex;
+  // justify-content:space-between;
+  // width: calc(100vw - 5.5vw);
+
+
+  .planning_title,
+  .merchandiser_title {
+    // position: relative;
+    // display: flex;
+    margin-top: 14vw;
+    height: 7.5vw;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.72px;
+    color: #202020;
+  }
+
+  .product_arrow {
+    // position: relative;
+    width: 7vw;
+    // top: 12.9vw;
+    object-fit: contain;
+    display: -webkit-inline-box;
+  }
+
+  // /* 삼성 갤럭시 탭 S3, 아이패드 적용 (해상도 768 ~ 1024) */
+  // @media all and (min-width:768px) and (max-width:1024px) { 
+  //   .product_arrow {
+  //     width: 4vw !important;
+  //   }
+  // }
+
+  // /* 삼성 갤럭시 탭 S4 적용 (해상도 1138px ~)*/
+  // @media all and (min-width:1137px) { 
+  //   .product_arrow {
+  //     width: 2vw !important;
+  //   }
+  // }
+
+  .planning_text,
+  .merchandiser_text {
+    // position: absolute;
+    // display: block;
+    height: 10vw;
+    font-size: 11.4px;
+    font-family: AppleSDGothicNeo-Regular;
+    letter-spacing: -0.56px;
+    color: #6a6a6a;
+  }
+
+  .slide_div,
+  .planning_grid {
+    // position: relative;
+    left: 1.4vw;
+    height: 60vw;
+    // display: flex;
+    // justify-content: space-between;
+    width: calc(100vw - 5.5vw);
+    // margin: 0;
+  }
+
+  .slide_div2,
+  .merchandiser_grid {
+    position: relative;
+    left: 1.4vw;
+    height: 53.5vw;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100vw - 5.5vw);
+    margin: 0;
+    margin-bottom: 5vw;
+    margin-top: 1vw;
+  }
+
+  // /* 삼성 갤럭시 탭 S4 적용 (해상도 1138px ~)*/
+  // @media all and (min-width:1137px) { 
+  //   .slide_div, .planning_grid,
+  //   .slide_div2, .merchandiser_grid {
+  //     height: 60.5vh;
+  //   }
+  //   .planning_post, .planning_post2, .planning_post3,
+  //   .merchandiser_post, .merchandiser_post2, .merchandiser_post3 {
+  //     width: 40vw;
+  //   }
+
+  //   .planning_img, .planning_img2, .planning_img3, 
+  //   .merchandiser_img, .merchandiser_img2, .merchandiser_img3 {
+  //     position: relative;
+  //     right: 2vw;
+  //     max-width: 24.57vw !important;
+  //   }
+
+  //   .planning_text_div, .planning_text_div2, .planning_text_div3, 
+  //   .merchandisesr_text_div, .merchandisesr_text_div2, .merchandisesr_text_div3 {
+  //     position: relative;
+  //     left: 1vw;
+  //   }
+  // }
+
+  // /* 삼성 갤럭시 탭 S3, 아이패드 적용 (해상도 768 ~ 1024) */
+  // @media all and (min-width:768px) and (max-width:1024px) { 
+  //   .planning_text_div, .planning_text_div2, .planning_text_div3,
+  //   .merchandisesr_text_div, .merchandisesr_text_div2, .merchandisesr_text_div3 {
+  //     position: relative;
+  //     left: 1vw !important;
+  //   }
+  // }
+
+  .planning_product,
+  .merchandiser_product {
+    height: 26vh;
+  }
+
+  .planning_div,
+  .planning_div2,
+  .planning_div3,
+  .merchandiser_div,
+  .merchandiser_div2,
+  .merchandiser_div3 {
+    width: 30.57vw;
+  }
+
+  .planning_img,
+  .planning_img2,
+  .planning_img3,
+  .merchandiser_img,
+  .merchandiser_img2,
+  .merchandiser_img3 {
+    // max-width: 28.57vw;
+    border-radius: 5px;
+    border: solid 0.5px #d2d2d2;
+    background-color: #f5f5f5;
+  }
+
+  .planning_text_div,
+  .planning_text_div2,
+  .planning_text_div3,
+  .merchandiser_text_div,
+  .merchandiser_text_div2,
+  .merchandiser_text_div3 {
+    display: flex;
+    align-items: center;
+  }
+
+  .planning_desc,
+  .planning_desc2,
+  .planning_desc3,
+  .merchandiser_desc,
+  .merchandiser_desc2,
+  .merchandiser_desc3 {
+    width: 40vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    white-space: nowrap;
+    font-family: AppleSDGothicNeo;
+    font-size: 9px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.11;
+    letter-spacing: -0.46px;
+    color: #292929;
+    margin: 0 auto;
+  }
+
+  .planning_post,
+  .planning_post2,
+  .planning_post3,
+  .merchandiser_post,
+  .merchandiser_post2,
+  .merchandiser_post3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    white-space: nowrap;
+    font-family: AppleSDGothicNeo;
+    font-size: 10.8px;
+    letter-spacing: -0.54px;
+    color: #555555;
+  }
+
+  .planning_border,
+  .planning_border2,
+  .planning_border3,
+  .merchandiser_border,
+  .merchandiser_border2,
+  .merchandiser_border3 {
+    position: relative;
+    top: 1vh;
+    width: 21vw;
+    border-radius: 2.8px;
+    background-color: #ebebeb;
+    font-family: AppleSDGothicNeo;
+    font-size: 7px;
+    text-align: center;
+    letter-spacing: -0.38px;
+  }
+
+  .planning_desc_title,
+  .merchandiser_desc_title {
+    color: #6562b9;
+  }
+
+  // a {
+  //   text-decoration:none;
+  // }
+
+  .grid_backColor {
+    position: relative;
+    width: 100vw;
+    height: 167vw;
+    background-color: #5c59b6;
+  }
+
+  .card_title_grid {
+    margin-top: -4vw;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: calc(100vw - 8vw);
+    height: 16.3vh;
+  }
+
+  .card_title {
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.83;
+    letter-spacing: -0.72px;
+    text-align: left;
+    color: #ffffff;
+  }
+
+  .card_mini {
+    // width: 147px;
+    // height: 11.5px;
+    // margin: 10.5px 172.5px 26px 1px;
+    margin-top: -2vw;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12.5px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.34;
+    letter-spacing: -0.56px;
+    text-align: left;
+    color: #ffffff;
+  }
+
+  .card_grid {
+    // position: relative;
+    // top: 1.2vh;
+    align-items: center;
+    height: 70vh;
+  }
+
+  .card {
+    // position: relative;
+    // bottom: 1.5vh;
+    width: 89vw;
+    height: 27vw;
+    // text-align: left;
+    border-radius: 5.7px;
+    border: solid 1px #ebebeb;
+    // display: flex;
+    // justify-content: flex-end;
+    box-shadow: none;
+  }
+
+  .card_kind {
+    position: relative;
+    top: 4vh;
+    left: 7vw;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 22px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.2;
+    letter-spacing: -0.98px;
+    color: #575757;
+    white-space: nowrap;
+  }
+
+  .card_arrow {
+    position: relative;
+    width: 7vw;
+    top: -0.5vw;
+    right: 0.3vw;
+    object-fit: contain;
+    display: -webkit-inline-box;
+  }
+
+  /* 삼성 갤럭시 탭 S3, 아이패드 적용 (해상도 768 ~ 1024) */
+  @media all and (min-width:768px) and (max-width:1024px) {
     .card_arrow {
-      position: relative;
-      width: 8vw;
-      height: 8vh;
-      top: 2.2vh;
-      right: 3vw;
-      object-fit: contain;
-      display: -webkit-inline-box;
+      width: 4vw !important;
+      top: 0.7vh;
+      right: 1.5vw;
     }
+  }
 
-    .card_text {
-      position: relative;
-      left: 1vw;
-      width: 70vw;
-      font-size: 11.4px;
-      font-family: AppleSDGothicNeo-Regular;
-      line-height: 2.71;
-      letter-spacing: -1.08px;
-      color: #6a6a6a;
+  /* 삼성 갤럭시 탭 S4 적용 (해상도 1138px ~)*/
+  @media all and (min-width:1137px) {
+    .card_arrow {
+      width: 2vw !important;
+      right: 0.8vw;
     }
+  }
 
-    .card_img {
-      height: 14.8vh;
-      width: 27vw;
-      float: right;
-    }
+  .card_text {
+    position: absolute;
+    // left: 0.5vw;
+    // width: 70vw;
+    font-size: 11.4px;
+    font-family: AppleSDGothicNeo-Regular;
+    line-height: 2.31;
+    letter-spacing: -0.56px;
+    color: #6a6a6a;
+    float: left;
+    margin-top: -1vw;
+  }
 
-    // .boseub_img {
-    //   width: 78%;
-    //   height: 140%;
-    //   float: right;
-    // }
+  .card_img1 {
+    // align-self: ;
+    justify-self: flex-end !important;
+    height: 25.5vw;
+    width: 35vw !important;
+    float: right;
+  }
 
-    // .mibaeg_img {
-    //   width: 78%;
-    //   height: 140%;
-    //   float: right;
-    // }
+  .card_img2 {
+    // align-self: ;
+    justify-self: flex-end !important;
+    height: 26.5vw;
+    width: 25vw;
+    float: right;
+  }
 
-    // .wrinkle_img {
-    //   width: 78%;
-    //   height: 155%;
-    //   float: right;
-    // }
+  .card_img3 {
+    // align-self: ;
+    justify-self: flex-end !important;
+    // margin-top: 1vw;
+    height: 25vw;
+    width: 29vw;
+    float: right;
+    margin-top: 2vw;
+  }
 
-    // .chadan_img {
-    //   width: 78%;
-    //   height: 140%;
-    //   float: right;
-    // }
+  .card_img4 {
+    // align-self: ;
+    justify-self: flex-end !important;
+    height: 25vw;
+    width: 28vw;
+    float: right;
+    margin-top: 1vw;
+  }
 
-    .new_product {
-      position: relative;
-      width: 100vw;
-      height: 85.7vh;
-      // margin-top: 0%;
-    }
+  .new_product {
+    // width: 100vw;
+    height: 153vw;
+  }
 
-    .new_title {
-      position: relative;
-      top: 1.5vh;
-      left: 2vw;
-      width: 30vw;
-      // height: 15vh;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 15px;
-      font-weight: bold;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: -1.5px;
-      color: #202020;
-      white-space: nowrap;
-      // z-index: 1000;
-    }
+  .new_product_grid {
+    margin-top: -2vw;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: calc(100vw - 8vw);
+    // position: relative;
+    height: 18.5vw;
+    // width: 80vw;
+    top: 6.8vh;
+    margin-bottom: 4vw;
+    // left: 3vw;
+  }
 
+  .new_title {
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.72px;
+    color: #202020;
+  }
+
+  .new_arrow {
+    position: relative;
+    width: 7vw;
+    bottom: 0.3vh;
+    right: 1vw;
+    object-fit: contain;
+    display: -webkit-inline-box;
+  }
+
+  /* 삼성 갤럭시 탭 S3, 아이패드 적용 (해상도 768 ~ 1024) */
+  @media all and (min-width:768px) and (max-width:1024px) {
     .new_arrow {
-      position: relative;
-      width: 8vw;
-      height: 8vh;
-      top: 3vh;
-      right: 2vw;
-      object-fit: contain;
-      display: -webkit-inline-box;
+      width: 4vw !important;
+      left: 0.1vw;
     }
+  }
 
-    .new_text {
-      position: relative;
-      top: 0.5vh;
-      width: 70vw;
-      margin-left: 0.8vw;
-      font-size: 11.4px;
-      font-family: AppleSDGothicNeo-Regular;
-      letter-spacing: -1.08px;
-      color: #6a6a6a;
+  /* 삼성 갤럭시 탭 S4 적용 (해상도 1138px ~)*/
+  @media all and (min-width:1137px) {
+    .new_arrow {
+      width: 2vw !important;
+      left: 0.1vw;
     }
+  }
 
-    .new_product_slide {
-      position: relative;
-      height: 87vh;
-      bottom: 20vh;
-    }
+  .new_text {
+    font-size: 11.4px;
+    font-family: AppleSDGothicNeo-Regular;
+    letter-spacing: -0.56px;
+    color: #6a6a6a;
+  }
 
+  .new_product_slide {
+    position: relative;
+    margin-top: 20vw;
+    height: 140vw;
+    bottom: 16vh;
+  }
 
+  .new_img {
+    position: relative;
+    width: calc(100vw - 9vw);
+    margin-top: -30vw;
+    height: 85vw;
+    object-fit: contain;
+    border-top-left-radius: 5.7px;
+    border-top-right-radius: 5.7px;
+    border: solid 0.5px #d2d2d2;
+    background-color: #ffffff;
+  }
 
-    .new_img {
-      position: relative;
-      width: 89.3vw;
-      top: 10.5vh;
-      height: 48vh;
-      object-fit: contain;
-      border-top-left-radius: 5.7px;
-      border-top-right-radius: 5.7px;
-      border: solid 0.5px #d2d2d2;
-      background-color: #ffffff;
-    }
+  .new_div {
+    position: relative;
+    width: calc(100vw - 9vw);
+    height: 17vw;
+    margin-top: -1.5vw !important;
+    margin-bottom: -50vw !important;
+    margin: 0 auto;
+    text-align: left;
+    border-bottom-right-radius: 5.7px;
+    border-bottom-left-radius: 5.7px;
+    // border-radius: 5.7px;
+    background-color: #e4e4e4;
+  }
 
-    .new_div {
-      position: relative;
-      margin: 0 auto;
-      width: 89.3vw;
-      height: 9.8vh;
-      top: 7.6vh;
-      text-align: left;
-      border-bottom-right-radius: 5.7px;
-      border-bottom-left-radius: 5.7px;
-      // border-radius: 5.7px;
-      background-color: #e4e4e4;  
-    }
+  .new_desc {
+    position: relative;
+    align-self: center;
+    bottom: 0.3vh;
+    left: 3vw;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-family: AppleSDGothicNeo;
+    font-size: 11px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.52;
+    letter-spacing: -0.55px;
+    color: #6562b9;
+  }
 
-    .new_desc {
-      position: relative;
-      top: 2vh;
-      left: 4.5vw;
-      width: 50vw;
-      // height: 3.6em; 
-      display: -webkit-box; 
-      -webkit-line-clamp: 2; 
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      font-family: AppleSDGothicNeo;
-      font-size: 11px;
-      font-weight: 500;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.5px;
-      color:  #6562b9;
-    }
+  .new_post {
+    white-space: nowrap;
+    font-size: 14px;
+    font-family: AppleSDGothicNeo-Regular;
+    letter-spacing: -0.68px;
+    color: #141414;
+  }
 
-    .new_post { 
-      position: relative;
-      top: 0.8vh;
-      left: 4.5vw;
-      width:30vw;
-      white-space:nowrap;
-      font-size: 14px;
-      font-family: AppleSDGothicNeo-Regular;
-      letter-spacing: -1.38px;
-      color: #141414;
-    }
+  .new_point_div {
+    position: absolute;
+    right: 3.7vw;
+    bottom: 2.2vh;
+    float: right;
+    height: 9vw;
+    width: 12.5vw;
+    border-radius: 2.8px;
+    background-color: #ffffff;
+    text-align: center;
+    letter-spacing: -1.41px;
+    font-size: 9px;
+    font-weight: 500;
+  }
 
-    .new_point_div {
-      position: absolute;
-      right: 3.7vw;
-      bottom: 2.2vh;
-      float: right;
-      height: 5.3vh;
-      width: 12.5vw;
-      border-radius: 2.8px;
-      background-color: #ffffff;
-      text-align: center;
-      letter-spacing: -1.41px;
-      font-size: 9px;
-      font-weight: 500;
-      
-    }
+  .new_point_text {
+    position: absolute;
+    width: 10vw;
+    top: 0.6vh;
+    left: 1vw;
+    font-family: AppleSDGothicNeo;
+  }
 
+  /* 삼성 갤럭시 탭 S3, 아이패드 적용 (해상도 768 ~ 1024) */
+  @media all and (min-width:768px) and (max-width:1024px) {
     .new_point_text {
-      position: absolute;
-      width: 10vw;
-      top: 0.6vh;
-      left: 1vw;
-      font-family: AppleSDGothicNeo;
-      }
-
-    /* 삼성 갤럭시 탭 S3, 아이패드 적용 (해상도 768 ~ 1024) */
-    @media all and (min-width:768px) and (max-width:1024px) { 
-      .new_point_text {
-        top: 2vh;
-      }
+      top: 2vh;
     }
+  }
 
-    /* 삼성 갤럭시 탭 S4 적용 (해상도 1138px ~)*/
-    @media all and (min-width:1137px) { 
-      .new_point_text {
-        top: 1.8vh;
-        left: 1.4vw;
-      }
+  /* 삼성 갤럭시 탭 S4 적용 (해상도 1138px ~)*/
+  @media all and (min-width:1137px) {
+    .new_point_text {
+      top: 1.8vh;
+      left: 1.4vw;
     }
+  }
 
-    .pplrt_product {
-      position: relative;
-      width: 100vw;
-      height: 80.7vh;
-    }
+  .pplrt_product {
+    height: auto;
+  }
 
-    .pplrt_title {
-      position: relative;
-      top: 1vh;
-      left: 2vw;
-      width: 30vw;
-      // height: 15vh;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 15px;
-      font-weight: bold;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: -1.5px;
-      color: #202020;
-      white-space: nowrap;
-      // z-index: 1000;
-    }
+  .pplrt_product_grid {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: calc(100vw - 8vw);
+    height: 12.5vh;
+    top: 1.8vh;
+    margin-bottom: 3vh;
+  }
 
+  .pplrt_title {
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.72px;
+    color: #202020;
+  }
+
+  .pplrt_arrow {
+    position: relative;
+    width: 7vw;
+    bottom: 0.3vh;
+    right: 1vw;
+    object-fit: contain;
+    display: -webkit-inline-box;
+  }
+
+  /* 삼성 갤럭시 탭 S3, 아이패드 적용 (해상도 768 ~ 1024) */
+  @media all and (min-width:768px) and (max-width:1024px) {
     .pplrt_arrow {
-      position: relative;
-      width: 8vw;
-      height: 8vh;
-      top: 3vh;
-      right: 2.2vw;
-      object-fit: contain;
-      display: -webkit-inline-box;
+      width: 4vw !important;
+      left: 0.1vw;
     }
+  }
 
-    .pplrt_text {
-      position: relative;
-      top: 1vh;
-      width: 70vw;
-      margin-left: 0.8vw;
-      font-size: 11.4px;
-      font-family: AppleSDGothicNeo-Regular;
-      letter-spacing: -1.08px;
-      color: #6a6a6a;
+  /* 삼성 갤럭시 탭 S4 적용 (해상도 1138px ~)*/
+  @media all and (min-width:1137px) {
+    .pplrt_arrow {
+      width: 2vw !important;
+      left: 0.1vw;
     }
+  }
 
-    .list_div {
-      position: relative;
-      top: 2.6vh;
-      right: 1.6vw;
-      width: 100vw;
-      height: 20.1vh;
-    }
+  .pplrt_text {
+    font-size: 11.4px;
+    font-family: AppleSDGothicNeo-Regular;
+    letter-spacing: -0.56px;
+    color: #6a6a6a;
+  }
 
-    .cosmetics_img {
-      position: relative;
-      top: 4vh;
-      left: 5.5vw;
-      height: 9.8vh;
-      width: 17.4vw;
-      border: solid 0.5px #d2d2d2;
-      border-radius: 5.7px;
-    }
+  .list_div {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-top: -1vw;
+    // top: 0.8vh;
+    right: 2.4vw;
+    width: 100vw;
+    // height: 17vh;
+  }
 
-    .cosmetics_btn {
-      width: 11.6vw;
-      height: 4vh;
-      top: 5.6vh;
-      right: 4.8vw;
-      float: right;
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 11px;
-      font-weight: 500;
-      border-radius: 5.7px;
-      background-color: #6562b9;
-    }
+  .cosmetics_img {
+    position: relative;
+    top: 2.5vh;
+    left: 5vw;
+    height: 17.4vw;
+    width: 17.4vw;
+    object-fit: contain;
+    border: solid 0.5px #d2d2d2;
+    border-radius: 5.7px;
+  }
 
-    .cosmetics_container {
-      position: relative;
-      height: 9vh;
-      width: 50vw;
-      bottom: 6vh;
-      // right: 5vw;
-      margin: 0 auto;
-    }
+  .cosmetics_container {
+    align-self: center;
+    width: 53vw;
+  }
 
-    .cosmetics_nickname {
-      font-size: 10.4px;
-      letter-spacing: -0.83px;
-      color: #6562b9;
-    }
+  .cosmetics_nickname {
+    position: absolute;
+    left: 1.5vw;
+    top: 7vw;
+    // width: 30vw;
+    font-size: 10.4px;
+    letter-spacing: -0.52px;
+    color: #6562b9;
+  }
 
-    .cosmetics_product {
-      font-family: AppleSDGothicNeo-Regular;
-      font-size: 13.3px;
-      font-weight: bold;
-      letter-spacing: -2.05px;
-      color: #292929;
-    }
+  .cosmetics_product {
+    position: absolute;
+    top: 11.7vw;
+    left: 1.5vw;
+    // width: 53vw;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 13.3px;
+    font-weight: bold;
+    letter-spacing: -0.6px;
+    color: #292929;
+  }
 
-    .count_container {
-      // position: relative;
-      // top: 1.8vh;
-      // width: 30vw;
-      // right: 1.5vw;
-      letter-spacing: -0.25px;
-      line-height: 3.55;
-      font-size: 10.4px;
-    }
+  .count_container {
+    // position: relative;
+    // top: 1.8vh;
+    // width: 30vw;
+    // right: 1.5vw;
+    letter-spacing: -0.5px;
+    line-height: 3.55;
+    font-size: 10.4px;
+  }
 
-    .cosmetics_text {
-      font-family: AppleSDGothicNeo-Regular;
-      color: #afafaf;
-    }
+  .cosmetics_text {
+    position: absolute;
+    width: 100vw !important;
+    left: 1.5vw;
+    top: 20vw;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 11px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.55;
+    letter-spacing: -0.5px;
+    text-align: left;
+    color: #afafaf;
 
-    .cosmetics_num {
-      color: #505050;
-    }
+  }
 
-    // .pplrt_img{
-    //   width: 17.5vw;
-    //   height: 10vh;
-    //   object-fit: contain;
-    //   background-color: transparent !important;
-    //   // left: 5%;
-    //   border-radius: 5.7px;
-    //   border: solid 0.5px #d2d2d2;
-    // }
+  .cosmetics_num {
+    color: #505050;
+  }
 
-    // .pplrt_btn {
-    //   width: 11.6vw;
-    //   height: 3.6vh;
-    //   left: -3.5%;
-    //   float: right;
-    //   font-family: AppleSDGothicNeo-Regular;
-    //   font-size: 11px;
-    //   font-weight: 500;
-    //   border-radius: 5.7px;
-    //   background-color: #6562b9;
-    // }
+  .cosmetics_btn {
+    width: 11.6vw;
+    height: 7vw;
+    top: 4vh;
+    right: 3vw;
+    float: right;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 5.7px;
+    box-shadow: none;
+    background-color: #6562b9;
+  }
 
-    // .pplrt_container {
-    //   position: static;
-    //   width: 100%;
-    //   letter-spacing: -0.11vw;
-    // }
+  .card_desc {
+    // width: 38px;
+    // height: 19.5px;
+    // margin: 33.5px 8px 8px 0;
+    font-family: GmarketSansTTF;
+    font-size: 21.8px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.39;
+    letter-spacing: -0.98px;
+    text-align: left;
+    float: left;
+    color: #575757;
+    margin-top: -0.6vw;
+  }
 
-    // .pplrt_nickname{
-    //   position: relative;
-    //   font-family: AppleSDGothicNeo;
-    //   font-size: 10px;
-    //   font-weight: normal;
-    //   font-style: normal;
-    //   font-stretch: normal;
-    //   line-height: normal;
-    //   letter-spacing: -0.07vw;
-    //   color: #6562b9;
-    // }
+  .plan_title {
+    position: relative;
+    // width: 70px;
+    // height: 15px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.83;
+    letter-spacing: -0.72px;
+    text-align: left;
+    color: #202020;
+  }
 
-    // .pplrt_post{
-    //   width: 62%;
-    //   font-family: AppleSDGothicNeo-Regular;
-    //   font-size: 12.6px;
-    //   font-weight: 500;
-    //   font-style: normal;
-    //   font-stretch: normal;
-    //   letter-spacing: -0.37vw;
-    //   color: #292929;
-    //   padding-bottom: 0px !important;
-    //   border: 0px;
-    // }
+  .grid1 {
+    position: relative;
+    height: 85vw;
+  }
 
-    // .like_container {
+  .left {
+    margin-left: 5vw !important;
+  }
 
-    // }
+  .detail_left { //상품정보 좌측 정렬
+    margin-left: 4.5vw !important;
+  }
 
-    // .pplrt_comment{
-    //   position: relative;
-    //   font-family: AppleSDGothicNeo;
-    //   font-size: 10px;
-    //   font-weight: normal;
-    //   font-style: normal;
-    //   font-stretch: normal;
-    //   line-height: normal;
-    //   letter-spacing: normal;
-    //   color: #afafaf;
-    //   white-space: nowrap;
-    // }
+  .center {
+    margin: 0 auto;
+  }
 
-    // .comment_count {
-    //   position: relative;
-    //   font-family: AppleSDGothicNeo;
-    //   font-size: 11.3px;
-    //   letter-spacing: -0.28vw;
-    //   text-align: center;
-    //   color: #505050;
-    // }
+  .text1 {
+    // width: 70px;
+    // height: 15px;
+    margin-top: -1vw;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.83;
+    letter-spacing: -0.72px;
+    text-align: left;
+    color: #202020;
+    float: left;
+  }
 
-    // .pplrt_like{
-    //   position: relative;
-    //   font-family: AppleSDGothicNeo;
-    //   font-size: 10px;
-    //   font-weight: normal;
-    //   font-style: normal;
-    //   font-stretch: normal;
-    //   line-height: normal;
-    //   letter-spacing: -0.21vw;
-    //   color: #afafaf;
-    //   white-space: nowrap;
-    // }
+  .text2 {
+    // width: 231px;
+    // height: 13px;
+    margin-top: -1.5vw;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12.5px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.34;
+    letter-spacing: -0.56px;
+    text-align: left;
+    color: #6a6a6a;
+  }
 
+  .text3 {
+    width: 29vw;
+    // height: 26px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.42;
+    text-align: left;
+    font-size: 10.3px;
+    letter-spacing: -0.46px;
+    color: #6562b9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
+  .text4 {
+    width: 29vw;
+    // height: 26px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.42;
+    letter-spacing: -0.54px;
+    text-align: left;
+    color: #555555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
+  .text5 {
+    flex: 1;
+    position: relative;
+    // width: 54.5px;
+    // height: 8px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 8.5px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.82;
+    letter-spacing: -0.38px;
+    text-align: center;
+    color: #2b2b2b;
+    vertical-align: middle;
+  }
 
+  .sale_shape {
+    position: relative;
+    flex: 1;
+    width: 20vw;
+    height: 4.5vw;
+    border-radius: 2.8px;
+    background-color: #ebebeb;
+  }
+
+  .img1 {
+    width: 7vw;
+    height: 8vw;
+    float: left;
+    margin-top: -1.5vw;
+  }
+
+  .img2 {
+    width: 28.5vw;
+    height: 28.5vw;
+    // padding: 0.1px 0.4px 0.2px 0.4px;
+    border-radius: 5.7px;
+    border: solid 0.5px #d2d2d2;
+    background-color: #ffffff;
+  }
+
+  .img3 {
+    width: 89vw;
+    height: 85vw;
+    // padding: 6px 21.5px 27.5px 12px;
+    border: solid 0.5px #d2d2d2;
+    border-radius: 5.7px 5.7px 0px 0px;
+    background-color: #ffffff;
+  }
+
+  .slide1 {
+    margin-right: -3vw;
+    // max-width: 100vw;
+  }
+
+  .text6 {
+    margin-top: -1.5vw;
+    // width: 86.5px;
+    // height: 15px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.83;
+    letter-spacing: -0.72px;
+    text-align: left;
+    color: #202020;
+  }
+
+  .text7 {
+    margin-top: -1.5vw;
+    // width: 188px;
+    // height: 11.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12.5px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.34;
+    letter-spacing: -0.56px;
+    text-align: left;
+    color: #6a6a6a;
+  }
+
+  .text8 {
+    margin-top: 5.5vw;
+    margin-left: 2vw;
+    // width: 186.5px;
+    // height: 31.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.28;
+    text-align: left;
+    font-size: 12.3px;
+    font-weight: normal;
+    letter-spacing: -0.55px;
+    color: #6562b9;
+    flex: 1;
+  }
+
+  .text9 {
+    margin-left: 2vw;
+    position: relative;
+    // width: 186.5px;
+    // height: 31.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.28;
+    letter-spacing: -0.68px;
+    text-align: left;
+    color: #141414;
+    flex: 1;
+  }
+
+  .rectangle {
+    margin-top: -5vw !important;
+    width: 89vw;
+    height: 20vw;
+    // padding: 14.5px 12.5px 13.5px 15.5px;
+    background-color: #e4e4e4;  
+    border-radius: 0px 0px 5.7px 5.7px;
+    margin: 0 auto;
+  }
+
+  .rectangle2 {
+    margin-top: 6vw;
+    right: 3vw;
+    // margin-right: 0.1vw;
+    width: 23vw;
+    height: 10vw;
+    border-radius: 2.8px;
+    background-color: #ffffff;
+  }
+
+  .text10 {
+    width: 12vw;
+    height: 8vw;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 10.3px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.37;
+    letter-spacing: -0.46px;
+    text-align: center;
+    color: #2b2b2b;
+    border-radius: 2.8px;
+  }
+
+  .slide2 {
+    margin-top: -8vw;
+    height: 125vw;
+  }
+
+  .ic_system_arrow_white {
+    margin-right: 2vw; 
+    margin-left: -1vw;
+    width: 12.5px;
+    height: 12.5px;
+    object-fit: contain;
+  }
 
 }

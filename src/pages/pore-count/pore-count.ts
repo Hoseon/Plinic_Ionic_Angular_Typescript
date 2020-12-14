@@ -4,9 +4,11 @@ import { Chart } from 'chart.js';
 import { format } from 'date-fns';
 import 'chartjs-plugin-labels';
 import { ImagesProvider } from '../../providers/images/images'
+import { AuthService } from '../../providers/auth-service';
 import { CommunityModifyPage } from '../community/community-modify/community-modify'
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import { ProductDetailPage } from '../product-detail/product-detail';
+import { SungwooBeautyPage } from '../sungwoo-beauty/sungwoo-beauty';
 
  /**
  * Generated class for the PoreSizePage page.
@@ -21,6 +23,9 @@ import { ProductDetailPage } from '../product-detail/product-detail';
   templateUrl: 'pore-count.html',
 })
 export class PoreCountPage {
+  movieData: any;
+  youTubeArrayData: Array<any>  = new Array<any>();
+  videoDetailData: Array<any>  = new Array<any>();
   skinAnalyAvgComparePoreCount: any;
   skinAnalyAvgComparePoreCount2: any;
   skinAnalyPoreSizeAvg: any;
@@ -244,6 +249,7 @@ export class PoreCountPage {
   chartAvgForeheadPoreUserCountDate: any = []; //차트에 보여지는 나의 결과 날짜
 
   constructor(
+    public auth: AuthService,
     public navCtrl: NavController, 
     public navParams: NavParams,
     public platform: Platform,
@@ -267,7 +273,7 @@ export class PoreCountPage {
     this.getAvgSkinPore(this.ageRange);
     this.skinQnaMainLoad();
     this.communityEditorBeautyLoad();
-    console.log('ionViewDidLoad PoreSizePage');
+    this.getAllBeautyMovie();
   }
 
   async ionViewDidEnter(){
@@ -733,7 +739,7 @@ export class PoreCountPage {
         // this.cheekImages.push('http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].input[0].filename);
         // this.cheekImages.push(this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].pore[0].output_image);
 
-        this.foreheadImages.push('http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].input[0].filename);
+        this.foreheadImages.push('http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].input[0].filename);
         this.foreheadImages.push(this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].pore[0].output_image);
 
         console.log("cheekimages : " + this.cheekImages);
@@ -808,7 +814,7 @@ export class PoreCountPage {
 
         this.skinTone = this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].tone[0].avgrage_color_hex;
 
-        this.cheekImages.push('http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].input[0].filename);
+        this.cheekImages.push('http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].input[0].filename);
         this.cheekImages.push(this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].pore[0].output_image);
 
         // this.foreheadImages.push('http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/media/images/'+this.skinAnalyData.forehead[(this.skinAnalyData.forehead.length-1)].input[0].filename);
@@ -946,5 +952,52 @@ export class PoreCountPage {
       "day": this.skinbtnYear + "년12월"
     }
   ];
+
+
+  getAllBeautyMovie() {
+    this.images.getBeautyMovie().subscribe(data=> {
+      this.movieData = data
+      if(data) {
+        for(let i = 0; i < data.length; i++) {
+          this.youTubeArrayData[i] = data[i].items[0];
+          this.getOneMovieData(data[i].items[0].id, i);
+        }
+      }
+    })
+  }
+
+  getOneMovieData(movieId, index) {
+    this.images.getOneBeautyMovie(movieId).subscribe(data=> {
+      this.videoDetailData[index] = data;
+    });  
+  }
+
+  openMoviePage(youTubeData) {
+    let myModal = this.modalCtrl.create(SungwooBeautyPage, { youTubeData: youTubeData});
+    myModal.onDidDismiss(data => {
+      // this.authService.setUserStoragetab(2);
+      // this.ionViewWillEnter();
+    });
+    myModal.present();
+  }
+
+  goToCommunityMovie() {
+    this.auth.setUserStoragetab(2);
+    this.navCtrl.parent.select(3)
+  }
+
+  goToCommunity() {
+    this.auth.setUserStoragetab(0);
+    this.navCtrl.parent.select(3)
+  }
+
+  goToCommunityGomin() {
+    this.auth.setUserStoragetab(1);
+    this.navCtrl.parent.select(3)
+  }
+
+  goToProduct() {
+    this.navCtrl.parent.select(2)
+  }
 
 }

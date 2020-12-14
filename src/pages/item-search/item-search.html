@@ -126,7 +126,7 @@
   
   
         <!-- 뷰트꿀팁 이미지가 있을 때  -->
-        <ng-container *ngIf="platform.is('android')">
+        <ng-container  #myList *ngIf="platform.is('android')">
           <ng-container *ngFor="let community of productData">
             <!-- <ng-container *ngIf="community.brand_name.indexOf(searchTerm) >= 0 || community.brand_name.indexOf(searchTerm) >= 0"> -->
               <ion-item class="line_item" no-lines>
@@ -151,7 +151,7 @@
         </ng-container>
   
   
-        <ng-container *ngIf="platform.is('ios') || platform.is('core')">
+        <ng-container  #myList *ngIf="platform.is('ios') || platform.is('core')">
           <ng-container *ngFor="let community of productData">
             <!-- <ng-container *ngIf="community.brand_name.indexOf(searchTerm) >= 0 || community.brand_name.indexOf(searchTerm) >= 0"> -->
               <ion-item class="line_item" no-lines>

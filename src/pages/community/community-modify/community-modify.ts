@@ -101,6 +101,11 @@ export class CommunityModifyPage {
   }
 
   ionViewDidEnter() {
+    if(this.platform.is('android')) {
+      this.platform.registerBackButtonAction(()=>{
+        this.nav.pop();
+      })
+    }
     // this.getUserimage();
   }
 

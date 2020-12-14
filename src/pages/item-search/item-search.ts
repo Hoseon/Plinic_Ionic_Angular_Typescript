@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ViewController, PopoverController, Slides, ModalController, Loading, LoadingController } from 'ionic-angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
@@ -57,6 +57,8 @@ export class ItemSearchPage {
   perPage = 0;
   totalData = 0;
   totalPage = 0;
+  @ViewChild('myList') myList;
+
 
   constructor(
     public modalCtrl: ModalController, 
@@ -78,7 +80,6 @@ export class ItemSearchPage {
   search(event) {
     this.page_view = true;
     // console.log("serach =---------" + this.searchTerm);
-
   }
 
   ionViewDidLoad() {

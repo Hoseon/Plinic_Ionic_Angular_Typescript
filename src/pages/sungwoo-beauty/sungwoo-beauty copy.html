@@ -1,0 +1,173 @@
+<!--
+  Generated template for the SungwooBeautyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <img no-lines class="android_nav" src="assets/img/beauty/ic-system-close-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>뷰티 영상</ion-title>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <img class="ios_nav" src="assets/img/beauty/ic-system-close-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>뷰티 영상</ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="youtubeData" class="iframe_div">
+    <iframe class="beauty_iframe" [src]="url" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+    gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </ng-container>
+  <ng-container>
+    <ion-grid class="beauty_div" no-padding>
+      <ng-container *ngIf="youtubeData" class="beauty_container">
+        <br>
+        <ion-row>
+          <div class="beauty_nickname">뷰티 꿀팁</div>
+        </ion-row>
+        <ion-row>
+          <div class="beauty_title">{{youtubeData.snippet.title}}</div>
+        </ion-row>
+        <ion-row>
+          <div class="beauty_name">{{youtubeData.snippet.channelTitle}}</div>
+        </ion-row>
+        <ion-row class="beauty_icon">
+          <ion-col no-padding>
+            <img *ngIf="!islike" (click)="like(movieId, userData.email)" class="movie_img1"
+              src="assets/img/beautymovie/like3.png" />
+            <img *ngIf="islike" (click)="dislike(movieId, userData.email)" class="movie_img1"
+              src="assets/img/beautymovie/dislike3.png" />
+            <!-- assets/img/like/like2.png -->
+            <ion-col no-padding><img class="beauty_img" src="assets/img/sungwoo_img/boolon.png" /></ion-col>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <div *ngIf="movieData" class="count_container">
+            조회 {{movieData.views}} · 좋아요 {{movieData.like}} · 댓글 {{movieData.comments.length}}
+          </div>
+        </ion-row>
+        <br>
+      </ng-container>
+    </ion-grid>
+  </ng-container>
+
+  <div style="height:8px; width:100%; display: block; background-color:#f1f1f1"></div>
+
+
+
+  <!-- 댓글등록 -->
+  <ng-container>
+    <ion-grid no-padding>
+      <ion-row class="comment_div">
+        <img class="profile_comment" src="userData.thumbnail_image"
+          onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+        <div class="comment_container">
+          <textarea [(ngModel)]="comment.body" class="comment_box" rows="1" cols="30" #myInput autoGrow="true"
+            placeholder="댓글 달기...(50자 이내)" maxLength="50" (input)="adjustTextarea()"></textarea>
+          <button ion-button class="comment_input_enroll" (click)="saveMovieReply()">게시</button>
+        </div>
+        <br>
+        <div style="height:1vh; width:100%; margin-top: 5%; display: block; background-color:#f1f1f1"></div>
+        <!-- 댓글 입력시 하단으로 내려 가는 경우를 대비 해서 이부분으로 댓글목록 이동 2020-11-24 호선-->
+
+        <ion-list-header no-lines no-padding>
+          <!-- Toggle Button -->
+          <button no-lines class="showAll" ion-item (click)="toggleSection()" detail-none>
+            <ion-icon class="arrow-forward" item-end *ngIf="!isShowReply"></ion-icon>
+            <ion-icon class="arrow-down" item-end *ngIf="isShowReply"></ion-icon>
+            <ng-container *ngIf="isShowReply">
+              댓글 모두 가리기
+            </ng-container>
+            <ng-container *ngIf="!isShowReply">
+              댓글 모두 보기
+            </ng-container>
+          </button>
+          <div
+            style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-top: 2%; background-color:#f1f1f1">
+          </div>
+        </ion-list-header>
+
+        <ng-container *ngIf="isShowReply">
+          <ion-list class="list_div" style="margin:0 auto;">
+            <ng-container *ngIf="movieData">
+              <ng-container *ngFor="let reply of movieData.comments; let i = index;">
+                <div class="review_div">
+                  <img class="profile_comment2" src="assets/img/register/ic-system-profile-default@3x.png">
+                  <div class="container2">
+                    <div class="nickname_comment">{{reply.email}}</div>
+                    <ng-container>
+                      <div class="content_comment" text-wrap>{{reply.body}}</div>
+                      <div  class="time_comment">
+                        {{getCovertKoreaTime(reply.createdAt).substr(0,16).replace('T', ' ')}}<span (click)="showReComments(i)"
+                        *ngIf="!isShowReComments[i]" class="comment_reply">답글 달기</span><span (click)="noShowReComments(i)" class="comment_reply" *ngIf="isShowReComments[i]">취소</span>
+                      </div>
+                      
+                      <!-- <br><br><br><br><br><br><br><br><br><br><br><br> -->
+                    </ng-container>
+                  </div>
+                </div>
+                <div *ngIf="isShowReComments[i]" class="recomment_div">
+                  <textarea [(ngModel)]="recomment.body" class="recomment_box" rows="3" cols="30" #myInput2 maxLength="300" autoGrow="true"
+                    placeholder="답글 달기...(50자 이내)" maxLength="50" (input)="adjustTextarea2(i+1)"></textarea>
+                  <button ion-button class="recomment_btn" (click)="saveReCommentsMovieReply(reply._id, i)">게시</button>
+                </div>
+                  <ng-container *ngFor="let reComment of reply.recomments">
+                    <div class="review_div2">
+                      <img class="profile_comment3" src="assets/img/register/ic-system-profile-default@3x.png">
+                      <img class="return_img" src="assets/img/beautymovie/return.png">
+                      <div class="container2">
+                        <ng-container>
+                          <div class="user_email">{{reComment.email}}</div>
+                          <div class="content_comment" text-wrap>{{reComment.body}}</div>
+                          <div class="time_comment">
+                            {{getCovertKoreaTime(reComment.createdAt).substr(0,16).replace('T', ' ')}}<span
+                              class="comment_reply">답글 달기</span></div>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </ng-container>
+                
+                <div
+                      style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-top: -5%; background-color:#f1f1f1">
+                    </div>
+              </ng-container>
+            </ng-container>
+          </ion-list>
+        </ng-container>
+        <br><br><br><br><br><br>
+
+        <!-- 인기영상 추천 -->
+        <ion-grid class="black_background" no-padding>
+          <ion-row>
+            <div class="movie_title">인기영상 추천</div>
+          </ion-row>
+          <br>
+          <ion-row>
+            <ion-slides class="movie_slide" mode="ios" slidesPerView=2.5>
+              <ng-container *ngIf="youTubeArrayData">
+                <ion-slide *ngFor="let tubeData2 of youTubeArrayData; let i = index;" (click)="openMoviePage(tubeData)">
+                  <img class="movie_img2" src="{{tubeData2.snippet.thumbnails.maxres.url}}" />
+                  <div class="movie_text5">{{tubeData2.snippet.title}}</div>
+                  <div class="movie_text6">{{tubeData2.snippet.channelTitle}}</div>
+                  <br>
+                </ion-slide>
+              </ng-container>
+            </ion-slides>
+          </ion-row>
+        </ion-grid>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+</ion-content>

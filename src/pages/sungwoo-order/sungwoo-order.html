@@ -5,112 +5,169 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar  *ngIf="platform.is('android')" no-lines>
-    <ion-title class="android_title" text-wrap >주문서</ion-title>
+  <ion-navbar *ngIf="platform.is('android')  || platform.is('core')">
+    <ion-title class="android_title" text-wrap>주문서</ion-title>
+    <ion-buttons (click)="myinfo()" end>
+      <img
+        class="ios_nav"
+        src="assets/img/login/ic-system-close-black@3x.png"
+      />
+    </ion-buttons>
   </ion-navbar>
 
-  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
-  	<ion-buttons left>
-  		<button ion-button navPop icon-only>
-        <img class="ios_nav"src="assets/img/agreement/ic-system-back-black@3x.png"/>
-  		</button>
-  	</ion-buttons>
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+      <ion-title  class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+    </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only left>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img
+          class="ios_nav"
+          src="assets/img/agreement/ic-system-back-black@3x.png"
+        />
+      </button>
+    </ion-buttons>
     <ion-title class="ios_title" text-wrap>주문서</ion-title>
+    <ion-buttons end>
+      <img
+        class="ios_nav"
+        src="assets/img/login/ic-system-close-black@3x.png"
+      />
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content>
-  <ng-container>
-    <ion-grid class="order_grid">
-        <ion-row>
-          <ion-col class="text_col" col-9>
-            <div class="product_name" style="color: #5c59b6">구달</div>
-            <div class="order_name">청귤 비타C 잡티세럼청귤</div>
-            <div class="order-little_text1">옵션</div> 
-          </ion-col>
-          <ion-col class="img_col" col-3>  
-            <img class="order_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000738.jpg" />
-          </ion-col>
-        </ion-row>
-    </ion-grid>
-  </ng-container>
-  
-  <div style="height:1.3vh; width:100vw; background-color:#f1f1f1"></div>
+  <ion-grid class="order_grid">
+    <br /><br />
+    <ion-row>
+      <ion-col col-8>
+        <div class="product_name">플리닉</div>
+        <div class="order_name">플리닉 멀티 일시불 결제</div>
+        <br />
+        <div class="order-little_text1">옵션</div>
+      </ion-col>
+      <ion-col col-4>
+        <img
+          class="order_img"
+          src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000738.jpg"
+        />
+      </ion-col>
+    </ion-row>
+    <br />
+  </ion-grid>
+
+  <div style="height: 9px; width: 100vw; background-color: #f1f1f1"></div>
 
   <ng-container>
     <ion-grid class="order_delivery_grid">
-        <ion-row class="title_div">
-          <ion-col class="order_title"> 배송지 </ion-col>
-          <ion-col class="order_title2">배송지 입력</ion-col>
-        </ion-row>
-        <ion-row class="delivery_list">
-          <ion-col class="line_item" no-lines>
-            이성균
-          </ion-col>
-          <div style="height:0.1vh; width:90vw; margin:0 auto; display: block; background-color:#f1f1f1"></div>
-          <ion-col class="line_item" no-lines>
-            010-9022-1220
-          </ion-col>
-          <div style="height:0.1vh; width:90vw; margin:0 auto; display: block; background-color:#f1f1f1"></div>
-          <ion-col class="line_item" no-lines>
-            인천광역시 연수구 송도미래로 30 스마트밸리 402호
-          </ion-col>
-          <div style="height:0.1vh; width:90vw; margin:0 auto; display: block; background-color:#f1f1f1"></div>
-        </ion-row>
+      <br />
+      <ion-row>
+        <ion-col class="order_title" col-6> 배송지 </ion-col>
+        <ion-col class="order_title2" col-6>배송지 입력</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="line_item" no-lines>
+          이성균
+          <div
+            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
+          ></div>
+        </ion-col>
+        <ion-col class="line_item" no-lines>
+          010-9022-1220
+          <div
+            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
+          ></div>
+        </ion-col>
+        <ion-col class="line_item" no-lines>
+          인천광역시 연수구 송도미래로 30 스마트밸리 402호
+          <div
+            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
+          ></div>
+        </ion-col>
+      </ion-row>
+      <br />
     </ion-grid>
   </ng-container>
 
-  <div style="height:1.3vh; width:100vw; background-color:#f1f1f1"></div>
+  <div style="height: 9px; width: 100vw; background-color: #f1f1f1"></div>
 
   <ng-container>
     <ion-grid class="order_price_grid">
+      <br /><br />
       <ion-row>
-        <ion-col class="price_title">결제 금액</ion-col>
+        <div class="price_title">결제 금액</div>
       </ion-row>
-      <ion-row class="price_div">
-        <ion-col class="order_text1" col-7>상품 금액 합계</ion-col>
-        <ion-col class="order_text2" col-3>40,000 원</ion-col>
-        <ion-col class="order_text1" col-7>포인트 사용금액</ion-col>
-        <ion-col class="order_text2" col-3>-20,000 원</ion-col>
-        <ion-col class="order_text1" col-7>배송비</ion-col>
-        <ion-col class="order_text2" col-3>+3,000 원</ion-col>
-        <ion-col class="order_text1" col-7>기타 할인 금액</ion-col>
-        <ion-col class="order_text2" col-3>0 원</ion-col>
+      <br />
+      <ion-row>
+        <ion-col class="order_text1" col-8>상품 금액 합계</ion-col>
+        <ion-col class="order_text2" col-4>169,000 원</ion-col>
+        <ion-col class="order_text1" col-8>포인트 사용금액</ion-col>
+        <ion-col class="order_text2" col-4>- 원</ion-col>
+        <ion-col class="order_text1" col-8>배송비</ion-col>
+        <ion-col class="order_text2" col-4>+3,000 원</ion-col>
+        <ion-col class="order_text1" col-8>기타 할인 금액</ion-col>
+        <ion-col class="order_text2" col-4>0 원</ion-col>
       </ion-row>
     </ion-grid>
 
-    <div style="height:1px; width:100%; display: block; background-color:#f1f1f1"></div>
-      
+    <div
+      style="
+        height: 1px;
+        width: 100%;
+        margin-top: 1.5vw;
+        display: block;
+        background-color: #f1f1f1;
+      "
+    ></div>
+
     <ion-grid class="price_grid">
-      <ion-row class="sum_div">
+      <ion-row>
         <ion-col class="sum_text">결제 예정 금액</ion-col>
-        <ion-col class="sum_price">23,000 원</ion-col>
+        <ion-col class="sum_price">172,000 원</ion-col>
       </ion-row>
+      <br /><br />
     </ion-grid>
   </ng-container>
 
-  <div style="height:1.3vh; width:100vw; background-color:#f1f1f1"></div>
+  <div
+    style="
+      height: 9px;
+      width: 100vw;
+      margin-top: -1.5vw;
+      background-color: #f1f1f1;
+    "
+  ></div>
 
   <ng-container>
     <ion-grid class="order_payment_grid">
+      <br /><br />
       <ion-row>
-        <ion-col class="payment_title">결제 수단</ion-col>
+        <div class="payment_title">결제 수단</div>
       </ion-row>
-      <ion-row class="payment_btn">
-        <button ion-button class="order_btn" >
+      <br />
+      <ion-row>
+        <button ion-button class="order_btn">
           <div class="order-btn_text">신용 카드</div>
         </button>
-        <button ion-button class="order_btn" >
+        <button ion-button class="order_btn">
           <div class="order-btn_text">무통장 입금</div>
         </button>
       </ion-row>
+      <br />
       <ion-grid class="grid_backColor2">
         <ion-list class="select_div">
           <ion-item class="order_select">
             <!-- <ion-label class="order-card_text">카드를 선택해주세요</ion-label> -->
-            <ion-select okText="Okay" cancelTest="Dismiss" id="select" class="s_icon" placeholder="카드를 선택해주세요">
+            <ion-select
+              okText="Okay"
+              cancelTest="Dismiss"
+              id="select"
+              class="s_icon"
+              placeholder="카드를 선택해주세요"
+            >
               <!-- <ion-option disabled selected value="">카드를 선택해주세요</ion-option> -->
               <ion-option value="nes">KB국민카드</ion-option>
               <ion-option value="n64">롯데카드</ion-option>
@@ -124,7 +181,13 @@
         <ion-list class="select_div">
           <ion-item class="order_select">
             <!-- <ion-label class="order-card_text">할부 기간을 선택해주세요</ion-label> -->
-            <ion-select okText="Okay" cancelTest="Dismiss" id="select" class="s_icon" placeholder="할부 기간을 선택해주세요">
+            <ion-select
+              okText="Okay"
+              cancelTest="Dismiss"
+              id="select"
+              class="s_icon"
+              placeholder="할부 기간을 선택해주세요"
+            >
               <!-- <ion-option disabled selected value="">할부 기간을 선택해주세요</ion-option> -->
               <ion-option value="Lump">일시불</ion-option>
               <ion-option value="twomonth">2개월(무)</ion-option>
@@ -142,29 +205,33 @@
           </ion-item>
         </ion-list>
       </ion-grid>
+      <br /><br />
     </ion-grid>
   </ng-container>
 
-  <div style="height:1.3vh; width:100vw; background-color:#f1f1f1"></div>
+  <div style="height: 9px; width: 100vw; background-color: #f1f1f1"></div>
 
   <ng-container>
     <ion-grid class="order_terms_grid">
-      <ion-row class="terms_box">
-        <ion-checkbox [(ngModel)]="cucumber" (ionChange)="updateCucumber()"></ion-checkbox>
+      <br /><br />
+      <ion-row>
+        <ion-checkbox
+          [(ngModel)]="cucumber"
+          (ionChange)="updateCucumber()"
+        ></ion-checkbox>
+        <div class="card-title">주문 내용 확인 및 동의</div>
+        <div class="card-subtitle">
+          주문 상품의 상세 정보, 배송 정보, 할인내역 등을 확인하였으며, 구매에
+          동의합니다.
+        </div>
       </ion-row>
-      <ion-row class="terms">
-        <ion-col class="card-title" col-12>
-          주문 내용 확인 및 동의
-        </ion-col>
-        <ion-col class="card-subtitle" col-12>
-          주문 상품의 상세 정보, 배송정보, 할인내역 등을 확인하였으며, 구매에 동의합니다.
-        </ion-col>
-      </ion-row>
+      <br /><br /><br />
     </ion-grid>
   </ng-container>
-
 </ion-content>
 
 <ion-footer mode="ios" keyboard-attach no-bounce no-lines>
-  <button (click)="saveToday()" ion-button class="cell"><div class="cell_text">결제하기</div></button>
+  <button (click)="saveToday()" ion-button class="cell">
+    <div class="cell_text">결제하기</div>
+  </button>
 </ion-footer>

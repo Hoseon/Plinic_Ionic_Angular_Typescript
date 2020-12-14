@@ -196,6 +196,8 @@ export class MyinfoPage {
     private openNativeSettings: OpenNativeSettings,
     ) {
     this.platform.ready().then((readySource) => {
+
+      this.androidBackButton();
       this.segment_moisture = "수분";
     });
 
@@ -248,7 +250,7 @@ export class MyinfoPage {
   }
 
   async ionViewDidEnter() {
-    this.getOrderList(this.userData.email);
+    // this.getOrderList(this.userData.email);
     console.log("init ionViewDidEnter");
     // setTimeout(() => {
       // this.flip();
@@ -2143,6 +2145,15 @@ export class MyinfoPage {
 
   showMore(isTrue) {
     isTrue ? this.isShowMore = true : this.isShowMore = false;
+  }
+
+  androidBackButton() {
+    if(this.platform.is('android')) {
+      this.platform.registerBackButtonAction(()=>{
+        this.nav.pop();
+        // this.nav.parent.select(0);
+      });
+    }
   }
   
 }

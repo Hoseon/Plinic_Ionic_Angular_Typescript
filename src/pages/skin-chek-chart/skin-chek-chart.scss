@@ -1322,7 +1322,7 @@ page-skin-chek-chart {
     box-shadow: none !important;
     height: 18px;
     position: relative;
-    right: 10%;
+    left: 10%;
   }
 
   .guide_ios {
@@ -2340,6 +2340,50 @@ page-skin-chek-chart {
     color: #292929;
     margin-left: 6.5%;
     margin-bottom: 4%;
+  }
+
+  .ic_system_arrow_white {
+    position: absolute;
+    top: 10%;
+    // right:0.1%;
+    width: 13.5px;
+    height: 13.5px;
+    object-fit: contain;
+  }
+
+  .android_point {
+    position: relative;
+    margin-top: -2%;
+    right: 20%;
+    z-index: 1000;
+    width: 100px;
+    height: 18px;
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+  }
+
+  .ios_point {
+    position: relative;
+    height: 18px;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+    margin-top: -3.8%;
+    left: -30%;
   }
 
   

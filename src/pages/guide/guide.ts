@@ -50,6 +50,11 @@ export class GuidePage {
   }
 
   ionViewDidEnter(){
+    if(this.platform.is('android')) {
+      this.platform.registerBackButtonAction(()=>{
+        this.navCtrl.pop();
+      })
+    }
     console.log('ionViewDidEnter GuidePage');
   }
 
