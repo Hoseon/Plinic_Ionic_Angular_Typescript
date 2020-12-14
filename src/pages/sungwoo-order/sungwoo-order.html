@@ -23,8 +23,7 @@
 
 <ion-content>
   <ng-container>
-    <ion-grid no-padding>
-      <ion-card class="order_card" no-padding>
+    <ion-grid class="order_grid">
         <ion-row>
           <ion-col class="text_col" col-9>
             <div class="product_name" style="color: #5c59b6">구달</div>
@@ -35,7 +34,6 @@
             <img class="order_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000738.jpg" />
           </ion-col>
         </ion-row>
-      </ion-card>
     </ion-grid>
   </ng-container>
   
@@ -150,20 +148,19 @@
   <div style="height:1.3vh; width:100vw; background-color:#f1f1f1"></div>
 
   <ng-container>
-      <ion-grid no-padding>
-        <br>
-        <br>
-        <ion-row class="terms">
-          <ion-checkbox [(ngModel)]="cucumber" (ionChange)="updateCucumber()" style="margin-left: 4.8vw;
-          margin-top: 1.6vh;"></ion-checkbox>
-          <div class="card-title">주문 내용 확인 및 동의</div><br>
-          <div class="card-subtitle">주문 상품의 상세 정보, 배송정보, 
-            할인내역 등을 확인하였으며, 구매에 동의합니다.</div>
-        </ion-row>
-      </ion-grid>
-
-      <div style="height:1.3vh; width:100vw; background-color:#f1f1f1"></div>
-
+    <ion-grid class="order_terms_grid">
+      <ion-row class="terms_box">
+        <ion-checkbox [(ngModel)]="cucumber" (ionChange)="updateCucumber()"></ion-checkbox>
+      </ion-row>
+      <ion-row class="terms">
+        <ion-col class="card-title" col-12>
+          주문 내용 확인 및 동의
+        </ion-col>
+        <ion-col class="card-subtitle" col-12>
+          주문 상품의 상세 정보, 배송정보, 할인내역 등을 확인하였으며, 구매에 동의합니다.
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ng-container>
 
 </ion-content>

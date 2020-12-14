@@ -143,112 +143,105 @@ page-sungwoo-cosmetics-tab {
     }
   
     .android_search {
-        position: absolute;
-        margin-top: -3%;
-        right: 17%;
-        width: 25px;
-        height: 25px;
-        object-fit: contain;
-        z-index: 10;
+      position: absolute;
+      margin-top: -3%;
+      right: 17%;
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      z-index: 10;
     }
   
     .ios_search {
-        position: relative;
-        margin-top: -5%;
-        right: 17%;
-        width: 25px;
-        height: 25px;
-        object-fit: contain;
-        z-index: 10;
-        left: 30%;
+      position: relative;
+      margin-top: -5%;
+      right: 17%;
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      z-index: 10;
+      left: 30%;
     }
 
-
     .cosmetics_list{
-        margin: 0 auto;
-        margin-top: -0.1vh;
+      margin: 0 auto;
+      margin-top: -0.1vh;
     }
 
     .row_align{
-        width: 100vw;
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
+      width: 100vw;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
     }
 
     .cosmetics_label{
-        padding-top: 1.8vh;
-        height: 6.3vh;
-        border: solid 0.5px #e5e5e5  ;
-        font-family: AppleSDGothicNeo-Regular;
-        font-size: 11.5px;
-        font-weight: bold;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        background-color: #d3d3d3;
-        text-align: center;
-        color:#ffffff;
-        margin: 0px;
-        // margin-bottom: 3%;
+      padding-top: 1.8vh;
+      height: 6.3vh;
+      border: solid 0.5px #e5e5e5  ;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 11.5px;
+      font-weight: bold;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      background-color: #d3d3d3;
+      text-align: center;
+      color:#ffffff;
+      margin: 0px;
     }
 
     .cosmetics_label:hover{
-        background-color: #6562b9;
-        border: solid 1.5px #ffffff;
-        font-weight: bold;
-        color: #ffffff;
+      background-color: #6562b9;
+      border: solid 1.5px #ffffff;
+      font-weight: bold;
+      color: #ffffff;
     }
 
     .cosmetics_div {
-        position: relative;
-        margin:0 auto;
-        width: 100vw;
-        height: 9.5vh;
+      position: relative;
+      margin:0 auto;
+      width: 100vw;
+      height: 9.5vh;
     }
 
     .count_text {
-        position: absolute;
-        top: 2.6vh;
-        left: 4.3vw;
-        float: left;
-        font-family: AppleSDGothicNeo-Regular;
-        font-size: 15px;
-        letter-spacing: -0.96px;
-        color:#383838;
-        // z-index: 100;
+      position: absolute;
+      top: 2.6vh;
+      left: 4.3vw;
+      float: left;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 15px;
+      letter-spacing: -0.96px;
+      color:#383838;
     }
 
     .cosmetics_count {
-        font-family: AppleSDGothicNeo-Regular;
-        font-size: 15px;
-        font-weight: bolder;
-        color:#383838;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 15px;
+      font-weight: bolder;
+      color:#383838;
     }
 
     .select_box {
-        // max-width: 100%;
-        top: 0.6vh;
-        height: 8vh;
-        width: 28vw;
-        float: right;
+      top: 0.6vh;
+      height: 8vh;
+      width: 28vw;
+      float: right;
     }
 
     .cosmetics_select {
-        max-width: 100%;
-        width: 17.5vw;
-        padding: .6vw .3vw;
-        border: 1px solid #b8b8b8;
-        background-color: #ffffff;
-        font-family: AppleSDGothicNeo-Regular;
-        font-size: 11.1px;
-        text-align: center;
-        border-radius: 5px;
-        // white-space: nowrap;
-        // margin-left: 45vw;
-        // margin-top: 2vh;
+      max-width: 100%;
+      width: 17.5vw;
+      padding: .6vw .3vw;
+      border: 1px solid #b8b8b8;
+      background-color: #ffffff;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 11.1px;
+      text-align: center;
+      border-radius: 5px;
     }
 
     .list_div {
@@ -320,6 +313,10 @@ page-sungwoo-cosmetics-tab {
 
     .cosmetics_num {
       color: #505050;
+    }
+
+    .select-icon {
+      right: 2vw;
     }
 
 
