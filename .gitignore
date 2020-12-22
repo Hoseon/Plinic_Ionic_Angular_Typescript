@@ -25,6 +25,7 @@ platforms/
 plugins/
 www/
 
+src/caches
 
 .DS_Store
 Thumbs.db
