@@ -139,28 +139,37 @@ page-sungwoo-delivery {
     }
 
     .line {
-      margin-left: 1.5vw;
-      height: 16vw;
-      border-left: 1px solid #a9a9a9;
+      margin-left: -2.1vw;
+      height: 20vw;
+      border-left: 1px solid #dadada;
+      z-index: 1;
     }
 
-    .line {
-      position: absolute;
-      border-left: 1px solid #a9a9a9;
-      top: 50%;
-      bottom: 50%;
+    .line2 {
+      margin-left: -2.1vw;
+      // height: 16vw;
+      // border-left: 1px solid #dadada;
     }
+
+    // .line {
+    //   position: absolute;
+    //   left: 7.5vw;
+    //   border-left: 1px solid #dadada;
+    //   top: 47%;
+    //   bottom: 23%;
+    // }
 
 
 
     .delivery_icon {
       margin-left: 1vw;
       color: #5c59b6;
+      z-index: 5;
     }
 
     .delivery_icon2 {
       margin-left: 1vw;
-      color: #a9a9a9;
+      color: #dadada;
     }
 
         // .you_col {
@@ -174,6 +183,9 @@ page-sungwoo-delivery {
 
     .caution {
       margin-top: -1vw;
+      margin-left: 5vw;
+      max-width: 18vw;
+      text-align: left;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13px;
       font-weight: 500;
@@ -184,6 +196,10 @@ page-sungwoo-delivery {
     }
 
     .caution2 {
+      // word-break: keep-all;
+      margin-left: 5vw;
+      max-width: 18vw;
+      text-align: left;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13px;
       font-weight: 500;
@@ -194,12 +210,14 @@ page-sungwoo-delivery {
     }
 
     .delivery_lctn {
+      margin-left: 6vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13px;
       color: #5c59b6;
     }
 
     .delivery_lctn2 {
+      margin-left: 6vw;
       font-family: AppleSDGothicNeo-Regular;
       font-size: 13px;
       color: #a9a9a9;
