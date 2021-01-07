@@ -18,7 +18,7 @@
       <ion-buttons left no-lines>
         <button ion-button navPop icon-only>
           <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
-          <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+          <!-- <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" /> -->
         </button>
       </ion-buttons>
       <ion-title class="ios_title" text-wrap>피부측정</ion-title>
@@ -59,31 +59,28 @@
     </ion-row>
   </ion-grid>
  
-  <ion-footer no-lines no-shadow>
-      <ion-grid>
-          <!-- <ion-row *ngIf="!isNext">
-            <button class="btn1" ion-button><div class="btn_text2">연동중</div></button>
-          </ion-row> -->
-          <!-- <ion-row *ngIf="isNext">
-            <button class="btn3" (click)="next()" ion-button><div class="btn_text2">다음</div></button>
-          </ion-row> -->
-          
-          <ion-row>
-            <button class="btn3" (click)="camera2()" ion-button><div class="btn_text2">촬영하고 다음으로</div></button>
-          </ion-row>
-          <ion-row (click)="dismiss()">
-            <div class="btn_text3">취소하기</div>
-          </ion-row>
-      </ion-grid>
-  </ion-footer>
+    <ion-footer no-lines no-shadow>
+      <div>
+        <button class="font_button" ion-button (click)="next();">
+          <div>사진 저장</div>
+        </button>
+      </div>
+
+      <div class="center">
+        <button class="cancel_button" clear ion-button (click)="dismiss()">
+          <div>취소하기</div>
+        </button>
+      </div>
+
+    </ion-footer>
   </ng-container>
   <ng-container *ngIf="isSkinAnaly">
       <br>
       <ion-grid>
-        <ion-row class="center"><div class="main_title">피부를 분석 중입니다.</div></ion-row>
+        <ion-row class="center"><div class="main_title">이마 부위 측정</div></ion-row>
         <br>
         <ion-row class="center">
-          <p class="subtitle"><span class="subtitle_color">최대 30초 정도</span> 소요될 수 있습니다.<br>앱을 종료하지 말아주세요</p>
+          <div class="subtitle">이마 부위에 초점을 맞춰 촬영하세요</div>
           <!-- <div class="subtitle2">&nbsp;진단기 전원을 켠 후</div> -->
         </ion-row>
         <!-- <br>
@@ -115,8 +112,23 @@
           <!-- <div class="center text1">초점롤 사용법.gif</div> -->
         </ion-row>
       </ion-grid>
-     
+
       <ion-footer no-lines no-shadow>
+        <!-- <div *ngIf="isSubLoading" class="lodaing_btn">
+          <button class="loading_spinner" ion-button>
+            <div class="btn_text2">분석 중</div>
+          </button>
+        </div>
+    
+        <div class="lodaing_btn" *ngIf="!isSubLoading">
+          <button class="loading_spinner" clear ion-button (click)="goToReport()">
+            <div class="btn_text2">분석 완료(피부리포트)</div>
+          </button>
+        </div> -->
+      </ion-footer>
+
+     
+      <!-- <ion-footer no-lines no-shadow>
           <ion-grid>
               <ion-row *ngIf="isSubLoading" class="lodaing_btn">
                 <ion-spinner class="ing_spinner" name="crescent"></ion-spinner>
@@ -127,6 +139,6 @@
                   <button class="loading_spinner" ion-button (click)="goToReport()"><div class="btn_text2">분석 완료(피부리포트)</div></button>
               </ion-row>
           </ion-grid>
-      </ion-footer>
+      </ion-footer> -->
   </ng-container>
 </ion-content>

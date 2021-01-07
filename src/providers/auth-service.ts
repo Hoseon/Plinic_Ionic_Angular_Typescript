@@ -2231,6 +2231,7 @@ export class AuthService {
                 "&point=" + point + 
                 "&expire=" + 1096 +
                 "&reason=" + reason; 
+    console.log("플리닉샵 포인트 적립 내용 : " + body);
     return this.http.post(CONFIG.adminapiUrl + 'Point/PlinicAddPoint',body,options)
     .map(res => res.json())
     .map(data => {
@@ -2393,27 +2394,30 @@ export class AuthService {
     const fileTransfer: TransferObject = this.transfer.create();
     return fileTransfer.upload(targetPath, cheekUrl, options).then(data=>{
       var result1 = JSON.parse(data.response);
-      console.log("첫 번째 (볼) 전송  성공 : " + JSON.stringify(result1));
+      console.log("첫 번째 (볼) 전송  성공");
+      // console.log("첫 번째 (볼) 전송  성공 : " + JSON.stringify(result1));
       return fileTransfer.upload(targetPath2, forheadUrl, options).then(data2=> {
         var result2 = JSON.parse(data2.response);
-        console.log("두 번째 (이마) 전송  성공 : " + JSON.stringify(result2));
-        console.log("피부 분석 데이터 저장 시작");
+        console.log("두 번째 (이마) 전송  성공");
+        // console.log("두 번째 (이마) 전송  성공 : " + JSON.stringify(result2));
         return {
           result1 : result1,
           result2 : result2
         }
       },fail2=> {
-        console.log("두 번째  전송  실패 : " + JSON.stringify(fail2));
+        console.log("두 번째  전송  실패 비교촬영: " + JSON.stringify(fail2));
+        return false;
       })
     }, fail1=> {
-      console.log("첫 번째  전송  실패 : " + JSON.stringify(fail1));
+      console.log("첫 번째  전송  실패 비교촬영: " + JSON.stringify(fail1));
+      return false;
     });
   }
 
-  public cameraTest(img, img2, user, munjin) { // 여러장이 올라 가는지 확인 필요
+  public cameraTest(img, img2, user, munjin) { // 여정러장이 올라 가는지 확인 필요
     var age = 37;
     // let url = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/api/'; //피쳐링 피부분석 API
-    let url = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/api/'; //지원파트너스 피부분석 API 2020-12-07
+    let url = 'http://ec2-52-79-142-125.ap-northeast-2.compute.amazonaws.com/api/'; //지원파트너스 피부분석 API 2020-12-07
     var targetPath = img;
     var targetPath2 = img2;
     var options: FileUploadOptions = {
@@ -2435,10 +2439,18 @@ export class AuthService {
           result2 : result2
         }
       },fail2=> {
-        console.log("두 번째  전송  실패 : " + JSON.stringify(fail2));
+        console.log("두 번째  전송  실패 처음 사진저장: " + JSON.stringify(fail2));
+        return {
+          result1 : false,
+          result2 : false
+        }
       })
     }, fail1=> {
-      console.log("첫 번째  전송  실패 : " + JSON.stringify(fail1));
+      console.log("첫 번째  전송  실패 처음 사진저장: " + JSON.stringify(fail1));
+      return {
+        result1 : false,
+        result2 : false
+      }
     });
   }
 

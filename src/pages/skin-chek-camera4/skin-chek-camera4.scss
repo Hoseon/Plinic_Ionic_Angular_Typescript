@@ -1,4 +1,4 @@
-page-skin-chek-camera3 {
+page-skin-chek-camera4 {
 
   .header-md::after,
   .tabs-md[tabsPlacement="top"]>.tabbar::after,
@@ -204,7 +204,120 @@ page-skin-chek-camera3 {
     stroke: #FFF;
     stroke-dasharray: 179px;
   }
+
+  .segment {
+    margin-top: 4% !important;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .borderline1 {
+    border: solid 0.1px #d6d6d6;
+    // width: 161px;
+    // height: 37.5px;
+    // margin-left: 1%;
+    border-radius: 5px 0px 0px 0px !important;
+    background-color: #5c59b6;
+  }
+
+  .borderline1_false {
+    border: solid 0.1px #d6d6d6;
+    // width: 161px;
+    // height: 37.5px;
+    // margin-left: 1%;
+    border-radius: 5px 0px 0px 0px !important;
+    background-color: #d6d6d6;
+  }
+
+  .borderline2 {
+    border: solid 0.1px #d6d6d6;
+    // width: 161px;
+    // height: 37.5px;
+    // margin-right: 1%;
+    border-radius: 0px 5px 0px 0px !important;
+    background-color: #5c59b6;
+  }
+
+  .borderline2_false {
+    border: solid 0.1px #d6d6d6;
+    // width: 161px;
+    // height: 37.5px;
+    // margin-right: 1%;
+    border-radius: 0px 5px 0px 0px !important;
+    background-color: #d6d6d6;
+  }
   
+  .text3 {
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 14.8px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.61;
+    letter-spacing: -0.44px;
+    color: #ffffff;
+  }
+
+  .text4 {
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 14.8px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.61;
+    letter-spacing: -0.44px;
+    color: #ffffff;
+  }
+
+  .img1 {
+    position: relative;
+    width: 99vw !important;
+    height: 52vw;
+    z-index: 1000;
+  }
+
+  .font_button {
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 39%;
+    width: 87%;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #5c59b6;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: none !important;
+    display: block;
+  }
+
+  .cancel_button {
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #939393;
+    margin: 0 auto;
+    width: 87%;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #FFF;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: none !important;
+    display: block;
+    margin-bottom: 20px;
+  }
 
 
 }

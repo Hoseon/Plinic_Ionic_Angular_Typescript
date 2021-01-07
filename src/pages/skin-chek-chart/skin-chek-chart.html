@@ -73,23 +73,23 @@
           <div class="guide"></div>
           <ion-row>
             <ion-col col-4>
-              <div class="ptext4_1">{{t1hResult}} °</div>
+              <div *ngIf="currentWeather_Temp" class="ptext4_1">{{currentWeather_Temp}} °</div>
             </ion-col>
             <ion-col col-4>
               <!-- <div class="ptext4_2">{{pm10}}</div> 미세먼지 잠시 보류 2020-11-11-->
-              <div class="ptext4_2">--</div>
+              <div *ngIf="currentWeather_Pm10" class="ptext4_2">{{currentWeather_Pm10}}</div>
             </ion-col>
             <ion-col col-4>
-              <div class="ptext4_3">{{rehResult}}</div>
+              <div *ngIf="currentWeather_Humidity" class="ptext4_3">{{currentWeather_Humidity}}</div>
             </ion-col>
           </ion-row>
           <div class="guide2"></div>
           <ion-row>
             <ion-col col-4>
-              <div class="ptext5_1" [ngStyle]="{'color' : skyColor}">{{skyResult}}</div>
+              <div *ngIf="currentWeather_Description" class="ptext5_1" [ngStyle]="{'color' : skyColor}">{{currentWeather_Description}}</div>
             </ion-col>
             <ion-col col-4>
-              <div class="ptext5_2" [ngStyle]="{'color' : pm10Color}">{{pm10Result}}</div>
+              <div *ngIf="pm10Result" class="ptext5_2" [ngStyle]="{'color' : pm10Color}">{{pm10Result}}</div>
             </ion-col>
             <ion-col col-4>
               <div class="ptext5_3" [ngStyle]="{'color' : rehColor}">{{rehTextResult}}</div>

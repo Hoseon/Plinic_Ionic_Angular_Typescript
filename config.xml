@@ -25,6 +25,7 @@
     <preference name="AllowInlineMediaPlayback" value="true" />
     <preference name="KeyboardResize" value="true" />
     <preference name="KeyboardResizeMode" value="native" />
+    <preference name="DisallowOverscroll" value="true" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
@@ -47,6 +48,9 @@
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
     </platform>
     <platform name="ios">
+        <edit-config file="Plinic-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+            <string>피부리포트의 날씨정보를 이용하기 위해서 회원님의 위치정보 수집이 필요 합니다.</string>
+        </edit-config>
         <allow-navigation href="http://*192.168.1.1*" />
         <allow-navigation href="http://*plinic.cafe24app.com*" />
         <allow-navigation href="https://*plinic.s3.ap-northeast-2.amazonaws.com*" />

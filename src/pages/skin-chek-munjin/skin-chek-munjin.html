@@ -7,6 +7,11 @@
 <ion-header>
 
   <ion-navbar *ngIf="platform.is('android')  || platform.is('core')">
+    <ion-buttons left no-lines>
+        <button (click)="dismiss()" ion-button icon-only>
+          <!-- <img class="ios_nav" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" /> -->
+        </button>
+    </ion-buttons>
     <ion-title class="android_title" text-wrap>피부진단</ion-title>
   </ion-navbar>
 
@@ -16,9 +21,9 @@
 
   <ion-navbar *ngIf="platform.is('ios')" no-lines>
     <ion-buttons left no-lines>
-      <button ion-button navPop icon-only>
+      <button (click)="dismiss()" ion-button icon-only>
         <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
-        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+        <!-- <img class="ios_nav" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" /> -->
       </button>
     </ion-buttons>
     <ion-title class="ios_title" text-wrap>피부진단</ion-title>

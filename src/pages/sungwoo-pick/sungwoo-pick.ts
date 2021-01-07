@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams, Platform } from "ionic-angular";
 import { SungwooCartPage } from "../sungwoo-cart/sungwoo-cart";
+import { SungwooOrderPage } from "../sungwoo-order/sungwoo-order";
 
 /**
  * Generated class for the SungwooPickPage page.
@@ -46,6 +47,10 @@ export class SungwooPickPage {
 
   buy() {
     this.navCtrl.push(SungwooCartPage);
+  }
+
+  order() {
+    this.navCtrl.push(SungwooOrderPage);
   }
 
   minus() {

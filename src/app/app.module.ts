@@ -271,6 +271,8 @@ import { SkinChekConnect2PageModule } from '../pages/skin-chek-connect2/skin-che
 import { SkinChekCamera1PageModule } from '../pages/skin-chek-camera1/skin-chek-camera1.module';
 import { SkinChekCamera2PageModule } from '../pages/skin-chek-camera2/skin-chek-camera2.module';
 import { SkinChekCamera3PageModule } from '../pages/skin-chek-camera3/skin-chek-camera3.module';
+import { SkinChekCamera4PageModule } from '../pages/skin-chek-camera4/skin-chek-camera4.module';
+import { SkinChekCamera5PageModule } from '../pages/skin-chek-camera5/skin-chek-camera5.module';
 import { SkinChekChartPageModule } from '../pages/skin-chek-chart/skin-chek-chart.module';
 
 import { PointGuidePageModule } from '../pages/point-guide/point-guide.module';
@@ -484,6 +486,8 @@ export function getAuthHttp(http, storage) {
     SkinChekCamera1PageModule,
     SkinChekCamera2PageModule,
     SkinChekCamera3PageModule,
+    SkinChekCamera4PageModule,
+    SkinChekCamera5PageModule,
     SkinChekChartPageModule,
     // ChulsukCheckPageModule,
     ChalGuidePageModule,

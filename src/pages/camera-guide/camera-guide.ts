@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController, ToastController, ViewController, ModalController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController, ToastController, ViewController, ModalController, App  } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { DeviceConnectIngPage } from '../device-connect-ing/device-connect-ing'
 import { SkinChekPage } from '../skin-chek/skin-chek';
@@ -31,6 +31,7 @@ export class CameraGuidePage {
     public platform: Platform,
     public viewCtrl: ViewController,
     public modalCtrl: ModalController,
+    public app: App,
   ) {
     if(this.navParams.get('step')) {
       this.step = this.navParams.get('step')
@@ -64,7 +65,10 @@ export class CameraGuidePage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    console.log("111");
+    // this.navCtrl.parent.select(4);
+    // this.app.getRootNav().dismiss();
+    this.app.navPop()
   }
 
   start() {

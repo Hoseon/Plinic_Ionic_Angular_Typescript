@@ -60,8 +60,8 @@ export class PointLogPage {
     }
   }
 
-  plincShopGetPointAll() {
-    this.auth.plinicShopGetUserPoint().subscribe(data=> {
+  async plincShopGetPointAll() {
+    await this.auth.plinicShopGetUserPoint().subscribe(data=> {
       this.pointLogData = data;
       for(let i=0; i < data.length; i++) {
         if(JSON.stringify(data[i].point).indexOf('-') >= 0) {
