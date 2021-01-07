@@ -1,0 +1,86 @@
+<!--
+  Generated template for the SkinChekCamera4Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android')  || platform.is('core')">
+    <ion-title class="android_title" text-wrap>피부측정</ion-title>
+  </ion-navbar>
+  
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+    <ion-title  class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+  </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <!-- <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" /> -->
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>피부측정</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid no-padding>
+    <ion-row padding justify-content-center>
+
+    </ion-row>
+    <ion-row justify-content-center>
+      <div text-sm-center class="text1">촬영된 피부 이미지</div>
+    </ion-row>
+    <ion-row padding-top justify-content-center>
+
+    </ion-row>
+    <ion-row justify-content-center>
+        <div text-sm-center class="text2">이미지를 확인하고 분석을 시작하세요</div>
+    </ion-row>
+    <ion-row padding-top justify-content-center>
+
+    </ion-row>
+    <ion-row justify-content-center class="segment">
+      <ion-col align-self-center *ngIf="button1" class="borderline1" col-6>
+        <div text-center class="text3">볼 부위</div>
+      </ion-col>
+      <ion-col align-self-center (click)="toggle_Btn('btn1')" *ngIf="!button1" class="borderline1_false" col-6>
+        <div text-center class="text3">볼 부위</div>
+      </ion-col>
+      <ion-col align-self-center *ngIf="button2" class="borderline2" col-6>
+        <div text-center class="text4">이마 부위</div>
+      </ion-col>
+      <ion-col align-self-center (click)="toggle_Btn('btn2')" *ngIf="!button2" class="borderline2_false" col-6>
+        <div text-center class="text4">이마 부위</div>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+        <img *ngIf="button1" src="{{file1}}" class="img1" />
+        <img *ngIf="button2" src="{{file2}}" class="img1" />
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-footer no-lines no-shadow>
+      <div>
+        <button class="font_button" ion-button (click)="next();">
+          <div>분석 시작하기</div>
+        </button>
+      </div>
+  
+      <div class="center">
+        <button class="cancel_button" clear ion-button (click)="cancel()">
+          <div>취소하기</div>
+        </button>
+      </div>
+  
+    </ion-footer>
+
+</ion-content>
+
+
+

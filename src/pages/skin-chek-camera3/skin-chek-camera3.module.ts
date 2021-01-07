@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { SkinChekCamera3Page } from './skin-chek-camera3'
+import { SkinChekCamera3Page } from './skin-chek-camera3';
 
 @NgModule({
   declarations: [

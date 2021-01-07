@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ViewController, App } from 'ionic-angular';
 import { ItemSearchPage } from '../item-search/item-search'
 import { SkinDiagnoseFirstMoisturePage } from '../skin-diagnose-first-moisture/skin-diagnose-first-moisture'
 import { SkinChekConnectPage } from '../skin-chek-connect/skin-chek-connect';
@@ -7,6 +7,7 @@ import { SkinChekConnect2Page } from '../skin-chek-connect2/skin-chek-connect2';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the SkinChekPage page.
@@ -53,6 +54,7 @@ export class SkinChekMunjinPage {
     public viewCtrl: ViewController,
     public auth: AuthService,
     public images: ImagesProvider,
+    public app: App,
   ) {
     if(this.navParams.get('step')) {
       this.step = this.navParams.get('step');
@@ -70,7 +72,8 @@ export class SkinChekMunjinPage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    // this.viewCtrl.dismiss();
+    this.navCtrl.parent.select(4);
   }
 
   public loadItems() {

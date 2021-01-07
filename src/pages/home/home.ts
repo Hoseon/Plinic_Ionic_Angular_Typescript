@@ -54,6 +54,7 @@ import { textDef } from "@angular/core/src/view";
 import { SkinChekCamera2Page } from "../skin-chek-camera2/skin-chek-camera2";
 import { Geolocation } from "@ionic-native/geolocation"; //안드로이드 API 29버전에서 BLE 연결 이슈로 인하여 위치정보 수집을 미리 한다. 2020-11-10
 import { ProductReviewPage } from "../product-review/product-review";
+import { SkinChekCamera5Page } from '../skin-chek-camera5/skin-chek-camera5';
 
 @IonicPage()
 @Component({
@@ -227,10 +228,6 @@ export class HomePage {
       this.geolocation
         .getCurrentPosition()
         .then(resp => {
-          console.log(resp.coords.latitude);
-          console.log(resp.coords.longitude);
-          // resp.coords.latitude
-          // resp.coords.longitude
         })
         .catch(error => {
           console.log("Error getting location", error);
@@ -1605,7 +1602,7 @@ export class HomePage {
 
   //20201016 페이지 개발용 화장품 임시
   productMain() {
-    this.nav.push(ProductReviewPage);
+    this.nav.push(SkinChekCamera5Page);
     //20201104 페이지 개발용 wifi기기 커넥션
   }
 

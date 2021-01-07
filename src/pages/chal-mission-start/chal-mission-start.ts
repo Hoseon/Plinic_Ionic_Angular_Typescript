@@ -490,15 +490,14 @@ export class ChalMissionStartPage {
     // this.showLoading();
     this.images.challangeCount2(id, date).subscribe(data => {
       this.missionCounter2 = data;
-      if(Number(this.missionCounter2) >= 5) {
+      // if(Number(this.missionCounter2) >= 5) { 20210104 참가인원 5명 --> 10명으로 변경
+      if(Number(this.missionCounter2) >= 10) {
         this.maxcount = true;
       } else {
         this.maxcount = false
       }
     });
   }
-
-
 
   public roadmission(id) {
     // this.showLoading();

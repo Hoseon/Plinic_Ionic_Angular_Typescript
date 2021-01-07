@@ -493,7 +493,10 @@ export class ImagesProvider {
     return this.http.get(this.apiURL + 'beautymovie/dislike/' + id + '/' + email)
       .map(response => response.json());
   }
-  
 
+  public getCurrentWeather(lat, lon) { //위처정보 기반의 현재 날씨 가져 오기 2020-12-15
+    return this.http.get(this.apiURL + 'getOpenCurrentWeather/' + lat + '/' + lon)
+      .map(response => response.json());
+  }
 
 }

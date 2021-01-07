@@ -1,5 +1,5 @@
 <!--
-  Generated template for the SkinChekCamera3Page page.
+  Generated template for the SkinChekCamera5Page page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -30,16 +30,13 @@
 <ion-content padding>
   <ion-grid padding>
     <ion-row justify-content-center>
-      <div text-sm-center class="text1">분석을 위해</div>
-    </ion-row>
-    <ion-row justify-content-center>
-      <div text-sm-center class="text1">이미지를 저장 중 입니다.</div>
+      <div text-sm-center class="text1">피부를 분석 중입니다.</div>
     </ion-row>
     <ion-row padding justify-content-center>
 
     </ion-row>
     <ion-row justify-content-center>
-        <div text-sm-center class="text2"><span class="text2_sub">최대 10초 정도</span>소요될 수 있습니다</div>
+        <div text-sm-center class="text2"><span class="text2_sub">최대 20초 정도</span>소요될 수 있습니다</div>
     </ion-row>
     <ion-row justify-content-center>
         <div text-sm-center class="text2">앱을 종료하지 말아주세요</div>
@@ -53,7 +50,7 @@
       <ion-row padding justify-content-center>
 
         </ion-row>
-    <ion-row padding justify-content-center>
+    <ion-row *ngIf="isMainLoading" padding justify-content-center>
         <div class="splash">
             <div class="spinner">
               <div class="bounce1"></div>
@@ -71,7 +68,7 @@
     <ion-grid>
         <ion-row justify-content-center *ngIf="isSubLoading" class="lodaing_btn">
           <ion-spinner class="ing_spinner" name="crescent"></ion-spinner>
-          <button class="loading_spinner" ion-button><div class="btn_text2">임시 저장 중</div></button>
+          <button class="loading_spinner" ion-button><div class="btn_text2">분석 중</div></button>
         </ion-row>
 
         <ion-row justify-content-center *ngIf="!isSubLoading" class="lodaing_btn">

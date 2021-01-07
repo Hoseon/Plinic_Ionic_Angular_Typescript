@@ -50,13 +50,13 @@ export class SkinTonePage {
   image2 : boolean = false;
   image3 : boolean = false;
 
-  image1CheekUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
-  image2CheekUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
-  image3CheekUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image1CheekUrl : any = 'http://ec2-52-79-142-125.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image2CheekUrl : any = 'http://ec2-52-79-142-125.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image3CheekUrl : any = 'http://ec2-52-79-142-125.ap-northeast-2.compute.amazonaws.com/media/images/';
 
-  image1ForeHeadUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
-  image2ForeHeadUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
-  image3ForeHeadUrl : any = 'http://ec2-3-35-11-19.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image1ForeHeadUrl : any = 'http://ec2-52-79-142-125.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image2ForeHeadUrl : any = 'http://ec2-52-79-142-125.ap-northeast-2.compute.amazonaws.com/media/images/';
+  image3ForeHeadUrl : any = 'http://ec2-52-79-142-125.ap-northeast-2.compute.amazonaws.com/media/images/';
 
   randomProduct1: any = [];
   randomProduct2: any = [];

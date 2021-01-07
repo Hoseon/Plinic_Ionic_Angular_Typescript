@@ -1,8 +1,8 @@
 <ion-tabs *ngIf="platform.is('android')" >
   <ion-tab [root]="tab1Root" tabTitle="홈" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="챌린지" tabIcon="carezone"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="화장품" tabIcon="shopping"> </ion-tab>
-  <!-- <ion-tab [root]="" tabTitle="화장품" tabIcon="shopping" (ionSelect)="openBrowser_android('https://plinicshop.com','PlinicShop')"> </ion-tab> -->
+  <!-- <ion-tab [root]="tab3Root" tabTitle="화장품" tabIcon="shopping"> </ion-tab> -->
+  <ion-tab [root]="" tabTitle="화장품" tabIcon="shopping" (ionSelect)="openBrowser_android('https://plinicshop.com','PlinicShop')"> </ion-tab>
   <ion-tab [root]="tab4Root" tabTitle="뷰티꿀팁" tabIcon="cummunity"></ion-tab>
   <ion-tab [root]="tab5Root" tabTitle="피부리포트" tabIcon="skin"></ion-tab>
   <!-- <ion-tab [root]="tab5Root" tabTitle="마이" tabIcon="my"></ion-tab> 2020-02-11 마이 기능 홈화면으로 이동-->
@@ -20,8 +20,8 @@
 <ion-tabs *ngIf="platform.is('ios') || platform.is('core')" >
   <ion-tab [root]="tab1Root" tabTitle="홈" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="챌린지" tabIcon="carezone"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="화장품" tabIcon="shopping"> </ion-tab>
-  <!-- <ion-tab [root]="" tabTitle="화장품" tabIcon="shopping" (ionSelect)="openBrowser_ios('https://plinicshop.com','')"> </ion-tab> -->
+  <!-- <ion-tab [root]="tab3Root" tabTitle="화장품" tabIcon="shopping"> </ion-tab> -->
+  <ion-tab [root]="" tabTitle="화장품" tabIcon="shopping" (ionSelect)="openBrowser_ios('https://plinicshop.com','')"> </ion-tab>
   <ion-tab [root]="tab4Root" tabTitle="뷰티꿀팁" tabIcon="cummunity"></ion-tab>
   <ion-tab [root]="tab5Root" tabTitle="피부리포트" tabIcon="skin"></ion-tab>
   <!-- <ion-tab [root]="tab5Root" tabTitle="마이" tabIcon="my"></ion-tab> 2020-02-11 마이 기능 홈화면으로 이동 -->

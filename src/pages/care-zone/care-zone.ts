@@ -626,7 +626,8 @@ export class CareZonePage {
   //20190617 미션 참여자 인원 count //20200615 참여가 가능한날 인원이 5명이 넘을 경우 미션에 참여 하지 못하도록 한다
   missionCount2(id, date) : any {
     this.images.challangeCount2(id, date).subscribe(data => {
-      if(Number(data) >= 5) {
+      // if(Number(data) >= 5) { 20210104 참여 가능한 인원을 5명 --> 10명으로 변경
+      if(Number(data) >= 10) {
         if(id === '5dc8ec79c2900f035ab2199d') {
           this.flag[0] = '참여마감';
         } else if (id === '5db93c8840a8cb311a047957'){

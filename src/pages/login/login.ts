@@ -1,40 +1,54 @@
 //import { IonicPage } from 'ionic-angular';
-import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, ModalController, ViewController, Platform } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service';
-import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
-import { AgreementPage } from '../agreement/agreement';
-import { LoginpagePage } from '../login/loginpage/loginpage';
-import { AddinfoPage } from '../register/addinfo/addinfo';
-import { IonicPage, App } from 'ionic-angular';
-import { Naver } from 'ionic-plugin-naver';
-import { isThisSecond } from 'date-fns';
-
-
+import { Component } from "@angular/core";
+import {
+  NavController,
+  AlertController,
+  LoadingController,
+  Loading,
+  ModalController,
+  ViewController,
+  Platform,
+} from "ionic-angular";
+import { AuthService } from "../../providers/auth-service";
+import { KakaoCordovaSDK, AuthTypes } from "kakao-sdk";
+import { AgreementPage } from "../agreement/agreement";
+import { LoginpagePage } from "../login/loginpage/loginpage";
+import { AddinfoPage } from "../register/addinfo/addinfo";
+import { IonicPage, App } from "ionic-angular";
+import { Naver } from "ionic-plugin-naver";
+import { isThisSecond } from "date-fns";
+import { Geolocation } from "@ionic-native/geolocation";
 
 // @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
+  selector: "page-login",
+  templateUrl: "login.html",
 })
 export class LoginPage {
   loading: Loading;
-  registerCredentials = { email: '', password: '' };
+  registerCredentials = { email: "", password: "" };
   restInfo = {};
   userData: any;
   isReview: boolean = false;
   constructor(
-    private nav: NavController, 
+    private nav: NavController,
     private auth: AuthService,
-    private alertCtrl: AlertController, 
+    private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     public _kakaoCordovaSDK: KakaoCordovaSDK,
     public naver: Naver,
-    public modalCtrl: ModalController,  
-    public app: App, 
-    public platform: Platform
+    public modalCtrl: ModalController,
+    public app: App,
+    public platform: Platform,
+    public geolocation: Geolocation,
   ) {
     this.platform.ready().then((readySource) => {
+      this.geolocation
+        .getCurrentPosition()
+        .then((resp) => {})
+        .catch((error) => {
+          console.log("Error getting location", error);
+        });
       // this.platform.registerBackButtonAction(() => {
       //   let nav = app._appRoot._getActivePortal() || app.getActiveNav();
       //   let activeView = nav.getActive();
@@ -84,57 +98,55 @@ export class LoginPage {
       //   }
       // }
       // });
-  });
-} 
+    });
+  }
 
-   ionViewCanEnter(){
-    console.log('ionViewCanEnter Loginpage');
-    this.auth.isReview().subscribe(async result =>{
+  ionViewCanEnter() {
+    console.log("ionViewCanEnter Loginpage");
+    this.auth.isReview().subscribe(async (result) => {
       var data = await result;
       this.isReview = data.isReview;
-    })
+    });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Loginpage');
+    console.log("ionViewDidLoad Loginpage");
   }
 
-  ionViewDidEnter(){
-    console.log('ionViewDidEnter Loginpage');
+  ionViewDidEnter() {
+    console.log("ionViewDidEnter Loginpage");
   }
 
-  ionViewWillEnter(){
-      console.log('ionViewWillEnter Loginpage');
-  } 
-
-
-
-
+  ionViewWillEnter() {
+    console.log("ionViewWillEnter Loginpage");
+  }
 
   public loginpage() {
     const modal = this.modalCtrl.create(LoginpagePage);
     modal.present();
   }
 
-
-
   public agreement() {
     const modal = this.modalCtrl.create(AgreementPage);
     modal.present();
   }
 
-
   public naver_login() {
     // this.auth.naver_login();
-    this.auth.naver_promise().then(snsUserdata=>{
-      console.log("리졸브 결과는? : " +JSON.stringify(snsUserdata));
-      if(snsUserdata) {
-        const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
-        modal.present();
-      }
-    }).catch(reject => {
-      console.log("네이버 로그인 실패" + reject);
-    })
+    this.auth
+      .naver_promise()
+      .then((snsUserdata) => {
+        console.log("리졸브 결과는? : " + JSON.stringify(snsUserdata));
+        if (snsUserdata) {
+          const modal = this.modalCtrl.create(AddinfoPage, {
+            snsUserdata: snsUserdata,
+          });
+          modal.present();
+        }
+      })
+      .catch((reject) => {
+        console.log("네이버 로그인 실패" + reject);
+      });
   }
 
   public naver_login_noReview() {
@@ -146,15 +158,20 @@ export class LoginPage {
     // this.auth.facebook_login();
     // this.auth.google_login();
     //this.loading.dismiss();
-    this.auth.google_login_promise().then(snsUserdata=>{
-      console.log("리졸브 결과는? : " +JSON.stringify(snsUserdata));
-      if(snsUserdata) {
-        const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
-        modal.present();
-      }
-    }).catch(reject => {
-      console.log("구글 로그인 실패" + reject);
-    })
+    this.auth
+      .google_login_promise()
+      .then((snsUserdata) => {
+        console.log("리졸브 결과는? : " + JSON.stringify(snsUserdata));
+        if (snsUserdata) {
+          const modal = this.modalCtrl.create(AddinfoPage, {
+            snsUserdata: snsUserdata,
+          });
+          modal.present();
+        }
+      })
+      .catch((reject) => {
+        console.log("구글 로그인 실패" + reject);
+      });
   }
 
   public google_login_noReview() {
@@ -175,17 +192,21 @@ export class LoginPage {
   }
 
   public apple_login() {
+    this.auth
+      .apple_login_promise()
+      .then((snsUserdata) => {
+        console.log("애플 리졸브 결과는? : " + JSON.stringify(snsUserdata));
+        if (snsUserdata) {
+          const modal = this.modalCtrl.create(AddinfoPage, {
+            snsUserdata: snsUserdata,
+          });
+          modal.present();
+        }
+      })
+      .catch((reject) => {
+        console.log("애플 로그인 실패" + reject);
+      });
 
-    this.auth.apple_login_promise().then(snsUserdata=>{
-      console.log("애플 리졸브 결과는? : " +JSON.stringify(snsUserdata));
-      if(snsUserdata) {
-        const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
-        modal.present();
-      }
-    }).catch(reject => {
-      console.log("애플 로그인 실패" + reject);
-    });
-    
     // cordova.plugins.SignInWithApple.signin(
     //   { requestedScopes: [0, 1] },
     //   function(succ){
@@ -200,16 +221,20 @@ export class LoginPage {
   }
 
   public kakao_login() {
-
-    this.auth.kakao_login_promise().then(snsUserdata=>{
-      console.log("리졸브 결과는? : " +JSON.stringify(snsUserdata));
-      if(snsUserdata) {
-        const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
-        modal.present();
-      }
-    }).catch(reject => {
-      console.log("카카오 로그인 실패" + reject);
-    })
+    this.auth
+      .kakao_login_promise()
+      .then((snsUserdata) => {
+        console.log("리졸브 결과는? : " + JSON.stringify(snsUserdata));
+        if (snsUserdata) {
+          const modal = this.modalCtrl.create(AddinfoPage, {
+            snsUserdata: snsUserdata,
+          });
+          modal.present();
+        }
+      })
+      .catch((reject) => {
+        console.log("카카오 로그인 실패" + reject);
+      });
   }
 
   public kakao_login_noReview() {
@@ -217,31 +242,30 @@ export class LoginPage {
   }
 
   public kakao_logout() {
-    this._kakaoCordovaSDK.logout().then(() => {
-
-    });
+    this._kakaoCordovaSDK.logout().then(() => {});
   }
 
   public onSubmit() {
-    this.showLoading()
-    this.auth.login(this.registerCredentials).subscribe(data => {
-      if (data !== '') {
-        this.loading.dismiss();
-        console.log("로그인에서 탭스 페이지 호출");
-        this.nav.setRoot('TabsPage')
-      } else {
-        this.showError("Access Denied");
-      }
-    },
-      error => {
+    this.showLoading();
+    this.auth.login(this.registerCredentials).subscribe(
+      (data) => {
+        if (data !== "") {
+          this.loading.dismiss();
+          console.log("로그인에서 탭스 페이지 호출");
+          this.nav.setRoot("TabsPage");
+        } else {
+          this.showError("Access Denied");
+        }
+      },
+      (error) => {
         this.showError(JSON.parse(error._body).msg);
-
-      });
+      }
+    );
   }
 
   showLoading() {
     this.loading = this.loadingCtrl.create({
-      content: '잠시만 기다려주세요'
+      content: "잠시만 기다려주세요",
     });
     this.loading.present();
   }
@@ -250,19 +274,19 @@ export class LoginPage {
     this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
-      cssClass: 'push_alert',
-      title: 'Plinic',
+      cssClass: "push_alert",
+      title: "Plinic",
       message: text,
-      buttons: ['OK']
+      buttons: ["OK"],
     });
     alert.present();
   }
 
   showAlert(text) {
     let alert = this.alertCtrl.create({
-      title: 'Fail',
+      title: "Fail",
       message: text,
-      buttons: ['OK']
+      buttons: ["OK"],
     });
     alert.present();
   }

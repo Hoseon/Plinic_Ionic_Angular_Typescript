@@ -76,10 +76,26 @@ page-skin-chek-munjin {
     top: 2px;
     width: 25px;
     height: 25px;
+    visibility: hidden;
+  }
+
+  .back-button.show-back-button {
+    display: inline-block;
+    visibility: hidden;
+  }
+
+  .bar-button-md[icon-only] {
+    padding: 0;
+    margin-left: -75%;
   }
 
   .toolbar-ios {
-    margin-top: 8%;
+    // padding: constant(safe-area-inset-top) constant(safe-area-inset-right) constant(safe-area-inset-bottom) constant(safe-area-inset-left); //iOS 11.2
+		// padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    // margin-top: constant(safe-area-inset-top);
+    // margin-top: env(safe-area-inset-top);
+    margin-top: 10%;
+
   }
 
   .back-button-text-ios {

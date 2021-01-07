@@ -61,7 +61,8 @@ export class SkinChekConnect2Page {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    // this.viewCtrl.dismiss();
+    this.navCtrl.parent.select(4);
   }
 
   openSetting() {

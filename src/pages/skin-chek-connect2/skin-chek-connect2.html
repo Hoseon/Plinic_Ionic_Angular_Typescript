@@ -18,7 +18,7 @@
         <ion-buttons left no-lines>
           <button ion-button navPop icon-only>
             <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
-            <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+            <!-- <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" /> -->
           </button>
         </ion-buttons>
         <ion-title class="ios_title" text-wrap>피부측정</ion-title>
@@ -58,17 +58,19 @@
     <span class="text3">G1_Plinic</span> 으로 하고
     해당 페이지로 돌아오세요</pre>
     </ion-row>
-
   </ion-grid>
-
   <ion-footer no-lines no-shadow>
-    <ion-grid>
-        <ion-row>
-          <button class="btn3" (click)="next()" ion-button><div class="btn_text2">연동하고 다음으로</div></button>
-        </ion-row>
-        <ion-row (click)="dismiss()">
-          <div class="btn_text3">취소하기</div>
-        </ion-row>
-    </ion-grid>
+    <div>
+      <button class="font_button" ion-button (click)="next();">
+        <div>연동하고 다음으로</div>
+      </button>
+    </div>
+
+    <div class="center">
+      <button class="cancel_button" clear ion-button (click)="dismiss()">
+        <div>취소하기</div>
+      </button>
+    </div>
+
   </ion-footer>
 </ion-content>

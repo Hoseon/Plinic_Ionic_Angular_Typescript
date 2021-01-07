@@ -82,7 +82,8 @@ export class SkinChekCamera1Page {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    // this.viewCtrl.dismiss();
+    this.navCtrl.parent.select(4);
   }
 
   public loadItems() {

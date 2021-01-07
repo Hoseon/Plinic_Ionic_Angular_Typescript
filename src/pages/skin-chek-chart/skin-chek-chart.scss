@@ -1459,7 +1459,7 @@ page-skin-chek-chart {
     margin: 0 auto !important;
     left: 2%;
     margin-top: 20% !important;
-    width: 40%;
+    width: 55%;
     height: 12.5px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 19px;
@@ -1477,7 +1477,7 @@ page-skin-chek-chart {
     margin: 0 auto !important;
     left: 1%;
     margin-top: 20% !important;
-    width: 40%;
+    width: 45%;
     height: 12.5px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 19px;
@@ -1513,10 +1513,11 @@ page-skin-chek-chart {
   .ptext5_1 {
     position: relative;
     margin: 0 auto !important;
-    left: -2%;
+    // left: -2%;
     margin-top: 10% !important;
-    width: 60px;
-    height: 33.5px;
+    // border: solid 1px;
+    width: 70%;
+    height: auto;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 13px;
     font-weight: 400;
