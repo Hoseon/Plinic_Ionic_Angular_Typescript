@@ -95,6 +95,40 @@
   <div style="height: 9px; width: 100vw; background-color: #f1f1f1"></div>
 
   <ng-container>
+    <ion-grid padding>
+      <ion-row padding-vertical>
+        <div>포인트 결제</div>
+      </ion-row>
+
+      <ion-row justify-content-between padding-bottom>
+        <div style="color: #c0c0c0;">보유 포인트</div>
+        <div>7,155원</div>
+      </ion-row>
+      <ion-row>
+        <div style="color: #c0c0c0;" text-left>사용 포인트</div>
+        <div class="box" float-right>
+            <input type="text"
+            class="point"
+            name="price"
+            placeholder="0원"
+          />
+          <button ion-button class="btn">사용</button>
+        </div>
+      </ion-row>
+      <ion-row justify-content-end padding-bottom>
+        <div style="color: #5d5d5d;" col-6 text-right>사용 가능 포인트<span style="color: #292929;">5,000p</span></div>
+        <div style="color: #c0c0c0;" col-3 text-right>
+          <ion-checkbox
+        ></ion-checkbox>
+          전액 사용
+        </div>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+
+  <div style="height: 9px; width: 100vw; background-color: #f1f1f1"></div>
+
+  <ng-container>
     <ion-grid class="order_price_grid">
       <br /><br />
       <ion-row>
@@ -157,10 +191,9 @@
         </button>
       </ion-row>
       <br />
-      <ion-grid class="grid_backColor2">
+      <!-- <ion-grid class="grid_backColor2">
         <ion-list class="select_div">
           <ion-item class="order_select">
-            <!-- <ion-label class="order-card_text">카드를 선택해주세요</ion-label> -->
             <ion-select
               okText="Okay"
               cancelTest="Dismiss"
@@ -168,7 +201,6 @@
               class="s_icon"
               placeholder="카드를 선택해주세요"
             >
-              <!-- <ion-option disabled selected value="">카드를 선택해주세요</ion-option> -->
               <ion-option value="nes">KB국민카드</ion-option>
               <ion-option value="n64">롯데카드</ion-option>
               <ion-option value="ps">신한카드</ion-option>
@@ -180,7 +212,6 @@
         </ion-list>
         <ion-list class="select_div">
           <ion-item class="order_select">
-            <!-- <ion-label class="order-card_text">할부 기간을 선택해주세요</ion-label> -->
             <ion-select
               okText="Okay"
               cancelTest="Dismiss"
@@ -188,7 +219,6 @@
               class="s_icon"
               placeholder="할부 기간을 선택해주세요"
             >
-              <!-- <ion-option disabled selected value="">할부 기간을 선택해주세요</ion-option> -->
               <ion-option value="Lump">일시불</ion-option>
               <ion-option value="twomonth">2개월(무)</ion-option>
               <ion-option value="threemonth">3개월(무)</ion-option>
@@ -204,8 +234,8 @@
             </ion-select>
           </ion-item>
         </ion-list>
-      </ion-grid>
-      <br /><br />
+      </ion-grid> -->
+      <br />
     </ion-grid>
   </ng-container>
 
