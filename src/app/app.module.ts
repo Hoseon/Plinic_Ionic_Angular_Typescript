@@ -311,6 +311,8 @@ import { SungwooBeautyPageModule } from '../pages/sungwoo-beauty/sungwoo-beauty.
 import { SungwooCosmeticsMainPageModule } from '../pages/sungwoo-cosmetics-main/sungwoo-cosmetics-main.module';
 //20201104 성우 화장품 모아보기 페이지
 import { SungwooCosmeticsTabPageModule } from '../pages/sungwoo-cosmetics-tab/sungwoo-cosmetics-tab.module';
+//20210127 포인트샵 페이지
+import { SungwooPointShopPageModule } from '../pages/sungwoo-point-shop/sungwoo-point-shop.module';
 
 //20201014 상품리뷰 페이지
 import { ProductReviewPageModule } from '../pages/product-review/product-review.module';
@@ -518,6 +520,7 @@ export function getAuthHttp(http, storage) {
     SungwooBeautyPageModule,
     SungwooCosmeticsMainPageModule,
     SungwooCosmeticsTabPageModule,
+    SungwooPointShopPageModule,
     ProductReviewPageModule,
     ProductMainPageModule,
   ],

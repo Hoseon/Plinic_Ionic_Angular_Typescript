@@ -8,6 +8,7 @@ import { SungwooDeliveryPage } from '../sungwoo-delivery/sungwoo-delivery';
 import { SungwooBeautyPage } from '../sungwoo-beauty/sungwoo-beauty';
 import { SungwooCosmeticsMainPage } from '../sungwoo-cosmetics-main/sungwoo-cosmetics-main';
 import { SungwooCosmeticsTabPage } from '../sungwoo-cosmetics-tab/sungwoo-cosmetics-tab';
+import { SungwooPointShopPage } from '../sungwoo-point-shop/sungwoo-point-shop';
 
 /**
  * Generated class for the SungwooSettingPage page.
@@ -80,6 +81,10 @@ export class SungwooSettingPage {
   sungWoo_Cosmetics_tab() {
     this.navCtrl.push(SungwooCosmeticsTabPage);
     console.log("성우 화장품모아보기 페이지")
+  }
+
+  sungWoo_Point_Shop() {
+    this.navCtrl.push(SungwooPointShopPage);
   }
 
   //추가
