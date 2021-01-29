@@ -25,14 +25,14 @@ export class AlignPopoverPage {
   }
 
 
-  latest(comment_option) {
-    comment_option = this.comment_option= "최신순";
-    this.viewCtrl.dismiss(comment_option);
+  latest() {
+    this.comment_option = "조회순";
+    this.viewCtrl.dismiss(this.comment_option);
   }
 
-  popular(comment_option) {
-    comment_option = this.comment_option= "인기순";
-    this.viewCtrl.dismiss(comment_option);
+  popular() {
+    this.comment_option= "최신순";
+    this.viewCtrl.dismiss(this.comment_option);
   }
 
 

@@ -1,4 +1,11 @@
 page-community {
+
+  .ios_head {
+    padding-top: 44px;
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+  }
+
   .header-md::after,
   .tabs-md[tabsPlacement="top"]>.tabbar::after,
   .footer-md::before,
@@ -15,7 +22,7 @@ page-community {
   .tabs-ios[tabsPlacement="top"]>.tabbar::after,
   .footer-ios::before,
   .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
-    height: 1px;
+    height: 0px;
     margin-bottom: 5px;
   }
 
@@ -44,7 +51,7 @@ page-community {
     font-weight: bold;
     font-size: 17px;
     background-color: #FFF;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -56,7 +63,7 @@ page-community {
     font-weight: bold;
     font-size: 17px;
     background-color: #FFF;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -66,20 +73,20 @@ page-community {
     color: #292929;
   }
 
-  .bar-button-default-ios,
-  .bar-button-default.bar-button-ios-default,
-  .bar-button-clear-ios-default {
-    margin-left: -15%;
-    margin-top: -15%;
-    color: transparent;
-  }
+  // .bar-button-default-ios,
+  // .bar-button-default.bar-button-ios-default,
+  // .bar-button-clear-ios-default {
+  //   // margin-left: -15%;
+  //   // margin-top: -15%;
+  //   color: transparent;
+  // }
 
-  .ios_nav {
-    background-color: transparent;
-    width: 140px !important;
-    height: 25px !important;
-    object-fit: contain;
-  }
+  // .ios_nav {
+  //   background-color: transparent;
+  //   width: 140px !important;
+  //   height: 25px !important;
+  //   object-fit: contain;
+  // }
 
   .toolbar-background {
     background-color: #FFF;
@@ -95,7 +102,7 @@ page-community {
   }
 
   .toolbar-ios {
-    margin-top: 8%;
+    margin-top: 6%;
   }
 
   .back-button-text-ios {
@@ -140,7 +147,7 @@ page-community {
     z-index: 1000;
     width: 150px;
     height: 18px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 14px;
     font-weight: 500;
     font-style: normal;
@@ -228,7 +235,7 @@ page-community {
     border-color: #6562b9;
     border-bottom-width: 3px;
     opacity: 1;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: bold;
     font-style: normal;
@@ -246,7 +253,7 @@ page-community {
     border-color: #6562b9;
     border-bottom-width: 3px;
     opacity: 1;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: bold;
     font-style: normal;
@@ -259,7 +266,7 @@ page-community {
 
   .segment-md .segment-button {
     height: 3rem;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: bold;
     font-style: normal;
@@ -273,7 +280,7 @@ page-community {
 
   .segment-ios .segment-button {
     height: 3rem;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: bold;
     font-style: normal;
@@ -296,10 +303,11 @@ page-community {
   }
 
   .beauty_tip {
-    padding: 5%;
-    padding-bottom: 0px;
-    margin-bottom: 5%;
-    margin-top: 5%;
+    // height: 436px;
+    // padding: 5%;
+    // padding-bottom: 0px;
+    // margin-bottom: 10%;
+    // margin-top: -2%;
   }
 
   .beauty_img {
@@ -326,17 +334,17 @@ page-community {
 
   .beauty_desc {
     width: 100%;
-    line-height: 1.2; 
+    line-height: 1.2;
     // height: 3.6em; 
-    text-align: left; 
-    word-wrap: break-word; 
-    display: -webkit-box; 
-    -webkit-line-clamp: 2; 
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     // text-overflow: ellipsis;
     // white-space: normal;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: 500;
     font-style: normal;
@@ -374,7 +382,7 @@ page-community {
     min-width: 100%;
     min-height: 55px;
     background-color: #FFF;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: normal;
     font-style: normal;
@@ -388,7 +396,7 @@ page-community {
   .beauty_top_add {
     width: 89%;
     min-height: 50px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     background-color: #FFF !important;
     font-size: 14px;
     font-weight: normal;
@@ -417,7 +425,7 @@ page-community {
     margin-top: 10% !important;
     margin-bottom: 0%;
     text-align: left;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 16px;
     font-weight: bold;
     font-style: normal;
@@ -428,7 +436,7 @@ page-community {
   }
 
   .beauty_note_tip {
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 16px;
     font-weight: bold;
     font-style: normal;
@@ -443,7 +451,7 @@ page-community {
   }
 
   .beauty_worry_tip {
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 16px;
     font-weight: bold;
     font-style: normal;
@@ -458,7 +466,7 @@ page-community {
   }
 
   .beauty_keyword_tip {
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 16px;
     font-weight: bold;
     font-style: normal;
@@ -476,7 +484,7 @@ page-community {
     padding-left: 5%;
     padding-top: 10% !important;
     text-align: left;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 16px;
     font-weight: bold;
     font-style: normal;
@@ -491,7 +499,7 @@ page-community {
   .beauty_note_tag {
     width: 60.5px;
     height: 10.5px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 11px;
     font-weight: 500;
     font-stretch: normal;
@@ -505,7 +513,7 @@ page-community {
   .beauty_note_tag_title {
     width: 140px;
     height: 13px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 13.5px;
     font-weight: 500;
     font-stretch: normal;
@@ -518,7 +526,7 @@ page-community {
 
   .beauty_tip_title_img {
     max-width: 65%;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: bold;
     font-style: normal;
@@ -547,7 +555,7 @@ page-community {
 
   .beauty_tip_title {
     max-width: 65%;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: bold;
     font-style: normal;
@@ -577,7 +585,7 @@ page-community {
   .beauty_note_title_img {
     position: absolute;
     max-width: 65%;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: bold;
     font-style: normal;
@@ -600,7 +608,7 @@ page-community {
     max-width: 65%;
     top: 15vw;
     left: 3.5%;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
@@ -619,7 +627,7 @@ page-community {
     top: 7%;
     max-width: 75%;
     height: 10vh;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: bold;
     font-style: normal;
@@ -650,7 +658,7 @@ page-community {
     min-width: 91%;
     max-width: 91%;
     // height: 7vh;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: bold;
     font-style: normal;
@@ -673,7 +681,7 @@ page-community {
     min-width: 91%;
     max-width: 91%;
     // height: 7vh;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
@@ -694,7 +702,7 @@ page-community {
   .beauty_note_count {
     width: 43px;
     height: 11px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 12px;
     font-weight: 500;
     font-stretch: normal;
@@ -703,12 +711,13 @@ page-community {
     letter-spacing: -0.36px;
     text-align: left;
     color: #a9a9a9;
+    margin-left: -1vw;
 
 
   }
 
   .beauty_note_answer {
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 13px;
     font-weight: normal;
     font-style: normal;
@@ -733,7 +742,7 @@ page-community {
   .container .beauty_note_like {
     // width: 136.5px;
     // height: 11px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 12px;
     font-weight: 500;
     font-stretch: normal;
@@ -752,7 +761,7 @@ page-community {
   }
 
   .beauty_note_answer {
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 12px;
     font-weight: normal;
     font-style: normal;
@@ -906,7 +915,7 @@ page-community {
     border-radius: 3px;
     border: solid 1px #e5e5e5;
     background-color: #FFF !important;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 14px;
     font-weight: normal;
     font-style: normal;
@@ -919,7 +928,7 @@ page-community {
 
 
   .card-title {
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: bold;
     font-style: normal;
@@ -931,7 +940,7 @@ page-community {
 
 
   .card-subtitle {
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 13px;
     font-weight: normal;
     font-style: normal;
@@ -942,7 +951,7 @@ page-community {
   }
 
   .beauty_note_Q {
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: bold;
     font-style: normal;
@@ -958,7 +967,7 @@ page-community {
     left: 5%;
     // width: 38px;
     // height: 10.5px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 11px;
     font-weight: 500;
     font-stretch: normal;
@@ -976,7 +985,7 @@ page-community {
     max-width: 65%;
     // width: 140px;
     // height: 13px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 13.5px;
     font-weight: 500;
     font-stretch: normal;
@@ -996,7 +1005,7 @@ page-community {
     left: 3.5vw;
     // width: 140px;
     // height: 13px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 13.5px;
     font-weight: 500;
     font-stretch: normal;
@@ -1054,7 +1063,13 @@ page-community {
     bottom: 8%;
   }
 
-  
+  #newSlide>.swiper-pagination-fraction,
+  #newSlide>.swiper-pagination-custom,
+  #newSlide>.swiper-container-horizontal>.swiper-pagination-bullets {
+    bottom: -2%;
+  }
+
+
 
   .swiper-pagination-bullet-active {
     background-color: #5c59b6 !important;
@@ -1091,7 +1106,7 @@ page-community {
   }
 
   .beauty_plan_title {
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: bold;
     font-style: normal;
@@ -1105,7 +1120,7 @@ page-community {
   }
 
   .beauty_plan_subtitle {
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 13px;
     font-weight: normal;
     font-style: normal;
@@ -1150,7 +1165,7 @@ page-community {
   //   height: 50px;
   //   margin: 0 auto;
   //   display: block;
-  //   font-family: AppleSDGothicNeo-Regular;
+  //   font-family: NotoSansKR;
   //   font-size: 14px;
   //   font-weight: normal;
   //   font-style: normal;
@@ -1173,7 +1188,7 @@ page-community {
   //   height: 50px;
   //   margin: 0 auto;
   //   display: block;
-  //   font-family: AppleSDGothicNeo-Regular;
+  //   font-family: NotoSansKR;
   //   font-size: 14px;
   //   font-weight: normal;
   //   font-style: normal;
@@ -1191,8 +1206,8 @@ page-community {
   .skinqna_contents_img {
     position: absolute;
     max-width: 61%;
-    font-family: AppleSDGothicNeo-Regular;
-    // font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
+    // font-family: NotoSansKR;
     font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
@@ -1221,15 +1236,20 @@ page-community {
     width: 100%;
     height: 19.7%;
     padding: 44.5px 16.5px 24px 16px;
-    background-color: #f7f7f7;
+    background-color: #FFF;
+  }
 
+  .Rectangle-75 {
+    width: 100%;
+    height: 372px;
+    background-color: #f4f4f4;
   }
 
   .movie_title {
     position: relative;
-    width: 29.9%;
+    // width: 29.9%;
     // height: 0.7%;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15.8px;
     font-weight: bold;
     font-stretch: normal;
@@ -1253,20 +1273,32 @@ page-community {
     background-color: #b6b6b6;
   }
 
+  .movie_img2 {
+    // position: relative;
+    // margin-top: 5.6%;
+    // width: 90.7%;
+    // height: auto;
+    // margin: 0 auto !important;
+    // padding: 0.1px 0.3px 0.2px 0px;
+    // border-radius: 2.8px;
+    background-color: #b6b6b6;
+  }
+
   .movie_text1 {
     position: relative;
-    margin-left: 5% !important;
-    width: 78%;
+    margin-left: 2% !important;
+    // width: 78%;
     margin: 12px 46.5px 9px 1.5px;
-    font-family: AppleSDGothicNeo-Regular;
-    font-size: 13.5px;
-    font-weight: 500;
+    width: 60vw;
+    height: 20px;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.41;
-    letter-spacing: -0.41px;
-    text-align: left;
-    color: #6562b9;
+    line-height: normal;
+    letter-spacing: -0.7px;
+    color: #000000;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1279,10 +1311,10 @@ page-community {
 
   .movie_text3 {
     position: relative;
-    width: 50%;
+    width: 80%;
     // height: 11px;
     // margin: 9px 31px 13.5px 2px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
@@ -1294,7 +1326,7 @@ page-community {
     margin-top: -2%;
     margin-left: 5%;
     // margin-bottom: 3%;
-  
+
   }
 
   .movie_text4 {
@@ -1302,7 +1334,7 @@ page-community {
     width: 50%;
     // height: 11px;
     margin: 13.5px 7.5px 25.5px 2px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 12px;
     font-weight: 500;
     font-stretch: normal;
@@ -1330,7 +1362,7 @@ page-community {
     margin-left: 5% !important;
     width: 90%;
     // height: 11.5px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 12.5px;
     font-weight: normal;
     font-stretch: normal;
@@ -1349,7 +1381,7 @@ page-community {
     width: 70%;
     // height: 11px;
     margin: 13.5px 7.5px 25.5px 2px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 12px;
     font-weight: 500;
     font-stretch: normal;
@@ -1363,23 +1395,23 @@ page-community {
   }
 
   .movie_btn1 {
-      margin-top: -1% !important;
-      width: 100%;
-      height: 50px;
-      border: solid 0.5px #c7c7c7;
-      // border-radius: 5px;
-      box-shadow: none;
-      background-color: #FFFFFF;
-      // margin: 8% auto;
-      margin:0;
-      // border:0;
-      padding: 0;
+    margin-top: -1% !important;
+    width: 100%;
+    height: 50px;
+    border: solid 0.5px #c7c7c7;
+    // border-radius: 5px;
+    box-shadow: none;
+    background-color: #FFFFFF;
+    // margin: 8% auto;
+    margin: 0;
+    // border:0;
+    padding: 0;
   }
 
   .btn_text1 {
     width: 89px;
     // height: 12.5px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 14px;
     font-weight: normal;
     font-stretch: normal;
@@ -1395,7 +1427,7 @@ page-community {
     margin-top: 10% !important;
     margin-bottom: -5% !important;
     text-align: left;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 16px;
     font-weight: bold;
     font-style: normal;
@@ -1411,7 +1443,7 @@ page-community {
     margin-top: 5%;
     width: 30%;
     // height: 10.5px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 11px;
     font-weight: 500;
     font-stretch: normal;
@@ -1426,13 +1458,13 @@ page-community {
     position: relative;
     margin-top: 5% !important;
     width: 95%;
-    line-height: 1.2; 
+    line-height: 1.2;
     // height: 3.6em; 
-    text-align: left; 
+    text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 15px;
     font-weight: 500;
     font-style: normal;
@@ -1441,7 +1473,7 @@ page-community {
     letter-spacing: -0.5px;
     color: #292929;
     text-align: left;
-    margin-top: 2%;    
+    margin-top: 2%;
   }
 
   .movie_text9 {
@@ -1449,7 +1481,7 @@ page-community {
     margin-top: -7% !important;
     width: 100%;
     // height: 10.5px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 11px;
     font-weight: normal;
     font-stretch: normal;
@@ -1463,7 +1495,7 @@ page-community {
   .movie_text10 {
     width: 100%;
     // height: 11px;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansKR;
     font-size: 12px;
     font-weight: 500;
     font-stretch: normal;
@@ -1474,5 +1506,287 @@ page-community {
     color: #a9a9a9;
   }
 
+  .beautypleLogo {
+    width: 83px;
+    height: 28px;
+    object-fit: contain;
+    margin-top: 10px;
+    padding-left: -10px !important;
+  }
+
+  .point-icon {
+    position: absolute;
+    width: 14px;
+    height: 20px;
+    object-fit: contain;
+    left: 90%;
+    top: 40%;
+  }
+
+  .Create-account {
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #292929;
+    top: 47%;
+    left: 125%;
+  }
+
+  .postion {
+    margin-top: 20px;
+    position: relative;
+  }
+
+  .postion_ios {
+    margin-top: 15px;
+    position: relative;
+  }
+
+  .headerIoncMargin {
+    margin: 5px;
+    margin-top: 10px !important;
+  }
+
+  ion-app.md [margin-left],
+  ion-app.md [margin-left] .scroll-content {
+    margin-left: 10px;
+  }
+
+  .-NEW-POST {
+    font-family: NotoSansKR;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #292929;
+    margin-left: 2%;
+  }
+
+  .image-6 {
+    width: 89vw;
+    // height: 320px;
+  }
+
+  .newSlide {
+    height: 500px !important;
+  }
+
+  .Rectangle-75 {
+    width: 100vw;
+    height: 436px;
+    background-color: #f4f4f4;
+  }
+
+  .testborder {
+    border : solid 1px #5c5b5b;
+  }
+
+  .image-1 {
+    width: 100px;
+    height: 100px;
+  }
+
+  .tip_text1 {
+    width: 170px;
+    height: 20px;
+    font-family: NotoSansKR;
+    margin-top: -3%;
+    margin-bottom: 2%;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.7px;
+    // text-align: right;
+    color: #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .tip_text2 {
+    width: 166px;
+    height: 17px;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.6px;
+    // text-align: right;
+    color: #a9a9a9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 5%;
+  }
+
+  .tip_text3 {
+    // width: 42px;
+    // height: 17px;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.6px;
+    // text-align: left;
+    color: #a9a9a9;
+  }
+
+  .tipNumber {
+   margin-right: -2%;
+   margin-left: -1.5%; 
+  }
+
+  .movTipNumber {
+    margin-right: 0.1%;
+    margin-left: -1.5%; 
+  }
+
+  .segmentHeight {
+    // height: 10vw;
+    background-color: #FFF;
+  }
+
+  .arrowMarginDown {
+    margin-top: 5vw !important;
+    margin-left: 2vw !important;
+  }
+
+  .movText1 {
+    width: 40vw;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.7px;
+    text-align: left;
+    color: #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 4%;
+    margin-top: -8%;
+  }
+
+  .movText2 {
+    width: 40vw;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.6px;
+    text-align: left;
+    color: #a9a9a9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 5%;
+    margin-bottom: 4%;
+  }
+
+  .movText1_1 {
+    width: 85vw;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.7px;
+    text-align: left;
+    color: #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .movText2_2 {
+    width: 85vw;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.6px;
+    text-align: left;
+    color: #a9a9a9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .movText3 {
+    width: 97px;
+    height: 17px;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.6px;
+    text-align: left;
+    color: #a9a9a9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .movText5 {
+    width: 50vw;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.7px;
+    text-align: left;
+    color: #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 4%;
+    margin-top: -8%;
+  }
+
+  .movText6 {
+    width: 50vw;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.6px;
+    text-align: left;
+    color: #a9a9a9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 5%;
+    margin-bottom: 4%;
+  }
 
 }

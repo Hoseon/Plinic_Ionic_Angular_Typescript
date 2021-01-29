@@ -292,11 +292,14 @@ export class CareZonePage {
   public async roadcareZone() {
     // this.showLoading();
     this.images.carezoneRoad().subscribe(data => {
+
+      console.log("케어존 데이터 : " + JSON.stringify(data));
       if (data !== '') {
         for (let i = 0; i < data.length; i++) {
           console.log("요일은?" + data[i].day);
           if(new Date().getDay() === Number(data[i].day) ) {
-            this.missionCount2(data[i]._id, new Date())
+            // this.missionCount2(data[i]._id, new Date())
+            this.flag[i] = "지금참여";
           } else {
             this.flag[i] = "진행중";
           }

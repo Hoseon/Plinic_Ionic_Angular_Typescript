@@ -44,7 +44,7 @@
       <!-- <img src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{banner.filename}}' /> -->
       <!-- <div class="slide-time">{{displayTime[i]}}</div> -->
       <!-- <div right class="back_circle"></div> -->
-      <img (click)="mission_start(firstCarezone)" class="slide_img" src='assets/img/home/newslide{{i+1}}.png' />
+      <img (click)="mission_start(firstCarezone)" class="slide_img" src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{firstCarezone.homeimage_filename}}' />
       <!-- <img class="slide_img" src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{firstCarezone.filename}}' /> -->
       <!-- <div class="slide-title">플리닉으로<br>피부 완성 챌린지</div> -->
       <!-- <div class="slide-subtitle">성공하면 프리즘 앰플 무료 증정</div> -->
@@ -71,9 +71,9 @@
 
   <ng-container *ngIf="!challengeData">
     <ng-container *ngIf="userData">
-      <!-- <button ion-button class="skin_btn" (click)="openCareZoneTab()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button> -->
+      <button ion-button class="skin_btn" (click)="openCareZoneTab()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button>
       <!-- <button ion-button class="skin_btn" (click)="review()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button> -->
-      <button ion-button class="skin_btn" (click)="productMain()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button>
+      <!-- <button ion-button class="skin_btn" (click)="productMain()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button> -->
     </ng-container>
   </ng-container>
 

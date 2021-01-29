@@ -203,41 +203,16 @@ export class PoreCountPage {
   randomTip1 : any =[];
   randomTip2 : any =[];
   randomTip : any = [
-    {
-      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=28985318&memberNo=45335922",
-      body : "여드름 피부 관리 방법 TOP5",
-      _id : "5f292cad3425774b4fa86795",
-      filename : "image-1596533932986",
-      views : "6"
-    },
-    {
-      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=27805579&memberNo=45335922&searchKeyword=%23%ED%94%BC%EB%B6%80%ED%86%A4&searchRank=2",
-      body : "기미에 좋은 음식 TOP5",
-      _id : "5ec4c86d4f693c262a959c56",
-      filename : "image-1592965911751",
-      views : "90"
-    },
-    {
-      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=27597206&memberNo=45335922&searchKeyword=%EB%AA%A8%EA%B3%B5&searchRank=1",
-      body : "모공에 안 좋은 습관 TOP5",
-      _id : "5ec4ba704f693c262a959c52",
-      filename : "image-1592965768950",
-      views : "87"
-    },
-    {
-      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=29068090&memberNo=45335922",
-      body : "모공 관리 방법 TOP5!",
-      _id : "5f33b440df245a516e1a1aac",
-      filename : "image-1597224000351",
-      views : "6"
-    },
-    {
-      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=27423003&memberNo=45335922&searchKeyword=%EB%AA%A8%EA%B3%B5&searchRank=2",
-      body : "모공축소에 좋은 음식 TOP5",
-      _id : "5ec4ba294f693c262a959c51",
-      filename : "image-1592965730166",
-      views : "86"
-    },
+    {"_id":{"$oid":"600531eefacefaaa1c4a5c0d"},"views":7,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[스킨노트] 넓어진 모공관리법 TOP 5","midtext":"거친 피부결, 넓어진 모공... 관리하는 방법 다섯가지!","posturl":"http://naver.me/G2h1hCgG","filename":"image-1610953198558","originalName":"210118_13.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":28,"showLocation":[{"home":false,"poreSize":true,"poreCount":true,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"600531eefacefaaa1c4a5c0e"}}],"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"600531eefacefaaa1c4a5c0f"}}],"comments":[],"createdAt":{"$date":"2021-01-18T06:59:58.771Z"},"created":{"$date":"2021-01-18T06:59:58.771Z"},"__v":0},
+    {"_id":{"$oid":"600526d3e17bdaa9c5df8364"},"views":10,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[스킨노트] 미세먼지 단계별 클렌징","midtext":"피부에 해로운 미세먼지! 올바른 클렌징과 생활습관 알기","posturl":"http://naver.me/FdscWH4k","filename":"image-1610951472859","originalName":"210118_10.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":26,"showLocation":[{"home":false,"poreSize":true,"poreCount":true,"skinTone":false,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"60052b31e17bdaa9c5df8371"}}],"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"60052b31e17bdaa9c5df8372"}}],"comments":[],"createdAt":{"$date":"2021-01-18T06:12:35.723Z"},"created":{"$date":"2021-01-18T06:12:35.723Z"},"__v":0,"updatedAt":{"$date":"2021-01-18T06:31:13.086Z"}},
+    {"_id":{"$oid":"600519dae17bdaa9c5df8346"},"views":6,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[스킨노트] 블랙헤드 제거_최종본!","midtext":"블랙헤드 잘 제거하고 모공 줄이는 법, 팩트를 말하다!","posturl":"http://naver.me/FJBaeduc","filename":"image-1610947311788","originalName":"210118_6.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":22,"showLocation":[{"home":false,"poreSize":true,"poreCount":true,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"60051aefe17bdaa9c5df8349"}}],"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"60051aefe17bdaa9c5df834a"}}],"comments":[],"createdAt":{"$date":"2021-01-18T05:17:14.702Z"},"created":{"$date":"2021-01-18T05:17:14.702Z"},"__v":0,"updatedAt":{"$date":"2021-01-18T05:21:51.883Z"}},
+    {"_id":{"$oid":"6004f176c3ae02a956f129ff"},"views":14,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[스킨노트] 에디터 홈케어 일기 1","midtext":"플리닉 에디터 '도도'의 4주 플리닉 프로젝트 시작!","posturl":"http://naver.me/5bXWSFKm","filename":"image-1610936694597","originalName":"210118_1.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":16,"showLocation":[{"home":true,"poreSize":true,"poreCount":true,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"6004f176c3ae02a956f12a00"}}],"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"6004f176c3ae02a956f12a01"}}],"comments":[],"createdAt":{"$date":"2021-01-18T02:24:54.909Z"},"created":{"$date":"2021-01-18T02:24:54.909Z"},"__v":0},
+    {"_id":{"$oid":"5f292cad3425774b4fa86795"},"views":67,"editor":false,"like":0,"likeuser":[""],"title":"[뷰티꿀팁]","body":"[스킨노트] 여드름 피부관리법 TOP5","midtext":"여드름과 뾰루지를 해결해주는 피부관리법 다섯가지","posturl":"http://naver.me/GpP8P4BY","author":{"$oid":"5dca243975198204f8f5a2f4"},"numId":86,"filename":"image-1610952352545","originalName":"210118_12.jpg","comments":[],"createdAt":{"$date":"2020-08-04T09:38:53.236Z"},"created":{"$date":"2020-08-04T09:38:53.236Z"},"__v":2,"showLocation":[{"home":false,"poreSize":true,"poreCount":true,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"60052ea0e17bdaa9c5df8373"}}],"visible":true,"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"60052ea0e17bdaa9c5df8374"}}],"updatedAt":{"$date":"2021-01-18T06:45:52.669Z"}},
+    {"_id":{"$oid":"60052a19e17bdaa9c5df8366"},"views":6,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[셀럽화장대] 연예인 건성피부관리법","midtext":"걸그룹 시크릿 '전효성'님의 건성피부 스킨 케어 루틴은?","posturl":"http://naver.me/xor75HKs","filename":"image-1610951233778","originalName":"210118_11.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":27,"showLocation":null,"tabLocation":[{"tip":false,"hit":true,"new":true,"_id":{"$oid":"60052a41e17bdaa9c5df8368"}}],"comments":[],"createdAt":{"$date":"2021-01-18T06:26:33.674Z"},"created":{"$date":"2021-01-18T06:26:33.674Z"},"__v":0,"updatedAt":{"$date":"2021-01-18T06:27:13.911Z"}},
+    {"_id":{"$oid":"6005241ce17bdaa9c5df8362"},"views":3,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[셀럽화장대] 연예인 스킨케어 비법!","midtext":"연예인 '한예슬' 님의 아침 운동 전 스킨케어 루틴 공개! ","posturl":"http://naver.me/x35JsAp2","filename":"image-1610949659971","originalName":"210118_9.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":25,"showLocation":[],"tabLocation":[{"tip":false,"hit":true,"new":true,"_id":{"$oid":"6005241ce17bdaa9c5df8363"}}],"comments":[],"createdAt":{"$date":"2021-01-18T06:01:00.152Z"},"created":{"$date":"2021-01-18T06:01:00.152Z"},"__v":0},
+    {"_id":{"$oid":"600514efe17bdaa9c5df8344"},"views":4,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[셀럽화장대] 아이돌 스킨케어 루틴","midtext":"걸그룹 에이핑크 '보미'님의 스킨케어 루틴이 궁금해!","posturl":"http://naver.me/IGAOzZON","filename":"image-1610945775170","originalName":"210118_5.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":21,"showLocation":[],"tabLocation":[{"tip":false,"hit":true,"new":true,"_id":{"$oid":"600514efe17bdaa9c5df8345"}}],"comments":[],"createdAt":{"$date":"2021-01-18T04:56:15.534Z"},"created":{"$date":"2021-01-18T04:56:15.534Z"},"__v":0},
+    {"_id":{"$oid":"60050f06cd7599a9641352c0"},"views":12,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[셀럽화장대] 아이돌 나이트 스킨케어","midtext":"걸그룹 씨스타 '소유'님의 잠들기 전 피부관리법이 궁금해!","posturl":"http://naver.me/G2hihzyk","filename":"image-1610945518205","originalName":"210118_4.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":20,"showLocation":null,"tabLocation":[{"tip":false,"hit":true,"new":true,"_id":{"$oid":"600513eee17bdaa9c5df8343"}}],"comments":[],"createdAt":{"$date":"2021-01-18T04:31:02.030Z"},"created":{"$date":"2021-01-18T04:31:02.030Z"},"__v":0,"updatedAt":{"$date":"2021-01-18T04:51:58.355Z"}},
+    {"_id":{"$oid":"60050abbcd7599a9641352bd"},"views":9,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[셀럽화장대] 아이돌 메이크업 클렌징","midtext":"걸그룹 오마이걸 효정 님의 피부관리법이 궁금해! ","posturl":"http://naver.me/GMRbf16r","filename":"image-1610943162797","originalName":"210118_3.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":19,"showLocation":[{"home":false,"poreSize":false,"poreCount":false,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"60050abbcd7599a9641352be"}}],"tabLocation":[{"tip":false,"hit":true,"new":true,"_id":{"$oid":"60050abbcd7599a9641352bf"}}],"comments":[],"createdAt":{"$date":"2021-01-18T04:12:43.048Z"},"created":{"$date":"2021-01-18T04:12:43.048Z"},"__v":0},
   ]
 
   chartAvgCheekPoreCount: any = []; //차트에 보여지는 나이대 평균
@@ -660,7 +635,7 @@ export class PoreCountPage {
   }
 
   lottoTip () {
-    let z = Math.floor(Math.random() * 5) + 0;
+    let z = Math.floor(Math.random() * 10) + 0;
 
     if (this.randomTip2.length < 5 ) {
       if(this.randomTip1.indexOf(z) < 0) {

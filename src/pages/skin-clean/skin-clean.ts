@@ -210,41 +210,51 @@ export class SkinCleanPage {
   randomTip1 : any =[];
   randomTip2 : any =[];
   randomTip : any = [
-    {
-      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=27605449&memberNo=45335922&searchKeyword=%23%EC%84%B8%EC%95%88&searchRank=2",
-      body : "피부에 도움이되는 좋은 습관 TOP5",
-      _id : "5ec4c9c94f693c262a959c59",
-      filename : "image-1592966037608",
-      views : "88"
-    },
-    {
-      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=27921248&memberNo=45335922",
-      body : "얼굴이 작아지는 마사지",
-      _id : "5e8ed397fcc124203fe306e6",
-      filename : "image-1592965617760",
-      views : "98"
-    },
-    {
-      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=28663331&memberNo=45335922",
-      body : "튼 살 예방 및 치료에 좋은 음식 TOP5",
-      _id : "5efaddadd24bad43fc440b56",
-      filename : "image-1593499053023",
-      views : "14"
-    },
-    {
-      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=28919373&memberNo=45335922",
-      body : "장마철 피부 관리 방법 TOP5",
-      _id : "5f1fe383001c2849fd2f637f",
-      filename : "image-1595925376080",
-      views : "15"
-    },
-    {
-      posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=29068090&memberNo=45335922",
-      body : "모공 관리 방법 TOP5!",
-      _id : "5f33b440df245a516e1a1aac",
-      filename : "image-1597224000351",
-      views : "8"
-    },
+    // {
+    //   posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=27605449&memberNo=45335922&searchKeyword=%23%EC%84%B8%EC%95%88&searchRank=2",
+    //   body : "피부에 도움이되는 좋은 습관 TOP5",
+    //   _id : "5ec4c9c94f693c262a959c59",
+    //   filename : "image-1592966037608",
+    //   views : "88"
+    // },
+    // {
+    //   posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=27921248&memberNo=45335922",
+    //   body : "얼굴이 작아지는 마사지",
+    //   _id : "5e8ed397fcc124203fe306e6",
+    //   filename : "image-1592965617760",
+    //   views : "98"
+    // },
+    // {
+    //   posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=28663331&memberNo=45335922",
+    //   body : "튼 살 예방 및 치료에 좋은 음식 TOP5",
+    //   _id : "5efaddadd24bad43fc440b56",
+    //   filename : "image-1593499053023",
+    //   views : "14"
+    // },
+    // {
+    //   posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=28919373&memberNo=45335922",
+    //   body : "장마철 피부 관리 방법 TOP5",
+    //   _id : "5f1fe383001c2849fd2f637f",
+    //   filename : "image-1595925376080",
+    //   views : "15"
+    // },
+    // {
+    //   posturl : "https://m.post.naver.com/viewer/postView.nhn?volumeNo=29068090&memberNo=45335922",
+    //   body : "모공 관리 방법 TOP5!",
+    //   _id : "5f33b440df245a516e1a1aac",
+    //   filename : "image-1597224000351",
+    //   views : "8"
+    // },
+    {"_id":{"$oid":"6005221de17bdaa9c5df835f"},"views":1,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[스킨노트] 피부 속건조 해결책!","midtext":"피부 속이 당기고 건조할 때 따라하는 스킨 케어 방법!","posturl":"http://naver.me/5mYs7VAR","filename":"image-1610949149624","originalName":"210118_8.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":24,"showLocation":[{"home":false,"poreSize":true,"poreCount":true,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"6005221de17bdaa9c5df8360"}}],"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"6005221de17bdaa9c5df8361"}}],"comments":[],"createdAt":{"$date":"2021-01-18T05:52:29.805Z"},"created":{"$date":"2021-01-18T05:52:29.805Z"},"__v":0},
+    {"_id":{"$oid":"60051f92e17bdaa9c5df834b"},"views":2,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[화잘알사] 선블록 똑똑하게 고르기","midtext":"다양한 자외선 차단제 중에서 나는 어떤 걸 써야할까? ","posturl":"http://naver.me/FJBaeduc","filename":"image-1610948497911","originalName":"210118_7.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":23,"showLocation":[{"home":false,"poreSize":false,"poreCount":false,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"60051f92e17bdaa9c5df834c"}}],"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"60051f92e17bdaa9c5df834d"}}],"comments":[],"createdAt":{"$date":"2021-01-18T05:41:38.227Z"},"created":{"$date":"2021-01-18T05:41:38.227Z"},"__v":0},
+    {"_id":{"$oid":"600519dae17bdaa9c5df8346"},"views":6,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[스킨노트] 블랙헤드 제거_최종본!","midtext":"블랙헤드 잘 제거하고 모공 줄이는 법, 팩트를 말하다!","posturl":"http://naver.me/FJBaeduc","filename":"image-1610947311788","originalName":"210118_6.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":22,"showLocation":[{"home":false,"poreSize":true,"poreCount":true,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"60051aefe17bdaa9c5df8349"}}],"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"60051aefe17bdaa9c5df834a"}}],"comments":[],"createdAt":{"$date":"2021-01-18T05:17:14.702Z"},"created":{"$date":"2021-01-18T05:17:14.702Z"},"__v":0,"updatedAt":{"$date":"2021-01-18T05:21:51.883Z"}},
+    {"_id":{"$oid":"5f0d7ab109b9374671f16e19"},"views":33,"editor":false,"like":0,"likeuser":[""],"title":"[뷰티꿀팁]","body":"[스킨노트]지성피부에 좋은 음식 TOP5","midtext":"지성피부인들 모여라! 지성피부에 좋은 음식 다섯가지 ","posturl":"http://naver.me/G3t2tdVJ","author":{"$oid":"5dca243975198204f8f5a2f4"},"numId":83,"filename":"image-1610954785709","originalName":"210118_15.jpg","comments":[],"createdAt":{"$date":"2020-07-14T09:28:17.746Z"},"created":{"$date":"2020-07-14T09:28:17.746Z"},"__v":1,"showLocation":[{"home":false,"poreSize":true,"poreCount":true,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"60053822facefaaa1c4a5c14"}}],"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"60053822facefaaa1c4a5c15"}}],"visible":true,"updatedAt":{"$date":"2021-01-18T07:26:26.021Z"}},
+    {"_id":{"$oid":"5f02ec4156553a4464ad4c84"},"views":102,"editor":false,"like":0,"likeuser":[""],"title":"[뷰티꿀팁]","body":"[스킨노트]건성피부에 좋은 음식 TOP5","midtext":"건성피부인들 모여라! 건성피부에 좋은 음식 다섯가지","posturl":"http://naver.me/FwwfZe6p","author":{"$oid":"5dca243975198204f8f5a2f4"},"numId":82,"filename":"image-1610955228396","originalName":"210118_16.jpg","comments":[],"createdAt":{"$date":"2020-07-06T09:17:53.838Z"},"created":{"$date":"2020-07-06T09:17:53.838Z"},"__v":2,"editorUpdateAt":{"$date":"2020-07-14T09:28:36.655Z"},"updatedAt":{"$date":"2021-01-18T07:33:48.580Z"},"showLocation":[{"home":false,"poreSize":true,"poreCount":true,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"600539dcfacefaaa1c4a5c16"}}],"visible":true,"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"600539dcfacefaaa1c4a5c17"}}]},
+    {"_id":{"$oid":"5f292cad3425774b4fa86795"},"views":67,"editor":false,"like":0,"likeuser":[""],"title":"[뷰티꿀팁]","body":"[스킨노트] 여드름 피부관리법 TOP5","midtext":"여드름과 뾰루지를 해결해주는 피부관리법 다섯가지","posturl":"http://naver.me/GpP8P4BY","author":{"$oid":"5dca243975198204f8f5a2f4"},"numId":86,"filename":"image-1610952352545","originalName":"210118_12.jpg","comments":[],"createdAt":{"$date":"2020-08-04T09:38:53.236Z"},"created":{"$date":"2020-08-04T09:38:53.236Z"},"__v":2,"showLocation":[{"home":false,"poreSize":true,"poreCount":true,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"60052ea0e17bdaa9c5df8373"}}],"visible":true,"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"60052ea0e17bdaa9c5df8374"}}],"updatedAt":{"$date":"2021-01-18T06:45:52.669Z"}},
+    {"_id":{"$oid":"5f1fe383001c2849fd2f637f"},"views":56,"editor":false,"like":0,"likeuser":[""],"title":"[뷰티꿀팁]","body":"[스킨노트]장마철 피부관리법 TOP5","midtext":"장마철에 특별히 신경써야 하는 피부관리법 다섯가지!","posturl":"http://naver.me/535RPHKd","author":{"$oid":"5dca243975198204f8f5a2f4"},"numId":85,"filename":"image-1610953707516","originalName":"210118_14.jpg","comments":[],"createdAt":{"$date":"2020-07-28T08:36:19.147Z"},"created":{"$date":"2020-07-28T08:36:19.147Z"},"__v":3,"visible":true,"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"600533ebfacefaaa1c4a5c11"}}],"updatedAt":{"$date":"2021-01-18T07:08:27.653Z"},"showLocation":[{"home":false,"poreSize":false,"poreCount":false,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"600533ebfacefaaa1c4a5c10"}}]},
+    {"_id":{"$oid":"600526d3e17bdaa9c5df8364"},"views":10,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[스킨노트] 미세먼지 단계별 클렌징","midtext":"피부에 해로운 미세먼지! 올바른 클렌징과 생활습관 알기","posturl":"http://naver.me/FdscWH4k","filename":"image-1610951472859","originalName":"210118_10.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":26,"showLocation":[{"home":false,"poreSize":true,"poreCount":true,"skinTone":false,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"60052b31e17bdaa9c5df8371"}}],"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"60052b31e17bdaa9c5df8372"}}],"comments":[],"createdAt":{"$date":"2021-01-18T06:12:35.723Z"},"created":{"$date":"2021-01-18T06:12:35.723Z"},"__v":0,"updatedAt":{"$date":"2021-01-18T06:31:13.086Z"}},
+    {"_id":{"$oid":"6004f632cd7599a9641352af"},"views":15,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[스킨노트] 겨울철 단계별 피부관리법!","midtext":"추운 겨울 건조하고 갈라지는 피부... 해결 방법은?","posturl":"http://naver.me/GgxgngvK","filename":"image-1610948568581","originalName":"210118_2.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":17,"showLocation":[{"home":true,"poreSize":true,"poreCount":true,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"60051fd8e17bdaa9c5df8355"}}],"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"60051fd8e17bdaa9c5df8356"}}],"comments":[],"createdAt":{"$date":"2021-01-18T02:45:06.765Z"},"created":{"$date":"2021-01-18T02:45:06.765Z"},"__v":0,"updatedAt":{"$date":"2021-01-18T05:42:48.864Z"}},
+    {"_id":{"$oid":"6004f176c3ae02a956f129ff"},"views":14,"editor":false,"like":0,"likeuser":[""],"visible":true,"body":"[스킨노트] 에디터 홈케어 일기 1","midtext":"플리닉 에디터 '도도'의 4주 플리닉 프로젝트 시작!","posturl":"http://naver.me/5bXWSFKm","filename":"image-1610936694597","originalName":"210118_1.jpg","author":{"$oid":"6004e920c3ae02a956f129ee"},"numId":16,"showLocation":[{"home":true,"poreSize":true,"poreCount":true,"skinTone":true,"clean":true,"munjin":true,"editor":false,"_id":{"$oid":"6004f176c3ae02a956f12a00"}}],"tabLocation":[{"tip":true,"hit":false,"new":true,"_id":{"$oid":"6004f176c3ae02a956f12a01"}}],"comments":[],"createdAt":{"$date":"2021-01-18T02:24:54.909Z"},"created":{"$date":"2021-01-18T02:24:54.909Z"},"__v":0},
   ]
 
   skinAnalyData: any;
@@ -827,7 +837,7 @@ export class SkinCleanPage {
   }
 
   lottoTip () {
-    let z = Math.floor(Math.random() * 5) + 0;
+    let z = Math.floor(Math.random() * 10) + 0;
 
     if (this.randomTip2.length < 5 ) {
       if(this.randomTip1.indexOf(z) < 0) {

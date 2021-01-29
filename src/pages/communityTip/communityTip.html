@@ -1,0 +1,102 @@
+<!--
+  Generated template for the BeautyTipAddPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-lines>
+  <ion-navbar *ngIf="platform.is('android')" no-lines>
+    <ion-buttons (click)="myinfo()" end>
+          <img (click)="community_search()" float-end class="headerIoncMargin" src="assets/img/svg/search.svg"
+            style="z-index: 5000" />
+          <img (click)="myinfo()" float-end class="headerIoncMargin" src="assets/img/svg/my.svg"
+            style="z-index: 5000" />
+    </ion-buttons>
+    <!-- <img class="android_search" style="left:5%" (click)="community_search()"
+      src="assets/img/beauty/ic-system-search@3x.png" /> -->
+    <ion-title class="android_title" text-wrap>POST</ion-title>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+        <button ion-button icon-only>
+          <img (click)="community_search()" margin-right float-end class="headerIoncMargin" src="assets/img/svg/search.svg" />
+        </button>
+        <button ion-button icon-only>
+          <img (click)="myinfo()" margin-right float-end class="headerIoncMargin" src="assets/img/svg/my.svg" />
+        </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>POST</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ng-container *ngIf="mode==='tip'">
+    <ion-grid>
+      <ion-row justify-content-between align-items-center>
+        <div *ngIf="communityBeautyLoadData" class="test">#여기가 꿀TIP({{communityBeautyLoadData.length}}개)</div>
+        <!-- <div (click)="select_popover()">팝오버 테스트</div> -->
+        <button *ngIf="sortButton" (click)="select_popover()" ion-button icon-only clear>
+          <img src="assets/img/svg/dropbox.svg" />
+        </button>
+        <button *ngIf="!sortButton" (click)="select_popover()" ion-button icon-only clear>
+          <img src="assets/img/svg/dropboxCreate.svg" />
+        </button>
+      </ion-row>
+    </ion-grid>
+    <br>
+    <ion-grid>
+      <ng-container *ngFor="let postData of communityBeautyLoadData; let i = index">
+        <ion-row (click)="openBrowser_ios(postData.posturl, postData.body, postData._id)" align-items-center>
+          <ion-col col-4>
+            <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{postData.filename}}" />
+          </ion-col>
+          <ion-col col-8>
+            <div class="postText1">{{postData.body}}</div>
+            <div class="postText2">{{postData.midtext}}</div>
+            <div margin-top class="postText3">조회 {{postData.views}}</div>
+          </ion-col>
+        </ion-row>
+        <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 1%; background-color:#f1f1f1">
+        </div>
+      </ng-container>
+    </ion-grid>
+    <br>
+  </ng-container>
+
+  <ng-container *ngIf="mode==='hit'">
+    <ion-grid>
+      <ion-row justify-content-between align-items-center>
+        <div *ngIf="communityBeautyLoadData" class="test">#모르면손해 HIT({{communityBeautyLoadData.length}}개)</div>
+        <!-- <div (click)="select_popover()">팝오버 테스트</div> -->
+        <div *ngIf="sortButton" (click)="select_popover()"><img src="assets/img/svg/dropbox.svg" /></div>
+        <div *ngIf="!sortButton" (click)="select_popover()"><img src="assets/img/svg/dropboxCreate.svg" /></div>
+      </ion-row>
+    </ion-grid>
+    <br>
+    <ion-grid>
+      <ng-container *ngFor="let postData of communityBeautyLoadData; let i = index">
+        <ion-row (click)="openBrowser_ios(postData.posturl, postData.body, postData._id)" align-items-center>
+          <ion-col col-4>
+            <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{postData.filename}}" />
+          </ion-col>
+          <ion-col col-8>
+            <div class="postText1">{{postData.body}}</div>
+            <div class="postText2">{{postData.midtext}}</div>
+            <div margin-top class="postText3">조회 {{postData.views}}</div>
+          </ion-col>
+        </ion-row>
+        <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 1%; background-color:#f1f1f1">
+        </div>
+      </ng-container>
+    </ion-grid>
+    <br>
+  </ng-container>
+
+
+</ion-content>

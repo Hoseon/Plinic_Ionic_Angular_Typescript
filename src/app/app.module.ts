@@ -74,6 +74,8 @@ import { SkinReadyPageModule } from '../pages/skin-ready/skin-ready.module';
 import { CommunityModifyPage } from '../pages/community/community-modify/community-modify';
 import { CommunityWritePage } from '../pages/community/community-write/community-write';
 import { CommunityPageModule } from '../pages/community/community.module';
+import { CommunityTipPageModule } from '../pages/communityTip/communityTip.module';
+import { MovieTipPagePageModule } from '../pages/movieTip/movieTip.module';
 // import { CommunityModifyPageModule } from '../pages/community/community-modify/community-modify.module';
 // import { CommunityWritePageModule } from '../pages/community/community-write/community-write.module';
 // //import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
@@ -446,6 +448,8 @@ export function getAuthHttp(http, storage) {
     // DeviceSkinSensorIngPageModule,
     BeautyTipAddPageModule,
     CommunityPageModule,
+    CommunityTipPageModule,
+    MovieTipPagePageModule,
     // CommunityModifyPageModule,
     // CommunityWritePageModule,
     MissionStartPageModule,

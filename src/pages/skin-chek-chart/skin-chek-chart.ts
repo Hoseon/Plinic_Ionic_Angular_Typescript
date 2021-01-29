@@ -32,6 +32,7 @@ import { SkinChekPage } from "../skin-chek/skin-chek";
 import { MyinfoPage } from "../myinfo/myinfo";
 import { Geolocation } from "@ionic-native/geolocation";
 
+
 /**
  * Generated class for the SkinChekChartPage page.
  *
@@ -132,7 +133,7 @@ export class SkinChekChartPage {
 
   load1: boolean = false;
   load2: boolean = false;
- 
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -1159,6 +1160,6 @@ export class SkinChekChartPage {
     } else {
       //
     }
-    
+
   }
 }

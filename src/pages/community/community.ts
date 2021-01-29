@@ -13,7 +13,8 @@ import { Device } from '@ionic-native/device';
 import { MyinfoPage } from '../myinfo/myinfo'
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { SungwooBeautyPage } from '../sungwoo-beauty/sungwoo-beauty';
-
+import { CommunityTipPage } from '../communityTip/communityTip';
+import { MovieTipPage } from '../movieTip/movieTip';
 
 /**
  * Generated class for the CommunityPage page.
@@ -67,11 +68,16 @@ export class CommunityPage {
   movieData: any;
   // youTubeData: any;
   youTubeArrayData: Array<any> = new Array<any>();
+  youTubeHotArrayData: Array<any> = new Array<any>();
+  youTubePlinicArrayData: Array<any> = new Array<any>();
   isGetTube: boolean = false;
   @ViewChild(Slides) slides: Slides;
   videoDetailData: Array<any> = new Array<any>();
-
-
+  videoHotDetailData: Array<any> = new Array<any>();
+  newSlideData : any;
+  tipSlideData: any;
+  hit3Data: any;
+  movieHit3Data: any;
 
   constructor(
     public device: Device,
@@ -98,17 +104,28 @@ export class CommunityPage {
       
       this.images.getBeautyMovie().subscribe(data=> {
         this.movieData = data
-        if(data) {
-          for(let i = 0; i < data.length; i++) {
-            this.youTubeArrayData[i] = data[i].items[0];
-            this.getOneMovieData(data[i].items[0].id, i);
+        if (data) {
+          var k = 0;
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].items.length > 0) {
+              this.youTubeArrayData[k] = data[i].items[0];
+              k++;
+              this.getOneMovieData(data[i].items[0].id, i);  
+            }
           }
         }
+        console.log(this.youTubeArrayData);
       })
     });
   }
 
   async ionViewDidLoad() {
+    await this.getNewSlideData();
+    await this.getpostTipList3ea();
+    await this.getMovieList3ea();
+    await this.getMoviePlinicList3ea();
+    // await this.communityBeautyLoad();
+    await this.getpostHitList3ea();
     console.log('ionViewDidLoad CommunityPage');
   }
 
@@ -139,8 +156,8 @@ export class CommunityPage {
     // this.selectedTab(0);
     // this.showLoading();
     this.roadbeauty();
-    this.communityEditorBeautyLoad();
-    this.communityBeautyLoad();
+    // this.communityEditorBeautyLoad();
+    // this.communityBeautyLoad();
     this.beautyNoteLoad();
     this.beautyNoteMainLoad();
     this.skinQnaLoad();
@@ -867,6 +884,12 @@ export class CommunityPage {
     });  
   }
 
+  getOneHotMovieData(movieId, index) {
+    this.images.getOneBeautyMovie(movieId).subscribe(data=> {
+      this.videoHotDetailData[index] = data;
+    });  
+  }
+
   //20201125 안드로이드 백 버튼 처리
   androidBackButton() {
     if(this.platform.is('android')) {
@@ -875,5 +898,64 @@ export class CommunityPage {
       });
     }
   }
+
+  getNewSlideData() {
+    this.images.getNewSlideData().subscribe(data => {
+      this.newSlideData = data;
+    })
+  }
+
+  getpostTipList3ea() {
+    this.images.getpostTipList3ea().subscribe(data => {
+      this.tipSlideData = data;
+    })
+  }
+
+  getpostHitList3ea() {
+    this.images.getpostHitList3ea().subscribe(data => {
+      this.hit3Data = data;
+    })
+  }
+
+  getMovieList3ea() {
+    this.images.getMovieList3ea().subscribe(data => {
+      this.movieHit3Data = data;
+      if (data) {
+        var k = 0;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].items.length > 0) {
+            this.youTubeHotArrayData[k] = data[i].items[0];
+            k++;
+            this.getOneHotMovieData(data[i].items[0].id, i);
+          }
+        }  
+      }
+    });
+  }
+
+  getMoviePlinicList3ea() {
+    this.images.getMoviePlinicList3ea().subscribe(data => {
+      this.movieHit3Data = data;
+      if (data) {
+        var k = 0;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].items.length > 0) {
+            this.youTubePlinicArrayData[k] = data[i].items[0];
+            k++;
+            this.getOneHotMovieData(data[i].items[0].id, i);
+          }
+        }  
+      }
+    });
+  }
+
+  public communityTip(mode) {
+    this.nav.push(CommunityTipPage,{mode : mode});
+  }
+
+  public movieTip(mode) {
+    this.nav.push(MovieTipPage,{mode : mode});
+  }
+
 
  }
