@@ -5,6 +5,16 @@
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
 
+@font-face {
+  font-family: 'NotoSansKR';
+  src: url('../assets//fonts/NotoSansKR-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+ }
+ $font-family-base: "NotoSansKR";
+ $font-family-ios-base: $font-family-base;
+ $font-family-md-base: $font-family-base;
+ $font-family-wp-base: $font-family-base;
 
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:

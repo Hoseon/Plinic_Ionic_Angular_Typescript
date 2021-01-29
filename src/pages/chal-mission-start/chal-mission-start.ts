@@ -88,7 +88,7 @@ export class ChalMissionStartPage {
   chkStartDate : Date = new Date();
   isChkStartDate : boolean;
   startChallDate: any;
-  registerReply = { comment: '', id: '', date: new Date()};
+  registerReply = { comment: '', id: '', date: new Date(), body: '', title: '', name: ''};
   reply = { comment: '', id: '', email: '' };
   profileimg_url: any;
   @ViewChild('myInput') myInput: ElementRef;
@@ -250,6 +250,9 @@ export class ChalMissionStartPage {
 
   saveSkinQnaReply() {
     this.registerReply.id = this.carezoneData2._id;
+    this.registerReply.body = this.carezoneData2.body;
+    this.registerReply.title = this.carezoneData2.title;
+    this.registerReply.name = this.userData.nickname;
     if (this.userData.from === 'kakao' || this.userData.from === 'naver' || this.userData.from === 'google') {
       this.auth.replyCareZoneSave(this.userData, this.registerReply).subscribe(data => {
         if (data !== "") {
@@ -516,9 +519,9 @@ export class ChalMissionStartPage {
           }
           return 0;
         });
-        this.startDate = data.startmission.substr(0, 10);
-        this.endDate = data.endmission.substr(0, 10);
-        this.chkDate = new Date(data.endmission);
+        // this.startDate = data.startmission.substr(0, 10);
+        // this.endDate = data.endmission.substr(0, 10);
+        // this.chkDate = new Date(data.endmission);
         
         if (this.day === Number(this.carezoneData.day)){
           this.sameDay = true;
@@ -805,7 +808,8 @@ export class ChalMissionStartPage {
                 this.nav.push(ChalMissionIngPage, { carezoneData: carezoneData });
               }, error => {
                 // console.log("처리 실패 : " + JSON.stringify(carezoneData));
-                this.showError(JSON.parse(error._body).msg);
+                console.log(JSON.parse(error._body).msg);
+                // this.showError(JSON.parse(error._body).msg);
                 // this.nav.push(CareZoneMissionIngPage, { carezoneData: carezoneData });
               });
             

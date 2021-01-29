@@ -19,9 +19,76 @@ export class ImagesProvider {
   apiURL = 'http://plinic.cafe24app.com/';
   // apiURL = 'http://localhost:8001/';
   youTubeApiUrl = 'https://www.googleapis.com/youtube/v3/videos?';
-  
+
 
   constructor(public http: Http, private transfer: Transfer, private alertCtrl: AlertController) { }
+
+  
+  public getMoviePlinicListSortCreate() {
+    return this.http.get(this.apiURL + 'beautyMovie/getMoviePlinicListSortCreate')
+      .map(response => response.json());
+  }
+
+  public getMoviePlinicListSortView() {
+    return this.http.get(this.apiURL + 'beautyMovie/getMoviePlinicListSortView')
+      .map(response => response.json());
+  }
+
+  public getMovieListSortCreate() {
+    return this.http.get(this.apiURL + 'beautyMovie/getMovieListSortCreate')
+      .map(response => response.json());
+  }
+
+  public getMovieListSortView() {
+    return this.http.get(this.apiURL + 'beautyMovie/getMovieListSortView')
+      .map(response => response.json());
+  }
+
+  public getMovieList3ea() {
+    return this.http.get(this.apiURL + 'beautyMovie/getMovieList3ea')
+      .map(response => response.json());
+  }
+
+  public getMoviePlinicList3ea() {
+    return this.http.get(this.apiURL + 'beautyMovie/getMoviePlinicList3ea')
+      .map(response => response.json());
+  }
+
+  public getpostHitList3ea() {
+    return this.http.get(this.apiURL + 'commubeauty/getpostHitList3ea')
+      .map(response => response.json());
+  }
+
+  public postHitListSortCreate() {
+    return this.http.get(this.apiURL + 'commubeauty/postHitListSortCreate')
+      .map(response => response.json());
+  }
+
+  public postHitListSortView() {
+    return this.http.get(this.apiURL + 'commubeauty/postHitListSortView')
+      .map(response => response.json());
+  }
+
+
+  public postListSortCreate() {
+    return this.http.get(this.apiURL + 'commubeauty/postListSortCreate')
+      .map(response => response.json());
+  }
+
+  public postListSortView() {
+    return this.http.get(this.apiURL + 'commubeauty/postListSortView')
+      .map(response => response.json());
+  }
+
+  public getpostTipList3ea() {
+    return this.http.get(this.apiURL + 'commubeauty/postTipList3ea')
+      .map(response => response.json());
+  }
+
+  public getNewSlideData() {
+    return this.http.get(this.apiURL + 'commubeauty/postNewList')
+      .map(response => response.json());
+  }
 
   //현재 등록된 뷰티 영상 데이터 가져 오기 2020-11-17
   public getBeautyMovie() {
@@ -199,7 +266,7 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
-  public beautyNoteMainLoad() {  
+  public beautyNoteMainLoad() {
     return this.http.get(this.apiURL + 'beautynote/editorlist')
       .map(response => response.json());
 
@@ -445,27 +512,27 @@ export class ImagesProvider {
 
 
   public getWeather(date, time) {
-    return this.http.get(this.apiURL + 'getweather/' + date + '/' + time) 
+    return this.http.get(this.apiURL + 'getweather/' + date + '/' + time)
       .map(response => response.json());
   }
 
   public getMise() {
-    return this.http.get(this.apiURL + 'getmise') 
+    return this.http.get(this.apiURL + 'getmise')
       .map(response => response.json());
   }
 
   public getUv() {
-    return this.http.get(this.apiURL + 'getsun') 
+    return this.http.get(this.apiURL + 'getsun')
       .map(response => response.json());
   }
 
   public getProductDetail(product_num) {
-    return this.http.get(this.apiURL + 'getProductFindOne/' + product_num) 
+    return this.http.get(this.apiURL + 'getProductFindOne/' + product_num)
       .map(response => response.json());
   }
 
   public getAvgPore(age, gender) {
-    return this.http.get(this.apiURL + 'getSkinAnalyAge/' + age + '/' + gender) 
+    return this.http.get(this.apiURL + 'getSkinAnalyAge/' + age + '/' + gender)
       .map(response => response.json());
   }
 
@@ -498,5 +565,7 @@ export class ImagesProvider {
     return this.http.get(this.apiURL + 'getOpenCurrentWeather/' + lat + '/' + lon)
       .map(response => response.json());
   }
+
+  
 
 }

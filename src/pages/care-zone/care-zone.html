@@ -24,7 +24,7 @@
  
 
   <ion-list *ngFor="let carezone of carezoneData; let i = index">
-    <ng-container *ngIf="endmission[i] > currentDate">
+    <!-- <ng-container *ngIf="endmission[i] > currentDate"> -->
       <ion-row class="row">
         <ion-col class="container" (click)="mission_start(carezone)">
           <img class="imagealign" src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezone.filename}}' />
@@ -53,10 +53,10 @@
           {{carezone.body}}
         </ion-col>
       </ion-row><br>
-    </ng-container>
+    <!-- </ng-container> -->
   </ion-list>
 
-  <ion-list *ngFor="let carezone of carezoneData; let i = index">
+  <!-- <ion-list *ngFor="let carezone of carezoneData; let i = index">
     <ng-container *ngIf="endmission[i] < currentDate">
       <ion-row class="row">
         <ion-col class="container" (click)="mission_start(carezone)">
@@ -76,9 +76,9 @@
         <ion-col class="sub">
           {{carezone.body}}
         </ion-col>
-      </ion-row>
+      </ion-row> -->
       <!-- 참가 인원 이미지 추가  -->
-      <br>
+      <!-- <br> -->
       <!-- <ion-row>
         <ng-container *ngFor="let mission of missionmember[i]; let k = index">
           <ng-container *ngIf="k <= 3">
@@ -98,8 +98,8 @@
 
 
       </ion-row> -->
-    </ng-container>
-  </ion-list>
+    <!-- </ng-container> -->
+  <!-- </ion-list> -->
 
 
 

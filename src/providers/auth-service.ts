@@ -1,20 +1,19 @@
-import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
-import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
-import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
-import { Storage } from '@ionic/storage';
-import { BehaviorSubject } from 'rxjs';
-import { Platform, AlertController, Config, Loading, LoadingController } from 'ionic-angular';
+import {Headers, Http, RequestOptions} from '@angular/http';
+import {AuthHttp, JwtHelper, tokenNotExpired} from 'angular2-jwt';
+import {Storage} from '@ionic/storage';
+import {BehaviorSubject} from 'rxjs';
+import {AlertController, Loading, LoadingController, Platform} from 'ionic-angular';
 // import { BluetoothLE } from '@ionic-native/bluetooth-le';
-import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
+import {AuthTypes, KakaoCordovaSDK} from 'kakao-sdk';
 // import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
-import { GooglePlus } from '@ionic-native/google-plus';
-import { Naver } from 'ionic-plugin-naver';
-import { FCM } from '@ionic-native/fcm';
-import { Transfer, TransferObject, FileUploadOptions } from '@ionic-native/transfer'
-import { BLE } from '@ionic-native/ble';
-import { reject } from 'q';
+import {GooglePlus} from '@ionic-native/google-plus';
+import {Naver} from 'ionic-plugin-naver';
+import {FCM} from '@ionic-native/fcm';
+import {FileUploadOptions, Transfer, TransferObject} from '@ionic-native/transfer'
+import {BLE} from '@ionic-native/ble';
+
 declare var cordova: any;
 // declare var SignInWithApple: any;
 
@@ -80,17 +79,17 @@ export class AuthService {
   loading: Loading;
 
   constructor(
-    private ble: BLE, 
-    private transfer: Transfer, 
-    private http: Http, 
-    public authHttp: AuthHttp, 
+    private ble: BLE,
+    private transfer: Transfer,
+    private http: Http,
+    public authHttp: AuthHttp,
     public storage: Storage,
-    public _kakaoCordovaSDK: KakaoCordovaSDK, 
-    private platform: Platform, 
+    public _kakaoCordovaSDK: KakaoCordovaSDK,
+    private platform: Platform,
     private alertCtrl: AlertController,
     // private facebook: Facebook,
     private google: GooglePlus,
-    // public bluetoothle: BluetoothLE, 
+    // public bluetoothle: BluetoothLE,
     public naver: Naver,
     private fcm: FCM,
     public loadingCtrl: LoadingController
@@ -218,7 +217,7 @@ export class AuthService {
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization',
       'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
-    let option = new RequestOptions({ headers: headers });
+    let option = new RequestOptions({headers: headers});
     let payload = {
       "notification": {
         "title": sname,
@@ -261,38 +260,38 @@ export class AuthService {
     console.log("네이버 로그인 시작 ----------------------------------------------------------");
     this.naver.login()
       .then(response => {
-        this.userData = {
-          accessToken: response['accessToken'],
-          pushtoken: this.pushToken,
-          from: 'naver'
+          this.userData = {
+            accessToken: response['accessToken'],
+            pushtoken: this.pushToken,
+            from: 'naver'
+          }
+          this.naver.requestMe()
+            .then(response2 => {
+              this.userData = {
+                accessToken: response['accessToken'],
+                pushtoken: this.pushToken,
+                email: response2.response.email,
+                nickname: response2.response.name,
+                id: response2.response.id,
+                from: 'naver'
+              }
+              // this.userData.email = response.response.email;
+              // this.userData.nickname = response.response.name;
+              // this.userData.id = response.response.id;
+              console.log("userdata ::: " + JSON.stringify(this.userData))
+              if (this.userData !== '') {
+                this.registerSnS(this.userData).subscribe(data => {
+                  console.log("성공임");
+                }, error => {
+                  console.log("에러임");
+                })
+                this.storage.set('userData', this.userData);
+                this.authenticationState.next(true);
+                return this.userData;
+              }
+            }) // 성공
+            .catch(error => console.error(error)); //
         }
-        this.naver.requestMe()
-          .then(response2 => {
-            this.userData = {
-              accessToken: response['accessToken'],
-              pushtoken: this.pushToken,
-              email: response2.response.email,
-              nickname: response2.response.name,
-              id: response2.response.id,
-              from: 'naver'
-            }
-            // this.userData.email = response.response.email;
-            // this.userData.nickname = response.response.name;
-            // this.userData.id = response.response.id;
-            console.log("userdata ::: " + JSON.stringify(this.userData))
-            if (this.userData !== '') {
-              this.registerSnS(this.userData).subscribe(data => {
-                console.log("성공임");
-              }, error => {
-                console.log("에러임");
-              })
-              this.storage.set('userData', this.userData);
-              this.authenticationState.next(true);
-              return this.userData;
-            }
-          }) // 성공
-          .catch(error => console.error(error)); //
-      }
       )
       .catch(error => console.error(error)); // 실패
     // if (this.userData !== '') {
@@ -302,9 +301,9 @@ export class AuthService {
     // }
   }
 
-   public naver_promise() {
+  public naver_promise() {
     return new Promise((resolve, reject) => {
-        this.naver.login()
+      this.naver.login()
         .then(response => {
           this.userData = {
             accessToken: response['accessToken'],
@@ -312,41 +311,41 @@ export class AuthService {
             from: 'naver'
           }
           this.naver.requestMe()
-          .then(response2 => {
-            this.userData = {
-              accessToken: response['accessToken'],
-              pushtoken: this.pushToken,
-              email: response2.response.email,
-              nickname: response2.response.name,
-              id: response2.response.id,
-              from: 'naver'
-            }
-            console.log("userdata ::: " + JSON.stringify(this.userData))
-            if (this.userData !== '') {
-              this.snsexists(this.userData.email).subscribe(result=> {
-                if(result) {
-                  this.userData = {
-                    birthday: result.user.birthday,
-                    email: result.user.email,
-                    gender: result.user.gender,
-                    nickname: result.user.name,
-                    skincomplaint: result.user.skincomplaint,
-                    country: result.user.country,
-                    from: result.user.from,
-                    snsid: result.user.snsid
+            .then(response2 => {
+              this.userData = {
+                accessToken: response['accessToken'],
+                pushtoken: this.pushToken,
+                email: response2.response.email,
+                nickname: response2.response.name,
+                id: response2.response.id,
+                from: 'naver'
+              }
+              console.log("userdata ::: " + JSON.stringify(this.userData))
+              if (this.userData !== '') {
+                this.snsexists(this.userData.email).subscribe(result => {
+                  if (result) {
+                    this.userData = {
+                      birthday: result.user.birthday,
+                      email: result.user.email,
+                      gender: result.user.gender,
+                      nickname: result.user.name,
+                      skincomplaint: result.user.skincomplaint,
+                      country: result.user.country,
+                      from: result.user.from,
+                      snsid: result.user.snsid
+                    }
+                    this.storage.set('userData', this.userData);
+                    this.authenticationState.next(true);
+                    return result;
                   }
-                  this.storage.set('userData', this.userData);
-                  this.authenticationState.next(true);
-                  return result;
-                }
-                if(!result) { //addinfo page로 보내 신규 사용자 등록 절차를 진행한다.
-                  resolve(this.userData);
-                }
-              })
-            }
-          }).catch(error => console.error(error));
+                  if (!result) { //addinfo page로 보내 신규 사용자 등록 절차를 진행한다.
+                    resolve(this.userData);
+                  }
+                })
+              }
+            }).catch(error => console.error(error));
         });
-        
+
       // reject('naver promise reject');
     })
   }
@@ -380,7 +379,6 @@ export class AuthService {
     // }
     // );
   }
-
 
 
   checkToken() {
@@ -439,7 +437,7 @@ export class AuthService {
   public google_login_promise() {
     return new Promise((resolve, reject) => {
 
-    
+
       this.google.login({})
         .then(res => {
           //console.log(res)
@@ -458,28 +456,28 @@ export class AuthService {
             from: 'google'
           };
           console.log("userdata ::: " + JSON.stringify(this.userData))
-            if (this.userData !== '') {
-              this.snsexists(this.userData.email).subscribe(result=> {
-                if(result) {
-                  this.userData = {
-                    birthday: result.user.birthday,
-                    email: result.user.email,
-                    gender: result.user.gender,
-                    nickname: result.user.name,
-                    skincomplaint: result.user.skincomplaint,
-                    country: result.user.country,
-                    from: result.user.from,
-                    snsid: result.user.snsid
-                  }
-                  this.storage.set('userData', this.userData);
-                  this.authenticationState.next(true);
-                  return result;
+          if (this.userData !== '') {
+            this.snsexists(this.userData.email).subscribe(result => {
+              if (result) {
+                this.userData = {
+                  birthday: result.user.birthday,
+                  email: result.user.email,
+                  gender: result.user.gender,
+                  nickname: result.user.name,
+                  skincomplaint: result.user.skincomplaint,
+                  country: result.user.country,
+                  from: result.user.from,
+                  snsid: result.user.snsid
                 }
-                if(!result) { //addinfo page로 보내 신규 사용자 등록 절차를 진행한다.
-                  resolve(this.userData);
-                }
-              })
-            }
+                this.storage.set('userData', this.userData);
+                this.authenticationState.next(true);
+                return result;
+              }
+              if (!result) { //addinfo page로 보내 신규 사용자 등록 절차를 진행한다.
+                resolve(this.userData);
+              }
+            })
+          }
         })
         .catch(err => {
           this.showAlert("Google에 로그인하지 못했습니다. 관리자에게 문의하세요." + err)
@@ -490,23 +488,23 @@ export class AuthService {
 
   // 애플 로그인 추가 2019-07-02 추호선
   public apple_login() {
-    cordova.plugins.SignInWithApple.signin (
-      { requestedScopes: [0, 1] },
-      (appleLoginResponse : any) => {
-        console.log (appleLoginResponse)
+    cordova.plugins.SignInWithApple.signin(
+      {requestedScopes: [0, 1]},
+      (appleLoginResponse: any) => {
+        console.log(appleLoginResponse)
         this.userData = {
-            accessToken: appleLoginResponse['authorizationCode'],
-            // id: appleLoginResponse['userId'],
-            //age_range: succ['age_range'],
-            //birthday: succ['birthday'],
-            email: this.jwtHelper.decodeToken(appleLoginResponse.identityToken).email,
-            //gender: succ['gender'],
-            nickname: appleLoginResponse['fullName'].familyName + appleLoginResponse['fullName'].givenName,
-            //profile_image: succ['profile_image'],
-            // thumbnail_image: succ['imageUrl'],
-            //use_email: succ['has_email'],
-            pushtoken: '',
-            from: 'apple'
+          accessToken: appleLoginResponse['authorizationCode'],
+          // id: appleLoginResponse['userId'],
+          //age_range: succ['age_range'],
+          //birthday: succ['birthday'],
+          email: this.jwtHelper.decodeToken(appleLoginResponse.identityToken).email,
+          //gender: succ['gender'],
+          nickname: appleLoginResponse['fullName'].familyName + appleLoginResponse['fullName'].givenName,
+          //profile_image: succ['profile_image'],
+          // thumbnail_image: succ['imageUrl'],
+          //use_email: succ['has_email'],
+          pushtoken: '',
+          from: 'apple'
         };
         this.registerSnS(this.userData).subscribe(data => {
           console.log("성공임");
@@ -517,19 +515,19 @@ export class AuthService {
         this.authenticationState.next(true);
         return this.userData;
       },
-      (err : any) => {
-        console.error ("애플로 로그인 에러 발생 : " + err)
-        console.log ("애플로 로그인 에러 발생 : " +  JSON.stringify (err))
+      (err: any) => {
+        console.error("애플로 로그인 에러 발생 : " + err)
+        console.log("애플로 로그인 에러 발생 : " + JSON.stringify(err))
       })
   }
 
   public async apple_login_promise() {
     return new Promise((resolve, reject) => {
-    cordova.plugins.SignInWithApple.signin (
-      { requestedScopes: [0, 1] },
-      (appleLoginResponse : any) => {
-        console.log (appleLoginResponse)
-        this.userData = {
+      cordova.plugins.SignInWithApple.signin(
+        {requestedScopes: [0, 1]},
+        (appleLoginResponse: any) => {
+          console.log(appleLoginResponse)
+          this.userData = {
             accessToken: appleLoginResponse['authorizationCode'],
             // id: appleLoginResponse['userId'],
             //age_range: succ['age_range'],
@@ -542,37 +540,37 @@ export class AuthService {
             //use_email: succ['has_email'],
             pushtoken: '',
             from: 'apple'
-        };
+          };
 
-        if (this.userData !== '') {
-          this.snsexists(this.userData.email).subscribe(result=> {
-            if(result) {
-              this.userData = {
-                birthday: result.user.birthday,
-                email: result.user.email,
-                gender: result.user.gender,
-                nickname: result.user.name,
-                skincomplaint: result.user.skincomplaint,
-                country: result.user.country,
-                from: result.user.from,
-                snsid: result.user.snsid
+          if (this.userData !== '') {
+            this.snsexists(this.userData.email).subscribe(result => {
+              if (result) {
+                this.userData = {
+                  birthday: result.user.birthday,
+                  email: result.user.email,
+                  gender: result.user.gender,
+                  nickname: result.user.name,
+                  skincomplaint: result.user.skincomplaint,
+                  country: result.user.country,
+                  from: result.user.from,
+                  snsid: result.user.snsid
+                }
+                this.storage.set('userData', this.userData);
+                this.authenticationState.next(true);
+                return result;
               }
-              this.storage.set('userData', this.userData);
-              this.authenticationState.next(true);
-              return result;
-            }
-            if(!result) { //addinfo page로 보내 신규 사용자 등록 절차를 진행한다.
-              resolve(this.userData);
-            }
-          })
-        }
-        console.log(this.jwtHelper.decodeToken(appleLoginResponse.identityToken));
+              if (!result) { //addinfo page로 보내 신규 사용자 등록 절차를 진행한다.
+                resolve(this.userData);
+              }
+            })
+          }
+          console.log(this.jwtHelper.decodeToken(appleLoginResponse.identityToken));
 
-      },
-      (err : any) => {
-        console.error (err)
-        console.log ( JSON.stringify (err))
-      });
+        },
+        (err: any) => {
+          console.error(err)
+          console.log(JSON.stringify(err))
+        });
     }).catch(err => {
       alert("Apple에 로그인하지 못했습니다. 관리자에게 문의하세요." + err)
     });
@@ -593,108 +591,108 @@ export class AuthService {
   // }
 
   public kakao_login() {
-        let loginOptions = {};
-        loginOptions['authTypes'] = [
-          // AuthTypes.AuthTypeTalk,
-          // AuthTypes.AuthTypeStory,
-          AuthTypes.AuthTypeAccount
-        ];
-        console.log("카카오 로그인 시작 ::::::::::::::");
-        this._kakaoCordovaSDK.login(loginOptions).then((res) => {
-          console.log("카카오 로그인 성공 ::::::::::::::");
-          this.userData = {
-            accessToken: res.accessToken,
-            id: res.id,
-            age_range: res.kakao_account['age_range'],
-            birthday: res.kakao_account['birthday'],
-            email: res.kakao_account['email'],
-            gender: res.kakao_account['gender'],
-            nickname: res.properties['nickname'],
-            profile_image: res.properties['profile_image'],
-            thumbnail_image: res.properties['thumbnail_image'],
-            use_email: res.kakao_account['has_email'],
-            pushtoken: this.pushToken,
-            from: 'kakao'
-          };
-          this.registerSnS(this.userData).subscribe(data => {
-            console.log("성공임");
-          }, error => {
-            console.log("에러임");
-          })
-          this.currentUser = res.properties['nickname'];
-          this.storage.set('userData', this.userData);
-          // console.log(JSON.stringify(this.userData))
-          this.authenticationState.next(true);
-          return this.userData;
-        }).catch((err) => {
-          console.log("kakao ---------------------- err" + err);
-        })
-    }
+    let loginOptions = {};
+    loginOptions['authTypes'] = [
+      // AuthTypes.AuthTypeTalk,
+      // AuthTypes.AuthTypeStory,
+      AuthTypes.AuthTypeAccount
+    ];
+    console.log("카카오 로그인 시작 ::::::::::::::");
+    this._kakaoCordovaSDK.login(loginOptions).then((res) => {
+      console.log("카카오 로그인 성공 ::::::::::::::");
+      this.userData = {
+        accessToken: res.accessToken,
+        id: res.id,
+        age_range: res.kakao_account['age_range'],
+        birthday: res.kakao_account['birthday'],
+        email: res.kakao_account['email'],
+        gender: res.kakao_account['gender'],
+        nickname: res.properties['nickname'],
+        profile_image: res.properties['profile_image'],
+        thumbnail_image: res.properties['thumbnail_image'],
+        use_email: res.kakao_account['has_email'],
+        pushtoken: this.pushToken,
+        from: 'kakao'
+      };
+      this.registerSnS(this.userData).subscribe(data => {
+        console.log("성공임");
+      }, error => {
+        console.log("에러임");
+      })
+      this.currentUser = res.properties['nickname'];
+      this.storage.set('userData', this.userData);
+      // console.log(JSON.stringify(this.userData))
+      this.authenticationState.next(true);
+      return this.userData;
+    }).catch((err) => {
+      console.log("kakao ---------------------- err" + err);
+    })
+  }
 
-  
-    public kakao_login_promise() {
-      return new Promise((resolve, reject) => {
-          let loginOptions = {};
-          loginOptions['authTypes'] = [
-            // AuthTypes.AuthTypeTalk,
-            // AuthTypes.AuthTypeStory,
-            AuthTypes.AuthTypeAccount
-          ];
-          console.log("카카오 로그인 시작 ::::::::::::::");
-          this._kakaoCordovaSDK.login(loginOptions).then((res) => {
-            console.log("카카오 로그인 성공 ::::::::::::::");
-            this.userData = {
-              accessToken: res.accessToken,
-              id: res.id,
-              age_range: res.kakao_account['age_range'],
-              birthday: res.kakao_account['birthday'],
-              email: res.kakao_account['email'],
-              gender: res.kakao_account['gender'],
-              nickname: res.properties['nickname'],
-              profile_image: res.properties['profile_image'],
-              thumbnail_image: res.properties['thumbnail_image'],
-              use_email: res.kakao_account['has_email'],
-              pushtoken: this.pushToken,
-              from: 'kakao'
-            };
-            // console.log("userdata ::: " + JSON.stringify(this.userData))
-            if (this.userData !== '') {
-              this.snsexists(this.userData.email).subscribe(result=> {
-                if(result) {
-                  this.userData = {
-                    birthday: result.user.birthday,
-                    email: result.user.email,
-                    gender: result.user.gender,
-                    nickname: result.user.name,
-                    skincomplaint: result.user.skincomplaint,
-                    country: result.user.country,
-                    from: result.user.from,
-                    snsid: result.user.snsid
-                  }
-                  this.storage.set('userData', this.userData);
-                  this.authenticationState.next(true);
-                  return result;
-                }
-                if(!result) { //addinfo page로 보내 신규 사용자 등록 절차를 진행한다.
-                  resolve(this.userData);
-                }
-              })
+
+  public kakao_login_promise() {
+    return new Promise((resolve, reject) => {
+      let loginOptions = {};
+      loginOptions['authTypes'] = [
+        // AuthTypes.AuthTypeTalk,
+        // AuthTypes.AuthTypeStory,
+        AuthTypes.AuthTypeAccount
+      ];
+      console.log("카카오 로그인 시작 ::::::::::::::");
+      this._kakaoCordovaSDK.login(loginOptions).then((res) => {
+        console.log("카카오 로그인 성공 ::::::::::::::");
+        this.userData = {
+          accessToken: res.accessToken,
+          id: res.id,
+          age_range: res.kakao_account['age_range'],
+          birthday: res.kakao_account['birthday'],
+          email: res.kakao_account['email'],
+          gender: res.kakao_account['gender'],
+          nickname: res.properties['nickname'],
+          profile_image: res.properties['profile_image'],
+          thumbnail_image: res.properties['thumbnail_image'],
+          use_email: res.kakao_account['has_email'],
+          pushtoken: this.pushToken,
+          from: 'kakao'
+        };
+        // console.log("userdata ::: " + JSON.stringify(this.userData))
+        if (this.userData !== '') {
+          this.snsexists(this.userData.email).subscribe(result => {
+            if (result) {
+              this.userData = {
+                birthday: result.user.birthday,
+                email: result.user.email,
+                gender: result.user.gender,
+                nickname: result.user.name,
+                skincomplaint: result.user.skincomplaint,
+                country: result.user.country,
+                from: result.user.from,
+                snsid: result.user.snsid
+              }
+              this.storage.set('userData', this.userData);
+              this.authenticationState.next(true);
+              return result;
             }
-            // this.registerSnS(this.userData).subscribe(data => {
-              // console.log("성공임");
-            // }, error => {
-            //   console.log("에러임");
-            // })
-            // this.currentUser = res.properties['nickname'];
-            // this.storage.set('userData', this.userData);
-            // console.log(JSON.stringify(this.userData))
-            // this.authenticationState.next(true);
-            // return this.userData;
-          }).catch((err) => {
-            console.log("kakao ---------------------- err" + err);
+            if (!result) { //addinfo page로 보내 신규 사용자 등록 절차를 진행한다.
+              resolve(this.userData);
+            }
           })
-        })
-      }
+        }
+        // this.registerSnS(this.userData).subscribe(data => {
+        // console.log("성공임");
+        // }, error => {
+        //   console.log("에러임");
+        // })
+        // this.currentUser = res.properties['nickname'];
+        // this.storage.set('userData', this.userData);
+        // console.log(JSON.stringify(this.userData))
+        // this.authenticationState.next(true);
+        // return this.userData;
+      }).catch((err) => {
+        console.log("kakao ---------------------- err" + err);
+      })
+    })
+  }
 
   public async kakao_authlogout() {
     await this.deleteToken();
@@ -715,7 +713,6 @@ export class AuthService {
     //   this.google.disconnect();
     // }
   }
-
 
 
   // Login a user with email + password and store the JWT
@@ -742,7 +739,7 @@ export class AuthService {
 
     console.log("qna : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/qnasave', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/qnasave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -762,7 +759,7 @@ export class AuthService {
 
     console.log("ReplySave : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/replysave', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/replysave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -783,7 +780,7 @@ export class AuthService {
 
     console.log("ReplySave : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/replysave', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/replysave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -803,7 +800,7 @@ export class AuthService {
 
     console.log("Replyupdate : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/replyupdate', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/replyupdate', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -823,7 +820,7 @@ export class AuthService {
 
     console.log("Replydelete : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/replydelete', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/replydelete', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -843,7 +840,7 @@ export class AuthService {
     console.log("ReplySave : " + JSON.stringify(body));
     console.log("등록될 ID : " + id);
 
-    return this.http.post(CONFIG.apiUrl + 'beautymovie/'+ id+ '/topcomments', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'beautymovie/' + id + '/topcomments', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -863,7 +860,7 @@ export class AuthService {
     console.log("ReplySave : " + JSON.stringify(body));
     console.log("등록될 ID : " + id);
 
-    return this.http.post(CONFIG.apiUrl + 'beautymovie/'+ id+ '/recomments', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'beautymovie/' + id + '/recomments', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -884,7 +881,7 @@ export class AuthService {
 
     console.log("ReplySave : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/replyskinqnasave', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/replyskinqnasave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -905,7 +902,7 @@ export class AuthService {
 
     console.log("ReplySave : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/replyskinqnasave', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/replyskinqnasave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -925,7 +922,7 @@ export class AuthService {
 
     console.log("Replyupdate : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/replyskinqnaupdate', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/replyskinqnaupdate', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -945,7 +942,7 @@ export class AuthService {
 
     console.log("Replydelete : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/replyskinqnadelete', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/replyskinqnadelete', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -967,7 +964,7 @@ export class AuthService {
 
     console.log("qna : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/qnaupdate', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/qnaupdate', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -988,7 +985,7 @@ export class AuthService {
       tags: content.tags,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/notesave', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/notesave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1080,16 +1077,13 @@ export class AuthService {
       tags: content.tags,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/noteupdate', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/noteupdate', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
         return data;
       });
   }
-
-
-
 
 
   public qnaImageUpdate(email, content, img) {
@@ -1140,7 +1134,7 @@ export class AuthService {
       tags: content.tags,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/skinqnaupdate', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/skinqnaupdate', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1171,7 +1165,7 @@ export class AuthService {
 
     console.log("note : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/skinqnasave', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/skinqnasave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1229,7 +1223,7 @@ export class AuthService {
 
     // console.log("skinChartSave Data : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/skinchartsave', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/skinchartsave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1251,7 +1245,7 @@ export class AuthService {
 
     console.log("qna : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/skinchartupdate', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/skinchartupdate', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1275,7 +1269,7 @@ export class AuthService {
       userImageFilename: userimagefile,
       filename: filename
     };
-    return this.http.post(CONFIG.apiUrl + 'api/missionsave', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/missionsave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
@@ -1300,7 +1294,7 @@ export class AuthService {
       userImageFilename: userimagefile,
       filename: filename
     };
-    return this.http.post(CONFIG.apiUrl + 'api/challengesave', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/challengesave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
@@ -1363,7 +1357,7 @@ export class AuthService {
       from: userData.from,
       snsid: userData.snsid,
     };
-    return this.http.post(CONFIG.apiUrl + 'api/registersns', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/registersns', JSON.stringify(body), {headers: headers})
       .map(response => response.json())
       .map(data => {
         this.userData = {
@@ -1511,7 +1505,6 @@ export class AuthService {
   //20190614 미션 시작시 mission 테이블에 post 정보를 날려 저장
 
 
-
   showAlert(text) {
     //this.loading.dismiss();
 
@@ -1522,7 +1515,6 @@ export class AuthService {
     });
     alert.present();
   }
-
 
 
   ///ble 개발 향후 별도 provider 분리 필요
@@ -1634,7 +1626,6 @@ export class AuthService {
   }
 
 
-
   public missionPointUpdate(id, email, points) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -1647,7 +1638,7 @@ export class AuthService {
 
     // console.log("missionPointUpdate : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/pointupdate', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/pointupdate', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1667,7 +1658,7 @@ export class AuthService {
 
     // console.log("missionPointUpdate : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/challengeUpdate', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/challengeUpdate', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1687,7 +1678,7 @@ export class AuthService {
 
     // console.log("missionPointUpdate : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/challengeUpdate2', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/challengeUpdate2', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1704,7 +1695,7 @@ export class AuthService {
       chulcheck: chulcheck,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/chulsuk', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/chulsuk', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1721,14 +1712,14 @@ export class AuthService {
       skinreport: skinreport,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/skinReport', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/skinReport', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
         return data;
       });
   }
-  
+
 
   public userTimeUpdate(email, points) {
     let headers = new Headers();
@@ -1739,7 +1730,7 @@ export class AuthService {
       points: points,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/usetimeupdate', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/usetimeupdate', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1754,23 +1745,21 @@ export class AuthService {
 
     let body = {
       email: email,
-      userpoint : {
+      userpoint: {
         point: points,
-        updatedAt : new Date(),
-        status : true
+        updatedAt: new Date(),
+        status: true
       },
       points: points,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/usepointupdate', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/usepointupdate', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
         return data;
       });
   }
-
-
 
 
   public getmissionPoint(id, email) {
@@ -1787,11 +1776,14 @@ export class AuthService {
       img_url: userData.thumbnail_image,
       id: content.id,
       comment: content.comment,
+      body: content.body,
+      title: content.title,
+      name: content.name,
     };
 
     console.log("ReplySave : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/replycarezonesave', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/replycarezonesave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1811,7 +1803,7 @@ export class AuthService {
 
     console.log("Replyupdate : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/replycarezoneupdate', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/replycarezoneupdate', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1831,7 +1823,7 @@ export class AuthService {
 
     console.log("Replydelete : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/replycarezonedelete', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/replycarezonedelete', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1877,10 +1869,10 @@ export class AuthService {
       bname: content.bname,
       buildingName: content.buildingName,
       phoneNumber: content.phoneNumber,
-      postemail: content.email,
+      postemail: content.postemail,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/rewardsave', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/rewardsave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1910,11 +1902,11 @@ export class AuthService {
       bname: content.bname,
       buildingName: content.buildingName,
       phoneNumber: content.phoneNumber,
-      postemail: content.email,
+      postemail: content.postemail,
       review: content.review,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/rewardchallengesave', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/rewardchallengesave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1937,7 +1929,7 @@ export class AuthService {
       nickname: nickname,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/userupdatenickname', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/userupdatenickname', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
@@ -1954,7 +1946,7 @@ export class AuthService {
       skincomplaint: skincomplaint,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/updateskincomplaint', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/updateskincomplaint', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
@@ -1973,7 +1965,7 @@ export class AuthService {
 
     // console.log("missionPointUpdate : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/snspointupdate', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/snspointupdate', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -1987,7 +1979,7 @@ export class AuthService {
 
     var age = user.birthday;
     console.log("사용자 생일 데이터는?" + age);
-    age = age.substr(0,4);
+    age = age.substr(0, 4);
     age = Number(2020) - Number(age);
     console.log("나이는? :" + age);
     // let body = {
@@ -2032,7 +2024,7 @@ export class AuthService {
 
     var age = user.birthday;
     console.log("사용자 생일 데이터는?" + age);
-    age = age.substr(0,4);
+    age = age.substr(0, 4);
     age = Number(2020) - Number(age);
     console.log("나이는? :" + age);
     // let body = {
@@ -2076,7 +2068,7 @@ export class AuthService {
 
     var age = user.birthday;
     console.log("사용자 생일 데이터는?" + age);
-    age = age.substr(0,4);
+    age = age.substr(0, 4);
     age = Number(2020) - Number(age);
     console.log("나이는? :" + age);
     // let body = {
@@ -2120,7 +2112,7 @@ export class AuthService {
     headers.append("Content-Type", "application/json");
 
     var age = user.birthday;
-    age = age.substr(0,4);
+    age = age.substr(0, 4);
     age = 2020 - Number(age);
     console.log("나이는? :" + age);
     // let body = {
@@ -2186,7 +2178,7 @@ export class AuthService {
       email: email,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/loaduser', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/loaduser', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         // console.log(data);
@@ -2201,44 +2193,44 @@ export class AuthService {
     var headers = new Headers();
     var phoneNumber = credentials.phonenumber.replace(/-/gi, "");
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    let options = new RequestOptions({ headers: headers });
-    let body =  "UsrPassword=" + credentials.password  + 
-                "&UsrName=" + credentials.name + 
-                "&UsrPhone=" + phoneNumber + 
-                "&UsrEmail=" + credentials.email + 
-                "&UsrIsAgrdToUse=" + 'true' + 
-                "&UsrIsAgrdPrivacy=" + 'true' +
-                "&UsrIsEmailMrktAgrd=" + 'true' +
-                "&UsrIsSmsMrktAgrd=" + 'true' +
-                "&UsrSex=" + credentials.gender +
-                "&UsrSkin=" + credentials.skincomplaint +
-                "&UsrBirthday=" + credentials.birthday;
-    return this.http.post(CONFIG.subapiUrl + 'Users/PlinicSignup' ,body,options)
-    .map(res => res.json())
-    .map(data => {
-      return data;
-    }, err => {
-      console.log("Error : " + err);
-    })
+    let options = new RequestOptions({headers: headers});
+    let body = "UsrPassword=" + credentials.password +
+      "&UsrName=" + credentials.name +
+      "&UsrPhone=" + phoneNumber +
+      "&UsrEmail=" + credentials.email +
+      "&UsrIsAgrdToUse=" + 'true' +
+      "&UsrIsAgrdPrivacy=" + 'true' +
+      "&UsrIsEmailMrktAgrd=" + 'true' +
+      "&UsrIsSmsMrktAgrd=" + 'true' +
+      "&UsrSex=" + credentials.gender +
+      "&UsrSkin=" + credentials.skincomplaint +
+      "&UsrBirthday=" + credentials.birthday;
+    return this.http.post(CONFIG.subapiUrl + 'Users/PlinicSignup', body, options)
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      }, err => {
+        console.log("Error : " + err);
+      })
   }
 
   public plinicShopAddPoint(email, point, reason) {
     // let url = "http://localhost/Users/PlinicSignup";
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    let options = new RequestOptions({ headers: headers });
-    let body =  "id=" + email  + 
-                "&point=" + point + 
-                "&expire=" + 1096 +
-                "&reason=" + reason; 
+    let options = new RequestOptions({headers: headers});
+    let body = "id=" + email +
+      "&point=" + point +
+      "&expire=" + 1096 +
+      "&reason=" + reason;
     console.log("플리닉샵 포인트 적립 내용 : " + body);
-    return this.http.post(CONFIG.adminapiUrl + 'Point/PlinicAddPoint',body,options)
-    .map(res => res.json())
-    .map(data => {
-      return data;
-    }, err => {
-      console.log("Error : " + err);
-    })
+    return this.http.post(CONFIG.adminapiUrl + 'Point/PlinicAddPoint', body, options)
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      }, err => {
+        console.log("Error : " + err);
+      })
   }
 
   //2020-03-17 SNS사용자 가입 여부 체크
@@ -2249,22 +2241,22 @@ export class AuthService {
     // headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     // headers.append('Accept','application/json');
     // headers.append('content-type','application/json');
-     let options = new RequestOptions({ headers:headers});
+    let options = new RequestOptions({headers: headers});
     // return this.http.get(CONFIG.apiUrl + 'users/snsexists/')
     return this.http.get(CONFIG.apiUrl + 'Point/getPlinicPoint', options)
-    .map(response => response.json());
+      .map(response => response.json());
   }
-  
+
 
   //2020-03-17 SNS사용자 가입 여부 체크
   public snsexists(email) {
-      return this.http.get(CONFIG.apiUrl + 'users/snsexists/' + email)
+    return this.http.get(CONFIG.apiUrl + 'users/snsexists/' + email)
       .map(response => response.json());
   }
 
   //2020-03-18 애플 스토어 심사 여부 체크
   public isReview() {
-      return this.http.get(CONFIG.apiUrl + 'appreview')
+    return this.http.get(CONFIG.apiUrl + 'appreview')
       .map(response => response.json());
   }
 
@@ -2274,17 +2266,17 @@ export class AuthService {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
 
-    if(mode==='main'){
+    if (mode === 'main') {
       var urlmode = "savemymainproduct";
-    }else {
+    } else {
       var urlmode = "savemysubproduct";
     }
 
     var preIngredient = {
-      korean_name : product.ingredient.korean_name,
-      english_name : product.ingredient.english_name,
-      ewg_level : product.ingredient.ewg_level,
-      purpose : product.ingredient.purpose
+      korean_name: product.ingredient.korean_name,
+      english_name: product.ingredient.english_name,
+      ewg_level: product.ingredient.ewg_level,
+      purpose: product.ingredient.purpose
     }
 
     var saveProduct = {
@@ -2292,8 +2284,8 @@ export class AuthService {
       jejosa: product.jejosa,
       brand: product.brand,
       body: product.body,
-      filename : product.filename,
-      originalName : product.originalName,
+      filename: product.filename,
+      originalName: product.originalName,
       brand_name: product.brand_name,
       big_category: product.big_category,
       small_category: product.small_category,
@@ -2309,11 +2301,11 @@ export class AuthService {
     }
 
     let body = {
-      email : email,
+      email: email,
       product: saveProduct,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/' + urlmode, JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/' + urlmode, JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
@@ -2324,17 +2316,17 @@ export class AuthService {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
 
-    if(mode==='main'){
+    if (mode === 'main') {
       var urlmode = "delsavemymainproduct";
-    }else {
+    } else {
       var urlmode = "delsavemysubproduct";
     }
 
     var preIngredient = {
-      korean_name : product.ingredient.korean_name,
-      english_name : product.ingredient.english_name,
-      ewg_level : product.ingredient.ewg_level,
-      purpose : product.ingredient.purpose
+      korean_name: product.ingredient.korean_name,
+      english_name: product.ingredient.english_name,
+      ewg_level: product.ingredient.ewg_level,
+      purpose: product.ingredient.purpose
     }
 
     var saveProduct = {
@@ -2342,8 +2334,8 @@ export class AuthService {
       jejosa: product.jejosa,
       brand: product.brand,
       body: product.body,
-      filename : product.filename,
-      originalName : product.originalName,
+      filename: product.filename,
+      originalName: product.originalName,
       brand_name: product.brand_name,
       big_category: product.big_category,
       small_category: product.small_category,
@@ -2359,19 +2351,19 @@ export class AuthService {
     }
 
     let body = {
-      email : email,
+      email: email,
       product: saveProduct,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/' + urlmode, JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/' + urlmode, JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
       });
   }
 
-  
-  public skinAnalySecondSave (img, img2, user, step, munjin) { // 여러장이 올라 가는지 확인 필요
+
+  public skinAnalySecondSave(img, img2, user, step, munjin) { // 여러장이 올라 가는지 확인 필요
     // let url = 'http://ec2-3-34-189-215.ap-northeast-2.compute.amazonaws.com/api/';
     let cheekUrl = CONFIG.apiUrl + 'skinAnalySecondCheekSave';
     let forheadUrl = CONFIG.apiUrl + 'skinAnalySecondForeheadSave';
@@ -2385,30 +2377,30 @@ export class AuthService {
       params: {
         'email': user.email,
         'step': step,
-        'sleep' : JSON.stringify(munjin.diagnose_score1),
-        'alcohol' : JSON.stringify(munjin.diagnose_score2),
-        'fitness' : JSON.stringify(munjin.diagnose_score3),
+        'sleep': JSON.stringify(munjin.diagnose_score1),
+        'alcohol': JSON.stringify(munjin.diagnose_score2),
+        'fitness': JSON.stringify(munjin.diagnose_score3),
       }
     };
 
     const fileTransfer: TransferObject = this.transfer.create();
-    return fileTransfer.upload(targetPath, cheekUrl, options).then(data=>{
+    return fileTransfer.upload(targetPath, cheekUrl, options).then(data => {
       var result1 = JSON.parse(data.response);
       console.log("첫 번째 (볼) 전송  성공");
       // console.log("첫 번째 (볼) 전송  성공 : " + JSON.stringify(result1));
-      return fileTransfer.upload(targetPath2, forheadUrl, options).then(data2=> {
+      return fileTransfer.upload(targetPath2, forheadUrl, options).then(data2 => {
         var result2 = JSON.parse(data2.response);
         console.log("두 번째 (이마) 전송  성공");
         // console.log("두 번째 (이마) 전송  성공 : " + JSON.stringify(result2));
         return {
-          result1 : result1,
-          result2 : result2
+          result1: result1,
+          result2: result2
         }
-      },fail2=> {
+      }, fail2 => {
         console.log("두 번째  전송  실패 비교촬영: " + JSON.stringify(fail2));
         return false;
       })
-    }, fail1=> {
+    }, fail1 => {
       console.log("첫 번째  전송  실패 비교촬영: " + JSON.stringify(fail1));
       return false;
     });
@@ -2427,29 +2419,29 @@ export class AuthService {
       mimeType: 'multipart/form-data',
     };
     const fileTransfer: TransferObject = this.transfer.create();
-    return fileTransfer.upload(targetPath, url, options).then(data=>{
+    return fileTransfer.upload(targetPath, url, options).then(data => {
       var result1 = JSON.parse(data.response);
       console.log("첫 번째 (볼) 전송  성공 : " + JSON.stringify(result1));
-      return fileTransfer.upload(targetPath2, url, options).then(data2=> {
+      return fileTransfer.upload(targetPath2, url, options).then(data2 => {
         var result2 = JSON.parse(data2.response);
         console.log("두 번째 (이마) 전송  성공 : " + JSON.stringify(result2));
         console.log("피부 분석 데이터 저장 시작");
         return {
-          result1 : result1,
-          result2 : result2
+          result1: result1,
+          result2: result2
         }
-      },fail2=> {
+      }, fail2 => {
         console.log("두 번째  전송  실패 처음 사진저장: " + JSON.stringify(fail2));
         return {
-          result1 : false,
-          result2 : false
+          result1: false,
+          result2: false
         }
       })
-    }, fail1=> {
+    }, fail1 => {
       console.log("첫 번째  전송  실패 처음 사진저장: " + JSON.stringify(fail1));
       return {
-        result1 : false,
-        result2 : false
+        result1: false,
+        result2: false
       }
     });
   }
@@ -2460,36 +2452,36 @@ export class AuthService {
     headers.append("Content-Type", "application/json");
 
     var cheek = {
-      input : result1.input,
-      skin_analy : result1.output.skin_analy,
+      input: result1.input,
+      skin_analy: result1.output.skin_analy,
       created_at: result1.output.created_at,
       email: userData.email,
     }
 
     var forehead = {
-      input : result2.input,
-      skin_analy : result2.output.skin_analy,
+      input: result2.input,
+      skin_analy: result2.output.skin_analy,
       created_at: result2.output.created_at,
       email: userData.email,
     }
 
     var munjin_Score = {
-      sleep : munjin.diagnose_score1,
-      alcohol : munjin.diagnose_score2,
-      fitness : munjin.diagnose_score3,
+      sleep: munjin.diagnose_score1,
+      alcohol: munjin.diagnose_score2,
+      fitness: munjin.diagnose_score3,
     }
-    
+
     let body = {
       email: userData.email,
-      agerange : ageRange,
+      agerange: ageRange,
       gender: userData.gender,
       skincomplaint: userData.skincomplaint,
       cheek: cheek,
-      forehead : forehead,
-      munjin : munjin_Score
+      forehead: forehead,
+      munjin: munjin_Score
     };
     console.log("피부 분석 데이터 저장 종료");
-    return this.http.post(CONFIG.apiUrl + 'api/saveskinanaly', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/saveskinanaly', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
@@ -2502,36 +2494,36 @@ export class AuthService {
     headers.append("Content-Type", "application/json");
 
     var cheek = {
-      input : result1.input,
-      skin_analy : result1.output.skin_analy,
+      input: result1.input,
+      skin_analy: result1.output.skin_analy,
       created_at: result1.output.created_at,
       email: userData.email,
     }
 
     var forehead = {
-      input : result2.input,
-      skin_analy : result2.output.skin_analy,
+      input: result2.input,
+      skin_analy: result2.output.skin_analy,
       created_at: result2.output.created_at,
       email: userData.email,
     }
 
     var munjin_Score = {
-      sleep : munjin.diagnose_score1,
-      alcohol : munjin.diagnose_score2,
-      fitness : munjin.diagnose_score3,
+      sleep: munjin.diagnose_score1,
+      alcohol: munjin.diagnose_score2,
+      fitness: munjin.diagnose_score3,
     }
-    
+
     let body = {
       email: userData.email,
-      agerange : ageRange,
+      agerange: ageRange,
       gender: userData.gender,
       skincomplaint: userData.skincomplaint,
       cheek: cheek,
-      forehead : forehead,
-      munjin : munjin_Score
+      forehead: forehead,
+      munjin: munjin_Score
     };
     console.log("피부 분석 데이터 저장 종료");
-    return this.http.post(CONFIG.apiUrl + 'api/updateskinanaly', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/updateskinanaly', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
@@ -2547,7 +2539,7 @@ export class AuthService {
   //문진표 Save 20190709 추호선 ------------------------------------------
   public cameraTest2(files, email, score) {
     let formData = new FormData();
-    for(let i =0; i < files.length; i++){
+    for (let i = 0; i < files.length; i++) {
       formData.append("uploads[]", files[i], files[i]['name']);
       console.log("폼에 데이터 저장" + i);
     }
@@ -2570,11 +2562,11 @@ export class AuthService {
     headers.append("Content-Type", "application/json");
 
     let body = {
-      name : credentials.name,
+      name: credentials.name,
       birthday: credentials.birthday,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/findId', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/findId', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
@@ -2586,12 +2578,12 @@ export class AuthService {
     headers.append("Content-Type", "application/json");
 
     let body = {
-      email : credentials.email,
-      name : credentials.name,
+      email: credentials.email,
+      name: credentials.name,
       birthday: credentials.birthday,
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/validIdandSendemail', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/validIdandSendemail', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
@@ -2603,14 +2595,14 @@ export class AuthService {
     headers.append("Content-Type", "application/json");
 
     let body = {
-      email : credentials.email,
-      name : credentials.name,
+      email: credentials.email,
+      name: credentials.name,
       birthday: credentials.birthday,
       temp: credentials.temp,
       password: credentials.password
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/changePassword', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/changePassword', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
@@ -2620,12 +2612,12 @@ export class AuthService {
   public checkUser(credentials) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
-    
+
     let body = {
-      email : credentials.email
+      email: credentials.email
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/checkUser', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/checkUser', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
@@ -2635,13 +2627,13 @@ export class AuthService {
   public changePush(email, ispush) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
-    
+
     let body = {
-      email : email,
-      ispush : ispush
+      email: email,
+      ispush: ispush
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/changepush', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/changepush', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
@@ -2665,21 +2657,21 @@ export class AuthService {
     headers.append("Content-Type", "application/json");
 
     let body = {
-      email : email,
-      pushtoken : pushtoken
+      email: email,
+      pushtoken: pushtoken
     }
 
-    return this.http.post(CONFIG.apiUrl + 'api/updatepushtoken', JSON.stringify(body), {headers : headers} )
-    .map(res => res.json())
-    .map(data => {
-      return data;
-    })
+    return this.http.post(CONFIG.apiUrl + 'api/updatepushtoken', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      })
   }
 
   public jsonBackSlash(data) {
-    const removeBackSlash = data.replace(/\\/g,'');
-    const replaceFirstBracket = removeBackSlash.replace(/\"{/g,'{');
-    const replaceSecondBracket = replaceFirstBracket.replace(/\}"/g,'}'); 
+    const removeBackSlash = data.replace(/\\/g, '');
+    const replaceFirstBracket = removeBackSlash.replace(/\"{/g, '{');
+    const replaceSecondBracket = replaceFirstBracket.replace(/\}"/g, '}');
     return replaceSecondBracket;
   }
 
@@ -2696,30 +2688,30 @@ export class AuthService {
   public billingsUser(key) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
-    
+
     let body = {
-      key : key
+      key: key
     };
 
-    return this.http.post(CONFIG.apiUrl + 'api/billings', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/billings', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         return data;
       });
   }
 
-  public registerReview (email, review) {
+  public registerReview(email, review) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
 
     let body = {
       email: email,
-      review : review
+      review: review
     };
 
     console.log("qna : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/registerReview', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/registerReview', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -2739,7 +2731,7 @@ export class AuthService {
 
     console.log("Replydelete : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/productReviewDelete', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/productReviewDelete', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -2759,7 +2751,7 @@ export class AuthService {
 
     console.log("Replyupdate : " + JSON.stringify(body));
 
-    return this.http.post(CONFIG.apiUrl + 'api/productReviewUpdate', JSON.stringify(body), { headers: headers })
+    return this.http.post(CONFIG.apiUrl + 'api/productReviewUpdate', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
@@ -2767,5 +2759,5 @@ export class AuthService {
       });
   }
 
-  
+
 }

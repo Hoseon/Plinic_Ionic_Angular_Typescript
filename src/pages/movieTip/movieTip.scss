@@ -1,0 +1,294 @@
+page-movie-tip {
+  .header-md::after,
+  .tabs-md[tabsPlacement="top"]>.tabbar::after,
+  .footer-md::before,
+  .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
+    height: 0px;
+    margin-bottom: 5px;
+  }
+
+  .item-md.item-block .item-inner {
+    padding-right: 12px;
+  }
+
+  .header-ios::after,
+  .tabs-ios[tabsPlacement="top"]>.tabbar::after,
+  .footer-ios::before,
+  .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
+    height: 0px;
+    margin-bottom: 5px;
+  }
+
+  .item-ios.item-block .item-inner {
+    padding-right: 12px;
+  }
+
+  .toolbar-title-md {
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: AppleSDGothicNeo-Regular;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+  }
+
+  .toolbar-title-ios {
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: AppleSDGothicNeo-Regular;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    margin-top: -5%;
+    color: #292929;
+  }
+
+  .bar-button-clear-ios-default,
+  .bar-button-default-ios,
+  .bar-button-default.bar-button-ios-default {
+    margin-left: -15%;
+    margin-top: -15%;
+    color: transparent;
+  }
+
+  .ios_nav {
+    background-color: #FFF;
+    width: 140px !important;
+    height: 25px !important;
+    object-fit: contain;
+  }
+
+  .toolbar-background {
+    background-color: #FFF;
+  }
+
+  .ion-md-arrow-back:before {
+    position: absolute;
+    content: "\f27d";
+    left: 10%;
+    top: 2px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .toolbar-ios {
+    margin-top: 8%;
+  }
+
+  .back-button-text-ios {
+    font-size: 0;
+  }
+
+  .android_title {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 70%;
+    color: #292929;
+  }
+
+  .ios_title {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 120%;
+    color: #292929;
+    margin-top: 1%;
+  }
+
+  .android_search {
+    position: absolute;
+    margin-top: -3%;
+    right: 17%;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    z-index: 10;
+  }
+
+  .android_point {
+    position: relative;
+    margin-top: -2%;
+    right: 15%;
+    z-index: 1000;
+    width: 150px;
+    height: 18px;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+  }
+
+  .ios_point {
+    position: relative;
+    height: 18px;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+    margin-top: -3.8%;
+    left: -30%;
+  }
+
+  .ic_system_arrow_white {
+    width: 12.5px;
+    height: 12.5px;
+    object-fit: contain;
+  }
+
+  .android_my {
+    position: absolute;
+    right: 0%;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #292929;
+    margin-top: -4.5%;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+    z-index: 1;
+  }
+
+  .ios_search {
+    position: relative;
+    margin-top: -5%;
+    right: 17%;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    z-index: 10;
+    left: 30%;
+  }
+
+  .ios_my {
+    position: absolute;
+    right: 0%;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #292929;
+    margin-top: -8.5%;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+    z-index: 1;
+  }
+
+  .postion {
+    margin-top: 20px;
+    position: relative;
+  }
+
+  .postion_ios {
+    margin-top: 15px;
+    position: relative;
+  }
+
+  .headerIoncMargin {
+    margin: 5px;
+    margin-top: 10px !important;
+    z-index: 10000 !important;
+  }
+
+
+  .testborder {
+    border : solid 1px #5c5b5b;
+  }
+  
+  .toolbar-background.toolbar-background-ios {
+    display: none;
+  }
+
+  .test {
+    // width: 141px;
+    // height: 20px;
+    object-fit: contain;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+  }
+
+  .postText1{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 55vw;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.7px;
+    color: #000000;
+  }
+
+  .postText2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 55vw;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.6px;
+    color: #a9a9a9;
+  }
+
+  .postText3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 55vw;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.6px;
+    color: #a9a9a9;
+  }
+  
+
+
+}
