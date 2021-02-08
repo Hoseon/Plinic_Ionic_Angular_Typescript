@@ -508,6 +508,8 @@ page-community {
     letter-spacing: -0.33px;
     text-align: left;
     color: #6562b9;
+    margin-top: -5%;
+    margin-bottom: 5%;
   }
 
   .beauty_note_tag_title {
@@ -522,6 +524,7 @@ page-community {
     letter-spacing: -0.41px;
     text-align: left;
     color: #292929;
+    margin-top: -5%;
   }
 
   .beauty_tip_title_img {
@@ -1304,6 +1307,27 @@ page-community {
     white-space: nowrap;
   }
 
+  .movie_text1_1 {
+    position: relative;
+    margin-left: 5% !important;
+    // width: 78%;
+    margin: 12px 46.5px 9px 1.5px;
+    width: 60vw;
+    height: 20px;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.7px;
+    color: #000000;
+    text-align:left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .movie_text2 {
     color: #292929;
 
@@ -1326,10 +1350,47 @@ page-community {
     margin-top: -2%;
     margin-left: 5%;
     // margin-bottom: 3%;
+  }
 
+  .movie_text3_1 {
+    position: relative;
+    width: 80%;
+    text-align: left;
+    // height: 11px;
+    // margin: 9px 31px 13.5px 2px;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.44;
+    letter-spacing: -0.36px;
+    text-align: left;
+    color: #a9a9a9;
+    margin-top: -2%;
+    margin-left: 5%;
+    // margin-bottom: 3%;
   }
 
   .movie_text4 {
+    position: relative;
+    width: 50%;
+    // height: 11px;
+    margin: 13.5px 7.5px 25.5px 2px;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.1;
+    letter-spacing: -0.36px;
+    text-align: left;
+    color: #a9a9a9;
+    margin-left: 4.2%;
+    margin-top: 1%;
+  }
+
+  .movie_text4_2 {
     position: relative;
     width: 50%;
     // height: 11px;
@@ -1515,29 +1576,21 @@ page-community {
   }
 
   .point-icon {
-    position: absolute;
     width: 14px;
-    height: 20px;
+    height: 14px;
     object-fit: contain;
-    left: 90%;
-    top: 40%;
   }
 
   .Create-account {
-    position: absolute;
-    width: 50px;
-    height: 20px;
     font-family: NotoSansKR;
-    font-size: 14px;
+    font-size: 17px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    text-align: left;
     color: #292929;
-    top: 47%;
-    left: 125%;
+    margin-left: 3px;
   }
 
   .postion {
@@ -1664,7 +1717,8 @@ page-community {
   }
 
   .arrowMarginDown {
-    margin-top: 5vw !important;
+    padding-top: 3px;
+    // margin-top: 5vw !important;
     margin-left: 2vw !important;
   }
 
@@ -1737,7 +1791,7 @@ page-community {
   }
 
   .movText3 {
-    width: 97px;
+    // width: 97px;
     height: 17px;
     font-family: NotoSansKR;
     font-size: 12px;
@@ -1748,9 +1802,9 @@ page-community {
     letter-spacing: -0.6px;
     text-align: left;
     color: #a9a9a9;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    // white-space: nowrap;
   }
 
   .movText5 {

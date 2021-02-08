@@ -78,4 +78,5 @@ export class SungwooPickPage {
     //숫자 세자리 마다 컴마 붙히기
     return data + "원";
   }
+
 }

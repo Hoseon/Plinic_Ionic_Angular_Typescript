@@ -15,6 +15,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { SungwooBeautyPage } from '../sungwoo-beauty/sungwoo-beauty';
 import { CommunityTipPage } from '../communityTip/communityTip';
 import { MovieTipPage } from '../movieTip/movieTip';
+import { OrderDetailPage } from '../order-detail/order-detail';
 
 /**
  * Generated class for the CommunityPage page.
@@ -101,7 +102,7 @@ export class CommunityPage {
       this.events1();
       this.events2();
       this.events3();
-      
+
       this.images.getBeautyMovie().subscribe(data=> {
         this.movieData = data
         if (data) {
@@ -110,11 +111,11 @@ export class CommunityPage {
             if (data[i].items.length > 0) {
               this.youTubeArrayData[k] = data[i].items[0];
               k++;
-              this.getOneMovieData(data[i].items[0].id, i);  
+              this.getOneMovieData(data[i].items[0].id, i);
             }
           }
         }
-        console.log(this.youTubeArrayData);
+        // console.log(this.youTubeArrayData);
       })
     });
   }
@@ -137,7 +138,7 @@ export class CommunityPage {
     this.loadItems();
 
   }
-  
+
 
   ionViewDidLeave(){
    console.log("ionViewDidLeave Community");
@@ -206,7 +207,7 @@ export class CommunityPage {
           this.selectedTab(2);
           this.page = "2";
         }, 100);
-      } 
+      }
       // else if (this.tabs_boolean === 3) {
       //   setTimeout(() => {
       //     this.selectedTab(3);
@@ -271,7 +272,7 @@ export class CommunityPage {
   }
 
 
-  
+
 
   selectedTab(tab) {
     this.slides.slideTo(tab);
@@ -739,10 +740,10 @@ export class CommunityPage {
         this.from = 'plinic';
       }
       // console.log("사용자 포인트는? : " + this.userData.totaluserpoint);
-      
+
       // console.log("사용자 포인트는? : " + this.userData.totaluserpoint);
       // console.log("사용자 이메일은? : " + this.userData.email);
-      
+
 
       this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
       this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
@@ -832,7 +833,7 @@ export class CommunityPage {
 
   public myinfo() {
     //2020-05-28 마이페이지 하단탭 제거
-    // this.nav.push(MyinfoPage); 
+    // this.nav.push(MyinfoPage);
 
     let myModal = this.modalCtrl.create(MyinfoPage);
     myModal.onDidDismiss(data => {
@@ -875,19 +876,19 @@ export class CommunityPage {
       this.ionViewWillEnter();
     });
     myModal.present();
-    
+
   }
 
   getOneMovieData(movieId, index) {
     this.images.getOneBeautyMovie(movieId).subscribe(data=> {
       this.videoDetailData[index] = data;
-    });  
+    });
   }
 
   getOneHotMovieData(movieId, index) {
     this.images.getOneBeautyMovie(movieId).subscribe(data=> {
       this.videoHotDetailData[index] = data;
-    });  
+    });
   }
 
   //20201125 안드로이드 백 버튼 처리
@@ -928,7 +929,7 @@ export class CommunityPage {
             k++;
             this.getOneHotMovieData(data[i].items[0].id, i);
           }
-        }  
+        }
       }
     });
   }
@@ -944,7 +945,7 @@ export class CommunityPage {
             k++;
             this.getOneHotMovieData(data[i].items[0].id, i);
           }
-        }  
+        }
       }
     });
   }
@@ -956,6 +957,29 @@ export class CommunityPage {
   public movieTip(mode) {
     this.nav.push(MovieTipPage,{mode : mode});
   }
+
+  orderDetailPage() {
+    this.nav.push(OrderDetailPage, {detailData : ''}).then(() => {
+      this.nav.getActive().onDidDismiss(data => {
+        console.log("배송 조회 페이지 닫힘");
+      });
+    });
+  }
+
+  getOrderList(email) {
+    this.authService.getOrderList(email, 'All').subscribe(data => {
+      if(data !='') {
+          // this.orderList = data;
+          // this.orderCount = data[0].orderCount;
+          // this.isOrderSpinner = false;
+      } else {
+        // this.orderCount = 0;
+      }
+    }, error => {
+      console.error("주문 배송 정보 가져 오기 실패 : " + error);
+    })
+  }
+
 
 
  }
