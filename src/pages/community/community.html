@@ -11,19 +11,19 @@
       <ion-grid>
         <ion-row class="postion" align-items-baseline>
           <img float-left margin-left class="" src="assets/img/svg/beautyple.svg" />
-          <img (click)="myinfo()" float-left margin-left class="point-icon" src="assets/img/svg/pointIcon.svg" />
-          <div (click)="myinfo()" float-left class="Create-account" *ngIf="userData">{{userData.totaluserpoint}}&nbsp;
+          <img float-left margin-left class="point-icon " src="assets/img/svg/icon_point.svg" />
+          <div float-left class="Create-account" *ngIf="userData">{{userData.totaluserpoint}}&nbsp;
           </div>
         </ion-row>
       </ion-grid>
     </button>
     </ion-buttons>
-    <ion-buttons (click)="myinfo()" end>
+    <ion-buttons end>
       <ion-grid>
         <ion-row class="postion" align-items-baseline>
-          <img (click)="community_search()" float-end class="headerIoncMargin" src="assets/img/svg/search.svg" />
-          <img (click)="myinfo()" float-end class="headerIoncMargin" src="assets/img/svg/cart.svg" />
-          <img (click)="myinfo()" margin-right float-end class="headerIoncMargin" src="assets/img/svg/my.svg" />
+            <button (click)="community_search()" ion-button icon-only clear><img  float-end class="headerIoncMargin" src="assets/img/svg/search.svg" /></button>
+            <button (click)="orderDetailPage()" ion-button icon-only clear><img  float-end class="headerIoncMargin" src="assets/img/svg/cart.svg" /></button>
+            <button (click)="myinfo()"  ion-button icon-only clear><img margin-right float-end class="headerIoncMargin" src="assets/img/svg/my.svg" /></button>
         </ion-row>
       </ion-grid>
     </ion-buttons>
@@ -33,22 +33,22 @@
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
-    <ion-buttons left no-lines>
+    <ion-buttons left>
       <button ion-button navPop icon-only>
-        <ion-row align-items-baseline>
+        <ion-row class=" " align-items-baseline>
           <img margin-left float-left class="" src="assets/img/svg/beautyple.svg" />
-          <img (click)="myinfo()" float-left margin-left class="point-icon" src="assets/img/svg/pointIcon.svg" />
-          <div (click)="myinfo()" float-left class="Create-account" *ngIf="userData">{{userData.totaluserpoint}}&nbsp;
+          <img float-left margin-left class="point-icon" src="assets/img/svg/icon_point.svg" />
+          <div float-left class="Create-account" *ngIf="userData">{{userData.totaluserpoint}}&nbsp;
           </div>
         </ion-row>
       </button>
     </ion-buttons>
     <ion-buttons end>
       <ion-grid>
-        <ion-row align-items-baseline>
-          <img (click)="community_search()" float-end class="headerIoncMargin" src="assets/img/svg/search.svg" />
-          <img (click)="myinfo()" float-end class="headerIoncMargin" src="assets/img/svg/cart.svg" />
-          <img (click)="myinfo()" margin-right float-end class="headerIoncMargin" src="assets/img/svg/my.svg" />
+        <ion-row class="postion" align-items-baseline>
+            <button (click)="community_search()" ion-button icon-only clear><img  float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/search.svg" /></button>
+            <button (click)="orderDetailPage()" ion-button icon-only clear><img  float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/cart.svg" /></button>
+            <button (click)="myinfo()"  ion-button icon-only clear><img margin-right float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/my.svg" /></button>
         </ion-row>
       </ion-grid>
     </ion-buttons>
@@ -88,46 +88,26 @@
               (click)="openBrowser_ios(newSlide.posturl, newSlide.body, newSlide._id)">
               <img class="image-6" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{newSlide.filename}}" />
               <!-- <img class="movie_img1" src="https://img.youtube.com/vi/{{newSlide.id}}/maxresdefault.jpg" /> -->
-              <div class="movie_text1">{{newSlide.body}}</div>
-              <div class="movie_text3">{{newSlide.midtext}}</div>
-              <div class="movie_text4">조회 {{newSlide.views}}</div>
+              <div class="movie_text1_1">{{newSlide.body}}</div>
+              <div class="movie_text3_1">{{newSlide.midtext}}</div>
+              <div class="movie_text4_2">조회 {{newSlide.views}}</div>
               <br>
             </ion-slide>
           </ng-container>
         </ion-slides>
       </ion-grid>
-      <!-- <img src="assets/img/svg/beautyple.svg" width="10" height="10" /> -->
-      <!-- <ion-row> -->
-      <!-- <ng-container *ngIf="platform.is('android') || platform.is('core')">
-              <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData"
-                (click)="openBrowser_android(editor.posturl, editor.body, editor._id)">
-                <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{editor.filename}}" />
-                <p class="beauty_desc"><span class="beauty_desc_title">{{editor.title}}&nbsp;</span>{{editor.body}}</p>
-                <div class="beauty_count"></div>
-              </ion-col>
-            </ng-container> -->
-
-      <!-- <ng-container *ngIf="platform.is('ios')">
-              <ion-col col-6 *ngFor="let editor of communityEditorBeautyLoadData"
-                (click)="openBrowser_ios(editor.posturl, editor.body, editor._id)">
-                <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{editor.filename}}" />
-                <p class="beauty_desc"><span class="beauty_desc_title">{{editor.title}}&nbsp;</span>{{editor.body}}</p>
-                <div class="beauty_count"></div>
-              </ion-col>
-            </ng-container> -->
-      <!-- </ion-row> -->
       <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
 
       <ion-grid no-margin no-padding class="Rectangle-75" style="width:100vw">
-        <ion-row no-margin no-padding margin-left margin-bottom align-items-center (click)="communityTip('tip')">
+        <ion-row class="" no-margin no-padding margin-left margin-bottom align-items-center (click)="communityTip('tip')">
           <img margin-top float-md-start src="assets/img/community/tip.png" />
-          <div margin-top float-md-start class="-NEW-POST">여기가 꿀TIP 맛집</div>
+          <div margin-top float-md-start text-justify class="-NEW-POST">여기가 꿀TIP 맛집</div>
           <img margin-left margin-top float-md-start src="assets/img/svg/Vector.svg" class="arrowMarginDown" />
         </ion-row>
         <ng-container *ngIf="tipSlideData">
           <ng-container *ngFor="let tipSlide of tipSlideData; let i = index;">
             <ion-row no-margin no-padding margin-left margin-right margin-bottom align-items-center
-              (click)="openBrowser_ios(newSlide.posturl, newSlide.body, newSlide._id)">
+              (click)="openBrowser_ios(tipSlide.posturl, tipSlide.body, tipSlide._id)">
               <ion-col col-1 class="tipNumber">{{i+1}}</ion-col>
               <ion-col col-5 class="">
                 <img class="image-1" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{tipSlide.filename}}" />
@@ -144,66 +124,30 @@
 
       <!-- 뷰트꿀팁 이미지가 있을 때  -->
       <br>
-      <ion-row margin-bottom align-items-center (click)="communityTip('hit')">
-        <img margin-left margin-top float-md-start src="assets/img/community/hit.png" />
-        <div text-left margin-top float-md-start class="-NEW-POST">HIT 모르면 손해!</div>
-        <img margin-left margin-top float-md-start src="assets/img/svg/Vector.svg" class="arrowMarginDown" />
-      </ion-row>
-      <ng-container *ngIf="platform.is('android') || platform.is('core')">
-        <ng-container *ngFor="let community of hit3Data">
-          <ion-item class="line_item" no-lines (click)="openBrowser_ios(newSlide.posturl, newSlide.body, newSlide._id)">
-            <ion-col class="container" (click)="openBrowser_android(community.posturl, community.body, community._id)">
-              <ion-row>
-                <ion-col col-8 class="beauty_tip_title_img">
-                  <span class="beauty_note_tag">{{community.title}}&nbsp;&nbsp;</span>
+      <ion-grid>
+          <ion-row margin-bottom align-items-center (click)="communityTip('hit')" class="">
+            <img margin-left margin-top float-md-start src="assets/img/community/hit.png" class="" />
+            <div text-left margin-top float-md-start text-justify class="-NEW-POST">HIT 모르면 손해!</div>
+            <img margin-left margin-top float-md-start src="assets/img/svg/Vector.svg" class="arrowMarginDown" />
+          </ion-row>
+          <ng-container *ngIf="tipSlideData">
+            <ng-container *ngFor="let hitData of hit3Data; let i = index;">
+              <ion-row no-margin no-padding margin-left margin-right margin-bottom align-items-center
+                (click)="openBrowser_ios(hitData.posturl, hitData.body, hitData._id)">
+                <ion-col col-7 class="">
+                  <div text-left class="tip_text1">{{hitData.body}}</div>
+                  <div text-left class="tip_text2">{{hitData.midtext}}</div>
+                  <div text-left class="tip_text3">조회 {{hitData.views}}</div>
                 </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col col-8 class="beauty_tip_title">
-                  <span class="beauty_note_tag_title">{{community.body}}</span>
+                <ion-col col-5 class="">
+                  <img class="image-1" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{hitData.filename}}" />
                 </ion-col>
+                <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
               </ion-row>
-              <ion-row>
-                <div class="skinqna_contents_img">{{community.midtext}}</div>
-              </ion-row>
-              <ion-col class="beauty_note_like">
-                <ion-col class="beauty_note_count">조회 {{community.views}}</ion-col>
-              </ion-col>
-              <img class="beauty_home_img"
-                src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" />
-            </ion-col>
-          </ion-item>
-          <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
-        </ng-container>
-      </ng-container>
+            </ng-container>
+          </ng-container>
+        </ion-grid>
 
-      <ng-container *ngIf="platform.is('ios')">
-        <ng-container *ngFor="let community of hit3Data">
-          <ion-item class="line_item" no-lines>
-            <ion-col class="container" (click)="openBrowser_ios(community.posturl, community.body, community._id)">
-              <ion-row>
-                <ion-col col-8 class="ios_beauty_note_title_img">
-                  <span class="beauty_note_tag">{{community.title}}</span>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col col-8 class="beauty_tip_title">
-                  <span class="beauty_note_tag_title">{{community.body}}</span>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <div class="skinqna_contents_img">{{community.midtext}}</div>
-              </ion-row>
-              <ion-col class="beauty_note_like">
-                <ion-col class="beauty_note_count">조회 {{community.views}}</ion-col>
-              </ion-col>
-              <img class="beauty_home_img_ios"
-                src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{community.filename}}" />
-            </ion-col>
-          </ion-item>
-          <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
-        </ng-container>
-      </ng-container>
       <br><br><br><br>
     </ion-slide>
 
@@ -290,7 +234,7 @@
         <ion-slides mode="ios" id="movie" pager>
           <!-- <ng-container *ngIf="youTubeArrayData"> -->
           <ion-slide *ngFor="let tubeData of youTubeArrayData; let i = index;" (click)="openMoviePage(tubeData)">
-            <img class="movie_img1" src="{{tubeData.snippet.thumbnails.maxres.url}}" />
+            <img class="movie_img1" src="{{tubeData.snippet.thumbnails.default.url}}" />
             <div margin-left margin-top class="movText1_1">뷰티꿀팁<span class="movie_text2"> {{tubeData.snippet.title}}</span>
             </div>
             <div margin-left class="movText2_2">{{tubeData.snippet.channelTitle}}</div>
@@ -305,17 +249,17 @@
 
       <!-- 이번주 핫 클립 -->
       <ion-grid no-padding class="Rectangle-75">
-        <ion-row (click)="movieTip('hot')" margin-left margin-bottom align-items-center>
-          <img margin-top float-md-start src="assets/img/community/hot.png" />
-          <div margin-top float-md-start class="-NEW-POST">이번주 HOT CLIP</div>
-          <img margin-left padding-top float-md-start src="assets/img/svg/Vector.svg" />
+        <ion-row (click)="movieTip('hot')" margin-left margin-bottom align-items-center class="">
+          <img margin-top float-md-start src="assets/img/community/hot.png" class="" />
+          <div margin-top float-md-start class="-NEW-POST ">이번주 HOT CLIP</div>
+          <img margin-left margin-top float-md-start src="assets/img/svg/Vector.svg" class="arrowMarginDown"/>
         </ion-row>
         <ng-container *ngIf="youTubeHotArrayData">
           <ng-container *ngFor="let movieHit of youTubeHotArrayData; let k = index;">
             <ion-row (click)="openMoviePage(movieHit)" margin-top margin-bottom margin-left margin-right align-items-center>
               <ion-col col-1 class="movTipNumber">{{k+1}}</ion-col>
               <ion-col col-5>
-                <img class="" src="{{movieHit.snippet.thumbnails.maxres.url}}" />
+                <img class="" src="{{movieHit.snippet.thumbnails.default.url}}" />
               </ion-col>
               <ion-col col-6>
                 <div margin-left class="movText1 ">{{movieHit.snippet.title}}</div>
@@ -333,7 +277,7 @@
         <ion-row (click)="movieTip('plinic')" margin-left margin-bottom align-items-center>
           <img margin-top float-md-start src="assets/img/community/heart.png" />
           <div margin-top float-md-start class="-NEW-POST">슬기로운 플뷰 생활</div>
-          <img margin-left padding-top float-md-start src="assets/img/svg/Vector.svg" />
+          <img margin-left margin-top float-md-start src="assets/img/svg/Vector.svg" class="arrowMarginDown" />
         </ion-row>
         <ng-container *ngIf="youTubePlinicArrayData">
           <ng-container *ngFor="let movieHit of youTubePlinicArrayData; let k = index;">
@@ -345,7 +289,7 @@
                   {{videoHotDetailData[k].views}} · 좋아요 {{videoHotDetailData[k].like}}</div>
               </ion-col>
               <ion-col col-5>
-                <img class="" src="{{movieHit.snippet.thumbnails.maxres.url}}" />
+                <img class="" src="{{movieHit.snippet.thumbnails.default.url}}" />
               </ion-col>
               <!-- <ion-col col-1 class="movTipNumber">{{k+1}}</ion-col> -->
             </ion-row>

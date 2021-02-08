@@ -7,47 +7,48 @@
 <ion-header>
 
   <ion-navbar *ngIf="platform.is('android') || platform.is('core')" no-lines>
-    
-    <ion-buttons left padding-left>
-      <img class="logo_android" src="assets/img/sungwoo_img/invalid-name.png" />
-    </ion-buttons>
     <ion-buttons left>
-      <img class="ic_system_arrow_white" src="assets/img/sungwoo_img/point-icon.png" float-left />
-      <div style="margin-top:5%" float-left >11,296</div>
+      <button ion-button icon-only clear>
+      <ion-grid>
+        <ion-row class="postion" align-items-baseline>
+          <img float-left margin-left class="" src="assets/img/svg/pointShop.svg" />
+          <img float-left margin-left class="point-icon " src="assets/img/svg/icon_point.svg" />
+          <div float-left class="Create-account" *ngIf="userData">{{userData.totaluserpoint}}&nbsp;
+          </div>
+        </ion-row>
+      </ion-grid>
+    </button>
     </ion-buttons>
-
-    <ion-buttons (click)="chartguide()" end>
-      <img class="guide_android" (click)="product_search()" src="assets/img/sungwoo_img/search.png" />
-    </ion-buttons>
-    <!-- <div class="android_search" style="right: 7%;">
-    </div> -->
     <ion-buttons end>
-      <img class="guide_cart" src="assets/img/sungwoo_img/cart.png" />
+      <ion-grid>
+        <ion-row class="postion" align-items-baseline>
+            <button ion-button icon-only clear><img  float-end class="headerIoncMargin" src="assets/img/svg/search.svg" /></button>
+            <button (click)="orderDetailPage()" ion-button icon-only clear><img  float-end class="headerIoncMargin" src="assets/img/svg/cart.svg" /></button>
+            <button (click)="myinfo()"  ion-button icon-only clear><img margin-right float-end class="headerIoncMargin" src="assets/img/svg/my.svg" /></button>
+        </ion-row>
+      </ion-grid>
     </ion-buttons>
-    <ion-buttons end>
-      <img class="guide_my" src="assets/img/sungwoo_img/my.png" />
-    </ion-buttons>
-
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios')" no-lines>
-
-    <ion-buttons left padding-left>
-      <img class="logo_ios" src="assets/img/sungwoo_img/invalid-name.png" />
-    </ion-buttons>
     <ion-buttons left>
-      <img class="ic_system_arrow_white" src="assets/img/sungwoo_img/point-icon.png" float-left />
-      <div style="right:5%" float-left>11,296</div>
-  </ion-buttons>
-
-    <ion-buttons (click)="chartguide()" end>
-      <img class="guide_ios" (click)="product_search()" src="assets/img/sungwoo_img/search.png" />
+      <button ion-button navPop icon-only>
+        <ion-row align-items-baseline>
+          <img margin-left float-left class="" src="assets/img/svg/pointShop.svg" />
+          <img float-left margin-left class="point-icon" src="assets/img/svg/icon_point.svg" />
+          <div float-left class="Create-account" *ngIf="userData">{{userData.totaluserpoint}}&nbsp;
+          </div>
+        </ion-row>
+      </button>
     </ion-buttons>
     <ion-buttons end>
-      <img class="cart_ios" src="assets/img/sungwoo_img/cart.png" />
-    </ion-buttons>
-    <ion-buttons end>
-      <img class="my_ios" src="assets/img/sungwoo_img/my.png" />
+      <ion-grid>
+        <ion-row class="postion" align-items-baseline>
+            <button ion-button icon-only clear><img  float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/search.svg" /></button>
+            <button (click)="orderDetailPage()" ion-button icon-only clear><img  float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/cart.svg" /></button>
+            <button (click)="myinfo()"  ion-button icon-only clear><img margin-right float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/my.svg" /></button>
+        </ion-row>
+      </ion-grid>
     </ion-buttons>
   </ion-navbar>
 
@@ -64,7 +65,7 @@
 
 <ion-content>
   <ion-grid no-padding padding-bottom>
-    <img src="assets/img/sungwoo_img/1.png" />
+    <img srcset="assets/img/sungwoo_img/use_guide.png, assets/img/sungwoo_img/use_guide@2x.png, assets/img/sungwoo_img/use_guide@3x.png"/>
   </ion-grid>
   <ion-grid no-padding>
     <ion-row padding>
@@ -80,7 +81,7 @@
         <ion-row padding>
           <div class="text3" text-left>뷰셀리온 콜라겐 드링크 5000 - 4주분(20ml x 28병)</div>
           <div class="img" text-right>
-            <img src="assets/img/sungwoo_img/share.png"/>
+            <img src="assets/img/sungwoo_img/share..svg"/>
           </div>
         </ion-row>
         <ion-row padding-right>
@@ -91,9 +92,9 @@
           <div class="text6" text-right padding-right>최대 5,000p 사용가능</div>
           <div class="text7" text-right>25,000원</div>
         </ion-row>
-        <ion-row padding-horizontal padding-bottom>
+        <ion-row padding-horizontal padding-bottom align-items-center>
           <button class="btn1" ion-button>
-            <div class="btn_text" text-center>구매하기</div>
+            <div class="btn_text" text-center (click)="cosmetic()">구매하기</div>
           </button>
         </ion-row>
 

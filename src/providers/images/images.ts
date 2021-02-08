@@ -23,7 +23,7 @@ export class ImagesProvider {
 
   constructor(public http: Http, private transfer: Transfer, private alertCtrl: AlertController) { }
 
-  
+
   public getMoviePlinicListSortCreate() {
     return this.http.get(this.apiURL + 'beautyMovie/getMoviePlinicListSortCreate')
       .map(response => response.json());
@@ -566,6 +566,6 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
-  
+
 
 }

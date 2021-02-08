@@ -1,186 +1,314 @@
 page-sungwoo-point-shop {
-    .header-md::after,
-    .tabs-md[tabsPlacement="top"]>.tabbar::after,
-    .footer-md::before,
-    .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
-      height: 0px;
-      margin-bottom: 5px;
-    }
-  
-    .item-md.item-block .item-inner {
-      padding-right: 12px;
-    }
-  
-    .header-ios::after,
-    .tabs-ios[tabsPlacement="top"]>.tabbar::after,
-    .footer-ios::before,
-    .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
-      height: 1px;
-      margin-bottom: 5px;
-    }
-  
-    .item-ios.item-block .item-inner {
-      padding-right: 12px;
-    }
-  
-    .toolbar-title-md {
-      font-weight: bold;
-      font-size: 17px;
-      background-color: #FFF;
-      font-family: AppleSDGothicNeo-Regular;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: center;
-    }
-  
-    .toolbar-title-ios {
-      font-weight: bold;
-      font-size: 17px;
-      background-color: #FFF;
-      font-family: AppleSDGothicNeo-Regular;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      text-align: center;
-      margin-top: -5%;
-      color: #292929;
-    }
-  
-    .bar-button-clear-ios-default,
-    .bar-button-default-ios,
-    .bar-button-default.bar-button-ios-default {
-      margin-left: -15%;
-      margin-top: -15%;
-      color: transparent;
-    }
-  
-    .ios_nav {
-      background-color: #FFF;
-      width: 140px !important;
-      height: 25px !important;
-      object-fit: contain;
-    }
-  
-    .toolbar-background {
-      background-color: #FFF;
-    }
-  
-    .ion-md-arrow-back:before {
-      position: absolute;
-      content: "\f27d";
-      left: 10%;
-      top: 2px;
-      width: 25px;
-      height: 25px;
-    }
-  
-    .toolbar-ios {
-      margin-top: 8%;
-    }
-  
-    .back-button-text-ios {
-      font-size: 0;
-    }
+    
+  .ios_head {
+    padding-top: 44px;
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+  }
 
-    .bar-button::after {
-        display: none;
-    }
+  .header-md::after,
+  .tabs-md[tabsPlacement="top"]>.tabbar::after,
+  .footer-md::before,
+  .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
+    height: 0px;
+    margin-bottom: 5px;
+  }
 
-    .back-button.show-back-button {
-        display: none;
-    }
-  
-    // .logo_android {
-    //   font-family: AppleSDGothicNeo-Regular;
-    //   font-size: 12px;
-    //   font-weight: bold;
-    //   font-style: normal;
-    //   font-stretch: normal;
-    //   line-height: normal;
-    //   letter-spacing: normal;
-    //   color: #292929;
-    //   background-color: #ffffff !important;
-    //   height: 28px;
-    //   position: relative;
-    //   right: 80%;
-    //   left: 1vw;
-    //   float: left;
-    // }
+  .item-md.item-block .item-inner {
+    padding-right: 12px;
+  }
 
-    // .logo_ios {
-    //     font-family: AppleSDGothicNeo-Regular;
-    //     font-size: 12px;
-    //     font-weight: bold;
-    //     font-style: normal;
-    //     font-stretch: normal;
-    //     line-height: normal;
-    //     letter-spacing: normal;
-    //     color: #292929;
-    //     background-color: #ffffff !important;
-    //     height: 28px;
-    //     position: relative;
-    //     margin-left: 1vw;
-    //     float: left;
-    //   }
-  
-    .guide_android {
-      position: relative;
-      right: 80%;
-      left: -7vw;
-    }
+  .header-ios::after,
+  .tabs-ios[tabsPlacement="top"]>.tabbar::after,
+  .footer-ios::before,
+  .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
+    height: 0px;
+    margin-bottom: 5px;
+  }
 
-    .guide_cart {
-      position: relative;
-      right: 80%;
-      left: -5.5vw;
-    }
+  .footer-md::before,
+  .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
+    height: 0px;
+  }
 
-    .guide_my {
-      position: relative;
-      right: 80%;
-      left: -4vw;
-    }
+  .footer-ios::before,
+  .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
+    height: 0px;
+  }
 
-    // .guide_ios {
-    //   font-family: AppleSDGothicNeo-Regular;
-    //   font-size: 12px;
-    //   font-weight: bold;
-    //   font-style: normal;
-    //   font-stretch: normal;
-    //   line-height: normal;
-    //   letter-spacing: normal;
-    //   color: #292929;
-    //   background-color: #ffffff !important;
-    //   height: 28px;
-    //   position: relative;
-    //   margin-left: 1vw;
-    //   float: left;
-    // }
-  
-    // .android_search {
-    //   position: absolute;
-    //   margin-top: -3%;
-    //   right: 3vw !important;
-    //   float: right;
-    //   width: 25px;
-    //   height: 25px;
-    //   object-fit: contain;
-    //   z-index: 10;
-    // }
-  
-    // .ios_search {
-    //   position: relative;
-    //   margin-top: -5%;
-    //   right: 3vw !important;
-    //   width: 25px;
-    //   height: 25px;
-    //   object-fit: contain;
-    //   z-index: 10;
-    //   float: right;
-    // }
+
+  //탭바 하단 여백
+  .scroll-content {
+    margin-bottom: 0px !important;
+  }
+
+  .toast-ios .toast-message {
+    z-index: 1000;
+  }
+
+
+  .toolbar-title-md {
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: NotoSansKR;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+  }
+
+  .toolbar-title-ios {
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: NotoSansKR;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    margin-top: -5%;
+    color: #292929;
+  }
+
+  // .bar-button-default-ios,
+  // .bar-button-default.bar-button-ios-default,
+  // .bar-button-clear-ios-default {
+  //   // margin-left: -15%;
+  //   // margin-top: -15%;
+  //   color: transparent;
+  // }
+
+  // .ios_nav {
+  //   background-color: transparent;
+  //   width: 140px !important;
+  //   height: 25px !important;
+  //   object-fit: contain;
+  // }
+
+  .toolbar-background {
+    background-color: #FFF;
+  }
+
+  .ion-md-arrow-back:before {
+    position: absolute;
+    content: "\f27d";
+    left: 10%;
+    top: 2px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .toolbar-ios {
+    margin-top: 6%;
+  }
+
+  .back-button-text-ios {
+    font-size: 0px;
+  }
+
+  .android_title {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 55%;
+    color: #292929;
+    z-index: 1000;
+  }
+
+  .ios_title {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 120%;
+    color: #292929;
+  }
+
+  .android_search {
+    position: absolute;
+    margin-top: -3%;
+    right: 17%;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    z-index: 10;
+  }
+
+  .android_point {
+    position: relative;
+    margin-top: -2%;
+    right: 15%;
+    z-index: 1000;
+    width: 150px;
+    height: 18px;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+  }
+
+  .ios_point {
+    position: relative;
+    height: 18px;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+    margin-top: -3.8%;
+    left: -30%;
+  }
+
+  .ic_system_arrow_white {
+    width: 12.5px;
+    height: 12.5px;
+    object-fit: contain;
+  }
+
+  .android_my {
+    position: absolute;
+    right: 0%;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #292929;
+    margin-top: -4.5%;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+    z-index: 1;
+  }
+
+  .ios_search {
+    position: relative;
+    margin-top: -5%;
+    right: 17%;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    z-index: 10;
+    left: 30%;
+  }
+
+  .ios_my {
+    position: absolute;
+    right: 0%;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #292929;
+    margin-top: -8.5%;
+    background-color: #FFF !important;
+    box-shadow: none !important;
+    z-index: 1;
+  }
+
+
+  .segment-md .segment-button.activated,
+  .segment-md .segment-button.segment-activated {
+    height: 3rem;
+    border-color: #6562b9;
+    border-bottom-width: 3px;
+    opacity: 1;
+    font-family: NotoSansKR;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #5c59b6;
+    margin-top: 5%;
+  }
+
+
+  .segment-ios .segment-button.activated,
+  .segment-ios .segment-button.segment-activated {
+    height: 3rem;
+    border-color: #6562b9;
+    border-bottom-width: 3px;
+    opacity: 1;
+    font-family: NotoSansKR;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #5c59b6;
+    margin-top: 5%;
+  }
+
+  .segment-md .segment-button {
+    height: 3rem;
+    font-family: NotoSansKR;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #b6b6b6;
+    margin-top: 5%;
+    border-width: 0px;
+  }
+
+  .segment-ios .segment-button {
+    height: 3rem;
+    font-family: NotoSansKR;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #b6b6b6;
+    margin-top: 5%;
+    border-width: 0px;
+  }
+
+
+  .swiper-slide {
+    overflow-y: scroll;
+    display: block;
+  }
+
+  .slide-zoom {
+    height: 100%;
+  }
+
+  .beauty_tip {
+    // height: 436px;
+    // padding: 5%;
+    // padding-bottom: 0px;
+    // margin-bottom: 10%;
+    // margin-top: -2%;
+  }
 
     .text {
         font-size: 14px;
@@ -325,7 +453,7 @@ page-sungwoo-point-shop {
     }
 
     .btn_text {
-        padding-top: 1%;
+        // padding-top: 1%;
         font-family: NotoSansKR-Medium;
         font-size: 18px;
         font-weight: 500;
@@ -347,6 +475,157 @@ page-sungwoo-point-shop {
         border: solid 0.5px #a9a9a9;
     }
 
+    .postion {
+      margin-top: 20px;
+      position: relative;
+    }
+  
+    .postion_ios {
+      margin-top: 15px;
+      position: relative;
+    }
+  
+    .headerIoncMargin {
+      margin: 5px;
+      margin-top: 10px !important;
+    }
+  
+    ion-app.md [margin-left],
+    ion-app.md [margin-left] .scroll-content {
+      margin-left: 10px;
+    }
+  
+    .-NEW-POST {
+      font-family: NotoSansKR;
+      font-size: 16px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: right;
+      color: #292929;
+      margin-left: 2%;
+    }
+  
+    .image-6 {
+      width: 89vw;
+      // height: 320px;
+    }
+  
+    .newSlide {
+      height: 500px !important;
+    }
+  
+    .Rectangle-75 {
+      width: 100vw;
+      height: 436px;
+      background-color: #f4f4f4;
+    }
+  
+    .testborder {
+      border : solid 1px #5c5b5b;
+    }
+  
+    .image-1 {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .tip_text1 {
+      width: 170px;
+      height: 20px;
+      font-family: NotoSansKR;
+      margin-top: -3%;
+      margin-bottom: 2%;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.7px;
+      // text-align: right;
+      color: #000000;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  
+    .tip_text2 {
+      width: 166px;
+      height: 17px;
+      font-family: NotoSansKR;
+      font-size: 12px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.6px;
+      // text-align: right;
+      color: #a9a9a9;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-bottom: 5%;
+    }
+  
+    .tip_text3 {
+      // width: 42px;
+      // height: 17px;
+      font-family: NotoSansKR;
+      font-size: 12px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.6px;
+      // text-align: left;
+      color: #a9a9a9;
+    }
+  
+    .tipNumber {
+     margin-right: -2%;
+     margin-left: -1.5%; 
+    }
+  
+    .movTipNumber {
+      margin-right: 0.1%;
+      margin-left: -1.5%; 
+    }
+  
+    .segmentHeight {
+      // height: 10vw;
+      background-color: #FFF;
+    }
+  
+    .arrowMarginDown {
+      padding-top: 3px;
+      // margin-top: 5vw !important;
+      margin-left: 2vw !important;
+    }
+
+    .point-icon {
+      width: 14px;
+      height: 14px;
+      object-fit: contain;
+    }
+
+    .Create-account {
+      font-family: NotoSansKR;
+      font-size: 17px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #292929;
+      margin-left: 3px;
+    }
+
+    .pointLeft {
+      margin-left: 10vw !important;
+      margin-top: 2vw !important;
+    }
 
 
 }

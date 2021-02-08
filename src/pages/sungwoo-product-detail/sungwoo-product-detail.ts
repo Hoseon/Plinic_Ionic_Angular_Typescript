@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
-
+import { SungwooPickPage } from '../sungwoo-pick/sungwoo-pick';
+ 
 /**
  * Generated class for the SungwooProductDetailPage page.
  *
@@ -38,6 +39,10 @@ export class SungwooProductDetailPage {
 
   updateCucumber() {
     console.log('Cucumbers new state:' + this.cucumber);
+  }
+
+  next() {
+    this.navCtrl.push(SungwooPickPage);
   }
 
 }
