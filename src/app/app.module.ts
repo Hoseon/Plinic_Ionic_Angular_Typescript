@@ -320,7 +320,15 @@ import { SungwooPointShopPageModule } from '../pages/sungwoo-point-shop/sungwoo-
 import { ProductReviewPageModule } from '../pages/product-review/product-review.module';
 //20201016 화장품 메인 페이지
 import { ProductMainPageModule } from '../pages/product-main/product-main.module';
+import { AdressPageModule } from '../pages/adress/adress.module';
+import { OrderSucessCardPageModule } from '../pages/orderSucess-Card/orderSucess-Card.module'; //카드결제성공페이지
 
+//20210311 주문취소 페이지
+import { OrderCancel1PageModule } from '../pages/order-cancel/order-cancel1/order-cancel1.module';
+import { OrderCancel2PageModule } from '../pages/order-cancel/order-cancel2/order-cancel2.module';
+import { OrderCancel3PageModule } from '../pages/order-cancel/order-cancel3/order-cancel3.module';
+import { OrderCancel4PageModule } from '../pages/order-cancel/order-cancel4/order-cancel4.module';
+ 
 import { Geolocation } from '@ionic-native/geolocation';
 
 export function getAuthHttp(http, storage) {
@@ -527,6 +535,12 @@ export function getAuthHttp(http, storage) {
     SungwooPointShopPageModule,
     ProductReviewPageModule,
     ProductMainPageModule,
+    AdressPageModule,
+    OrderSucessCardPageModule,
+    OrderCancel1PageModule,
+    OrderCancel2PageModule,
+    OrderCancel3PageModule,
+    OrderCancel4PageModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

@@ -32,7 +32,7 @@ export class ProductDetailPage {
   preFunction: Array<any> = new Array<any>();
   function: Array<any> = new Array<any>();
   preIngredient: any;
-  orderStyle: any = "최신순 ∨"; 
+  orderStyle: any = "최신순 ∨";
   jwtHelper: JwtHelper = new JwtHelper();
   profileimg_url: any;
   comment_popover_option: any = "보기";
@@ -164,7 +164,7 @@ export class ProductDetailPage {
 
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public platform: Platform,
     private auth: AuthService,
@@ -191,7 +191,7 @@ export class ProductDetailPage {
   }
 
   ionViewDidEnter(){
-   
+
   }
 
   loadProductData() {
@@ -199,7 +199,7 @@ export class ProductDetailPage {
       this.productData = data;
       if(data.ingredient != '') {
         for(let i = 0; i < data.ingredient.length; i++) {
-          this.ingredient[i] = data.ingredient[i].korean_name 
+          this.ingredient[i] = data.ingredient[i].korean_name
         }
         // console.log(this.productData.function.length);
         this.preFunction = data.function.split(',');
@@ -225,7 +225,7 @@ export class ProductDetailPage {
   randomUrl() {
     var urlNo;
     urlNo = this.makeRandom(1,3);
-    
+
     switch(urlNo) {
       case 1 : this.adUrl = 'assets/img/beauty/beauty_ad_1.png';
                this.productTitle = '플리닉 크림';
@@ -238,7 +238,7 @@ export class ProductDetailPage {
       case 3 : this.adUrl = 'assets/img/beauty/beauty_ad_3.png';
                this.productTitle = '레스테틱';
                this.productURL = 'https://www.plinicshop.com/Products/Details/1832';
-                break;   
+                break;
       default : this.adUrl = 'assets/img/beauty/beauty_ad_1.png';
                 this.productTitle = '플리닉 크림';
                 this.productURL = 'https://www.plinicshop.com/Products/Details/1863';
@@ -312,7 +312,7 @@ export class ProductDetailPage {
 
   public loadItems() {
     this.auth.getUserStorage().then(items => {
-  
+
       if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
         this.userData = {
           accessToken: items.accessToken,
@@ -332,7 +332,7 @@ export class ProductDetailPage {
         } else {
           this.thumb_image = true;
         }
-  
+
       } else {
         this.userData = {
           accessToken: items.accessToken,
@@ -346,7 +346,7 @@ export class ProductDetailPage {
           thumbnail_image: items.thumbnail_image,
           from: 'plinic',
         };
-  
+
         this.from= 'plinic';
       }
       this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
@@ -357,9 +357,8 @@ export class ProductDetailPage {
   getProductReview(product_num) {
     this.images.getProductReview(product_num).subscribe(data => {
       this.productReview = data;
-      console.log("상품 리뷰 : " + this.productReview);
+      // console.log("상품 리뷰 : " + this.productReview);
     })
-
   }
 
   // 댓글 수정
@@ -562,31 +561,31 @@ export class ProductDetailPage {
     var mail = userEmail.split('@')[1]; 
     var maskingId = function(id){ 
       var splitId = id.substring(0,2); 
-      for(var i = 1; i < id.length; i++){ 
-        splitId += '*'; 
+      for(var i = 1; i < id.length; i++){
+        splitId += '*';
       } 
-      return splitId; 
+      return splitId;
     }; 
     var maskingMail = function(mail){ 
       var splitMail = ''; 
-      for(var i = 1; i < mail.length; i++){ 
-        splitMail += '*'; 
+      for(var i = 1; i < mail.length; i++){
+        splitMail += '*';
       } splitMail += mail.substring(mail.length-1,mail.length); 
-      return splitMail; 
-    }; 
+      return splitMail;
+    };
     userEmail = maskingId(id) + '@' + (mail); 
-    return userEmail; 
+    return userEmail;
   }
 
   update() {
     this.getProductReview(this.product_Num);
-    
+
   }
 
 
   productReviewUpdate(email, id) {
     this.reply.email = email;
-    this.reply.id = id; 
+    this.reply.id = id;
     this.reply.content = this.updatevalue;
 
     let alert = this.alertCtrl.create({

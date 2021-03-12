@@ -10,7 +10,6 @@ import { timer } from 'rxjs/observable/timer';
 
 import { Device } from '@ionic-native/device';
 
-
 @Component({
   templateUrl: 'app.html',
   // providers: [Keyboard],

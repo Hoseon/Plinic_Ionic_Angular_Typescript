@@ -2353,12 +2353,12 @@ page-skin-chek-chart {
   }
 
   .android_point {
-    position: relative;
-    margin-top: -2%;
-    right: 20%;
+    // position: relative;
+    // margin-top: -2%;
+    // right: 20%;
     z-index: 1000;
-    width: 100px;
-    height: 18px;
+    // width: 100px;
+    // height: 18px;
     font-family: AppleSDGothicNeo;
     font-size: 14px;
     font-weight: 500;
@@ -2386,6 +2386,21 @@ page-skin-chek-chart {
     margin-top: -3.8%;
     left: -30%;
   }
+
+  .testborder {
+    border : solid 1px #0ca28f;
+  }
+
+  .ic_system_arrow_white2 {
+    // position: absolute;
+    // top: 10%;
+    // right:0.1%;
+    width: 13.5px;
+    // height: 13.5px;
+    object-fit: contain;
+  }
+
+
 
   
 }

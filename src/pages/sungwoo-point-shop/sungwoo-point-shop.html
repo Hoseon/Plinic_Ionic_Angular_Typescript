@@ -1,30 +1,27 @@
-<!--
-  Generated template for the SungwooPointShopPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar *ngIf="platform.is('android') || platform.is('core')" no-lines>
     <ion-buttons left>
       <button ion-button icon-only clear>
-      <ion-grid>
-        <ion-row class="postion" align-items-baseline>
-          <img float-left margin-left class="" src="assets/img/svg/pointShop.svg" />
-          <img float-left margin-left class="point-icon " src="assets/img/svg/icon_point.svg" />
-          <div float-left class="Create-account" *ngIf="userData">{{userData.totaluserpoint}}&nbsp;
-          </div>
-        </ion-row>
-      </ion-grid>
-    </button>
+        <ion-grid>
+          <ion-row class="postion" align-items-baseline>
+            <img float-left margin-left class="" src="assets/img/svg/pointShop.svg" />
+            <img float-left margin-left class="point-icon " src="assets/img/svg/icon_point.svg" />
+            <div float-left class="Create-account" *ngIf="userData">{{userData.totaluserpoint}}&nbsp;
+            </div>
+          </ion-row>
+        </ion-grid>
+      </button>
     </ion-buttons>
     <ion-buttons end>
       <ion-grid>
         <ion-row class="postion" align-items-baseline>
-            <button ion-button icon-only clear><img  float-end class="headerIoncMargin" src="assets/img/svg/search.svg" /></button>
-            <button (click)="orderDetailPage()" ion-button icon-only clear><img  float-end class="headerIoncMargin" src="assets/img/svg/cart.svg" /></button>
-            <button (click)="myinfo()"  ion-button icon-only clear><img margin-right float-end class="headerIoncMargin" src="assets/img/svg/my.svg" /></button>
+          <button ion-button icon-only clear><img float-end class="headerIoncMargin"
+              src="assets/img/svg/search.svg" /></button>
+          <button (click)="orderDetailPage()" ion-button icon-only clear><img float-end class="headerIoncMargin"
+              src="assets/img/svg/cart.svg" /></button>
+          <button (click)="myinfo()" ion-button icon-only clear><img margin-right float-end class="headerIoncMargin"
+              src="assets/img/svg/my.svg" /></button>
         </ion-row>
       </ion-grid>
     </ion-buttons>
@@ -44,280 +41,268 @@
     <ion-buttons end>
       <ion-grid>
         <ion-row class="postion" align-items-baseline>
-            <button ion-button icon-only clear><img  float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/search.svg" /></button>
-            <button (click)="orderDetailPage()" ion-button icon-only clear><img  float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/cart.svg" /></button>
-            <button (click)="myinfo()"  ion-button icon-only clear><img margin-right float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/my.svg" /></button>
+          <button ion-button icon-only clear><img float-end margin-bottom class="headerIoncMargin"
+              src="assets/img/svg/search.svg" /></button>
+          <button (click)="orderDetailPage()" ion-button icon-only clear><img float-end margin-bottom
+              class="headerIoncMargin" src="assets/img/svg/cart.svg" /></button>
+          <button (click)="myinfo()" ion-button icon-only clear><img margin-right float-end margin-bottom
+              class="headerIoncMargin" src="assets/img/svg/my.svg" /></button>
         </ion-row>
       </ion-grid>
     </ion-buttons>
   </ion-navbar>
 
-  <ion-segment outline mode="md" color="#5c59b6" style="margin-top:-1%;">
-    <ion-segment-button value="0" (click)="selectedTab(0)">
+  <ion-segment outline mode="md" [(ngModel)]="page" color="#5c59b6" style="margin-top:-1%;">
+    <ion-segment-button value="0" (click)="selectedTab('0')">
       <div class="text">BEST DEAL</div>
     </ion-segment-button>
-    <ion-segment-button value="1" (click)="selectedTab(1)">
-      <div class="text">REVIEW POINT</div>
+    <ion-segment-button value="1" (click)="selectedTab('1')">
+      <div class="text">바로적립</div>
     </ion-segment-button>
   </ion-segment>
 </ion-header>
 
 
 <ion-content>
-  <ion-grid no-padding padding-bottom>
-    <img srcset="assets/img/sungwoo_img/use_guide.png, assets/img/sungwoo_img/use_guide@2x.png, assets/img/sungwoo_img/use_guide@3x.png"/>
-  </ion-grid>
-  <ion-grid no-padding>
-    <ion-row padding>
-      <div class="text2" text-left>
-        TODAY'S 딜
+  <ion-slides mode="ios" #Slides2 (ionSlideWillChange)="slideChanged($event)" class="slides" pager>
+    <ion-slide>
+      <ion-grid no-padding padding-bottom>
+        <img
+          srcset="assets/img/sungwoo_img/use_guide@3x.png, assets/img/sungwoo_img/use_guide@2x.png, assets/img/sungwoo_img/use_guide.png" />
+      </ion-grid>
+      <ion-grid>
+        <div margin-left margin-bottom text-left class="todaysDeal">TODAY'S 딜</div>
+      </ion-grid>
+      <ng-container *ngFor="let product of productData; let i = index;">
+        <ion-grid no-padding>
+          <img no-padding *ngIf="product" class="productImage"
+            src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{product.filename}}" />
+        </ion-grid>
+        <ion-grid>
+          <ion-row align-items-center margin-left margin-right>
+            <ion-col col-10 class="">
+              <div *ngIf="product" class="text3" text-left>{{product.product_name}}</div>
+            </ion-col>
+            <ion-col col-2 class="share"><img src="assets/img/sungwoo_img/share..svg" /></ion-col>
+          </ion-row>
+          <ion-row align-items-center margin-left margin-right>
+            <ion-col *ngIf="product" col-9 class="text4 " text-right>{{product.saleAmount}}%~</ion-col>
+            <ion-col *ngIf="product" col-3 class="text5 "><del>{{addComma(product.price)}}원</del></ion-col>
+          </ion-row>
+          <ion-row align-items-center margin-left margin-right>
+            <ion-col *ngIf="product" col-8 class="text6 " text-right>최대 {{getMaxPoint(product.maxPercent, product.Amount)}}p 사용가능</ion-col>
+            <ion-col *ngIf="product" col-4 class="text7 ">{{addComma(product.Amount)}}원</ion-col>
+          </ion-row>
+          <button *ngIf="product" ion-button outline block class="buyBtn"
+            (click)="cosmetic(product)">구매하기</button>
+        </ion-grid>
+        <br>
+      </ng-container>
+      <br>
+      <!-- <ion-grid no-padding>
+        <img no-padding *ngIf="productData" class="productImage"
+          src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{productData.filename}}" />
+      </ion-grid>
+      <ion-grid>
+        <ion-row align-items-center margin-left margin-right>
+          <ion-col col-10 class="">
+            <div *ngIf="productData" class="text3" text-left>{{productData.product_name}}</div>
+          </ion-col>
+          <ion-col col-2 class=""><img src="assets/img/sungwoo_img/share..svg" /></ion-col>
+        </ion-row>
+        <ion-row align-items-center margin-left margin-right>
+          <ion-col *ngIf="productData" col-9 class="text4 " text-right>{{productData.saleAmount}}%~</ion-col>
+          <ion-col *ngIf="productData" col-3 class="text5 "><del>{{addComma(productData.price)}}원</del></ion-col>
+        </ion-row>
+        <ion-row align-items-center margin-left margin-right>
+          <ion-col *ngIf="productData" col-8 class="text6 " text-right>최대 {{maxPoint}}p 사용가능</ion-col>
+          <ion-col *ngIf="productData" col-4 class="text7 ">{{addComma(productData.Amount)}}원</ion-col>
+        </ion-row>
+        <button ion-button outline block class="buyBtn">구매하기</button>
+      </ion-grid> -->
+      <!-- <br> -->
+      <!-- <ion-grid no-padding>
+        <img no-padding *ngIf="productData" class="productImage"
+          src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{productData.filename}}" />
+      </ion-grid>
+      <ion-grid>
+        <ion-row align-items-center margin-left margin-right>
+          <ion-col col-10 class="">
+            <div *ngIf="productData" class="text3" text-left>{{productData.product_name}}</div>
+          </ion-col>
+          <ion-col col-2 class=""><img src="assets/img/sungwoo_img/share..svg" /></ion-col>
+        </ion-row>
+        <ion-row align-items-center margin-left margin-right>
+          <ion-col *ngIf="productData" col-9 class="text4 " text-right>{{productData.saleAmount}}%~</ion-col>
+          <ion-col *ngIf="productData" col-3 class="text5 "><del>{{addComma(productData.price)}}원</del></ion-col>
+        </ion-row>
+        <ion-row align-items-center margin-left margin-right>
+          <ion-col *ngIf="productData" col-8 class="text6 " text-right>최대 {{maxPoint}}p 사용가능</ion-col>
+          <ion-col *ngIf="productData" col-4 class="text7 ">{{addComma(productData.Amount)}}원</ion-col>
+        </ion-row>
+        <button ion-button outline block class="buyBtn">구매하기</button>
+      </ion-grid> -->
+      <!-- <br> -->
+      <div style="height:1vh; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1">
       </div>
-    </ion-row>
-    <ion-list>
-      <ng-container>
-        <ion-row>
-          <img src="assets/img/sungwoo_img/상단 배너.png" width="100%" height="280px"/>
+      <br>
+      <ion-grid>
+        <div margin-left margin-bottom text-left class="todaysDeal">NEXT DEAL</div>
+      </ion-grid>
+      <ion-grid class="">
+        <ion-row margin-left class="">
+          <ion-slides class="nextSlide" slidesPerView=2.5>
+            <ion-slide class="">
+              <div class="nextBorder">
+                <img class="nextImage"
+                  srcset="assets/img/pointShop/NextDeal01.png, assets/img/pointShop/NextDeal01@2x.png, assets/img/pointShop/NextDeal01@3x.png" />
+                <div text-left class="nextText">레디큐 츄 망고맛 3입 X 10개 (2박스)레디큐 츄 망고맛 3입 X 10개 (2박스)</div>
+              </div>
+            </ion-slide>
+            <ion-slide class="">
+              <div class="nextBorder">
+                <img class="nextImage"
+                  srcset="assets/img/pointShop/NextDeal02.png, assets/img/pointShop/NextDeal02@2x.png, assets/img/pointShop/NextDeal02@3x.png" />
+                <div text-left class="nextText">레디큐 다이어트 츄 젤리 5입 X 10팩 (2box) </div>
+              </div>
+            </ion-slide>
+            <ion-slide class="">
+              <div class="nextBorder">
+                <img class="nextImage"
+                  srcset="assets/img/pointShop/NextDeal01.png, assets/img/pointShop/NextDeal01@2x.png, assets/img/pointShop/NextDeal01@3x.png" />
+                <div text-left class="nextText">레디큐 츄 망고맛 3입 X 10개 (2박스)레디큐 츄 망고맛 3입 X 10개 (2박스)</div>
+              </div>
+            </ion-slide>
+          </ion-slides>
         </ion-row>
-        <ion-row padding>
-          <div class="text3" text-left>뷰셀리온 콜라겐 드링크 5000 - 4주분(20ml x 28병)</div>
-          <div class="img" text-right>
-            <img src="assets/img/sungwoo_img/share..svg"/>
-          </div>
+      </ion-grid>
+      <br>
+      <div style="height:1vh; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1">
+      </div>
+      <br>
+      <ion-grid>
+        <div margin-left margin-bottom text-left class="todaysDeal">PLINIC 피부에너지</div>
+      </ion-grid>
+      <ion-grid>
+        <ion-row align-items-center>
+          <ion-col col-5 class="">
+            <img class="PlinicImage"
+              srcset="assets/img/pointShop/ampoule.png, assets/img/pointShop/ampoule@2x.png, assets/img/pointShop/ampoule@3x.png" />
+          </ion-col>
+          <ion-col col-7 class="">
+            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지 플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
+            <div class="plinicText2">5%~ <del class="plinicText3">82,000원</del></div>
+            <div class="plinicText4">77,900원</div>
+            <div class="plinicText5">최대 1,000P 사용가능</div>
+          </ion-col>
         </ion-row>
-        <ion-row padding-right>
-          <div class="text4" text-right>50%~</div>
-          <div class="text5" text-right><del>50,000원</del></div>
+        <ion-row align-items-center>
+          <ion-col col-5 class="">
+            <img class="PlinicImage"
+              srcset="assets/img/pointShop/ampoule2.png, assets/img/pointShop/ampoule2@2x.png, assets/img/pointShop/ampoule2@3x.png" />
+          </ion-col>
+          <ion-col col-7 class="">
+            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
+            <div class="plinicText2">27%~ <del>240,000원</del></div>
+            <div class="plinicText4">175,000원</div>
+            <div class="plinicText5">최대 15,000P 사용가능</div>
+          </ion-col>
         </ion-row>
-        <ion-row padding-horizontal padding-top>
-          <div class="text6" text-right padding-right>최대 5,000p 사용가능</div>
-          <div class="text7" text-right>25,000원</div>
+        <ion-row align-items-center>
+          <ion-col col-5 class="">
+            <img class="PlinicImage"
+              srcset="assets/img/pointShop/cream.png, assets/img/pointShop/cream@2x.png, assets/img/pointShop/cream@3x.png" />
+          </ion-col>
+          <ion-col col-7 class="">
+            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
+            <div class="plinicText2">10%~ <del>582,000원</del></div>
+            <div class="plinicText4">523,800원</div>
+            <div class="plinicText5">최대 50,000P 사용가능</div>
+          </ion-col>
         </ion-row>
-        <ion-row padding-horizontal padding-bottom align-items-center>
-          <button class="btn1" ion-button>
-            <div class="btn_text" text-center (click)="cosmetic()">구매하기</div>
-          </button>
+      </ion-grid>
+      <br>
+      <div style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1">
+      </div>
+      <br>
+      <ion-grid>
+        <div margin-left margin-bottom text-left class="todaysDeal">홈케어 DEVICE</div>
+      </ion-grid>
+      <ion-grid>
+        <ion-row align-items-center>
+          <ion-col col-5 class="">
+            <img class="PlinicImage"
+              srcset="assets/img/pointShop/dual.png, assets/img/pointShop/dual@2x.png, assets/img/pointShop/dual@3x.png" />
+          </ion-col>
+          <ion-col col-7 class="">
+            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
+            <div class="plinicText2">10% ~ <del class="plinicText3">582,000원</del></div>
+            <div class="plinicText4">523,800원</div>
+            <div class="plinicText5">최대 50,000P 사용가능</div>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col col-5 class="">
+            <img class="PlinicImage"
+              srcset="assets/img/pointShop/single.png, assets/img/pointShop/single@2x.png, assets/img/pointShop/single@3x.png" />
+          </ion-col>
+          <ion-col col-7 class="">
+            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
+            <div class="plinicText2">10% ~ <del>582,000원</del></div>
+            <div class="plinicText4">523,800원</div>
+            <div class="plinicText5">최대 50,000P 사용가능</div>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col col-5 class="">
+            <img class="PlinicImage"
+              srcset="assets/img/pointShop/scope.png, assets/img/pointShop/scope@2x.png, assets/img/pointShop/scope@3x.png" />
+          </ion-col>
+          <ion-col col-7 class="">
+            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
+            <div class="plinicText2">10% ~ <del>582,000원</del></div>
+            <div class="plinicText4">523,800원</div>
+            <div class="plinicText5">최대 50,000P 사용가능</div>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col col-5 class="">
+            <img class="PlinicImage"
+              srcset="assets/img/pointShop/multi.png, assets/img/pointShop/multi@2x.png, assets/img/pointShop/multi@3x.png" />
+          </ion-col>
+          <ion-col col-7 class="">
+            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
+            <div class="plinicText2">10% ~ <del>582,000원</del></div>
+            <div class="plinicText4">523,800원</div>
+            <div class="plinicText5">최대 50,000P 사용가능</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <br><br><br><br><br><br>
+    </ion-slide>
+
+    <ion-slide no-padding>
+      <ion-grid no-padding class="review_point_grid">
+        <ion-row class="review_point_grid">
+          <img class="backImage"
+            srcset="assets/img/pointShop/backImage@1x.png, assets/img/pointShop/backImage@2x.png, assets/img/pointShop/backImage@3x.png" />
+        </ion-row>
+        <ion-row justify-content-center class="review_point_btn1">
+          <button ion-button icon-only clear text-center class="review_point_btn1_btn" (click)="care()"><img
+              class="review_point_btn1_img" src="assets/img/pointShop/point_button.svg" /></button>
         </ion-row>
 
-
-        <!-- <ion-row>
-          <img src="assets/img/header.png" width="100%" height="280px"/>
-        </ion-row>
-        <ion-row padding>
-          <div class="text3" text-left>엑스트라 버진 올리브 오일 카멜밀크 천연 비누</div>
-          <div class="img" text-right>
-            <img src="assets/img/sungwoo_img/share.png"/>
-          </div>
-        </ion-row>
-        <ion-row padding-right>
-          <div class="text4" text-right>25%~</div>
-          <div class="text5" text-right><del>14,900원</del></div>
-        </ion-row>
-        <ion-row padding-horizontal padding-top>
-          <div class="text6" text-right padding-right>최대 900p 사용가능</div>
-          <div class="text7" text-right>9,000원</div>
-        </ion-row>
-        <ion-row padding-horizontal padding-bottom>
-          <button class="btn1" ion-button>
-            <div class="btn_text" text-center>구매하기</div>
-          </button>
-        </ion-row>
-        <ion-row>
-          <img src="assets/img/beauty/beauty_ad_1.png" width="100%" height="280px"/>
-        </ion-row>
-        <ion-row padding>
-          <div class="text3" text-left>랩스토리 비톡스 브이 라인 실리콘 리프팅 밴드 V X10개</div>
-          <div class="img" text-right>
-            <img src="assets/img/sungwoo_img/share.png"/>
-          </div>
-        </ion-row>
-        <ion-row padding-right>
-          <div class="text4" text-right>5%~</div>
-          <div class="text5" text-right><del>200,000원</del></div>
-        </ion-row>
-        <ion-row padding-horizontal padding-top>
-          <div class="text6" text-right padding-right>최대 8,000p 사용가능</div>
-          <div class="text7" text-right>190,000원</div>
-        </ion-row>
-        <ion-row padding-horizontal padding-bottom>
-          <button class="btn1" ion-button>
-            <div class="btn_text" text-center>구매하기</div>
-          </button>
-        </ion-row> -->
-
-
-      </ng-container>
-    </ion-list>
-  </ion-grid>
-  <br>
-  <div style="height: 8px; background-color: #ececec; margin-top:-0.5%"></div>
-  <br>
-  <ion-grid padding>
-    <ion-row padding-bottom>
-      <div class="text2" text-left>NEXT DEAL</div>
-    </ion-row>
-    <ion-row>
-      <ion-slides mode="ios" slidesPerView=2.5>
-        <ng-container>
-          <ion-slide>
-            <div class="img_border">
-              <img class="img2" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NA100000771.jpg" />
-              <div class="text8" text-left>레디큐 츄 망고맛 3입 X 10개 (2박스)</div>
-            </div>
-          </ion-slide>
-        </ng-container>
-      </ion-slides>
-    </ion-row>
-  </ion-grid>
-  <br>
-  <div style="height: 8px; background-color: #ececec;"></div>
-  <br>
-  <ion-grid padding>
-    <ion-row padding-bottom>
-      <div class="text2" text-left>PLINIC 피부에너지</div>
-    </ion-row>
-    <ion-list>
-      <ng-container>
-        <ion-row padding-bottom>
-          <div class="img_border2" float-left>
-            <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/LA100000008.jpg" />
-          </div>
-          <div float-left padding-left padding-top>
-            <div class="text9" text-left padding-bottom>
-              플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈캐어 마사지
-            </div>
-            <div class="text10" text-left>5%~<span class="text11" text-left><del>82,000원</del></span></div>
-            <div class="text12" text-left>
-              77,900원
-            </div>
-            <div class="text13" text-left>
-              최대 1,000p 사용가능
-            </div>
-          </div>
+        <ion-row justify-content-center class="review_point_btn2">
+          <button ion-button icon-only clear text-center class="review_point_btn1_btn" (click)="skin()"><img
+              class="review_point_btn1_img" src="assets/img/pointShop/point_button_2.svg" /></button>
         </ion-row>
 
-
-        <!-- <ion-row padding-bottom>
-          <div class="img_border2" float-left>
-            <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/LA100000008.jpg" />
-          </div>
-          <div float-left padding-left padding-top>
-            <div class="text9" text-left padding-bottom>
-              레스테틱 스킨부스터2바이알 프랑스 수입 피부탄력 피부과 사용
-            </div>
-            <div class="text10" text-left>27%~<span class="text11" text-left><del>240,000원</del></span></div>
-            <div class="text12" text-left>
-              175,000원
-            </div>
-            <div class="text13" text-left>
-              최대 15,000p 사용가능
-            </div>
-          </div>
+        <ion-row justify-content-center class="review_point_btn3">
+          <button ion-button icon-only clear text-center class="review_point_btn1_btn" (click)="chulsuk()"><img
+              class="review_point_btn1_img" src="assets/img/pointShop/point_button_3.svg" /></button>
         </ion-row>
-        <ion-row padding-bottom>
-          <div class="img_border2" float-left>
-            <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/LA100000008.jpg" />
-          </div>
-          <div float-left padding-left padding-top>
-            <div class="text9" text-left padding-bottom>
-              플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈캐어 마사지
-            </div>
-            <div class="text10" text-left>10%~<span class="text11" text-left><del>582,000원</del></span></div>
-            <div class="text12" text-left>
-              523,800원
-            </div>
-            <div class="text13" text-left>
-              최대 50,000p 사용가능
-            </div>
-          </div>
-        </ion-row> -->
-
-
-      </ng-container>
-    </ion-list>
-  </ion-grid>
-  <div style="height: 1px; background-color: #ececec;"></div>
-  <br>
-  <ion-grid padding>
-    <ion-row padding-bottom>
-      <div class="text2" text-left>홈케어 DEVICE</div>
-    </ion-row>
-    <ion-list>
-      <ng-container>
-        <ion-row padding-bottom>
-          <div class="img_border2" float-left>
-            <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/LA100000008.jpg" />
-          </div>
-          <div float-left padding-left padding-top>
-            <div class="text9" text-left padding-bottom>
-              플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈캐어 마사지
-            </div>
-            <div class="text10" text-left>10%~<span class="text11" text-left><del>582,000원</del></span></div>
-            <div class="text12" text-left>
-              523,800원
-            </div>
-            <div class="text13" text-left>
-              최대 50,000p 사용가능
-            </div>
-          </div>
-        </ion-row>
-
-
-        <!-- <ion-row padding-bottom>
-          <div class="img_border2" float-left>
-            <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/LA100000008.jpg" />
-          </div>
-          <div float-left padding-left padding-top>
-            <div class="text9" text-left padding-bottom>
-              플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈캐어 마사지
-            </div>
-            <div class="text10" text-left>10%~<span class="text11" text-left><del>582,000원</del></span></div>
-            <div class="text12" text-left>
-              523,800원
-            </div>
-            <div class="text13" text-left>
-              최대 50,000p 사용가능
-            </div>
-          </div>
-        </ion-row>
-        <ion-row padding-bottom>
-          <div class="img_border2" float-left>
-            <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/LA100000008.jpg" />
-          </div>
-          <div float-left padding-left padding-top>
-            <div class="text9" text-left padding-bottom>
-              플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈캐어 마사지
-            </div>
-            <div class="text10" text-left>10%~<span class="text11" text-left><del>582,000원</del></span></div>
-            <div class="text12" text-left>
-              523,800원
-            </div>
-            <div class="text13" text-left>
-              최대 50,000p 사용가능
-            </div>
-          </div>
-        </ion-row>
-        <ion-row padding-bottom>
-          <div class="img_border2" float-left>
-            <img src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/LA100000008.jpg" />
-          </div>
-          <div float-left padding-left padding-top>
-            <div class="text9" text-left padding-bottom>
-              플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈캐어 마사지
-            </div>
-            <div class="text10" text-left>10%~<span class="text11" text-left><del>582,000원</del></span></div>
-            <div class="text12" text-left>
-              523,800원
-            </div>
-            <div class="text13" text-left>
-              최대 50,000p 사용가능
-            </div>
-          </div>
-        </ion-row> -->
-
-
-      </ng-container>
-    </ion-list>
-  </ion-grid>
-
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
 
 </ion-content>

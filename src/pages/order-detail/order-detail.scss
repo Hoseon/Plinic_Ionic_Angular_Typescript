@@ -290,7 +290,6 @@ page-order-detail {
 
   .text5 {
     width: 40.5px;
-    height: 11px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 12px;
     font-weight: normal;
@@ -307,7 +306,6 @@ page-order-detail {
 
   .text6 {
     width: 40.5px;
-    height: 11px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 12px;
     font-weight: normal;
@@ -325,7 +323,6 @@ page-order-detail {
 
   .text7 {
     width: 44.5px;
-    height: 12.5px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 13.3px;
     font-weight: bold;
@@ -356,6 +353,10 @@ page-order-detail {
 
   .ionic3-star-rating > button {
     margin: -0.1em;
+  }
+
+  .testborder {
+    border: solid 1px #6562b9;
   }
 
 }

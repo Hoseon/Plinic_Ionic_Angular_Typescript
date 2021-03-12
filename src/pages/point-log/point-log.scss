@@ -486,4 +486,42 @@ page-point-log {
     border: 1px solid #f1f1f1;
   }
 
+  .testborder {
+    border: solid 1px #6562b9;
+  }
+
+  .leftBorder {
+    border-right : solid 1px #5c59b6;
+  }
+
+  .addText {
+    // margin-top: 25%;
+    font-family: NotoSansCJKkr;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    color: #5c59b6;
+  }
+
+  .minusText {
+    // margin-top: 25%;
+    font-family: NotoSansCJKkr;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    color: #ea0000;
+  }
+
+  .reason {
+    // margin-top: 4%;
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    color: #848484;
+  }
+
 }

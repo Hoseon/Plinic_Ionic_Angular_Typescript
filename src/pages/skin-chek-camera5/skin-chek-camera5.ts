@@ -123,22 +123,22 @@ export class SkinChekCamera5Page {
                     if(data3 === null) {
                       //사용자가 처음 등록한 사용자라면 무조건 세이브 처리 해준다.
                       if(this.userData.from === 'naver' || this.userData.from === 'kakao' || this.userData.from === 'google') { //sns회원인지 구분
-                        this.auth.plinicShopAddPoint(this.userData.snsid, 100, '피부진단').subscribe(data4 => {
-                          console.log("플리닉샵 포인트 누적 : " + data4);
-                        }, error => {
-                          console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
-                        });
+                        // this.auth.plinicShopAddPoint(this.userData.snsid, 100, '피부진단').subscribe(data4 => {
+                        //   console.log("플리닉샵 포인트 누적 : " + data4);
+                        // }, error => {
+                        //   console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
+                        // });
                         this.auth.skinReportUpdate(this.userData.email, skinreport).subscribe(data5 => {
                           console.log("Skin-Chek-Camera2 : skinReportUpdate 포인트 누적 완료")
                         }, error => {
                 
                         });
                       } else {
-                        this.auth.plinicShopAddPoint(this.userData.email, 100, '피부진단').subscribe(data4 => {
-                          console.log("플리닉샵 포인트 누적 : " + data4);
-                        }, error => {
-                          console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
-                        });
+                        // this.auth.plinicShopAddPoint(this.userData.email, 100, '피부진단').subscribe(data4 => {
+                        //   console.log("플리닉샵 포인트 누적 : " + data4);
+                        // }, error => {
+                        //   console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
+                        // });
                         this.auth.skinReportUpdate(this.userData.email, skinreport).subscribe(data5 => {
                           console.log("Skin-Chek-Camera2 : skinReportUpdate 포인트 누적 완료")
                         }, error => {

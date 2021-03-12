@@ -95,9 +95,9 @@ export class CommunityPage {
         })
       }
 
-      console.log("루트페어런트 데이터 테스트 ::::::;" + JSON.stringify(navParams.data));
+      // console.log("루트페어런트 데이터 테스트 ::::::;" + JSON.stringify(navParams.data));
 
-      console.log('parent_test :::::: ' + this.navParams.get('test'));
+      // console.log('parent_test :::::: ' + this.navParams.get('test'));
       console.log(this.navParams.get('back'));
       this.events1();
       this.events2();
@@ -191,7 +191,7 @@ export class CommunityPage {
   public tabs_check() {
     this.authService.getUserStoragetab().then(items => {
       this.tabs_boolean = items;
-      console.log("tabs_boolean=======" + this.tabs_boolean);
+      // console.log("tabs_boolean=======" + this.tabs_boolean);
       if (this.tabs_boolean === 1) {
         setTimeout(() => {
           this.selectedTab(1);
@@ -858,11 +858,24 @@ export class CommunityPage {
   }
 
   private reloadUserPoint(email) {
-    this.authService.reloadUserPointfromPlincShop(email).subscribe(data =>{
-      // console.log("커뮤니티 사용자 포인트 : " + data)
-      this.userData.totaluserpoint = data.point;
-      this.userData.totaluserpoint = this.addComma(this.userData.totaluserpoint);
-    });
+    // this.authService.reloadUserPointfromPlincShop(email).subscribe(data =>{
+    //   // console.log("커뮤니티 사용자 포인트 : " + data)
+    //   this.userData.totaluserpoint = data.point;
+    //   this.userData.totaluserpoint = this.addComma(this.userData.totaluserpoint);
+    // });
+
+    this.authService.reloadUserPointfromPlinc(email).subscribe(
+      data => {
+        this.userData.totaluserpoint = JSON.stringify(data.totalPoint);
+        this.userData.totaluserpoint = this.addComma(this.userData.totaluserpoint);
+      },
+      error => {
+        console.log(
+          "사용자 개인포인트 불러오기 에러발생 : " + JSON.stringify(error)
+        );
+      }
+    );
+
   }
 
   async getMovieData() {

@@ -174,11 +174,23 @@ export class SungwooBeautyPage {
   }
 
   private reloadUserPoint(email) {
-    this.auth.reloadUserPointfromPlincShop(email).subscribe(data =>{
-      // console.log("커뮤니티 사용자 포인트 : " + data)
-      this.userData.totaluserpoint = data.point;
-      this.userData.totaluserpoint = this.addComma(this.userData.totaluserpoint);
-    });
+    // this.auth.reloadUserPointfromPlincShop(email).subscribe(data =>{
+    //   // console.log("커뮤니티 사용자 포인트 : " + data)
+    //   this.userData.totaluserpoint = data.point;
+    //   this.userData.totaluserpoint = this.addComma(this.userData.totaluserpoint);
+    // });
+
+    this.auth.reloadUserPointfromPlinc(email).subscribe(
+      data => {
+        this.userData.totaluserpoint = JSON.stringify(data.totalPoint);
+        this.userData.totaluserpoint = this.addComma(this.userData.totaluserpoint);
+      },
+      error => {
+        console.log(
+          "사용자 개인포인트 불러오기 에러발생 : " + JSON.stringify(error)
+        );
+      }
+    );
   }
 
   addComma(data_value) { //숫자 세자리 마다 컴마 붙히기

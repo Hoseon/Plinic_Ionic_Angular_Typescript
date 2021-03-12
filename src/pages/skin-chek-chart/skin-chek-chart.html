@@ -11,8 +11,10 @@
       <div class="guide_android">이용안내</div>
     </ion-buttons>
     <ion-buttons (click)="myinfo()" end>
-      <div *ngIf="userData" class="android_point">{{userData.totaluserpoint}}P&nbsp;
-        <img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
+      <ion-row align-items-center>
+        <div *ngIf="userData" class="android_point">{{userData.totaluserpoint}}P&nbsp;</div>
+        <img class="ic_system_arrow_white2" src="assets/img/home/ic_arrow_black.png" />
+      </ion-row>
     </ion-buttons>
     <ion-title class="android_title" text-wrap>피부 리포트</ion-title>
     <div class="android_search" style="right: 7%;">
@@ -36,8 +38,11 @@
       </div>
     </ion-buttons>
     <ion-buttons (click)="myinfo()" end>
-      <div *ngIf="userData" class="ios_point">{{userData.totaluserpoint}}P&nbsp;
-        <img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
+      <ion-row align-items-center class="">
+          <div *ngIf="userData" class="android_point">{{userData.totaluserpoint}}P&nbsp;</div>
+          <img class=" ic_system_arrow_white2" src="assets/img/home/ic_arrow_black.png" />
+      </ion-row>
+      
     </ion-buttons>
     <ion-title class="ios_title" text-wrap>피부 리포트</ion-title>
 

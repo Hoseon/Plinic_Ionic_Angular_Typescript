@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, AlertController, ViewController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
@@ -35,10 +35,20 @@ export class RewardPage {
   postEmail: any;
   review: any;
   jwtHelper: JwtHelper = new JwtHelper();
+  postData: any;
 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, private auth: AuthService, public alertCtrl: AlertController, public viewCtrl: ViewController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private platform: Platform,
+    private auth: AuthService,
+    public alertCtrl: AlertController,
+    public viewCtrl: ViewController,
+    public zone: NgZone,
+    
+  ) {
 
   }
 
@@ -115,19 +125,32 @@ export class RewardPage {
 
   postCheck() {
     this.ishidden = true;
-    this.setInter = setInterval(() => {
-      this.auth.getPostCodeCheck().subscribe(data => {
-        if (data) {
-          this.zonecode = data['data'].zonecode;
-          this.address = data['data'].address;
-          this.buildingName = data['data'].buildingName;
-          this.ishidden = false;  //데이터 들어 오면 우편번호는 iframe을 숨긴다.
-          clearInterval(this.setInter);
-        } else {
-          console.log('다음주소 못가져옴 false');
-        }
+
+    window.addEventListener("message", (data: any) => {
+      this.postData = data.data;
+      console.log(data);
+      console.log(data.data);
+      // this.closePost();
+      this.address = this.postData.post.address;
+      this.buildingName = this.postData.post.buildingName;
+      this.zonecode = this.postData.post.zonecode;
+      this.zone.run(() => {
+        this.ishidden = false;
       })
-    }, 1000);
+    })
+    // this.setInter = setInterval(() => {
+    //   this.auth.getPostCodeCheck().subscribe(data => {
+    //     if (data) {
+    //       this.zonecode = data['data'].zonecode;
+    //       this.address = data['data'].address;
+    //       this.buildingName = data['data'].buildingName;
+    //       this.ishidden = false;  //데이터 들어 오면 우편번호는 iframe을 숨긴다.
+    //       clearInterval(this.setInter);
+    //     } else {
+    //       console.log('다음주소 못가져옴 false');
+    //     }
+    //   })
+    // }, 1000);
   }
 
   postFocusOut() {

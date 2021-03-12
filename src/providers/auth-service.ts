@@ -1843,6 +1843,7 @@ export class AuthService {
 
 
   public getPostCodeCheck() {
+    console.log("authPostCheck");
     return this.http.get(CONFIG.apiUrl + 'api/daumjuso/mobile')
       .map(response => response.json());
   }
@@ -2166,6 +2167,12 @@ export class AuthService {
   //사용자 포인트 플리닉 샵에서 가져오기 2020-07-01
   public reloadUserPointfromPlincShop(email) {
     return this.http.get(CONFIG.apiUrl + 'Point/getUserPlinicPoint/' + email)
+      .map(response => response.json());
+  }
+
+  //사용자 포인트 플리닉 샵에서 가져오기 2021-03-02
+  public reloadUserPointfromPlinc(email) {
+    return this.http.get(CONFIG.apiUrl + 'Point/getUserPlinicPointLog/' + email)
       .map(response => response.json());
   }
 
@@ -2757,6 +2764,102 @@ export class AuthService {
         console.log(data);
         return data;
       });
+  }
+
+
+  // 사용자 배송정보 임시 저장
+  public setUserStorageAddress(addr) {
+    this.storage.set('storageAddress', addr);
+  }
+
+  public getUserStorageAddress(key: string): Promise<any> {
+    return this.storage.get(key);
+  }
+
+  public registerAddress(email, addr) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      addr: addr,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/addressSave', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
+  public setAddressMain(email, addressId) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      addressId: addressId,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/setAddressMain', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
+  public getIamPortPayment(imp_uid) { //20210225 사용자 결제 정보 조회
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      imp_uid: imp_uid,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/getIamPortPayment', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
+  public setUserPointLog(email, points, point) { //사용자 상품구매 포인트차감 이력 저장 로직
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      points: points,
+      point: point
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/setUserPointLog', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        return data;
+    });
+  }
+
+  public setUserOrders(email, productCount, usePoint, orders, productData) { //사용자 상품구매 포인트차감 이력 저장 로직
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      orderinfo: orders
+    };
+
+    body.orderinfo.email = email;
+    body.orderinfo.productCount = productCount;
+    body.orderinfo.usePoint = usePoint;
+    body.orderinfo.product_name = productData.product_name;
+    body.orderinfo.product_num = productData.product_num;
+    body.orderinfo.productFileName = productData.productFileName;
+
+    return this.http.post(CONFIG.apiUrl + 'api/setUserOrders', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        return data;
+    });
   }
 
 

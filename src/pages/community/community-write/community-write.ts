@@ -315,11 +315,11 @@ export class CommunityWritePage {
                       {
                         text: '확인',
                         handler: () => {
-                          this.auth.plinicShopAddPoint(this.userData.email, 10, "커뮤니티").subscribe(data => {
-                            console.log("포인트 적립 성공 ::::::::: ");
-                          }, error => {
-                            console.log("포인트 적립 에러 ::::::::: ");
-                          });
+                          // this.auth.plinicShopAddPoint(this.userData.email, 10, "커뮤니티").subscribe(data => {
+                          //   console.log("포인트 적립 성공 ::::::::: ");
+                          // }, error => {
+                          //   console.log("포인트 적립 에러 ::::::::: ");
+                          // });
                           //this.nav.pop();
                           this.viewCtrl.dismiss({
                             page_modify: this.page_modify
@@ -348,11 +348,11 @@ export class CommunityWritePage {
                           {
                             text: '확인',
                             handler: () => {
-                              this.auth.plinicShopAddPoint(this.userData.email, 10, "커뮤니티").subscribe(data => {
-                                // console.log("포인트 적립 성공 ::::::::: ");
-                              }, error => {
-                                // console.log("포인트 적립 에러1 ::::::::: " + error);
-                              });
+                              // this.auth.plinicShopAddPoint(this.userData.email, 10, "커뮤니티").subscribe(data => {
+                              //   // console.log("포인트 적립 성공 ::::::::: ");
+                              // }, error => {
+                              //   // console.log("포인트 적립 에러1 ::::::::: " + error);
+                              // });
                               //this.nav.pop();
                               this.viewCtrl.dismiss({
                                 page_write: this.page_write
@@ -378,11 +378,11 @@ export class CommunityWritePage {
                           {
                             text: '확인',
                             handler: () => {
-                              this.auth.plinicShopAddPoint(this.userData.email, 10, "커뮤니티").subscribe(data => {
-                                // console.log("포인트 적립 성공 ::::::::: ");
-                              }, error => {
-                                // console.log("포인트 적립 에러2 ::::::::: " + error);
-                              });
+                              // this.auth.plinicShopAddPoint(this.userData.email, 10, "커뮤니티").subscribe(data => {
+                              //   // console.log("포인트 적립 성공 ::::::::: ");
+                              // }, error => {
+                              //   // console.log("포인트 적립 에러2 ::::::::: " + error);
+                              // });
                               //this.nav.pop();
                               this.viewCtrl.dismiss({
                                 page_write: this.page_write
@@ -412,11 +412,11 @@ export class CommunityWritePage {
                           {
                             text: '확인',
                             handler: () => {
-                              this.auth.plinicShopAddPoint(this.userData.email, 10, "커뮤니티").subscribe(data => {
-                                // console.log("포인트 적립 성공 ::::::::: ");
-                              }, error => {
-                                // console.log("포인트 적립 에러3 ::::::::: " + error);
-                              });
+                              // this.auth.plinicShopAddPoint(this.userData.email, 10, "커뮤니티").subscribe(data => {
+                              //   // console.log("포인트 적립 성공 ::::::::: ");
+                              // }, error => {
+                              //   // console.log("포인트 적립 에러3 ::::::::: " + error);
+                              // });
                               //this.nav.pop();
                               this.viewCtrl.dismiss({
                                 page_write: this.page_write
@@ -441,11 +441,11 @@ export class CommunityWritePage {
                           {
                             text: '확인',
                             handler: () => {
-                              this.auth.plinicShopAddPoint(this.userData.email, 10, "커뮤니티").subscribe(data => {
-                                // console.log("포인트 적립 성공 ::::::::: ");
-                              }, error => {
-                                // console.log("포인트 적립 에러4 ::::::::: " + error);
-                              });
+                              // this.auth.plinicShopAddPoint(this.userData.email, 10, "커뮤니티").subscribe(data => {
+                              //   // console.log("포인트 적립 성공 ::::::::: ");
+                              // }, error => {
+                              //   // console.log("포인트 적립 에러4 ::::::::: " + error);
+                              // });
                               //this.nav.pop();
                               this.viewCtrl.dismiss({
                                 page_write: this.page_write

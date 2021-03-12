@@ -112,8 +112,9 @@ page-product-review {
   }
 
   .product_img {
-    width: 102px;
-    height: 102px;
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
     border-radius: 5.7px;
     border: solid 0.5px #e8e8e8;
     background-color: #ffffff;

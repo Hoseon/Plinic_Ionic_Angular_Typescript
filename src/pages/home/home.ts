@@ -55,6 +55,8 @@ import { SkinChekCamera2Page } from "../skin-chek-camera2/skin-chek-camera2";
 import { Geolocation } from "@ionic-native/geolocation"; //안드로이드 API 29버전에서 BLE 연결 이슈로 인하여 위치정보 수집을 미리 한다. 2020-11-10
 import { ProductReviewPage } from "../product-review/product-review";
 import { SkinChekCamera5Page } from '../skin-chek-camera5/skin-chek-camera5';
+import { AdressPage } from '../adress/adress';
+import { OrderSucessCardPage } from '../orderSucess-Card/orderSucess-Card';
 
 @IonicPage()
 @Component({
@@ -240,7 +242,7 @@ export class HomePage {
   }
 
   async ngOnInit() {
-    console.log("ngOnInit Home");
+    // console.log("ngOnInit Home");
     if (this.platform.is("android")) {
       //안드로이드 app.scss의 내용과 ios의 내용이 달라 분기로 구분함
       setTimeout(() => {
@@ -313,7 +315,7 @@ export class HomePage {
   }
 
   async ionViewWillEnter() {
-    console.log("willEnter");
+    // console.log("willEnter");
     await this.skinQnaLoad();
     if (this.userData) {
       this.challengeChkMission(this.userData.email);
@@ -338,6 +340,7 @@ export class HomePage {
         this.androidBackButton();
       }
     }
+    // this.unixTimStamptoKist(1234);
   }
 
   ionViewWillLeave() {
@@ -1255,10 +1258,11 @@ export class HomePage {
   }
 
   private reloadUserPoint(email) {
-    this.auth.reloadUserPointfromPlincShop(email).subscribe(
+
+    this.auth.reloadUserPointfromPlinc(email).subscribe(
       data => {
-        this.userData.totaluserpoint = JSON.stringify(data.point);
-        this.totaluserpoint = JSON.stringify(data.point);
+        this.userData.totaluserpoint = JSON.stringify(data.totalPoint);
+        this.totaluserpoint = JSON.stringify(data.totalPoint);
         this.totaluserpoint = this.addComma(this.totaluserpoint);
         // console.log("사용자 포인트 리로드 : " + this.userData.totaluserpoint);
         setTimeout(() => {
@@ -1271,6 +1275,23 @@ export class HomePage {
         );
       }
     );
+
+    // this.auth.reloadUserPointfromPlincShop(email).subscribe(
+    //   data => {
+    //     this.userData.totaluserpoint = JSON.stringify(data.point);
+    //     this.totaluserpoint = JSON.stringify(data.point);
+    //     this.totaluserpoint = this.addComma(this.totaluserpoint);
+    //     // console.log("사용자 포인트 리로드 : " + this.userData.totaluserpoint);
+    //     setTimeout(() => {
+    //       this.flip();
+    //     }, 3000);
+    //   },
+    //   error => {
+    //     console.log(
+    //       "사용자 개인포인트 불러오기 에러발생 : " + JSON.stringify(error)
+    //     );
+    //   }
+    // );
   }
 
   addComma(data_value) {
@@ -1638,5 +1659,24 @@ export class HomePage {
         });
       });
     }
+  }
+
+  goToAddress() {
+    this.nav.push(OrderSucessCardPage);
+  }
+  goToReward() {
+    this.nav.push(RewardPage);
+  }
+
+  unixTimStamptoKist(t) {
+    var date = new Date(1614213300 * 1000);
+    var year = date.getFullYear();
+    var month = "0" + (date.getMonth() + 1);
+    var day = "0" + date.getDate();
+    var hour = "0" + date.getHours();
+    var minute = "0" + date.getMinutes();
+    var second = "0" + date.getSeconds();
+
+    console.log(year + "-" + month.substr(-2) + "-" + day.substr(-2) + " " + hour.substr(-2) + ":" + minute.substr(-2) + ":" + second.substr(-2));
   }
 }

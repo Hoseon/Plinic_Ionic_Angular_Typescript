@@ -1,0 +1,268 @@
+page-orderScuess-Card {
+  .header-md::after,
+  .tabs-md[tabsPlacement="top"]>.tabbar::after,
+  .footer-md::before,
+  .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
+    height: 1px;
+    margin-bottom: 5px;
+  }
+
+  .item-md.item-block .item-inner {
+    padding-right: 12px;
+  }
+
+  .header-ios::after,
+  .tabs-ios[tabsPlacement="top"]>.tabbar::after,
+  .footer-ios::before,
+  .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
+    height: 0px;
+    margin-bottom: 5px;
+  }
+
+  .item-ios.item-block .item-inner {
+    padding-right: 12px;
+  }
+
+  .toolbar-title-md {
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: AppleSDGothicNeo-Regular;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+  }
+
+  .toolbar-title-ios {
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: AppleSDGothicNeo-Regular;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    margin-top: -5%;
+    color: #292929;
+  }
+
+  .bar-button-clear-ios-default,
+  .bar-button-default-ios,
+  .bar-button-default.bar-button-ios-default {
+    margin-left: -4.5%;
+    margin-top: -6.5%;
+    color: transparent;
+  }
+
+  .ios_nav {
+    background-color: #FFF;
+    width: 50px !important;
+    height: 25px !important;
+    object-fit: contain;
+  }
+
+  .toolbar-background {
+    background-color: #FFF;
+  }
+
+  .ion-md-arrow-back:before {
+    display: none;
+    position: absolute;
+    content: "\f27d";
+    left: 10%;
+    top: 2px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .toolbar-ios {
+    margin-top: 8%;
+  }
+
+  .back-button-text-ios {
+    font-size: 0;
+  }
+
+  .android_title {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 70%;
+    color: #292929;
+  }
+
+  .ios_title {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 120%;
+    color: #292929;
+    margin-top: 1%;
+  }
+
+  .testborder {
+    border: solid 1px #6562b9;
+  }
+
+  .check_baseline {
+    margin-top: -2vw;
+  }
+
+  .nav_close {
+    width: 26px;
+    height: 26px;
+  }
+
+  .text1 {
+    font-family: NotoSansCJKkr;
+    font-size: 18.3px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 37.8px;
+    letter-spacing: -0.55px;
+    color: #292929;
+  }
+
+  .text2 {
+    width: 65%;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 18.3px;
+    letter-spacing: -0.45px;
+    color: #292929;
+    margin: 0 auto;
+  }
+  
+  .text3 {
+    font-family: NotoSansCJKkr;
+    font-size: 13.3px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 44.5px;
+    letter-spacing: -0.4px;
+    color: #7c7c7c;
+  }
+
+  .text4 {
+    font-family: NotoSansCJKkr;
+    font-size: 16.5px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 44.5px;
+    letter-spacing: -0.5px;
+    color: #292929;
+  }
+
+  .text5 {
+    font-family: NotoSansCJKkr;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 29px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.48px;
+    color: #000000;
+  }
+
+  .text6 {
+    font-family: NotoSansCJKkr;
+    font-size: 14.5px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 29px;
+    letter-spacing: -0.44px;
+    text-align: left;
+    color: #343434;
+  }
+
+  .text7 {
+    width: 70%;
+    font-family: NotoSansCJKkr;
+    font-size: 13.8px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 19.8px;
+    letter-spacing: -0.41px;
+    text-align: left;
+    color: #343434;
+  }
+
+  .text8 {
+    font-family: NotoSansCJKkr;
+    font-size: 13.5px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 29px;
+    letter-spacing: -0.41px;
+    color: #adadad;
+  }
+
+  .text9 {
+    font-family: NotoSansCJKkr;
+    font-size: 14.8px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 29px;
+    letter-spacing: -0.44px;
+    color: #343434;
+  }
+
+  .text9_1 {
+    font-family: NotoSansCJKkr;
+    font-size: 14.8px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 20px;
+    letter-spacing: -0.44px;
+    color: #343434;
+  }
+
+  .text10 {
+    font-family: NotoSansCJKkr;
+    font-size: 13.8px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 19.8px;
+    letter-spacing: -0.41px;
+    color: #343434;
+  }
+
+  .text11 {
+    font-family: NotoSansCJKkr;
+    font-size: 13.8px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 19.8px;
+    letter-spacing: -0.41px;
+    color: #343434;
+  }
+
+  .cell {
+    width: 326px;
+    height: 50px;
+    border-radius: 3.5px;
+    background-color: #5c59b6;
+    margin-bottom: 10%;
+  }
+
+}

@@ -7,7 +7,7 @@ page-sungwoo-delivery {
     }
 
     .scroll-content {
-      overflow: hidden;
+      // overflow: hidden;
     }
 
     .delivery_grid {
@@ -24,6 +24,15 @@ page-sungwoo-delivery {
       height: 8vw;
       width: 10vw;
       // left: 85.7vw;
+      float: right;
+      object-fit: contain;
+      background-color: transparent;
+    }
+
+    .ic-system-back-black_ios {
+      height: 8vw;
+      width: 10vw;
+      margin-top: 5%;
       float: right;
       object-fit: contain;
       background-color: transparent;

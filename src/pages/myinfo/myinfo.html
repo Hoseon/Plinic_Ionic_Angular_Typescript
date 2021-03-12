@@ -40,41 +40,44 @@
     <br>
     <br>
     <ion-grid>
-      <ion-row>
+      <ion-row margin-left>
         <ion-col>
           <span class="profile_name">{{userData.nickname}}</span>
           <span class="profile_name2">님</span>
         </ion-col>
         <ion-col>
-          <button (click)="openBrowser_android('https://plinicshop.com', 'PlinicShop')" ion-button class="goshop">포인트몰
-            이동</button>
+          <!-- <button (click)="openBrowser_android('https://plinicshop.com', 'PlinicShop')" ion-button class="goshop">포인트몰
+            이동</button> -->
         </ion-col>
       </ion-row>
     </ion-grid>
 
     <ion-grid>
-      <ion-row>
-        <ion-col (click)="pointLog()" class="point_text" col-4>플리닉 포인트 ></ion-col>
-        <ion-col class="order_text" col-4>주문 및 배송 ></ion-col>
+      <ion-row margin-left class="">
+        <ion-col (click)="pointLog()" class="point_text " col-4>플리닉 포인트 ></ion-col>
+        <ion-col class="order_text " col-4>주문 및 배송 ></ion-col>
+        <ion-col class="order_text " col-4>반품 및 교환 ></ion-col>
         <!-- <ion-col class="return_text" col-4>취소∙반품∙교환</ion-col> -->
       </ion-row>
-      <ion-row>
+      <ion-row margin-left class="">
         <ng-container *ngIf="platform.is('ios')">
-          <ion-col *ngIf="userData" class="point" col-4>
+          <ion-col *ngIf="userData" class="point " col-4>
             <ion-spinner *ngIf="isSpinner" class="ing_spinner" name="crescent"></ion-spinner>
             <div (click)="pointLog()" class="flip_number" #numberbtn></div>
             <!-- <div class="number_width">P</div> -->
           </ion-col>
         </ng-container>
         <ng-container *ngIf="platform.is('android') || platform.is('core')">
-          <ion-col *ngIf="userData" class="point" col-4>
+          <ion-col *ngIf="userData" class="point " col-4>
             <ion-spinner *ngIf="isSpinner" class="ing_spinner" name="crescent"></ion-spinner>
             <div (click)="pointLog()" class="flip_number" #numberbtn></div>
             <!-- <div class="number_width_android">P</div> -->
           </ion-col>
         </ng-container>
-        <ion-col (click)="orderDetailPage()" *ngIf="(detailOrderData != '')" class="order" col-4>0</ion-col>
-        <ion-col (click)="orderDetailPage()" *ngIf="(detailOrderData === '')" class="order" col-4>0</ion-col>
+        <ion-col (click)="orderDetailPage()" *ngIf="orderCount" class="order " col-4>{{orderCount}}</ion-col>
+        <ion-col (click)="orderDetailPage()" *ngIf="(orderCount === 0)" class="order " col-4>0</ion-col>
+        <ion-col class="order " col-4>0</ion-col>
+
         <!-- <ion-col class="return" col-4>0</ion-col> -->
       </ion-row>
       <br><br>

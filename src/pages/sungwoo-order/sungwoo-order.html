@@ -1,41 +1,25 @@
-<!--
-  Generated template for the SungwooOrderPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar *ngIf="platform.is('android')  || platform.is('core')">
-    <ion-title class="android_title" text-wrap>주문서</ion-title>
-    <ion-buttons (click)="myinfo()" end>
-      <img
-        class="ios_nav"
-        src="assets/img/login/ic-system-close-black@3x.png"
-      />
-    </ion-buttons>
-  </ion-navbar>
 
-  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
-      <ion-title  class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
-    </ion-navbar> -->
+    <ion-title class="android_title" text-wrap>주문서</ion-title>
+    <ion-buttons end>
+        <button ion-button clear icon-only (click)="closePoint()"><img class="nav_close" src="assets/img/login/ic-system-close-black@3x.png"/></button>
+      </ion-buttons>
+  </ion-navbar>
+  
 
   <ion-navbar *ngIf="platform.is('ios')" no-lines>
-    <ion-buttons left no-lines>
-      <button ion-button navPop icon-only left>
-        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
-        <img
-          class="ios_nav"
-          src="assets/img/agreement/ic-system-back-black@3x.png"
-        />
+    <ion-buttons no-lines>
+      <button left ion-button navPop icon-only>
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png"/>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button (click)="closePoint()" ion-button end icon-only>
+        <img nav_close class="nav_close" src="assets/img/login/ic-system-close-black@3x.png" />
       </button>
     </ion-buttons>
     <ion-title class="ios_title" text-wrap>주문서</ion-title>
-    <ion-buttons end>
-      <img
-        class="ios_nav"
-        src="assets/img/login/ic-system-close-black@3x.png"
-      />
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -44,15 +28,15 @@
     <br /><br />
     <ion-row>
       <ion-col col-8>
-        <div class="product_name">플리닉</div>
-        <div class="order_name">플리닉 멀티 일시불 결제</div>
+        <div *ngIf="productData" class="product_name">{{productData.brand_name}}</div>
+        <div *ngIf="productData" class="order_name">{{productData.product_name}}</div>
         <br />
         <div class="order-little_text1">옵션</div>
       </ion-col>
       <ion-col col-4>
-        <img
+        <img *ngIf="productData"
           class="order_img"
-          src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/KA100000738.jpg"
+          src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{productData.productFileName}}"
         />
       </ion-col>
     </ion-row>
@@ -64,30 +48,77 @@
   <ng-container>
     <ion-grid class="order_delivery_grid">
       <br />
-      <ion-row>
+      <ion-row align-items-center class="">
         <ion-col class="order_title" col-6> 배송지 </ion-col>
-        <ion-col class="order_title2" col-6>배송지 입력</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="line_item" no-lines>
-          이성균
-          <div
-            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
-          ></div>
-        </ion-col>
-        <ion-col class="line_item" no-lines>
-          010-9022-1220
-          <div
-            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
-          ></div>
-        </ion-col>
-        <ion-col class="line_item" no-lines>
-          인천광역시 연수구 송도미래로 30 스마트밸리 402호
-          <div
-            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
-          ></div>
+        <ion-col class="order_title2" col-6>
+          <button *ngIf="!istempAddr" clear ion-button (click)="registAdress()">배송지 입력</button>
+          <button *ngIf="istempAddr" clear ion-button (click)="registAdress()">배송지 변경</button>
         </ion-col>
       </ion-row>
+      
+      <ion-row *ngIf="!istempAddr && !isAddressData">
+        <ion-col class="line_item" no-lines>
+          -
+          <div
+            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
+          ></div>
+        </ion-col>
+        <ion-col class="line_item" no-lines>
+          -
+          <div
+            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
+          ></div>
+        </ion-col>
+        <ion-col class="line_item" no-lines>
+          -
+          <div
+            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
+          ></div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="istempAddr">
+        <ion-col class="line_item" no-lines>
+          {{addrname}}
+          <div
+            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
+          ></div>
+        </ion-col>
+        <ion-col class="line_item" no-lines>
+          {{phonenumber}}
+          <div
+            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
+          ></div>
+        </ion-col>
+        <ion-col class="line_item" no-lines>
+          {{address}} {{buildingName}} {{zonecode}}
+          <div
+            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
+          ></div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="!istempAddr && isAddressData">
+        <ion-col class="line_item" no-lines>
+          {{addrname}}
+          <div
+            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
+          ></div>
+        </ion-col>
+        <ion-col class="line_item" no-lines>
+          {{phonenumber}}
+          <div
+            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
+          ></div>
+        </ion-col>
+        <ion-col class="line_item" no-lines>
+          {{address}} {{buildingName}} {{zonecode}}
+          <div
+            style="height: 0.1px; width: 90vw; background-color: #f1f1f1"
+          ></div>
+        </ion-col>
+      </ion-row>
+
       <br />
     </ion-grid>
   </ng-container>
@@ -100,28 +131,25 @@
         <div>포인트 결제</div>
       </ion-row>
 
-      <ion-row justify-content-between padding-bottom>
-        <div style="color: #c0c0c0;">보유 포인트</div>
-        <div>7,155원</div>
+      <ion-row align-items-center justify-content-between padding-bottom class="">
+        <ion-col col-6 text-left><div style="color: #c0c0c0;">보유 포인트</div></ion-col>
+        <ion-col *ngIf="totalPoint" col-6 text-right><div>{{addComma(totalPoint)}}원</div></ion-col>
+        <ion-col *ngIf="!totalPoint" col-6 text-right><div>0원</div></ion-col>
       </ion-row>
-      <ion-row>
-        <div style="color: #c0c0c0;" text-left>사용 포인트</div>
-        <div class="box" float-right>
-            <input type="text"
-            class="point"
-            name="price"
-            placeholder="0원"
-          />
-          <button ion-button class="btn">사용</button>
-        </div>
+      <ion-row class="" justify-content-between align-items-center>
+        <ion-col col-3><div style="color: #c0c0c0;" text-left>사용 포인트</div></ion-col>
+        <ion-col col-7>
+            <ion-input text-right type="tel" #pointInput [(ngModel)]="usePointComma" class="point pointBorder" name="price" placeholder="0원"></ion-input>
+        </ion-col>
+        <ion-col col-2>
+          <button *ngIf="platform.is('android') || platform.is('core')" (click)="usePointBit()" ion-button clear outline class="btn pointBorder">사용</button>
+          <button *ngIf="platform.is('ios')" (click)="usePointBit()" ion-button clear outline class="btn_ios pointBorder">사용</button>
+        </ion-col>
       </ion-row>
-      <ion-row justify-content-end padding-bottom>
-        <div style="color: #5d5d5d;" col-6 text-right>사용 가능 포인트<span style="color: #292929;">5,000p</span></div>
-        <div style="color: #c0c0c0;" col-3 text-right>
-          <ion-checkbox
-        ></ion-checkbox>
-          전액 사용
-        </div>
+      <ion-row align-items-center class="">
+        <ion-col col-8 *ngIf="productData"><div class="" style="color: #5d5d5d;" text-right>사용 가능 포인트<span style="color: #292929;">{{getMaxPoint(productData.maxPercent, ProductAmount)}}p</span></div></ion-col>
+        <ion-col col-4><div class="" style="color: #c0c0c0;" text-right><ion-checkbox (ionChange)="updateChek($event)" (click)="useMaxPoint()"></ion-checkbox> 전액 사용</div>
+        </ion-col>
       </ion-row>
     </ion-grid>
   </ng-container>
@@ -137,9 +165,10 @@
       <br />
       <ion-row>
         <ion-col class="order_text1" col-8>상품 금액 합계</ion-col>
-        <ion-col class="order_text2" col-4>169,000 원</ion-col>
+        <ion-col class="order_text2" col-4>{{addComma(ProductAmount)}} 원</ion-col>
         <ion-col class="order_text1" col-8>포인트 사용금액</ion-col>
-        <ion-col class="order_text2" col-4>- 원</ion-col>
+        <ion-col *ngIf="usePointComma" class="order_text2" col-4>{{usePointComma}} 원</ion-col>
+        <ion-col *ngIf="!usePointComma" class="order_text2" col-4>- 원</ion-col>
         <ion-col class="order_text1" col-8>배송비</ion-col>
         <ion-col class="order_text2" col-4>+3,000 원</ion-col>
         <ion-col class="order_text1" col-8>기타 할인 금액</ion-col>
@@ -160,7 +189,7 @@
     <ion-grid class="price_grid">
       <ion-row>
         <ion-col class="sum_text">결제 예정 금액</ion-col>
-        <ion-col class="sum_price">172,000 원</ion-col>
+        <ion-col class="sum_price">{{addComma(totalAmount2)}} 원</ion-col>
       </ion-row>
       <br /><br />
     </ion-grid>
@@ -183,10 +212,13 @@
       </ion-row>
       <br />
       <ion-row>
-        <button ion-button class="order_btn">
+
+          
+
+        <button ion-button clear (click)="togglePay('card')" [ngClass]="{ 'order_btn' : !isCard, 'order_btn_click' : isCard}">
           <div class="order-btn_text">신용 카드</div>
         </button>
-        <button ion-button class="order_btn">
+        <button ion-button clear (click)="togglePay('trans')" [ngClass]="{ 'order_btn' : !isTrans, 'order_btn_click' : isTrans}">
           <div class="order-btn_text">무통장 입금</div>
         </button>
       </ion-row>
@@ -244,12 +276,11 @@
   <ng-container>
     <ion-grid class="order_terms_grid">
       <br /><br />
-      <ion-row>
-        <ion-checkbox
-          [(ngModel)]="cucumber"
-          (ionChange)="updateCucumber()"
-        ></ion-checkbox>
+      <ion-row align-items-center class="">
+        <ion-checkbox class="check_baseline" [(ngModel)]="agreePay" (ionChange)="updateCucumber()"></ion-checkbox>
         <div class="card-title">주문 내용 확인 및 동의</div>
+      </ion-row>
+      <ion-row align-items-center class="">
         <div class="card-subtitle">
           주문 상품의 상세 정보, 배송 정보, 할인내역 등을 확인하였으며, 구매에
           동의합니다.
@@ -261,7 +292,10 @@
 </ion-content>
 
 <ion-footer mode="ios" keyboard-attach no-bounce no-lines>
-  <button (click)="onClickBillPayment()" ion-button class="cell">
+  <button *ngIf="isCard" (click)="onClickPayment()" ion-button class="cell">
+    <div class="cell_text">결제하기</div>
+  </button>
+  <button *ngIf="isTrans" (click)="onClickPaymentVbank()" ion-button class="cell">
     <div class="cell_text">결제하기</div>
   </button>
 </ion-footer>

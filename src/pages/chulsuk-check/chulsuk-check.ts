@@ -203,14 +203,15 @@ export class ChulsukCheckPage {
         updatedAt : new Date()
       }
 
-      if(this.userData.from === 'naver' || this.userData.from === 'kakao' || this.userData.from === 'google') { //sns회원인지 구분
-        await this.auth.plinicShopAddPoint(this.userData.snsid, 10, '출석체크').subscribe(data2 => {
-          console.log("플리닉샵 포인트 누적 : " + data2);
-          this.loading.dismiss();
-        }, error => {
-          this.loading.dismiss();
-          console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
-        });
+      if (this.userData.from === 'naver' || this.userData.from === 'kakao' || this.userData.from === 'google') { //sns회원인지 구분
+        // 2021-03-02 플리닉 샵 포인트 제거
+        // await this.auth.plinicShopAddPoint(this.userData.snsid, 10, '출석체크').subscribe(data2 => {
+        //   console.log("플리닉샵 포인트 누적 : " + data2);
+        //   this.loading.dismiss();
+        // }, error => {
+        //   this.loading.dismiss();
+        //   console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
+        // });
         await this.auth.chulSukUpdate(this.userData.email, chulcheck).subscribe(data => {
           this.loading.dismiss();
           this.showAlert(JSON.stringify(data.msg).replace('"', '').replace('"', ''));
@@ -221,13 +222,14 @@ export class ChulsukCheckPage {
 
         });
       } else {
-        await this.auth.plinicShopAddPoint(this.userData.email, 10, '출석체크').subscribe(data2 => {
-          console.log("플리닉샵 포인트 누적 : " + data2);
-          this.loading.dismiss();
-        }, error => {
-          this.loading.dismiss();
-          console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
-        });
+        // 2021-03-02 플리닉 샵 포인트 제거
+        // await this.auth.plinicShopAddPoint(this.userData.email, 10, '출석체크').subscribe(data2 => {
+        //   console.log("플리닉샵 포인트 누적 : " + data2);
+        //   this.loading.dismiss();
+        // }, error => {
+        //   this.loading.dismiss();
+        //   console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
+        // });
         await this.auth.chulSukUpdate(this.userData.email, chulcheck).subscribe(data => {
           this.loading.dismiss();
           this.showAlert(JSON.stringify(data.msg).replace('"', '').replace('"', ''));
@@ -318,10 +320,23 @@ export class ChulsukCheckPage {
     }
 
     private reloadUserPoint(email) {
-      this.auth.reloadUserPointfromPlincShop(email).subscribe(data =>{
-        this.totaluserpoint = data.point;
-        this.totaluserpoint = this.addComma(this.totaluserpoint);
-      });
+      // this.auth.reloadUserPointfromPlincShop(email).subscribe(data =>{
+      //   this.totaluserpoint = data.point;
+      //   this.totaluserpoint = this.addComma(this.totaluserpoint);
+      // });
+
+      this.auth.reloadUserPointfromPlinc(email).subscribe(
+        data => {
+          this.totaluserpoint = JSON.stringify(data.totalPoint);
+          this.totaluserpoint = this.addComma(this.totaluserpoint);
+        },
+        error => {
+          console.log(
+            "사용자 개인포인트 불러오기 에러발생 : " + JSON.stringify(error)
+          );
+        }
+      );
+
     }
     public myinfo() {
       this.nav.push(MyinfoPage);

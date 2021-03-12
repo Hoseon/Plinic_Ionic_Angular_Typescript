@@ -62,15 +62,15 @@ export class TabsPage {
     //     // this.platform.exitApp();
     //   // }
     // })
-    console.log("tabs ionViewDidLoad");
+    // console.log("tabs ionViewDidLoad");
   }
 
   ionViewDidEnter() {
-    console.log("tabs ionViewDidEnter");
+    // console.log("tabs ionViewDidEnter");
   }
 
   openBrowser_ios(url, title) {
-    console.log("11111111111111111" + title);
+    // console.log("11111111111111111" + title);
     // https://ionicframework.com/docs/native/themeable-browser/
 
     const options: ThemeableBrowserOptions = {

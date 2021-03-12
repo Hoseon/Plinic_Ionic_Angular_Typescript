@@ -749,11 +749,24 @@ export class SkinChartPage {
   }
 
   private reloadUserPoint(email) {
-    this.auth.reloadUserPoint(email).subscribe(data =>{
-      // console.log("커뮤니티 사용자 포인트 : " + data)
-      this.totaluserPoint = data;
-      this.totaluserPoint = this.addComma(this.totaluserPoint);
-    });
+    // this.auth.reloadUserPoint(email).subscribe(data =>{
+    //   // console.log("커뮤니티 사용자 포인트 : " + data)
+    //   this.totaluserPoint = data;
+    //   this.totaluserPoint = this.addComma(this.totaluserPoint);
+    // });
+
+    this.auth.reloadUserPointfromPlinc(email).subscribe(
+      data => {
+        this.totaluserPoint = JSON.stringify(data.totalPoint);
+        this.totaluserPoint = this.addComma(this.userData.totaluserpoint);
+      },
+      error => {
+        console.log(
+          "사용자 개인포인트 불러오기 에러발생 : " + JSON.stringify(error)
+        );
+      }
+    );
+
   }
 
   addComma(data_value) { //숫자 세자리 마다 컴마 붙히기

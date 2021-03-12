@@ -281,9 +281,9 @@ export class CareZonePage {
             tempRank++;
           }
         }
-        console.log("1멤버 : " + this.membercnt1);
-        console.log("2멤버 : " + this.membercnt2);
-        console.log("3멤버 : " + this.membercnt3);
+        // console.log("1멤버 : " + this.membercnt1);
+        // console.log("2멤버 : " + this.membercnt2);
+        // console.log("3멤버 : " + this.membercnt3);
         // console.log(this.memberRanking);
       }
     });
@@ -293,10 +293,10 @@ export class CareZonePage {
     // this.showLoading();
     this.images.carezoneRoad().subscribe(data => {
 
-      console.log("케어존 데이터 : " + JSON.stringify(data));
+      // console.log("케어존 데이터 : " + JSON.stringify(data));
       if (data !== '') {
         for (let i = 0; i < data.length; i++) {
-          console.log("요일은?" + data[i].day);
+          // console.log("요일은?" + data[i].day);
           if(new Date().getDay() === Number(data[i].day) ) {
             // this.missionCount2(data[i]._id, new Date())
             this.flag[i] = "지금참여";
@@ -567,11 +567,23 @@ export class CareZonePage {
   }
 
   private reloadUserPoint(email) {
-    this.authService.reloadUserPointfromPlincShop(email).subscribe(data =>{
-      // console.log("커뮤니티 사용자 포인트 : " + data)
-      this.totaluserPoint = data.point;
-      this.totaluserPoint = this.addComma(this.totaluserPoint);
-    });
+    // this.authService.reloadUserPointfromPlincShop(email).subscribe(data =>{
+    //   // console.log("커뮤니티 사용자 포인트 : " + data)
+    //   this.totaluserPoint = data.point;
+    //   this.totaluserPoint = this.addComma(this.totaluserPoint);
+    // });
+
+    this.authService.reloadUserPointfromPlinc(email).subscribe(
+      data => {
+        this.totaluserPoint = JSON.stringify(data.totalPoint);
+        this.totaluserPoint = this.addComma(this.totaluserPoint);
+      },
+      error => {
+        console.log(
+          "사용자 개인포인트 불러오기 에러발생 : " + JSON.stringify(error)
+        );
+      }
+    );
   }
 
   public myinfo() {

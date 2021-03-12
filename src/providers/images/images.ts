@@ -5,7 +5,7 @@ import { Http } from '@angular/http';
 import { AlertController } from 'ionic-angular';
 import { Transfer, TransferObject, FileUploadOptions } from '@ionic-native/transfer'
 export const YOUTUBE_API_KEY: string = 'AIzaSyCQ7I3wA7JDk9QFWMA7VaSMCCakpTN5K_U';
-
+// export const IAMPORTTOKEN: string = '0bb7f5bc3b8fc3737a9a2eec8daeba22c45e5989';
 
 /*
   Generated class for the ImagesProvider provider.
@@ -19,7 +19,8 @@ export class ImagesProvider {
   apiURL = 'http://plinic.cafe24app.com/';
   // apiURL = 'http://localhost:8001/';
   youTubeApiUrl = 'https://www.googleapis.com/youtube/v3/videos?';
-
+  iamPortUrl = 'https://api.iamport.kr/';
+  iamPortToken = '0bb7f5bc3b8fc3737a9a2eec8daeba22c45e5989'
 
   constructor(public http: Http, private transfer: Transfer, private alertCtrl: AlertController) { }
 
@@ -566,6 +567,35 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public getProductData() { //20200209 플리닉 화장품 데이터 가져 오기
+    return this.http.get(this.apiURL + 'product/getPlinicProduct/')
+      .map(response => response.json());
+  }
 
+  public productLike(product_num, email) {
+    return this.http.get(this.apiURL + 'product/like/' + product_num + '/' + email)
+      .map(response => response.json());
+  }
 
+  public productdisLike(product_num, email) {
+    return this.http.get(this.apiURL + 'product/dislike/' + product_num + '/' + email)
+      .map(response => response.json());
+  }
+
+  public getUserAddress(email) { //20200223 사용자 배송지 정보 가져 오기
+    return this.http.get(this.apiURL + 'getUserAddress/' + email).map(response => response.json());
+  }
+
+  getUserPointLog(email) {
+    return this.http.get(this.apiURL + 'getUserPointLog/' + email).map(response => response.json());
+  }
+
+  getUserOrders(email) {
+    return this.http.get(this.apiURL + 'api/getUserOrders/' + email).map(response => response.json());
+  }
+
+  getUserOrdersTrackingInfo(email, t_invoice) { //20210312 배송 정보 조회 스윗트래커 
+    return this.http.get(this.apiURL + 'api/getUserOrdersTrackingInfo/' + email + '/' + t_invoice).map(response => response.json());
+  }
+ 
 }
