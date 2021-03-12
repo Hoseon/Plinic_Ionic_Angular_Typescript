@@ -96,8 +96,8 @@ export class MovieTipPage {
       if (this.navParams.get('mode')) {
         this.mode = this.navParams.get('mode');
       }
-      console.log("루트페어런트 데이터 테스트 ::::::;" + JSON.stringify(navParams.data));
-      console.log(this.navParams.get('back'));
+      // console.log("루트페어런트 데이터 테스트 ::::::;" + JSON.stringify(navParams.data));
+      // console.log(this.navParams.get('back'));
     });
   }
 

@@ -56,40 +56,29 @@
   <ng-container *ngFor="let detail of detailOrderData; let k = index;" class="order-background" no-padding>
     <ion-row>
       <ion-col col-6>
-        <ion-label class="text2">{{dateConvert(detail.odrRegDate)}}</ion-label>
+        <ion-label class="text2">{{dateConvert(detail.started_at)}}</ion-label>
       </ion-col>
       <ion-col class="right_text" col-6>
-        <ion-label class="text3">주문번호 {{detail.odrIndex}}</ion-label>
+        <ion-label class="text3">주문번호 {{detail.imp_uid}}</ion-label>
       </ion-col>
     </ion-row>
     <ion-card>
       <ion-grid no-padding>
         <ion-row>
-          <ion-badge>{{detail.odsName}}</ion-badge>
+          <ion-badge>{{detail.status}}</ion-badge>
         </ion-row>
         <ion-row>
-          <ion-col col-8><div class="productName">{{detail.odrName}}</div></ion-col>
-          <ion-col col-4><img class="prductImg" slot="start" src="https://s3.ap-northeast-2.amazonaws.com/plinic-realrumor/Main/{{detail.prdMainImg}}" /></ion-col>
+          <ion-col col-8><div class="productName">{{detail.product_name}}</div></ion-col>
+          <ion-col col-4><img class="prductImg" slot="start" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{detail.productFileName}}" /></ion-col>
         </ion-row>
-        <ion-row><div class="text1">{{numberWithCommas(detail.odrTotalAmt)}}원</div></ion-row>
+        <ion-row><div class="text1">{{numberWithCommas(detail.amount)}}원</div></ion-row>
         <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1"></div>
         <ion-row>
-          <ion-col col-2 class="text5">배송조회</ion-col>
-          <ion-col col-8 class="text6">주문취소</ion-col>
+          <ion-col col-2 class="text5" (click)="deliveryInfo(detail)">배송조회</ion-col>
+          <ion-col col-2 class="text6" (click)="orderCancel1(detail)">주문취소</ion-col>
+          <ion-col col-6 class="text6"></ion-col>
           <ion-col col-2 class="text7">리뷰쓰기</ion-col>
         </ion-row>
-        <!-- <ion-row>
-            <ionic3-star-rating #rating
-            activeIcon = "ios-star"
-            defaultIcon = "ios-star-outline"
-            activeColor = "#fae24c" 
-            defaultColor = "#f4f4f4"
-            readonly="false"
-            rating="3"
-            fontSize = "24px"
-            (ratingChanged)="logRatingChange($event)">
-        </ionic3-star-rating>
-        </ion-row> -->
       </ion-grid>
     </ion-card>
   </ng-container>

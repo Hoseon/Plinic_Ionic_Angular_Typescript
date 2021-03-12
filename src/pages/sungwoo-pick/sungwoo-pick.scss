@@ -129,6 +129,7 @@ page-sungwoo-pick {
     }
 
     .pick-title {
+      width: 85vw;
       font-family: AppleSDGothicNeo;
       font-size: 15.1px;
       font-weight: normal;
@@ -155,7 +156,7 @@ page-sungwoo-pick {
       font-family: AppleSDGothicNeo-Regular;
       font-size: 11.1px;
       border-radius: 0px;
-      margin-top: -3vh;
+      // margin-top: -3vh;
     }
 
     .select-md .select-icon {
@@ -200,7 +201,7 @@ page-sungwoo-pick {
 
     .pick_btn1 {
       background-color: #4dd9f1;
-      min-height: 55px;
+      min-height: 50px;
       min-width: 45.1vw;
       font-family: AppleSDGothicNeo;
       border-radius: 3.5px;
@@ -208,12 +209,36 @@ page-sungwoo-pick {
     }
 
     .pick_btn2 {
-      min-height: 55px;
+      min-height: 50px;
       // height: 14vw;
       min-width: 44.5vw;
       font-family: AppleSDGothicNeo;
       border-radius: 3.5px;
       box-shadow: none;
+    }
+
+    .cart_text {
+      font-family: NotoSansCJKkr;
+      font-size: 16px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 19px;
+      letter-spacing: -0.4px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .buy_text {
+      font-family: NotoSansCJKkr;
+      font-size: 16px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 19px;
+      letter-spacing: -0.4px;
+      text-align: center;
+      color: #ffffff;
     }
 
 }

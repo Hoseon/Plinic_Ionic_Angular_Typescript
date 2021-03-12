@@ -102,7 +102,7 @@ export class LoginPage {
   }
 
   ionViewCanEnter() {
-    console.log("ionViewCanEnter Loginpage");
+    // console.log("ionViewCanEnter Loginpage");
     this.auth.isReview().subscribe(async (result) => {
       var data = await result;
       this.isReview = data.isReview;
@@ -110,15 +110,15 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad Loginpage");
+    // console.log("ionViewDidLoad Loginpage");
   }
 
   ionViewDidEnter() {
-    console.log("ionViewDidEnter Loginpage");
+    // console.log("ionViewDidEnter Loginpage");
   }
 
   ionViewWillEnter() {
-    console.log("ionViewWillEnter Loginpage");
+    // console.log("ionViewWillEnter Loginpage");
   }
 
   public loginpage() {

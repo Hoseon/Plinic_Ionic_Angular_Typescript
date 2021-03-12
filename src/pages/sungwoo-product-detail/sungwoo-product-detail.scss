@@ -110,79 +110,81 @@ page-sungwoo-product-detail {
   .detail_img {
     // width: 153.5px;
     height: 23vh;
-    margin-top: 5vh;
-    margin-left: 30vw;
+    // margin-top: 5vh;
+    // margin-left: 30vw;
   }
 
   .product_name {
-    font-family: AppleSDGothicNeo-Regular;
-    font-size: 13.3px;
+    font-family: NotoSansCJKkr;
+    font-size: 14.2px;
     font-weight: 1000;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
     margin-left: 5.38vw;
-    margin-top: 5.8vh;
+    margin-top: 12vw;
     text-align: left;
   }
 
   .product_nprice {
-    font-family: AppleSDGothicNeo-Regular;
-    font-size: 13.8px;
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
     color: #939393;
-    margin-left: 7.5vw;
-    margin-top: 5.93vh;
+    margin-left: 5.3vw;
+    margin-top: 12.5vw;
+    text-align: right;
   }
 
   .product_name2 {
-    font-family: AppleSDGothicNeo-Regular;
-    font-size: 14.8px;
-    font-weight: 550;
+    font-family: NotoSansCJKkr;
+    font-size: 17px;
+    font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.8vh;
-    letter-spacing: -0.12vw;
+    line-height: 25.8px;
+    letter-spacing: -0.77px;
     text-align: left;
     color: #555555;
     margin-left: 5.6vw;
-    margin-top: 1.48vh;
+    margin-top: 0.48vw;
   }
 
   .product_price {
     font-family: AppleSDGothicNeo-Regular;
-    font-size: 15.5px;
+    font-size: 17.2px;
     font-weight: 550;
     font-stretch: normal;
     font-style: normal;
     letter-spacing: -0.68px;
-    text-align: right;
+    //text-align: right;
     color: #5d5d5d;
-    margin-top: 0.8vh;
+    margin-top: 0.8vw;
     margin-left: 4.9vw;
   }
 
   .product_sale {
-    font-family: AppleSDGothicNeo-Regular;
-    font-size: 12.3px;
+    font-family: NotoSansCJKkr;
+    font-size: 14.3px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
+    line-height: 25.8px;
+    letter-spacing: -0.64px;
+    color: #5d5d5d;
     margin-left: 5.62vw;
-    margin-top: 1.5vh;
+    margin-top: 1.5vw;
     text-align: left;
   }
 
   .product_sale_text {
     // height: 6.5vh;
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansCJKkr;
     font-size: 10px;
     font-weight: normal;
     font-stretch: normal;
@@ -190,31 +192,33 @@ page-sungwoo-product-detail {
     line-height: normal;
     letter-spacing: -0.16vw;
     color: #939393;
-    margin-left: -3.6vw;
-    margin-top: 1.35vh;
+    margin-left: 7vw;
+    margin-top: 3vw;
+    text-align: right;
     white-space: nowrap;
   }
 
   .star_group {
-    margin-top: 1.8vh;
+    margin-top: 1.8vw;
     // margin-left: 4.8vw;
     padding-left: 4.8vw;
   }
 
   .product_rating {
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansCJKkr;
     font-size: 13px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: -0.16vw;
-    color: #939393;
-    margin-top: -2.75vh;
-    // margin-left: 35vw;
-    margin-left: 5vw;
-    white-space: nowrap;
-    text-align: right;
+    // font-weight: 300;
+    // font-stretch: normal;
+    // font-style: normal;
+    // line-height: 23.8px;
+    // letter-spacing: -0.59px;
+    text-align: left;
+    color: #b8b8b8;
+    margin-left: -5vw;
+    // margin-top: -6.5vw;
+    // margin-left: 15vw;
+    // white-space: nowrap;
+    // text-align: right;
   }
 
   .product_rating1 {
@@ -227,7 +231,7 @@ page-sungwoo-product-detail {
     // letter-spacing: -0.16vw;
     color: #939393;
     // margin-left: -25.8vw;
-    margin-top: -2.85vh;
+    margin-top: -5.7vw;
     white-space: nowrap;
     text-align: left;
   }
@@ -239,54 +243,62 @@ page-sungwoo-product-detail {
   }
 
   .good {
-    font-family: AppleSDGothicNeo-Regular;
+    font-family: NotoSansCJKkr;
     font-size: 12.5px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: normal;
-    letter-spacing: -0.17vw;
+    line-height: 17px;
+    letter-spacing: -0.56px;
+    text-align: right;
     color: #c70a0a;
-    // margin-left: -5.8vw;
-    margin-top: 1.35vh;
-    white-space: nowrap;
+    margin-right: -4vw;
+    // margin-top: 1.35vh;
+    // white-space: nowrap;
   }
 
   .wc {
-    margin-left: -4.8vw;
+    // margin-left: -4.8vw;
+    margin-right: 4.8vw;
   }
 
   .heart1 {
-    font-size: 20px;
-    font-weight: 1000;
-    margin-top: -1vh;
+    // font-size: 20px;
+    // font-weight: 1000;
+    width: 5vw;
+    // height: auto;
+    object-fit: contain;
+    margin-right: 5.5vw;
+    // margin-top: -2vw;
   }
 
   .product_info1 {
-    font-family: AppleSDGothicNeo-Regular;
-    font-size: 12.5px;
+    font-family: NotoSansCJKkr;
+    font-size: 14.8px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: 3.34vh;
+    line-height: 27.5px;
+    letter-spacing: -0.44px;
     text-align: left;
-    color: #5d5d5d;
+    color: #939393;
     margin-left: 6.1vw;
-    margin-top: 3vh;
-    margin-bottom: -3.5vh;
+    margin-top: 3vw;
+    margin-bottom: -3.5vw;
   }
 
   .product_info2 {
-    font-family: AppleSDGothicNeo-Regular;
-    font-size: 13.7px;
-    font-weight: 300;
+    font-family: NotoSansCJKkr;
+    font-size: 14.5px;
+    font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 2.2vh;
+    line-height: 27.5px;
+    letter-spacing: -0.44px;
     text-align: right;
     color: #5c59b6;
-    margin-top: 3.14vh;
-    margin-bottom: -1.2vh;
+    margin-top: 3vw;
+    margin-bottom: -1.5vw;
     margin-left: 3.49vw;
   }
 
@@ -516,9 +528,10 @@ page-sungwoo-product-detail {
   }
 
   .btn_show_more1 {
-    width: 91%;
+    width: 100vw;
     margin: 0 auto !important;
     color: #5c5b5b !important;
+    background-color: #ffffff;
     border: 0 !important;
     outline: 0 !important;
 
@@ -581,7 +594,7 @@ page-sungwoo-product-detail {
 
   .rcmnd_img {
     width: 22vw;
-    height: 16vh;
+    // height: 16vh;
     border-radius: 5px;
     border: solid 0.5px #d2d2d2;
     background-color: #f5f5f5;
@@ -590,7 +603,7 @@ page-sungwoo-product-detail {
   .rcmnd_desc {
     width: 100%;
     line-height: 1.2;
-    // height: 3.6em; 
+    // height: 3.6em;
     text-align: left;
     word-wrap: break-word;
     display: -webkit-box;
@@ -669,7 +682,7 @@ page-sungwoo-product-detail {
   // }
 
   .detail_btn1 {
-    height: 9vh;
+    height: 58px;
     width: 49.5vw;
     margin: 0;
     font-family: AppleSDGothicNeo;
@@ -677,10 +690,77 @@ page-sungwoo-product-detail {
 
   .detail_btn2 {
     background-color: #4dd9f1;
-    height: 9vh;
+    height: 58px;
     width: 49.5vw;
     margin: 0;
     font-family: AppleSDGothicNeo;
   }
+
+  .qna_btn {
+    float: left;
+    min-width: 100%;
+    min-height: 55px;
+    background-color: #5c59b6;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    // position: fixed;
+    // bottom: 0;
+    padding: 0;
+    margin:0 auto;
+    box-shadow: none;
+    border-radius: 0px 0px 0px 0px;
+  }
+  .qna_btn2 {
+    float: left;
+    min-width: 100%;
+    min-height: 55px;
+    background-color: #13b5b1;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    // position: fixed;
+    // bottom: 0;
+    padding: 0;
+    margin:0 auto;
+    box-shadow: none;
+    border-radius: 0px 0px 0px 0px;
+
+  }
+
+  .testborder{
+    border: solid 1px #00af66;
+  }
+
+  .star_margin {
+    margin-top: -2vw !important;
+    margin-left: 5vw;
+  }
+
+  .detailImage {
+    width: 100vw !important;
+    height: 80%;
+    // object-fit: contain;
+  }
+
+  .detailImage2 {
+    width: 100vw !important;
+    height: 80%;
+    // width: 100vw !important;
+    // overflow: hidden;
+  }
+
 
 }

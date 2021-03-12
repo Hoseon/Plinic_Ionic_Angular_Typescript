@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-navbar *ngIf="platform.is('android')  || platform.is('core')">
+    <ion-title class="android_title" text-wrap>주문완료</ion-title>
+  </ion-navbar>
+
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-title class="ios_title" text-wrap>주문완료</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid justify-content-center no-padding class="">
+    <br><br>
+    <div text-center class="text1">주문이 완료되었습니다.</div>
+    <div *ngIf="paid_at3 || paymentData" text-center class="text2">{{paid_at3}} 주문하신 상품의 주문번호는 {{paymentData.imp_uid}}입니다.</div>
+    <!-- <div text-center class="text2">2021.02.25 주문하신 상품의 주문번호는 imp_729874725765입니다.</div> -->
+    <div text-center class="text3">상세보기 ></div>
+    <br><br>
+    <div style="height:1vh; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1"></div>
+  </ion-grid>
+
+  <ion-grid no-padding class="">
+    <br>
+    <div margin text-left class="text4">받는분 정보</div>
+    <div *ngIf="paymentData" margin-left margin-top text-left class="text5">{{paymentData.buyer_name}} <span class="text6">{{paymentData.buyer_tel}}</span></div>
+    <div *ngIf="paymentData" margin-left padding-top text-left class="text7">[{{paymentData.buyer_postcode}}]{{paymentData.buyer_addr}}</div>
+    <!-- <div margin-left margin-top text-left class="text5">추호선 <span class="text6">010-3602-0852</span></div> -->
+    <!-- <div margin-left padding-top text-left class="text7">[21957]인천 연수구 능허대로79번길 30 럭키송도아파트 101동 1304호</div> -->
+    <br><br>
+    <div style="height:1vh; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1"></div>
+  </ion-grid>
+
+  <ng-container *ngIf="(payMethod === '신용카드')">
+    <ion-grid no-padding class="">
+      <br>
+      <div margin text-left class="text4">결제 정보</div>
+      <ion-row class="">
+        <ion-col col-4 class=""><div *ngIf="paymentData" padding-left class="text8">{{payMethod}}</div></ion-col>
+        <ion-col col-8 class="">
+          <div *ngIf="paymentData" padding-bottom class="text9">{{addComma(paymentData.amount)}}원</div>
+          <div *ngIf="paid_at2" class="text10">{{paid_at2}}</div>
+          <div *ngIf="paymentData && quota" class="text11">{{paymentData.card_name}} / {{quota}}</div>
+        </ion-col>
+      </ion-row>
+      
+      <br><br>
+      <div style="height:1vh; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1"></div>
+    </ion-grid>  
+  </ng-container>
+
+  <ng-container *ngIf="(payMethod === '무통장입금')"> <!-- *ngIf="(payMethod === '무통장입금')" -->
+    <ion-grid no-padding class="">
+      <br>
+      <div margin text-left class="text4">결제 정보</div>
+      <ion-row class="">
+        <ion-col col-4 class=""><div *ngIf="paymentData" padding-left class="text8">{{payMethod}}</div></ion-col>
+        <ion-col col-8 class="">
+          <div *ngIf="paymentData" padding-bottom class="text9">{{addComma(paymentData.amount)}}원</div>
+          <div *ngIf="paymentData" padding-bottom class="text9_1">{{paymentData.vbank_name}} : {{paymentData.vbank_num}}</div>
+          <div *ngIf="paymentData" padding-bottom class="text9_1">예금주 : {{paymentData.vbank_holder}}</div>
+          <div *ngIf="paymentData" padding-bottom class="text9_1">입금자 : {{paymentData.buyer_name}}</div>
+          <div *ngIf="paid_at2" class="text10">입금 기한일 : {{vbank_date}}</div>
+          <div *ngIf="paymentData && quota" class="text11">입금기한일 까지 미 입금시 자동 주문취소</div>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-row class="">
+        <ion-col col-4 class=""><div padding-left class="text8">무통장입금</div></ion-col>
+        <ion-col col-8 class="">
+          <div padding-bottom class="text9">24,000원</div>
+          <div class="text9_1">KB 국민은행 : 39889011993262</div>
+          <div class="text9_1">예금주 : （주）지원파트너스</div>
+          <div padding-bottom class="text9_1">입금자 : 추호선</div>
+          <div class="text10">입금 기한일 : 2021년 03월 15일</div>
+          <div class="text11">입금기한일 까지 미 입금시 자동 주문취소</div>
+        </ion-col>
+      </ion-row> -->
+
+      
+      <br><br>
+      <div style="height:1vh; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1"></div>
+    </ion-grid>  
+  </ng-container>
+
+
+  <br>
+</ion-content>
+<ion-footer text-center class="" mode="ios" keyboard-attach no-bounce no-lines>
+  <button (click)="goToShop()" ion-button class="cell">
+    <div class="cell_text">쇼핑 계속하기</div>
+  </button>
+</ion-footer>

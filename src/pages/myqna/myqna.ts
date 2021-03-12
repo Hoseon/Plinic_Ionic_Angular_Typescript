@@ -94,10 +94,23 @@ export class MyqnaPage {
   }
 
   private reloadUserPoint(email) {
-    this.auth.reloadUserPoint(email).subscribe(data =>{
-      this.totaluserpoint = data;
-      this.totaluserpoint = this.addComma(this.totaluserpoint);
-    });
+    
+    // this.auth.reloadUserPoint(email).subscribe(data => {
+    //   this.totaluserpoint = data;
+    //   this.totaluserpoint = this.addComma(this.totaluserpoint);
+    // });
+
+    this.auth.reloadUserPointfromPlinc(email).subscribe(
+      data => {
+        this.totaluserpoint = JSON.stringify(data.totalPoint);
+        this.totaluserpoint = this.addComma(this.userData.totaluserpoint);
+      },
+      error => {
+        console.log(
+          "사용자 개인포인트 불러오기 에러발생 : " + JSON.stringify(error)
+        );
+      }
+    );
   }
 
   addComma(data_value) { //숫자 세자리 마다 컴마 붙히기

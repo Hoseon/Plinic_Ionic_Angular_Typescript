@@ -76,15 +76,15 @@ export class LoginpagePage {
 
   @ViewChild('myElement') myElem;
   constructor(
-    public nav: NavController, 
+    public nav: NavController,
     public navParams: NavParams,
     // animationService: AnimationService,
-    private alertCtrl: AlertController, 
-    private loadingCtrl: LoadingController, 
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
     public naver: Naver ,
     public platform: Platform,
-    private auth: AuthService, 
-    public viewCtrl: ViewController, 
+    private auth: AuthService,
+    public viewCtrl: ViewController,
     @Inject(DOCUMENT) document,
     public modalCtrl: ModalController,
   ) {
@@ -93,7 +93,7 @@ export class LoginpagePage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewCanEnter Loginpage');
+    // console.log('ionViewCanEnter Loginpage');
     this.auth.isReview().subscribe(async result =>{
       var data = await result;
       this.isReview = data.isReview;
@@ -231,7 +231,7 @@ export class LoginpagePage {
     }).catch(reject => {
       console.log("애플 로그인 실패" + reject);
     });
-    
+
     // cordova.plugins.SignInWithApple.signin(
     //   { requestedScopes: [0, 1] },
     //   function(succ){

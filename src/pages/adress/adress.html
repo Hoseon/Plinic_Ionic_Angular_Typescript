@@ -1,0 +1,185 @@
+<!--
+  Generated template for the AdressPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android')  || platform.is('core')">
+    <ion-title class="android_title" text-wrap>배송지 입력</ion-title>
+  </ion-navbar>
+
+  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
+      <ion-title  class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
+    </ion-navbar> -->
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav" src="assets/img/login/ic-system-close-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>배송지 입력</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <!-- <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+      <img src="https://t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" alt="닫기 버튼">
+    </div> -->
+  <!-- <btn-daum-address (result)="setDaumAddressApi($event)" [options]="daumAddressOptions"></btn-daum-address>
+    <br> -->
+
+  <!-- <div id="inline" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
+      <img src="https://t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" alt="접기 버튼">
+    </div>
+   -->
+
+
+  <ion-grid>
+    <br>
+    <ng-container *ngIf="newAddr">
+      <ion-row>
+        <ion-col text-center col-6><button class="btn1" ion-button>새로운 배송지</button></ion-col>
+        <ion-col text-center col-6><button (click)="toggleAddr()" class="btn2" ion-button clear outline>기존 배송지</button></ion-col>
+      </ion-row>
+    </ng-container>
+    <ng-container *ngIf="!newAddr">
+      <ion-row>
+        <ion-col text-center col-6><button class="btn2" (click)="toggleAddr()" ion-button clear outline>새로운 배송지</button></ion-col>
+        <ion-col text-center col-6><button class="btn1" ion-button>기존 배송지</button></ion-col>
+      </ion-row>
+    </ng-container>
+    
+  </ion-grid>
+
+  <ng-container *ngIf="newAddr">
+    <ion-grid no-padding class="">
+      <br>
+      <ion-row class="">
+        <div style="height:1px; width:100%; margin:0 auto; display: block; margin-top: -2px; background-color:#f1f1f1">
+        </div>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <br>
+      <ion-row padding-left class="text1">받는분</ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-input clearInput required (ionFocus)="postFocusOut()" [(ngModel)]="name" type="text" placeholder="입력"
+            class="text2"></ion-input>
+        </ion-item>
+      </ion-row>
+      <br>
+      <ion-row padding-left class="text1">연락처</ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-input (ionBlur)="inputPhoneNumber()" [(ngModel)]="phonenumber" clearInput required
+            (ionFocus)="postFocusOut()" type="tel" placeholder="입력" class="text2"></ion-input>
+        </ion-item>
+      </ion-row>
+      <!-- <iframe *ngIf="ishidden" src="http://plinic.cafe24app.com/api/daumjuso" width="100%" height="400px" frameBorder="0" id='daumIframe'></iframe> -->
+      <br>
+      <ion-row align-items-center padding-left class="">
+        <ion-col text-left justify-content-start class="">
+          <div class="text1 juso">주소</div>
+        </ion-col>
+        <ion-col text-right justify-content-end class=""><button ion-button clear outline (click)="openPost()">주소
+            검색</button></ion-col>
+        <!-- <btn-daum-address (result)="setDaumAddressApi($event)" [options]="daumAddressOptions"></btn-daum-address> -->
+      </ion-row>
+
+      <ion-row *ngIf="isPost">
+        <iframe *ngIf="isPost" class="postFrame" src="http://plinic.cafe24app.com/api/daumPost"
+          frameborder="0"></iframe>
+      </ion-row>
+
+      <ion-row>
+        <ion-item>
+          <ion-input (ionFocus)="postFocusOut()" type="text" [(ngModel)]="address" placeholder="주소를 검색하세요"
+            class="text2"></ion-input>
+        </ion-item>
+      </ion-row>
+      <br>
+      <ion-row padding-left class="text1">상세주소</ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-input (ionFocus)="postFocusOut()" type="text" [(ngModel)]="buildingName" placeholder="주소를 검색하세요"
+            class="text2"></ion-input>
+        </ion-item>
+      </ion-row>
+      <br>
+      <ion-row padding-left class="text1">우편번호</ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-input (ionFocus)="postFocusOut()" type="tel" [(ngModel)]="zonecode" placeholder="주소를 검색하세요"
+            class="text2"></ion-input>
+        </ion-item>
+      </ion-row>
+      <br>
+      <ion-row padding-left class="text1">배송메세지(ex.부재시경비실)</ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-input [(ngModel)]="desc" (ionFocus)="postFocusOut()" type="text" placeholder="입력" class="text2">
+          </ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid no-padding>
+      <br>
+      <ion-row class="">
+        <div style="height:1vh; width:100%; margin:0 auto; display: block; margin-top: -2px; background-color:#f1f1f1">
+        </div>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <br>
+      <ion-row padding>
+        <div class="text3">배송지 이용 안내</div>
+      </ion-row>
+      <pre padding-left class="preText">
+  ·주소를 검색하여 정확하게 입력해주세요. 
+  ·연락처를 정확하게 입력해주시고 개인 사정으로 받기 어려우실
+    때는 택배사와 연락을 취하셔서 조율하시길 바랍니다. 
+  ·배송지를 정확히 입력하지 않으면 제품 배송이 어려워집니다.
+  ·모든 상품은 입금확인 후 순차적으로 상품이 발송됩니다.
+    </pre>
+    </ion-grid>
+
+    <br>
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col text-center col-6><button ion-button class="btn4" (click)="registerAddress()">배송지 등록하기</button>
+        </ion-col>
+        <ion-col text-center col-6><button ion-button class="btn5" (click)="tempRegiAddress()">확인</button></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+
+  <ng-container *ngIf="!newAddr">
+    <ion-grid>
+      <ng-container *ngIf="addressData">
+        <ion-row *ngFor="let address of addressData.address" align-items-center>
+          <ion-col class="address-left" col-10>
+            <div class="text4">{{address.address}} {{address.buildingName}} {{address.zonecode}}</div>
+            <div class="text5">{{address.name}} | {{address.phonenumber}}</div>
+          </ion-col>
+          <ion-col text-center class="checkLeft" col-2>
+            <ion-checkbox mode="ios" class="checkbox"
+            (ionChange)="updateMain(address._id)" checked="{{address.isMain}}"></ion-checkbox>
+          </ion-col>
+          <br><br><br><br><br>
+          <ion-row style="margin: 0 auto;">
+            <div style="height: 1px; width: 92vw; background-color: #f1f1f1"></div>
+          </ion-row>
+        </ion-row>
+      </ng-container>
+    </ion-grid>
+  </ng-container>
+</ion-content>

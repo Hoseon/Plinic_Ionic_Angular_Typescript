@@ -1357,6 +1357,93 @@ scroll-content {
   }
 }
 
+.push_alert_ios {
+  background-color: rgba(0, 0, 0, 0.4);
+
+  // width: 300px;
+  .alert-wrapper {
+    width: 320px;
+    height: 140px;
+    border-radius: 8px;
+    box-shadow: none !important;
+
+    .alert-head {
+      // padding-top: 10px;
+      // padding-right: 24px;
+      // padding-bottom: 10px;
+      // padding-left: 24px;
+      // border-style: solid;
+      // border-width: 0px 0px 1px 0px;
+      // border-color: #e5e5e5;
+
+      .alert-title {
+        // background-image: url(../assets/img/ic_system_logo_symbol.png);
+        // background-repeat: no-repeat;
+        // background-size: 35px 35px;
+        // min-height: 35px;
+        // padding-top: 4%;
+        // padding-left: 0%;
+        // font-family: AppleSDGothicNeo-Regular;
+        // font-size: 16px;
+        // font-weight: normal;
+        // font-style: normal;
+        // font-stretch: normal;
+        // line-height: normal;
+        // letter-spacing: normal;
+        // margin: 0 auto !important;
+        // display: table;
+        // color: #292929;
+        text-align: center;
+
+      }
+    }
+
+    .alert-message {
+      width: 255px;
+      // height: 19px;
+      height: auto;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 14px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.36;
+      letter-spacing: 0.6px;
+      text-align: center;
+      color: #292929;
+      overflow-y: hidden;
+      border: 0;
+      padding: 0;
+      padding-top: 5%;
+      padding-bottom: 10%;
+      margin: 0 auto !important;
+      margin-top: -3% !important;
+
+
+    }
+
+    .button-inner {
+      justify-content: center;
+    }
+
+    .alert-button-group {
+      padding: 0px;
+
+      .alert-button {
+        width: 89%;
+        height: 45px;
+        color: #FFF;
+        background-color: #6562b9;
+        border-radius: 3.8px;
+        margin: 0 24px;
+        margin-bottom: 20px;
+        border: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
 
 .push_alert_android {
   background-color: rgba(0, 0, 0, 0.4);
@@ -1944,6 +2031,8 @@ scroll-content {
     }
   }
 }
+
+
 
 
 //addinfo 생년월일 확인,취소 안드로이드

@@ -266,6 +266,9 @@ export class MyinfoPage {
     this.skinQnaLoad();
     this.communityEditorBeautyLoad();
     this.carezoneData = this.roadcareZone();
+
+    //2021-03-11 사용자 구매정보 가져 오기
+    this.getUserOrder(this.userData.email);
   }
 
 
@@ -1800,18 +1803,42 @@ export class MyinfoPage {
   }
 
   private reloadUserPoint(email) {
+    // this.auth.reloadUserPointfromPlincShop(email).subscribe(data => {
+    //   this.isSpinner = false;
+    //   this.userData.totaluserpoint = data.point;
+    //   // console.log("사용자 포인트 : " + data);
+    //   this.flip();
+    //   // console.log("사용자 포인트 리로드 : " + this.userData.totaluserpoint);
+    //   // setTimeout(() => {
+    //   // this.flip();
+    //   // }, 3000)
+    // });
 
-    
-    this.auth.reloadUserPointfromPlincShop(email).subscribe(data => {
-      this.isSpinner = false;
-      this.userData.totaluserpoint = data.point;
-      // console.log("사용자 포인트 : " + data);
-      this.flip();
-      // console.log("사용자 포인트 리로드 : " + this.userData.totaluserpoint);
-      // setTimeout(() => {
-      // this.flip();
-      // }, 3000)
-    });
+    // this.authService.reloadUserPointfromPlinc(email).subscribe(
+    //   data => {
+    //     this.userData.totaluserpoint = JSON.stringify(data.totalPoint);
+    //     this.userData.totaluserpoint = this.addComma(this.userData.totaluserpoint);
+    //   },
+    //   error => {
+    //     console.log(
+    //       "사용자 개인포인트 불러오기 에러발생 : " + JSON.stringify(error)
+    //     );
+    //   }
+    // );
+
+    this.auth.reloadUserPointfromPlinc(email).subscribe(
+      data => {
+        this.isSpinner = false;
+        this.userData.totaluserpoint = JSON.stringify(data.totalPoint);
+        this.flip();
+      },
+      error => {
+        console.log(
+          "사용자 개인포인트 불러오기 에러발생 : " + JSON.stringify(error)
+        );
+      }
+    );
+
   }
 
   test_camera() {
@@ -1887,7 +1914,7 @@ export class MyinfoPage {
   }
 
   orderDetailPage() {
-    this.nav.push(OrderDetailPage, {detailData : this.orderList}).then(() => {
+    this.nav.push(OrderDetailPage, {orderList : this.orderList}).then(() => {
       this.nav.getActive().onDidDismiss(data => {
         console.log("배송 조회 페이지 닫힘");
       });
@@ -2154,6 +2181,20 @@ export class MyinfoPage {
         // this.nav.parent.select(0);
       });
     }
+  }
+
+  getUserOrder(email) {
+    this.images.getUserOrders(email).subscribe(data => {
+      if(data !='') {
+        this.orderList = data;
+        this.orderCount = data.length;
+        this.isOrderSpinner = false;
+      } else {
+        this.orderCount = 0;
+      }
+    }, error => {
+      console.error(error);
+    })
   }
   
 }

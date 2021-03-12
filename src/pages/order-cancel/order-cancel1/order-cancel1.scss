@@ -1,0 +1,328 @@
+page-order-cancel1 {
+
+  .header-md::after,
+  .tabs-md[tabsPlacement="top"]>.tabbar::after,
+  .footer-md::before,
+  .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
+    height: 1px;
+    margin-bottom: 5px;
+  }
+
+  .item-md.item-block .item-inner {
+    padding-right: 12px;
+  }
+
+  .header-ios::after,
+  .tabs-ios[tabsPlacement="top"]>.tabbar::after,
+  .footer-ios::before,
+  .tabs-ios[tabsPlacement="bottom"]>.tabbar::before {
+    height: 0px;
+    margin-bottom: 5px;
+  }
+
+  .item-ios.item-block .item-inner {
+    padding-right: 12px;
+  }
+
+  .toolbar-title-md {
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: AppleSDGothicNeo-Regular;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+  }
+
+  .toolbar-title-ios {
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #FFF;
+    font-family: AppleSDGothicNeo-Regular;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    margin-top: -5%;
+    color: #292929;
+  }
+
+  .bar-button-clear-ios-default,
+  .bar-button-default-ios,
+  .bar-button-default.bar-button-ios-default {
+    margin-left: -15%;
+    margin-top: -15%;
+    color: transparent;
+  }
+
+  .ios_nav {
+    background-color: #FFF;
+    width: 140px !important;
+    height: 25px !important;
+    object-fit: contain;
+  }
+
+  .toolbar-background {
+    background-color: #FFF;
+  }
+
+  .ion-md-arrow-back:before {
+    position: absolute;
+    content: "\f27d";
+    left: 10%;
+    top: 2px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .toolbar-ios {
+    margin-top: 10%;
+  }
+
+  .back-button-text-ios {
+    font-size: 0;
+  }
+
+  .android_title {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 70%;
+    color: #292929;
+  }
+
+  .ios_title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    top: 0%;
+    width: 140%;
+    color: #292929;
+    margin-top: 1%;
+  }
+
+  .text1 {
+    min-width: 54.5px;
+    max-width: 100px;
+    height: 14px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.23;
+    letter-spacing: -0.45px;
+    text-align: left;
+    color: #232323;
+    margin-left: 5%;
+    margin-top: 3.5%;
+  }
+
+  .text2 {
+    position: relative;
+    width: 200px;
+    height: 15px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.23;
+    letter-spacing: -0.45px;
+    text-align: left;
+    color: #232323;
+    margin-top: 2.3%;
+    margin-left: 2%;
+  }
+
+  .text3 {
+    position: relative;
+    width: 31px;
+    height: 12.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.39;
+    letter-spacing: -0.42px;
+    text-align: left;
+    color: #232323;
+    margin-top: 4%;
+    margin-bottom: 1%;
+    left: 9%;
+    padding: 0;
+  }
+
+  .text4 {
+    position: relative;
+    width: 50px;
+    height: 12.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.88;
+    letter-spacing: -0.42px;
+    text-align: right;
+    color: #232323;
+    padding: 0;
+    margin-top: 6%;
+    right: 2%;
+
+  }
+
+  .text5 {
+    position: relative;
+    left: 1%;
+    width: 79.5px;
+    height: 18.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12px;
+    font-weight: 400;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.58;
+    letter-spacing: -0.36px;
+    text-align: left;
+    color: #878787;
+  }
+
+  .text6 {
+    position: relative;
+    width: 121.5px;
+    height: 18.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12px;
+    font-weight: 400;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.58;
+    letter-spacing: -0.36px;
+    text-align: right;
+    color: #a0a0a0;
+    right: 1%;
+  }
+
+  .text7 {
+    position: relative;
+    width: 95%;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 11px;
+    font-weight: 400;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.96;
+    letter-spacing: -0.33px;
+    text-align: left;
+    color: #989898;
+  }
+
+  .card {
+    position: relative;
+    width: 90%;
+    height: 206.5px;
+    border-radius: 5.7px;
+    border: solid 0.5px #c8c8c8;
+    background-color: #c8c8c8;
+    margin: 0 auto;
+    margin-top: 10%;
+    background-color: #FFF;
+    box-shadow: none;
+  }
+
+  .center {
+    height: 200%;
+    margin: 0 auto;
+  }
+
+  .center2 {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 225.5px;
+    height: 35.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: -0.42px;
+    text-align: center;
+    color: #979797;
+    margin: 0;
+  }
+
+  .center3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 159px;
+    height: 50px;
+    border-radius: 3.5px;
+    background-color: #5c59b6;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: -0.42px;
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .vcenter {
+    position: absolute;
+    vertical-align: middle;
+  }
+
+  .colorText {
+    font-weight: 500;
+    color: #5c59b6 !important;
+  }
+
+  .btn1 {
+    position: absolute;
+    margin-left: 33%;
+    margin-top: 10%;
+    width: 63.5px;
+    height: 23px;
+    border-radius: 2.8px;
+    background-color: #5c59b6;  
+    box-shadow: none;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12.5px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 3.22;
+    letter-spacing: -0.38px;
+    text-align: right;
+    color: #ffffff;
+    vertical-align: middle;
+  }
+
+  .img1 {
+    float: left;
+    width: 15px;
+    height: 17px;
+    margin-top: 4%;
+    margin-left: -10%;
+    margin-right: 2%;
+    object-fit: contain;
+  }
+
+}

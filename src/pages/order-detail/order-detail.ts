@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-import {AuthHttp,AuthModule,JwtHelper,tokenNotExpired} from 'angular2-jwt';
+import { ImagesProvider } from '../../providers/images/images';
+import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { SungwooDeliveryPage } from '../sungwoo-delivery/sungwoo-delivery';
+import { OrderCancel3Page } from '../order-cancel/order-cancel3/order-cancel3';
 
 /**
  * Generated class for the OrderDetailPage page.
@@ -27,6 +30,7 @@ export class OrderDetailPage {
   thumb_image: any;
   chkUserImage: any;
   profileimg_url: any;
+  orderList: any;
   today: Date = new Date();
   yearAgo: Date = new Date();
   weekAgo: Date = new Date();
@@ -36,11 +40,8 @@ export class OrderDetailPage {
     public navParams: NavParams,
     public platform: Platform,
     public auth: AuthService,
+    public images: ImagesProvider,
   ) {
-    if(this.navParams.get('detailData')) {
-      this.detailOrderData = this.navParams.get('detailData');
-      this.yearAgo.setMonth(this.yearAgo.getMonth()-12);
-    }
   }
 
   async ionViewDidLoad() {
@@ -49,7 +50,13 @@ export class OrderDetailPage {
   }
 
   ionViewDidEnter(){
-   console.log("ionViewDidEnter");
+    console.log("ionViewDidEnter");
+    if(this.navParams.get('orderList')) {
+      this.detailOrderData = this.navParams.get('orderList');
+      this.yearAgo.setMonth(this.yearAgo.getMonth()-12);
+    } else {
+      this.getUserOrders(this.userData.email);
+    }
   }
 
   public loadItems() {
@@ -171,6 +178,7 @@ export class OrderDetailPage {
   }
 
   dateConvert(date) {
+    date = this.getCovertKoreaTime(date);
     var month = '';
     var day = '';
 
@@ -183,6 +191,24 @@ export class OrderDetailPage {
   logRatingChange(rating){
     console.log("changed rating: ",rating);
     // do your stuff
+  }
+
+  getCovertKoreaTime(time) {
+    return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000).toISOString()
+  }
+
+  getUserOrders(email) {
+    this.images.getUserOrders(email).subscribe(data => {
+      this.orderList = data;
+    })
+  }
+
+  deliveryInfo(detailData) {
+    this.navCtrl.push(SungwooDeliveryPage, { detailData: detailData });
+  }
+
+  orderCancel1(detailData) {
+    this.navCtrl.push(OrderCancel3Page, {detailData: detailData});
   }
 
 

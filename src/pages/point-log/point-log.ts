@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, Slides } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
+import { ImagesProvider } from '../../providers/images/images';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 
 /**
@@ -29,6 +30,7 @@ export class PointLogPage {
     public navParams: NavParams,
     public platform: Platform,
     public auth: AuthService,
+    public images: ImagesProvider,
   ) {
   }
 
@@ -36,10 +38,11 @@ export class PointLogPage {
 
     console.log('ionViewDidLoad PointLogPage');
     await this.loadItems();
-    await this.plincShopGetPointAll();
+    // await this.plincShopGetPointAll();
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
+    this.getPlinicPointAll(this.userData.email);
     console.log('ionViewDidEnter PointLogPage');
   }
 
@@ -58,6 +61,21 @@ export class PointLogPage {
         this.slides.slideTo(0, 0);
       }, 100)
     }
+  }
+
+  getPlinicPointAll(email) {
+    this.images.getUserPointLog(email).subscribe(data => {
+      this.pointLogData = data.point;
+      for (let i = 0; i < this.pointLogData.length; i++) { 
+        if(String(this.pointLogData[i].point).indexOf('-') >= 0) {
+            this.pointMinusData.push(this.pointLogData[i]);
+        } else {
+            this.pointPlusData.push(this.pointLogData[i]);
+        }
+      }
+    }, error => {
+      console.log("사용자 포인트 기록 가져오기 실패");
+    })
   }
 
   async plincShopGetPointAll() {

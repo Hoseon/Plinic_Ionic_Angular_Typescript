@@ -56,23 +56,22 @@
       </ng-container>
       <ng-container *ngIf="pointPlusData.length > 0">
         <ng-container *ngFor="let point of pointPlusData; let i = index">
-          <ng-container *ngIf="(point.name === userData.email)">
             <ion-item class="line_item">
-
               <ion-col class="container"
                 (click)="openBrowser_android(community.posturl, community.body, community._id)">
                 <ion-row>
                   <ion-col col-8 class="beauty_tip_title_img">
-                    <span class="beauty_note_tag">{{point.date.substr(0,10).replace('-','.').replace('-','.').replace('-','.')}}&nbsp;&nbsp;</span>
+                    <span class="beauty_note_tag">{{getCovertKoreaTime(point.createdAt).substr(0,19).replace('T',' ')}}&nbsp;&nbsp;</span>
                   </ion-col>
                 </ion-row>
-                <ion-row>
-                  <ion-col col-8 class="beauty_tip_title">
-                    <span class="beauty_note_tag_title">&nbsp;&nbsp;{{point.pointName}}</span>
+                <br>
+                <ion-row margin-left align-items-center class="">
+                  <ion-col col-2>
+                      <div class="addText leftBorder">적립</div>
                   </ion-col>
-                </ion-row>
-                <ion-row>
-                  <div class="skinqna_contents_img">적립</div>
+                  <ion-col col-10>
+                    <div text-left class="reason">&nbsp;&nbsp;{{point.reason}}</div>
+                  </ion-col>
                 </ion-row>
                 <!-- <ion-col class="beauty_note_like">
                   <ion-col class="beauty_note_count">조회 00</ion-col>
@@ -80,7 +79,6 @@
                 <div class="beauty_home_img">{{point.point}}P</div>
               </ion-col>
             </ion-item>
-          </ng-container>
         </ng-container>
         <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
       </ng-container>
@@ -101,16 +99,17 @@
                   (click)="openBrowser_android(community.posturl, community.body, community._id)">
                   <ion-row>
                     <ion-col col-8 class="beauty_tip_title_img">
-                      <span class="beauty_note_tag">{{minuspoint.date.substr(0,10).replace('-','.').replace('-','.').replace('-','.')}}&nbsp;&nbsp;</span>
+                      <span class="beauty_note_tag">{{getCovertKoreaTime(minuspoint.createdAt).substr(0,19).replace('T',' ')}}&nbsp;&nbsp;</span>
                     </ion-col>
                   </ion-row>
-                  <ion-row>
-                    <ion-col col-8 class="beauty_tip_title">
-                      <span class="beauty_note_tag_title">&nbsp;&nbsp;{{minuspoint.pointName}}</span>
+                  <br>
+                  <ion-row margin-left align-items-center class="">
+                    <ion-col col-2>
+                        <div class="addText leftBorder">사용</div>
                     </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <div class="skinqna_contents_img_minus">사용</div>
+                    <ion-col col-10>
+                      <div text-left class="reason">&nbsp;&nbsp;{{minuspoint.reason}}</div>
+                    </ion-col>
                   </ion-row>
                   <!-- <ion-col class="beauty_note_like">
                     <ion-col class="beauty_note_count">조회 00</ion-col>
