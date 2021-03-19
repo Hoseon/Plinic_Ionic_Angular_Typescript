@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, Platform } from "ionic-angular";
+import { IonicPage, NavController, NavParams, Platform, AlertController } from "ionic-angular";
 import { SungwooCartPage } from "../sungwoo-cart/sungwoo-cart";
 import { SungwooOrderPage } from "../sungwoo-order/sungwoo-order";
 import { AuthService } from "../../providers/auth-service";
@@ -37,6 +37,7 @@ export class SungwooPickPage {
     private platform: Platform,
     private authService: AuthService,
     private images: ImagesProvider,
+    public alertCtrl : AlertController,
   ) {
     this.platform.ready().then(() => {
       this.navParams.get('productData') ? this.productData = this.navParams.get('productData') : this.productData;
@@ -66,7 +67,25 @@ export class SungwooPickPage {
   }
 
   order() {
-    this.navCtrl.push(SungwooCartPage);
+    // 2021-03-19 임시 중단
+    // this.navCtrl.push(SungwooCartPage);
+    let alert2 = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: '준비중',
+      message: '현재 서비스 준비중입니다.<br>빠른 시일 내에 기능을 제공해 드리겠습니다.',
+      // enableBackdropDismiss: true,
+      buttons: [
+        {
+          text: '확인',
+          handler: () => {
+            //this.nav.pop();
+          }
+        }
+      ]
+    });
+    // alert2.onDidDismiss(()=>{
+    // });
+    alert2.present();
   }
 
   buy(productData, userData, ProductCount, ProductAmount) {

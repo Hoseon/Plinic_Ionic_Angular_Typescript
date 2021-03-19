@@ -399,21 +399,22 @@
             this.showPopup("Error", error._body);
             this.showPopup("Error", error.body);
           });
-
-        this.auth.plinicShopSignUp(this.registerCredentials).subscribe(success => {
-            this.loading.dismiss();
-            console.log("success================" + success)
-            if (success !== '') {
-              console.log("사용자 데이터 저장 완료 : " + JSON.stringify(success));
-            } else {
-              // this.showPopup("Error", "Problem creating account.");
-            }
-          },
-          error => {
-            this.loading.dismiss();
-            // this.showPopup("Error", error._body);
-            // this.showPopup("Error", error.body);
-          });
+        
+          //2021-03-17 플리닉샵 회원가입 연동 해제
+        // this.auth.plinicShopSignUp(this.registerCredentials).subscribe(success => {
+        //     this.loading.dismiss();
+        //     console.log("success================" + success)
+        //     if (success !== '') {
+        //       console.log("사용자 데이터 저장 완료 : " + JSON.stringify(success));
+        //     } else {
+        //       // this.showPopup("Error", "Problem creating account.");
+        //     }
+        //   },
+        //   error => {
+        //     this.loading.dismiss();
+        //     // this.showPopup("Error", error._body);
+        //     // this.showPopup("Error", error.body);
+        //   });
       }
     }
 

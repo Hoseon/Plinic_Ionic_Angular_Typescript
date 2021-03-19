@@ -54,7 +54,7 @@
       <ng-container *ngFor="let postData of youTubeArrayData; let i = index">
         <ion-row (click)="openMoviePage(postData)" align-items-center>
           <ion-col col-4>
-            <img src="{{postData.snippet.thumbnails.default.url}}" />
+            <img src="{{postData.snippet.thumbnails.maxres.url}}" />
           </ion-col>
           <ion-col col-8>
             <div class="postText1">{{postData.snippet.title}}</div>
@@ -87,7 +87,7 @@
         <ng-container *ngFor="let postData of youTubeArrayData; let i = index">
           <ion-row (click)="openMoviePage(postData)" align-items-center>
             <ion-col col-4>
-              <img src="{{postData.snippet.thumbnails.default.url}}" />
+              <img src="{{postData.snippet.thumbnails.maxres.url}}" />
             </ion-col>
             <ion-col col-8>
               <div class="postText1">{{postData.snippet.title}}</div>

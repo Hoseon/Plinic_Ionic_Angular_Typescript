@@ -16,8 +16,8 @@
     <ion-buttons end>
       <ion-grid>
         <ion-row class="postion" align-items-baseline>
-          <button ion-button icon-only clear><img float-end class="headerIoncMargin"
-              src="assets/img/svg/search.svg" /></button>
+          <!-- <button ion-button icon-only clear><img float-end class="headerIoncMargin"
+              src="assets/img/svg/search.svg" /></button> -->
           <button (click)="orderDetailPage()" ion-button icon-only clear><img float-end class="headerIoncMargin"
               src="assets/img/svg/cart.svg" /></button>
           <button (click)="myinfo()" ion-button icon-only clear><img margin-right float-end class="headerIoncMargin"
@@ -41,8 +41,8 @@
     <ion-buttons end>
       <ion-grid>
         <ion-row class="postion" align-items-baseline>
-          <button ion-button icon-only clear><img float-end margin-bottom class="headerIoncMargin"
-              src="assets/img/svg/search.svg" /></button>
+          <!-- <button ion-button icon-only clear><img float-end margin-bottom class="headerIoncMargin"
+              src="assets/img/svg/search.svg" /></button> -->
           <button (click)="orderDetailPage()" ion-button icon-only clear><img float-end margin-bottom
               class="headerIoncMargin" src="assets/img/svg/cart.svg" /></button>
           <button (click)="myinfo()" ion-button icon-only clear><img margin-right float-end margin-bottom
@@ -66,7 +66,7 @@
 <ion-content>
   <ion-slides mode="ios" #Slides2 (ionSlideWillChange)="slideChanged($event)" class="slides" pager>
     <ion-slide>
-      <ion-grid no-padding padding-bottom>
+      <ion-grid (click)="pointZoneGuid()" no-padding padding-bottom>
         <img
           srcset="assets/img/sungwoo_img/use_guide@3x.png, assets/img/sungwoo_img/use_guide@2x.png, assets/img/sungwoo_img/use_guide.png" />
       </ion-grid>
@@ -74,13 +74,13 @@
         <div margin-left margin-bottom text-left class="todaysDeal">TODAY'S 딜</div>
       </ion-grid>
       <ng-container *ngFor="let product of productData; let i = index;">
-        <ion-grid no-padding>
+        <ion-grid (click)="cosmetic(product)" no-padding>
           <img no-padding *ngIf="product" class="productImage"
             src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{product.filename}}" />
         </ion-grid>
         <ion-grid>
           <ion-row align-items-center margin-left margin-right>
-            <ion-col col-10 class="">
+            <ion-col (click)="cosmetic(product)" col-10 class="">
               <div *ngIf="product" class="text3" text-left>{{product.product_name}}</div>
             </ion-col>
             <ion-col col-2 class="share"><img src="assets/img/sungwoo_img/share..svg" /></ion-col>
@@ -90,7 +90,7 @@
             <ion-col *ngIf="product" col-3 class="text5 "><del>{{addComma(product.price)}}원</del></ion-col>
           </ion-row>
           <ion-row align-items-center margin-left margin-right>
-            <ion-col *ngIf="product" col-8 class="text6 " text-right>최대 {{getMaxPoint(product.maxPercent, product.Amount)}}p 사용가능</ion-col>
+            <ion-col *ngIf="product" col-8 class="text6 " text-right>최대 {{getMaxPoint(product.maxPercent, product.Amount)}}P 사용가능</ion-col>
             <ion-col *ngIf="product" col-4 class="text7 ">{{addComma(product.Amount)}}원</ion-col>
           </ion-row>
           <button *ngIf="product" ion-button outline block class="buyBtn"
@@ -99,50 +99,8 @@
         <br>
       </ng-container>
       <br>
-      <!-- <ion-grid no-padding>
-        <img no-padding *ngIf="productData" class="productImage"
-          src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{productData.filename}}" />
-      </ion-grid>
-      <ion-grid>
-        <ion-row align-items-center margin-left margin-right>
-          <ion-col col-10 class="">
-            <div *ngIf="productData" class="text3" text-left>{{productData.product_name}}</div>
-          </ion-col>
-          <ion-col col-2 class=""><img src="assets/img/sungwoo_img/share..svg" /></ion-col>
-        </ion-row>
-        <ion-row align-items-center margin-left margin-right>
-          <ion-col *ngIf="productData" col-9 class="text4 " text-right>{{productData.saleAmount}}%~</ion-col>
-          <ion-col *ngIf="productData" col-3 class="text5 "><del>{{addComma(productData.price)}}원</del></ion-col>
-        </ion-row>
-        <ion-row align-items-center margin-left margin-right>
-          <ion-col *ngIf="productData" col-8 class="text6 " text-right>최대 {{maxPoint}}p 사용가능</ion-col>
-          <ion-col *ngIf="productData" col-4 class="text7 ">{{addComma(productData.Amount)}}원</ion-col>
-        </ion-row>
-        <button ion-button outline block class="buyBtn">구매하기</button>
-      </ion-grid> -->
-      <!-- <br> -->
-      <!-- <ion-grid no-padding>
-        <img no-padding *ngIf="productData" class="productImage"
-          src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{productData.filename}}" />
-      </ion-grid>
-      <ion-grid>
-        <ion-row align-items-center margin-left margin-right>
-          <ion-col col-10 class="">
-            <div *ngIf="productData" class="text3" text-left>{{productData.product_name}}</div>
-          </ion-col>
-          <ion-col col-2 class=""><img src="assets/img/sungwoo_img/share..svg" /></ion-col>
-        </ion-row>
-        <ion-row align-items-center margin-left margin-right>
-          <ion-col *ngIf="productData" col-9 class="text4 " text-right>{{productData.saleAmount}}%~</ion-col>
-          <ion-col *ngIf="productData" col-3 class="text5 "><del>{{addComma(productData.price)}}원</del></ion-col>
-        </ion-row>
-        <ion-row align-items-center margin-left margin-right>
-          <ion-col *ngIf="productData" col-8 class="text6 " text-right>최대 {{maxPoint}}p 사용가능</ion-col>
-          <ion-col *ngIf="productData" col-4 class="text7 ">{{addComma(productData.Amount)}}원</ion-col>
-        </ion-row>
-        <button ion-button outline block class="buyBtn">구매하기</button>
-      </ion-grid> -->
-      <!-- <br> -->
+      
+
       <div style="height:1vh; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1">
       </div>
       <br>
@@ -154,22 +112,25 @@
           <ion-slides class="nextSlide" slidesPerView=2.5>
             <ion-slide class="">
               <div class="nextBorder">
-                <img class="nextImage"
-                  srcset="assets/img/pointShop/NextDeal01.png, assets/img/pointShop/NextDeal01@2x.png, assets/img/pointShop/NextDeal01@3x.png" />
+                <img class="nextImage" src="assets/img/pointShop/NextDeal01.jpg"/>
+                <!-- <img class="nextImage"
+                  srcset="assets/img/pointShop/NextDeal01.png, assets/img/pointShop/NextDeal01@2x.png, assets/img/pointShop/NextDeal01@3x.png" /> -->
                 <div text-left class="nextText">레디큐 츄 망고맛 3입 X 10개 (2박스)레디큐 츄 망고맛 3입 X 10개 (2박스)</div>
               </div>
             </ion-slide>
             <ion-slide class="">
               <div class="nextBorder">
-                <img class="nextImage"
-                  srcset="assets/img/pointShop/NextDeal02.png, assets/img/pointShop/NextDeal02@2x.png, assets/img/pointShop/NextDeal02@3x.png" />
+                <img class="nextImage" src="assets/img/pointShop/NextDeal02.jpg"/>
+                <!-- <img class="nextImage"
+                  srcset="assets/img/pointShop/NextDeal02.png, assets/img/pointShop/NextDeal02@2x.png, assets/img/pointShop/NextDeal02@3x.png" /> -->
                 <div text-left class="nextText">레디큐 다이어트 츄 젤리 5입 X 10팩 (2box) </div>
               </div>
             </ion-slide>
             <ion-slide class="">
               <div class="nextBorder">
-                <img class="nextImage"
-                  srcset="assets/img/pointShop/NextDeal01.png, assets/img/pointShop/NextDeal01@2x.png, assets/img/pointShop/NextDeal01@3x.png" />
+                <img class="nextImage" src="assets/img/pointShop/NextDeal03.jpg"/>
+                <!-- <img class="nextImage"
+                  srcset="assets/img/pointShop/NextDeal01.png, assets/img/pointShop/NextDeal01@2x.png, assets/img/pointShop/NextDeal01@3x.png" /> -->
                 <div text-left class="nextText">레디큐 츄 망고맛 3입 X 10개 (2박스)레디큐 츄 망고맛 3입 X 10개 (2박스)</div>
               </div>
             </ion-slide>
@@ -183,20 +144,24 @@
       <ion-grid>
         <div margin-left margin-bottom text-left class="todaysDeal">PLINIC 피부에너지</div>
       </ion-grid>
+
       <ion-grid>
-        <ion-row align-items-center>
-          <ion-col col-5 class="">
-            <img class="PlinicImage"
-              srcset="assets/img/pointShop/ampoule.png, assets/img/pointShop/ampoule@2x.png, assets/img/pointShop/ampoule@3x.png" />
-          </ion-col>
-          <ion-col col-7 class="">
-            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지 플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
-            <div class="plinicText2">5%~ <del class="plinicText3">82,000원</del></div>
-            <div class="plinicText4">77,900원</div>
-            <div class="plinicText5">최대 1,000P 사용가능</div>
-          </ion-col>
-        </ion-row>
-        <ion-row align-items-center>
+        <ng-container *ngFor="let cos of cosmeticData; let i = index;">
+          <ion-row (click)="cosmetic(cos)" align-items-center>
+            <ion-col col-5 class="">
+              <img class="PlinicImage"
+                src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{cos.filename}}" />
+            </ion-col>
+            <ion-col col-7 class="">
+              <div class="plinicText1">{{cos.product_name}}</div>
+              <div class="plinicText2">{{cos.saleAmount}}%~ <del class="plinicText3">{{addComma(cos.price)}}원</del></div>
+              <div class="plinicText4">{{addComma(cos.Amount)}}원</div>
+              <div class="plinicText5">최대 {{getMaxPoint(cos.maxPercent, cos.Amount)}}P 사용가능</div>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+        
+        <!-- <ion-row align-items-center>
           <ion-col col-5 class="">
             <img class="PlinicImage"
               srcset="assets/img/pointShop/ampoule2.png, assets/img/pointShop/ampoule2@2x.png, assets/img/pointShop/ampoule2@3x.png" />
@@ -219,7 +184,7 @@
             <div class="plinicText4">523,800원</div>
             <div class="plinicText5">최대 50,000P 사용가능</div>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
       </ion-grid>
       <br>
       <div style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1">
@@ -248,7 +213,7 @@
           </ion-col>
           <ion-col col-7 class="">
             <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
-            <div class="plinicText2">10% ~ <del>582,000원</del></div>
+            <div class="plinicText2">10% ~ <del class="plinicText3">582,000원</del></div>
             <div class="plinicText4">523,800원</div>
             <div class="plinicText5">최대 50,000P 사용가능</div>
           </ion-col>
@@ -260,7 +225,7 @@
           </ion-col>
           <ion-col col-7 class="">
             <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
-            <div class="plinicText2">10% ~ <del>582,000원</del></div>
+            <div class="plinicText2">10% ~ <del class="plinicText3">582,000원</del></div>
             <div class="plinicText4">523,800원</div>
             <div class="plinicText5">최대 50,000P 사용가능</div>
           </ion-col>
@@ -272,7 +237,7 @@
           </ion-col>
           <ion-col col-7 class="">
             <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
-            <div class="plinicText2">10% ~ <del>582,000원</del></div>
+            <div class="plinicText2">10% ~ <del class="plinicText3">582,000원</del></div>
             <div class="plinicText4">523,800원</div>
             <div class="plinicText5">최대 50,000P 사용가능</div>
           </ion-col>

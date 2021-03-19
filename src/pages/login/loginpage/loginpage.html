@@ -41,23 +41,27 @@
     (@fadeInOut.start)="animationStarted($event)" [@myvisibility]="visibleState">
     <ion-row>
       <ion-col *ngIf="!isReview">
-        <button ion-button class="submit-btn" (click)="naver_login()" outline>
+        <!-- <button ion-button class="submit-btn" (click)="naver_login()" outline>
           <img class="naver_btn" src="assets/img/naverlogo/ic-sns-naver.png" srcset="assets/img/naverlogo/ic-sns-naver@2x.png,
-                       assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 로그인</button>
+                       assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 로그인</button> -->
         <button ion-button class="submit-btn" (click)="kakao_login()" outline>
           <img class="kakao_btn" src="assets/img/kakaologo/ic-sns-kakao.png" srcset="assets/img/kakaologo/ic-sns-kakao@2x.png,
                        assets/img/kakaologo/ic-sns-kakao@3x.png" /> 카카오로 로그인</button>
         <button ion-button class="submit-btn" (click)="google_login()" outline>
           <img class="google_btn" src="assets/img/googlelogo/ic-sns-google.png" srcset="assets/img/googlelogo/ic-sns-google@2x.png,
                        assets/img/googlelogo/ic-sns-google@3x.png" /> 구글로 로그인</button>
+        <button ion-button class="submit-btn_apple" (click)="apple_login()" outline>
+        <img class="apple_btn" src="assets/img/applelogo/White_Logo_Square@3x" srcset="assets/img/applelogo/White_Logo_Square@2x.png,
+                        assets/img/applelogo/White_Logo_Square@1x.png" />
+        &nbsp;&nbsp;&nbsp;&nbsp;Sign in with Apple</button>
         <!-- <button ion-button class="submit-btn" (click)="apple_login()" outline>
           <img class="google_btn" src="assets/img/applelogo/apple.png"/> 애플로 로그인</button> -->
         <ion-col class="Linetext">또는</ion-col>
       </ion-col>
       <ion-col *ngIf="isReview">
-        <button ion-button class="submit-btn" (click)="naver_login()" outline>
+        <!-- <button ion-button class="submit-btn" (click)="naver_login()" outline>
           <img class="naver_btn" src="assets/img/naverlogo/ic-sns-naver.png" srcset="assets/img/naverlogo/ic-sns-naver@2x.png,
-                         assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 로그인.</button>
+                         assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 로그인.</button> -->
         <button ion-button class="submit-btn" (click)="kakao_login()" outline>
           <img class="kakao_btn" src="assets/img/kakaologo/ic-sns-kakao.png" srcset="assets/img/kakaologo/ic-sns-kakao@2x.png,
                          assets/img/kakaologo/ic-sns-kakao@3x.png" /> 카카오로 로그인.</button>

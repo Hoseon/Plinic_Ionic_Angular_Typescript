@@ -153,6 +153,7 @@ export class CommunityPage {
 
 
   async ionViewWillEnter() {
+    this.androidBackButton();
     await this.tabs_check();
     // this.selectedTab(0);
     // this.showLoading();
@@ -167,7 +168,7 @@ export class CommunityPage {
     //this.loading.dismiss();
     if(this.userData) {
       if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
-        this.reloadUserPoint(this.userData.snsid);
+        this.reloadUserPoint(this.userData.email);
       }
       else {
         this.reloadUserPoint(this.userData.email);
@@ -712,7 +713,7 @@ export class CommunityPage {
           from: items.from,
           snsid: items.snsid
         };
-        this.reloadUserPoint(this.userData.snsid);
+        this.reloadUserPoint(this.userData.email);
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           this.thumb_image = false;
         } else {
@@ -839,7 +840,7 @@ export class CommunityPage {
     myModal.onDidDismiss(data => {
       if(this.userData) {
         if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
-          this.reloadUserPoint(this.userData.snsid);
+          this.reloadUserPoint(this.userData.email);
         }
         else {
           this.reloadUserPoint(this.userData.email);

@@ -91,21 +91,26 @@ export class ProductReviewPage {
   }
 
   checkTextarea(event) {
-    console.log(this.review.content.length);
-    console.log(this.review.rating);
+    // console.log(this.review.content.length);
+    // console.log(this.review.rating);
     if(this.review.content.length > 5) {
-      this.isRegisterBtn = true;
+      // this.isRegisterBtn = true;
     } else if(this.review.content.length < 5 ) {
-      this.isRegisterBtn = false;
+      // this.isRegisterBtn = false;
     }
+    console.log(this.isRegisterBtn);
   }
 
   registerReview() {
-    this.auth.registerReview(this.userData.email, this.review).subscribe(data => {
-      this.showAlert("리뷰가 등록되었습니다.");
-    }, error => {
-      this.showAlert("리뷰 등록에 실패하였습니다")
-    })
+    if (this.review.content.length < 5) {
+      this.showAlert2("리뷰는 최소5자 이상 등록해주세요");      
+    } else {
+      this.auth.registerReview(this.userData.email, this.review).subscribe(data => {
+        this.showAlert("리뷰가 등록되었습니다.");
+      }, error => {
+        this.showAlert("리뷰 등록에 실패하였습니다")
+      });
+    }
   }
 
   public loadItems() {
@@ -163,6 +168,21 @@ export class ProductReviewPage {
         role: 'cancel',
         handler: () => {
           this.navCtrl.pop();
+        }
+      }]
+    });
+    alert.present();
+  }
+
+  showAlert2(text) {
+    let alert = this.alertCtrl.create({
+      cssClass:'push_alert',
+      title: 'Plinic',
+      message: text,
+      buttons: [{
+        text: '확인',
+        role: 'cancel',
+        handler: () => {
         }
       }]
     });

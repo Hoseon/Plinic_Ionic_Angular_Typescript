@@ -665,7 +665,7 @@ export class DeviceSkinIngPage {
   challengeUpdate(): void {
     this.auth.challengeUpdate2(this.carezoneData._id, this.userData.email, this.secondsRemaining).subscribe(data => {
       this.subscriptionFourth.complete();
-      this.showAlertwithCancelChal("챌린지 종료", JSON.stringify(data.msg).replace('"', ''));
+      this.showAlertwithCancelChal("매일매일 사용하기", JSON.stringify(data.msg).replace('"', ''));
       // this.showAlert("플리닉 종료", JSON.stringify(data.msg).replace('"', ''));
     }, error => {
       this.subscriptionFourth.complete();

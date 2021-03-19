@@ -526,7 +526,7 @@ export class SkinChartPage {
         } else {
           //this.thumb_image = true;
         }
-        this.reloadUserPoint(this.userData.snsid);
+        this.reloadUserPoint(this.userData.email);
       } else {
         this.userData = {
           accessToken: items.accessToken,
@@ -781,7 +781,7 @@ export class SkinChartPage {
     myModal.onDidDismiss(data => {
       if(this.userData) {
         if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
-          this.reloadUserPoint(this.userData.snsid);
+          this.reloadUserPoint(this.userData.email);
         }
         else {
           this.reloadUserPoint(this.userData.email);

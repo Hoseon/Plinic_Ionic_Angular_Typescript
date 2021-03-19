@@ -24,6 +24,7 @@ export class SungwooProductDetailPage {
   isShowMore: boolean;
   productData: any;
   productReview: any;
+  productReviewAll: any;
   avgRating: any;
   userData: any;
   thumb_image: any;
@@ -32,7 +33,7 @@ export class SungwooProductDetailPage {
   from: any;
   isLike: boolean = true;
   testData: any;
-
+  scrollPage = 0;
 
 
   constructor(
@@ -47,6 +48,7 @@ export class SungwooProductDetailPage {
         this.productData = this.navParams.get("productData");
       this.product_num = this.navParams.get("productData").product_num;
       this.getProductReview(this.product_num);
+      this.getProductAllReview(this.product_num);
     });
   }
 
@@ -80,16 +82,31 @@ export class SungwooProductDetailPage {
       .push(ProductReviewPage, { productData: this.productData })
       .then(() => {
         this.navCtrl.getActive().onDidDismiss((data) => {
-          this.getProductReview(this.product_num);
+          this.getProductAllReview(this.product_num);
         });
       });
   }
 
-  getProductReview(product_num) {
-    this.images.getProductReview(product_num).subscribe((data) => {
-      this.productReview = data;
-      this.avgRating = this.getAvgRating(this.productReview);
+  getProductAllReview(product_num) {
+    this.images.getProductAllReview(product_num).subscribe((data) => {
+      // this.productReview = data;
+      this.productReviewAll = data;
+      this.avgRating = this.getAvgRating(data);
       // console.log("상품 리뷰 : " + JSON.stringify(this.productReview));
+    });
+  }
+
+  getProductReview(product_num) {
+    this.scrollPage = this.scrollPage+1;
+    this.images.getProductReview(product_num, this.scrollPage).subscribe((data) => {
+      if (this.scrollPage === 1) {
+        this.productReview = (data);
+      } else {
+        for(let i = 0; i < data.length; i++) {
+          this.productReview.push(data[i]);
+        }
+      }
+      // this.productReview = data;
     });
   }
 

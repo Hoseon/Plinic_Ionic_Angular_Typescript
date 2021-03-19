@@ -135,7 +135,7 @@ export class SungwooBeautyPage {
           from: items.from,
           snsid: items.snsid
         };
-        this.reloadUserPoint(this.userData.snsid);
+        this.reloadUserPoint(this.userData.email);
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           this.thumb_image = false;
         } else {

@@ -8,6 +8,7 @@ import { MyinfoPage } from '../myinfo/myinfo'
 import { SungwooProductDetailPage } from '../sungwoo-product-detail/sungwoo-product-detail';
 import { GuidePage } from "../guide/guide";
 import { ChulsukCheckPage } from "../chulsuk-check/chulsuk-check"; //숫자 카운트 되는 애니메이션 적용
+import { PointZoneGuidePage } from '../point-zone-guide/point-zone-guide';
 
 @IonicPage()
 @Component({
@@ -22,8 +23,10 @@ export class SungwooPointShopPage {
   profileimg_url: any;
   from: any;
   productData: any;
+  cosmeticData: any;
   maxPoint: any; //최대사용가능 포인트
   page: any = '0';
+  testUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/productimage-1612832179650';
   @ViewChild('Slides2') slides: Slides;
 
 
@@ -43,12 +46,14 @@ export class SungwooPointShopPage {
   ionViewDidLoad() {
     // console.log('ionViewDidLoad SungwooPointShopPage');
     this.getProductData();
+    this.getCosmeticData();
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
+    this.androidBackButton();
     if(this.userData) {
       if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
-        this.reloadUserPoint(this.userData.snsid);
+        this.reloadUserPoint(this.userData.email);
       }
       else {
         this.reloadUserPoint(this.userData.email);
@@ -102,7 +107,7 @@ export class SungwooPointShopPage {
           from: items.from,
           snsid: items.snsid
         };
-        this.reloadUserPoint(this.userData.snsid);
+        this.reloadUserPoint(this.userData.email);
         if (this.userData.thumbnail_image === "" || this.userData.thumbnail_image === undefined) {
           this.thumb_image = false;
         } else {
@@ -168,7 +173,7 @@ export class SungwooPointShopPage {
     myModal.onDidDismiss(data => {
       if(this.userData) {
         if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
-          this.reloadUserPoint(this.userData.snsid);
+          this.reloadUserPoint(this.userData.email);
         }
         else {
           this.reloadUserPoint(this.userData.email);
@@ -181,27 +186,40 @@ export class SungwooPointShopPage {
     myModal.present();
   }
 
-    //20201125 안드로이드 백 버튼 처리
-    androidBackButton() {
-      if(this.platform.is('android')) {
-        this.platform.registerBackButtonAction(()=>{
-          this.navCtrl.parent.select(0);
-        });
-      }
+  //20201125 안드로이드 백 버튼 처리
+  androidBackButton() {
+    if(this.platform.is('android')) {
+      this.platform.registerBackButtonAction(()=>{
+        this.navCtrl.parent.select(0);
+      });
     }
+  }
 
-    cosmetic(productData) {
-      this.navCtrl.push(SungwooProductDetailPage, {productData: productData});
-    }
+  cosmetic(productData) {
+    this.navCtrl.push(SungwooProductDetailPage, {productData: productData});
+  }
 
-    getProductData() {
-      this.images.getProductData().subscribe(data=>{
-        this.productData = data;
-        // console.log(this.productData);
-      },err=>{
-        alert("데이터 에러 발생");
-      })
-    }
+  getProductData() {
+    this.images.getProductData().subscribe(data => {
+      setTimeout(() => {
+        this.productData = data;  
+      // console.log(this.productData);
+      }, 300);
+    },err=>{
+      alert("데이터 에러 발생");
+    })
+  }
+
+  getCosmeticData() {
+    this.images.getPlinicProductCosmetic().subscribe(data => {
+      setTimeout(() => {
+        this.cosmeticData = data;
+        // console.log(this.cosmeticData);  
+      }, 300);
+    },err=>{
+      alert("데이터 에러 발생");
+    })
+  }
   
   onSlideDrag() {
     // console.log('onSlideDrag');
@@ -235,7 +253,7 @@ export class SungwooPointShopPage {
           this.userData.from === "google" ||
           this.userData.from === "naver"
         ) {
-          this.reloadUserPoint(this.userData.snsid);
+          this.reloadUserPoint(this.userData.email);
         } else {
           this.reloadUserPoint(this.userData.email);
         }
@@ -258,7 +276,7 @@ export class SungwooPointShopPage {
           this.userData.from === "google" ||
           this.userData.from === "naver"
         ) {
-          this.reloadUserPoint(this.userData.snsid);
+          this.reloadUserPoint(this.userData.email);
         } else {
           this.reloadUserPoint(this.userData.email);
         }
@@ -281,6 +299,13 @@ export class SungwooPointShopPage {
     this.maxPoint = Number(amount) * sale;
     this.maxPoint = this.addComma(this.maxPoint);
     return this.maxPoint;
+  }
+
+  pointZoneGuid() {
+    let modal = this.modalCtrl.create(PointZoneGuidePage);
+    modal.onDidDismiss(data => {
+    });
+    modal.present();    
   }
 
 }

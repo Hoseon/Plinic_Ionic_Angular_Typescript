@@ -71,7 +71,7 @@ export class ChalMissionIngPage {
   commentTimeZone: Array<any> = new Array<any>();
   profileimg_url: any;
   useCount = 0;
-  isReward: boolean = false;
+  isReward: boolean;
   challengeReward: boolean = false;
   isFail: boolean = false; //챌린지 실패 여부
   isFirstDate : boolean = false; //첫날 미션 진행했는지 확인하는 로직
@@ -236,19 +236,20 @@ export class ChalMissionIngPage {
       // title: '최종 순위 ' + this.rank + '위',
       subTitle: '챌린지 도전에 실패하였습니다. <br /> 다음 챌린지에 도전하세요!',
       message: '피부가 좋아지는 그날까지 <br />챌린지에 참여하세요.',
+      enableBackdropDismiss: true,
       buttons: [
-        {
-          text: 'X',
-          role: 'cancel',
-          handler: () => {
-            this.images.giveupChallenge(this.userData.email).subscribe(data => {
-              this.viewCtrl.dismiss({ reload: true });
-            }, error => {
-              this.showError(JSON.parse(error._body).msg);
-            });
-          },
-          cssClass: 'cancle_btn'
-        },
+        // {
+        //   text: 'X',
+        //   role: 'cancel',
+        //   handler: () => {
+        //     this.images.giveupChallenge(this.userData.email).subscribe(data => {
+        //       this.viewCtrl.dismiss({ reload: true });
+        //     }, error => {
+        //       this.showError(JSON.parse(error._body).msg);
+        //     });
+        //   },
+        //   cssClass: 'cancle_btn' 
+        // },
         {
           text: '챌린지 종료',
           handler: () => {
@@ -261,10 +262,15 @@ export class ChalMissionIngPage {
           }
         }]
     });
+    alert.onDidDismiss(()=>{
+      this.images.giveupChallenge(this.userData.email).subscribe(data => {
+        this.viewCtrl.dismiss({ reload: true });
+      }, error => {
+        this.showError(JSON.parse(error._body).msg);
+      });
+    });
     alert.present();
   }
-
-
   
 
   showMissionsuccess() {

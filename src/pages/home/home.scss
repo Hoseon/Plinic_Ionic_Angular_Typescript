@@ -1191,8 +1191,8 @@ page-home {
     position: absolute;
     top: 15.5%;
     //width: 70px;
-    width: 120px;
-    height: 28px;
+    // width: 120px;
+    // height: 28px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 19px;
     font-weight: bold;
@@ -1310,13 +1310,13 @@ page-home {
 
   .beauty_desc_row {
     position: absolute;
-    top: 102%;
+    top: 93%;
     left: 5%;
   }
 
   .beauty_desc_row2 {
     position: absolute;
-    top: 102%;
+    top: 93%;
     left: 50%;
   }
 
@@ -1530,7 +1530,7 @@ page-home {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-left: 8.5%;
+    margin-left: 4.5%;
     top: 37%;
     // padding-bottom: 0px;
     // margin-bottom: 5%;
@@ -1698,27 +1698,30 @@ page-home {
 
   .number_width {
     position: absolute;
-    // width:150px;
     left: 80%;
     top: 1%;
-    // margin-left: 10%;
   }
 
   .number_width2 {
-    // position: absolute;
-    // width:150px;
-    left: 20%;
-    top: 1%;
-    margin-left: 30%;
+    margin-left: -20%;
+    margin-top: -2%;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
   }
 
 
   .flip_number {
-    right: 30%;
+    margin-top : -1%;
   }
 
   .flip_number2 {
-    right: 10%;
+    margin-top : -1%;
   }
 
   .slide_img {
@@ -1728,6 +1731,130 @@ page-home {
     object-fit: contain;
     z-index: 1000;
 
+  }
+
+  .pointZone {
+    position: relative;
+    // top: -5%;
+    margin-bottom: 1.5% !important;
+    display: flex;
+    margin: 0 auto;
+    width: 90.5%;
+    height: auto;
+  }
+
+  .pointZone_title {
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 19px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+  }
+
+  .movie_img1 {
+    position: relative;
+    margin-top: 5.6%;
+    width: 90.7%;
+    height: auto;
+    // margin: 0 auto !important;
+    // padding: 0.1px 0.3px 0.2px 0px;
+    border-radius: 2.8px;
+    background-color: #b6b6b6;
+  }
+
+  .movText1_1 {
+    width: 85vw;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.7px;
+    text-align: left;
+    color: #ffffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .movie_text2 {
+    color: #ffffff;
+  }
+
+  .movText2_2 {
+    width: 85vw;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.6px;
+    text-align: left;
+    color: #ffffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .movie_text4 {
+    position: relative;
+    width: 50%;
+    // height: 11px;
+    margin: 13.5px 7.5px 25.5px 2px;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.1;
+    letter-spacing: -0.36px;
+    text-align: left;
+    color: #ffffff;
+    margin-left: 4.2%;
+    margin-top: 1%;
+  }
+
+  .movie_text4_1 {
+    color: #ffffff;
+  }
+
+  .testborder {
+    border : solid 1px #ffffff;
+  }
+
+  .plinicLogo {
+    margin-left: 6.7%;
+    margin-top: 2%;
+  }
+
+  .myIcon {
+    margin-right: 10% !important;
+  }
+
+  .cartIcon {
+    margin-right: 14% !important;
+  }
+
+  .flipStyle {
+    font-family: NotoSansKR;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    margin-left: -20%;
+    margin-top: -2%;
+  }
+  
+  .pointIcon {
+    margin-left: -60%;
   }
 
 

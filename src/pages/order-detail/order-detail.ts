@@ -42,16 +42,21 @@ export class OrderDetailPage {
     public auth: AuthService,
     public images: ImagesProvider,
   ) {
+    this.loadItems();
+    if (this.navParams.get('orderList')) {
+      this.detailOrderData = this.navParams.get('orderList');
+      this.yearAgo.setMonth(this.yearAgo.getMonth()-12);
+    }
   }
 
   async ionViewDidLoad() {
-    await this.loadItems();
-    console.log('ionViewDidLoad OrderDetailPage');
+    
+    // console.log('ionViewDidLoad OrderDetailPage');
   }
 
   ionViewDidEnter(){
-    console.log("ionViewDidEnter");
-    if(this.navParams.get('orderList')) {
+    // console.log("ionViewDidEnter");
+    if (this.navParams.get('orderList')) {
       this.detailOrderData = this.navParams.get('orderList');
       this.yearAgo.setMonth(this.yearAgo.getMonth()-12);
     } else {
@@ -200,6 +205,7 @@ export class OrderDetailPage {
   getUserOrders(email) {
     this.images.getUserOrders(email).subscribe(data => {
       this.orderList = data;
+      this.detailOrderData = data;
     })
   }
 

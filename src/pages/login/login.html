@@ -26,9 +26,9 @@
   <p class="Linetext">또는</p>
   <ion-row *ngIf="platform.is('android')">
     <ion-col>
-      <button ion-button class="submit-btn" (click)="naver_login()" outline>
+      <!-- <button ion-button class="submit-btn" (click)="naver_login()" outline>
         <img class="naver_btn" src="assets/img/naverlogo/ic-sns-naver@3x.png" srcset="assets/img/naverlogo/ic-sns-naver@2x.png,
-                          assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기</button>
+                          assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기</button> -->
 
       <button ion-button class="submit-btn" (click)="kakao_login()" outline>
         <img class="kakao_btn" src="assets/img/kakaologo/ic-sns-kakao@3x.png" srcset="assets/img/kakaologo/ic-sns-kakao@2x.png,
@@ -41,9 +41,9 @@
   </ion-row>
   <ion-row *ngIf="platform.is('ios') || platform.is('core')">
     <ion-col *ngIf="!isReview">
-      <button ion-button class="submit-btn" (click)="naver_login()" outline>
+      <!-- <button ion-button class="submit-btn" (click)="naver_login()" outline>
         <img class="naver_btn" src="assets/img/naverlogo/ic-sns-naver@3x.png" srcset="assets/img/naverlogo/ic-sns-naver@2x.png,
-                            assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기</button>
+                            assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기</button> -->
 
       <button ion-button class="submit-btn" (click)="kakao_login()" outline>
         <img class="kakao_btn" src="assets/img/kakaologo/ic-sns-kakao@3x.png" srcset="assets/img/kakaologo/ic-sns-kakao@2x.png,
@@ -51,14 +51,19 @@
       <button ion-button class="submit-btn" (click)="google_login()" outline>
         <img class="google_btn" src="assets/img/googlelogo/ic-sns-google@3x.png" srcset="assets/img/googlelogo/ic-sns-google@2x.png,
                             assets/img/googlelogo/ic-sns-google@3x.png" /> 구글로 시작하기</button>
+
+      <button ion-button class="submit-btn_apple" (click)="apple_login_noReview()" outline>
+        <img class="apple_btn" src="assets/img/applelogo/White_Logo_Square@3x" srcset="assets/img/applelogo/White_Logo_Square@2x.png,
+                            assets/img/applelogo/White_Logo_Square@1x.png" />
+        &nbsp;&nbsp;&nbsp;&nbsp;Sign in with Apple</button>
       <!-- <button ion-button class="submit-btn" (click)="apple_login()" outline>
         <img class="google_btn" src="assets/img/applelogo/apple.png" /> 애플로 시작하기</button> -->
 
     </ion-col>
     <ion-col *ngIf="isReview">
-      <button ion-button class="submit-btn" (click)="naver_login_noReview()" outline>
+      <!-- <button ion-button class="submit-btn" (click)="naver_login_noReview()" outline>
         <img class="naver_btn" src="assets/img/naverlogo/ic-sns-naver@3x.png" srcset="assets/img/naverlogo/ic-sns-naver@2x.png,
-                            assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기.</button>
+                            assets/img/naverlogo/ic-sns-naver@3x.png" /> 네이버로 시작하기.</button> -->
 
       <button ion-button class="submit-btn" (click)="kakao_login_noReview()" outline>
         <img class="kakao_btn" src="assets/img/kakaologo/ic-sns-kakao@3x.png" srcset="assets/img/kakaologo/ic-sns-kakao@2x.png,
