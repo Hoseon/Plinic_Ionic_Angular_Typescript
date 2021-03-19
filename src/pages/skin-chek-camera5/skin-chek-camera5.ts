@@ -248,7 +248,7 @@ export class SkinChekCamera5Page {
                 if(data2 === null) {
                   //사용자가 처음 등록한 사용자라면 무조건 세이브 처리 해준다.
                   if(this.userData.from === 'naver' || this.userData.from === 'kakao' || this.userData.from === 'google') { //sns회원인지 구분
-                    this.auth.plinicShopAddPoint(this.userData.snsid, 100, '피부진단').subscribe(data3 => {
+                    this.auth.plinicShopAddPoint(this.userData.email, 100, '피부진단').subscribe(data3 => {
                       console.log("플리닉샵 포인트 누적 : " + data3);
                     }, error => {
                       console.log("플리닉샵 포인트 누적 에러 발생 : " + error);
@@ -371,7 +371,7 @@ export class SkinChekCamera5Page {
                   } else if (data) {
                     //날짜가 같지 않을댄 누적을 한다.
                     if(this.userData.from === 'naver' || this.userData.from === 'kakao' || this.userData.from === 'google') { //sns회원인지 구분
-                      this.auth.plinicShopAddPoint(this.userData.snsid, 100, '피부진단').subscribe(data2 => {
+                      this.auth.plinicShopAddPoint(this.userData.email, 100, '피부진단').subscribe(data2 => {
                         console.log("플리닉샵 포인트 누적 : " + data2);
                       }, error => {
                         console.log("플리닉샵 포인트 누적 에러 발생 : " + error);

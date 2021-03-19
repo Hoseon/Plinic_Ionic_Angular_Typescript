@@ -57,6 +57,8 @@ import { ProductReviewPage } from "../product-review/product-review";
 import { SkinChekCamera5Page } from '../skin-chek-camera5/skin-chek-camera5';
 import { AdressPage } from '../adress/adress';
 import { OrderSucessCardPage } from '../orderSucess-Card/orderSucess-Card';
+import { SungwooBeautyPage } from '../sungwoo-beauty/sungwoo-beauty';
+import { OrderDetailPage } from '../order-detail/order-detail';
 
 @IonicPage()
 @Component({
@@ -204,6 +206,11 @@ export class HomePage {
   second_missionMemberData: any;
   totaluserpoint: any = 0;
   topBannerData: any;
+  movieData: any;
+  youTubeArrayData: Array<any> = new Array<any>();
+  videoDetailData: Array<any> = new Array<any>();
+  isExitApp: boolean = false;
+
 
   constructor(
     private fcm: FCM,
@@ -303,7 +310,7 @@ export class HomePage {
         this.userData.from === "google" ||
         this.userData.from === "naver"
       ) {
-        this.reloadUserPoint(this.userData.snsid);
+        this.reloadUserPoint(this.userData.email);
       } else {
         this.reloadUserPoint(this.userData.email);
       }
@@ -325,7 +332,7 @@ export class HomePage {
         this.userData.from === "google" ||
         this.userData.from === "naver"
       ) {
-        this.reloadUserPoint(this.userData.snsid);
+        this.reloadUserPoint(this.userData.email);
       } else {
         this.reloadUserPoint(this.userData.email);
       }
@@ -341,6 +348,7 @@ export class HomePage {
       }
     }
     // this.unixTimStamptoKist(1234);
+    this.getBeautyMovie();
   }
 
   ionViewWillLeave() {
@@ -456,7 +464,8 @@ export class HomePage {
         }
         // this.chkmission(this.userData.email); 2020-02-10 챌린지 체크로 변경되어 주석 처리
         this.challengeChkMission(this.userData.email);
-        this.reloadUserPoint(this.userData.snsid);
+        // this.reloadUserPoint(this.userData.snsid); 2021-03-17 포인트 불러 오기 변경
+        this.reloadUserPoint(this.userData.email);
       } else {
         this.userData = {
           accessToken: items.accessToken,
@@ -1188,13 +1197,18 @@ export class HomePage {
           this.userData.from === "google" ||
           this.userData.from === "naver"
         ) {
-          this.reloadUserPoint(this.userData.snsid);
+          // this.reloadUserPoint(this.userData.snsid); 2021-03-17 포인트 불러 오기 변경 snsId -> email
+          this.reloadUserPoint(this.userData.email);
         } else {
           this.reloadUserPoint(this.userData.email);
         }
       }
     });
     myModal.present();
+  }
+
+  skinCheck() {
+    this.nav.parent.select(4);
   }
 
   flip() {
@@ -1220,7 +1234,8 @@ export class HomePage {
           this.userData.from === "google" ||
           this.userData.from === "naver"
         ) {
-          this.reloadUserPoint(this.userData.snsid);
+          // this.reloadUserPoint(this.userData.snsid); 2021-03-17 snsid->email 로 변경
+          this.reloadUserPoint(this.userData.email);
         } else {
           this.reloadUserPoint(this.userData.email);
         }
@@ -1244,7 +1259,8 @@ export class HomePage {
           this.userData.from === "google" ||
           this.userData.from === "naver"
         ) {
-          this.reloadUserPoint(this.userData.snsid);
+          // this.reloadUserPoint(this.userData.snsid); 2021-03-17 snsid => email로 변경
+          this.reloadUserPoint(this.userData.email);
         } else {
           this.reloadUserPoint(this.userData.email);
         }
@@ -1605,7 +1621,7 @@ export class HomePage {
           text: "디바이스 구매하기",
           handler: () => {
             this.openBrowser_android(
-              "https://www.plinicshop.com/Products/Details/1834",
+              "https://smartstore.naver.com/plinic",
               "플리닉"
             );
           }
@@ -1644,6 +1660,7 @@ export class HomePage {
                   role: "cancel",
                   handler: () => {
                     console.log("취소");
+                    this.isExitApp = false;
                   }
                 },
                 {
@@ -1654,7 +1671,10 @@ export class HomePage {
                 }
               ]
             });
-            alert.present();
+            if (!this.isExitApp) {
+              alert.present();
+              this.isExitApp = true;
+            }
           }
         });
       });
@@ -1679,4 +1699,59 @@ export class HomePage {
 
     console.log(year + "-" + month.substr(-2) + "-" + day.substr(-2) + " " + hour.substr(-2) + ":" + minute.substr(-2) + ":" + second.substr(-2));
   }
+
+  getBeautyMovie() {
+    this.images.getBeautyMovie().subscribe(data => {
+      this.movieData = data
+      if (data) {
+        var k = 0;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].items.length > 0) {
+            this.youTubeArrayData[k] = data[i].items[0];
+            k++;
+            this.getOneMovieData(data[i].items[0].id, i);
+          }
+        }
+      }
+      // console.log(this.youTubeArrayData);
+    });
+  }
+
+  getOneMovieData(movieId, index) {
+    this.images.getOneBeautyMovie(movieId).subscribe(data=> {
+      this.videoDetailData[index] = data;
+    });
+  }
+
+  public openMoviePage(youTubeData) {
+    let myModal = this.modalCtrl.create(SungwooBeautyPage, { youTubeData: youTubeData});
+    myModal.onDidDismiss(data => {
+      // this.auth.setUserStoragetab(2);
+      // this.ionViewWillEnter();
+    });
+    myModal.present();
+
+  }
+
+  goToPoinZone() {
+    this.nav.parent.select(2);
+  }
+
+  orderDetailPage() {
+    // let myModal = this.modalCtrl.create(OrderDetailPage, {});
+    // myModal.onDidDismiss(data => {
+    //   // this.auth.setUserStoragetab(2);
+    //   // this.ionViewWillEnter();
+    // });
+    // myModal.present();
+
+
+    this.nav.push(OrderDetailPage, {}).then(() => {
+      this.nav.getActive().onDidDismiss(data => {
+        console.log("배송 조회 페이지 닫힘");
+      });
+    });
+  }
+
+
 }

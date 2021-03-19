@@ -547,8 +547,13 @@ export class ImagesProvider {
     .map(response => response.json());
   }
 
-  public getProductReview(product_num) {
+  public getProductAllReview(product_num) {
     return this.http.get(this.apiURL + 'getProductReview/' + product_num)
+    .map(response => response.json());
+  }
+
+  public getProductReview(product_num, page) {
+    return this.http.get(this.apiURL + 'getProductReview2/' + product_num + '/' + page)
     .map(response => response.json());
   }
 
@@ -596,6 +601,11 @@ export class ImagesProvider {
 
   getUserOrdersTrackingInfo(email, t_invoice) { //20210312 배송 정보 조회 스윗트래커 
     return this.http.get(this.apiURL + 'api/getUserOrdersTrackingInfo/' + email + '/' + t_invoice).map(response => response.json());
+  }
+
+  getPlinicProductCosmetic() {
+    return this.http.get(this.apiURL + 'product/getPlinicProductCosmetic/')
+      .map(response => response.json()); 
   }
  
 }

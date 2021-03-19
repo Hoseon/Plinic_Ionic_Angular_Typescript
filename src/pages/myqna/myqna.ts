@@ -70,7 +70,7 @@ export class MyqnaPage {
           from: items.from,
           snsid: items.snsid
         };
-        this.reloadUserPoint(this.userData.snsid);
+        this.reloadUserPoint(this.userData.email);
         // this.chkmission(this.userData.email); 2020-02-10 챌린지 체크로 변경되어 주석 처리
         // this.challengeChkMission(this.userData.email);
       } else {

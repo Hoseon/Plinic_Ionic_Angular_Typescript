@@ -229,7 +229,7 @@ export class MyinfoPage {
       } // end if
       if(this.userData) {
         if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
-          this.reloadUserPoint(this.userData.snsid);
+          this.reloadUserPoint(this.userData.email);
         }
         else {
           this.reloadUserPoint(this.userData.email);
@@ -257,7 +257,7 @@ export class MyinfoPage {
     // }, 500);
     if(this.userData) {
       if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
-        await this.reloadUserPoint(this.userData.snsid);
+        await this.reloadUserPoint(this.userData.email);
       }
       else {
         await this.reloadUserPoint(this.userData.email);
@@ -1745,7 +1745,7 @@ export class MyinfoPage {
     myModal.onDidDismiss(data => {
       if(this.userData) {
         if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
-          this.reloadUserPoint(this.userData.snsid);
+          this.reloadUserPoint(this.userData.email);
         }
         else {
           this.reloadUserPoint(this.userData.email);
@@ -1849,7 +1849,7 @@ export class MyinfoPage {
     myModal.onDidDismiss(data => {
       if(this.userData) {
         if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
-          this.reloadUserPoint(this.userData.snsid);
+          this.reloadUserPoint(this.userData.email);
         }
         else {
           this.reloadUserPoint(this.userData.email);

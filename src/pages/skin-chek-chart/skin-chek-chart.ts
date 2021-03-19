@@ -172,7 +172,9 @@ export class SkinChekChartPage {
     var e = this.skinbtnYear + "년" + this.skinbtnMonth;
   }
 
-  async ionViewWillEnter() {}
+  async ionViewWillEnter() {
+    this.androidBackButton();
+  }
 
   dismiss() {
     this.viewCtrl.dismiss();
@@ -198,7 +200,7 @@ export class SkinChekChartPage {
           from: items.from,
           snsid: items.snsid,
         };
-        this.reloadUserPoint(this.userData.snsid);
+        this.reloadUserPoint(this.userData.email);
       } else {
         this.userData = {
           accessToken: items.accessToken,
@@ -1103,7 +1105,7 @@ export class SkinChekChartPage {
           this.userData.from === "google" ||
           this.userData.from === "naver"
         ) {
-          this.reloadUserPoint(this.userData.snsid);
+          this.reloadUserPoint(this.userData.email);
         } else {
           this.reloadUserPoint(this.userData.email);
         }
@@ -1173,6 +1175,6 @@ export class SkinChekChartPage {
     } else {
       //
     }
-
   }
+
 }

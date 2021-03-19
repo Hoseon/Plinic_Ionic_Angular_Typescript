@@ -355,7 +355,7 @@ export class ProductDetailPage {
   }
 
   getProductReview(product_num) {
-    this.images.getProductReview(product_num).subscribe(data => {
+    this.images.getProductAllReview(product_num).subscribe(data => {
       this.productReview = data;
       // console.log("상품 리뷰 : " + this.productReview);
     })

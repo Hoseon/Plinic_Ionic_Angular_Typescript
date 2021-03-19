@@ -532,8 +532,8 @@ page-sungwoo-product-detail {
     margin: 0 auto !important;
     color: #5c5b5b !important;
     background-color: #ffffff;
-    border: 0 !important;
-    outline: 0 !important;
+    // border: 0 !important;
+    // outline: 0 !important;
 
     font-size: 13.2px !important;
     font-family: AppleSDGothicNeo;
@@ -542,9 +542,9 @@ page-sungwoo-product-detail {
     font-stretch: normal;
     line-height: normal;
     text-align: center !important;
-    letter-spacing: -0.25vw !important;
-    margin-top: -4.6vh !important;
-    margin-bottom: -2.5vh !important;
+    // margin-top: -4.6vh !important;
+    // margin-bottom: -2.5vh !important;
+    box-shadow: none;
   }
 
   .show_more2 {

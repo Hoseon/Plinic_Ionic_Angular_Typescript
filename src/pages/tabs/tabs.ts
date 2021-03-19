@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IonicPage } from "ionic-angular";
+import { IonicPage, App } from "ionic-angular";
 
 import { AboutPage } from "../about/about";
 import { CommunityPage } from "../community/community";
@@ -38,6 +38,7 @@ export class TabsPage {
   // tab5Root = SkinReadyPage; //2020-06-15 스킨차트 준비중 페이지로 보여준다
 
   constructor(
+    public app: App,
     public navParams: NavParams,
     private themeableBrowser: ThemeableBrowser,
     private imageLoader: ImageLoader,
@@ -53,16 +54,16 @@ export class TabsPage {
   }
 
   ionViewDidLoad() {
-    // this.platform.registerBackButtonAction(()=>{
-    //   console.log("안드로이드 백 버튼 액션?");
-    //   // if(this.nav.canGoBack()) {
-    //     // this.app.getActiveNav().setRoot('TabsPage');
-    //   // } else {
-    //     // console.log("앱종료");
-    //     // this.platform.exitApp();
-    //   // }
-    // })
-    // console.log("tabs ionViewDidLoad");
+    this.platform.registerBackButtonAction(()=>{
+      console.log("안드로이드 백 버튼 액션?");
+      if(this.navCtrl.canGoBack()) {
+        this.app.getActiveNav().setRoot('TabsPage');
+      } else {
+        console.log("앱종료");
+        this.platform.exitApp();
+      }
+    })
+    console.log("tabs ionViewDidLoad");
   }
 
   ionViewDidEnter() {

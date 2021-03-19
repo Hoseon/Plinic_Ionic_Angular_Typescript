@@ -631,10 +631,13 @@ ion-icon {
       background-size: 20px;
     }
 
-    // .tab-button-icon[aria-label="shopping"] {
-    //   background: url(../assets/img/tabs/ic-system-tab-shop-on@3x.png) no-repeat 50% 50%;
-    //   background-size: 20px;
-    // }
+
+    //2021-03-16 쇼핑몰을 자체적으로 가져 가면서 해당 탭 아이콘을 활성화
+    .tab-button-icon[aria-label="shopping"] {
+      background: url(../assets/img/tabs/ic-system-tab-shop-on@3x.png) no-repeat 50% 50%;
+      background-size: 20px;
+    }
+
     .tab-button-icon[aria-label="cummunity"] {
       background: url(../assets/img/tabs/ic-system-tab-community-on@3x.png) no-repeat 50% 50%;
       background-size: 20px;
@@ -695,11 +698,11 @@ ion-icon {
       background: url(../assets/img/tabs/ic-system-tab-cc-on@3x.png) no-repeat 50% 50%;
       background-size: 20px;
     }
-
-    // .tab-button-icon[aria-label="shopping"] {
-    //   background: url(../assets/img/tabs/ic-system-tab-shop-on@3x.png) no-repeat 50% 50%;
-    //   background-size: 20px;
-    // }
+    //2021-03-16 쇼핑몰을 자체적으로 가져 가면서 해당 탭 아이콘을 활성화
+    .tab-button-icon[aria-label="shopping"] {
+      background: url(../assets/img/tabs/ic-system-tab-shop-on@3x.png) no-repeat 50% 50%;
+      background-size: 20px;
+    }
     .tab-button-icon[aria-label="cummunity"] {
       background: url(../assets/img/tabs/ic-system-tab-community-on@3x.png) no-repeat 50% 50%;
       background-size: 20px;

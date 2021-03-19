@@ -260,7 +260,7 @@ export class ChulsukCheckPage {
             snsid: items.snsid
           };
           this.loadChulSukCalendar(this.userData.email);
-          this.reloadUserPoint(this.userData.snsid);
+          this.reloadUserPoint(this.userData.email);
           // this.chkmission(this.userData.email); 2020-02-10 챌린지 체크로 변경되어 주석 처리
           // this.challengeChkMission(this.userData.email);
         } else {
@@ -295,7 +295,7 @@ export class ChulsukCheckPage {
           handler: () => {
             if(this.userData) {
               if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
-                this.reloadUserPoint(this.userData.snsid);
+                this.reloadUserPoint(this.userData.email);
               }
               else {
                 this.reloadUserPoint(this.userData.email);

@@ -1,27 +1,70 @@
 <ion-header no-lines>
 
-  <ion-navbar *ngIf="platform.is('android')" no-lines>
+  <!-- <ion-navbar *ngIf="platform.is('android')" no-lines>
     <button class="guide_android" (click)="chalguide()" ion-button>이용안내</button>
     <ion-title class="android_title" text-wrap>챌린지</ion-title>
     <div *ngIf="totaluserPoint" class="android_search" style="right: 7%;" (click)="myinfo()">{{totaluserPoint}}P &nbsp;<img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
-    <!-- <img class="android_search" style="right: 5%;" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" /> -->
+  </ion-navbar> -->
 
-  </ion-navbar>
-
-  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
+  <!-- <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
     <button class="guide_ios" (click)="chalguide()" ion-button>이용안내</button>
     <ion-title class="ios_title" text-wrap>챌린지</ion-title>
     <div *ngIf="totaluserPoint" class="ios_search" style="right: 7%;" (click)="myinfo()">{{totaluserPoint}}P &nbsp;<img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
-    <!-- <img class="ios_search" style="right: 5%;" (click)="community_search()" src="assets/img/beauty/ic-system-search@3x.png" /> -->
+  </ion-navbar> -->
 
+  <ion-navbar *ngIf="platform.is('android')" no-lines>
+    <ion-buttons left>
+      <button ion-button icon-only clear>
+      <ion-grid>
+        <ion-row class="postion" align-items-baseline>
+          <img float-left margin-left class="" src="assets/img/care-zone/challenge.svg" />
+          <img float-left margin-left class="point-icon " src="assets/img/svg/icon_point.svg" />
+          <!-- <div float-left class="Create-account">{{totaluserpoint}}</div> -->
+          <div *ngIf="totaluserPoint" class="" (click)="myinfo()">{{totaluserPoint}}</div>
+        </ion-row>
+      </ion-grid>
+    </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <ion-grid>
+        <ion-row class="postion" align-items-baseline>
+            <!-- <button (click)="community_search()" ion-button icon-only clear><img  float-end class="headerIoncMargin" src="assets/img/svg/search.svg" /></button> -->
+            <button (click)="orderDetailPage()" ion-button icon-only clear><img  float-end class="headerIoncMargin" src="assets/img/svg/cart.svg" /></button>
+            <button (click)="myinfo()"  ion-button icon-only clear><img margin-right float-end class="headerIoncMargin" src="assets/img/svg/my.svg" /></button>
+        </ion-row>
+      </ion-grid>
+    </ion-buttons>
+    <!-- <img class="android_search" style="left:5%" (click)="community_search()"
+      src="assets/img/beauty/ic-system-search@3x.png" /> -->
+    <!-- <ion-title class="android_title" text-wrap>뷰티꿀팁1</ion-title> -->
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
+    <ion-buttons left>
+      <button ion-button navPop icon-only>
+        <ion-row class="postion" align-items-baseline>
+          <img margin-left float-left class="" src="assets/img/care-zone/challenge.svg" />
+          <img float-left margin-left class="point-icon" src="assets/img/svg/icon_point.svg" />
+          <!-- <div float-left class="Create-account" >{{totaluserpoint}}</div> -->
+          <div *ngIf="totaluserPoint" class="Create-account" (click)="myinfo()">{{totaluserPoint}}</div>
+        </ion-row>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <ion-grid>
+        <ion-row class="postion" align-items-baseline>
+            <!-- <button (click)="community_search()" ion-button icon-only clear><img  float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/search.svg" /></button> -->
+            <button (click)="orderDetailPage()" ion-button icon-only clear><img  float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/cart.svg" /></button>
+            <button (click)="myinfo()"  ion-button icon-only clear><img margin-right float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/my.svg" /></button>
+        </ion-row>
+      </ion-grid>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
- 
 
   <ion-list *ngFor="let carezone of carezoneData; let i = index">
     <!-- <ng-container *ngIf="endmission[i] > currentDate"> -->
@@ -55,6 +98,7 @@
       </ion-row><br>
     <!-- </ng-container> -->
   </ion-list>
+  <br><br>
 
   <!-- <ion-list *ngFor="let carezone of carezoneData; let i = index">
     <ng-container *ngIf="endmission[i] < currentDate">

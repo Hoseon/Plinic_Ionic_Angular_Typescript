@@ -14,6 +14,7 @@ import { Observable } from 'rxjs/Rx';
 import { Device } from '@ionic-native/device';
 import { MyinfoPage } from '../myinfo/myinfo';
 import { ChalGuidePage } from '../chal-guide/chal-guide'
+import { OrderDetailPage } from '../order-detail/order-detail';
 
 
 /**
@@ -80,7 +81,7 @@ export class CareZonePage {
   subscriptionThree: any;
   missionmember: Array<any> = new Array<any>();
   memberRanking: Array<any> = new Array<any>();
-  totaluserPoint: any = 0;
+  totaluserPoint: any;
   flag: Array<any> = new Array<any>();
   memberMaxDate: Array<any> = new Array<any>();
   maxDate: any;
@@ -115,11 +116,8 @@ export class CareZonePage {
   }
 
   ionViewWillEnter() {
+    this.androidBackButton();
     this.loadItems();
-    
-    // console.log("챌린지 인잇");
-    // this.loadimagePath();
-    // this.timerTick();
   }
 
   ionViewWillLeave() {
@@ -130,7 +128,10 @@ export class CareZonePage {
   ionViewDidLeave() {
     // this.subscriptionFourth.complete();
     console.log("ionViewDidLeave Timer Clear!");
+  }
 
+  ionViewDidEnter(){
+    console.log(this.totaluserPoint);
   }
 
 
@@ -164,7 +165,7 @@ export class CareZonePage {
         } else {
           this.thumb_image = true;
         }
-        this.reloadUserPoint(this.userData.snsid);
+        this.reloadUserPoint(this.userData.email);
         this.chkmission(this.userData.email);
         this.chkIngmission(this.userData.email);
       } else {
@@ -290,15 +291,11 @@ export class CareZonePage {
   }
 
   public async roadcareZone() {
-    // this.showLoading();
     this.images.carezoneRoad().subscribe(data => {
 
-      // console.log("케어존 데이터 : " + JSON.stringify(data));
       if (data !== '') {
         for (let i = 0; i < data.length; i++) {
-          // console.log("요일은?" + data[i].day);
-          if(new Date().getDay() === Number(data[i].day) ) {
-            // this.missionCount2(data[i]._id, new Date())
+          if (this.getCovertKoreaTimeDay(new Date()) === Number(data[i].day)) {
             this.flag[i] = "지금참여";
           } else {
             this.flag[i] = "진행중";
@@ -594,7 +591,7 @@ export class CareZonePage {
     myModal.onDidDismiss(data => {
       if(this.userData) {
         if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
-          this.reloadUserPoint(this.userData.snsid);
+          this.reloadUserPoint(this.userData.email);
         }
         else {
           this.reloadUserPoint(this.userData.email);
@@ -618,6 +615,10 @@ export class CareZonePage {
 
   getCovertKoreaTime(time) {
     return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000).toISOString()
+  }
+
+  getCovertKoreaTimeDay(time) {
+    return new Date(new Date(time).getTime() - new Date().getTimezoneOffset() * 60000).getDay();
   }
 
   getSecondsAsDigitalClock3(inputSeconds: number) {  // 분까지만 표시 하기 위한 함수
@@ -669,5 +670,13 @@ export class CareZonePage {
         this.nav.parent.select(0);
       });
     }
+  }
+
+  orderDetailPage() {
+    this.nav.push(OrderDetailPage, {}).then(() => {
+      this.nav.getActive().onDidDismiss(data => {
+        console.log("배송 조회 페이지 닫힘");
+      });
+    });
   }
 }

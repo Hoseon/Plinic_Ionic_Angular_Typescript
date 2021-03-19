@@ -164,15 +164,15 @@
       <!-- <div style="height:0.1ㅔ[]; width:100%; margin:0 auto; display: block; margin-bottom: 0%; margin-top: 0%; background-color:#f1f1f1"></div> -->
       <ion-row>
         <ng-container *ngIf="!isShowMore">
-          <button ion-button (click)="showMore(true)" class="btn2">상품설명 더보기 ⋁</button>
+          <button ion-button clear outline (click)="showMore(true)" class="btn2">상품설명 더보기 ⋁</button>
         </ng-container>
         <ng-container *ngIf="isShowMore">
-          <button ion-button (click)="showMore(false)" class="btn2">상품설명 접기 ⋁</button>
+          <button ion-button clear outline (click)="showMore(false)" class="btn2">상품설명 접기 ⋁</button>
         </ng-container>
       </ion-row>
-      <div
+      <!-- <div
         style="height:1vh; width:100%; margin:0 auto; display: block; margin-bottom: 0%; margin-top: 0%; background-color:#f1f1f1">
-      </div>
+      </div> -->
       <ion-item class="item_row" no-padding>
         <div class="detail_left">1:1 문의 하기</div>
         <ion-icon class="arrow-forward" item-end name="ios-arrow-forward"></ion-icon>
@@ -188,13 +188,13 @@
         <ion-icon class="arrow-forward" item-end name="ios-arrow-forward"></ion-icon>
         <!-- <ion-icon class="arrow-down" item-end name="ios-arrow-down" *ngIf="item.open"></ion-icon> -->
       </ion-item>
-      <ion-item class="item_row" no-padding>
+      <!-- 2021-03-17 임시 숨김 -->
+      <!-- <ion-item class="item_row" no-padding>
         <div class="detail_left">이런 상품은 어떠세요?</div>
         <ion-icon class="arrow-forward" item-end name="ios-arrow-forward"></ion-icon>
-        <!-- <ion-icon class="arrow-down" item-end name="ios-arrow-down" *ngIf="item.open"></ion-icon> -->
-      </ion-item>
+      </ion-item> -->
     </ion-list>
-    <ion-row>
+    <!-- <ion-row>
       <ion-slides mode="ios" slidesPerView=3>
         <ion-slide class="slide1">
           <img class="img3" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NG100131213.jpg" />
@@ -215,7 +215,7 @@
           <div class="slide_left text13"><span class="slide_left text14">최대 50% 포인트</span></div>
         </ion-slide>
       </ion-slides>
-    </ion-row>
+    </ion-row> -->
 
   </ion-grid>
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

@@ -74,24 +74,24 @@
           style="height:0.1vw; width:100vw; margin-top: -0.6vh; margin-bottom: 1.5vh; display: block; background-color:#f1f1f1"></div>
       </ion-row>
       <ion-row>
-        <ion-col class="product_info1" col-7>용량 및 중량</ion-col>
-        <ion-col *ngIf="productData" class="product_info2" col-3>{{productData.weight}}</ion-col>
+        <ion-col class="product_info1 " col-3>용량 및 중량</ion-col>
+        <ion-col *ngIf="productData" class="product_info2 " col-7>{{productData.weight}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col class="product_info1" col-7>주요효능</ion-col>
-        <ion-col *ngIf="productData" class="product_info2" col-3>{{productData.function !== '' ? productData.function : '-' }}</ion-col>
+        <ion-col class="product_info1 " col-3>주요효능</ion-col>
+        <ion-col *ngIf="productData" class="product_info2 " col-7>{{productData.function !== '' ? productData.function : '-' }}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col class="product_info1" col-7>전성분</ion-col>
-        <ion-col *ngIf="productData" class="product_info2" col-3>{{productData.ingredient !== '' ? productData.ingredient : '-'}} ></ion-col>
+        <ion-col class="product_info1 " col-3>전성분</ion-col>
+        <ion-col *ngIf="productData" class="product_info2 " col-7>{{productData.ingredient !== '' ? productData.ingredient : '-'}} ></ion-col>
       </ion-row>
       <ion-row>
-        <ion-col class="product_info1" col-7>등록된 주요 사용자 성별</ion-col>
-        <ion-col *ngIf="productData" class="product_info2" col-3>-</ion-col>
+        <ion-col class="product_info1 " col-5>등록된 주요 사용자 성별</ion-col>
+        <ion-col *ngIf="productData" class="product_info2 " col-5>-</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col class="product_info1" col-7>피부평균 개선율</ion-col>
-        <ion-col *ngIf="productData" class="product_info2" col-3>-</ion-col>
+        <ion-col class="product_info1 " col-4>피부평균 개선율</ion-col>
+        <ion-col *ngIf="productData" class="product_info2 " col-6>-</ion-col>
       </ion-row>
     </ion-grid>
     <ion-row>
@@ -109,7 +109,7 @@
     <ion-grid no-padding>
       <ion-row>
         <div class="product_review">상품 리뷰</div>
-        <div *ngIf="productReview" class="review_count"> {{productReview.length}}개</div>
+        <div *ngIf="productReview" class="review_count"> {{productReviewAll.length}}개</div>
         <ion-list>
           <ion-item>
             <ion-select okText="Okay" cancelTest="Dismiss" id="select" class="s_icon" placeholder="최신순">
@@ -157,7 +157,7 @@
       </ng-container>
       <div style="height:1px; width:100%; display: block; margin-top: 6vh; background-color:#f1f1f1"></div>
     </ng-container>
-    <button ion-button class="button_add" style="font-size: 14px; box-shadow:none;" outline>5개 리뷰 더보기 ▼</button>
+    <button *ngIf="product_num" (click)="getProductReview(product_num)" ion-button class="button_add" style="font-size: 14px; box-shadow:none;" outline>3개 리뷰 더보기 ▼</button>
 
   </ion-list>
   <ion-row>
@@ -179,12 +179,12 @@
       </ion-row>
       <ion-row>
         <ng-container *ngIf="!isShowMore">
-          <button ion-button (click)="showMore(true)" class="btn_show_more1">
+          <button ion-button clear outline (click)="showMore(true)" class="btn_show_more1">
             상품설명 더보기 ▼
           </button>
         </ng-container>
         <ng-container *ngIf="isShowMore">
-          <button ion-button (click)="showMore(false)" class="btn_show_more1" outline>
+          <button ion-button clear outline (click)="showMore(false)" class="btn_show_more1" outline>
             상품설명 접기 ▲
           </button>
         </ng-container>
@@ -209,7 +209,7 @@
       <div style="height:0.1vh; width:100vw; display: block; background-color:#d7d7d7"></div>
     </ion-row>
   </ion-list>
-  <ng-container>
+  <!-- <ng-container>
     <h2 class="rcmnd_list">이런 상품은 어떠세요?</h2>
     <ion-grid>
       <ion-row>
@@ -268,7 +268,7 @@
         </ng-container>
       </ion-row>
     </ion-grid>
-  </ng-container>
+  </ng-container> -->
 
   <div class="mgn"></div>
 

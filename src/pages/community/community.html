@@ -234,7 +234,7 @@
         <ion-slides mode="ios" id="movie" pager>
           <!-- <ng-container *ngIf="youTubeArrayData"> -->
           <ion-slide *ngFor="let tubeData of youTubeArrayData; let i = index;" (click)="openMoviePage(tubeData)">
-            <img class="movie_img1" src="{{tubeData.snippet.thumbnails.default.url}}" />
+            <img class="movie_img1" src="{{tubeData.snippet.thumbnails.maxres.url}}" />
             <div margin-left margin-top class="movText1_1">뷰티꿀팁<span class="movie_text2"> {{tubeData.snippet.title}}</span>
             </div>
             <div margin-left class="movText2_2">{{tubeData.snippet.channelTitle}}</div>
@@ -259,7 +259,7 @@
             <ion-row (click)="openMoviePage(movieHit)" margin-top margin-bottom margin-left margin-right align-items-center>
               <ion-col col-1 class="movTipNumber">{{k+1}}</ion-col>
               <ion-col col-5>
-                <img class="" src="{{movieHit.snippet.thumbnails.default.url}}" />
+                <img class="" src="{{movieHit.snippet.thumbnails.maxres.url}}" />
               </ion-col>
               <ion-col col-6>
                 <div margin-left class="movText1 ">{{movieHit.snippet.title}}</div>
@@ -289,7 +289,7 @@
                   {{videoHotDetailData[k].views}} · 좋아요 {{videoHotDetailData[k].like}}</div>
               </ion-col>
               <ion-col col-5>
-                <img class="" src="{{movieHit.snippet.thumbnails.default.url}}" />
+                <img class="" src="{{movieHit.snippet.thumbnails.maxres.url}}" />
               </ion-col>
               <!-- <ion-col col-1 class="movTipNumber">{{k+1}}</ion-col> -->
             </ion-row>

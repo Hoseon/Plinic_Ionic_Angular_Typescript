@@ -57,7 +57,7 @@
         activeColor = "#fae24c"
         defaultColor = "#f4f4f4"
         readonly="false"
-        rating="3"
+        rating="4"
         fontSize = "26px"
         (ratingChanged)="logRatingChange($event)">
       </ionic3-star-rating>
@@ -67,7 +67,9 @@
       <div class="border_textarea" no-lines>
         <!-- <ion-textarea value="더 나은 플리닉을 만들 수 있도록 사유를 남겨주세요.">
         </ion-textarea> -->
-        <ion-textarea class="textarea" [(ngModel)]="review.content" no-lines placeholder=" 고객님의 후기가 큰 힘이 됩니다.(최대 1,000자)" maxlength="200" wrap="hard" cols="10" rows="10" (input)="checkTextarea($event)" ></ion-textarea>
+        <!-- <ion-textarea class="textarea" [(ngModel)]="review.content" no-lines placeholder=" 고객님의 후기가 큰 힘이 됩니다.(최대 1,000자)" maxlength="200" wrap="hard" cols="10" rows="10" (input)="checkTextarea($event)" ></ion-textarea> -->
+        <textarea *ngIf="platform.is('ios') || platform.is('core')" class="textarea" [(ngModel)]="review.content" no-lines placeholder=" 고객님의 후기가 큰 힘이 됩니다.(최대 1,000자)" maxlength="200" wrap="hard" cols="25" rows="10" autoGrow="true" (input)="checkTextarea($event)" ></textarea>
+        <textarea *ngIf="platform.is('android')" class="textarea" [(ngModel)]="review.content" no-lines placeholder=" 고객님의 후기가 큰 힘이 됩니다.(최대 1,000자)" maxlength="200" wrap="hard" cols="35" rows="10" autoGrow="true" (input)="checkTextarea($event)" ></textarea>
       </div>
     </ion-row>
     <br>
@@ -80,13 +82,12 @@
   내용에 경우 안내없이 임의 삭제 되거나 중단 될 수 있습니다.
 ·위 내용으로 발생되는 모든 분쟁은 게시자에게 책임이 있습니다.</pre>
     </ion-row>
+  </ion-grid>
+  <ion-grid>
     <br><br>
     <ion-row class="center">
-      <ng-container *ngIf="!isRegisterBtn">
-        <ion-col col-6><button class="center btn1_false" ion-button>상품 리뷰 등록</button></ion-col>
-      </ng-container>
-      <ng-container *ngIf="isRegisterBtn">
-        <ion-col col-6><button class="center btn1" (click)="registerReview()" ion-button>상품 리뷰 등록</button></ion-col>
+      <ng-container>
+        <ion-col col><button class="center btn1" (click)="registerReview()" ion-button>상품 리뷰 등록</button></ion-col>
       </ng-container>
     </ion-row>
   </ion-grid>
