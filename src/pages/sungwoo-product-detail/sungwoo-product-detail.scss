@@ -319,16 +319,16 @@ page-sungwoo-product-detail {
   }
 
   .s_icon {
-    max-width: 100%;
+    min-width: 100%;
     width: 15vw;
-    padding: .5vw .3vw;
+    // padding: .5vw .3vw;
     border: 1px solid #b8b8b8;
     background-color: #ffffff;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 11.1px;
     border-radius: 0px;
     white-space: nowrap;
-    margin-left: 45vw;
+    // margin-left: 45vw;
     margin-top: 2vh;
   }
 

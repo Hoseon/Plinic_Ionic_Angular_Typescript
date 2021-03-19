@@ -36,7 +36,8 @@
         <ion-col *ngIf="productData" class="product_name2" col-7>{{productData.product_name}}</ion-col>
         <ion-col *ngIf="productData" class="product_price" col-3 text-right>{{addComma(productData.Amount)}}원</ion-col>
         <ion-col *ngIf="productData" class="product_sale" col-7>회원할인가</ion-col>
-        <ion-col *ngIf="productData" class="product_sale_text" col-2>최대 {{productData.maxPercent}}% 포인트 사용</ion-col>
+        <!-- <ion-col *ngIf="productData" class="product_sale_text" col-2>최대 {{productData.maxPercent}}% 포인트 사용</ion-col> -->
+        <ion-col *ngIf="productData" class="product_sale_text" col-2>최대 {{getMaxPoint(productData.maxPercent, productData.Amount)}}P 사용가능</ion-col>
       </ion-row>
       <ion-row>
         <div style="height:0.1vw; width:100vw; margin-top:3.5vh; display: block; background-color:#f1f1f1"></div>
@@ -107,18 +108,24 @@
 
   <ng-container>
     <ion-grid no-padding>
-      <ion-row>
-        <div class="product_review">상품 리뷰</div>
-        <div *ngIf="productReview" class="review_count"> {{productReviewAll.length}}개</div>
-        <ion-list>
-          <ion-item>
-            <ion-select okText="Okay" cancelTest="Dismiss" id="select" class="s_icon" placeholder="최신순">
-              <ion-option value="nes">최신순</ion-option>
-              <ion-option value="n64">별점 높은순</ion-option>
-              <ion-option value="n1">별점 낮은순</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
+      <ion-row class="">
+        <ion-col col-3 class="" >
+          <div class="product_review">상품 리뷰</div>
+        </ion-col>
+        <ion-col col-5 class="">
+          <div *ngIf="productReviewAll" class="review_count"> {{productReviewAll.length}}개</div>
+        </ion-col>
+        <ion-col col-4 class="">
+          <ion-list>
+            <ion-item>
+              <ion-select [(ngModel)]="sort" okText="Okay" cancelTest="Dismiss" id="select" class="s_icon" placeholder="최신순" (ionChange)="onChange($event)">
+                <ion-option value="createdAt">최신순</ion-option>
+                <ion-option value="highRating">별점 높은순</ion-option>
+                <ion-option value="lowRating">별점 낮은순</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
       </ion-row>
       <ion-row>
         <div style="height:0.1vh; width:100vw; margin-top: -0.5vh; display: block; background-color:#d7d7d7"></div>
@@ -209,69 +216,7 @@
       <div style="height:0.1vh; width:100vw; display: block; background-color:#d7d7d7"></div>
     </ion-row>
   </ion-list>
-  <!-- <ng-container>
-    <h2 class="rcmnd_list">이런 상품은 어떠세요?</h2>
-    <ion-grid>
-      <ion-row>
-        <ng-container *ngIf="platform.is('android') || platform.is('core')">
-          <ion-col col-3 class="rcmnd_product"
-                   (click)="openBrowser_android(editor.posturl, editor.body, editor._id)">
-            <img class="rcmnd_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NG100131213.jpg"/>
-            <p class="rcmnd_desc"><span class="rcmnd_desc_title">라네즈&nbsp;</span></p>
-            <div class="txt_post">레디언-C 크림</div>
-            <div class="point_save">최대 50% 포인트</div>
-            <div class="rcmnd_count"></div>
-          </ion-col>
-          <ion-col col-3 class="rcmnd_product"
-                   (click)="openBrowser_android(editor.posturl, editor.body, editor._id)">
-            <img class="rcmnd_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NG100131213.jpg"/>
-            <p class="rcmnd_desc"><span class="rcmnd_desc_title">아리따움&nbsp;</span></p>
-            <div class="txt_post">프레시 파워 에센스 퍼펙팅 래스트 파운데이션</div>
-            <div class="point_save">최대 50% 포인트</div>
-            <div class="rcmnd_count"></div>
-          </ion-col>
-          <ion-col col-3 class="rcmnd_product"
-                   (click)="openBrowser_android(editor.posturl, editor.body, editor._id)">
-            <img class="rcmnd_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NG100131213.jpg"/>
-            <p class="rcmnd_desc"><span class="rcmnd_desc_title">구달&nbsp;</span></p>
-            <div class="txt_post">청귤 비타C 잡티세럼</div>
-            <div class="point_save">최대 30% 포인트</div>
-            <div class="rcmnd_count"></div>
-          </ion-col>
-        </ng-container>
-
-        <ng-container *ngIf="platform.is('ios')">
-          <ion-col col-3 class="rcmnd_product"
-                   (click)="openBrowser_ios(editor.posturl, editor.body, editor._id)">
-            <img class="rcmnd_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NG100131213.jpg"/>
-            <p class="rcmnd_desc"><span class="rcmnd_desc_title">라네즈&nbsp;</span></p>
-            <div class="txt_post">레디언-C 크림</div>
-            <div class="point_save">최대 50% 포인트</div>
-            <div class="rcmnd_count"></div>
-          </ion-col>
-          <ion-col col-3 class="rcmnd_product"
-                   (click)="openBrowser_ios(editor.posturl, editor.body, editor._id)">
-            <img class="rcmnd_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NG100131213.jpg"/>
-            <p class="rcmnd_desc"><span class="rcmnd_desc_title">아리따움&nbsp;</span></p>
-            <div class="txt_post">프레시 파워 에센스 퍼펙팅 래스트 파운데이션</div>
-            <div class="point_save">최대 50% 포인트</div>
-            <div class="rcmnd_count"></div>
-          </ion-col>
-          <ion-col col-3 class="rcmnd_product"
-                   (click)="openBrowser_ios(editor.posturl, editor.body, editor._id)">
-            <img class="rcmnd_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/product/NG100131213.jpg"/>
-            <p class="rcmnd_desc"><span class="rcmnd_desc_title">구달&nbsp;</span></p>
-            <div class="txt_post">청귤 비타C 잡티세럼</div>
-            <div class="point_save">최대 30% 포인트</div>
-            <div class="rcmnd_count"></div>
-          </ion-col>
-        </ng-container>
-      </ion-row>
-    </ion-grid>
-  </ng-container> -->
-
   <div class="mgn"></div>
-
 </ion-content>
 
 

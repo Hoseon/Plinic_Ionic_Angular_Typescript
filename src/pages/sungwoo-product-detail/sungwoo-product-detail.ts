@@ -34,7 +34,8 @@ export class SungwooProductDetailPage {
   isLike: boolean = true;
   testData: any;
   scrollPage = 0;
-
+  sort: any = 'createdAt';
+  maxPoint: any;
 
   constructor(
     public navCtrl: NavController,
@@ -98,7 +99,18 @@ export class SungwooProductDetailPage {
 
   getProductReview(product_num) {
     this.scrollPage = this.scrollPage+1;
-    this.images.getProductReview(product_num, this.scrollPage).subscribe((data) => {
+    // this.images.getProductReview(product_num, this.scrollPage).subscribe((data) => {
+    //   if (this.scrollPage === 1) {
+    //     this.productReview = (data);
+    //   } else {
+    //     for(let i = 0; i < data.length; i++) {
+    //       this.productReview.push(data[i]);
+    //     }
+    //   }
+    //   // this.productReview = data;
+    // });
+
+    this.images.getProductReview2(product_num, this.scrollPage, this.sort).subscribe((data) => {
       if (this.scrollPage === 1) {
         this.productReview = (data);
       } else {
@@ -237,4 +249,32 @@ export class SungwooProductDetailPage {
       }
     });
   }
+
+  onChange(event) {
+    console.log(event);
+    this.scrollPage = 1;
+    this.images.getProductReview2(this.product_num, this.scrollPage, this.sort).subscribe((data) => {
+      // if (this.scrollPage === 1) {
+        this.productReview = (data);
+      // } else {
+        // for(let i = 0; i < data.length; i++) {
+          // this.productReview.push(data[i]);
+        // }
+      // }
+      // this.productReview = data;
+    });
+  }
+
+  getMaxPoint(point, price) {
+    var maxPercent;
+    var amount;
+    var sale;
+    (maxPercent) = point;
+    sale = Number(maxPercent)/100;
+    amount = price;
+    this.maxPoint = Number(amount) * sale;
+    this.maxPoint = this.addComma(this.maxPoint);
+    return this.maxPoint;
+  }
+
 }
