@@ -557,6 +557,11 @@ export class ImagesProvider {
     .map(response => response.json());
   }
 
+  public getProductReview2(product_num, page, sort) {
+    return this.http.get(this.apiURL + 'getProductReview3/' + product_num + '/' + page + '/' + sort)
+    .map(response => response.json());
+  }
+
   public movieLike(id, email) {
     return this.http.get(this.apiURL + 'beautymovie/like/' + id + '/' + email)
       .map(response => response.json());

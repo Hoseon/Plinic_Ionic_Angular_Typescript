@@ -82,11 +82,12 @@
   내용에 경우 안내없이 임의 삭제 되거나 중단 될 수 있습니다.
 ·위 내용으로 발생되는 모든 분쟁은 게시자에게 책임이 있습니다.</pre>
     </ion-row>
-  </ion-grid>
-  <ion-grid>
     <br><br>
     <ion-row class="center">
-      <ng-container>
+      <ng-container *ngIf="!isRegisterBtn">
+        <ion-col col><button class="center btn1_false" ion-button>상품 리뷰 등록</button></ion-col>
+      </ng-container>
+      <ng-container *ngIf="isRegisterBtn">
         <ion-col col><button class="center btn1" (click)="registerReview()" ion-button>상품 리뷰 등록</button></ion-col>
       </ng-container>
     </ion-row>

@@ -94,11 +94,10 @@ export class ProductReviewPage {
     // console.log(this.review.content.length);
     // console.log(this.review.rating);
     if(this.review.content.length > 5) {
-      // this.isRegisterBtn = true;
+      this.isRegisterBtn = true;
     } else if(this.review.content.length < 5 ) {
-      // this.isRegisterBtn = false;
+      this.isRegisterBtn = false;
     }
-    console.log(this.isRegisterBtn);
   }
 
   registerReview() {
