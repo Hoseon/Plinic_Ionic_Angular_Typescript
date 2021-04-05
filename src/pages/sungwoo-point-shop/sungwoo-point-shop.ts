@@ -24,6 +24,7 @@ export class SungwooPointShopPage {
   from: any;
   productData: any;
   cosmeticData: any;
+  deviceData: any;
   maxPoint: any; //최대사용가능 포인트
   page: any = '0';
   testUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/productimage-1612832179650';
@@ -47,6 +48,7 @@ export class SungwooPointShopPage {
     // console.log('ionViewDidLoad SungwooPointShopPage');
     this.getProductData();
     this.getCosmeticData();
+    this.getDeviceData();
   }
 
   ionViewWillEnter() {
@@ -214,6 +216,17 @@ export class SungwooPointShopPage {
     this.images.getPlinicProductCosmetic().subscribe(data => {
       setTimeout(() => {
         this.cosmeticData = data;
+        // console.log(this.cosmeticData);  
+      }, 300);
+    },err=>{
+      alert("데이터 에러 발생");
+    })
+  }
+
+  getDeviceData() { //2021-03-23 기기 가져오기
+    this.images.getPlinicProductDevice().subscribe(data => {
+      setTimeout(() => {
+        this.deviceData = data;
         // console.log(this.cosmeticData);  
       }, 300);
     },err=>{

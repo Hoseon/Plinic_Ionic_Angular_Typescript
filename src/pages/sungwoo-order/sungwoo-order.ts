@@ -74,8 +74,10 @@ export class SungwooOrderPage {
         this.navParams.get('productData') ? this.productData = this.navParams.get('productData') : this.productData;
         this.navParams.get('ProductCount') ? this.ProductCount = this.navParams.get('ProductCount') : this.ProductCount;
         this.navParams.get('ProductAmount') ? this.ProductAmount = this.navParams.get('ProductAmount') : this.ProductAmount;
-        this.totalAmount = this.ProductAmount + 3000; //배송비 추가
-        this.totalAmount2 = this.ProductAmount + 3000; //배송비 추가
+        // this.totalAmount = this.ProductAmount + 3000; //배송비 추가  2021-03-22 배송비 런칭 기간에는 0원으로 처리
+        this.totalAmount = this.ProductAmount + 0; //배송비 추가
+        // this.totalAmount2 = this.ProductAmount + 3000; //배송비 추가 2021-03-22 배송비 런칭 기간에는 0원으로 처리
+        this.totalAmount2 = this.ProductAmount + 0; //배송비 추가 
         if (this.navParams.get('userData')) {
           this.userData = this.navParams.get('userData');
         } else {

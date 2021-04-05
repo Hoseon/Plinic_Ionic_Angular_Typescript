@@ -101,12 +101,13 @@ export class DeviceConnectCompletePage {
 
   deviceFail(){
     clearTimeout(this.timer);
-    this.ble.disconnect(this.device.id).then(result => {
-      console.log("ble disconnect OK : " + result);
-      this.navCtrl.setRoot(TabsPage);
-    }, error =>{
-      console.log("ble disconnect error :" + error);
-    })
+    this.navCtrl.setRoot(TabsPage);
+    // this.ble.disconnect(this.device.id).then(result => {
+    //   console.log("ble disconnect OK : " + result);
+    //   this.navCtrl.setRoot(TabsPage);
+    // }, error => {
+    //   console.log("ble disconnect error :" + error);
+    // });
   }
 
 

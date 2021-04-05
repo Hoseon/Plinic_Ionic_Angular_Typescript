@@ -156,7 +156,7 @@ export class SkinChekChartPage {
     // this.showLoading();
     // this.loading.dismiss();
     if (this.userData) {
-      await this.getSkinAnaly();
+      await this.getSkinAnaly(); 
       // this.ageRange = this.getAgeRange();
       // this.getAvgSkinPore(this.ageRange);
       this.loadMyMainProduct();
@@ -216,7 +216,7 @@ export class SkinChekChartPage {
         };
         this.reloadUserPoint(this.userData.email);
       }
-      await this.getSkinAnaly();
+      await this.getSkinAnaly(); 
       // this.ageRange = this.getAgeRange();
       // this.getAvgSkinPore(this.ageRange);
       this.loadMyMainProduct();
@@ -807,36 +807,36 @@ export class SkinChekChartPage {
     var beforeSum = 0;
     var poreCountSum = 0;
     var poreBeforCountSum = 0;
-    this.showLoading();
+    // this.showLoading(); 2021-03-24 임시 로직 해제
 
-    this.geolocation
-      .getCurrentPosition()
-      .then((resp) => {
-        // console.log("위치 정보 11: " + resp.coords.latitude);
-        // console.log("위치 정보 22: " + resp.coords.longitude);
-        this.images
-          .getCurrentWeather(resp.coords.latitude, resp.coords.longitude)
-          .subscribe(
-            (data) => {
-              this.currentWeather_Temp = data.current.main.temp;
-              this.currentWeather_Description = data.current.weather[0].description;
-              this.currentWeather_Humidity = data.current.main.humidity;
-              this.currentWeather_Pm10 = data.air.list[0].components.pm10;
-              this.getMiseDescription(this.currentWeather_Pm10);
-              this.getHumidityDesc(this.currentWeather_Humidity);
-              this.load1 = true;
-              this.checkLoadingDismiss(this.load1, this.load2);
-            },
-            (error) => {
-              this.load1 = true;
-              this.checkLoadingDismiss(this.load1, this.load2);
-              console.log("날씨 정보를 가져오지 못함");
-            }
-          );
-      })
-      .catch((error) => {
-        console.log("Error getting location", error);
-      });
+    // this.geolocation
+    //   .getCurrentPosition()
+    //   .then((resp) => {
+    //     // console.log("위치 정보 11: " + resp.coords.latitude);
+    //     // console.log("위치 정보 22: " + resp.coords.longitude);
+    //     this.images
+    //       .getCurrentWeather(resp.coords.latitude, resp.coords.longitude)
+    //       .subscribe(
+    //         (data) => {
+    //           this.currentWeather_Temp = data.current.main.temp;
+    //           this.currentWeather_Description = data.current.weather[0].description;
+    //           this.currentWeather_Humidity = data.current.main.humidity;
+    //           this.currentWeather_Pm10 = data.air.list[0].components.pm10;
+    //           this.getMiseDescription(this.currentWeather_Pm10);
+    //           this.getHumidityDesc(this.currentWeather_Humidity);
+    //           this.load1 = true;
+    //           this.checkLoadingDismiss(this.load1, this.load2);
+    //         },
+    //         (error) => {
+    //           this.load1 = true;
+    //           this.checkLoadingDismiss(this.load1, this.load2);
+    //           console.log("날씨 정보를 가져오지 못함");
+    //         }
+    //       );
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting location", error);
+    //   });
 
     this.auth.getSkinAnaly(this.userData.email).subscribe(
       (data) => {

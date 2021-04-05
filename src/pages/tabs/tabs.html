@@ -1,4 +1,4 @@
-<ion-tabs *ngIf="platform.is('android')" >
+<ion-tabs id="tabs" *ngIf="platform.is('android')" >
   <ion-tab [root]="tab1Root" tabTitle="홈" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="챌린지" tabIcon="carezone"></ion-tab>
    <ion-tab [root]="tab3Root" tabTitle="포인트샵" tabIcon="shopping"> </ion-tab>
@@ -17,7 +17,7 @@
 </ion-tabs> -->
 
 
-<ion-tabs *ngIf="platform.is('ios') || platform.is('core')" >
+<ion-tabs id="tabs" *ngIf="platform.is('ios') || platform.is('core')" >
   <ion-tab [root]="tab1Root" tabTitle="홈" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="챌린지" tabIcon="carezone"></ion-tab>
    <ion-tab [root]="tab3Root" tabTitle="포인트샵" tabIcon="shopping"> </ion-tab>

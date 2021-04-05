@@ -1083,7 +1083,7 @@ export class CommunityModifyPage {
       this.images.noteLike(id, user).subscribe(data => {
         if (data !== '') {
           this.islike = true;
-          this.toast();
+          // this.toast(); 2021-03-22 토스트 제거
           console.log("-----------------------------------------" + data);
         }
       });
@@ -1092,7 +1092,7 @@ export class CommunityModifyPage {
       this.images.skinQnaLike(id, user).subscribe(data => {
         if (data !== '') {
           this.islike = true;
-          this.toast();
+          // this.toast(); 2021-03-22 토스트 제거
           console.log("-----------------------------------------" + data);
         }
       });
@@ -1104,7 +1104,7 @@ export class CommunityModifyPage {
       this.images.noteDisLike(id, user).subscribe(data => {
         if (data !== '') {
           this.islike = false;
-          this.distoast();
+          // this.distoast(); 2021-03-22 토스트 제거
           console.log("-----------------------------------------" + data);
         }
       });
@@ -1114,7 +1114,7 @@ export class CommunityModifyPage {
       this.images.skinQnaDisLike(id, user).subscribe(data => {
         if (data !== '') {
           this.islike = false;
-          this.distoast();
+          // this.distoast(); 2021-03-22 토스트 제거
           console.log("-----------------------------------------" + data);
         }
       });

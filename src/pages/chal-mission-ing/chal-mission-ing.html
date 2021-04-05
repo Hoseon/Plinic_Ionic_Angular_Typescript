@@ -6,7 +6,13 @@
 -->
 <ion-header>
 
-  <ion-navbar *ngIf="platform.is('android')">
+  <ion-navbar hideBackButton="true" *ngIf="platform.is('android')">
+    <ion-buttons left no-lines>
+        <button ion-button (click)="goToChall()" icon-only>
+          <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+          <img class="android_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+        </button>
+      </ion-buttons>
     <ion-buttons (click)="chalguide()" end>
         <div class="guide_android">이용안내</div>
     </ion-buttons>
@@ -19,7 +25,7 @@
 
   <ion-navbar *ngIf="platform.is('ios')">
     <ion-buttons left no-lines>
-      <button ion-button navPop icon-only>
+      <button ion-button (click)="goToChall()" icon-only>
         <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
         <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
       </button>
@@ -458,7 +464,7 @@
           <button *ngIf="registerReply.comment.length < 1" ion-button class="comment_input_enroll" disabled
             (click)="saveSkinQnaReply()">등록</button>
         </div>
-        <div style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 1%; background-color:#f1f1f1"></div>
+        <div style="height:8px; width:100%; margin:0 auto; display: block; margin-bottom: 5%; background-color:#f1f1f1"></div>
       </ng-container>
     
     

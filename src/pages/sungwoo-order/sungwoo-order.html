@@ -167,10 +167,11 @@
         <ion-col class="order_text1" col-8>상품 금액 합계</ion-col>
         <ion-col class="order_text2" col-4>{{addComma(ProductAmount)}} 원</ion-col>
         <ion-col class="order_text1" col-8>포인트 사용금액</ion-col>
-        <ion-col *ngIf="usePointComma" class="order_text2" col-4>{{usePointComma}} 원</ion-col>
+        <ion-col *ngIf="usePointComma" class="order_text2" col-4>- {{usePointComma}} 원</ion-col>
         <ion-col *ngIf="!usePointComma" class="order_text2" col-4>- 원</ion-col>
         <ion-col class="order_text1" col-8>배송비</ion-col>
-        <ion-col class="order_text2" col-4>+3,000 원</ion-col>
+        <!-- <ion-col class="order_text2" col-4>+3,000 원</ion-col> 2021-03-22 배송비 런칭 기간에는 0원으로 처리 -->
+        <ion-col class="order_text2" col-4>무료</ion-col>
         <ion-col class="order_text1" col-8>기타 할인 금액</ion-col>
         <ion-col class="order_text2" col-4>0 원</ion-col>
       </ion-row>

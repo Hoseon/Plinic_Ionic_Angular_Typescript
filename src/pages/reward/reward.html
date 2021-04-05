@@ -28,9 +28,9 @@
 </ion-header>
 
 
-<ion-content no-padding>
+<ion-content>
   <br><br>
-  <ion-item no-padding>
+  <ion-item>
     <div class="left title">챌린지 성공을 축하드립니다!<br>상품 받으실 주소를 정확히 입력해주세요.</div>
     <!-- <div class="title">상품 받으실 주소를 정확히 입력해주세요.</div> -->
     <p class="left sub_title">플리닉 챌린지는 건강한 피부관리 습관을<br>
@@ -42,49 +42,55 @@
 
   </ion-item>
 
-  <ion-item no-padding class="item_align" style="background:#FFF">
-    <ion-label mode="ios" class="title_left password_label" stacked>받으시는 분 성함</ion-label>
-    <ion-input no-padding (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="base_password" placeholder="받으시는 분 이름을 입력해주세요." [(ngModel)]="name" clearInput required></ion-input>
-  </ion-item>
+  <ion-grid>
+    <ion-row margin-left margin-right>
+        <ion-item class="item_align" style="background:#FFF">
+            <ion-label mode="ios" class="title_left password_label" stacked>받으시는 분 성함</ion-label>
+            <ion-input (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="base_password" placeholder="받으시는 분 이름을 입력해주세요." [(ngModel)]="name" clearInput required></ion-input>
+          </ion-item>
+        
+          <button ion-button outline clear (click)="postCheck()" end class="button_start"><div style="color:#FFF">우편번호 찾기</div></button>
+          <ion-item class="item_align" style="background:#FFF">
+            <ion-label mode="ios" class="title_left password_label" stacked>우편번호</ion-label>
+            <ion-input (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="base_password" placeholder="우편번호" [(ngModel)]="zonecode" clearInput required></ion-input>
+          </ion-item>
+        
+          <!-- <iframe *ngIf="ishidden" src="http://localhost:8001/api/daumjuso" width="100%" height="400px" frameBorder="0" id='daumIframe'></iframe> -->
+          <iframe *ngIf="ishidden" src="http://plinic.cafe24app.com/api/daumPost" width="100%" height="400px" frameBorder="0" id='daumIframe'></iframe>
+        
+          <ion-item class="item_align" style="background:#FFF">
+            <ion-label mode="ios" class="title_left password_label" stacked>주소</ion-label>
+            <ion-input (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="base_password" placeholder="도로명 주소" [(ngModel)]="address" clearInput required></ion-input>
+          </ion-item>
+        
+          <ion-item class="item_align" style="background:#FFF">
+            <ion-label mode="ios" class="title_left password_label" stacked>상세주소</ion-label>
+            <ion-input (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="base_password" placeholder="나머지 주소를 입력해주세요." [(ngModel)]="detailAddress" clearInput required></ion-input>
+          </ion-item>
+        
+          <ion-item class="item_align" style="background:#FFF">
+            <ion-label mode="ios" class="title_left password_label" stacked>배송 시 특이사항</ion-label>
+            <ion-input (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="base_password" placeholder="배송시 특이사항을 입력해주세요." [(ngModel)]="desc" clearInput required></ion-input>
+          </ion-item>
+        
+          <ion-item class="item_align" style="background:#FFF">
+            <ion-label mode="ios" class="title_left password_label" stacked>연락처</ion-label>
+            <ion-input (ionFocus)="postFocusOut()" (ionBlur)="inputPhoneNumber()" class="input_name" mode="ios" type="text" name="new_password" placeholder="연락처" [(ngModel)]="phoneNumber" clearInput required></ion-input>
+          </ion-item>
+        
+          <ion-item class="item_align" style="background:#FFF">
+            <ion-label mode="ios" class="title_left password_label" stacked>이메일</ion-label>
+            <ion-input (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="new_password" placeholder="Email" [(ngModel)]="postEmail" clearInput required></ion-input>
+          </ion-item>
+        
+          <ion-item class="item_align" style="background:#FFF">
+              <ion-label mode="ios" class="title_left password_label" stacked>성공 후기(후기는 큰 힘이 됩니다)</ion-label>
+              <ion-textarea maxLength="300" autoGrow="true" (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="new_password" placeholder="후기 작성(300자 제한)" [(ngModel)]="review" clearInput required></ion-textarea>
+          </ion-item>
+    </ion-row>
+  </ion-grid>
 
-  <button ion-button outline clear (click)="postCheck()" end class="button_start"><div style="color:#FFF">우편번호 찾기</div></button>
-  <ion-item class="item_align" style="background:#FFF">
-    <ion-label mode="ios" class="title_left password_label" stacked>우편번호</ion-label>
-    <ion-input no-padding (ionFocus)="postFocusOut()" class="input_name" mode="ios" type="text" name="base_password" placeholder="우편번호" [(ngModel)]="zonecode" clearInput required></ion-input>
-  </ion-item>
-
-  <!-- <iframe *ngIf="ishidden" src="http://localhost:8001/api/daumjuso" width="100%" height="400px" frameBorder="0" id='daumIframe'></iframe> -->
-  <iframe *ngIf="ishidden" src="http://plinic.cafe24app.com/api/daumPost" width="100%" height="400px" frameBorder="0" id='daumIframe'></iframe>
-
-  <ion-item no-padding class="item_align" style="background:#FFF">
-    <ion-label mode="ios" class="title_left password_label" stacked>주소</ion-label>
-    <ion-input no-padding (ionFocus)="postFocusOut()" class="title_left input_name" mode="ios" type="text" name="base_password" placeholder="도로명 주소" [(ngModel)]="address" clearInput required></ion-input>
-  </ion-item>
-
-  <ion-item no-padding class="item_align" style="background:#FFF">
-    <ion-label mode="ios" class="title_left password_label" stacked>상세주소</ion-label>
-    <ion-input no-padding (ionFocus)="postFocusOut()" class="title_left input_name" mode="ios" type="text" name="base_password" placeholder="나머지 주소를 입력해주세요." [(ngModel)]="detailAddress" clearInput required></ion-input>
-  </ion-item>
-
-  <ion-item no-padding class="item_align" style="background:#FFF">
-    <ion-label mode="ios" class="title_left password_label" stacked>배송 시 특이사항</ion-label>
-    <ion-input no-padding (ionFocus)="postFocusOut()" class="title_left input_name" mode="ios" type="text" name="base_password" placeholder="배송시 특이사항을 입력해주세요." [(ngModel)]="desc" clearInput required></ion-input>
-  </ion-item>
-
-  <ion-item no-padding class="item_align" style="background:#FFF">
-    <ion-label mode="ios" class="title_left password_label" stacked>연락처</ion-label>
-    <ion-input no-padding (ionFocus)="postFocusOut()" (ionBlur)="inputPhoneNumber()" class="title_left input_name" mode="ios" type="text" name="new_password" placeholder="연락처" [(ngModel)]="phoneNumber" clearInput required></ion-input>
-  </ion-item>
-
-  <ion-item no-padding class="item_align" style="background:#FFF">
-    <ion-label mode="ios" class="title_left password_label" stacked>이메일</ion-label>
-    <ion-input no-padding (ionFocus)="postFocusOut()" class="title_left input_name" mode="ios" type="text" name="new_password" placeholder="Email" [(ngModel)]="postEmail" clearInput required></ion-input>
-  </ion-item>
-
-  <ion-item no-padding class="item_align" style="background:#FFF">
-      <ion-label mode="ios" class="title_left password_label" stacked>성공 후기(후기는 큰 힘이 됩니다)</ion-label>
-      <ion-textarea no-padding maxLength="300" autoGrow="true" (ionFocus)="postFocusOut()" class="title_left input_name" mode="ios" type="text" name="new_password" placeholder="후기 작성(300자 제한)" [(ngModel)]="review" clearInput required></ion-textarea>
-    </ion-item>
+  
 
   <!-- 2020-02-11 <button ion-button outline (click)="registerReward()" class="button_save">저장 및 발송</button> -->
   <button ion-button outline (click)="registerChallengeReward()" class="button_save">저장 및 발송</button>

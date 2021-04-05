@@ -762,5 +762,45 @@ page-sungwoo-product-detail {
     // overflow: hidden;
   }
 
+  .content_comment_textarea{
+    width: 60%;
+    //height: 30vh !important;
+    left: 20%;
+    right: 5%;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    color: #292929;
+    padding-bottom: 0px !important;
+    margin-left:18%;
+    margin-top: 1%;
+    border: 1px solid #5c59b6;
+    //cursor: pointer;
+  }
+
+  .comment_enroll{
+    position: absolute;
+    width: 48px;
+    height: 30px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    color: #FFF;
+    border-radius: 3px;
+    background-color: #5c59b6;
+    // top: -25%;
+    right: 5%;
+    z-index: 20;
+    box-shadow: none !important;
+ }
+
 
 }

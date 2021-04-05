@@ -631,6 +631,34 @@ page-care-zone {
 
   }
 
+  .flag_start {
+    display: table;
+    position: absolute;
+    right: 3%;
+    top: 8%;
+    width: 20%;
+    height: 20.5px;
+    border-radius: 2.8px;
+    background-color: #070002;
+
+  }
+
+  .flag-text_start {
+    display: table-cell;
+    // width: 37px;
+    // height: 10px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 10.8px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.19;
+    letter-spacing: -0.32px;
+    text-align: center;
+    vertical-align: middle;
+    color: #ffde00;
+  }
+
   .flag-text {
     display: table-cell;
     // width: 37px;
@@ -687,6 +715,109 @@ page-care-zone {
 
   .testborder {
     border : solid 1px #5c59b6;
+  }
+
+  .joinCheckBtn {
+    width: 100%;
+    height: 52px;
+    border-radius: 8px;
+    border: solid 1px #dcdcdc;
+    background-color: #ededed;
+    box-shadow: none;
+    font-family: NotoSansKR;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+  }
+
+  .ing_button {
+    position: absolute;
+    display: flex;
+    left: 5.7%;
+    top: 30%;
+    width: 165.5px;
+    height: 22.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 17px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    color: #292929;
+  }
+
+  .end_button {
+    position: absolute;
+    display: flex;
+    left: 91%;
+    top: 30%;
+    width: 165.5px;
+    height: 22.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+  }
+
+  .TODAY- {
+    float: left;
+    font-family: NotoSansKR;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #292929;
+    margin-left: 2%;
+    margin-top: 5%;
+    margin-bottom: 1%;
+  }
+
+  .NEXT- {
+    // position: absolute;
+    display: block;
+    font-family: NotoSansKR;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #292929;
+    // margin-left: 2%;
+    // margin-bottom: -2%;
+  }
+
+  .Rectangle-102 {
+    float: left;
+    width: 75px;
+    height: 20px;
+    border-radius: 2px;
+    background-color: #000000;
+    margin-left: 4%;
+    margin-top: 5.3%;
+    margin-bottom: 1%;
+    font-family: NotoSansKR;
+    font-size: 10px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffd600;
   }
 
 }

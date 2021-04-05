@@ -40,7 +40,7 @@
       </ion-row>
       <ion-row>
         <ion-card class="card">
-          <ion-row class="card_row1" ><div class="text2">{{detailData.status}}</div></ion-row>
+          <ion-row class="card_row1" ><div class="text2">{{statusToString(detailData.status)}}</div></ion-row>
           <ion-row class="card_row2" ><div class="text3">{{detailData.product_name}}</div></ion-row>
           <ion-row class="card_row3"><div class="text4">{{detailData.amount}}</div></ion-row>
           <ion-row class="card_row4"><img class="pliniclogo" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{detailData.productFileName}}" /> </ion-row>
@@ -72,8 +72,8 @@
 
     <ion-grid class="footer">
       <ion-row>
-        <ion-col col-6><button class="center btn1" ion-button>정기결제 유지</button></ion-col>
-        <ion-col col-6><button class="center btn2" (click)="showAlert()" ion-button>해지신청</button></ion-col>
+        <ion-col col-6><button class="center btn1" (click)="pop()" ion-button>주문내역확인</button></ion-col>
+        <ion-col col-6><button class="center btn2" (click)="showAlert()" ion-button>취소하기</button></ion-col>
       </ion-row> 
     </ion-grid>
   </ng-container>

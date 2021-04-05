@@ -1,10 +1,14 @@
-import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, Platform } from "ionic-angular";
+import { Component, ElementRef, ViewChild } from "@angular/core";
+import { IonicPage, NavController, NavParams, Platform, PopoverController, AlertController } from "ionic-angular";
 import { SungwooPickPage } from "../sungwoo-pick/sungwoo-pick";
 import { ProductReviewPage } from "../product-review/product-review";
 import { ImagesProvider } from "../../providers/images/images";
 import { AuthService } from "../../providers/auth-service";
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { PopoverPage } from '../community/community-modify/popover/popover';
+import { KakaoCordovaSDK, KLCustomTemplate, KLLinkObject, KLSocialObject, KLButtonObject, KLContentObject, KLFeedTemplate, AuthTypes } from 'kakao-sdk';
+
+
 
 /**
  * Generated class for the SungwooProductDetailPage page.
@@ -36,6 +40,12 @@ export class SungwooProductDetailPage {
   scrollPage = 0;
   sort: any = 'createdAt';
   maxPoint: any;
+  comment_popover_option: any = "보기";
+  comment_popover_option_textarea: any;
+  @ViewChild('myInput') myInput: ElementRef;
+  reviewData = { content: '', id: '', email: '' };
+  updatevalue: any;
+  isUpdate: Array<boolean> = new Array<boolean>();
 
   constructor(
     public navCtrl: NavController,
@@ -43,6 +53,10 @@ export class SungwooProductDetailPage {
     private platform: Platform,
     public images: ImagesProvider,
     public authService: AuthService,
+    public popoverCtrl: PopoverController,
+    private alertCtrl: AlertController,
+    public element: ElementRef,
+    public _kakaoCordovaSDK: KakaoCordovaSDK,
   ) {
     this.platform.ready().then(() => {
       if (this.navParams.get("productData"))
@@ -84,6 +98,7 @@ export class SungwooProductDetailPage {
       .then(() => {
         this.navCtrl.getActive().onDidDismiss((data) => {
           this.getProductAllReview(this.product_num);
+          this.getProductReviewReset(this.product_num);
         });
       });
   }
@@ -99,6 +114,32 @@ export class SungwooProductDetailPage {
 
   getProductReview(product_num) {
     this.scrollPage = this.scrollPage+1;
+    // this.images.getProductReview(product_num, this.scrollPage).subscribe((data) => {
+    //   if (this.scrollPage === 1) {
+    //     this.productReview = (data);
+    //   } else {
+    //     for(let i = 0; i < data.length; i++) {
+    //       this.productReview.push(data[i]);
+    //     }
+    //   }
+    //   // this.productReview = data;
+    // });
+
+    this.images.getProductReview2(product_num, this.scrollPage, this.sort).subscribe((data) => {
+      if (this.scrollPage === 1) {
+        this.productReview = (data);
+      } else {
+        for(let i = 0; i < data.length; i++) {
+          this.productReview.push(data[i]);
+        }
+      }
+      // this.productReview = data;
+    });
+  }
+
+  getProductReviewReset(product_num) {
+    // this.scrollPage = this.scrollPage+0;
+    this.scrollPage = 1;
     // this.images.getProductReview(product_num, this.scrollPage).subscribe((data) => {
     //   if (this.scrollPage === 1) {
     //     this.productReview = (data);
@@ -276,5 +317,284 @@ export class SungwooProductDetailPage {
     this.maxPoint = this.addComma(this.maxPoint);
     return this.maxPoint;
   }
+
+  // 댓글 수정
+  public comment_popover(event, i, email, id) {
+    if (this.platform.is('ios') || this.platform.is('core')) {
+      let popover = this.popoverCtrl.create(PopoverPage, {},
+        {
+          cssClass: "ios_comment_popover"
+        });
+      popover.present({
+        ev: event
+      });
+      popover.onDidDismiss(popoverData => {
+        this.comment_popover_option = popoverData;
+        if (popoverData === "수정") {
+          this.isUpdate[i] = false;
+          this.comment_popover_option_textarea = i;
+          setTimeout(() => {
+            // this.mytextarea.setFocus();
+            this.myInput.nativeElement.focus();
+            // this.presentLoading();
+            this.resize();
+          }, 100)
+        }
+        else if (popoverData === "삭제") {
+          // console.log('comment_popover_option==========' + this.comment_popover_option);
+          this.reviewData.email = email;
+          this.reviewData.id = id;
+
+          // this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
+
+          let alert = this.alertCtrl.create({
+            cssClass: 'push_alert_cancel',
+            title: "plinic",
+            message: "댓글을 정말로 삭제하시겠습니까?",
+            buttons: [
+              {
+                text: '취소',
+                role: 'cancel',
+                handler: () => {
+                  console.log('취소');
+                }
+              },
+              {
+                text: '확인',
+                handler: () => {
+                  this.authService.productReviewDelete(this.reviewData).subscribe(data => {
+                    if (data !== "") {
+                      let alert2 = this.alertCtrl.create({
+                        cssClass: 'push_alert',
+                        title: '댓글삭제',
+                        message: "댓글이 정상적으로 삭제 되었습니다.",
+                        enableBackdropDismiss: true,
+                        buttons: [
+                          {
+                            text: '확인',
+                            handler: () => {
+                              // this.registerReply.comment = '';
+                              this.comment_popover_option_textarea = -1;
+                              // this.textareaResize();
+                              this.getProductAllReview(this.product_num);
+                              this.getProductReviewReset(this.product_num);
+                            }
+                          }
+                        ]
+                      });
+                      alert2.onDidDismiss(()=>{
+                        this.getProductAllReview(this.product_num);
+                        this.getProductReviewReset(this.product_num);
+                      });
+                      alert2.present();
+                    }
+                    // this.nav.push(CareZoneMissionIngPage, { _id: id });
+                  }, error => {
+                    this.showError(JSON.parse(error._body).msg);
+                  });
+                }
+              }]
+          });
+          alert.present();
+        }
+      });
+    }
+    else {
+      let popover = this.popoverCtrl.create(PopoverPage, {},
+        {
+          cssClass: "android_comment_popover"
+        });
+      popover.present({
+        ev: event
+      });
+
+      popover.onDidDismiss(popoverData => {
+        this.comment_popover_option = popoverData;
+        if (popoverData === "수정") {
+          this.comment_popover_option_textarea = i;
+          setTimeout(() => {
+            // this.mytextarea.setFocus();
+            this.myInput.nativeElement.focus();
+            // this.presentLoading();
+            this.resize();
+          }, 100)
+        }
+        else if (popoverData === "삭제") {
+          // console.log('comment_popover_option==========' + this.comment_popover_option);
+          this.reviewData.email = email;
+          this.reviewData.id = id;
+          // this.reply.comment = document.getElementById('updatereply').getAttribute('ng-reflect-model');
+
+          let alert = this.alertCtrl.create({
+            cssClass: 'push_alert_cancel',
+            title: "plinic",
+            message: "댓글을 정말로 삭제하시겠습니까?",
+            buttons: [
+              {
+                text: '취소',
+                role: 'cancel',
+                handler: () => {
+                }
+              },
+              {
+                text: '확인',
+                handler: () => {
+                  this.authService.productReviewDelete(this.reviewData).subscribe(data => {
+                    if (data !== "") {
+                      let alert2 = this.alertCtrl.create({
+                        cssClass: 'push_alert',
+                        title: '댓글삭제',
+                        message: "댓글이 정상적으로 삭제 되었습니다.",
+                        enableBackdropDismiss: true,
+                        buttons: [
+                          {
+                            text: '확인',
+                            handler: () => {
+                              // this.registerReply.comment = '';
+                              this.comment_popover_option_textarea = -1;
+                              // this.textareaResize();
+                              this.getProductReviewReset(this.product_num);
+                              this.getProductAllReview(this.product_num);
+                            }
+                          }
+                        ]
+                      });
+                      alert2.onDidDismiss(()=>{
+                        this.getProductReviewReset(this.product_num);
+                        this.getProductAllReview(this.product_num);
+                      });
+                      alert2.present();
+                    }
+                    // this.nav.push(CareZoneMissionIngPage, { _id: id });
+                  }, error => {
+                    this.showError(JSON.parse(error._body).msg);
+                  });
+                }
+              }]
+          });
+          alert.present();
+        }
+      });
+    }
+  }
+
+  resize() {
+    setTimeout(() => {
+      this.myInput.nativeElement.style.height = 'auto'
+      this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
+    }, 100)
+  }
+
+  showError(text) {
+    // this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: 'Plinic',
+      message: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  textareaResize() {
+    setTimeout(() => {
+      this.myInput.nativeElement.style.height = '40px'
+      this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
+    }, 100)
+  }
+
+  protected adjustTextarea(): void {
+    let textArea = this.element.nativeElement.getElementsByTagName('textarea')[0];
+    textArea.style.overflow = 'hidden';
+    textArea.style.height = 'auto';
+    textArea.style.height = textArea.scrollHeight + 'px';
+    textArea.style.cursor = 'pointer';
+    return;
+  }
+
+  protected adjustTextareaUpdate(event): void {
+    let textArea = this.element.nativeElement.getElementsByTagName('textarea')[0];
+    textArea.style.overflow = 'hidden';
+    textArea.style.height = 'auto';
+    textArea.style.height = textArea.scrollHeight + 'px';
+    textArea.style.cursor = 'pointer';
+    this.updatevalue = event.target.value;
+    return;
+  }
+
+  productReviewUpdate(email, id) {
+    this.reviewData.email = email;
+    this.reviewData.id = id; 
+    
+    this.reviewData.content = this.updatevalue;
+
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "plinic",
+      message: "댓글을 수정 하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            this.authService.productReviewUpdate(this.reviewData).subscribe(data => {
+              if (data !== "") {
+                let alert2 = this.alertCtrl.create({
+                  cssClass: 'push_alert',
+                  title: '댓글수정',
+                  message: "댓글이 정상적으로 수정 되었습니다.",
+                  enableBackdropDismiss: true,
+                  buttons: [
+                    {
+                      text: '확인',
+                      handler: () => {
+                        // this.registerReply.comment = '';
+                        this.comment_popover_option_textarea = -1;
+                        this.textareaResize();
+                        this.getProductReviewReset(this.product_num);
+                      }
+                    }
+                  ]
+                });
+                this.comment_popover_option = "보기";
+                alert2.onDidDismiss(()=>{
+                  this.comment_popover_option_textarea = -1;
+                  this.textareaResize();
+                  this.getProductReviewReset(this.product_num);
+                });
+                alert2.present();
+              }
+              // this.nav.push(CareZoneMissionIngPage, { _id: id });
+            }, error => {
+              this.showError(JSON.parse(error._body).msg);
+            });
+          }
+        }]
+    });
+    alert.present();
+  }
+
+  kakaoChat() {
+    let plusFriendTemplate = {
+      plusFriendId: '_PMxjxjxb',
+    };
+    this._kakaoCordovaSDK
+      .chatPlusFriend(plusFriendTemplate)
+      .then(
+        res => {
+        },
+        err => {
+        }
+      )
+      .catch(err => {
+      });
+  }
+
 
 }

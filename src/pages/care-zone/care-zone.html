@@ -20,7 +20,7 @@
           <img float-left margin-left class="" src="assets/img/care-zone/challenge.svg" />
           <img float-left margin-left class="point-icon " src="assets/img/svg/icon_point.svg" />
           <!-- <div float-left class="Create-account">{{totaluserpoint}}</div> -->
-          <div *ngIf="totaluserPoint" class="" (click)="myinfo()">{{totaluserPoint}}</div>
+          <div *ngIf="totaluserPoint" class="Create-account" (click)="myinfo()">{{totaluserPoint}}</div>
         </ion-row>
       </ion-grid>
     </button>
@@ -65,39 +65,111 @@
 
 
 <ion-content padding>
+  <ng-container *ngIf="missionData">
+    <ion-grid>
+      <ion-row align-items-center>
+        <button ion-button icon-end class="joinCheckBtn" (click)="ingCarezone(missionID)">
+            <div class="ing_button">참여 중인 챌린지 바로가기</div>
+            <div class="end_button"><img class="ic_system_arrow_white" src="assets/img/svg/Vector.svg" />
+            </div>
+        </button>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
 
-  <ion-list *ngFor="let carezone of carezoneData; let i = index">
-    <!-- <ng-container *ngIf="endmission[i] > currentDate"> -->
-      <ion-row class="row">
-        <ion-col class="container" (click)="mission_start(carezone)">
-          <img class="imagealign" src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezone.filename}}' />
-          <ng-container *ngIf="flag[i] === '지금참여'">
-            <div class="flag"><p class="flag-text">지금참여</p></div>
-          </ng-container>
-          <ng-container *ngIf="flag[i] === '참여마감'">
-              <div class="flag"><p class="flag-text">참여마감</p></div>
+  <ng-container *ngIf="!missionData">
+      <ion-grid>
+        <ion-row align-items-center>
+          <button ion-button icon-end class="joinCheckBtn">
+              <div class="ing_button">참여중인 챌린지가 없습니다</div>
+              <!-- <div class="end_button"><img class="ic_system_arrow_white" src="assets/img/svg/Vector.svg" />
+              </div> -->
+          </button>
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+  
+  <!-- TODAY 챌린지 -->
+  <ion-grid no-padding>
+    <ion-row>
+      <div class="TODAY-">TODAY 챌린지</div> 
+      <!-- <div justify-content-center class="Rectangle-102">오늘 시작 가능</div> -->
+      <ion-list *ngFor="let carezone of carezoneData; let i = index">
+        <ng-container *ngIf="(carezone.day == currentDay)">
+          <ion-row class="row">
+            <ion-col class="container" (click)="mission_start(carezone)">
+              <img class="imagealign" src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezone.filename}}' />
+              <ng-container *ngIf="flag[i] === '지금참여'">
+                <div class="flag_start"><p class="flag-text_start">오늘 시작 가능</p></div>
+              </ng-container>
+              <ng-container *ngIf="flag[i] === '참여마감'">
+                  <div class="flag"><p class="flag-text">참여마감</p></div>
+                </ng-container>
+              <ng-container *ngIf="flag[i] === '진행중'">
+                <div class="flag"><p class="flag-text-ready">{{flag[i]}}</p></div>
+              </ng-container>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-9 class="imagetitle">
+              {{carezone.title}}
+            </ion-col>
+            <ion-col class="right_align">
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="sub">
+              {{carezone.body}}
+            </ion-col>
+          </ion-row><br>
+        </ng-container>
+      </ion-list>
+    </ion-row>
+  </ion-grid>
+
+  <div style="height:2vw; width:100%; margin:0 auto; display: block; margin-top: -6vw !important; margin-bottom: 4vw !important; background-color:#f1f1f1"></div>
+
+  <!-- NEXT 챌린지 -->
+  <ion-grid>
+    <ion-row>
+      <div class="NEXT-">NEXT 챌린지</div>
+    </ion-row>
+  </ion-grid>
+  <ion-grid no-padding>
+    <ion-row>
+        <!-- <div class="NEXT-">NEXT 챌린지</div> -->
+        <ion-list *ngFor="let carezone of carezoneData; let i = index">
+            <ng-container *ngIf="(carezone.day != currentDay)">
+              <ion-row class="row">
+                <ion-col class="container" (click)="mission_start(carezone)">
+                  <img class="imagealign" src='https://plinic.s3.ap-northeast-2.amazonaws.com/{{carezone.filename}}' />
+                  <ng-container *ngIf="flag[i] === '지금참여'">
+                    <div class="flag"><p class="flag-text">지금참여</p></div>
+                  </ng-container>
+                  <ng-container *ngIf="flag[i] === '참여마감'">
+                      <div class="flag"><p class="flag-text">참여마감</p></div>
+                    </ng-container>
+                  <ng-container *ngIf="flag[i] === '진행중'">
+                    <div class="flag"><p class="flag-text-ready">{{flag[i]}}</p></div>
+                  </ng-container>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-9 class="imagetitle">
+                  {{carezone.title}}
+                </ion-col>
+                <ion-col class="right_align">
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="sub">
+                  {{carezone.body}}
+                </ion-col>
+              </ion-row><br>
             </ng-container>
-          <!-- <div class="flag"><p class="flag-text">참여마감</p></div> -->
-          <ng-container *ngIf="flag[i] === '진행중'">
-            <div class="flag"><p class="flag-text-ready">{{flag[i]}}</p></div>
-          </ng-container>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-9 class="imagetitle">
-          {{carezone.title}}
-        </ion-col>
-        <ion-col class="right_align">
-          <!-- {{displayTime[i]}} -->
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="sub">
-          {{carezone.body}}
-        </ion-col>
-      </ion-row><br>
-    <!-- </ng-container> -->
-  </ion-list>
+          </ion-list>
+    </ion-row>
+  </ion-grid>
   <br><br>
 
   <!-- <ion-list *ngFor="let carezone of carezoneData; let i = index">

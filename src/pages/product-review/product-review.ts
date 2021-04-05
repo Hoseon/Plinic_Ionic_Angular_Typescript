@@ -25,7 +25,7 @@ export class ProductReviewPage {
   function: Array<any> = new Array<any>();
   review: any =  {
     content : '',
-    rating: 3,
+    rating: 4,
     product_num : '',
     product_name : ''
   }
@@ -35,6 +35,7 @@ export class ProductReviewPage {
   jwtHelper: JwtHelper = new JwtHelper();
   from: any;
   profileimg_url: any;
+  reviewCount: number = 0;
 
   constructor(
       public navCtrl: NavController, 
@@ -53,8 +54,13 @@ export class ProductReviewPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProductReviewPage');
+    // console.log('ionViewDidLoad ProductReviewPage');
     this.loadItems();
+  }
+
+  ionViewDidEnter() {
+    this.getProductReviewCount(this.userData.email);
+    // console.log('ionViewDidEnter ProductReviewPage');
   }
 
   loadProductData() {
@@ -104,11 +110,22 @@ export class ProductReviewPage {
     if (this.review.content.length < 5) {
       this.showAlert2("리뷰는 최소5자 이상 등록해주세요");      
     } else {
-      this.auth.registerReview(this.userData.email, this.review).subscribe(data => {
-        this.showAlert("리뷰가 등록되었습니다.");
-      }, error => {
-        this.showAlert("리뷰 등록에 실패하였습니다")
-      });
+      if (this.reviewCount >= 2) {
+        //포인트가 누적이 되지 않는 리뷰 등록
+        this.auth.registerReviewNoPoint(this.userData.email, this.review).subscribe(data => {
+          this.showAlert("리뷰가 등록되었습니다.");
+        }, error => {
+          this.showAlert("리뷰 등록에 실패하였습니다")
+        });
+      } else {
+        //포인트가 누적되는 리뷰 등록
+        this.auth.registerReview(this.userData.email, this.review).subscribe(data => {
+          this.showAlert("리뷰가 등록되었습니다.");
+        }, error => {
+          this.showAlert("리뷰 등록에 실패하였습니다")
+        });
+      }
+      
     }
   }
 
@@ -186,6 +203,14 @@ export class ProductReviewPage {
       }]
     });
     alert.present();
+  }
+
+  getProductReviewCount(email) {
+    this.images.getProductReviewCount(email, this.productData.product_num).subscribe(data => {
+      this.reviewCount = data;
+    }, error => {
+      console.log(error);
+    })
   }
 
 

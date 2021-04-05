@@ -71,10 +71,10 @@ export class CommunityTipPage {
   videoDetailData: Array<any> = new Array<any>();
   newSlideData : any;
   tipSlideData: any;
-  select_popover_option: any = "조회순";
+  select_popover_option: any = "최신순";
   items: any;
   items2: any;
-  sortButton: boolean = true;
+  sortButton: boolean = false;
   mode: any;
 
   constructor(
@@ -103,10 +103,13 @@ export class CommunityTipPage {
 
   async ionViewDidLoad() {
     if(this.mode === 'tip')
-      await this.getPostListSortView();
+      // await this.getPostListSortView();
+      await this.getPostListSortCreate();
+      
     
     if (this.mode === 'hit')
-      await this.getPostHitListSortView();
+      // await this.getPostHitListSortView();
+      await this.getPostHitListSortCreate();
       
   }
 

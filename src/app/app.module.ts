@@ -329,6 +329,10 @@ import { OrderCancel1PageModule } from '../pages/order-cancel/order-cancel1/orde
 import { OrderCancel2PageModule } from '../pages/order-cancel/order-cancel2/order-cancel2.module';
 import { OrderCancel3PageModule } from '../pages/order-cancel/order-cancel3/order-cancel3.module';
 import { OrderCancel4PageModule } from '../pages/order-cancel/order-cancel4/order-cancel4.module';
+
+import { ScreentemplatePageModule } from '../pages/screentemplate/screentemplate.module';
+import { PostBoxPagePageModule } from '../pages/postbox/postbox.module';
+import { BleTestPagePageModule } from '../pages/bletest/bletest.module';
  
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -543,6 +547,9 @@ export function getAuthHttp(http, storage) {
     OrderCancel2PageModule,
     OrderCancel3PageModule,
     OrderCancel4PageModule,
+    ScreentemplatePageModule,
+    PostBoxPagePageModule,
+    BleTestPagePageModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

@@ -21,7 +21,7 @@
     <ion-buttons end>
       <ion-grid>
         <ion-row class="postion" align-items-baseline>
-            <button (click)="community_search()" ion-button icon-only clear><img  float-end class="headerIoncMargin" src="assets/img/svg/search.svg" /></button>
+            <!-- <button (click)="community_search()" ion-button icon-only clear><img  float-end class="headerIoncMargin" src="assets/img/svg/search.svg" /></button> -->
             <button (click)="orderDetailPage()" ion-button icon-only clear><img  float-end class="headerIoncMargin" src="assets/img/svg/cart.svg" /></button>
             <button (click)="myinfo()"  ion-button icon-only clear><img margin-right float-end class="headerIoncMargin" src="assets/img/svg/my.svg" /></button>
         </ion-row>
@@ -46,7 +46,7 @@
     <ion-buttons end>
       <ion-grid>
         <ion-row class="postion" align-items-baseline>
-            <button (click)="community_search()" ion-button icon-only clear><img  float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/search.svg" /></button>
+            <!-- <button (click)="community_search()" ion-button icon-only clear><img  float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/search.svg" /></button> -->
             <button (click)="orderDetailPage()" ion-button icon-only clear><img  float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/cart.svg" /></button>
             <button (click)="myinfo()"  ion-button icon-only clear><img margin-right float-end margin-bottom class="headerIoncMargin" src="assets/img/svg/my.svg" /></button>
         </ion-row>
@@ -62,9 +62,9 @@
     <ion-segment-button value="1" (click)="selectedTab(1)">
       TALK
     </ion-segment-button>
-    <ion-segment-button value="2" (click)="selectedTab(2)">
+    <!-- <ion-segment-button value="2" (click)="selectedTab(2)">
       VIDEO
-    </ion-segment-button>
+    </ion-segment-button> -->
   </ion-segment>
   <div style="height:1px; width:100%; margin:0 auto; display: block; margin-top: -2px; background-color:#f1f1f1"></div>
 </ion-header>
@@ -223,7 +223,7 @@
     </ion-slide>
 
     <!-- VIDEO -------------------------------------------------------------------------------------->
-    <ion-slide>
+    <!-- <ion-slide>
       <ion-grid no-padding class="movie_grid">
         <br>
         <ion-row align-items-center>
@@ -232,7 +232,6 @@
         </ion-row>
 
         <ion-slides mode="ios" id="movie" pager>
-          <!-- <ng-container *ngIf="youTubeArrayData"> -->
           <ion-slide *ngFor="let tubeData of youTubeArrayData; let i = index;" (click)="openMoviePage(tubeData)">
             <img class="movie_img1" src="{{tubeData.snippet.thumbnails.maxres.url}}" />
             <div margin-left margin-top class="movText1_1">뷰티꿀팁<span class="movie_text2"> {{tubeData.snippet.title}}</span>
@@ -243,11 +242,9 @@
             </div>
             <br>
           </ion-slide>
-          <!-- </ng-container> -->
         </ion-slides>
       </ion-grid>
 
-      <!-- 이번주 핫 클립 -->
       <ion-grid no-padding class="Rectangle-75">
         <ion-row (click)="movieTip('hot')" margin-left margin-bottom align-items-center class="">
           <img margin-top float-md-start src="assets/img/community/hot.png" class="" />
@@ -272,7 +269,6 @@
         </ng-container>
       </ion-grid>
 
-      <!-- 슬기로운 플뷰 생활 -->
       <ion-grid no-padding>
         <ion-row (click)="movieTip('plinic')" margin-left margin-bottom align-items-center>
           <img margin-top float-md-start src="assets/img/community/heart.png" />
@@ -281,23 +277,24 @@
         </ion-row>
         <ng-container *ngIf="youTubePlinicArrayData">
           <ng-container *ngFor="let movieHit of youTubePlinicArrayData; let k = index;">
-            <ion-row (click)="openMoviePage(movieHit)" margin-bottom margin-left margin-right align-items-center>
-              <ion-col col-7>
-                <div class="movText5 ">{{movieHit.snippet.title}}</div>
-                <div class="movText6 ">{{movieHit.snippet.channelTitle}}</div>
-                <div *ngIf="videoHotDetailData[k]" class="movText3">조회
-                  {{videoHotDetailData[k].views}} · 좋아요 {{videoHotDetailData[k].like}}</div>
-              </ion-col>
-              <ion-col col-5>
-                <img class="" src="{{movieHit.snippet.thumbnails.maxres.url}}" />
-              </ion-col>
-              <!-- <ion-col col-1 class="movTipNumber">{{k+1}}</ion-col> -->
-            </ion-row>
+            <ng-container *ngIf="(5 > k)">
+              <ion-row (click)="openMoviePage(movieHit)" margin-bottom margin-left margin-right align-items-center>
+                <ion-col col-7>
+                  <div class="movText5 ">{{movieHit.snippet.title}}</div>
+                  <div class="movText6 ">{{movieHit.snippet.channelTitle}}</div>
+                  <div *ngIf="videoHotDetailData[k]" class="movText3">조회
+                    {{videoHotDetailData[k].views}} · 좋아요 {{videoHotDetailData[k].like}}</div>
+                </ion-col>
+                <ion-col col-5>
+                  <img class="" src="{{movieHit.snippet.thumbnails.maxres.url}}" />
+                </ion-col>
+              </ion-row>
+            </ng-container>
           </ng-container>
         </ng-container>
         <br><br><br>
       </ion-grid>
-    </ion-slide>
+    </ion-slide> -->
 
   </ion-slides>
 

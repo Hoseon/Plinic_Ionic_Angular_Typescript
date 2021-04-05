@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { SungwooDeliveryPage } from '../sungwoo-delivery/sungwoo-delivery';
 import { OrderCancel3Page } from '../order-cancel/order-cancel3/order-cancel3';
+import { KakaoCordovaSDK, KLCustomTemplate, KLLinkObject, KLSocialObject, KLButtonObject, KLContentObject, KLFeedTemplate, AuthTypes } from 'kakao-sdk';
 
 /**
  * Generated class for the OrderDetailPage page.
@@ -41,6 +42,9 @@ export class OrderDetailPage {
     public platform: Platform,
     public auth: AuthService,
     public images: ImagesProvider,
+    public alertCtrl: AlertController,
+    public _kakaoCordovaSDK: KakaoCordovaSDK,
+    
   ) {
     this.loadItems();
     if (this.navParams.get('orderList')) {
@@ -215,6 +219,53 @@ export class OrderDetailPage {
 
   orderCancel1(detailData) {
     this.navCtrl.push(OrderCancel3Page, {detailData: detailData});
+  }
+
+  statusToString(status) {
+    if (status === 'ready') {
+      //주문전
+      return '주문완료'
+    } else if (status === 'paid') {
+      //결제완료
+      return '결제완료'
+    } else if (status === 'deliver_ready') {
+      return '상품 준비중'
+    } else if (status === 'deliver_during') {
+      return '배송중'
+    } else if (status === 'deliverComp') {
+      return '배송완료'
+    }
+  }
+
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert',
+      title: "배송이 시작되었습니다.",
+      message: "지금은 주문 취소가 어렵습니다<br>카카오1:1상담을 통해 문의해주세요",
+      buttons: [
+        {
+          text: '1:1상담 바로가기',
+          handler: () => {
+          }
+        }]
+    });
+    alert.present();
+  }
+
+  kakaoChat() {
+    let plusFriendTemplate = {
+      plusFriendId: '_PMxjxjxb',
+    };
+    this._kakaoCordovaSDK
+      .chatPlusFriend(plusFriendTemplate)
+      .then(
+        res => {
+        },
+        err => {
+        }
+      )
+      .catch(err => {
+      });
   }
 
 

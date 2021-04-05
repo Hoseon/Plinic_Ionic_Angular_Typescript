@@ -99,7 +99,7 @@ export class SungwooPickPage {
 
   minus() {
     console.log("마이너스");
-    this.ProductCount === 0 ? this.ProductCount : this.ProductCount--;
+    this.ProductCount === 1 ? this.ProductCount : this.ProductCount--;
     this.ProductAmount = this.originalAmount * this.ProductCount;
     this.ProductAmountString = this.addComma(this.ProductAmount);
     this.ProductAmountString = this.toStringKoreaWon(this.ProductAmountString);

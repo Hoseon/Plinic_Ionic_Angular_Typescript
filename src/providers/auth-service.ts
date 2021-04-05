@@ -135,6 +135,27 @@ export class AuthService {
 
   }
 
+  public setServerLog(email, nickname, log, logType, device) { //사용자 상품구매 포인트차감 이력 저장 로직
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      nickname: nickname,
+      log: log,
+      logType: logType,
+      device: device,
+      
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'setServerLog', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        return data;
+    });
+  };
+
+
   //2020-06-30 홈 화면 팝업 페이지 3일간 보지 않기 로직 구성
   public setHomePopUpCheck(check) {
     this.storage.set('HomePopup', check);
@@ -2719,6 +2740,25 @@ export class AuthService {
     console.log("qna : " + JSON.stringify(body));
 
     return this.http.post(CONFIG.apiUrl + 'api/registerReview', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public registerReviewNoPoint(email, review) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email,
+      review: review
+    };
+
+    console.log("qna : " + JSON.stringify(body));
+
+    return this.http.post(CONFIG.apiUrl + 'api/registerReviewNoPoint', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
