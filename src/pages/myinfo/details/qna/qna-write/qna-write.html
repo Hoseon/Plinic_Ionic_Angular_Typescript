@@ -37,8 +37,8 @@
     </ion-item>
 
     <ion-item no-lines>
-    <ion-textarea *ngIf="!registerQna" class="qna_input" [(ngModel)]="registerQna.qna_input" placeholder="문의사항을 입력하세요."></ion-textarea>
-    <ion-textarea *ngIf="registerQna" class="qna_input" [(ngModel)]="registerQna.qna_input" placeholder="문의사항을 입력하세요." value="{{registerQna.qna_input}}"></ion-textarea>
+    <ion-textarea rows="3" cols="30" autoGrow="true" *ngIf="!registerQna" class="qna_input" [(ngModel)]="registerQna.qna_input" placeholder="문의사항을 입력하세요."></ion-textarea>
+    <ion-textarea rows="3" cols="30" autoGrow="true" *ngIf="registerQna" class="qna_input" [(ngModel)]="registerQna.qna_input" placeholder="문의사항을 입력하세요." value="{{registerQna.qna_input}}"></ion-textarea>
     </ion-item>
 
 

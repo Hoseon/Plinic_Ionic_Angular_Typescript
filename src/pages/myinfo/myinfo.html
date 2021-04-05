@@ -95,8 +95,8 @@
         <div (click)="pointGuide()"><img class="guide_img" src="assets/img/myinfo/q@3x.png" /></div>
         <!-- <span (click)="pointGuide()" class="mission_text">포인트 상세안내</span>
           <span (click)="pointGuide()"><img class="guide_img" src="assets/img/myinfo/q@3x.png" /></span> -->
-        <p class="guide_text">당일 밤 12시 까지 <span class="guide_text2">순차적으로 적립</span>이 적용됩니다. <br>
-          <span class="guide_text2">포인트몰 적립금이 확인</span>되셨으면 바로 사용이 가능합니다.
+        <p class="guide_text"><span class="guide_text2">적립된 포인트는 포인트샵</span>에서 바로 사용 가능합니다.
+          <!-- <span class="guide_text2">포인트몰 적립금이 확인</span>되셨으면 바로 사용이 가능합니다. -->
         </p>
       </ion-row>
       <br>
@@ -107,14 +107,10 @@
             <img class="ic-my-plinic" src="assets/img/myinfo/ic-my-plinic@3x.png" />
         </button> -->
       </ion-row>
-      <br>
+      <!-- 2021-03-29 숨김 처리 <br>
       <ion-row class="strat_care_div">
         <img class="my-care" (click)="test_camera()" src="assets/img/myinfo/my-camera.png" />
-        <!-- <button ion-button class="start_care" (click)="test_camera()">
-            <div class="mission_button_text">근접촬영 진단 포인트 미션</div>
-            <img class="ic-my-plinic" src="assets/img/myinfo/ic-my-camera2.png" />
-        </button> -->
-      </ion-row>
+      </ion-row> -->
       <br>
       <ion-row class="strat_care_div">
         <img class="my-care" (click)="chulsuk_check()" src="assets/img/myinfo/my-chulsuk.png" />
@@ -133,7 +129,7 @@
 
   <br><br>
   <!-- 진행중인 챌린지가 있을때 -->
-  <ng-container *ngIf="challengeMissionData">
+  <!-- <ng-container *ngIf="challengeMissionData">
     <ion-grid (click)="ingCarezone(challengeMissionData)">
       <ion-row>
         <div
@@ -146,9 +142,6 @@
       <br><br>
       <ion-row *ngIf="challengeMissionData">
         <img class="chal_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{challengeMissionData.filename}}" />
-        <!-- <div class="chal_bottom">
-          <div class="chal_bottom_text">남은시간 {{displayTime}}</div>
-        </div> 2020-04-21 남은시간 숨김처리 -->
       </ion-row>
       <br>
       <ion-row>
@@ -160,26 +153,11 @@
         </ng-container>
       </ion-row>
     </ion-grid>
-  </ng-container>
+  </ng-container> -->
 
   <!-- 진행중인 챌린지가 없을때 -->
-  <ng-container *ngIf="!challengeMissionData">
+  <!-- <ng-container *ngIf="!challengeMissionData">
     <ion-grid>
-      <!-- <ion-row [ngClass]="{ 'show_more1' : !isShowMore, 'show_more2' : isShowMore}">
-        <img  src="assets/img/myinfo/watch.jpg"/>
-      </ion-row>
-      <ion-row>
-        <ng-container *ngIf="!isShowMore">
-          <button ion-button (click)="showMore(true)" class="btn_show_more1" outline >
-            상품정보 더보기 ▼
-          </button>
-        </ng-container>
-        <ng-container *ngIf="isShowMore">
-          <button ion-button (click)="showMore(false)" class="btn_show_more1" outline >
-            상품정보 접기 ▲
-          </button>
-        </ng-container>
-      </ion-row> -->
       <ion-row>
         <div
           style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 10%; background-color:#f1f1f1">
@@ -192,7 +170,7 @@
         <div class="my_noData">진행 중인 챌린지가 없습니다.</div>
       </ion-row>
     </ion-grid>
-  </ng-container>
+  </ng-container> -->
 
 
 

@@ -59,6 +59,10 @@ import { AdressPage } from '../adress/adress';
 import { OrderSucessCardPage } from '../orderSucess-Card/orderSucess-Card';
 import { SungwooBeautyPage } from '../sungwoo-beauty/sungwoo-beauty';
 import { OrderDetailPage } from '../order-detail/order-detail';
+import { PostBoxPage } from '../postbox/postbox';
+import { BleTestPage } from '../bletest/bletest';
+import { LoginpagePage } from '../login/loginpage/loginpage';
+
 
 @IonicPage()
 @Component({
@@ -210,7 +214,7 @@ export class HomePage {
   youTubeArrayData: Array<any> = new Array<any>();
   videoDetailData: Array<any> = new Array<any>();
   isExitApp: boolean = false;
-
+  checkPlinicUser: any;
 
   constructor(
     private fcm: FCM,
@@ -248,7 +252,7 @@ export class HomePage {
     });
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     // console.log("ngOnInit Home");
     if (this.platform.is("android")) {
       //안드로이드 app.scss의 내용과 ios의 내용이 달라 분기로 구분함
@@ -298,11 +302,12 @@ export class HomePage {
     }
   }
 
-  async ionViewDidLoad() {
-    await this.loadItems();
-    await this.roadbeauty();
-    this.firstCarezoneData = await this.firstLoadCareZone();
-    this.bannerData = await this.roadbanner();
+  ionViewDidLoad() {
+    console.log("didLoad");
+    this.loadItems();
+    this.roadbeauty();
+    this.firstCarezoneData = this.firstLoadCareZone();
+    this.bannerData = this.roadbanner();
     this.topbannerLoad();
     if (this.userData) {
       if (
@@ -321,9 +326,8 @@ export class HomePage {
     this.auth.setUserStoragetab(0);
   }
 
-  async ionViewWillEnter() {
-    // console.log("willEnter");
-    await this.skinQnaLoad();
+  ionViewWillEnter() {
+    this.skinQnaLoad();
     if (this.userData) {
       this.challengeChkMission(this.userData.email);
 
@@ -340,7 +344,13 @@ export class HomePage {
     this.secondCarezoneData = this.secondLoadCareZone();
   }
 
-  async ionViewDidEnter() {
+  ionViewDidEnter() {
+    console.log("didenter");
+    // if (this.userData === null || this.userData === undefined) {
+    //   this.auth.logout();
+    //   // this.nav.setRoot(LoginPage);
+    // }
+
     if (this.platform.is("ios") || this.platform.is("android")) {
       this.inItFCM();
       if (this.platform.is("android")) {
@@ -439,7 +449,8 @@ export class HomePage {
       if (
         items.from === "kakao" ||
         items.from === "google" ||
-        items.from === "naver"
+        items.from === "naver" || 
+        items.from === "apple"
       ) {
         this.userData = {
           accessToken: items.accessToken,
@@ -466,6 +477,12 @@ export class HomePage {
         this.challengeChkMission(this.userData.email);
         // this.reloadUserPoint(this.userData.snsid); 2021-03-17 포인트 불러 오기 변경
         this.reloadUserPoint(this.userData.email);
+        if (this.userData === null || this.userData === undefined || this.userData.email === '') {
+          this.auth.logout().then(() => {
+            this.app.getRootNav().setRoot(LoginpagePage);
+          });
+        }
+        this.isPlinicUser(this.userData.email);
       } else {
         this.userData = {
           accessToken: items.accessToken,
@@ -484,42 +501,14 @@ export class HomePage {
         // this.chkmission(this.userData.email); 2020-02-10 챌린지 체크로 변경되어 주석 처리
         this.challengeChkMission(this.userData.email);
         this.reloadUserPoint(this.userData.email);
+        if (this.userData === null || this.userData === undefined || this.userData.email === '') {
+          this.auth.logout().then(() => {
+            this.app.getRootNav().setRoot(LoginpagePage);
+          });
+        }
+        this.isPlinicUser(this.userData.email);
       }
-      // this.auth.getSkinScore(this.userData.email).subscribe(items => {
-      //   this.skinScoreData = items;
-
-      //   if (items !== '') {
-      //     this.skinScoreChk = true;
-      //     var i = (parseInt(this.skinScoreData.score.length) - 1);
-      //     // console.log("ii" + i);
-      //     var k = (parseInt(this.skinScoreData.score.length) - 2);
-      //     // console.log("kk" + i);
-
-      //     if (i >= 0) {
-
-      //       this.circle_moisture = this.skinScoreData.score[i].moisture;
-      //       this.circle_oil = this.skinScoreData.score[i].oil;
-      //       this.circle_date = this.skinScoreData.score[i].saveDate.substr(0, 10);
-
-      //       this.total_score = (parseInt(this.circle_moisture) + parseInt(this.circle_oil)) / 2;
-      //       // console.log("total :" + this.total_score);
-
-      //     }
-      //     if (k >= 0) {
-      //       this.pre_circle_moisture = this.skinScoreData.score[k].moisture;
-      //       this.pre_circle_oil = this.skinScoreData.score[k].oil;
-      //       this.pre_circle_date = this.skinScoreData.score[k].saveDate.substr(0, 10);
-
-      //       this.pre_total_score = (parseInt(this.pre_circle_moisture) + parseInt(this.pre_circle_oil)) / 2;
-      //       // console.log("pre_total :" + this.pre_total_score);
-
-      //     }
-      //     // console.log("this.circle_moisture" + this.circle_moisture);
-
-      //     // console.log("moisture:::::::" + this.skinScoreData.score[i].moisture);
-      //     // console.log("oil:::::::" + this.skinScoreData.score[i].oil);
-      //   }
-      // });
+      
     });
   }
 
@@ -1065,20 +1054,20 @@ export class HomePage {
     this.nav.parent.select(1);
   }
 
-  public async openCommunityTab1() {
-    await this.auth.setUserStoragetab(0); //그래서 스토리지에 저장을 하고 그것을 이동한 페이지에서 스토리지에 값을 불러와 슬라이드로 이동
+  public openCommunityTab1() {
+    this.auth.setUserStoragetab(0); //그래서 스토리지에 저장을 하고 그것을 이동한 페이지에서 스토리지에 값을 불러와 슬라이드로 이동
     this.nav.parent.select(3); //이벤트 처리 방법은 좋은 방법이나 페이지가 넘어가면 동작이 안되는 문제가 발생
     this.events.publish("tabs1", "tabs1");
   }
 
-  public async openCommunityTab2() {
-    await this.auth.setUserStoragetab(2);
+  public openCommunityTab2() {
+    this.auth.setUserStoragetab(2);
     this.nav.parent.select(3);
     this.events.publish("tabs2", "tabs2");
   }
 
-  public async openCommunityTab3() {
-    await this.auth.setUserStoragetab(1);
+  public openCommunityTab3() {
+    this.auth.setUserStoragetab(1);
     this.nav.parent.select(3);
     this.events.publish("tabs3", "tabs3");
   }
@@ -1584,7 +1573,7 @@ export class HomePage {
     alertUpdate.present();
   }
 
-  async showAlertProduct_ios(title, message) {
+  showAlertProduct_ios(title, message) {
     let alertUpdate = this.alertCtrl.create({
       cssClass: "push_alert_product2_ios",
 
@@ -1751,6 +1740,33 @@ export class HomePage {
         console.log("배송 조회 페이지 닫힘");
       });
     });
+  }
+
+  goToTemplate() {
+    // var platform = '';
+    // if (this.platform.is('ios')) { platform = 'ios'; } else { platform = 'android';}
+    // this.auth.setServerLog(this.userData.email, this.userData.nickname, "로그 내용", "테스트 타입", platform).subscribe(data =>{console.log("이력 성공")}, error=>{console.log("이력 실패")});
+    this.nav.push(BleTestPage);
+    // this.auth.logout().then(() => {
+    //   this.app.getRootNav().setRoot(LoginpagePage);
+    // });
+  }
+
+  isPlinicUser(email) {
+    this.images.isPlinicUser(email).subscribe(data => {
+      this.checkPlinicUser = data;
+      if (this.checkPlinicUser !== '') {
+        console.log(this.checkPlinicUser.email + " : 정상 사용자 존재함");
+      } else {
+        this.auth.logout().then(() => {
+          this.app.getRootNav().setRoot(LoginpagePage);
+        });
+      }
+    }, error => {
+      this.auth.logout().then(() => {
+        this.app.getRootNav().setRoot(LoginpagePage);
+      });
+    })
   }
 
 

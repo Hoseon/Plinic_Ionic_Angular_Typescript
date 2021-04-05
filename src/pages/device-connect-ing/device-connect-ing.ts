@@ -153,6 +153,7 @@ export class DeviceConnectIngPage {
   }
 
   public deviceFail() {
+    this.ble.stopScan();
     // this.navCtrl.push(DeviceConnectFailPage);
     //this.navCtrl.setRoot(TabsPage);
     // if (this.navParams.get('carezoneData')) {

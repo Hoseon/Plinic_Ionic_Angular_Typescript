@@ -12,9 +12,6 @@ import { AuthService } from '../../providers/auth-service';
 import { ImagesProvider } from '../../providers/images/images';
 import { MyinfoPage } from '../myinfo/myinfo';
 
-
-
-
 /**
  * Generated class for the DeviceSkinIngPage page.
  *
@@ -121,6 +118,7 @@ export class DeviceSkinIngPage {
   updateId: any;
   videoUrl: any;
   mode: any;
+  intervalCheck: any;
 
 
   constructor(private images: ImagesProvider, private auth: AuthService, private alertCtrl: AlertController, private ble: BLE, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public modalCtrl: ModalController,
@@ -272,7 +270,20 @@ export class DeviceSkinIngPage {
         // })
         this.ble.connect(this.device.id).subscribe(
           peripheral => {
-            console.log("커넥션이 정상적");
+            this.intervalCheck = setInterval(() => {
+              console.log("커넥션이 정상적");
+              let value = 1234;
+              let buffer = new Uint8Array([value]).buffer;
+              this.ble.write(this.device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC, buffer).then(result => {
+                  console.log("BLE 쓰기 성공");
+                  console.log(JSON.stringify(result));
+              }, e => {
+                  console.log("BLE 쓰기 실패");
+                  console.log(JSON.stringify(e));
+                }
+              );  
+            }, 60000);
+            
             // console.log("커넥션이 잘 되었는지??");
             // this.ble.refreshDeviceCache(device.id, 2000).then(result => {
             //   console.log("refresh sucess : " + result);
@@ -286,7 +297,10 @@ export class DeviceSkinIngPage {
           // peripheral => this.bleshowAlert('Disconnected', 'The peripheral unexpectedly disconnected')
           peripheral => { //디바이스 연결 중단되면 누적 처리 후 종료
             console.log("커넥션이 종료처리 됨");
-    
+            clearInterval(this.intervalCheck);
+            // var platform = '';
+            // if (this.platform.is('ios')) { platform = 'ios'; } else { platform = 'android';}
+            // this.auth.setServerLog(this.userData.email, this.userData.nickname, JSON.stringify(peripheral), "케어하기 블루투스 연결 끊김", platform).subscribe(data =>{console.log("이력 성공")}, error=>{console.log("이력 실패")});
             // console.log("연결이 종료됨 케어모드");
             // this.bleshowAlert('Disconnected', '디바이스 연결이 중단 되었습니다.');
             if (this.navParams.get('carezoneData')) {
@@ -297,17 +311,19 @@ export class DeviceSkinIngPage {
               this.userTimeUpdate();
             //   this.navCtrl.pop().then(() => this.navCtrl.pop())
             }
-          });
+          }, 
+        );
       });
   }
 
   onConnected(peripheral) {
 
     // console.log("디바이스 서비스 정보 : " + JSON.stringify(peripheral));
-
-    this.ble.startNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
-      // console.log("1234");
-    })
+    
+    //2021-04-01 잠시 주석 처리
+    // this.ble.startNotification(this.peripheral.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
+    //   // console.log("1234");
+    // })
 
 
     // this.peripheral = peripheral;
@@ -423,6 +439,7 @@ export class DeviceSkinIngPage {
       cssClass: 'push_alert_cancel2',
       title: title,
       message: message,
+      enableBackdropDismiss: true,
       buttons: [{
         text: '홈으로',
           handler: () => {
@@ -439,6 +456,9 @@ export class DeviceSkinIngPage {
           this.viewCtrl.dismiss().then(() => this.navCtrl.push(MyinfoPage));
           }
         }]
+    });
+    alert.onDidDismiss(()=>{
+      this.viewCtrl.dismiss().then(() => this.navCtrl.setRoot(TabsPage));
     });
     alert.present();
     this.navCtrl.pop().then(() => this.navCtrl.pop().then(()=> this.navCtrl.pop()));
@@ -555,6 +575,7 @@ export class DeviceSkinIngPage {
         this.stepdesc = "목 마사지(1분)";
         this.desc = "아래에서 위로 마사지해주세요.";
       } else if (this.displayTime === "00:05:00") {
+        this.device_disconnect();
         this.step = "5단계";
         this.animpoint = "anim-point5";
         this.stepdesc = "V라인 리프팅";
@@ -736,21 +757,32 @@ export class DeviceSkinIngPage {
 
   randomUrl() {
     var urlNo;
-    urlNo = this.makeRandom(1,5);
+    urlNo = this.makeRandom(1,4);
     
-    switch(urlNo) {
-      case 1 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_guide_20200525.mp4';
-      // case 1 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_use_v1_720.mp4';
+    switch (urlNo) {
+      
+      case 1 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/%5BVAP%5D210324_01.mp4';
                break;
-      case 2 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/Plinic_SNS_Mini_Clipse_Ver02.mp4';
+      case 2 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/%5BVAP%5D210319_02.mp4';
                break;
-      case 3 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_guide_20200525.mp4';
+      case 3 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/%5BVAP%5D210216_03.mp4';
                break;   
-      case 4 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_eng.mp4';
+      case 4 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/%5BVAP%5D210304_04.mp4';
                break;   
-      case 5 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_clinic.mp4';
-               break;   
-      default : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_guide_20200525.mp4';
+      default : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/%5BVAP%5D210324_01.mp4';
+
+      // case 1 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_guide_20200525.mp4';
+      // // case 1 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_use_v1_720.mp4';
+      //          break;
+      // case 2 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/Plinic_SNS_Mini_Clipse_Ver02.mp4';
+      //          break;
+      // case 3 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_guide_20200525.mp4';
+      //          break;   
+      // case 4 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_eng.mp4';
+      //          break;   
+      // case 5 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_clinic.mp4';
+      //          break;   
+      // default : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_guide_20200525.mp4';
     }
     console.log("현재 비디오 주소 : " + this.videoUrl);
   }

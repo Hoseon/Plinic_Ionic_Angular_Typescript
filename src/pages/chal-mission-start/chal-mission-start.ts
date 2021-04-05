@@ -171,6 +171,9 @@ export class ChalMissionStartPage {
   }
 
   async ionViewWillEnter() {
+    if (this.userData.email) {
+      this.challengeChkMission(this.userData.email);
+    }
     console.log("ionViewWillEnter Start");
     // console.log("Enter Mission Start");
     // this.showLoading();
@@ -454,8 +457,10 @@ export class ChalMissionStartPage {
         this.isChkStartDate = true;
       } else if (data.length > 0) {
         for (let i = 0; i < data.length; i++) {
-          if(data[i].createdAt) {
-            var compareDay = this.getCovertKoreaTime(this.chkStartDate.setDate(new Date(this.getCovertKoreaTime(data[i].createdAt)).getDate() + 13))
+          if (data[i].createdAt) {
+            console.log(this.getCovertKoreaTime(data[i].createdAt));
+            console.log(this.getCovertKoreaTime(this.addDays(data[i].createdAt, 14)));
+            var compareDay = this.getCovertKoreaTime(this.addDays(data[i].createdAt, 14));
             var today1 = new Date();
             var today2 = this.getCovertKoreaTime(today1); 
             this.startChallDate = compareDay.substr(0,10);
@@ -497,7 +502,7 @@ export class ChalMissionStartPage {
       if(Number(this.missionCounter2) >= 10) {
         this.maxcount = true;
       } else {
-        this.maxcount = false
+        this.maxcount = false;
       }
     });
   }
@@ -1412,6 +1417,12 @@ export class ChalMissionStartPage {
         }
       });
     }
+  }
+
+  addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
   }
 
 }

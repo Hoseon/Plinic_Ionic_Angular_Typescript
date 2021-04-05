@@ -37,13 +37,13 @@
       <ion-col col-4 class="">
         <ng-container *ngIf="!isFlip"> 
           <div *ngIf="userData" class="flipStyle" (click)="myinfo()">
-            <div class="flip_number" text-left #numberbtn></div>
+            <div class="Create-account" text-left #numberbtn></div>
             <!-- <div class="number_width"></div> -->
           </div>
         </ng-container>
         <ng-container *ngIf="isFlip"> 
           <div *ngIf="userData" class="" (click)="myinfo()">
-            <div class="number_width2">{{totaluserpoint}}</div>
+            <div class="Create-account">{{totaluserpoint}}</div>
           </div>
         </ng-container>
       </ion-col>
@@ -78,7 +78,7 @@
 
   <ng-container *ngIf="!challengeData">
     <ng-container *ngIf="userData">
-      <!-- <button ion-button class="skin_btn" (click)="goToAddress()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button> -->
+      <!-- <button ion-button class="skin_btn" (click)="goToTemplate()"><div class="ing_button">블루투스 테스트 하기</div></button> -->
       <button ion-button class="skin_btn" (click)="openCareZoneTab()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button>
       <!-- <button ion-button class="skin_btn" (click)="review()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button> -->
       <!-- <button ion-button class="skin_btn" (click)="productMain()"><div class="ing_button">참여 중인 챌린지가 없습니다</div></button> -->
@@ -94,15 +94,15 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <!-- <ion-row>
         <ion-col>
           <img class="care_2wk" (click)="skinCheck()" src="assets/img/home/home_image_reporter 1@3x.png">
         </ion-col>
-      </ion-row>
+      </ion-row> -->
 
       <ion-row>
         <ion-col>
-          <img class="chulsuk_check" (click)="chulsuk_check()" src="assets/img/home/img-home-check@3x.png">
+          <img class="chulsuk_check" (click)="chulsuk_check()" src="assets/img/home/home_image_dailycheck@3x.png">
         </ion-col>
       </ion-row>
   </ion-list>
@@ -115,7 +115,7 @@
         <img class="ic_system_arrow_white2" src="assets/img/home/ic-system-arrow-white@3x.png" />
       </ion-col>
     </ion-row >
-    <img (click)="goToPoinZone()" class="pointZone" src="assets/img/home/home_image_pointzone@3x.png" />
+    <img (click)="goToPoinZone()" class="pointZone" src="assets/img/home/pointshop@3x.png" />
     <!-- <ion-row>
       <ion-col>
         <img class="chulsuk_check" (click)="chulsuk_check()" src="assets/img/home/img-home-check@3x.png">
@@ -158,7 +158,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-list class="chuchun" no-padding>
+  <!-- <ion-list class="chuchun" no-padding>
     <ion-row>
       <ion-col (click)="openCommunityTab3()" class="tip_title left-margin">추천영상
         <img class="ic_system_arrow_white2" src="assets/img/home/ic-system-arrow-white@3x.png" />
@@ -166,7 +166,6 @@
     </ion-row>
 
     <ion-slides mode="ios" id="movie" pager>
-      <!-- <ng-container *ngIf="youTubeArrayData"> -->
       <ion-slide *ngFor="let tubeData of youTubeArrayData; let i = index;" (click)="openMoviePage(tubeData)">
         <img class="movie_img1" src="{{tubeData.snippet.thumbnails.maxres.url}}" />
         <div margin-left margin-top class="movText1_1">뷰티꿀팁<span class="movie_text2"> {{tubeData.snippet.title}}</span>
@@ -177,10 +176,9 @@
         </div>
         <br>
       </ion-slide>
-      <!-- </ng-container> -->
     </ion-slides>
     
-  </ion-list>
+  </ion-list> -->
 
   <!-- home_image_pointzone@3x.png -->
 
@@ -213,9 +211,9 @@
         </ion-slides>
       </ion-col>
     </ion-row>
-  </ion-list> -->
-
-  <br>
+  </ion-list> 
+  <br>-->
+  
   <ion-list class="bottom-tip">
 
     <ion-row>

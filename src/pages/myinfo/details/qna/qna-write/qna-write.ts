@@ -140,7 +140,7 @@ export class QnaWritePage {
   qna_submit() {
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert_cancel',
-      title: "문의하기",
+      // title: "문의하기",
       message: "문의하기 내용을 전송하시겠습니까? <br> 관리자에게 답변을 받을 수 있습니다.",
       buttons: [
         {

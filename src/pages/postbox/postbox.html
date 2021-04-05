@@ -1,0 +1,132 @@
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core') ">
+    <ion-buttons left>
+      <button (click)="close()" ion-button icon-only>
+      </button>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>알림함</ion-title>
+    <ion-buttons (click)="myinfo()" right>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png"/>
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>알림함</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-grid class="">
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class="checkImg"><img src="assets/img/postbox/verified.svg" /></ion-col>
+      <ion-col col-10 class=""><div>챌린지 상품 배송 안내</div></ion-col>
+      <ion-col col-1 class=""><ion-icon ios="md-close" md="md-close"></ion-icon></ion-col>
+    </ion-row>
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class="checkImg"></ion-col>
+      <ion-col col-10 class=""><div>축하합니다! 챌린지에 성공하여 이벤트 상품 (송장번
+          호:1234-5678-9102) 이 발송 될 예정입니다.</div></ion-col>
+      <ion-col col-1 class=""></ion-col>
+    </ion-row>
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class="checkImg"></ion-col>
+      <ion-col col-8 class=""><div class="detail_text2">3월15일</div></ion-col>
+      <ion-col col-3 class=""><div float-left class="detail_text">자세히보기 </div><ion-icon class="iconColor" ios="md-arrow-forward" md="md-arrow-forward"></ion-icon></ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <div style="height:1px; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1"></div>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="">
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col class="checkImg" col-1><img src="assets/img/postbox/icon_notice.svg" /></ion-col>
+      <ion-col col-10 class=""><div>정책 변경 안내</div></ion-col>
+      <ion-col col-1 class=""><ion-icon ios="md-close" md="md-close"></ion-icon></ion-col>
+    </ion-row>
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class="checkImg"></ion-col>
+      <ion-col col-10 class=""><div>2021년 03월08일부로 플리닉 서비스 포인트 정책이 
+          변경됨을 공지드립니다.</div></ion-col>
+      <ion-col col-1 class=""></ion-col>
+    </ion-row>
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class="checkImg"></ion-col>
+      <ion-col col-8 class=""><div class="detail_text2">3월15일</div></ion-col>
+      <ion-col col-3 class=""><div float-left class="detail_text">자세히보기 </div><ion-icon class="iconColor" ios="md-arrow-forward" md="md-arrow-forward"></ion-icon></ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <div style="height:1px; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1"></div>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="">
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class=" checkImg"><img src="assets/img/postbox/icon_contents.svg" /></ion-col>
+      <ion-col col-10 class=""><div>댓글알림</div></ion-col>
+      <ion-col col-1 class=""><ion-icon ios="md-close" md="md-close"></ion-icon></ion-col>
+    </ion-row>
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class="checkImg"></ion-col>
+      <ion-col col-10 class=""><div>내가 쓴 글에 댓글이 달렸어요! 지금 바로 확인해보세요</div></ion-col>
+      <ion-col col-1 class=""></ion-col>
+    </ion-row>
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class="checkImg"></ion-col>
+      <ion-col col-8 class=""><div class="detail_text2">3월15일</div></ion-col>
+      <ion-col col-3 class=""><div float-left class="detail_text">자세히보기 </div><ion-icon class="iconColor" ios="md-arrow-forward" md="md-arrow-forward"></ion-icon></ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <div style="height:1px; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1"></div>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="">
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class=" checkImg"><img src="assets/img/postbox/icon_ calendar.svg" /></ion-col>
+      <ion-col col-10 class=""><div>출석체크 안내</div></ion-col>
+      <ion-col col-1 class=""><ion-icon ios="md-close" md="md-close"></ion-icon></ion-col>
+    </ion-row>
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class="checkImg"></ion-col>
+      <ion-col col-10 class=""><div>플리닉을 잊은건 아니겠죠...?</div></ion-col>
+      <ion-col col-1 class=""></ion-col>
+    </ion-row>
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class="checkImg"></ion-col>
+      <ion-col col-8 class=""><div class="detail_text2">3월15일</div></ion-col>
+      <ion-col col-3 class=""><div float-left class="detail_text">자세히보기&nbsp;&nbsp;</div><ion-icon class="iconColor" ios="md-arrow-forward" md="md-arrow-forward"></ion-icon></ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <div style="height:1px; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1"></div>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="">
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class=" checkImg"><img src="assets/img/postbox/icon_shopping.svg" /></ion-col>
+      <ion-col col-10 class=""><div>상품 종료 안내</div></ion-col>
+      <ion-col col-1 class=""><ion-icon ios="md-close" md="md-close"></ion-icon></ion-col>
+    </ion-row>
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class="checkImg"></ion-col>
+      <ion-col col-10 class=""><div>[오늘 마감] 놓치면 땅을 치고 후회할 그 상품!</div></ion-col>
+      <ion-col col-1 class=""></ion-col>
+    </ion-row>
+    <ion-row margin-left margin-right align-items-center class="">
+      <ion-col col-1 class="checkImg"></ion-col>
+      <ion-col col-8 class=""><div class="detail_text2">3월15일</div></ion-col>
+      <ion-col col-3 class=""><div float-left class="detail_text">자세히보기 </div><ion-icon class="iconColor" ios="md-arrow-forward" md="md-arrow-forward"></ion-icon></ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <div style="height:1px; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1"></div>
+    </ion-row>
+  </ion-grid>
+</ion-content>

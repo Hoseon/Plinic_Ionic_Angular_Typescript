@@ -14,7 +14,7 @@
     </ion-buttons>
     <!-- <img class="android_search" style="left:5%" (click)="community_search()"
       src="assets/img/beauty/ic-system-search@3x.png" /> -->
-    <ion-title class="android_title" text-wrap>POST</ion-title>
+    <ion-title class="android_title" text-wrap>VIDEO</ion-title>
   </ion-navbar>
 
   <ion-navbar *ngIf="platform.is('ios') || platform.is('core')" no-lines>
@@ -31,7 +31,7 @@
           <img (click)="myinfo()" margin-right float-end class="headerIoncMargin" src="assets/img/svg/my.svg" />
         </button>
     </ion-buttons>
-    <ion-title class="ios_title" text-wrap>POST</ion-title>
+    <ion-title class="ios_title" text-wrap>VIDEO</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -42,10 +42,12 @@
         <div *ngIf="communityBeautyLoadData" class="test">#이번주 핫클립({{communityBeautyLoadData.length}}개)</div>
         <!-- <div (click)="select_popover()">팝오버 테스트</div> -->
         <button *ngIf="sortButton" (click)="select_popover()" ion-button icon-only clear>
-          <img src="assets/img/svg/dropbox.svg" />
+          <!-- <img src="assets/img/svg/dropbox.svg" /> -->
+          <img src="assets/img/svg/dropboxCreate.svg" />
         </button>
         <button *ngIf="!sortButton" (click)="select_popover()" ion-button icon-only clear>
-          <img src="assets/img/svg/dropboxCreate.svg" />
+          <!-- <img src="assets/img/svg/dropboxCreate.svg" /> -->
+          <img src="assets/img/svg/dropbox.svg" />
         </button>
       </ion-row>
     </ion-grid>
@@ -75,10 +77,12 @@
           <div *ngIf="communityBeautyLoadData" class="test">#슬기로운 플뷰({{communityBeautyLoadData.length}}개)</div>
           <!-- <div (click)="select_popover()">팝오버 테스트</div> -->
           <button *ngIf="sortButton" (click)="select_popover()" ion-button icon-only clear>
-            <img src="assets/img/svg/dropbox.svg" />
+            <img src="assets/img/svg/dropboxCreate.svg" />
+            <!-- <img src="assets/img/svg/dropbox.svg" /> -->
           </button>
           <button *ngIf="!sortButton" (click)="select_popover()" ion-button icon-only clear>
-            <img src="assets/img/svg/dropboxCreate.svg" />
+            <img src="assets/img/svg/dropbox.svg" />
+            <!-- <img src="assets/img/svg/dropboxCreate.svg" /> -->
           </button>
         </ion-row>
       </ion-grid>

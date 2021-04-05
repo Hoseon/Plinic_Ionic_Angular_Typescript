@@ -138,9 +138,11 @@
     <ng-container *ngFor="let reviewData of productReview; let i = index">
       <ng-container>
         <img class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png">
-        <ng-container>
-          <button ion-button class="comment_btn"
-                  (click)="comment_popover($event, i, registerReply.email, registerReply._id);"></button>
+        <ng-container *ngIf="userData">
+          <ng-container *ngIf="userData.email === reviewData.email">
+            <button ion-button class="comment_btn"
+                    (click)="comment_popover($event, i, reviewData.email, reviewData._id);"></button>
+          </ng-container>
         </ng-container>
         <div class="container">
           <div class="nickname_comment">{{emailSecurity(reviewData.email)}}</div>
@@ -159,7 +161,10 @@
           </ionic3-star-rating>
         </div>
         <ng-container>
-          <div class="content_comment" text-wrap>{{reviewData.content}}</div>
+          <div class="content_comment" *ngIf="comment_popover_option_textarea !== i " text-wrap>{{reviewData.content}}</div>
+          <button *ngIf="comment_popover_option_textarea === i" (click)="productReviewUpdate(reviewData.email, reviewData._id)" ion-button class="comment_enroll">수정</button>
+          <textarea #myInput *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea"  maxLength="300" (keydown)="resize()" [(ngModel)]="reviewData.content" (input)="adjustTextareaUpdate($event)"
+        autofocus="true"></textarea>
         </ng-container>
       </ng-container>
       <div style="height:1px; width:100%; display: block; margin-top: 6vh; background-color:#f1f1f1"></div>
@@ -203,7 +208,7 @@
   </ion-row>
 
   <ion-list no-lines>
-    <button class="page_option" mode="ios" ion-item icon-start (click)="sungWoo()">1:1 문의하기</button>
+    <button class="page_option" mode="ios" ion-item icon-start (click)="kakaoChat()">1:1 문의하기</button>
     <ion-row>
       <div style="height:0.1vh; width:100vw; display: block; background-color:#d7d7d7"></div>
     </ion-row>
@@ -224,7 +229,7 @@
   <ion-grid no-padding>
     <ion-row>
       <ion-col no-padding col-6>
-        <button class="qna_btn" ion-button (click)="write_Review()">리뷰쓰고 500P 적립</button>
+        <button class="qna_btn" ion-button (click)="write_Review()">리뷰쓰고 100P 적립</button>
       </ion-col>
       <ion-col no-padding col-6>
         <button *ngIf="productData && userData" class="qna_btn2" ion-button (click)="next(productData, userData)">구매하기</button>

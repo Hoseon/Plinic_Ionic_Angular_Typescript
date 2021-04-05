@@ -136,7 +136,7 @@ export class ChalMissionIngPage {
       }
 
     }
-    this.getCommentTimeZone();
+    // this.getCommentTimeZone();
     this.getUserimage();
 
 
@@ -179,7 +179,7 @@ export class ChalMissionIngPage {
   }
 
   ionViewDidLeave() {
-    this.subscriptionFourth.complete();
+    // this.subscriptionFourth.complete();
     console.log("ionViewDidLeave Timer Clear!");
 
   }
@@ -277,7 +277,7 @@ export class ChalMissionIngPage {
     //this.loading.dismiss();
     let alert = this.alertCtrl.create({
       cssClass: 'mission_alert_success',
-      title: '최종 순위 ' + this.rank + '위',
+      // title: '최종 순위 ' + this.rank + '위',
       subTitle: '축하합니다.',
       message: '보상상품 받으시고 <br /> 피부관리에 더욱 매진하세요.',
       buttons: [
@@ -570,9 +570,9 @@ export class ChalMissionIngPage {
           }
           return 0;
         });
-        this.startDate = data.startmission.substr(0, 10);
-        this.endDate = data.endmission.substr(0, 10);
-        this.imgUrl = "http://plinic.cafe24app.com/carezone_prodimages/".concat(data._id);
+        // this.startDate = data.startmission.substr(0, 10);
+        // this.endDate = data.endmission.substr(0, 10);
+        // this.imgUrl = "http://plinic.cafe24app.com/carezone_prodimages/".concat(data._id);
         //this.imgUrl.includes(data._id);
         //console.log(JSON.stringify(this.carezoneData));
         // this.loading.dismiss();
@@ -728,7 +728,7 @@ export class ChalMissionIngPage {
       this.challengeuseTime = data;
       this.challengeReward = this.challengeuseTime.reward;
       this.useCount = this.challengeuseTime.dailycheck.length;
-      if(this.useCount >= 7) {
+      if(this.useCount >= 7) { //사용자가 7일 사용하면 보상 받기 페이지로 간다
         this.isReward = true; 
       } else {
         this.isReward = false;
@@ -778,8 +778,8 @@ export class ChalMissionIngPage {
             this.showChallengefail(); //챌린지 실패 알림 팝업 보여줌
           } else {
             // console.log("챌린지 실패");
-            this.isFail = true;
-            this.showChallengefail(); //챌린지 실패 알림 팝업 보여줌
+            // this.isFail = true;
+            // this.showChallengefail(); //챌린지 실패 알림 팝업 보여줌
           }
 
         }
@@ -853,7 +853,7 @@ export class ChalMissionIngPage {
             tempRank++;
           }
         }
-        console.log(this.memberRanking);
+        // console.log(this.memberRanking);
       }
     });
   }
@@ -1300,6 +1300,10 @@ export class ChalMissionIngPage {
     return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000).toISOString()
   }
 
+  getCovertKoreaTime2(time) {
+    return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000).toISOString()
+  }
+
   //20200521 이용안내 페이지로 이동
   chalguide() {
     let modal = this.modalCtrl.create(ChalGuidePage);
@@ -1357,6 +1361,11 @@ export class ChalMissionIngPage {
   private makeRandom(min, max) {
         var RandVal = Math.floor(Math.random() * (max - min + 1)) + min;
         return RandVal;
+  }
+
+  goToChall() {
+    this.nav.parent.select(1);
+    this.nav.pop();
   }
 
 

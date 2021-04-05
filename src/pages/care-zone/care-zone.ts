@@ -38,6 +38,7 @@ export class CareZonePage {
   nickname: string;
   jwtHelper: JwtHelper = new JwtHelper();
   currentDate: Date = new Date();
+  currentDay: any;
   today: any = new Date().toISOString();
   new: Array<boolean> = new Array<boolean>();
   recruiting: Array<boolean> = new Array<boolean>();
@@ -106,13 +107,28 @@ export class CareZonePage {
   ) {
     this.platform.ready().then((readySource) => {
       this.androidBackButton();
+      if (this.platform.is('android') || this.platform.is('core')) {
+        this.currentDay = new Date().getDay();
+        console.log(new Date().getDay());
+        console.log(this.getCovertKoreaTime(new Date()));
+      }
+  
+      if (this.platform.is('ios')) {
+        this.currentDay = new Date().getDay();
+        console.log(new Date().getDay());
+        console.log(this.getCovertKoreaTime(new Date()));
+
+        // this.currentDay = this.getCovertKoreaTime2(new Date()).getDay();
+        // console.log(this.getCovertKoreaTime2(new Date()));
+        // console.log(this.getCovertKoreaTime2(new Date()).getDay());
+      }
       // this.carezoneData = this.roadcareZone();
       // this.loadItems();
     });
   }
 
   ionViewDidLoad() {
-    this.roadcareZone();
+    this.roadcareZone();  
   }
 
   ionViewWillEnter() {
@@ -167,7 +183,7 @@ export class CareZonePage {
         }
         this.reloadUserPoint(this.userData.email);
         this.chkmission(this.userData.email);
-        this.chkIngmission(this.userData.email);
+        // this.chkIngmission(this.userData.email);
       } else {
         this.userData = {
           accessToken: items.accessToken,
@@ -183,7 +199,7 @@ export class CareZonePage {
         };
         this.reloadUserPoint(this.userData.email);
         this.chkmission(this.userData.email);
-        this.chkIngmission(this.userData.email);
+        // this.chkIngmission(this.userData.email);
         this.from = 'plinic';
       }
       this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
@@ -295,7 +311,10 @@ export class CareZonePage {
 
       if (data !== '') {
         for (let i = 0; i < data.length; i++) {
-          if (this.getCovertKoreaTimeDay(new Date()) === Number(data[i].day)) {
+
+          // if (this.getCovertKoreaTimeDay(new Date().getDay()) === Number(data[i].day)) {
+          // if (new Date().getDay() === Number(data[i].day)) {
+          if (this.currentDay === Number(data[i].day)) {
             this.flag[i] = "지금참여";
           } else {
             this.flag[i] = "진행중";
@@ -354,7 +373,8 @@ export class CareZonePage {
     // 2020-02-11 챌린지 기능을 추가 this.images.chkMission(email).subscribe(data => {
     this.images.ChallengeChkMission(email).subscribe(data => {
       if (data.length <= 0) {
-        this.missionID="";
+        this.missionID = "";
+        this.missionData = "";
         // console.log("챌린지를 완료 했거나 참여중인게 없을때");
         // this.chkBtn = true; //챌린지 미 참여 중일때
       } else if (data.length > 0) {
@@ -617,8 +637,12 @@ export class CareZonePage {
     return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000).toISOString()
   }
 
+  getCovertKoreaTime2(time) {
+    return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000);
+  }
+
   getCovertKoreaTimeDay(time) {
-    return new Date(new Date(time).getTime() - new Date().getTimezoneOffset() * 60000).getDay();
+    return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000).getDay();
   }
 
   getSecondsAsDigitalClock3(inputSeconds: number) {  // 분까지만 표시 하기 위한 함수
@@ -676,6 +700,17 @@ export class CareZonePage {
     this.nav.push(OrderDetailPage, {}).then(() => {
       this.nav.getActive().onDidDismiss(data => {
         console.log("배송 조회 페이지 닫힘");
+      });
+    });
+  }
+
+  ingCarezone(missionId) {
+    this.nav.push(ChalMissionIngPage, { carezoeId: missionId }).then(() => {
+      this.nav.getActive().onDidDismiss(data => {
+        console.log("진행중인 챌린치 창이 닫힘");
+        if (this.userData) {
+          this.chkmission(this.userData.email);
+        }
       });
     });
   }

@@ -71,7 +71,7 @@ export class MovieTipPage {
   videoDetailData: Array<any> = new Array<any>();
   newSlideData : any;
   tipSlideData: any;
-  select_popover_option: any = "조회순";
+  select_popover_option: any = "최신순";
   items: any;
   items2: any;
   sortButton: boolean = true;
@@ -103,10 +103,12 @@ export class MovieTipPage {
 
   async ionViewDidLoad() {
     if(this.mode === 'hot')
-      await this.getMovieListSortView();
+      // await this.getMovieListSortView();
+      await this.getMovieListSortCreate();
     
     if (this.mode === 'plinic')
-      await this.getMoviePlinicListSortView();
+      // await this.getMoviePlinicListSortView();
+      await this.getMoviePlinicListSortCreate();
       
   }
 
@@ -617,8 +619,8 @@ export class MovieTipPage {
           } else {
             setTimeout(() => {
               this.sortButton = true;
-              this.select_popover_option = "조회순";
-              this.getMovieListSortView();
+              this.select_popover_option = "최신순";
+              this.getMovieListSortCreate();
             }, 100)
               
           }
@@ -679,8 +681,8 @@ export class MovieTipPage {
           } else {
             setTimeout(() => {
               this.sortButton = true;
-              this.select_popover_option = "조회순";
-              this.getMoviePlinicListSortView();
+              this.select_popover_option = "최신순";
+              this.getMoviePlinicListSortCreate();
             }, 100)
               
           }
@@ -710,7 +712,7 @@ export class MovieTipPage {
             setTimeout(() => {
               this.select_popover_option = "최신순";
               this.sortButton = false;
-              this.getMoviePlinicListSortView();
+              this.getMoviePlinicListSortCreate();
             }, 100);
           }
         });

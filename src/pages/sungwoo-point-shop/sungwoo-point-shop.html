@@ -115,7 +115,7 @@
                 <img class="nextImage" src="assets/img/pointShop/NextDeal01.jpg"/>
                 <!-- <img class="nextImage"
                   srcset="assets/img/pointShop/NextDeal01.png, assets/img/pointShop/NextDeal01@2x.png, assets/img/pointShop/NextDeal01@3x.png" /> -->
-                <div text-left class="nextText">레디큐 츄 망고맛 3입 X 10개 (2박스)레디큐 츄 망고맛 3입 X 10개 (2박스)</div>
+                <div text-left class="nextText">[네이처셋] 루테인 아스타잔틴 캡슐</div>
               </div>
             </ion-slide>
             <ion-slide class="">
@@ -123,7 +123,7 @@
                 <img class="nextImage" src="assets/img/pointShop/NextDeal02.jpg"/>
                 <!-- <img class="nextImage"
                   srcset="assets/img/pointShop/NextDeal02.png, assets/img/pointShop/NextDeal02@2x.png, assets/img/pointShop/NextDeal02@3x.png" /> -->
-                <div text-left class="nextText">레디큐 다이어트 츄 젤리 5입 X 10팩 (2box) </div>
+                <div text-left class="nextText">[네이처셋] 멀티비타민 종합비타민팩</div>
               </div>
             </ion-slide>
             <ion-slide class="">
@@ -131,7 +131,7 @@
                 <img class="nextImage" src="assets/img/pointShop/NextDeal03.jpg"/>
                 <!-- <img class="nextImage"
                   srcset="assets/img/pointShop/NextDeal01.png, assets/img/pointShop/NextDeal01@2x.png, assets/img/pointShop/NextDeal01@3x.png" /> -->
-                <div text-left class="nextText">레디큐 츄 망고맛 3입 X 10개 (2박스)레디큐 츄 망고맛 3입 X 10개 (2박스)</div>
+                <div text-left class="nextText">[테라큐민] MAX 커큐민 올금 강황</div>
               </div>
             </ion-slide>
           </ion-slides>
@@ -160,53 +160,31 @@
             </ion-col>
           </ion-row>
         </ng-container>
-        
-        <!-- <ion-row align-items-center>
-          <ion-col col-5 class="">
-            <img class="PlinicImage"
-              srcset="assets/img/pointShop/ampoule2.png, assets/img/pointShop/ampoule2@2x.png, assets/img/pointShop/ampoule2@3x.png" />
-          </ion-col>
-          <ion-col col-7 class="">
-            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
-            <div class="plinicText2">27%~ <del>240,000원</del></div>
-            <div class="plinicText4">175,000원</div>
-            <div class="plinicText5">최대 15,000P 사용가능</div>
-          </ion-col>
-        </ion-row>
-        <ion-row align-items-center>
-          <ion-col col-5 class="">
-            <img class="PlinicImage"
-              srcset="assets/img/pointShop/cream.png, assets/img/pointShop/cream@2x.png, assets/img/pointShop/cream@3x.png" />
-          </ion-col>
-          <ion-col col-7 class="">
-            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
-            <div class="plinicText2">10%~ <del>582,000원</del></div>
-            <div class="plinicText4">523,800원</div>
-            <div class="plinicText5">최대 50,000P 사용가능</div>
-          </ion-col>
-        </ion-row> -->
       </ion-grid>
       <br>
       <div style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1">
       </div>
       <br>
       <ion-grid>
-        <div margin-left margin-bottom text-left class="todaysDeal">홈케어 DEVICE</div>
+        <div margin-left margin-bottom text-left class="todaysDeal">플리닉 홈케어 디바이스</div>
       </ion-grid>
       <ion-grid>
-        <ion-row align-items-center>
-          <ion-col col-5 class="">
-            <img class="PlinicImage"
-              srcset="assets/img/pointShop/dual.png, assets/img/pointShop/dual@2x.png, assets/img/pointShop/dual@3x.png" />
-          </ion-col>
-          <ion-col col-7 class="">
-            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
-            <div class="plinicText2">10% ~ <del class="plinicText3">582,000원</del></div>
-            <div class="plinicText4">523,800원</div>
-            <div class="plinicText5">최대 50,000P 사용가능</div>
-          </ion-col>
-        </ion-row>
-        <ion-row align-items-center>
+        <ng-container *ngFor="let device of deviceData; let c = index;">
+          <ion-row (click)="cosmetic(device)" align-items-center>
+            <ion-col col-5 class="">
+              <img class="PlinicImage"
+              src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{device.filename}}" />
+            </ion-col>
+            <ion-col col-7 class="">
+              <div class="plinicText1">{{device.product_name}}</div>
+              <div class="plinicText2">{{device.saleAmount}}%~ <del class="plinicText3">{{addComma(device.price)}}원</del></div>
+              <div class="plinicText4">{{addComma(device.Amount)}}원</div>
+              <div class="plinicText5">최대 {{getMaxPoint(device.maxPercent, device.Amount)}}P 사용가능</div>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+        
+        <!-- <ion-row align-items-center>
           <ion-col col-5 class="">
             <img class="PlinicImage"
               srcset="assets/img/pointShop/single.png, assets/img/pointShop/single@2x.png, assets/img/pointShop/single@3x.png" />
@@ -241,7 +219,7 @@
             <div class="plinicText4">523,800원</div>
             <div class="plinicText5">최대 50,000P 사용가능</div>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
       </ion-grid>
       <br><br><br><br><br><br>
     </ion-slide>
@@ -250,7 +228,7 @@
       <ion-grid no-padding class="review_point_grid">
         <ion-row class="review_point_grid">
           <img class="backImage"
-            srcset="assets/img/pointShop/backImage@1x.png, assets/img/pointShop/backImage@2x.png, assets/img/pointShop/backImage@3x.png" />
+            src="assets/img/pointShop/backImage_20210331.jpg" />
         </ion-row>
         <ion-row justify-content-center class="review_point_btn1">
           <button ion-button icon-only clear text-center class="review_point_btn1_btn" (click)="care()"><img

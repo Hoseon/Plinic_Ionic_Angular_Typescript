@@ -105,7 +105,7 @@ export class PointLogPage {
           id: items.id,
           age_range: items.age_range,
           birthday: items.birthday,
-          email: items.snsid,
+          email: items.email,
           gender: items.gender,
           nickname: items.nickname,
           profile_image: items.profile_image,

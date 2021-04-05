@@ -117,18 +117,29 @@ export class SkinChekConnectPage {
     var urlNo;
     urlNo = this.makeRandom(1,5);
     
-    switch(urlNo) {
-      case 1 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_use_v1_720.mp4';
+    switch (urlNo) {
+      
+      case 1 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/%5BVAP%5D210324_01.mp4';
                break;
-      case 2 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/Plinic_SNS_Mini_Clipse_Ver02.mp4';
+      case 2 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/%5BVAP%5D210319_02.mp4';
                break;
-      case 3 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_guide_20200525.mp4';
+      case 3 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/%5BVAP%5D210216_03.mp4';
                break;   
-      case 4 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_eng.mp4';
+      case 4 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/%5BVAP%5D210304_04.mp4';
                break;   
-      case 5 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_clinic.mp4';
-               break;   
-      default : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_use_v1_720.mp4';
+      default: this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/%5BVAP%5D210324_01.mp4';
+        
+      // case 1 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_use_v1_720.mp4';
+      //          break;
+      // case 2 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/Plinic_SNS_Mini_Clipse_Ver02.mp4';
+      //          break;
+      // case 3 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_guide_20200525.mp4';
+      //          break;   
+      // case 4 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_eng.mp4';
+      //          break;   
+      // case 5 : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_clinic.mp4';
+      //          break;   
+      // default : this.videoUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/plinic_use_v1_720.mp4';
     }
     console.log("현재 비디오 주소 : " + this.videoUrl);
   }

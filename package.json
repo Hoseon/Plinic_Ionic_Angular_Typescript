@@ -39,6 +39,7 @@
     "@ionic-native/geolocation": "^4.20.0",
     "@ionic-native/google-plus": "^4.20.0",
     "@ionic-native/in-app-browser": "^4.20.0",
+    "@ionic-native/location-accuracy": "4.20.0",
     "@ionic-native/open-native-settings": "4.20.0",
     "@ionic-native/screen-orientation": "^4.20.0",
     "@ionic-native/social-sharing": "^4.20.0",

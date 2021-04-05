@@ -51,7 +51,7 @@
 
 
 <ion-content no-padding>
-  <ion-grid class="grid_backColor" no-padding>
+  <!-- <ion-grid class="grid_backColor" no-padding>
     <ion-row class="row1">
       <ion-col col-6>
         <ion-label class="ptext1">오늘의 날씨</ion-label>
@@ -81,7 +81,6 @@
               <div *ngIf="currentWeather_Temp" class="ptext4_1">{{currentWeather_Temp}} °</div>
             </ion-col>
             <ion-col col-4>
-              <!-- <div class="ptext4_2">{{pm10}}</div> 미세먼지 잠시 보류 2020-11-11-->
               <div *ngIf="currentWeather_Pm10" class="ptext4_2">{{currentWeather_Pm10}}</div>
             </ion-col>
             <ion-col col-4>
@@ -103,7 +102,7 @@
         </ion-grid>
       </ion-card>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
   <ng-container *ngIf="!skinAnalyData">
     <ion-label class="ptext6_nodata">오늘의 피부</ion-label>
     <div class="nodataText">피부 측정 이력이 없습니다<br>내 피부를 확인해보세요</div>

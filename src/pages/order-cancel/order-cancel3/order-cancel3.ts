@@ -50,7 +50,7 @@ export class OrderCancel3Page {
 
     let alert = this.alertCtrl.create({
       cssClass:'push_alert_cancel3',
-      title: '주문을 취소 하시겠습니까??',
+      title: '주문을 취소 하시겠습니까?',
       message: '더 좋은 상품과 서비스를<br>제공하기 위해 최선을 다하겠습니다.',
       buttons: [
         {
@@ -72,16 +72,41 @@ export class OrderCancel3Page {
 
   billCancelCompleted() {
     let alertComplet = this.alertCtrl.create({
-      cssClass:'push_alert_bill',
-      title: '주문취소가 완료되었습니다.',
+      cssClass:'push_alert',
+      title: '주문취소 완료',
+      enableBackdropDismiss: true,
       message: '더 좋은 상품과 서비스를<br>제공하기 위해 최선을 다하겠습니다.',
       buttons: [{
         text: '확인',
         handler: () => {
-    
+          // this.navCtrl.pop();
         }
       },]
     });
+    alertComplet.onDidDismiss(() => {
+      this.navCtrl.pop();
+    })
     alertComplet.present();
   }
+
+  statusToString(status) {
+    if (status === 'ready') {
+      //주문전
+      return '주문완료'
+    } else if (status === 'paid') {
+      //결제완료
+      return '결제완료'
+    } else if (status === 'deliver_ready') {
+      return '상품 준비중'
+    } else if (status === 'deliver_during') {
+      return '배송중'
+    } else if (status === 'deliverComp') {
+      return '배송완료'
+    }
+  }
+
+  pop() {
+    this.navCtrl.pop();
+  }
+
 }
