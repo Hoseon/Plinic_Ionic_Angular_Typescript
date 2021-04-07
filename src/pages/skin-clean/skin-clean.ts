@@ -278,7 +278,7 @@ export class SkinCleanPage {
         }
       }
       //볼 베스트, 워스트 값 구하기
-      this.worstValue = Math.min.apply(Math, this.diffValue.map(function(o) { return o.value }));
+      this.worstValue = Math.max.apply(Math, this.diffValue.map(function(o) { return o.value }));
       this.diffValue.forEach(element => {
         if(element.value == this.worstValue) {
           this.worstValue = {
@@ -298,7 +298,7 @@ export class SkinCleanPage {
           }
         }
       });
-      this.bestValue = Math.max.apply(Math, this.diffValue.map(function(o) { return o.value }));
+      this.bestValue = Math.min.apply(Math, this.diffValue.map(function(o) { return o.value }));
       this.diffValue.forEach(element => {
         if(element.value == this.bestValue) {
           this.bestValue = {
@@ -332,7 +332,7 @@ export class SkinCleanPage {
 
 
       //이마 베스트, 워스트 값 구하기
-      this.worstForeheadValue = Math.min.apply(Math, this.diffForeheadValue.map(function(o) { return o.value }));
+      this.worstForeheadValue = Math.max.apply(Math, this.diffForeheadValue.map(function(o) { return o.value }));
       this.diffForeheadValue.forEach(element => {
         if(element.value == this.worstForeheadValue) {
           this.worstForeheadValue = {
@@ -351,7 +351,7 @@ export class SkinCleanPage {
           }
         }
       });
-      this.bestForeheadValue = Math.max.apply(Math, this.diffForeheadValue.map(function(o) { return o.value }));
+      this.bestForeheadValue = Math.min.apply(Math, this.diffForeheadValue.map(function(o) { return o.value }));
       this.diffForeheadValue.forEach(element => {
         if(element.value == this.bestForeheadValue) {
           this.bestForeheadValue = {
@@ -455,7 +455,7 @@ export class SkinCleanPage {
       }
     }
 
-    this.worstValue = Math.min.apply(Math, this.diffValue.map(function(o) { return o.value }));
+    this.worstValue = Math.max.apply(Math, this.diffValue.map(function(o) { return o.value }));
     this.diffValue.forEach(element => {
       if(element.value == this.worstValue) {
         this.worstValue = {
@@ -464,7 +464,7 @@ export class SkinCleanPage {
         }
       }
     });
-    this.bestValue = Math.max.apply(Math, this.diffValue.map(function(o) { return o.value }));
+    this.bestValue = Math.min.apply(Math, this.diffValue.map(function(o) { return o.value }));
     this.diffValue.forEach(element => {
       if(element.value == this.bestValue) {
         this.bestValue = {
@@ -487,7 +487,7 @@ export class SkinCleanPage {
 
 
     //이마 베스트, 워스트 값 구하기
-    this.worstForeheadValue = Math.min.apply(Math, this.diffForeheadValue.map(function(o) { return o.value }));
+    this.worstForeheadValue = Math.max.apply(Math, this.diffForeheadValue.map(function(o) { return o.value }));
     this.diffForeheadValue.forEach(element => {
       if(element.value == this.worstForeheadValue) {
         this.worstForeheadValue = {
@@ -496,7 +496,7 @@ export class SkinCleanPage {
         }
       }
     });
-    this.bestForeheadValue = Math.max.apply(Math, this.diffForeheadValue.map(function(o) { return o.value }));
+    this.bestForeheadValue = Math.min.apply(Math, this.diffForeheadValue.map(function(o) { return o.value }));
     this.diffForeheadValue.forEach(element => {
       if(element.value == this.bestForeheadValue) {
         this.bestForeheadValue = {

@@ -71,27 +71,27 @@ page-myinfo {
     text-align: center;
   }
 
-  .toolbar-title-ios {
-    font-weight: bold;
-    font-size: 17px;
-    background-color: #FFF;
-    font-family: AppleSDGothicNeo-Regular;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    margin-top: -5%;
-    color: #292929;
-  }
+  // .toolbar-title-ios {
+  //   font-weight: bold;
+  //   font-size: 17px;
+  //   background-color: #FFF;
+  //   font-family: AppleSDGothicNeo-Regular;
+  //   font-style: normal;
+  //   font-stretch: normal;
+  //   line-height: normal;
+  //   letter-spacing: normal;
+  //   text-align: center;
+  //   margin-top: -5%;
+  //   color: #292929;
+  // }
 
-  .bar-button-clear-ios-default,
-  .bar-button-default-ios,
-  .bar-button-default.bar-button-ios-default {
-    margin-left: -15%;
-    margin-top: -10%;
-    color: transparent;
-  }
+  // .bar-button-clear-ios-default,
+  // .bar-button-default-ios,
+  // .bar-button-default.bar-button-ios-default {
+  //   margin-left: -15%;
+  //   margin-top: -10%;
+  //   color: transparent;
+  // }
 
   .ios_nav {
     background-color: transparent;
@@ -106,22 +106,22 @@ page-myinfo {
     background-color: #FFF;
   }
 
-  .ion-md-arrow-back:before {
-    position: absolute;
-    content: "\f27d";
-    left: 10%;
-    top: 2px;
-    width: 25px;
-    height: 25px;
-  }
+  // .ion-md-arrow-back:before {
+  //   position: absolute;
+  //   content: "\f27d";
+  //   left: 10%;
+  //   top: 2px;
+  //   width: 25px;
+  //   height: 25px;
+  // }
 
   .toolbar-ios {
-    margin-top: 4%;
+    margin-top: 8%;
   }
 
-  .back-button-text-ios {
-    font-size: 0;
-  }
+  // .back-button-text-ios {
+  //   font-size: 0;
+  // }
 
   .android_title {
     position: absolute;
@@ -133,15 +133,15 @@ page-myinfo {
     color: #292929;
   }
 
-  .ios_title {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-    height: 100%;
-    width: 120%;
-    color: #292929;
-  }
+  // .ios_title {
+  //   position: absolute;
+  //   left: 50%;
+  //   top: 20%;
+  //   transform: translateX(-50%);
+  //   height: 100%;
+  //   width: 120%;
+  //   color: #292929;
+  // }
 
   .android_search {
     position: absolute;
@@ -170,29 +170,29 @@ page-myinfo {
     padding: 0;
   }
 
-  .ios_search {
-    position: absolute;
-    margin-top: -5%;
-    right: 17%;
-    width: 25px;
-    height: 25px;
-    object-fit: contain;
-  }
+  // .ios_search {
+  //   position: absolute;
+  //   margin-top: -5%;
+  //   right: 17%;
+  //   width: 25px;
+  //   height: 25px;
+  //   object-fit: contain;
+  // }
 
-  .ios_my {
-    position: absolute;
-    right: 4%;
-    font-family: Roboto;
-    font-size: 18px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: right;
-    color: #292929;
-    margin-top: -4.5%;
-  }
+  // .ios_my {
+  //   position: absolute;
+  //   right: 4%;
+  //   font-family: Roboto;
+  //   font-size: 18px;
+  //   font-weight: normal;
+  //   font-style: normal;
+  //   font-stretch: normal;
+  //   line-height: normal;
+  //   letter-spacing: normal;
+  //   text-align: right;
+  //   color: #292929;
+  //   margin-top: -4.5%;
+  // }
 
   .android_setting {
     width: 25px;
@@ -207,9 +207,6 @@ page-myinfo {
     width: 25px;
     height: 25px;
     object-fit: contain;
-    right: 5%;
-    top: 50%;
-    position: absolute;
   }
 
   .profile_image {
@@ -1821,6 +1818,11 @@ page-myinfo {
 
   .testborder {
     border: solid 1px #5c59b6;
+  }
+
+  .headerIoncMargin {
+    margin: 5px;
+    margin-top: 10px !important;
   }
 
 }

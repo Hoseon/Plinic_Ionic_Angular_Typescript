@@ -1,5 +1,5 @@
 import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ViewController, ActionSheetController, App, AlertController, normalizeURL, ModalController } from 'ionic-angular';
+import { IonicApp, IonicPage, NavController, NavParams, Platform, ViewController, ActionSheetController, App, AlertController, normalizeURL, ModalController, MenuController, Toast, ToastController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AuthService } from '../../../providers/auth-service';
 import { ImagesProvider } from '../../../providers/images/images';
@@ -48,6 +48,9 @@ export class CommunityWritePage {
   load_id: any;
 
   text_edit: boolean = false;
+  exitToast: Toast;
+  lastTimeBackPress = 0;
+  timePeriodToExit = 2000;
 
   @ViewChild('image') imageElement: ElementRef;
   unregisterBackButtonAction: Function;
@@ -75,10 +78,23 @@ export class CommunityWritePage {
   ionViewWillLoad() {
   }
 
-  constructor(private imagesProvider: ImagesProvider, public _camera: Camera, public actionSheetCtrl: ActionSheetController, public nav: NavController,
+  constructor(
+    private imagesProvider: ImagesProvider,
+    public _camera: Camera,
+    public actionSheetCtrl: ActionSheetController,
+    public nav: NavController,
     private modalCtrl: ModalController,
-    public navParams: NavParams, public platform: Platform, private auth: AuthService, public viewCtrl: ViewController, private alertCtrl: AlertController,
-    public app: App, public element: ElementRef, @Inject(DOCUMENT) document) {
+    public navParams: NavParams,
+    public platform: Platform,
+    private auth: AuthService,
+    public viewCtrl: ViewController,
+    private alertCtrl: AlertController,
+    private ionicApp: IonicApp,
+    private menu: MenuController,
+    public app: App,
+    public element: ElementRef,
+    public toastCtrl: ToastController,
+    @Inject(DOCUMENT) document) {
 
     this.platform.ready().then((readySource) => {
 
@@ -106,7 +122,8 @@ export class CommunityWritePage {
 
 
       this.unregisterBackButtonAction = this.platform.registerBackButtonAction(() => {
-              this.dissmiss();
+        this.dissmiss();
+        this.customHandleBackButton();
           }, 99999);
     });
   }
@@ -667,6 +684,45 @@ export class CommunityWritePage {
       alert.present();
     }
   }
+
+  closeOpenItem() {
+    let activePortal = this.ionicApp._loadingPortal.getActive() ||
+     this.ionicApp._modalPortal.getActive() ||
+     this.ionicApp._toastPortal.getActive() ||
+     this.ionicApp._overlayPortal.getActive();
+    if (activePortal) {
+       activePortal.dismiss();
+      activePortal.onDidDismiss(() => {
+      });
+    } else if (this.menu.isOpen()) {
+       this.menu.close();
+    } else if (this.nav.canGoBack()) {
+       this.nav.pop();
+    } else {
+       if (new Date().getTime() - this.lastTimeBackPress < 
+           this.timePeriodToExit) {
+          this.platform.exitApp();
+       } else {
+          this.exitToast = this.toastCtrl.create({
+             message: 'Press back button again to exit',
+             duration: 1000,
+             position: 'top'
+          });
+          this.lastTimeBackPress = new Date().getTime();
+          this.exitToast.present();
+       }
+    }
+  }
+  
+  private customHandleBackButton(): void {
+    const overlayView = this.ionicApp._overlayPortal._views[0];
+    if (overlayView && overlayView.dismiss) {
+    overlayView.dismiss();// it will close the modals, alerts
+    } else {
+    // this.nav.setRoot('HomePage');//do what do you want to do
+    }
+  }
+  
 
 
 }
