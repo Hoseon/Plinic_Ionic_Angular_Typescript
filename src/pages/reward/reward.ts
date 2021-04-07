@@ -233,7 +233,7 @@ export class RewardPage {
                 let alert2 = this.alertCtrl.create({
                   cssClass: 'push_alert',
                   title: '글 작성',
-                  message: "보상받기가 저장되었습니다.<br>플리닉에서 발송정보를 Email로 보내 드릴게요.",
+                  message: "배송정보가 저장되었습니다.<br>운송장 번호는 알림으로 안내됩니다.",
                   buttons: [
                     {
                       text: '확인',

@@ -236,7 +236,7 @@ export class SkinChekCamera5Page {
           });
         } else if (this.step ==='second') {
           console.log("222222222222222");
-          this.auth.skinAnalySecondSave(this.file1, this.file1, this.userData, this.step, this.diagnose_score).then(data => {
+          this.auth.skinAnalySecondSave(this.file1, this.file2, this.userData, this.step, this.diagnose_score).then(data => {
           console.log("333333333333333");
             if(data) { //피부 측정 성공시 
               this.images.getCheckSkinReport(this.userData.email).subscribe(data2 => {

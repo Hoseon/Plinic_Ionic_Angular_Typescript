@@ -23,12 +23,15 @@
   <ion-navbar *ngIf="platform.is('ios') || platform.is('core')">
     <ion-buttons left>
       <button ion-button navPop icon-only>
-        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
         <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
       </button>
     </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only clear (click)="setting_page();"><img margin-right float-end
+        class="ios_setting" src="assets/img/myinfo/ic-system-setting@3x.png" /></button>
+    </ion-buttons>
     <ion-title class="ios_title" text-wrap> MY </ion-title>
-    <img class="ios_setting" (click)="setting_page();" src="assets/img/myinfo/ic-system-setting@3x.png" />
+    <!-- <img class="ios_setting" (click)="setting_page();" src="assets/img/myinfo/ic-system-setting@3x.png" /> -->
   </ion-navbar>
 </ion-header>
 

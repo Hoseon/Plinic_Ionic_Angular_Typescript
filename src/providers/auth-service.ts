@@ -2414,12 +2414,12 @@ export class AuthService {
     const fileTransfer: TransferObject = this.transfer.create();
     return fileTransfer.upload(targetPath, cheekUrl, options).then(data => {
       var result1 = JSON.parse(data.response);
-      console.log("첫 번째 (볼) 전송  성공");
-      // console.log("첫 번째 (볼) 전송  성공 : " + JSON.stringify(result1));
+      // console.log("첫 번째 (볼) 전송  성공");
+      console.log("첫 번째 (볼) 전송  성공1 : " + JSON.stringify(result1));
       return fileTransfer.upload(targetPath2, forheadUrl, options).then(data2 => {
         var result2 = JSON.parse(data2.response);
-        console.log("두 번째 (이마) 전송  성공");
-        // console.log("두 번째 (이마) 전송  성공 : " + JSON.stringify(result2));
+        // console.log("두 번째 (이마) 전송  성공");
+        console.log("두 번째 (이마) 전송  성공2 : " + JSON.stringify(result2));
         return {
           result1: result1,
           result2: result2
