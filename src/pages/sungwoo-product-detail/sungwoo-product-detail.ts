@@ -7,6 +7,8 @@ import { AuthService } from "../../providers/auth-service";
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { PopoverPage } from '../community/community-modify/popover/popover';
 import { KakaoCordovaSDK, KLCustomTemplate, KLLinkObject, KLSocialObject, KLButtonObject, KLContentObject, KLFeedTemplate, AuthTypes } from 'kakao-sdk';
+import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
+
 
 
 
@@ -46,6 +48,9 @@ export class SungwooProductDetailPage {
   reviewData = { content: '', id: '', email: '' };
   updatevalue: any;
   isUpdate: Array<boolean> = new Array<boolean>();
+  adUrl: any;
+  productTitle: any;
+  productURL: any;
 
   constructor(
     public navCtrl: NavController,
@@ -57,6 +62,7 @@ export class SungwooProductDetailPage {
     private alertCtrl: AlertController,
     public element: ElementRef,
     public _kakaoCordovaSDK: KakaoCordovaSDK,
+    private themeableBrowser: ThemeableBrowser,
   ) {
     this.platform.ready().then(() => {
       if (this.navParams.get("productData"))
@@ -71,6 +77,10 @@ export class SungwooProductDetailPage {
     await this.loadItems();
     
     // console.log("ionViewDidLoad SungwooProductDetailPage");
+  }
+
+  ionViewWillEnter(){
+    this.randomUrl();
   }
 
   showMore(isTrue) {
@@ -595,6 +605,81 @@ export class SungwooProductDetailPage {
       .catch(err => {
       });
   }
+
+  randomUrl() {
+    var urlNo;
+    urlNo = this.makeRandom(1,3);
+    
+    switch(urlNo) {
+      case 1 : this.adUrl = 'assets/img/beauty/beauty_ad_4_.jpg';
+               this.productTitle = '포인트샵 뷰셀리온 배너';
+               this.productURL = 'https://smartstore.naver.com/beaucellion';
+                break;
+      case 2 : this.adUrl = 'assets/img/beauty/beauty_ad_5_.jpg';
+               this.productTitle = '포인트샵 화장품 배너';
+               this.productURL = 'https://smartstore.naver.com/plinic';
+                break;
+      case 3 : this.adUrl = 'assets/img/beauty/beauty_ad_6_.jpg';
+               this.productTitle = '포인트샵 기기배너';
+               this.productURL = 'https://smartstore.naver.com/plinic/products/4714726098';
+                break;   
+      default : this.adUrl = 'assets/img/beauty/beauty_ad_4.jpg';
+                this.productTitle = '포인트샵 뷰셀리온 배너';
+                this.productURL = 'https://smartstore.naver.com/beaucellion';
+    }
+  }
+
+
+private makeRandom(min, max) {
+      var RandVal = Math.floor(Math.random() * (max - min + 1)) + min;
+      return RandVal;
+}
+
+  
+openBrowser_android(url, title) {
+
+  const options: ThemeableBrowserOptions = {
+    toolbar: {
+      height: 55,
+      color: '#6562b9'
+    },
+    title: {
+      color: '#FFFFFF',
+      showPageTitle: true,
+      staticText: title
+    },
+    closeButton: {
+      wwwImage: 'assets/img/close.png',
+      align: 'left',
+      event: 'closePressed'
+    },
+    backButton: {
+      wwwImage: 'assets/img/back.png',
+      align: 'right',
+      event: 'backPressed'
+    },
+    forwardButton: {
+      wwwImage: 'assets/img/forward.png',
+      align: 'right',
+      event: 'forwardPressed'
+    },
+  };
+
+  const browser: ThemeableBrowserObject = this.themeableBrowser.create(this.productURL, '_blank', options);
+  browser.insertCss({
+    file: 'assets/img/close.png',
+    code: '.navbar-fixed-top {display: block !important;}'
+  });
+  browser.reload();
+  browser.on('closePressed').subscribe(data => {
+    browser.close();
+  })
+
+  browser.on('sharePressed').subscribe(data => {
+    console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
+  })
+}
+  
 
 
 }

@@ -54,7 +54,9 @@ export class ChalMissionIngPage {
   skinQnaOneLoadData: any = {};
   registerReply = { comment: '', id: '', date: new Date()};
   reply = { comment: '', id: '', email: '' };
+  recomment = { body: '', email: '' };
   @ViewChild('myInput') myInput: ElementRef;
+  @ViewChild('myInput2') myInput2: ElementRef;
   mode: any;
   updatevalue: any;
   subscriptionFourth: any;
@@ -81,6 +83,9 @@ export class ChalMissionIngPage {
   productURL: any;
   memberMaxDate: Array<any> = new Array<any>();
   maxDate: any;
+  isShowReComments: Array<boolean> = new Array<boolean>(); //댓글
+  isShowReComments2: Array<boolean> = new Array<boolean>(); //대댓글
+  isShowReply: boolean = false;
 
   constructor(
     public nav: NavController, 
@@ -749,7 +754,9 @@ export class ChalMissionIngPage {
           if(this.getCovertKoreaTime(afterTomorrow).substr(0,10) > this.getCovertKoreaTime(new Date()).substr(0,10)) {
             // console.log("챌린시 성공");
             this.isFail = false;
-          } else if(this.getCovertKoreaTime(afterTomorrow).substr(0,10) <= this.getCovertKoreaTime(new Date()).substr(0,10) ) {
+          } else if (this.getCovertKoreaTime(afterTomorrow).substr(0, 10) <= this.getCovertKoreaTime(new Date()).substr(0, 10)) {
+            console.log(this.getCovertKoreaTime(afterTomorrow).substr(0, 10));
+            console.log(this.getCovertKoreaTime(new Date()).substr(0, 10));
             // console.log("챌린지 실패");
             this.isFail = true;
             this.showChallengefail(); //챌린지 실패 알림 팝업 보여줌
@@ -1078,7 +1085,7 @@ export class ChalMissionIngPage {
       title: {
         color: '#FFFFFF',
         showPageTitle: true,
-        staticText: title
+        staticText: this.productTitle
       },
       closeButton: {
         wwwImage: 'assets/img/close.png',
@@ -1097,7 +1104,7 @@ export class ChalMissionIngPage {
       },
     };
 
-    const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
+    const browser: ThemeableBrowserObject = this.themeableBrowser.create(this.productURL, '_blank', options);
     browser.insertCss({
       file: 'assets/img/close.png',
       code: '.navbar-fixed-top {display: block !important;}'
@@ -1335,28 +1342,28 @@ export class ChalMissionIngPage {
     return userEmail; 
   }
 
-  randomUrl() {
-    var urlNo;
-    urlNo = this.makeRandom(1,3);
+  // randomUrl() {
+  //   var urlNo;
+  //   urlNo = this.makeRandom(1,3);
     
-    switch(urlNo) {
-      case 1 : this.adUrl = 'assets/img/beauty/beauty_ad_1.png';
-               this.productTitle = '플리닉 크림';
-               this.productURL = 'https://www.plinicshop.com/Products/Details/1863';
-                break;
-      case 2 : this.adUrl = 'assets/img/beauty/beauty_ad_2.png';
-               this.productTitle = '뷰셀리온';
-               this.productURL = 'https://www.plinicshop.com/Products/Details/1968';
-                break;
-      case 3 : this.adUrl = 'assets/img/beauty/beauty_ad_3.png';
-               this.productTitle = '레스테틱';
-               this.productURL = 'https://www.plinicshop.com/Products/Details/1832';
-                break;   
-      default : this.adUrl = 'assets/img/beauty/beauty_ad_1.png';
-                this.productTitle = '플리닉 크림';
-                this.productURL = 'https://www.plinicshop.com/Products/Details/1863';
-    }
-  }
+  //   switch(urlNo) {
+  //     case 1 : this.adUrl = 'assets/img/beauty/beauty_ad_1.png';
+  //              this.productTitle = '플리닉 크림';
+  //              this.productURL = 'https://www.plinicshop.com/Products/Details/1863';
+  //               break;
+  //     case 2 : this.adUrl = 'assets/img/beauty/beauty_ad_2.png';
+  //              this.productTitle = '뷰셀리온';
+  //              this.productURL = 'https://www.plinicshop.com/Products/Details/1968';
+  //               break;
+  //     case 3 : this.adUrl = 'assets/img/beauty/beauty_ad_3.png';
+  //              this.productTitle = '레스테틱';
+  //              this.productURL = 'https://www.plinicshop.com/Products/Details/1832';
+  //               break;   
+  //     default : this.adUrl = 'assets/img/beauty/beauty_ad_1.png';
+  //               this.productTitle = '플리닉 크림';
+  //               this.productURL = 'https://www.plinicshop.com/Products/Details/1863';
+  //   }
+  // }
 
   private makeRandom(min, max) {
         var RandVal = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -1366,6 +1373,103 @@ export class ChalMissionIngPage {
   goToChall() {
     this.nav.parent.select(1);
     this.nav.pop();
+  }
+
+  randomUrl() {
+    var urlNo;
+    urlNo = this.makeRandom(1,3);
+    
+    switch(urlNo) {
+      case 1 : this.adUrl = 'assets/img/beauty/beauty_ad_4_.jpg';
+               this.productTitle = '포인트샵 뷰셀리온 배너';
+               this.productURL = 'https://smartstore.naver.com/beaucellion';
+                break;
+      case 2 : this.adUrl = 'assets/img/beauty/beauty_ad_5_.jpg';
+               this.productTitle = '포인트샵 화장품 배너';
+               this.productURL = 'https://smartstore.naver.com/plinic';
+                break;
+      case 3 : this.adUrl = 'assets/img/beauty/beauty_ad_6_.jpg';
+               this.productTitle = '포인트샵 기기배너';
+               this.productURL = 'https://smartstore.naver.com/plinic/products/4714726098';
+                break;   
+      default : this.adUrl = 'assets/img/beauty/beauty_ad_4.jpg';
+                this.productTitle = '포인트샵 뷰셀리온 배너';
+                this.productURL = 'https://smartstore.naver.com/beaucellion';
+    }
+  }
+
+  showReComments(index) {
+    this.isShowReComments[index] = true;
+  }
+
+  noShowReComments(index) {
+    this.isShowReComments[index] = false;
+    this.resize2();
+    this.recomment.body="";
+  }
+
+  resize2() {
+    setTimeout(() => {
+      this.myInput2.nativeElement.style.height = 'auto'
+      this.myInput2.nativeElement.style.height = this.myInput2.nativeElement.scrollHeight + 'px';
+    }, 100)
+  }
+
+  showReComments2(index) {
+    this.isShowReComments2[index] = true;
+  }
+
+  noShowReComments2(index) {
+    this.isShowReComments2[index] = false;
+    this.resize2();
+    this.recomment.body="";
+  }
+
+  saveReCommentsChallenge(id, index) {
+    // console.log(this.comment.body);
+    console.log("================" + id);
+    this.auth.replyChallengeReCommentSave(this.userData, id, this.recomment).subscribe(data => {
+      // this.isShowReComments[index] = false;
+      // this.isShowReComments2[index] = false;
+      if (data !== "") {
+        let alert2 = this.alertCtrl.create({
+          cssClass: 'push_alert',
+          title: '답글달기',
+          message: "답글이 정상적으로 등록되었습니다.",
+          enableBackdropDismiss: true,
+          buttons: [
+            {
+              text: '확인',
+              handler: () => {
+                
+              }
+            }
+          ]
+        });
+        alert2.onDidDismiss(()=>{
+          this.registerReply.comment = '';
+          this.recomment.body = '';
+          this.resize();
+          this.resize2();
+          this.update();
+          this.isShowReply = true;
+          this.isShowReComments[index] = false;
+          this.isShowReComments2[index] = false;
+        })
+        alert2.present();
+      }
+    }, error => {
+      this.showError(JSON.parse(error._body).msg);
+    });
+  }
+
+  protected adjustTextarea2(index): void {
+    let textArea2 = this.element.nativeElement.getElementsByTagName('textarea')[1];
+    textArea2.style.overflow = 'hidden';
+    textArea2.style.height = 'auto';
+    textArea2.style.height = textArea2.scrollHeight + 'px';
+    textArea2.style.cursor = 'pointer';
+    return;
   }
 
 

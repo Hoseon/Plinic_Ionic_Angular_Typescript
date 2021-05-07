@@ -29,7 +29,7 @@
       <img *ngIf="!userData.thumbnail_image" class="img-radius" [src]="profileimg_url" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'"/>
     </button>
 
-    <button class="terms" mode="ios" no-lines ion-item icon-start (click)="bill()">정기결제 멤버십 관리</button>
+    <!-- <button class="terms" mode="ios" no-lines ion-item icon-start (click)="bill()">정기결제 멤버십 관리</button> -->
 
     <div *ngIf="platform.is('ios') || platform.is('core')" style="height: 1px;width: 92%;margin: 0 auto; margin-top: 4%; background-color:#f1f1f1"></div>
     <div *ngIf="platform.is('android')" style="height: 1px;width: 92%; margin: 0 auto; margin-top: 4%; background-color:#f1f1f1"></div>
@@ -66,7 +66,8 @@
     <button class="terms" mode="ios" ion-item icon-start (click)="noti()">공지사항</button>
     <button class="terms" mode="ios" ion-item (click)="terms()" icon-start>이용약관</button>
     <button class="text" mode="ios" ion-item (click)="personalinfo()" icon-start>개인정보처리방침</button>
-    <ion-item class="current_version" (click)="sungWoo_Setting()" no-lines icon-start>현재 버전 <ion-note item-end>1.0.11</ion-note>
+    <button class="text" mode="ios" ion-item (click)="bleTest()" icon-start>BLE 테스트</button>
+    <ion-item class="current_version" no-lines icon-start>현재 버전 <ion-note item-end>1.0.174</ion-note>
     </ion-item>
     <button class="logout" mode="md" ion-item (click)="logout()" icon-start>로그아웃</button>
   </ion-list>

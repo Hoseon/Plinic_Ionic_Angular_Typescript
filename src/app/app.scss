@@ -1273,7 +1273,7 @@ scroll-content {
 //         }
 // }
 
-.push_alert {
+.push_alert_order { //2021-04-16 
   background-color: rgba(0, 0, 0, 0.4);
 
   // width: 300px;
@@ -1300,7 +1300,7 @@ scroll-content {
         // padding-top: 4%;
         // padding-left: 0%;
         // font-family: AppleSDGothicNeo-Regular;
-        // font-size: 16px;
+        font-size: 16px;
         // font-weight: normal;
         // font-style: normal;
         // font-stretch: normal;
@@ -1310,7 +1310,7 @@ scroll-content {
         // display: table;
         // color: #292929;
         text-align: center;
-
+        margin-bottom: 5%;
       }
     }
 
@@ -1336,6 +1336,86 @@ scroll-content {
       margin-top: -3% !important;
 
 
+    }
+
+    .button-inner {
+      justify-content: center;
+    }
+
+    .alert-button-group {
+      padding: 0px;
+
+      .alert-button {
+        width: 89%;
+        height: 45px;
+        color: #FFF;
+        background-color: #6562b9;
+        border-radius: 3.8px;
+        margin: 0 24px;
+        margin-bottom: 20px;
+        border: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+.push_alert {
+  background-color: rgba(0, 0, 0, 0.4);
+
+  // width: 300px;
+  .alert-wrapper {
+    width: 320px;
+    height: 180px;
+    border-radius: 8px;
+    box-shadow: none !important;
+
+    .alert-head {
+      // padding-top: 10px;
+      // padding-right: 24px;
+      // padding-bottom: 10px;
+      // padding-left: 24px;
+      // border-style: solid;
+      // border-width: 0px 0px 1px 0px;
+      // border-color: #e5e5e5;
+
+      .alert-title {
+        min-height: 35px;
+        padding-top: 4%;
+        padding-left: 0%;
+        font-family: AppleSDGothicNeo-Regular;
+        font-size: 20px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        margin: 0 auto !important;
+        display: table;
+        color: #292929;
+      }
+    }
+
+    .alert-message {
+      width: 255px;
+      // height: 19px;
+      height: auto;
+      font-family: AppleSDGothicNeo-Regular;
+      font-size: 14px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.36;
+      letter-spacing: 0.6px;
+      text-align: center;
+      color: #292929;
+      overflow-y: hidden;
+      border: 0;
+      padding: 0;
+      padding-top: 2%;
+      padding-bottom: 10%;
+      margin: 0 auto !important;
+      margin-top: -3% !important;
     }
 
     .button-inner {
@@ -2519,6 +2599,8 @@ scroll-content {
 
     .button-inner {
       justify-content: center;
+      font-weight: 500;
+      font-size: 14px;
       
       .alert-checkbox-label {
         position: fixed !important;
@@ -2708,6 +2790,33 @@ scroll-content {
   .red_text {
     color: #c7000b;
   }
+
 }
+
+.plinic_alert {
+  margin: auto;
+
+  .loading-wrapper {
+    border-radius: 50%;
+    background-color: transparent;
+    box-shadow: none !important;
+    // -webkit-animation: sk-rotatePlane 2.4s infinite ease-in-out;
+    // animation: sk-rotatePlane 2.4s infinite ease-in-out;
+    opacity: 1 !important;
+    padding: 24px !important;
+  }
+
+  ion-backdrop.backdrop-no-tappable {
+    // background: #000 !important;
+    // opacity: 0.4 !important;
+    background: #7a7a7a !important;
+    opacity: 0.5 !important; //로딩 뒷배경 투명도
+    // top: 60px;
+    // height: 86.5%;
+    // margin-top: 16%;
+  }
+}
+
+
 
 

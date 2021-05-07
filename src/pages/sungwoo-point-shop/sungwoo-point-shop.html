@@ -16,10 +16,8 @@
     <ion-buttons end>
       <ion-grid>
         <ion-row class="postion" align-items-baseline>
-          <!-- <button ion-button icon-only clear><img float-end class="headerIoncMargin"
-              src="assets/img/svg/search.svg" /></button> -->
           <button (click)="orderDetailPage()" ion-button icon-only clear><img float-end class="headerIoncMargin"
-              src="assets/img/svg/cart.svg" /></button>
+              src="assets/img/invoice.svg" /></button>
           <button (click)="myinfo()" ion-button icon-only clear><img margin-right float-end class="headerIoncMargin"
               src="assets/img/svg/my.svg" /></button>
         </ion-row>
@@ -41,10 +39,8 @@
     <ion-buttons end>
       <ion-grid>
         <ion-row class="postion" align-items-baseline>
-          <!-- <button ion-button icon-only clear><img float-end margin-bottom class="headerIoncMargin"
-              src="assets/img/svg/search.svg" /></button> -->
           <button (click)="orderDetailPage()" ion-button icon-only clear><img float-end margin-bottom
-              class="headerIoncMargin" src="assets/img/svg/cart.svg" /></button>
+              class="headerIoncMargin" src="assets/img/invoice.svg" /></button>
           <button (click)="myinfo()" ion-button icon-only clear><img margin-right float-end margin-bottom
               class="headerIoncMargin" src="assets/img/svg/my.svg" /></button>
         </ion-row>
@@ -112,26 +108,20 @@
           <ion-slides class="nextSlide" slidesPerView=2.5>
             <ion-slide class="">
               <div class="nextBorder">
-                <img class="nextImage" src="assets/img/pointShop/NextDeal01.jpg"/>
-                <!-- <img class="nextImage"
-                  srcset="assets/img/pointShop/NextDeal01.png, assets/img/pointShop/NextDeal01@2x.png, assets/img/pointShop/NextDeal01@3x.png" /> -->
-                <div text-left class="nextText">[네이처셋] 루테인 아스타잔틴 캡슐</div>
+                <img class="nextImage" src="assets/img/pointShop/NextDeal01_.png"/>
+                <div text-left class="nextText">뷰셀리온 다이어트&필</div>
               </div>
             </ion-slide>
             <ion-slide class="">
               <div class="nextBorder">
-                <img class="nextImage" src="assets/img/pointShop/NextDeal02.jpg"/>
-                <!-- <img class="nextImage"
-                  srcset="assets/img/pointShop/NextDeal02.png, assets/img/pointShop/NextDeal02@2x.png, assets/img/pointShop/NextDeal02@3x.png" /> -->
-                <div text-left class="nextText">[네이처셋] 멀티비타민 종합비타민팩</div>
+                <img class="nextImage" src="assets/img/pointShop/NextDeal02_.png"/>
+                <div text-left class="nextText">네이쳐셋 루테인 아스타잔틴캡슐</div>
               </div>
             </ion-slide>
             <ion-slide class="">
               <div class="nextBorder">
-                <img class="nextImage" src="assets/img/pointShop/NextDeal03.jpg"/>
-                <!-- <img class="nextImage"
-                  srcset="assets/img/pointShop/NextDeal01.png, assets/img/pointShop/NextDeal01@2x.png, assets/img/pointShop/NextDeal01@3x.png" /> -->
-                <div text-left class="nextText">[테라큐민] MAX 커큐민 올금 강황</div>
+                <img class="nextImage" src="assets/img/pointShop/NextDeal03_.png"/>
+                <div text-left class="nextText">컬처렐 성인유산균 다이제스티브 헬스</div>
               </div>
             </ion-slide>
           </ion-slides>
@@ -142,7 +132,7 @@
       </div>
       <br>
       <ion-grid>
-        <div margin-left margin-bottom text-left class="todaysDeal">PLINIC 피부에너지</div>
+        <div margin-left margin-bottom text-left class="todaysDeal">플리닉 아이템</div>
       </ion-grid>
 
       <ion-grid>
@@ -166,7 +156,7 @@
       </div>
       <br>
       <ion-grid>
-        <div margin-left margin-bottom text-left class="todaysDeal">플리닉 홈케어 디바이스</div>
+        <div margin-left margin-bottom text-left class="todaysDeal">MD 추천상품</div>
       </ion-grid>
       <ion-grid>
         <ng-container *ngFor="let device of deviceData; let c = index;">
@@ -183,43 +173,6 @@
             </ion-col>
           </ion-row>
         </ng-container>
-        
-        <!-- <ion-row align-items-center>
-          <ion-col col-5 class="">
-            <img class="PlinicImage"
-              srcset="assets/img/pointShop/single.png, assets/img/pointShop/single@2x.png, assets/img/pointShop/single@3x.png" />
-          </ion-col>
-          <ion-col col-7 class="">
-            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
-            <div class="plinicText2">10% ~ <del class="plinicText3">582,000원</del></div>
-            <div class="plinicText4">523,800원</div>
-            <div class="plinicText5">최대 50,000P 사용가능</div>
-          </ion-col>
-        </ion-row>
-        <ion-row align-items-center>
-          <ion-col col-5 class="">
-            <img class="PlinicImage"
-              srcset="assets/img/pointShop/scope.png, assets/img/pointShop/scope@2x.png, assets/img/pointShop/scope@3x.png" />
-          </ion-col>
-          <ion-col col-7 class="">
-            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
-            <div class="plinicText2">10% ~ <del class="plinicText3">582,000원</del></div>
-            <div class="plinicText4">523,800원</div>
-            <div class="plinicText5">최대 50,000P 사용가능</div>
-          </ion-col>
-        </ion-row>
-        <ion-row align-items-center>
-          <ion-col col-5 class="">
-            <img class="PlinicImage"
-              srcset="assets/img/pointShop/multi.png, assets/img/pointShop/multi@2x.png, assets/img/pointShop/multi@3x.png" />
-          </ion-col>
-          <ion-col col-7 class="">
-            <div class="plinicText1">플라즈마 스킨케어 플리닉 PLINIC 듀얼 신개념 홈케어 마사지</div>
-            <div class="plinicText2">10% ~ <del class="plinicText3">582,000원</del></div>
-            <div class="plinicText4">523,800원</div>
-            <div class="plinicText5">최대 50,000P 사용가능</div>
-          </ion-col>
-        </ion-row> -->
       </ion-grid>
       <br><br><br><br><br><br>
     </ion-slide>
@@ -228,7 +181,7 @@
       <ion-grid no-padding class="review_point_grid">
         <ion-row class="review_point_grid">
           <img class="backImage"
-            src="assets/img/pointShop/backImage_20210331.jpg" />
+            src="assets/img/pointShop/backImage_20210426.png" />
         </ion-row>
         <ion-row justify-content-center class="review_point_btn1">
           <button ion-button icon-only clear text-center class="review_point_btn1_btn" (click)="care()"><img

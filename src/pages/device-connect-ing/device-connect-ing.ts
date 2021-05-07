@@ -39,6 +39,7 @@ export class DeviceConnectIngPage {
   peripheral: any = {};
   spintime: any = 0;
   timer: any;
+  isScan: boolean = false;
 
   constructor(
     // private geolocation: Geolocation,
@@ -113,7 +114,7 @@ export class DeviceConnectIngPage {
   }
 
   ionViewWillEnter() {
-
+    this.androidBackButton();
     let tabs = document.querySelectorAll('.tabbar');
     if (tabs !== null) {
       Object.keys(tabs).map((key) => {
@@ -145,6 +146,7 @@ export class DeviceConnectIngPage {
   // }
 
   public measureBack() {
+    this.ble.stopScan();
     this.navCtrl.pop();
   }
 
@@ -189,76 +191,59 @@ export class DeviceConnectIngPage {
   scan() {
     this.setStatus('Scanning for Bluetooth LE Devices');
     this.devices = [];  // clear list
-    // 시간내로 스캔 하는 방법
-    // this.ble.scan([PLINIC_SERVICE], 10).subscribe(
-    //   device => {
-    //     console.log("aaaaa :" + device);
-    //     this.onDeviceDiscovered(device);
-    //     this.deviceSelected(device);
-    //     this.navCtrl.push(DeviceConnectCompletePage, { device: device });
-    //   },
-    //   error => {
-    //     console.log("bbbbb" + error);
-    //     this.scanError(error);
-    //     this.navCtrl.push(DeviceConnectFailPage);
-    //   }
-    // );
-    // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
-
-
-
-
-    // 2020-01-31 충전시에 블루투스 신호가 감지 되는것을 막기 위해 처리------------------------------------------------------------------------------------------
+    this.isScan = false;
+    //------------------------------------------------------//
+    // 2021-04-13 8비트 캐릭터가 오기 때문에 이것을 이용하여 처리
+    // [2][5][0][0][5][1][SUM][3]
+    // [Start][Start][Count 3번째 자리][Count 2번째 자리][Count 1번째 자리][전원on/off on=1 off=0][0~4까지의 숫자 합][3]
     this.ble.startScan([PLINIC_SERVICE]).subscribe(
       device => {
-        // this.onDeviceDiscovered(device);
-        // this.deviceSelected(device);
         this.ble.stopScan();
-        // this.navCtrl.push(DeviceSkinIngPage, { device: device, 'carezoneData': this.carezoneData }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
-
-        this.ble.connect(device.id).subscribe(
-          peripheral => {
-            console.log("1111111111111111111 커넥트 성공");
-            // this.onConnected(peripheral);
-            this.ble.startNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
-              console.log("333333333 노티피 성공");
-              var data2 = new Uint8Array(buffer);
-              var data16 = data2[0].toString();
-              var data_ = data2[1].toString();
-              var result = '';
-              var result = data16 + data_;
-              // if (result === '20') {
-              if (result === '051') {
-                this.ble.stopNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(result => {
-                  this.ble.disconnect(device.id).then(result1 => {
-                    this.navCtrl.push(DeviceConnectCompletePage , { device: device, 'carezoneData': this.carezoneData, mode: this.mode }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
-
-                    // this.navCtrl.push(DeviceSkinIngPage, { device: device, 'carezoneData': this.carezoneData, mode: this.mode }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
-                  });
-                })
-              } else {
-                // this.scan();
-              }
-            }, error => {
-            });
-          });
-      },
-      error => {
-        console.log("222222222222222222 + error " + error);
-        // this.scanError(error); //20200622 토스트 발생시키지 않음
+        if (!this.isScan) {
+          this.navCtrl.push(DeviceConnectCompletePage, { device: device, 'carezoneData': this.carezoneData, mode: this.mode });
+        }
+        this.isScan = true;
+      }, error => {
         this.ble.stopScan();
         this.navCtrl.push(DeviceConnectFailPage);
       }
     );
-    // setTimeout(this.setStatus.bind(this), 10000, 'Scan complete')
+    //------------------------------------------------------//
 
+    // 2020-01-31 충전시에 블루투스 신호가 감지 되는것을 막기 위해 처리------------------------------------------------------------------------------------------
+    // this.ble.startScan([PLINIC_SERVICE]).subscribe(
+    //   device => {
+    //     this.ble.stopScan();
 
+    //     this.ble.connect(device.id).subscribe(
+    //       peripheral => {
+    //         this.ble.startNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(buffer => {
+    //           var data2 = new Uint8Array(buffer);
+    //           var data16 = data2[0].toString();
+    //           var data_ = data2[1].toString();
+    //           var result = '';
+    //           var result = data16 + data_;
+    //           if (result === '051') {
+    //             this.ble.stopNotification(device.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).then(result => {
+    //               this.ble.disconnect(device.id).then(result1 => {
+    //                 this.navCtrl.push(DeviceConnectCompletePage , { device: device, 'carezoneData': this.carezoneData, mode: this.mode }); //20190813 플리닉 전원을 킴과 동시에 시간을 측정해야 하므로 DeviceSkinIngPage로 바로 이동
+    //               });
+    //             })
+    //           } else {
+    //             console.log("충전 체크 051이 아님");
+    //           }
+    //         }, error => {
+    //         });
+    //       });
+    //   },
+    //   error => {
+    //     console.log("222222222222222222 + error " + error);
+    //     this.ble.stopScan();
+    //     this.navCtrl.push(DeviceConnectFailPage);
+    //   }
+    // );
 
-
-
-
-
-
+    //----------------------------------------------------------------//
 
     // // 2020-01-20 이전 메인보드로 돌아감 (케어모드만 포함하고 있음)------------------------------------------------------------------------------------------
     // this.ble.startScan([PLINIC_SERVICE]).subscribe(
@@ -465,6 +450,16 @@ export class DeviceConnectIngPage {
   startNotification() {
 
 
+  }
+
+  //20201125 안드로이드 백 버튼 처리
+  androidBackButton() {
+    if(this.platform.is('android')) {
+      this.platform.registerBackButtonAction(() => {
+        this.ble.stopScan();
+        this.viewCtrl.dismiss();
+      });
+    }
   }
 
 

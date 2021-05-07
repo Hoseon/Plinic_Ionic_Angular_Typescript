@@ -15,14 +15,7 @@ import { Device } from '@ionic-native/device';
 import { MyinfoPage } from '../myinfo/myinfo';
 import { ChalGuidePage } from '../chal-guide/chal-guide'
 import { OrderDetailPage } from '../order-detail/order-detail';
-
-
-/**
- * Generated class for the CareZonePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+// import { ImgLoader, ImageLoaderConfig } from 'ionic-image-loader';
 
 @IonicPage()
 @Component({
@@ -89,7 +82,12 @@ export class CareZonePage {
   displayUseTimeList: Array<any> = new Array<any>();
   membercnt1 : Array<any> = new Array<any>();
   membercnt2 : Array<any> = new Array<any>();
-  membercnt3 : Array<any> = new Array<any>();
+  membercnt3: Array<any> = new Array<any>();
+
+
+  tesgImages: Array<any> = new Array<any>();
+  defaultImage: any = "assets/img/loading/loading.gif";
+
 
 
 
@@ -104,8 +102,10 @@ export class CareZonePage {
     private alertCtrl: AlertController, 
     public authService: AuthService,
     public modalCtrl: ModalController,
+    // private imageLoaderConfig: ImageLoaderConfig
   ) {
     this.platform.ready().then((readySource) => {
+      // this.imageLoaderConfig.enableSpinner(true);
       this.androidBackButton();
       if (this.platform.is('android') || this.platform.is('core')) {
         this.currentDay = new Date().getDay();
@@ -115,15 +115,7 @@ export class CareZonePage {
   
       if (this.platform.is('ios')) {
         this.currentDay = new Date().getDay();
-        console.log(new Date().getDay());
-        console.log(this.getCovertKoreaTime(new Date()));
-
-        // this.currentDay = this.getCovertKoreaTime2(new Date()).getDay();
-        // console.log(this.getCovertKoreaTime2(new Date()));
-        // console.log(this.getCovertKoreaTime2(new Date()).getDay());
       }
-      // this.carezoneData = this.roadcareZone();
-      // this.loadItems();
     });
   }
 
@@ -137,27 +129,15 @@ export class CareZonePage {
   }
 
   ionViewWillLeave() {
-    // this.subscriptionFourth.complete();
-    // console.log("Timer Clear!");
   }
 
   ionViewDidLeave() {
-    // this.subscriptionFourth.complete();
     console.log("ionViewDidLeave Timer Clear!");
   }
 
   ionViewDidEnter(){
     console.log(this.totaluserPoint);
   }
-
-
-  public loadimagePath() {
-    // this.authService.getUserStorageimagePath().then(items => {
-    //   this.imagePath = items;
-    // });
-  }
-
-
 
   public loadItems() {
     this.authService.getUserStorage().then(items => {
@@ -183,7 +163,6 @@ export class CareZonePage {
         }
         this.reloadUserPoint(this.userData.email);
         this.chkmission(this.userData.email);
-        // this.chkIngmission(this.userData.email);
       } else {
         this.userData = {
           accessToken: items.accessToken,
@@ -199,7 +178,6 @@ export class CareZonePage {
         };
         this.reloadUserPoint(this.userData.email);
         this.chkmission(this.userData.email);
-        // this.chkIngmission(this.userData.email);
         this.from = 'plinic';
       }
       this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
@@ -213,43 +191,27 @@ export class CareZonePage {
     this.nav.push(CareZoneIngPage);
   }
   public mission_ing(id) {
-    //this.nav.push(CareZoneMissionIngPage);
     this.nav.push(CareZoneMissionIngPage, { _id: id });
   }
   public mission_start(carezone) {
-    //console.log(id);
-    //console.log("missiondata" + this.missionData.missionID);
-    // console.log(this.missionData.length);
-    // if (this.missionData === null || this.missionData === undefined || this.missionData.length <= 0) {
     if (!this.missionID) {
-      //this.nav.push(CareZoneMissionIngPage);
-      // this.nav.push(CareZoneMissionStartPage, { carezoneData: carezone });
-      // this.nav.push(ChalMissionStartPage, { carezoneData: carezone });
       this.nav.push(ChalMissionStartPage,{ carezoneData: carezone }).then(() => {
         this.nav.getActive().onDidDismiss(data => {
-          //  
           this.chkmission(this.userData.email);
-          console.log("ChalMissionStartPage 페이지 닫힘");
         });
       });
 
     } else if (carezone._id === this.missionID) {
-      // this.nav.push(CareZoneMissionIngPage, { carezoneData: carezone });
-      // this.nav.push(ChalMissionIngPage, { carezoneData: carezone });
       this.nav.push(ChalMissionIngPage,{ carezoneData: carezone }).then(() => {
         this.nav.getActive().onDidDismiss(data => {
-          //
           this.chkmission(this.userData.email);
           console.log("ChalMissionIngPage 페이지 닫힘");
         });
       });
 
     } else {
-      // this.nav.push(CareZoneMissionStartPage, { carezoneData: carezone });
-      // this.nav.push(ChalMissionStartPage, { carezoneData: carezone });
       this.nav.push(ChalMissionStartPage,{ carezoneData: carezone }).then(() => {
         this.nav.getActive().onDidDismiss(data => {
-          //
           this.chkmission(this.userData.email);
           console.log("ChalMissionStartPage 페이지 닫힘222");
         });
@@ -269,14 +231,9 @@ export class CareZonePage {
 
   //20190617 미션 참여자 인원 count
   public missionCount(id) {
-    // this.showLoading();
-    // this.images.missionCount(id).subscribe(data => {
-      // return data;
-    // });
   }
 
   missionMember(id) {
-    // this.showLoading();
     this.images.getChallangeMember(id).subscribe(data => {
       if (data !== '') {
         this.missionmember = data;
@@ -298,10 +255,6 @@ export class CareZonePage {
             tempRank++;
           }
         }
-        // console.log("1멤버 : " + this.membercnt1);
-        // console.log("2멤버 : " + this.membercnt2);
-        // console.log("3멤버 : " + this.membercnt3);
-        // console.log(this.memberRanking);
       }
     });
   }
@@ -311,9 +264,6 @@ export class CareZonePage {
 
       if (data !== '') {
         for (let i = 0; i < data.length; i++) {
-
-          // if (this.getCovertKoreaTimeDay(new Date().getDay()) === Number(data[i].day)) {
-          // if (new Date().getDay() === Number(data[i].day)) {
           if (this.currentDay === Number(data[i].day)) {
             this.flag[i] = "지금참여";
           } else {
@@ -321,44 +271,23 @@ export class CareZonePage {
           }
           
           this.missionMember(data[i]._id);
-          // console.log( new Date(this.getCovertKoreaTime(new Date())).getDay() );
-          
-          // if (new Date(data[i].endmission) > this.currentDate) {
-
           this.endcarezone_id[i] = data[i]._id;
           this.title[i] = data[i].title;
           this.maxmember[i] = data[i].maxmember;
           this.body[i] = data[i].body;
-          // console.log("1 : " + new Date(data[i].endmission).getTime());
-          // console.log("2 : " + new Date().getTime());
-
           this.timeremaining[i] = (new Date(data[i].endmission).getTime() - new Date().getTime()) / 1000;
-
-          // this.images.missionCount(data[i]._id).subscribe(data2 => {
-            // console.log("미션 카운트 :" + i + data2);
-            // this.missionCounter[i] = data2;
-          // });
-
           this.images.getChallangeMember(data[i]._id).subscribe(data3 => {
             if (data3 !== '') {
               this.missionmember[i] = data3;
             }
           });
-
           this.endmission[i] = new Date(data[i].endmission);
-          // this.new[i] = false;
-          // this.recruiting[i] = false;
-          // this.mdchuchun[i] = false;
-          // this.approaching[i] = false;
-          // this.endrecruit[i] = false;
-          // this.d5[i] = false;
-          // this.d4[i] = false;
-          // this.d3[i] = false;
-          // this.d2[i] = false;
-          // this.d1[i] = false;
           this.endcarezoneData = data[i];
+          this.tesgImages[i] = "https://plinic.s3.ap-northeast-2.amazonaws.com";
+          this.tesgImages[i] = this.tesgImages[i] + "/" + data[i].filename;
         }
         this.carezoneData = data;
+
       } else {
         this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
       }
@@ -368,75 +297,33 @@ export class CareZonePage {
 
   //20190617 미션 참여중인지 체크 하기
   public chkmission(email) {
-    // this.showLoading();
-    //console.log("chkBtn" + this.chkBtn);
-    // 2020-02-11 챌린지 기능을 추가 this.images.chkMission(email).subscribe(data => {
     this.images.ChallengeChkMission(email).subscribe(data => {
       if (data.length <= 0) {
         this.missionID = "";
         this.missionData = "";
-        // console.log("챌린지를 완료 했거나 참여중인게 없을때");
-        // this.chkBtn = true; //챌린지 미 참여 중일때
       } else if (data.length > 0) {
         for (let i = 0; i < data.length; i++) {
           if (!data[i].missioncomplete) { //완료하지 못한 미션이 있는 체크
             this.missionData = data[i];
             this.missionID = data[i].missionID;
-            console.log("chkmissionData :" + JSON.stringify(this.missionData));
-            console.log("chkmissionID :" + this.missionID);
-            // if (this.carezoneData2._id === data[i].missionID) { //완료하지 못한 미션이 현재 미션과 동일한지 체크
-            //   this.chkBtn = true; //동일 하면 미션 시작할수 있도록 하고
-            // } else {
-            //   this.chkBtn = false; //동일하지 않으면 다른 챌림치 참여중이라고 한다.
-            // }
           }
         }
       } else {
         console.log("이상한 값이 들어 왔을때 챌린지 참여 안한걸로");
         this.missionID="";
-        // this.chkBtn = false;
       }
-
-      // if (data !== '' || data !== null) {
-      //   //this.chkBtn = true;
-      //   this.missionData = data;
-      //   //this.endDate = data.endmission.substr(0, 10);
-      //   //console.log(JSON.stringify(data));
-      //   // this.loading.dismiss();
-      // } else if (data === '' || data === null || data === undefined) {
-      //   //this.chkBtn = false;
-      // } else {
-      //   this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
-      // }
     });
 
   }
 
   //20190618 진행 중인 미션 체크 하기
   public chkIngmission(email) {
-    // this.showLoading();
-    //console.log("chkBtn" + this.chkBtn);
-
-
-
-
     this.images.chkMission(email).subscribe(data => {
-
       if (data !== null) {
-        //this.chkBtn = true;
         this.missionData = data;
-        // console.log("미션데이터 : " + JSON.stringify(this.missionData));
-        // console.log("미션데이터 : " + this.missionData.missionID);
-        // this.images.missionCount(this.missionData.missionID).subscribe(data2 => {
-        //   this.ingmissionCounter = data2;
-        // });
         this.ingBtn = true;
-        //this.endDate = data.endmission.substr(0, 10);
-        //console.log(JSON.stringify(data));
-        // this.loading.dismiss();
       } else if (data === '' || data === null || data === undefined) {
         this.ingBtn = false;
-        //this.chkBtn = false;
       } else {
         this.ingBtn = false;
         this.showError("이미지를 불러오지 못했습니다. 관리자에게 문의하세요.");
@@ -491,8 +378,6 @@ export class CareZonePage {
   }
 
   showAlert(text) {
-    //this.loading.dismiss();
-
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
       title: 'Plinic',
@@ -501,9 +386,8 @@ export class CareZonePage {
     });
     alert.present();
   }
-  showError(text) {
-    //this.loading.dismiss();
 
+  showError(text) {
     let alert = this.alertCtrl.create({
       cssClass: 'push_alert',
       title: 'Plinic',
@@ -514,54 +398,16 @@ export class CareZonePage {
   }
 
   timerTick() {
-    // setTimeout(() => {
-    //   // if (!this.runTimer) {
-    //   //   clearTimeout(timer);
-    //   //   console.log("Clear Timeout");
-    //   //   return;
-    //   // }
-    //
-    //   // this.secondsRemaining--;
-    //   for (var i = 0; this.timeremaining.length; i++) {
-    //     // console.log(i);
-    //     // this.timeremaining[i]--;
-    //     this.getSecondsAsDigitalClock(this.timeremaining[i], i);
-    //   }
-    //
-    //   // if(this.secondsRemaining > 0) {
-    //   this.timerTick();
-    //   // } else {
-    //   //   // this.hasFinished = true;
-    //   // }
-    //
-    // }, 1000);
-    // // if (!this.runTimer) {
-    // //   clearTimeout(timer);
-    // //   console.log("Clear Timeout");
-    // //   return;
-    // // }
-
-    // Set the inital tick to 0
     this.subscriptionFourth = Observable.interval(1000).subscribe(x => {
-      // 1000 implies miliseconds = 1 second
-      // Basically run the following code per second
       for (var i = 0; i < this.timeremaining.length; i++) {
         this.timeremaining[i]--;
-        // console.log(this.timeremaining[i]--);
         this.displayTime[i] = this.getSecondsAsDigitalClock(this.timeremaining[i]);
       }
       this.tickFourth--;
       this.tickThree--;
       let time = this.getSecondsAsDigitalClock(this.tickFourth);
       let time2 = this.getSecondsAsDigitalClock(this.tickThree);
-      // console.log(time);
-      // console.log(time2);
-      // console.log(this.tickFourth);
-      // console.log("this" + JSON.stringify(this.subscriptionFourth));
-
     });
-
-
   }
 
   getSecondsAsDigitalClock(inputSeconds: number) {
@@ -605,8 +451,6 @@ export class CareZonePage {
 
   public myinfo() {
     //2020-05-28 마이페이지 하단탭 제거
-    // this.nav.push(MyinfoPage); 
-
     let myModal = this.modalCtrl.create(MyinfoPage);
     myModal.onDidDismiss(data => {
       if(this.userData) {
@@ -617,7 +461,6 @@ export class CareZonePage {
           this.reloadUserPoint(this.userData.email);
         }
       }
-      console.log("내정보 페이지 닫음");
       this.androidBackButton();
     });
     myModal.present();
@@ -628,7 +471,6 @@ export class CareZonePage {
   chalguide() {
     let modal = this.modalCtrl.create(ChalGuidePage);
     modal.onDidDismiss(data => {
-      console.log("이용안내 페이지 닫힘");
     });
     modal.present();
   }
@@ -660,13 +502,11 @@ export class CareZonePage {
     minutesString2 = (minutes < 10) ? "0" + minutes2 : minutes2.toString();
     secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
     return minutesString2 + '분 ' + secondsString + '초';
-    // console.log("displaytime : " + index + " : " + this.displayTime[index]);
   }
 
   //20190617 미션 참여자 인원 count //20200615 참여가 가능한날 인원이 5명이 넘을 경우 미션에 참여 하지 못하도록 한다
   missionCount2(id, date) : any {
     this.images.challangeCount2(id, date).subscribe(data => {
-      // if(Number(data) >= 5) { 20210104 참여 가능한 인원을 5명 --> 10명으로 변경
       if(Number(data) >= 10) {
         if(id === '5dc8ec79c2900f035ab2199d') {
           this.flag[0] = '참여마감';
@@ -714,4 +554,8 @@ export class CareZonePage {
       });
     });
   }
+
+  // onImageLoad(imgLoader: ImgLoader) {
+  //   console.log("이미지 로드 완료");
+  // }
 }

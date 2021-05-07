@@ -156,60 +156,11 @@
                       <br>
                       </ion-row>
                     </ion-row>
-                    <!-- <img class="profile_comment" src="assets/img/register/ic-system-profile-default@3x.png"
-                    onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" /> -->
-                    
                   </ng-container>
-                  <!-- <div class="time_comment">{{reply.createdAt.substr(0,19)}}</div> -->
-                  <!-- 보기 -->
-                  <!-- <textarea *ngIf="comment_popover_option==='보기'" class="content_comment" readonly autoGrow autoresize value="{{reply.comment}}"></textarea> -->
                   <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 5%; background-color:#f1f1f1"></div>
                   <br><br><br>
                 </ng-container>
               </ng-container>
-          <!-- <ion-list class="list_div" style="margin:0 auto;">
-            <ng-container *ngIf="movieData">
-              <ng-container *ngFor="let reply of movieData.comments; let i = index;">
-                <div class="review_div">
-                  <img class="profile_comment2" src="assets/img/register/ic-system-profile-default@3x.png">
-                  <div class="container2">
-                    <div class="nickname_comment">{{reply.email}}</div>
-                    <ng-container>
-                      <div class="content_comment" text-wrap>{{reply.body}}</div>
-                      <div  class="time_comment">
-                        {{getCovertKoreaTime(reply.createdAt).substr(0,16).replace('T', ' ')}}<span (click)="showReComments(i)"
-                        *ngIf="!isShowReComments[i]" class="comment_reply">답글 달기</span><span (click)="noShowReComments(i)" class="comment_reply" *ngIf="isShowReComments[i]">취소</span>
-                      </div>
-                    </ng-container>
-                  </div>
-                </div>
-                <div *ngIf="isShowReComments[i]" class="recomment_div">
-                  <textarea [(ngModel)]="recomment.body" class="recomment_box" rows="3" cols="30" #myInput2 maxLength="300" autoGrow="true"
-                    placeholder="답글 달기...(50자 이내)" maxLength="50" (input)="adjustTextarea2(i+1)"></textarea>
-                  <button ion-button class="recomment_btn" (click)="saveReCommentsMovieReply(reply._id, i)">게시</button>
-                </div>
-                  <ng-container *ngFor="let reComment of reply.recomments">
-                    <div class="review_div2">
-                      <img class="profile_comment3" src="assets/img/register/ic-system-profile-default@3x.png">
-                      <img class="return_img" src="assets/img/beautymovie/return.png">
-                      <div class="container2">
-                        <ng-container>
-                          <div class="user_email">{{reComment.email}}</div>
-                          <div class="content_comment" text-wrap>{{reComment.body}}</div>
-                          <div class="time_comment">
-                            {{getCovertKoreaTime(reComment.createdAt).substr(0,16).replace('T', ' ')}}<span
-                              class="comment_reply">답글 달기</span></div>
-                        </ng-container>
-                      </div>
-                    </div>
-                  </ng-container>
-                
-                <div
-                      style="height:0.1vh; width:100%; margin:0 auto; display: block; margin-top: -5%; background-color:#f1f1f1">
-                    </div>
-              </ng-container>
-            </ng-container>
-          </ion-list> -->
         </ng-container>
         <br><br><br><br><br><br>
 

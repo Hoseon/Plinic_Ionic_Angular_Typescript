@@ -90,13 +90,19 @@ export class ChalMissionStartPage {
   startChallDate: any;
   registerReply = { comment: '', id: '', date: new Date(), body: '', title: '', name: ''};
   reply = { comment: '', id: '', email: '' };
+  recomment = { body: '', email: '' };
   profileimg_url: any;
   @ViewChild('myInput') myInput: ElementRef;
+  @ViewChild('myInput2') myInput2: ElementRef;
   comment_popover_option: any = "보기";
   comment_popover_option_textarea: any;
   updatevalue: any;
   commentTimeZone: Array<any> = new Array<any>();
   plinicUserImages: Array<any> = new Array<any>();
+
+  isShowReComments: Array<boolean> = new Array<boolean>(); //댓글
+  isShowReComments2: Array<boolean> = new Array<boolean>(); //대댓글
+  isShowReply: boolean = false;
 
 
 
@@ -1423,6 +1429,80 @@ export class ChalMissionStartPage {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
+  }
+
+  showReComments(index) {
+    this.isShowReComments[index] = true;
+  }
+
+  noShowReComments(index) {
+    this.isShowReComments[index] = false;
+    this.resize2();
+    this.recomment.body="";
+  }
+
+  resize2() {
+    setTimeout(() => {
+      this.myInput2.nativeElement.style.height = 'auto'
+      this.myInput2.nativeElement.style.height = this.myInput2.nativeElement.scrollHeight + 'px';
+    }, 100)
+  }
+
+  protected adjustTextarea2(index): void {
+    let textArea2 = this.element.nativeElement.getElementsByTagName('textarea')[1];
+    textArea2.style.overflow = 'hidden';
+    textArea2.style.height = 'auto';
+    textArea2.style.height = textArea2.scrollHeight + 'px';
+    textArea2.style.cursor = 'pointer';
+    return;
+  }
+
+  saveReCommentsChallenge(id, index) {
+    // console.log(this.comment.body);
+    console.log("================" + id);
+    this.auth.replyChallengeReCommentSave(this.userData, id, this.recomment).subscribe(data => {
+      // this.isShowReComments[index] = false;
+      // this.isShowReComments2[index] = false;
+      if (data !== "") {
+        let alert2 = this.alertCtrl.create({
+          cssClass: 'push_alert',
+          title: '답글달기',
+          message: "답글이 정상적으로 등록되었습니다.",
+          enableBackdropDismiss: true,
+          buttons: [
+            {
+              text: '확인',
+              handler: () => {
+                
+              }
+            }
+          ]
+        });
+        alert2.onDidDismiss(()=>{
+          this.registerReply.comment = '';
+          this.recomment.body = '';
+          this.resize();
+          this.resize2();
+          this.update();
+          this.isShowReply = true;
+          this.isShowReComments[index] = false;
+          this.isShowReComments2[index] = false;
+        })
+        alert2.present();
+      }
+    }, error => {
+      this.showError(JSON.parse(error._body).msg);
+    });
+  }
+
+  showReComments2(index) {
+    this.isShowReComments2[index] = true;
+  }
+
+  noShowReComments2(index) {
+    this.isShowReComments2[index] = false;
+    this.resize2();
+    this.recomment.body="";
   }
 
 }

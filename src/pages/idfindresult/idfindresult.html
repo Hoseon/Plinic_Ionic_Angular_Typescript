@@ -25,9 +25,11 @@
 
 
   <ion-grid no-padding>
-    <ion-row class="center">
-      <p class="findresult" *ngIf="result" >회원님의 ID(Email)은 <span *ngIf="result">{{emailSecurity(result)}}</span>입니다.</p>
-    </ion-row>
+    <ng-container *ngFor="let result of findResult">
+      <ion-row class="center">
+        <p class="findresult" *ngIf="result" >회원님의 ID(Email)은 <span *ngIf="findResult">{{emailSecurity(result)}}</span>입니다.</p>
+      </ion-row>
+    </ng-container>
   </ion-grid>
 
   <ion-footer no-lines no-shadow>

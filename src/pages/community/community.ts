@@ -17,13 +17,6 @@ import { CommunityTipPage } from '../communityTip/communityTip';
 import { MovieTipPage } from '../movieTip/movieTip';
 import { OrderDetailPage } from '../order-detail/order-detail';
 
-/**
- * Generated class for the CommunityPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-community',
@@ -88,6 +81,7 @@ export class CommunityPage {
 
 
     this.platform.ready().then((readySource) => {
+      this.slides.slideTo(0);
       if(this.platform.is('android')) {
         this.platform.registerBackButtonAction(()=>{
           this.nav.parent.select(0);
@@ -95,10 +89,6 @@ export class CommunityPage {
         })
       }
 
-      // console.log("루트페어런트 데이터 테스트 ::::::;" + JSON.stringify(navParams.data));
-
-      // console.log('parent_test :::::: ' + this.navParams.get('test'));
-      console.log(this.navParams.get('back'));
       this.events1();
       this.events2();
       this.events3();
@@ -115,7 +105,6 @@ export class CommunityPage {
             }
           }
         }
-        // console.log(this.youTubeArrayData);
       })
     });
   }
@@ -125,9 +114,7 @@ export class CommunityPage {
     await this.getpostTipList3ea();
     await this.getMovieList3ea();
     await this.getMoviePlinicList3ea();
-    // await this.communityBeautyLoad();
     await this.getpostHitList3ea();
-    console.log('ionViewDidLoad CommunityPage');
   }
 
   ionViewDidEnter() {
@@ -141,31 +128,24 @@ export class CommunityPage {
 
 
   ionViewDidLeave(){
-   console.log("ionViewDidLeave Community");
    this.authService.setUserStoragetab(0);
   }
 
 
   update() {
     this.view._willEnter();
-
   }
 
 
   async ionViewWillEnter() {
     this.androidBackButton();
     await this.tabs_check();
-    // this.selectedTab(0);
-    // this.showLoading();
     this.roadbeauty();
-    // this.communityEditorBeautyLoad();
-    // this.communityBeautyLoad();
     this.beautyNoteLoad();
     this.beautyNoteMainLoad();
     this.skinQnaLoad();
     this.skinQnaMainLoad();
     this.exhibitionLoad();
-    //this.loading.dismiss();
     if(this.userData) {
       if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
         this.reloadUserPoint(this.userData.email);
@@ -178,7 +158,6 @@ export class CommunityPage {
       let tabs = document.querySelectorAll('.tabbar');
       if (tabs !== null) {
         Object.keys(tabs).map((key) => {
-          //tabs[ key ].style.transform = 'translateY(0)';
           tabs[key].style.display = '';
         });
       }
@@ -192,7 +171,6 @@ export class CommunityPage {
   public tabs_check() {
     this.authService.getUserStoragetab().then(items => {
       this.tabs_boolean = items;
-      // console.log("tabs_boolean=======" + this.tabs_boolean);
       if (this.tabs_boolean === 1) {
         setTimeout(() => {
           this.selectedTab(1);
@@ -209,24 +187,15 @@ export class CommunityPage {
           this.page = "2";
         }, 100);
       }
-      // else if (this.tabs_boolean === 3) {
-      //   setTimeout(() => {
-      //     this.selectedTab(3);
-      //     this.page = "3";
-      //   }, 100);
-      // }
-      // this.authService.setUserStoragetab(0); //2020-06-22 피부고민 작성시 슬라이드가 2번째로 가 있도록 창이 닫히는(ondiddismiss에 처리 하였다)
     });
   }
 
 
   events1() {
     this.events.subscribe('tabs1', (data) => {
-      console.log("이벤트111")
       this.tab1 = data;
       this.selectedTab(0);
       if (this.tab1 == "tabs1") {
-      console.log("이벤트111_2222")
         setTimeout(() => {
           this.selectedTab(1);
           this.page = "2";
@@ -234,17 +203,14 @@ export class CommunityPage {
       }
       this.events.unsubscribe('tabs1', this.tab1)
       this.tab1 = undefined;
-      console.log("tabs1 subscribe===============" + data);
     });
   }
 
   events2() {
     this.events.subscribe('tabs2', (data) => {
-      console.log("이벤트2222");
       this.tab1 = data;
       this.selectedTab(0);
       if (this.tab1 == "tabs2") {
-      console.log("이벤트2222_2222");
         setTimeout(() => {
           this.selectedTab(2);
           this.page = "2";
@@ -252,7 +218,6 @@ export class CommunityPage {
       }
       this.events.unsubscribe('tabs2', this.tab1)
       this.tab1 = undefined;
-      console.log("tabs1 subscribe===============" + data);
     });
   }
 
@@ -268,44 +233,16 @@ export class CommunityPage {
       }
       this.events.unsubscribe('tabs3', this.tab3)
       this.tab3 = undefined;
-      console.log("tabs3 subscribe===============" + data);
     });
   }
-
-
-
 
   selectedTab(tab) {
     this.slides.slideTo(tab);
     this.authService.setUserStoragetab(tab);
-    // console.log('this.slides.slideTo(tab)===================' + tab);
   }
 
   slideChanged($event) {
     this.page = $event._snapIndex.toString();
-
-    //   if(this.page==='0'){
-    //   let tabs = document.querySelectorAll('.tabbar');
-    //   if (tabs !== null) {
-    //     Object.keys(tabs).map((key) => {
-    //       tabs[ key ].style.transform = 'translateY(0)';
-    //       tabs[key].style.display = 'block';
-    //       tabs[key].style.display = '';
-    //     });
-    //   }
-    //   }else{
-    //   let tabs = document.querySelectorAll('.tabbar');
-    //   if (tabs !== null) {
-    //     Object.keys(tabs).map((key) => {
-    //       //tabs[ key ].style.transform = 'translateY(0)';
-    //       tabs[key].style.display = 'none';
-    //     });
-    //   }
-    // }
-    //
-    // document.getElementById("view").style.display = "block";
-    //     document.getElementById("view").style.display = "none";
-
     if (this.page !== '0' && this.page !== '1' && this.page !== '2' && this.page !== '3' && this.page !== '4') {
       setTimeout(() => {
         this.slides.slideTo(0, 0);
@@ -380,7 +317,6 @@ export class CommunityPage {
 
   openBrowser_ioslike(url, title, id, user, mode) {
     this.images.communityBeautyViewsUpdate(id).subscribe(data => {
-      // this.communityBeautyLoadData = data;
     });
 
     const options: ThemeableBrowserOptions = {
@@ -408,15 +344,6 @@ export class CommunityPage {
         align: 'right',
         event: 'forwardPressed'
       },
-      // customButtons: [
-      //   {
-      //
-      //     wwwImage: 'assets/img/like/like.png',
-      //     // wwwImagePressed: 'assets/img/like/dislike.png',
-      //     align: 'right',
-      //     event: 'sharePressed'
-      //   }
-      // ],
     };
 
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
@@ -435,11 +362,6 @@ export class CommunityPage {
       });
       if (mode === 'tip') {
         this.toast();
-        // this.images.like(id, user).subscribe(data => {
-        //   console.log("-----------------------------------------" + data);
-        //
-        // });
-
       } else if (mode === 'exhi') {
 
       } else {
@@ -451,7 +373,6 @@ export class CommunityPage {
 
   openBrowser_ios(url, title, id) {
     this.images.communityBeautyViewsUpdate(id).subscribe(data => {
-      // this.communityBeautyLoadData = data;
     });
     const options: ThemeableBrowserOptions = {
       toolbar: {
@@ -478,14 +399,6 @@ export class CommunityPage {
         align: 'right',
         event: 'forwardPressed'
       },
-      // customButtons: [
-      //   {
-      //     wwwImage: 'assets/img/like/like.png',
-      //     imagePressed: 'assets/img/like/dislike.png',
-      //     align: 'right',
-      //     event: 'sharePressed'
-      //   }
-      // ],
     };
 
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
@@ -499,7 +412,6 @@ export class CommunityPage {
     })
 
     browser.on('sharePressed').subscribe(data => {
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
     })
 
 
@@ -508,7 +420,6 @@ export class CommunityPage {
 
   openBrowser_androidlike(url, title, id, user, mode) {
     this.images.communityBeautyViewsUpdate(id).subscribe(data => {
-      // this.communityBeautyLoadData = data;
     });
 
     const options: ThemeableBrowserOptions = {
@@ -536,15 +447,6 @@ export class CommunityPage {
         align: 'right',
         event: 'forwardPressed'
       },
-      // customButtons: [
-      //   {
-      //
-      //     wwwImage: 'assets/img/like/like.png',
-      //     // wwwImagePressed: 'assets/img/like/dislike.png',
-      //     align: 'right',
-      //     event: 'sharePressed'
-      //   }
-      // ],
     };
 
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
@@ -561,25 +463,10 @@ export class CommunityPage {
       browser.executeScript({
         code: ""
       });
-      console.log("idididididididid : " + id);
-      console.log("modemodemodemodemodemodemodemodmoe : " + mode);
-      console.log("useruseruseruseruseruseruseruser" + user);
-      console.log(data);
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
       if (mode === 'tip') {
-        console.log("tiptiptiptiptiptiptiptiptiptiptip");
         this.toast();
-        // this.images.like(id, user).subscribe(data => {
-        //   console.log("-----------------------------------------" + data);
-        //
-        // });
-        console.log("tip2tip2tip2tip2tip2tip2tiptiptiptiptip");
-
       } else if (mode === 'exhi') {
-        console.log("exhiexhiexhiexhiexhiexhiexhiexhi");
-
       } else {
-        console.log("nothingnothingnothingnothingnothingnothing");
       }
     })
 
@@ -588,9 +475,7 @@ export class CommunityPage {
 
 
   openBrowser_android(url, title, id) {
-
     this.images.communityBeautyViewsUpdate(id).subscribe(data => {
-      // this.communityBeautyLoadData = data;
     });
 
     const options: ThemeableBrowserOptions = {
@@ -618,14 +503,6 @@ export class CommunityPage {
         align: 'right',
         event: 'forwardPressed'
       },
-      // customButtons: [
-      //   {
-      //     wwwImage: 'assets/img/like/like.png',
-      //     imagePressed: 'assets/img/like/dislike.png',
-      //     align: 'right',
-      //     event: 'sharePressed'
-      //   }
-      // ],
     };
 
     const browser: ThemeableBrowserObject = this.themeableBrowser.create(url, '_blank', options);
@@ -639,13 +516,8 @@ export class CommunityPage {
     })
 
     browser.on('sharePressed').subscribe(data => {
-      console.log("customButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressedcustomButtonPressed")
     })
-
   }
-
-
-
 
   public community_my() {
     this.nav.push(MyPage);
@@ -698,7 +570,6 @@ export class CommunityPage {
 
   public loadItems() {
     this.authService.getUserStorage().then(items => {
-
       if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
         this.userData = {
           accessToken: items.accessToken,
@@ -719,8 +590,6 @@ export class CommunityPage {
         } else {
           this.thumb_image = true;
         }
-        // this.chkmission(this.userData.email);
-        // this.chkIngmission(this.userData.email);
       } else {
         this.userData = {
           accessToken: items.accessToken,
@@ -730,33 +599,17 @@ export class CommunityPage {
           email: this.jwtHelper.decodeToken(items).email,
           gender: items.gender,
           nickname: this.jwtHelper.decodeToken(items).name,
-          // totaluserpoint: this.jwtHelper.decodeToken(items).totaluserpoint,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
           from: 'plinic',
         };
         this.reloadUserPoint(this.userData.email);
-        // this.chkmission(this.userData.email);
-        // this.chkIngmission(this.userData.email);
         this.from = 'plinic';
       }
-      // console.log("사용자 포인트는? : " + this.userData.totaluserpoint);
-
-      // console.log("사용자 포인트는? : " + this.userData.totaluserpoint);
-      // console.log("사용자 이메일은? : " + this.userData.email);
-
-
       this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
       this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
     });
   }
-
-
-  // public community_qna_modify() {
-  //   let myModal = this.modalCtrl.create(CommunityModifyPage, {qna : 'qna'});
-  //   myModal.present();
-  // }
-
 
   showLoading() {
     if (this.platform.is("ios") && this.device.model === 'iPhone7,2' || this.device.model === 'iPhone8,1' || this.device.model === 'iPhone9,1' || this.device.model === 'iPhone9,3' || this.device.model === 'iPhone10,1' || this.device.model === 'iPhone10,4') {
@@ -812,7 +665,6 @@ export class CommunityPage {
     }
   }
 
-
   toast() {
     let toast = this.toastCtrl.create({
       message: '좋아요!',
@@ -821,7 +673,6 @@ export class CommunityPage {
     });
 
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
     });
 
     toast.present();
@@ -829,12 +680,10 @@ export class CommunityPage {
 
 
   test() {
-    console.log(" ljasd;lfkjasd;lkfjas;dklfja;sdklfja;sdklfj------------------------------------------------------------");
   }
 
   public myinfo() {
     //2020-05-28 마이페이지 하단탭 제거
-    // this.nav.push(MyinfoPage);
 
     let myModal = this.modalCtrl.create(MyinfoPage);
     myModal.onDidDismiss(data => {
@@ -846,7 +695,6 @@ export class CommunityPage {
           this.reloadUserPoint(this.userData.email);
         }
       }
-      console.log("내정보 페이지 닫음");
       this.androidBackButton();
 
     });
@@ -859,12 +707,6 @@ export class CommunityPage {
   }
 
   private reloadUserPoint(email) {
-    // this.authService.reloadUserPointfromPlincShop(email).subscribe(data =>{
-    //   // console.log("커뮤니티 사용자 포인트 : " + data)
-    //   this.userData.totaluserpoint = data.point;
-    //   this.userData.totaluserpoint = this.addComma(this.userData.totaluserpoint);
-    // });
-
     this.authService.reloadUserPointfromPlinc(email).subscribe(
       data => {
         this.userData.totaluserpoint = JSON.stringify(data.totalPoint);
@@ -877,10 +719,6 @@ export class CommunityPage {
       }
     );
 
-  }
-
-  async getMovieData() {
-    // this.images
   }
 
   public openMoviePage(youTubeData) {
@@ -975,7 +813,6 @@ export class CommunityPage {
   orderDetailPage() {
     this.nav.push(OrderDetailPage, {detailData : ''}).then(() => {
       this.nav.getActive().onDidDismiss(data => {
-        console.log("배송 조회 페이지 닫힘");
       });
     });
   }
@@ -983,17 +820,10 @@ export class CommunityPage {
   getOrderList(email) {
     this.authService.getOrderList(email, 'All').subscribe(data => {
       if(data !='') {
-          // this.orderList = data;
-          // this.orderCount = data[0].orderCount;
-          // this.isOrderSpinner = false;
       } else {
-        // this.orderCount = 0;
       }
     }, error => {
       console.error("주문 배송 정보 가져 오기 실패 : " + error);
     })
   }
-
-
-
  }

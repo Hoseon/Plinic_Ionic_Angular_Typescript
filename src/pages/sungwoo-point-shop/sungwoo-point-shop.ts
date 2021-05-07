@@ -27,7 +27,6 @@ export class SungwooPointShopPage {
   deviceData: any;
   maxPoint: any; //최대사용가능 포인트
   page: any = '0';
-  testUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/productimage-1612832179650';
   @ViewChild('Slides2') slides: Slides;
 
 
@@ -45,13 +44,13 @@ export class SungwooPointShopPage {
   }
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad SungwooPointShopPage');
     this.getProductData();
     this.getCosmeticData();
     this.getDeviceData();
   }
 
   ionViewWillEnter() {
+    this.tabs_check();
     this.androidBackButton();
     if(this.userData) {
       if (this.userData.from === 'kakao' || this.userData.from === 'google' || this.userData.from === 'naver') {
@@ -67,17 +66,7 @@ export class SungwooPointShopPage {
     this.loadItems();
   }
 
-  updateCucumber() {
-    //  console.log('Cucumbers new state:' + this.cucumber);
-  }
-
   private reloadUserPoint(email) {
-    // this.authService.reloadUserPointfromPlincShop(email).subscribe(data =>{
-    //   // console.log("커뮤니티 사용자 포인트 : " + data)
-    //   this.userData.totaluserpoint = data.point;
-    //   this.userData.totaluserpoint = this.addComma(this.userData.totaluserpoint);
-    // });
-
     this.authService.reloadUserPointfromPlinc(email).subscribe(
       data => {
         this.userData.totaluserpoint = JSON.stringify(data.totalPoint);
@@ -90,6 +79,14 @@ export class SungwooPointShopPage {
       }
     );
 
+  }
+
+  public tabs_check() {
+    this.authService.getPointShoptab().then(items => {
+      console.log("tabs : " + items);
+      this.selectedTab(items);
+      this.authService.setPointShoptab(0);
+    });
   }
 
   public loadItems() {
@@ -115,8 +112,6 @@ export class SungwooPointShopPage {
         } else {
           this.thumb_image = true;
         }
-        // this.chkmission(this.userData.email);
-        // this.chkIngmission(this.userData.email);
       } else {
         this.userData = {
           accessToken: items.accessToken,
@@ -126,22 +121,13 @@ export class SungwooPointShopPage {
           email: this.jwtHelper.decodeToken(items).email,
           gender: items.gender,
           nickname: this.jwtHelper.decodeToken(items).name,
-          // totaluserpoint: this.jwtHelper.decodeToken(items).totaluserpoint,
           profile_image: items.profile_image,
           thumbnail_image: items.thumbnail_image,
           from: 'plinic',
         };
         this.reloadUserPoint(this.userData.email);
-        // this.chkmission(this.userData.email);
-        // this.chkIngmission(this.userData.email);
         this.from = 'plinic';
       }
-      // console.log("사용자 포인트는? : " + this.userData.totaluserpoint);
-
-      // console.log("사용자 포인트는? : " + this.userData.totaluserpoint);
-      // console.log("사용자 이메일은? : " + this.userData.email);
-
-
       this.profileimg_url = "http://plinic.cafe24app.com/userimages/";
       this.profileimg_url = this.profileimg_url.concat(this.userData.email + "?random+\=" + Math.random());
     });
@@ -151,26 +137,15 @@ export class SungwooPointShopPage {
     return Number(data_value).toLocaleString('en');
   }
 
-  // public community_search() {
-  //   let myModal = this.modalCtrl.create(SearchPage);
-  //   myModal.onDidDismiss(data => {
-
-  //   });
-  //   myModal.present();
-  // }
-
   orderDetailPage() {
     this.navCtrl.push(OrderDetailPage, {detailData : ''}).then(() => {
       this.navCtrl.getActive().onDidDismiss(data => {
-        // console.log("배송 조회 페이지 닫힘");
       });
     });
   }
 
   public myinfo() {
     //2020-05-28 마이페이지 하단탭 제거
-    // this.nav.push(MyinfoPage);
-
     let myModal = this.modalCtrl.create(MyinfoPage);
     myModal.onDidDismiss(data => {
       if(this.userData) {
@@ -181,9 +156,7 @@ export class SungwooPointShopPage {
           this.reloadUserPoint(this.userData.email);
         }
       }
-      // console.log("내정보 페이지 닫음");
       this.androidBackButton();
-
     });
     myModal.present();
   }
@@ -205,7 +178,6 @@ export class SungwooPointShopPage {
     this.images.getProductData().subscribe(data => {
       setTimeout(() => {
         this.productData = data;  
-      // console.log(this.productData);
       }, 300);
     },err=>{
       alert("데이터 에러 발생");
@@ -216,7 +188,6 @@ export class SungwooPointShopPage {
     this.images.getPlinicProductCosmetic().subscribe(data => {
       setTimeout(() => {
         this.cosmeticData = data;
-        // console.log(this.cosmeticData);  
       }, 300);
     },err=>{
       alert("데이터 에러 발생");
@@ -227,7 +198,6 @@ export class SungwooPointShopPage {
     this.images.getPlinicProductDevice().subscribe(data => {
       setTimeout(() => {
         this.deviceData = data;
-        // console.log(this.cosmeticData);  
       }, 300);
     },err=>{
       alert("데이터 에러 발생");
@@ -235,13 +205,10 @@ export class SungwooPointShopPage {
   }
   
   onSlideDrag() {
-    // console.log('onSlideDrag');
   }
 
   slideChanged(event : Event) { 
-    // console.log(this.slides.getActiveIndex());
     this.page = String(this.slides.getActiveIndex());
-    // console.log(this.page);
     if (this.slides.getActiveIndex() == 1) {
       this.slides.lockSwipeToNext(true);
     } else if (this.slides.getActiveIndex() == 0) {
@@ -256,11 +223,8 @@ export class SungwooPointShopPage {
   care() {
     let myModal = this.modalCtrl.create(GuidePage, { mode: "home" });
     myModal.onDidDismiss(data => {
-      // console.log("케어 포인트 닫힘");
       this.androidBackButton();
       if (this.userData) {
-        // this.isFlip = true;
-        // console.log("사용자 포인트 리로드");
         if (
           this.userData.from === "kakao" ||
           this.userData.from === "google" ||
@@ -283,7 +247,6 @@ export class SungwooPointShopPage {
     let myModal = this.modalCtrl.create(ChulsukCheckPage);
     myModal.onDidDismiss(data => {
       if (this.userData) {
-        // this.isFlip = true;
         if (
           this.userData.from === "kakao" ||
           this.userData.from === "google" ||
@@ -294,7 +257,6 @@ export class SungwooPointShopPage {
           this.reloadUserPoint(this.userData.email);
         }
       }
-      // console.log("출석체크 페이지 닫음");
       if (this.platform.is("android")) {
         this.androidBackButton();
       }

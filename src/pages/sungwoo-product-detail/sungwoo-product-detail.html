@@ -97,13 +97,15 @@
     </ion-grid>
     <ion-row>
       <div style="height:1.2vh; width:100vw; margin-top:7.5vh; background-color:#f1f1f1"></div>
+      <img *ngIf="adUrl" class="adImg" (click)="openBrowser_android()" src="{{adUrl}}">
+      <div style="height:1.2vh; width:100vw; background-color:#f1f1f1"></div>
     </ion-row>
-    <ion-row>
-      <img src="assets/img/beauty/beauty_ad_2.png">
+    <!-- <ion-row>
+      <img *ngIf="adUrl" class="adImg" (click)="openBrowser_android()" src="{{adUrl}}">
     </ion-row>
     <ion-row>
       <div style="height:1.2vh; width:100vw; background-color:#f1f1f1"></div>
-    </ion-row>
+    </ion-row> -->
   </ng-container>
 
   <ng-container>
@@ -229,7 +231,7 @@
   <ion-grid no-padding>
     <ion-row>
       <ion-col no-padding col-6>
-        <button class="qna_btn" ion-button (click)="write_Review()">리뷰쓰고 100P 적립</button>
+        <button class="qna_btn" ion-button (click)="write_Review()">리뷰쓰고 50P 적립</button>
       </ion-col>
       <ion-col no-padding col-6>
         <button *ngIf="productData && userData" class="qna_btn2" ion-button (click)="next(productData, userData)">구매하기</button>

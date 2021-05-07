@@ -18,7 +18,7 @@
     <ion-img *ngIf="platform.is('android')" class="ic-system-back-black" (click)="measureBack()" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png"></ion-img>
     <ion-img *ngIf="platform.is('ios') || platform.is('core')" style="margin-top: 12%;" class="ic-system-back-black" (click)="measureBack()" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png"></ion-img>
 
-    <ng-container>
+    <!-- <ng-container>
       <ion-grid>
         <ion-row class="title">
             <div class="font_title">플리닉 포인트 획득!<br>디바이스와 연동 후 케어하세요.</div>
@@ -32,14 +32,29 @@
               <div class="font_sub">1초 당 1포인트를 제공합니다 (최대 90P/일)<br>완료 후 1일 안에 순차적으로 포인트가 반영됩니다.</div>
           </ion-row>
         </ion-grid>
-      </ng-container>
+      </ng-container> -->
 
-    <ng-container >
+    <!-- <ng-container >
       <ion-grid>
         <ion-row class="layer">
           <div class="content">
             <img no-lines class="ic_system_skin_face" src="assets/img/ic-system-skin-face/ic-system-skin-face@3x.png" />
           </div>
+        </ion-row>
+      </ion-grid>
+    </ng-container> -->
+
+    <ng-container *ngIf="platform.is('android')">
+      <ion-grid no-padding>
+        <ion-row>
+          <img src="assets/img/guide/android_guide@3x.png" class="guideImg" />
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+    <ng-container *ngIf="platform.is('ios') || platform.is('core')">
+      <ion-grid no-padding>
+        <ion-row>
+          <img src="assets/img/guide/ios_guide@3x.png" class="guideImg" />
         </ion-row>
       </ion-grid>
     </ng-container>

@@ -34,26 +34,40 @@
         <button ion-button (click)="startScan()">SCAN 시작</button>
       </ion-col>
       <ion-col>
-        <button ion-button (click)="stopScan()">SCAN 종료</button>
+        <!-- <button ion-button (click)="stopScan()">SCAN 종료</button> -->
       </ion-col>
     </ion-row>
     <br><br>
     <ion-row>
       <ion-col>
-        <button ion-button>커넥트 시작</button>
+        <button ion-button (click)="startConnect()" >커넥트 시작</button>
       </ion-col>
       <ion-col>
-        <button ion-button>커넥트 종료</button>
+        <button ion-button (click)="stopConnect()">커넥트 종료</button>
       </ion-col>
     </ion-row>
   </ion-grid>
   <br><br>
-  <ion-grid *ngFor="let scan of scanStatusData">
+  <ion-grid>
     <ion-row>
-      <div *ngIf="scanStatus">상태 : {{scanStatus}}</div>
+      <div class="statusText" *ngIf="scanStatus">상태 : {{scanStatus}}</div>
     </ion-row>
     <ion-row>
-      <div class="scanStatusData" *ngIf="scanStatusData">내용 : {{scan}}</div>
+      <div class="scanStatusData" *ngIf="scanStatusData2">연결된 디바이스 : {{scanStatusData2}}</div>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row *ngIf="data16">데이터 수신</ion-row>
+    <br>
+    <ion-row>
+      <ion-col class="testborder" *ngIf="data0">{{data0}}</ion-col>
+      <ion-col class="testborder" *ngIf="data1">{{data1}}</ion-col>
+      <ion-col class="testborder" *ngIf="data2">{{data2}}</ion-col>
+      <ion-col class="testborder" *ngIf="data3">{{data3}}</ion-col>
+      <ion-col class="testborder" *ngIf="data4">{{data4}}</ion-col>
+      <ion-col class="testborder" *ngIf="data5">{{data5}}</ion-col>
+      <ion-col class="testborder" *ngIf="data6">{{data6}}</ion-col>
+      <ion-col class="testborder" *ngIf="data7">{{data7}}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

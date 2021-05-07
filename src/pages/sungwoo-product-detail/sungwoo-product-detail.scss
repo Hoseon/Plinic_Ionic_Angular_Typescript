@@ -802,5 +802,12 @@ page-sungwoo-product-detail {
     box-shadow: none !important;
  }
 
+ .adImg {
+   min-width: 100% !important;
+   width: 100% !important;
+   height: 100%;
+  //  object-fit: contain !important;
+ }
+
 
 }

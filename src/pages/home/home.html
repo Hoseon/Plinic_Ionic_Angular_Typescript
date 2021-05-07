@@ -43,13 +43,13 @@
         </ng-container>
         <ng-container *ngIf="isFlip"> 
           <div *ngIf="userData" class="" (click)="myinfo()">
-            <div class="Create-account">{{totaluserpoint}}</div>
+            <div class="Create-account22">{{totaluserpoint}}</div>
           </div>
         </ng-container>
       </ion-col>
       <ion-col col-3 class="">
         <img float-right class="myIcon" (click)="myinfo()" src="assets/img/home/my.svg" />
-        <img float-right class="cartIcon" (click)="orderDetailPage()" src="assets/img/home/cart.svg" />
+        <img float-right class="cartIcon" (click)="orderDetailPage()" src="assets/img/invoice_white.svg" />
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -136,11 +136,9 @@
       <ion-col class=beauty_grid1 col-6 (click)="openBrowser_ios(beauty_data_url1, beauty_data_title1, beauty_data_viewId1)">
         <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id1}}" />
       </ion-col>
-      <!-- <div class="beauty_title">{{beauty_data_type1}}</div> -->
 
       <ion-col class=beauty_grid2 col-6 (click)="openBrowser_ios(beauty_data_url2, beauty_data_title2, beauty_data_viewId2)">
         <img class="beauty_img" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{beauty_data_id2}}" />
-        <!-- <div class="beauty_title">{{beauty_data_type2}}</div> -->
 
       </ion-col>
     </ion-row>

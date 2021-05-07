@@ -39,6 +39,7 @@ page-sungwoo-point-shop {
 
   //탭바 하단 여백
   .scroll-content {
+    overflow-y: hidden;
     margin-bottom: 0px !important;
   }
 
@@ -300,14 +301,6 @@ page-sungwoo-point-shop {
 
   .slide-zoom {
     height: 100%;
-  }
-
-  .beauty_tip {
-    // height: 436px;
-    // padding: 5%;
-    // padding-bottom: 0px;
-    // margin-bottom: 10%;
-    // margin-top: -2%;
   }
 
   .text {
@@ -646,10 +639,6 @@ page-sungwoo-point-shop {
     margin-top: 2vw !important;
   }
 
-  .slides {
-    // width: 100px !important;
-  }
-
   .review_point_grid {
     position: relative;
   }
@@ -708,12 +697,6 @@ page-sungwoo-point-shop {
     line-height: normal;
     letter-spacing: normal;
     color: #000000;
-  }
-
-  ion-slide.swiper-slide.swiper-slide-active {
-    // width : 100% !important;
-    // overflow-y: scroll;
-    // display: block;
   }
 
   .nextBorder {
