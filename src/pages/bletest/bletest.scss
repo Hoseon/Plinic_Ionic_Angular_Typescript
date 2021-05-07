@@ -110,4 +110,13 @@ page-bletest {
     .scanStatusData {
       width: 100%;
     }
+
+    .testborder {
+      border: solid 1px #292929;
+    }
+
+    .statusText {
+      font-size: 20px;
+      font-weight: bold;
+    }
 }

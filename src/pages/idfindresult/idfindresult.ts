@@ -18,6 +18,7 @@ import { LoginPage } from '../login/login';
 export class IdfindresultPage {
   credentials: any;
   result: any;
+  findResult: Array<any> = new Array<any>();
 
   constructor(
       public navCtrl: NavController, 
@@ -35,8 +36,14 @@ export class IdfindresultPage {
     }
 
     if(this.credentials) {
-      this.auth.idFind(this.credentials).subscribe(data => {
-        this.result = data.id;
+      this.auth.idFindWithPhone(this.credentials).subscribe(data => {
+        if(data) {
+          for (let i = 0; i < data.user.length; i++) {
+            this.findResult[i] = data.user[i].email;
+          }
+        }
+        console.log(this.findResult);
+        // this.result = data.id;
       }, error => {
         this.showErrorAlert();
       })

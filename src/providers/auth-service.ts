@@ -165,6 +165,15 @@ export class AuthService {
     return this.storage.get('HomePopup');
   }
 
+  //플리닉샵 화장품 탭스 관리
+  public setPointShoptab(check) {
+    this.storage.set('pointshop', check);
+  }
+
+  public getPointShoptab() {
+    return this.storage.get('pointshop');
+  }
+
   // 최초 탭스이벤트 처리
   public setUserStoragetab(check) {
     this.storage.set('check', check);
@@ -888,6 +897,47 @@ export class AuthService {
         return data;
       });
   }
+
+  public replySkinQnaReCommentSave(userData, id, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: userData.email,
+      body: content.body,
+    };
+
+    console.log("ReplySave : " + JSON.stringify(body));
+    console.log("등록될 ID : " + id);
+
+    return this.http.post(CONFIG.apiUrl + 'skinqna/' + id + '/recomments', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  public replyChallengeReCommentSave(userData, id, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: userData.email,
+      body: content.body,
+    };
+
+    console.log("ReplySave : " + JSON.stringify(body));
+    console.log("등록될 ID : " + id);
+
+    return this.http.post(CONFIG.apiUrl + 'carezone/' + id + '/recomments', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
 
 
   public replySkinQnaSave(userData, content) {
@@ -1763,7 +1813,7 @@ export class AuthService {
   public userPointUpdate(email, points) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
-
+    // console.log("사용자 포인트 적립 확인 ::::::::::::::::::::::::::: " + points);
     let body = {
       email: email,
       userpoint: {
@@ -2601,6 +2651,23 @@ export class AuthService {
       });
   }
 
+  //2021-04-07 사용자 id(email) 찾기 생년월일을 제거 하고 전화번호로 바꿈
+  public idFindWithPhone(credentials) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      name: credentials.name,
+      phonenumber: credentials.phonenumber,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/idFindWithPhone', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        return data;
+      });
+  }
+
   public passwordReset(credentials) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -2901,6 +2968,78 @@ export class AuthService {
         return data;
     });
   }
+
+
+  public updateChangeOrders(email, reasonType, reasonDesc, id) { //사용자 상품구매 포인트차감 이력 저장 로직
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      id: id,
+      email: email,
+      reasonType: reasonType,
+      reasonDesc: reasonDesc
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/updateChangeOrders', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        return data;
+    });
+  }
+
+  public updateReturnOrders(email, reasonType, reasonDesc, id) { //사용자 상품구매 포인트차감 이력 저장 로직
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      id: id,
+      email: email,
+      reasonType: reasonType,
+      reasonDesc: reasonDesc
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/updateReturnOrders', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        return data;
+    });
+  }
+
+  public updateCancelOrders(email, reasonType, reasonDesc, id) { //사용자 상품구매 포인트차감 이력 저장 로직
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      id: id,
+      email: email,
+      reasonType: reasonType,
+      reasonDesc: reasonDesc
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/updateCancelOrders', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        return data;
+    });
+  }
+
+  public updateCompletedOrders(email, id) { //사용자 상품구매 포인트차감 이력 저장 로직
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      id: id,
+      email: email,
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/updateCompletedOrders', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        return data;
+    });
+  }
+  
 
 
 }

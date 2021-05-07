@@ -329,12 +329,19 @@ import { OrderCancel1PageModule } from '../pages/order-cancel/order-cancel1/orde
 import { OrderCancel2PageModule } from '../pages/order-cancel/order-cancel2/order-cancel2.module';
 import { OrderCancel3PageModule } from '../pages/order-cancel/order-cancel3/order-cancel3.module';
 import { OrderCancel4PageModule } from '../pages/order-cancel/order-cancel4/order-cancel4.module';
+//20210415 교환신청 페이지
+import { OrderChangePageModule } from '../pages/order-cancel/order-change/order-change.module';
+import { OrderCancelPageModule } from '../pages/order-cancel/order-cancel/order-cancel.module';
+import { OrderReturnPageModule } from '../pages/order-cancel/order-return/order-return.module';
+// import { OrderChangePage } from '../pages/order-cancel/order-change/order-change';
 
 import { ScreentemplatePageModule } from '../pages/screentemplate/screentemplate.module';
 import { PostBoxPagePageModule } from '../pages/postbox/postbox.module';
 import { BleTestPagePageModule } from '../pages/bletest/bletest.module';
  
 import { Geolocation } from '@ionic-native/geolocation';
+
+// import { LoadingComponent } from '../components/loading/loading';
 
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
@@ -410,6 +417,8 @@ export function getAuthHttp(http, storage) {
     DeviceSkinSensorIngPage,
     ChulsukCheckPage,
     ItemSearchPage,
+    // LoadingComponent,
+    // OrderChangePage,
   ],
   imports: [
     PointLogPageModule,
@@ -547,6 +556,9 @@ export function getAuthHttp(http, storage) {
     OrderCancel2PageModule,
     OrderCancel3PageModule,
     OrderCancel4PageModule,
+    OrderChangePageModule,
+    OrderCancelPageModule,
+    OrderReturnPageModule,
     ScreentemplatePageModule,
     PostBoxPagePageModule,
     BleTestPagePageModule,
@@ -615,6 +627,7 @@ export function getAuthHttp(http, storage) {
     DeviceSkinSensorIngPage,
     ChulsukCheckPage,
     ItemSearchPage,
+    // OrderChangePage,
   ],
   providers: [
     StatusBar,

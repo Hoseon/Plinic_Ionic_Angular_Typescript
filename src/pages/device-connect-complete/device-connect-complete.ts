@@ -58,18 +58,22 @@ export class DeviceConnectCompletePage {
     console.log('ionViewDidLoad DeviceConnectCompletePage');
   }
 
+  ionViewWillEnter(){
+    this.androidBackButton();
+  }
+
   ionViewDidEnter(){
   if(this.device !=='') {
       this.timer = setTimeout(() => {
         this.navCtrl.push(DeviceSkinIngPage, { device: this.device, 'carezoneData': this.carezoneData, mode: this.mode }); //20200527 중간 성공페이지 보여지도록 처리
         this.device = '';
-      }, 3000);
+      }, 1500);
     }
   }
 
 
-  ionViewWillLeave(){
-   clearTimeout(this.timer);
+  ionViewWillLeave() {
+    clearTimeout(this.timer);
   }
 
   public deviceComplete() {
@@ -102,12 +106,25 @@ export class DeviceConnectCompletePage {
   deviceFail(){
     clearTimeout(this.timer);
     this.navCtrl.setRoot(TabsPage);
+    // this.ble.stopScan();
+    // this.viewCtrl.dismiss();
     // this.ble.disconnect(this.device.id).then(result => {
     //   console.log("ble disconnect OK : " + result);
     //   this.navCtrl.setRoot(TabsPage);
     // }, error => {
     //   console.log("ble disconnect error :" + error);
     // });
+  }
+
+  //20201125 안드로이드 백 버튼 처리
+  androidBackButton() {
+    if(this.platform.is('android')) {
+      this.platform.registerBackButtonAction(() => {
+        this.navCtrl.setRoot(TabsPage);
+        // this.ble.stopScan();
+        // this.viewCtrl.dismiss();
+      });
+    }
   }
 
 

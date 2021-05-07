@@ -65,12 +65,12 @@ export class PointLogPage {
 
   getPlinicPointAll(email) {
     this.images.getUserPointLog(email).subscribe(data => {
-      this.pointLogData = data.point;
-      for (let i = 0; i < this.pointLogData.length; i++) { 
-        if(String(this.pointLogData[i].point).indexOf('-') >= 0) {
-            this.pointMinusData.push(this.pointLogData[i]);
+      this.pointLogData = data;
+      for (let i = 0; i < this.pointLogData.length; i++) {
+        if(String(this.pointLogData[i].point.point).indexOf('-') >= 0) {
+            this.pointMinusData.push(this.pointLogData[i].point);
         } else {
-            this.pointPlusData.push(this.pointLogData[i]);
+            this.pointPlusData.push(this.pointLogData[i].point);
         }
       }
     }, error => {

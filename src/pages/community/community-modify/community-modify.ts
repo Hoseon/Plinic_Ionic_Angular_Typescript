@@ -36,6 +36,7 @@ export class CommunityModifyPage {
   jwtHelper: JwtHelper = new JwtHelper();
   registerReply = { comment: '', id: '' };
   reply = { comment: '', id: '', email: '' };
+  recomment = { body: '', email: '' };
   islike: boolean = false;
   focusvalue: any;
   updatevalue: any;
@@ -45,9 +46,15 @@ export class CommunityModifyPage {
   adUrl: any;
   productTitle: any;
   productURL: any;
+  isShowReComments: Array<boolean> = new Array<boolean>(); //댓글
+  isShowReComments2: Array<boolean> = new Array<boolean>(); //대댓글
+  isShowReply: boolean = false;
+
 
 
   @ViewChild('myInput') myInput: ElementRef;
+  @ViewChild('myInput2') myInput2: ElementRef;
+
 
   @ViewChild('textarea') mytextarea;
 
@@ -701,6 +708,12 @@ export class CommunityModifyPage {
   public skinQnaOneLoad(id) {
     this.images.skinQnaOneLoad(id).subscribe(data => {
       this.skinQnaOneLoadData = data;
+      for (var k = 0; k < data.comments.length; k++) {
+        this.isShowReComments[k] = false;
+      }
+      for (var c = 0; c < data.comments.recomments.length; c++) {
+        this.isShowReComments2[c] = false;
+      }
       this.tags = data.tags.split(",");
       for (var i = 0; i < data.likeuser.length; i++) {
         if (this.userData.email === data.likeuser[i]) {
@@ -752,8 +765,6 @@ export class CommunityModifyPage {
   }
 
   saveReply() {
-    console.log(this.id);
-    console.log(this.registerReply.comment);
     this.registerReply.id = this.id;
 
     if (this.userData.from === 'kakao' || this.userData.from === 'naver' || this.userData.from === 'google') {
@@ -917,8 +928,6 @@ export class CommunityModifyPage {
 
 
   saveSkinQnaReply() {
-    console.log(this.id);
-    console.log(this.registerReply.comment);
     this.registerReply.id = this.id;
     if (this.userData.from === 'kakao' || this.userData.from === 'naver' || this.userData.from === 'google') {
       this.auth.replySkinQnaSnsSave(this.userData, this.registerReply).subscribe(data => {
@@ -1428,6 +1437,83 @@ export class CommunityModifyPage {
     })
 
   }
+
+  showReComments(index) {
+    this.isShowReComments[index] = true;
+  }
+
+  noShowReComments(index) {
+    this.isShowReComments[index] = false;
+    this.resize2();
+    this.recomment.body="";
+  }
+
+
+  showReComments2(index) {
+    this.isShowReComments2[index] = true;
+  }
+
+  noShowReComments2(index) {
+    this.isShowReComments2[index] = false;
+    this.resize2();
+    this.recomment.body="";
+  }
+
+  resize2() {
+    setTimeout(() => {
+      this.myInput2.nativeElement.style.height = 'auto'
+      this.myInput2.nativeElement.style.height = this.myInput2.nativeElement.scrollHeight + 'px';
+    }, 100)
+  }
+
+  saveReCommentsSkinQna(id, index) {
+    // console.log(this.comment.body);
+    console.log("================" + id);
+    this.auth.replySkinQnaReCommentSave(this.userData, id, this.recomment).subscribe(data => {
+      // this.isShowReComments[index] = false;
+      // this.isShowReComments2[index] = false;
+      if (data !== "") {
+        let alert2 = this.alertCtrl.create({
+          cssClass: 'push_alert',
+          title: '답글달기',
+          message: "답글이 정상적으로 등록되었습니다.",
+          enableBackdropDismiss: true,
+          buttons: [
+            {
+              text: '확인',
+              handler: () => {
+                
+              }
+            }
+          ]
+        });
+        alert2.onDidDismiss(()=>{
+          this.registerReply.comment = '';
+          this.recomment.body = '';
+          this.resize();
+          this.resize2();
+          this.update();
+          this.isShowReply = true;
+          this.isShowReComments[index] = false;
+          this.isShowReComments2[index] = false;
+        })
+        alert2.present();
+      }
+    }, error => {
+      this.showError(JSON.parse(error._body).msg);
+    });
+  }
+
+  protected adjustTextarea2(index): void {
+    let textArea2 = this.element.nativeElement.getElementsByTagName('textarea')[1];
+    textArea2.style.overflow = 'hidden';
+    textArea2.style.height = 'auto';
+    textArea2.style.height = textArea2.scrollHeight + 'px';
+    textArea2.style.cursor = 'pointer';
+    return;
+  }
+
+
 
 
 }

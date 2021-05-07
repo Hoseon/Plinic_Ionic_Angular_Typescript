@@ -1,0 +1,82 @@
+<!--
+  Generated template for the OrderReturnPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core') ">
+    <ion-buttons left>
+      <button (click)="close()" ion-button icon-only>
+        <!-- <img class="android_nav" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png" /> -->
+      </button>
+    </ion-buttons>
+    <ion-title class="android_title" text-wrap>반품 신청</ion-title>
+    <ion-buttons (click)="myinfo()" right>
+      <!-- <button  ion-button>
+                  <div class="button_left">{{totaluserpoint}}P &nbsp;<img class="ic_system_arrow_white" src="assets/img/home/ic_arrow_black.png" /></div>
+              </button> -->
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-navbar *ngIf="platform.is('ios')" no-lines>
+    <ion-buttons left no-lines>
+      <button ion-button navPop icon-only>
+        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
+        <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
+      </button>
+    </ion-buttons>
+    <ion-title class="ios_title" text-wrap>반품 신청</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-padding>
+  
+  <ng-container *ngIf="detailData">
+    <ion-grid class="grid_background" no-padding>
+      <ion-row>
+          
+        <div class="text1">주문번호 {{detailData.imp_uid}}</div>
+      </ion-row>
+      <ion-row>
+        <ion-card class="card">
+          <ion-row class="card_row1" ><div class="text2">{{statusToString(detailData.status)}}</div></ion-row>
+          <ion-row class="card_row2" ><div class="text3">{{detailData.product_name}}</div></ion-row>
+          <ion-row class="card_row3"><div class="text4">{{detailData.amount}}</div></ion-row>
+          <ion-row class="card_row4"><img class="pliniclogo" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{detailData.productFileName}}" /> </ion-row>
+        </ion-card>
+      </ion-row>
+      
+    </ion-grid>
+    <br><br><br>
+    <ion-grid class="select-border" no-padding>
+      <ion-item no-lines>
+        <ion-label>반품 사유 선택</ion-label>
+        <ion-select class="selectbox_text" [(ngModel)]="reasonType" submitText="확인" cancelText="Cancel">
+          <ion-option value="dos">변심에의한 구매의사 취소</ion-option>
+          <ion-option value="lunix">잘못된 옵션 선택</ion-option>
+          <ion-option value="mac7">상품 파손 또는 불량</ion-option>
+          <ion-option value="mac8">다른상품 오배송 또는 구성품 누락</ion-option>
+          <ion-option value="win3.1">상품정보와 다름</ion-option>
+          <ion-option value="win95">기타</ion-option>
+        </ion-select>
+      </ion-item>
+      <br><br><br>
+
+      <div class="border_textarea" no-lines>
+        <!-- <ion-textarea value="더 나은 플리닉을 만들 수 있도록 사유를 남겨주세요.">
+        </ion-textarea> -->
+        <ion-textarea class="textarea" no-lines placeholder="상세 사유를 남겨주세요." maxlength="200" wrap="hard" cols="10" rows="10" (input)="adjustTextarea($event)" [(ngModel)]="reasonDesc"></ion-textarea>
+      </div>
+    </ion-grid>
+
+    <ion-grid class="footer">
+      <ion-row>
+        <ion-col col-6><button class="center btn1" (click)="pop()" ion-button>주문내역확인</button></ion-col>
+        <ion-col col-6><button class="center btn2" (click)="showAlert()" ion-button>반품 신청</button></ion-col>
+      </ion-row> 
+    </ion-grid>
+  </ng-container>
+</ion-content>

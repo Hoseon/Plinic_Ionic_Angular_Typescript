@@ -65,7 +65,7 @@
     <ion-card>
       <ion-grid no-padding>
         <ion-row>
-          <ion-badge>{{statusToString(detail.status)}}</ion-badge>
+          <ion-badge>{{convertStatusKor(detail.status)}}</ion-badge>
         </ion-row>
         <ion-row>
           <ion-col col-8><div class="productName">{{detail.product_name}}</div></ion-col>
@@ -76,8 +76,10 @@
         <ion-row>
           <ion-col col-2 class="text5" (click)="deliveryInfo(detail)">배송조회</ion-col>
           <ion-col col-2 class="text6" (click)="orderCancel1(detail)">주문취소</ion-col>
-          <ion-col col-6 class="text6"></ion-col>
-          <ion-col col-2 class="text7">리뷰쓰기</ion-col>
+          <ion-col col-2 class="text6" (click)="chageProduct(detail)">교환신청</ion-col>
+          <ion-col col-3 class="text6" (click)="returnProduct(detail)">반품신청</ion-col>
+          <ion-col col-1 class="text6"></ion-col>
+          <ion-col float-right col-2 class="text7" (click)="orderCompleted(detail)">구매확정</ion-col>
         </ion-row>
       </ion-grid>
     </ion-card>

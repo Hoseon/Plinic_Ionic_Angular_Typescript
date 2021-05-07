@@ -49,6 +49,7 @@ import { LoginPage } from '../../login/login';
 import { async } from 'q';
 import { MembershipManagePage } from '../../bill/membership-manage/membership-manage';
 import { SungwooSettingPage } from '../../sungwoo-setting/sungwoo-setting';
+import { BleTestPage } from '../../bletest/bletest';
 
 /**
  * Generated class for the SettingPage page.
@@ -291,6 +292,11 @@ export class SettingPage {
   public personalinfo() {
     this.navCtrl.push(PersonalinfoPage);
   }
+
+  public bleTest() {
+    this.navCtrl.push(BleTestPage);
+  }
+
   public noti() {
     this.navCtrl.push(NoticePage);
   }

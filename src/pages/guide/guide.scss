@@ -12,7 +12,8 @@ page-guide {
   }
 
   .guide{
-      position: relative;
+    position: relative;
+    background-color: #999999;
   }
 
   .ic-system-back-black {
@@ -123,12 +124,12 @@ page-guide {
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    color: #939393;
+    color: #ffffff;
     margin: 0 auto;
     width: 87%;
     height: 50px;
     border-radius: 4px;
-    background-color: #FFF;
+    background-color: #999999;
     margin-left: auto;
     margin-right: auto;
     box-shadow: none !important;
@@ -154,6 +155,11 @@ page-guide {
     width: 0;
     height: 100%;
     vertical-align: middle
+}
+
+.guideImg {
+  width: 100%;
+  height: 100% !important;
 }
 
 }

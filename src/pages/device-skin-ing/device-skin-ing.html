@@ -10,29 +10,29 @@
   <ion-img *ngIf="platform.is('android')" class="ic-system-back-black" (click)="device_canceldisconnect()" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png"></ion-img>
   <ion-img *ngIf="platform.is('ios')" style="margin-top: 12%;" class="ic-system-back-black" (click)="device_canceldisconnect()" src="assets/img/ic-system-close-black/ic-system-close-black@3x.png"></ion-img>
 
+    <ng-container *ngIf="!isBatteryLow">
+    <ion-grid>
+      <ion-col text-center>
+          <div class="font_title" text-center>
+            플리닉 디바이스로 <br />피부가 좋아지는 중이에요!
+          </div>
+      </ion-col>
+    </ion-grid>
+  </ng-container>
+  <ng-container *ngIf="isBatteryLow">
+    <ion-grid>
+      <ion-col text-center>
+          <div class="font_title" text-center>
+            디바이스를 충전해 주세요.
+          </div>
+      </ion-col>
+    </ion-grid>
+  </ng-container>
+  <br><br><br>
 
-
-  <!-- <ion-item no-lines>
-    <div class="font_title"></div>
-  </ion-item> -->
-  <!-- <ion-item class="title" no-lines>
-    <div class="font_title">분석 중입니다.</div>
-  </ion-item> -->
-
-  <ion-item class="title" no-lines>
-    <div class="font_title">
-      플리닉 디바이스로 <br />피부가 좋아지는 중이에요!
-      <!-- {{step}}<br />{{stepdesc}} -->
-    </div>
-  </ion-item>
-
-    <!-- <div class="container"> -->
     <!-- 동영상 처리 -->
     <ng-container *ngIf="videoUrl">
-      <!-- <video width="100%" id="videoPlayer" class="" webkit-playsinline playsinline autoplay loop preload="auto" > -->
         <video width="100%" id="videoPlayer" autoplay loop muted controls playsinline preload="auto" >
-      <!-- <video width="100%" id="videoPlayer" class="" webkit-playsinline playsinline autoplay muted loop controls preload="auto" > -->
-      <!-- <video width="100%" id="videoPlayer" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" controls preload="auto"> -->
         <source src="{{videoUrl}}" type="video/mp4" />
         <!-- https://plinic.s3.ap-northeast-2.amazonaws.com/use_plinic_v1.mp4 -->
         <!-- https://plinic.s3.ap-northeast-2.amazonaws.com/use_plinic_v2.mp4 -->
@@ -42,36 +42,34 @@
 
       </video>
     </ng-container>
-
     <br /><br /><br />
-
-    <!-- <img class="img ic_system_skin_face_cheek" src="assets/img/ic-system-skin-face-cheek/ic-system-skin-face-cheek@3x.png"/>
-    <ng-container *ngIf="anipoint">
-    <img src="assets/img/testpoint.png" class="{{animpoint}}"/>
-    </ng-container> -->
-    <!-- </div> -->
-
-
-  <ion-item class="subtitle" no-lines>
-    <div class="font_sub">
-      <!-- {{desc}} -->
-      케어 종료 후 자동으로 종료되니<br>
-      페이지를 이동하지 말아주세요.
-      <!-- <br> 하루 2분 이상 사용하면 챌린지 도전 1일에 성공합니다. -->
-
-    </div>
-    <!-- <div class="font_sub">
-      정밀한 피부측정을 위해<br />
-      분석 중입니다.<br />
-      조금만 기다려주세요.<br />
-    </div> -->
-  </ion-item>
-
-
+  
+  <ng-container *ngIf="isBatteryLow">
+    <ion-item class="subtitle" no-lines>
+      <div class="font_sub">
+          배터리 부족으로 블루투스 연결이 불안정 할 수 있습니다.<br>
+          사용중인 디바이스를 충전해 주세요.
+      </div>
+    </ion-item>
+  </ng-container>
+  <ng-container *ngIf="!isBatteryLow">
+    <ion-item class="subtitle" no-lines>
+      <div class="font_sub">
+        케어 종료 후 자동으로 종료되니<br>
+        페이지를 이동하지 말아주세요.
+      </div>
+    </ion-item>
+  </ng-container>
+  
 
   <!-- <ion-card style =" width=100%;"> -->
-    <ion-item no-lines>
+    <!-- <ion-item no-lines>
       <button *ngIf="displayTime" ion-button large full clear class="timer-button" >{{displayTime}}</button>
+    </ion-item> -->
+
+    <!-- 2021-04-13 디바이스 시간으로 보여줌 -->
+    <ion-item no-lines>
+      <button *ngIf="displayTimeFromDevice" ion-button large full clear class="timer-button" >{{displayTimeFromDevice}}</button>
     </ion-item>
 
     <!-- <ion-item no-lines>
@@ -135,7 +133,7 @@
 
 
     <div class="center">
-      <button class="cancel_button"clear ion-button (click)="device_canceldisconnect()">
+      <button class="cancel_button"clear ion-button (click)="device_canceldisconnect()" [disabled]=btnDisabled>
         <div>취소하기</div>
       </button>
     </div>

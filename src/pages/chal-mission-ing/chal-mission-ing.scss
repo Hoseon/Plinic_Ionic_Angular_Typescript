@@ -1344,6 +1344,184 @@ page-chal-mission-ing {
     right: 10%;
   }
 
+  .adImg {
+    min-width: 100% !important;
+    width: 100% !important;
+    height: auto;
+    margin-bottom:-0.5%;
+    // object-fit: contain !important;
+  }
+
+  .text_bold {
+    font-weight: bold;
+    color: #000000;
+  }
+
+  .recomment_div {
+    position: relative;
+    display: block;
+  }
+
+  .recomment_box {
+    position: relative;
+    z-index: 10000;
+    width: 63vw;
+    margin-left: 19%;
+    display: block;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 11.5px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: 0.36px;
+    color: #292929;
+    border: solid 0.5px #d2d4d8 !important;
+    white-space: pre-wrap !important; 
+  }
+
+  .recomment_btn {
+    position: absolute;
+    // left: 20%;
+    top: -5%;
+    height: 3.8vh;
+    width: 11.7vw;
+    right: 5vw;
+    font-size: 11px;
+    // font-family: AppleSDGothicNeo;
+    // border-radius: 5.7px;
+    // box-shadow: none;
+    // color: #ffffff;
+    z-index: 10000;
+  }
+
+  .profile_recomment {
+    position: absolute;
+    width: 9vw;
+    height: 9vw;
+    object-fit: contain;
+    background-color: transparent !important;
+    margin-left: 18%;
+    margin-top: -1%;
+    // margin-top: 4%;
+    border-radius: 50%;
+    border: 0px;
+  }
+
+  .return_img {
+    position: absolute;
+    width: 5vw;
+    height: 5vw;
+    object-fit: contain;
+    background-color: transparent !important;
+    margin-left: 9.5%;
+    margin-top: -0.5%;
+    // margin-top: 4%;
+    border-radius: 50%;
+    border: 0px;
+  }
+
+  .nickname_recomment {
+    position: relative;
+    margin-left: 30%;
+    width: 100vw;
+    height: auto;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #292929;
+    margin-bottom: 3%;
+    z-index: 1;
+    // border: 1px solid;
+  }
+
+  .content_recomment {
+    width: 100vw;
+    // height: auto !important;
+    margin-left: 30%;
+    margin-top: -1%;
+    // left: 20%;
+    // right: 5%;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    color: #292929;
+    // padding-bottom: 0px !important;
+    // margin-bottom: -1%;
+    // border: 0px;
+    // border: 1px solid;
+    white-space: pre-wrap !important;
+  }
+
+  .time_recomment {
+    position: relative;
+    // border: 1px solid;
+    // margin-top: 2%;
+    margin-left: 30%;
+    width: 100vw;
+    height: auto;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #919191;
+    // margin-bottom: 3%;
+  }
+
+  .recomment_box2 {
+    position: relative;
+    z-index: 10000;
+    width: 96vw;
+    margin-left: 31%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: block;
+    // height: 40vw;
+    // margin-top: -14%;
+    // margin-bottom: 10%;
+    // top: 3.1vw;
+    // left: 15vw !important;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 11.5px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: 0.36px;
+    color: #292929;
+    border: solid 0.5px #d2d4d8 !important;
+    // border: 0px;
+    white-space: pre-wrap !important; 
+  }
+
+  .recomment_btn3 {
+    position: absolute;
+    height: 3.8vh;
+    width: 11.7vw;
+    margin-top: 4%;
+    right: 5vw;
+    // top: 50vw;
+    // right: 1vw;
+    float: right;
+    font-size: 11px;
+    font-family: AppleSDGothicNeo;
+    border-radius: 5.7px;
+    box-shadow: none;
+    color: #ffffff;
+    z-index: 10000;
+  }
+
   
   
 

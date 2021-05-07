@@ -7,8 +7,6 @@ page-device-skin-ing {
   }
 
   .font_title {
-    width: 360px;
-    height: 55px;
     font-family: AppleSDGothicNeo-Regular;
     font-size: 23px;
     font-weight: bold;
@@ -16,9 +14,19 @@ page-device-skin-ing {
     font-stretch: normal;
     line-height: normal;
     letter-spacing: normal;
-    text-align: center;
     color: #292929;
-    margin: 4% auto 2%;
+  }
+
+  .font_title2 {
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color:#292929;
   }
 
   .font_sub {
@@ -259,6 +267,7 @@ page-device-skin-ing {
 
   .subtitle {
     top: -3.5%;
+    margin-bottom: -3%;
   }
 
   .footer {

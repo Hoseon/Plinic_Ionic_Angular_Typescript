@@ -117,20 +117,11 @@ export class SkinChekChartPage {
   munjinAlcohol: any;
   munjinFitness: any;
   munjinCreateAt: any;
-  // left1 : any = '0%';
-  // left2 : any = '0%';
-  // left3 : any = '0%';
-  // left4 : any = '0%';
-  // left5 : any = '0%';
-  // left6 : any = '0%';
-
   totaluserPoint: any = 0;
-
   currentWeather_Temp: any; // 오픈웨더 현재 위치의 온도
   currentWeather_Description: any; // 오픈웨더 현재 위치의 날씨 상태
   currentWeather_Humidity: any; //오픈웨더 현재 습도
   currentWeather_Pm10: any; //오픈웨더 현재 미세 먼지
-
   load1: boolean = false;
   load2: boolean = false;
 
@@ -153,20 +144,13 @@ export class SkinChekChartPage {
   }
 
   async ionViewDidLoad() {
-    // this.showLoading();
-    // this.loading.dismiss();
     if (this.userData) {
       await this.getSkinAnaly(); 
-      // this.ageRange = this.getAgeRange();
-      // this.getAvgSkinPore(this.ageRange);
       this.loadMyMainProduct();
     }
   }
 
   async ionViewDidEnter() {
-    // await this.getWeather();
-    // await this.getMise();
-    // await this.getUv();
     this.skinbtnYear = format(new Date(), "YYYY");
     this.skinbtnMonth = format(new Date(), "MM");
     var e = this.skinbtnYear + "년" + this.skinbtnMonth;
@@ -217,8 +201,6 @@ export class SkinChekChartPage {
         this.reloadUserPoint(this.userData.email);
       }
       await this.getSkinAnaly(); 
-      // this.ageRange = this.getAgeRange();
-      // this.getAvgSkinPore(this.ageRange);
       this.loadMyMainProduct();
     });
   }
@@ -228,25 +210,10 @@ export class SkinChekChartPage {
         this.navCtrl.push(CameraGuideFirstPage, { step: _step }).then(() => {
           this.navCtrl.getActive().onDidDismiss((data) => {});
         });
-
-        // let modal = this.modalCtrl.create('CameraGuideFirstPage', { step: _step });
-        // modal.present();
-        // modal.onDidDismiss(data => {
-        //   console.log("모달 닫힘");
-        //   this.navCtrl.parent.select(4);
-        // });
-
     } else {
       this.navCtrl.push(CameraGuidePage, { step: _step }).then(() => {
         this.navCtrl.getActive().onDidDismiss((data) => {});
       });
-
-      // let modal = this.modalCtrl.create('CameraGuidePage', { step: _step });
-      // modal.present();
-      // modal.onDidDismiss(data => {
-      //   console.log("모달 닫힘");
-      //   this.navCtrl.parent.select(4);
-      // });
     }
   }
 
@@ -262,30 +229,6 @@ export class SkinChekChartPage {
     this.chartDateData = [];
     this.chartOilData = [];
     this.chartMoistureData = [];
-    // for (let i = 0; i < this.skinScoreData.score.length; i++) {
-    //   if (this.skinScoreData.score[i].saveDate.indexOf(date) !== -1) {
-    //     this.chartDateData.push(this.skinScoreData.score[i].saveDate.substr(5, 5));
-    //     this.chartOilData.push(this.skinScoreData.score[i].oil);
-    //     this.chartMoistureData.push(this.skinScoreData.score[i].moisture);
-    //   }
-    // }
-    // if (this.chartDateData.length > 0) {
-    //   this.lineCanvas.data.labels = this.chartDateData;
-    //   this.lineCanvas2.data.labels = this.chartDateData;
-    //   this.lineCanvas.data.datasets[0].data = this.chartMoistureData;
-    //   this.lineCanvas2.data.datasets[0].data = this.chartOilData;
-    //   this.lineCanvas.update();
-    //   this.lineCanvas2.update();
-
-    //   console.log(this.chartDateData);
-    //   console.log(this.chartMoistureData);
-    //   console.log(this.chartOilData);
-    // } else {
-    //   setTimeout(() => {
-    //   // this.showAlert("조회된 데이터가 없습니다. <br /> 데이터를 측정해 주세요.");
-    //   }, 3000)
-    // }
-    // console.log("yearmonthselect===============" + e);
   }
 
   monthdate: any[] = [
@@ -331,7 +274,6 @@ export class SkinChekChartPage {
     this.lineCanvas = new Chart(this.lineCanvas.nativeElement, {
       type: "line",
       data: {
-        //this.skinbtnMonth+"월"+this.valueday.day+"일"
         labels: [
           "3일",
           "16일",
@@ -346,7 +288,6 @@ export class SkinChekChartPage {
         ],
         datasets: [
           {
-            // label: format(this.today, 'MM/DD', '유분'),
             label: "내 수분 점수",
             fill: false,
             lineTension: 0,
@@ -365,12 +306,10 @@ export class SkinChekChartPage {
             pointHoverBorderWidth: 2, //데이터 호버크기
             pointRadius: 3, //데이터 포인트크기
             pointHitRadius: 100,
-            // data: [this.data1, this.data2, this.data3, this.data4],
             data: [-20, 0, -20, 0, 10, 20, 30, 40, 30, 20],
             spanGaps: false,
           },
           {
-            // label: format(this.today, 'MM/DD', '유분'),
             label: "20대 평균 수분 점수",
             fill: false,
             lineTension: 0,
@@ -400,9 +339,6 @@ export class SkinChekChartPage {
               30,
               -20,
               50,
-              // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
-              // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
-              //DB데이터 출력
             ],
             spanGaps: false,
             // 수분은 하늘이랑 파랑
@@ -443,16 +379,6 @@ export class SkinChekChartPage {
             },
           ],
         },
-        // plugins: {
-        //     labels: {
-        //           render: this.percentage,
-        //           precision: 0,
-        //           fontSize: 15,
-        //           fontStyle: 'normal',
-        //           textShadow: true,
-        //           showActualPercentages: true
-        //       }
-        //   }
       },
     });
   }
@@ -461,7 +387,6 @@ export class SkinChekChartPage {
     this.lineCanvas2 = new Chart(this.lineCanvas2.nativeElement, {
       type: "bar",
       data: {
-        //this.skinbtnMonth+"월"+this.valueday.day+"일"
         labels: [
           "3일",
           "16일",
@@ -483,7 +408,6 @@ export class SkinChekChartPage {
             data: [-20, 0, -20, 0, 10, 20, 30, 40, 30, 20],
           },
           {
-            // label: format(this.today, 'MM/DD', '유분'),
             label: "음주량",
             backgroundColor: "#ffb1c1",
             borderColor: "#ffb1c1",
@@ -498,8 +422,6 @@ export class SkinChekChartPage {
               30,
               -20,
               50,
-              // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
-              // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
               //DB데이터 출력
             ],
             spanGaps: false,
@@ -523,8 +445,6 @@ export class SkinChekChartPage {
               30,
               -20,
               50,
-              // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
-              // this.all_moisture_score='' ?  this.all_moisture_score+10 : this.all_first_moisture_score+10,
               //DB데이터 출력
             ],
             spanGaps: false,
@@ -570,26 +490,9 @@ export class SkinChekChartPage {
             },
           ],
         },
-        // plugins: {
-        //     labels: {
-        //           render: this.percentage,
-        //           precision: 0,
-        //           fontSize: 15,
-        //           fontStyle: 'normal',
-        //           textShadow: true,
-        //           showActualPercentages: true
-        //       }
-        //   }
       },
     });
   }
-
-  // public loadProduct(mode) {
-  //   this.images.productLoad().subscribe(data => {
-
-  //     this.productData = data;
-  //   });
-  //  }
 
   cheek() {
     this.btnCheek = true;
@@ -848,7 +751,6 @@ export class SkinChekChartPage {
               .pore[0].average_pore
           );
 
-          // this.skinTone = this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].tone[0].avgrage_color_hex; //2020-12-07 밝은 컬러로 변경
           this.skinTone = this.skinAnalyData.cheek[
             this.skinAnalyData.cheek.length - 1
           ].tone[0].lightest_color_hex;
@@ -920,7 +822,6 @@ export class SkinChekChartPage {
               ? (this.skinAnalyPoreCompareCount =
                   "+" + String(this.skinAnalyPoreCompareCount))
               : this.skinAnalyPoreCompareCount;
-            // this.skinTone = this.skinAnalyData.cheek[(this.skinAnalyData.cheek.length-1)].tone[0].avgrage_color_hex;
           }
 
           if (
@@ -1055,9 +956,6 @@ export class SkinChekChartPage {
                 "+" + String(this.skinAnalyAvgComparePoreCount))
             : this.skinAnalyAvgComparePoreCount;
         }
-
-        // this.left1 = (Number(this.skinAnalyPoreSizeAvg) / Number(this.avgCheekPoreSize));
-        // this.left2 = this.skinAnalyPoreBeforeSizeAvg;
       },
       (error) => {
         console.log(error);
@@ -1095,8 +993,6 @@ export class SkinChekChartPage {
 
   public myinfo() {
     //2020-05-28 마이페이지 하단탭 제거
-    // this.nav.push(MyinfoPage);
-
     let myModal = this.modalCtrl.create(MyinfoPage);
     myModal.onDidDismiss((data) => {
       if (this.userData) {
@@ -1117,14 +1013,6 @@ export class SkinChekChartPage {
   }
 
   private reloadUserPoint(email) {
-    // this.auth.reloadUserPointfromPlincShop(email).subscribe((data) => {
-    //   // console.log("커뮤니티 사용자 포인트 : " + data)
-    //   this.userData.totaluserpoint = data.point;
-    //   this.userData.totaluserpoint = this.addComma(
-    //     this.userData.totaluserpoint
-    //   );
-    // });
-
     this.auth.reloadUserPointfromPlinc(email).subscribe(
       data => {
         this.userData.totaluserpoint = JSON.stringify(data.totalPoint);

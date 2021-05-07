@@ -145,9 +145,9 @@ export class ChulsukCheckPage {
               // console.log("startMinute : " + startMinute);
               // var endMinute = Math.floor(Math.random() * 180) + startMinute;
               // console.log("endMinute : " + endMinute);
-              var currentDate = new Date(this.loadCalendar[i].updatedAt); //---------DB에서 날짜를 가져오고 중요
+              var currentDate = this.getCovertKoreaTime2(this.loadCalendar[i].updatedAt); //---------DB에서 날짜를 가져오고 중요
               currentDate.setDate( currentDate.getDate());
-
+          
               startTime = currentDate;
               endTime = currentDate;
               events.push({  //가져온 데이터의 갯수만큼 event배열에 넣어 달력에 표시 한다.
@@ -351,6 +351,10 @@ export class ChulsukCheckPage {
 
     getCovertKoreaTime(time) {
       return new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60000).toISOString()
+    }
+  
+    getCovertKoreaTime2(time) {
+      return new Date(new Date(time).getTime() - new Date().getTimezoneOffset() * 60000);
     }
 
     close() {

@@ -13,14 +13,9 @@
     <ion-title *ngIf="carezoneData" class="android_title" text-wrap>챌린지</ion-title>
   </ion-navbar>
 
-  <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
-    <ion-title *ngIf="carezoneData" class="ios_title" text-wrap> {{carezoneData.missontitle}} </ion-title>
-  </ion-navbar> -->
-
   <ion-navbar *ngIf="platform.is('ios')">
     <ion-buttons left no-lines>
       <button ion-button navPop icon-only>
-        <!-- <ion-icon md="md-arrow-forward"></ion-icon> -->
         <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
       </button>
     </ion-buttons>
@@ -233,6 +228,7 @@
 
 
   <!-- 댓글  -->
+  <br>
   <ng-container *ngIf="carezoneData2">
     <ng-container *ngFor="let registerReply of carezoneData2.comments; let i = index">
       <img *ngIf="registerReply.img_url" class="profile_comment" [src]="registerReply.img_url"
@@ -252,204 +248,50 @@
           (click)="replySkinQnaUpdate(registerReply.email, registerReply._id)" ion-button
           class="comment_enroll">수정</button>
       </div>
-      <div class="time_comment">{{getCovertKoreaTime(registerReply.updatedAt).substr(0,16).replace('T', ' ')}}</div>
-      <!-- <div class="time_comment">{{registerReply.createdAt.substr(0,19)}}</div> -->
+      <div class="time_comment">{{getCovertKoreaTime(registerReply.updatedAt).substr(0,16).replace('T', ' ')}}
+        <span *ngIf="!isShowReComments[i]" (click)="showReComments(i)" class="text_bold" > 답글 달기</span>
+        <span *ngIf="isShowReComments[i]" (click)="noShowReComments(i)"> 취소</span>
+      </div>
+      <div *ngIf="isShowReComments[i]" class="recomment_div">
+        <textarea [(ngModel)]="recomment.body" class="recomment_box" rows="3" cols="30" #myInput2 maxLength="300" autoGrow="true"
+            placeholder="답글 달기...(50자 이내)" maxLength="50" (input)="adjustTextarea2(i+1)">
+        </textarea>
+        <button ion-button class="recomment_btn" (click)="saveReCommentsChallenge(registerReply._id, i)">게시</button>
+        <br>
+      </div>
+      
       <!-- 보기 -->
       <!-- <textarea *ngIf="comment_popover_option==='보기'" class="content_comment" readonly autoGrow autoresize value="{{reply.comment}}"></textarea> -->
       <ng-container *ngIf="comment_popover_option_textarea !== i ">
         <div class="content_comment" text-wrap>{{registerReply.comment}}</div>
       </ng-container>
+      <br>
       <!-- 수정 -->
       <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea"
         #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment"
         (input)="adjustTextareaUpdate($event)" autofocus="true"></textarea>
 
-      <div
-        style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 5%; background-color:#f1f1f1">
-      </div>
+      <!-- 대댓글 영역-->
+      <ng-container *ngIf="registerReply.recomments">
+        <ion-row *ngFor="let reComment of registerReply.recomments; let c = index;">
+          <img class="profile_recomment" src="assets/img/register/ic-system-profile-default@3x.png"
+            onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+          <img class="return_img" src="assets/img/beautymovie/return.png">
+          <div class="nickname_recomment" *ngIf="reComment.email" >{{emailSecurity(reComment.email)}}</div>
+          <div class="content_recomment" text-wrap>{{reComment.body}}</div>
+          <div class="time_recomment">{{getCovertKoreaTime(reComment.createdAt).substr(0,16).replace('T', ' ')}} <span *ngIf="!isShowReComments2[c]" (click)="showReComments2(c)" class="text_bold" > 답글 달기</span><span *ngIf="isShowReComments2[c]" (click)="noShowReComments2(c)"> 취소</span></div>
+          <br>
+          <ion-row *ngIf="isShowReComments2[c]">
+          <textarea [(ngModel)]="recomment.body" class="recomment_box2" rows="3" cols="30" #myInput2 maxLength="300" autoGrow="true"
+            placeholder="답글 달기...(50자 이내)" maxLength="50" (input)="adjustTextarea2(i+1)">
+          </textarea>
+          <button ion-button class="recomment_btn3" (click)="saveReCommentsChallenge(registerReply._id, c)">게시</button>
+          <br>
+          </ion-row>
+        </ion-row>
+      </ng-container>
+      <div style="height:1px; width:100%; margin:0 auto; display: block; margin-bottom: 3%; margin-top: 5%; background-color:#f1f1f1"></div>
+      
     </ng-container>
   </ng-container>
-
-  
-  <!-- 
-  <br><br><br><br><br><br><br><br>
-  <ion-list *ngIf="carezoneData">
-    <h1 class="top_text"> {{carezoneData.title}} </h1><br>
-    <ng-container *ngIf="chkBtn">
-      <ng-container *ngIf="joinchk">
-        <button ion-button class="top_btn" (click)="satrtMission(carezoneData)">참여하기 <img class="top_img"
-            src="assets/img/care-zone/ic-system-trophy/ic-system-trophy@3x.png" /></button>
-      </ng-container>
-      <ng-container *ngIf="!joinchk">
-        <button ion-button class="top_btn_end">챌린지 마감</button>
-      </ng-container>
-    </ng-container>
-    <ng-container *ngIf="!chkBtn">
-      <button ion-button class="top_btn_end">다른 챌린지 참여중</button>
-    </ng-container>
-    (주석)참가 인원 이미지 추가
-    <ion-row>
-
-      <ng-container *ngFor="let mission of missionmember; let k = index">
-        <ng-container *ngIf="k <= 3">
-          <ng-container *ngIf="k === 0">
-            <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:2%;"
-              src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
-              onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
-            <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: 2%;"
-              src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
-          </ng-container>
-          <ng-container *ngIf="k > 0">
-            <img *ngIf="!mission.image_url" class="font_carezone2_img" style="margin-left:-2%;"
-              src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{mission.userImageFilename}}"
-              onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
-            <img *ngIf="mission.image_url" class="font_carezone2_img" style="margin-left: -2%;"
-              src="{{mission.image_url}}" onError="this.src='./assets/img/register/ic-system-profile-default@3x.png'" />
-          </ng-container>
-        </ng-container>
-      </ng-container>
-      <div *ngIf="missionCounter" class="user_sub">{{missionCounter}}명이 참가 중입니다.</div>
-    </ion-row>
-
-
-    <ion-item style="width:97%">
-      <ion-grid class="gridtext">
-        <ion-row style="width:89.7%">
-          <ion-col class="event-col4">보상 상품명</ion-col>
-          <ion-col class="event-col7">{{carezoneData.product}}</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item style="width:97%">
-      <ion-grid class="gridtext">
-        <ion-row style="width:89.7%">
-          <ion-col class="event-col4">상품 수량</ion-col>
-          <ion-col class="event-col5">{{carezoneData.productcount}}</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item style="width:97%">
-      <ion-grid class="gridtext">
-        <ion-row style="width:89.7%">
-          <ion-col class="event-col4">참여 방법</ion-col>
-          <ion-col class="event-col5">{{carezoneData.howtojoin}}</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item style="width:97%; height:100px;">
-      <ion-grid class="gridtext">
-        <ion-row style="width:89.7%">
-          <ion-col class="event-col11">보상 조건</ion-col>
-          <ion-col class="event-col9" style="color:#5c59b6">
-            <textarea readonly style="text-align: right" rows="3" cols="35">{{carezoneData.condition}}</textarea>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item style="width:97%;">
-      <ion-grid class="gridtext">
-        <ion-row style="width:89.7%">
-          <ion-col class="event-col4">참여기간</ion-col>
-          <ion-col class="event-col5">{{carezoneData.startmission.substr(0,10)}} ~
-            {{carezoneData.endmission.substr(0,10)}} (x주)</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item style="width:97%;">
-      <ion-grid class="gridtext">
-        <ion-row style="width:89.7%">
-          <ion-col class="event-col4">남은시간</ion-col>
-          <ion-col *ngIf="timeremaining >= 0" class="event-col7">{{displayTime}}</ion-col>
-          <ion-col *ngIf="timeremaining < 0" class="event-col7">진행중</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item style="width:97%; height:100px;">
-      <ion-grid class="gridtext">
-        <ion-row style="width:91.7%">
-          <ion-col class="event-col11">보너스</ion-col>
-          <ion-col class="event-col9"><textarea readonly style="text-align: right" rows="3" cols="35">
-              카카오톡 공유하면 +{{carezoneData.bonuskakao}}초/명
-              페이스북 공유하면 +{{carezoneData.bonusface}}초/명
-              인스타그램 공유하면 +{{carezoneData.bonusinstar}}초/명
-          </textarea></ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-
-
-    <ion-item no-lines>
-
-      <ng-container *ngIf="platform.is('ios')">
-        <button ion-button class="button_end" outline
-          (click)="openBrowser_ios(carezoneData2.product_url, carezoneData2.product)">보상 제품 상세정보</button>
-        <button ion-button class="button_detail" style="font-size: 14px;box-shadow: none;" outline
-          (click)="openBrowser_ios(carezoneData2.purchase_url, carezoneData2.product)">제품 즉시 구매하기</button>
-      </ng-container>
-
-      <ng-container *ngIf="platform.is('android')">
-        <button ion-button class="button_end" outline
-          (click)="openBrowser_android(carezoneData2.product_url, carezoneData2.product)">보상 제품 상세정보</button>
-        <button ion-button class="button_detail" style="font-size: 14px;box-shadow: none;" outline
-          (click)="openBrowser_android(carezoneData2.purchase_url, carezoneData2.product)">제품 즉시 구매하기</button>
-      </ng-container>
-
-    </ion-item>
-  </ion-list>
-
-
-  <div style="height:8px; width:100%; background-color:#f1f1f1"></div><br>
-
-
-  <ion-list>
-    <ion-item no-lines>
-      <ion-grid>
-        <ion-row class="sns_row">
-          <ion-col>
-            <ion-img class="mission-img" (click)="kakaoLink(carezoneData)"
-              src="assets/img/care-zone/sns/ic-sns-kakao@3x.png"
-              srcset="assets/img/sns/ic-sns-kakao@2x.png, assets/img/sns/ic-sns-kakao@3x.png"></ion-img>
-            <ion-col>
-              <ion-img class="mission-img" (click)="share_facebook(carezoneData)"
-                src="assets/img/care-zone/sns/ic-sns-fb@3x.png"
-                srcset="assets/img/sns/ic-sns-fb@2x.png, assets/img/sns/ic-sns-fb@3x.png"></ion-img>
-              <ion-col>
-                <ion-img class="mission-img" (click)="share()" src="assets/img/care-zone/sns/ic-sns-band@3x.png"
-                  srcset="assets/img/sns/ic-sns-band@2x.png, assets/img/sns/ic-sns-band@3x.png"></ion-img>
-              </ion-col>
-            </ion-col>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-  </ion-list>
-
-
-
-  <div style="height:8px; width:100%; background-color:#f1f1f1"></div>
-
-
-  <ion-list>
-    <h3 class="bottom_text"> 유의사항 </h3>
-
-    <ion-item no-lines text-wrap>
-      <ion-col class="caution">
-        • 참여할 수 있는 미션은 1개입니다. <br>
-        • 모든 미션은 선착순으로 모집합니다.<br>
-        • 미션이 시작이 되면, 미션에 참여하실 수 없습니다.<br>
-        • 미션 종료 후에는 참여기록이 모두 없어집니다.<br>
-        • 마감기간을 반드시 확인해주세요.<br>
-        • 미션이 연장되거나 조기 마감될 수도 있습니다.<br>
-        • 미션을 중간에 포기하셔도 불이익이 없습니다.<br>
-        • 미션 포기 후 다른 미션에 참여하실 수 있습니다.<br>
-        • 미션 성공 후 배송정보를 정확하게 입력해주세요.<br>
-        • 무분별한 욕설 및 광고 등은 제재 조치를 할 수 있습니다.
-
-      </ion-col>
-    </ion-item>
-  </ion-list>
-
-  <div style="height:8px; width:100%; background-color:#f1f1f1"></div> -->
-
-
 </ion-content>

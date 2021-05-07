@@ -35,7 +35,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>
       <ion-item class="item_align" style="margin-bottom:3%;">
         <ion-label class="birthdaylabel" stacked> 생년월일</ion-label>
@@ -43,6 +43,15 @@
           cancelText="취소" pickerFormat="YYYY년 MM월 DD일" displayFormat="YYYY년 MM월 DD일" min="1910" max="2019"
           [(ngModel)]="registerCredentials.birthday" (ionChange)="birthday();" required></ion-datetime>
       </ion-item><br>
+    </ion-row>
+  </ion-grid> -->
+
+  <ion-grid>
+    <ion-row>
+      <ion-item class="item_align" style="background:#FFF">
+        <ion-label class="titlelabel" stacked>휴대전화</ion-label>
+        <ion-input class="input_name" (ionChange)="inputPhoneNumber(registerCredentials.phonenumber)" mode="ios" type="tel" name="phonenumber" placeholder="휴대번호를 입력해주세요." [(ngModel)]="registerCredentials.phonenumber" clearInput required></ion-input>
+        </ion-item><br>
     </ion-row>
   </ion-grid>
 
