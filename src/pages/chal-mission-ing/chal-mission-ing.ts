@@ -86,6 +86,7 @@ export class ChalMissionIngPage {
   isShowReComments: Array<boolean> = new Array<boolean>(); //댓글
   isShowReComments2: Array<boolean> = new Array<boolean>(); //대댓글
   isShowReply: boolean = false;
+  bannersData: any;
 
   constructor(
     public nav: NavController, 
@@ -142,8 +143,8 @@ export class ChalMissionIngPage {
 
     }
     // this.getCommentTimeZone();
+    this.getBannersList();
     this.getUserimage();
-
 
     // this.showMissionfail();
     // this.showMissionsuccess();
@@ -168,7 +169,7 @@ export class ChalMissionIngPage {
   }
 
   ionViewWillEnter() {
-    this.randomUrl();
+    // this.randomUrl();
     let tabs = document.querySelectorAll('.tabbar');
     if (tabs !== null) {
       Object.keys(tabs).map((key) => {
@@ -1380,21 +1381,21 @@ export class ChalMissionIngPage {
     urlNo = this.makeRandom(1,3);
     
     switch(urlNo) {
-      case 1 : this.adUrl = 'assets/img/beauty/beauty_ad_4_.jpg';
+      case 1:  this.adUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + "" + this.bannersData.filename;
                this.productTitle = '포인트샵 뷰셀리온 배너';
                this.productURL = 'https://smartstore.naver.com/beaucellion';
                 break;
-      case 2 : this.adUrl = 'assets/img/beauty/beauty_ad_5_.jpg';
+      case 2 : this.adUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + "" + this.bannersData.twoFileName;
                this.productTitle = '포인트샵 화장품 배너';
                this.productURL = 'https://smartstore.naver.com/plinic';
                 break;
-      case 3 : this.adUrl = 'assets/img/beauty/beauty_ad_6_.jpg';
+      case 3 : this.adUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + "" + this.bannersData.threeFileName;
                this.productTitle = '포인트샵 기기배너';
                this.productURL = 'https://smartstore.naver.com/plinic/products/4714726098';
                 break;   
-      default : this.adUrl = 'assets/img/beauty/beauty_ad_4.jpg';
-                this.productTitle = '포인트샵 뷰셀리온 배너';
-                this.productURL = 'https://smartstore.naver.com/beaucellion';
+      // default : this.adUrl = 'assets/img/beauty/beauty_ad_4.jpg';
+      //           this.productTitle = '포인트샵 뷰셀리온 배너';
+      //           this.productURL = 'https://smartstore.naver.com/beaucellion';
     }
   }
 
@@ -1470,6 +1471,15 @@ export class ChalMissionIngPage {
     textArea2.style.height = textArea2.scrollHeight + 'px';
     textArea2.style.cursor = 'pointer';
     return;
+  }
+
+  getBannersList() {
+    this.images.getBannerList().subscribe((data) => {
+      this.bannersData = data;
+      setTimeout(() => {
+        this.randomUrl();
+      }, 500);
+    })
   }
 
 

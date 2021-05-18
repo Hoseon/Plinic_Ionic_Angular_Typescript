@@ -627,5 +627,10 @@ export class ImagesProvider {
     return this.http.get(this.apiURL + 'api/isPlinicUser/' + email)
       .map(response => response.json()); 
   }
+
+  getBannerList() {
+    return this.http.get(this.apiURL + 'adBanners/getadbanners/')
+      .map(response => response.json()); 
+  }
  
 }

@@ -74,7 +74,7 @@ export class HomePage {
   isFlip: boolean = false;
 
   @ViewChild("numberbtn", { read: ElementRef }) private flipbtn: ElementRef;
-  currentAppVer: any = "1.0.174";
+  currentAppVer: any = "1.0.176";
   appCheck: boolean = false;
   userData: any;
   bannerData: any;

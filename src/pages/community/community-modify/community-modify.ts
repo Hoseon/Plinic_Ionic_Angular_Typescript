@@ -49,6 +49,7 @@ export class CommunityModifyPage {
   isShowReComments: Array<boolean> = new Array<boolean>(); //댓글
   isShowReComments2: Array<boolean> = new Array<boolean>(); //대댓글
   isShowReply: boolean = false;
+  bannersData: any;
 
 
 
@@ -105,6 +106,7 @@ export class CommunityModifyPage {
       this.beautyNoteOneLoad(this.id);
       // this.getUserimage();
     }
+    this.getBannersList();
   }
 
   ionViewDidEnter() {
@@ -1358,27 +1360,28 @@ export class CommunityModifyPage {
 
   
   randomUrl() {
-      var urlNo;
-      urlNo = this.makeRandom(1,3);
-      
-      switch(urlNo) {
-        case 1 : this.adUrl = 'assets/img/beauty/beauty_ad_1.png';
-                 this.productTitle = '플리닉 크림';
-                 this.productURL = 'https://www.plinicshop.com/Products/Details/1863';
-                  break;
-        case 2 : this.adUrl = 'assets/img/beauty/beauty_ad_2.png';
-                 this.productTitle = '뷰셀리온';
-                 this.productURL = 'https://www.plinicshop.com/Products/Details/1968';
-                  break;
-        case 3 : this.adUrl = 'assets/img/beauty/beauty_ad_3.png';
-                 this.productTitle = '레스테틱';
-                 this.productURL = 'https://www.plinicshop.com/Products/Details/1832';
-                  break;   
-        default : this.adUrl = 'assets/img/beauty/beauty_ad_1.png';
-                  this.productTitle = '플리닉 크림';
-                  this.productURL = 'https://www.plinicshop.com/Products/Details/1863';
-      }
+    var urlNo;
+    urlNo = this.makeRandom(1,3);
+    
+    switch(urlNo) {
+      case 1:  this.adUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + "" + this.bannersData.filename;
+               this.productTitle = '포인트샵 뷰셀리온 배너';
+               this.productURL = 'https://smartstore.naver.com/beaucellion';
+                break;
+      case 2 : this.adUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + "" + this.bannersData.twoFileName;
+               this.productTitle = '포인트샵 화장품 배너';
+               this.productURL = 'https://smartstore.naver.com/plinic';
+                break;
+      case 3 : this.adUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + "" + this.bannersData.threeFileName;
+               this.productTitle = '포인트샵 기기배너';
+               this.productURL = 'https://smartstore.naver.com/plinic/products/4714726098';
+                break;   
+      // default : this.adUrl = 'assets/img/beauty/beauty_ad_4.jpg';
+      //           this.productTitle = '포인트샵 뷰셀리온 배너';
+      //           this.productURL = 'https://smartstore.naver.com/beaucellion';
     }
+  }
+  
 
   
   private makeRandom(min, max) {
@@ -1511,6 +1514,15 @@ export class CommunityModifyPage {
     textArea2.style.height = textArea2.scrollHeight + 'px';
     textArea2.style.cursor = 'pointer';
     return;
+  }
+
+  getBannersList() {
+    this.images.getBannerList().subscribe((data) => {
+      this.bannersData = data;
+      setTimeout(() => {
+        this.randomUrl();
+      }, 500);
+    })
   }
 
 

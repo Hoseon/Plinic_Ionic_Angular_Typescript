@@ -203,13 +203,15 @@ export class SungwooProductDetailPage {
   }
 
   getAvgRating(rating) {
-    // console.log(rating);
     var avgRating = 0;
     rating.forEach((element) => {
       avgRating = avgRating + element.rating;
     });
 
     avgRating = avgRating / rating.length;
+    if (Number.isNaN(avgRating)) {
+      avgRating = 0;
+    }
     return avgRating.toFixed(1);
   }
 
