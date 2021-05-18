@@ -192,12 +192,12 @@ page-register {
     .container .register_camera{
     position: absolute;
     top: 80%;
-    right: 31%;
+    right: 29%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
+    // cursor: pointer;
+    width: 40px;
+    height: 40px;
     background-color: transparent;
     object-fit: contain;
   }
