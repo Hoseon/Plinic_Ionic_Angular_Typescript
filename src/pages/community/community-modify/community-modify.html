@@ -306,19 +306,25 @@
           <!-- 대댓글 영역-->
           <ng-container *ngIf="registerReply.recomments">
           <ion-row *ngFor="let reComment of registerReply.recomments; let c = index;">
-            <img class="profile_recomment" src="assets/img/register/ic-system-profile-default@3x.png"
-              onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
-            <img class="return_img" src="assets/img/beautymovie/return.png">
-            <div class="nickname_recomment" *ngIf="reComment.email" >{{emailSecurity(reComment.email)}}</div>
-            <div class="content_recomment" text-wrap>{{reComment.body}}</div>
-            <div class="time_recomment">{{getCovertKoreaTime(reComment.createdAt).substr(0,16).replace('T', ' ')}} <span *ngIf="!isShowReComments2[c]" (click)="showReComments2(c)" class="text_bold" > 답글 달기</span><span *ngIf="isShowReComments2[c]" (click)="noShowReComments2(c)"> 취소</span></div>
-            <br>
-            <ion-row *ngIf="isShowReComments2[c]">
-            <textarea [(ngModel)]="recomment.body" class="recomment_box2" rows="3" cols="30" #myInput2 maxLength="300" autoGrow="true"
-              placeholder="답글 달기...(50자 이내)" maxLength="50" (input)="adjustTextarea2(i+1)">
-            </textarea>
-            <button ion-button class="recomment_btn3" (click)="saveReCommentsSkinQna(registerReply._id, c)">게시</button>
-            <br>
+            <ion-row *ngIf="reComment.isDelete === false">
+              <img class="profile_recomment" src="assets/img/register/ic-system-profile-default@3x.png"
+                onError="this.src='assets/img/register/ic-system-profile-default@3x.png'" />
+              <img class="return_img" src="assets/img/beautymovie/return.png">
+              <div class="nickname_recomment" *ngIf="reComment.email" >{{emailSecurity(reComment.email)}}
+                <div *ngIf="reComment.nameAdmin === true" style="float: left; font-weight: 800; color: #5c59b6;"> 
+                  [관리자]&nbsp;
+                </div>
+              </div>
+              <div class="content_recomment" text-wrap>{{reComment.body}}</div>
+              <div class="time_recomment">{{getCovertKoreaTime(reComment.createdAt).substr(0,16).replace('T', ' ')}} <span *ngIf="!isShowReComments2[c]" (click)="showReComments2(c)" class="text_bold" > 답글 달기</span><span *ngIf="isShowReComments2[c]" (click)="noShowReComments2(c)"> 취소</span></div>
+              <br>
+              <ion-row *ngIf="isShowReComments2[c]">
+              <textarea [(ngModel)]="recomment.body" class="recomment_box2" rows="3" cols="30" #myInput2 maxLength="300" autoGrow="true"
+                placeholder="답글 달기...(50자 이내)" maxLength="50" (input)="adjustTextarea2(i+1)">
+              </textarea>
+              <button ion-button class="recomment_btn3" (click)="saveReCommentsSkinQna(registerReply._id, c)">게시</button>
+              <br>
+              </ion-row>
             </ion-row>
           </ion-row>
         </ng-container>
