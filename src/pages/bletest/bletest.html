@@ -46,6 +46,19 @@
         <button ion-button (click)="stopConnect()">커넥트 종료</button>
       </ion-col>
     </ion-row>
+
+    <br><br>
+    <ion-row>
+      <ion-col>
+        <button ion-button (click)="startConnectV2()" >V2 커넥트 시작</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="startWriteV2()">V2 BLE 쓰기</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="startWriteV2_2nd()">V2 BLE 쓰기(임시)</button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
   <br><br>
   <ion-grid>

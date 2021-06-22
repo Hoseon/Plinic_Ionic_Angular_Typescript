@@ -12,6 +12,7 @@ import { BLE } from "@ionic-native/ble";
 const PLINIC_SERVICE = "FFE0";
 const UUID_SERVICE = "FFE0";
 const SWITCH_CHARACTERISTIC = "FFE1";
+const SWITCH_CHARACTERISTIC_WRITE = "FFE2";
 
 // { "characteristics": [{ "properties": ["Read", "WriteWithoutResponse", "Write", "Notify"], "isNotifying": false, "characteristic": "FFE1", "service": "FFE0" }],
 // "id": "AAA346CC-CC32-A521-5489-EA4833037CE9",
@@ -73,6 +74,7 @@ export class BleTestPage {
 
   startScan() {
     this.ble.startScan([PLINIC_SERVICE]).subscribe((data) => {
+      console.log(JSON.stringify(data));
       this.zone.run(
         () => {
           this.scanCount = this.scanCount + 1;
@@ -123,6 +125,9 @@ export class BleTestPage {
   startConnect() {
     console.log(this.scanStatusData.id);
     this.ble.connect(this.scanStatusData.id).subscribe((data) => {
+      console.log("커넥트 성공-------------------------------");
+      console.log(JSON.stringify(data));
+      console.log("커넥트 정보제공-------------------------------");
       this.ble.startNotification(this.scanStatusData.id, UUID_SERVICE, SWITCH_CHARACTERISTIC).subscribe(
           (buffer) => {
             this.zone.run(
@@ -163,6 +168,8 @@ export class BleTestPage {
           }
         );
     }, error => {
+      console.log("연결 오류")
+      console.log(JSON.stringify(error));
       this.scanStatus = "Connection 강제 종료처리";
     });
   }
@@ -211,4 +218,30 @@ export class BleTestPage {
     );
   }
 
+
+
+  startConnectV2() {
+    this.ble.connect(this.scanStatusData.id).subscribe((data) => {
+      console.log("커넥트 성공-------------------------------");
+      console.log(JSON.stringify(data));
+      console.log("커넥트 정보제공-------------------------------");
+    }, error => {
+      console.log("연결 오류")
+      console.log(JSON.stringify(error));
+      this.scanStatus = "Connection 강제 종료처리";
+    });
+  }
+
+  startWriteV2() {
+    let buffer = new Uint8Array([0x01, 0x05, 0x4F, 0x46, 0x46, 0xFF, 0xE0, 0x03]).buffer;
+    this.ble.write(this.scanStatusData.id, PLINIC_SERVICE, SWITCH_CHARACTERISTIC_WRITE, buffer).then(result => {
+      console.log("쓰기 성공?");
+      console.log(JSON.stringify(result));
+      console.log("쓰기 종료-----------");
+    }, error => {
+      console.log("쓰기 에러 실패???");
+      console.log(JSON.stringify(error));
+      console.log("쓰기 에러 종료??????");
+    });
+  }
 }
