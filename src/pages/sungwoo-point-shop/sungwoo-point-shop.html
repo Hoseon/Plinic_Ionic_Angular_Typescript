@@ -101,32 +101,23 @@
       </div>
       <br>
       <ion-grid>
-        <div margin-left margin-bottom text-left class="todaysDeal">NEXT DEAL</div>
+        <div margin-left margin-bottom text-left class="nextDeal">NEXT DEAL</div>
       </ion-grid>
-      <ion-grid class="">
-        <ion-row margin-left class="">
-          <ion-slides class="nextSlide" slidesPerView=2.5>
-            <ion-slide class="">
+      <ion-row margin-left class="row">
+        <ion-slides class="nextSlide" slidesPerView=2.5>
+          <ng-container *ngIf="nextDealData">
+            <ng-container *ngFor="let nextDeal of nextDealData; let p = index;">
               <div class="nextBorder">
-                <img class="nextImage" src="assets/img/pointShop/넥스트딜0628.jpg"/>
-                <div text-left class="nextText">네이쳐셋 멀티비타민 팩</div>
+                <ng-container *ngIf="nextDeal.nextDeal === true">
+                  <div text-left class="nextText2">{{getCovertKoreaTime(nextDeal.nextDealText).substr(0,10)}}</div>
+                </ng-container>
+                <img class="nextImage" src="https://plinic.s3.ap-northeast-2.amazonaws.com/{{nextDeal.filename}}"/>
+                <div text-left class="nextText">{{nextDeal.product_name}}</div>
               </div>
-            </ion-slide>
-            <ion-slide class="">
-              <div class="nextBorder">
-                <img class="nextImage" src="assets/img/pointShop/넥스트딜0705.jpg"/>
-                <div text-left class="nextText">뷰셀리온 다이어트&필</div>
-              </div>
-            </ion-slide>
-            <!-- <ion-slide class="">
-              <div class="nextBorder">
-                <img class="nextImage" src="assets/img/pointShop/NextDeal03_.png"/>
-                <div text-left class="nextText">컬처렐 성인유산균 다이제스티브 헬스</div>
-              </div>
-            </ion-slide> -->
-          </ion-slides>
-        </ion-row>
-      </ion-grid>
+            </ng-container>
+          </ng-container>
+        </ion-slides>
+      </ion-row>
       <br>
       <div style="height:1vh; width:100%; margin:0 auto; display: block; margin-top: 0px; background-color:#f1f1f1">
       </div>
