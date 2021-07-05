@@ -24,6 +24,7 @@ export class SungwooPointShopPage {
   from: any;
   productData: any;
   cosmeticData: any;
+  nextDealData: any;
   deviceData: any;
   maxPoint: any; //최대사용가능 포인트
   page: any = '0';
@@ -47,6 +48,7 @@ export class SungwooPointShopPage {
     this.getProductData();
     this.getCosmeticData();
     this.getDeviceData();
+    this.getNextDealData();
   }
 
   ionViewWillEnter() {
@@ -194,7 +196,7 @@ export class SungwooPointShopPage {
     })
   }
 
-  getDeviceData() { //2021-03-23 기기 가져오기
+  getDeviceData() { 
     this.images.getPlinicProductDevice().subscribe(data => {
       setTimeout(() => {
         this.deviceData = data;
@@ -205,6 +207,20 @@ export class SungwooPointShopPage {
   }
   
   onSlideDrag() {
+  }
+
+  getNextDealData() {
+    this.images.getPlinicProductNextDeal().subscribe(data => {
+      setTimeout(() => {
+        this.nextDealData = data;
+      }, 300);
+    },err=>{
+      alert("데이터 에러 발생");
+    })
+  }
+
+  getCovertKoreaTime(time) {
+    return new Date(new Date(time).getTime() - new Date().getTimezoneOffset() * 60000).toISOString()
   }
 
   slideChanged(event : Event) { 

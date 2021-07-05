@@ -618,6 +618,11 @@ export class ImagesProvider {
       .map(response => response.json()); 
   }
 
+  getPlinicProductNextDeal() {
+    return this.http.get(this.apiURL + 'product/getPlinicProductNextDeal/')
+      .map(response => response.json()); 
+  }
+
   getProductReviewCount(email, product_num) {
     return this.http.get(this.apiURL + 'getProductReviewCount/' + email + '/' + product_num)
       .map(response => response.json()); 
