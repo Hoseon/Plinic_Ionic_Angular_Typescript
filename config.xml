@@ -28,6 +28,7 @@
     <preference name="KeyboardResizeMode" value="native" />
     <preference name="DisallowOverscroll" value="true" />
     <platform name="android">
+        <preference name="android-targetSdkVersion" value="29" />
         <allow-intent href="market:*" />
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
         <splash density="land-xxxhdpi" src="resources/android/splash/drawable-land-xxxhdpi-screen.png" />
