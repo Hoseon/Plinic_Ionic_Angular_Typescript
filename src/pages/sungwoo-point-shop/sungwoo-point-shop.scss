@@ -700,8 +700,10 @@ page-sungwoo-point-shop {
   }
 
   .nextBorder {
-    width: 94%;
-    // height: 214px;
+    // width: 94%;
+    // width: 130px;
+    width: 36.115%;
+    height: 214px;
     border-radius: 2px;
     border: solid 1px #ececec;
     margin: 0 auto;
@@ -720,23 +722,6 @@ page-sungwoo-point-shop {
     line-height: normal;
     letter-spacing: -0.7px;
     color: #292929;
-    width: 95%;
-    margin: 0 auto;
-  }
-
-  .nextText2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    font-family: NotoSansKR;
-    font-size: 17px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: -0.7px;
-    color: #9694d4;;
     width: 95%;
     margin: 0 auto;
   }
@@ -826,6 +811,8 @@ page-sungwoo-point-shop {
   }
 
   .nextImage {
+    height: 150px;
+    // width: 130px;
     width: 100%;
   }
 }
