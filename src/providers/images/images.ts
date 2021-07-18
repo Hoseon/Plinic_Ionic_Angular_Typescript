@@ -16,8 +16,8 @@ export const YOUTUBE_API_KEY: string = 'AIzaSyCQ7I3wA7JDk9QFWMA7VaSMCCakpTN5K_U'
 @Injectable()
 export class ImagesProvider {
 
-  apiURL = 'http://plinic.cafe24app.com/';
-  // apiURL = 'http://localhost:8001/';
+  // apiURL = 'http://plinic.cafe24app.com/';
+  apiURL = 'http://localhost:8001/';
   youTubeApiUrl = 'https://www.googleapis.com/youtube/v3/videos?';
   iamPortUrl = 'https://api.iamport.kr/';
   iamPortToken = '0bb7f5bc3b8fc3737a9a2eec8daeba22c45e5989'
@@ -622,6 +622,11 @@ export class ImagesProvider {
     return this.http.get(this.apiURL + 'product/getPlinicProductNextDeal/')
       .map(response => response.json()); 
   }
+
+  // getBuy() {
+  //   return this.http.get(this.apiURL + 'alarm/buy/')
+  //     .map(response => response.json()); 
+  // }
 
   getProductReviewCount(email, product_num) {
     return this.http.get(this.apiURL + 'getProductReviewCount/' + email + '/' + product_num)

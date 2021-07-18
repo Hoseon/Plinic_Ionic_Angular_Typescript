@@ -50,6 +50,7 @@ import { async } from 'q';
 import { MembershipManagePage } from '../../bill/membership-manage/membership-manage';
 import { SungwooSettingPage } from '../../sungwoo-setting/sungwoo-setting';
 import { BleTestPage } from '../../bletest/bletest';
+import { AlarmTestPage } from '../../alarmtest/alarmtest';
 
 /**
  * Generated class for the SettingPage page.
@@ -297,6 +298,10 @@ export class SettingPage {
     this.navCtrl.push(BleTestPage);
   }
 
+  public alarmTest() {
+    this.navCtrl.push(AlarmTestPage);
+  }
+
   public noti() {
     this.navCtrl.push(NoticePage);
   }
@@ -307,7 +312,7 @@ export class SettingPage {
 
   public loadItems() {
     this.authService.getUserStorage().then(items => {
-
+      // console.log("토큰 값을 가져 왔는가?" + JSON.stringify(items));
       if (items.from === 'kakao' || items.from === 'google' || items.from === 'naver') {
         this.userData = {
           accessToken: items.accessToken,
