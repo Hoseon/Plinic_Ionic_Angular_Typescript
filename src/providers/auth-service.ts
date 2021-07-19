@@ -46,8 +46,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  apiUrl: 'http://plinic.cafe24app.com/',
-  // apiUrl: 'http://localhost:8001/',
+  // apiUrl: 'http://plinic.cafe24app.com/',
+  apiUrl: 'http://localhost:8001/',
   subapiUrl: 'https://plinicshop.com/',
   adminapiUrl: 'http://plinicshop.com:50082/',
 };
@@ -1527,6 +1527,11 @@ export class AuthService {
       .map(response => response.json());
   }
 
+  // public getBuy(id) {
+  //   return this.http.get(CONFIG.apiUrl + 'alarm/list' +id)
+  //     .map(response => response.json());
+  // }
+
   public getAllFaq() {
     return this.http.get(CONFIG.apiUrl + 'faq/list')
       .map(response => response.json());
@@ -1985,6 +1990,36 @@ export class AuthService {
         return data;
       });
   }
+
+
+  public alarmBuySave(userdata, content) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: userdata,
+      alertType: content.alertType,
+      alarmName: content.alarmName,
+      alarmCondition: content.alarmCondition,
+      alarmDesc: content.alarmDesc,
+      mange: content.mange,
+      // createdAt: content.createdAt
+      // alertType: "buyAlarm",
+      // alarmName: "구매 알림",
+      // // alarmCondition: content.alarmCondition,
+      // alarmDesc: "알람 내용",
+      // mange: true,
+      // createdAt: new Date()
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/alarmbuysave', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
 
   public getUseTotalTime(id) {
     return this.http.get(CONFIG.apiUrl + 'totalusetime/' + id)

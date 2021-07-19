@@ -343,6 +343,9 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 // import { LoadingComponent } from '../components/loading/loading';
 
+//알람 테스트 페이지
+import { AlarmTestPageModule } from '../pages/alarmtest/alarmtest.module';
+
 export function getAuthHttp(http, storage) {
   return new AuthHttp(new AuthConfig({
     headerPrefix: '',
@@ -562,6 +565,7 @@ export function getAuthHttp(http, storage) {
     ScreentemplatePageModule,
     PostBoxPagePageModule,
     BleTestPagePageModule,
+    AlarmTestPageModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
