@@ -77,6 +77,7 @@ export class ChalMissionIngPage {
   challengeReward: boolean = false;
   isFail: boolean = false; //챌린지 실패 여부
   isFirstDate : boolean = false; //첫날 미션 진행했는지 확인하는 로직
+  // rewardEmail: boolean; // ...
   dayString : any;
   adUrl: any;
   productTitle: any;
@@ -87,6 +88,7 @@ export class ChalMissionIngPage {
   isShowReComments2: Array<boolean> = new Array<boolean>(); //대댓글
   isShowReply: boolean = false;
   bannersData: any;
+  rewardData: any;
 
   constructor(
     public nav: NavController, 
@@ -177,6 +179,7 @@ export class ChalMissionIngPage {
         tabs[key].style.display = '';
       });
     } // end if
+    this.rewardLoad();
   }
 
   ionViewWillLeave() {
@@ -276,6 +279,71 @@ export class ChalMissionIngPage {
       });
     });
     alert.present();
+  }
+
+  showChallengeExit() {
+    // this.loading.dismiss();
+    let alert = this.alertCtrl.create({
+      cssClass: 'mission_alert_fail',
+      // title: '최종 순위 ' + this.rank + '위',
+      subTitle: '이미 보상신청을 하셨습니다. <br /> 다음 챌린지에 도전하세요!',
+      message: '피부가 좋아지는 그날까지 <br />챌린지에 참여하세요.',
+      enableBackdropDismiss: true,
+      buttons: [
+        // {
+        //   text: 'X',
+        //   role: 'cancel',
+        //   handler: () => {
+        //     this.images.giveupChallenge(this.userData.email).subscribe(data => {
+        //       this.viewCtrl.dismiss({ reload: true });
+        //     }, error => {
+        //       this.showError(JSON.parse(error._body).msg);
+        //     });
+        //   },
+        //   cssClass: 'cancle_btn' 
+        // },
+        {
+          text: '챌린지 종료',
+          handler: () => {
+            //do
+            this.images.upChallenge(this.userData.email).subscribe(data => {
+              this.viewCtrl.dismiss({ reload: true });
+            }, error => {
+              this.showError(JSON.parse(error._body).msg);
+            });
+          }
+        }]
+    });
+    alert.onDidDismiss(()=>{
+      this.images.upChallenge(this.userData.email).subscribe(data => {
+        this.viewCtrl.dismiss({ reload: true });
+      }, error => {
+        this.showError(JSON.parse(error._body).msg);
+      });
+    });
+    alert.present();
+    // let alert = this.alertCtrl.create({
+    //   cssClass: 'mission_alert_fail',
+    //   // title: '최종 순위 ' + this.rank + '위',
+    //   subTitle: '이미 보상신청을 하셨습니다. <br /> 다음 챌린지에 도전하세요!',
+    //   message: '피부가 좋아지는 그날까지 <br />챌린지에 참여하세요.',
+    //   buttons: [
+    //     {
+    //       text: 'X',
+    //       role: 'cancel',
+    //       handler: () => {
+    //       },
+    //       cssClass: 'cancle_btn'
+    //     },
+    //     {
+    //       text: '확인',
+    //       handler: () => {
+    //         //do
+    //         this.challenge_giveup();
+    //       }
+    //     }]
+    // });
+    // alert.present();
   }
   
 
@@ -811,13 +879,76 @@ export class ChalMissionIngPage {
             }
           }
       // }
+      
 
+      // this.rewardData;
+      // // 오늘 날짜부터 일주일 사이에 해당 아이디가 보상으로 넘어간 적 있는지? 있으면 isReward false
+      // var preToday = new Date();
+      // preToday.setDate(preToday.getDate() - 6); // 일주일전
+      // var preToday2 = this.getCovertKoreaTime(preToday).substr(0,10)
+      // if(preToday2 <= todayDate2) { // 일주일 동안
+      //   //rewardData로 reward 데이터 가져와서 email
+      //   // if(this.userData.email === this.rewardData.email) { //현재 이메일이 reward의 이메일과 같으면
+      //   //   this.isReward = false;
+      //   // } else {
+      //   //   this.isReward = true;
+      //   // }
+      //   for(let i= 0; i < this.rewardData.email; i++) {
+      //     if(this.userData.email === this.rewardData.email[i]) {
+      //       this.isReward = false;
+      //     } else {
+      //       this.isReward = true;
+      //     }
+      //   }
+      // }
+
+      // console.log(this.challengeuseTime.missionID);
+      // console.log(this.rewardData.missionID);
+
+      // this.images.compareMissionID(email).subscribe(data => {
+        
+        // 오늘 날짜부터 일주일 사이에 해당 아이디가 보상으로 넘어간 적 있는지? 있으면 rewardEmail false
+        // var todayDate = new Date(); //오늘 날짜 구하고
+        // var todayDate2 = this.getCovertKoreaTime(todayDate).substr(0,10); //오늘 날짜 정형화
+        // var preToday = new Date();
+        // preToday.setDate(preToday.getDate() - 6); // 일주일전
+        // var preToday2 = this.getCovertKoreaTime(preToday).substr(0,10)
+        // if(preToday2 <= todayDate2) { // 일주일 동안
+        // if(preToday <= todayDate) { // 일주일 동안
+          //rewardData로 reward 데이터 가져와서 email
+          // if(this.userData.email === this.rewardData.email) { //현재 이메일이 reward의 이메일과 같으면
+          //   this.rewardEmail = false;
+          // } else {
+          //   this.rewardEmail = true;
+          // }
+          //rewardData는 reward 데이터 일주일치
+          for(let i= 0; i < this.rewardData.length; i++) { //현재 이메일이 reward의 이메일과 같으면
+            console.log(this.rewardData[i].email);
+            if(this.challengeuseTime.email == this.rewardData[i].email) {
+              // this.rewardEmail = true;
+              this.challengeReward = true;
+              break;
+            } else {
+              // this.rewardEmail = false;
+              this.challengeReward = false;
+            }
+          }
+        // }
+      // });
+      
       this.loadProgress = (Number(data.usetime) / 7560) * 100;
       // this.loadProgress = (Number(data.usetime) / 10800) * 100; //20191129 전시회 용으로 프로그레스바 15분 로직으로 변경
       if(this.loadProgress > 100){
         this.loadProgress = 100;
       }
       this.displayUseTime = this.getSecondsAsDigitalClock2(data.usetime);
+    });
+  }
+
+  public rewardLoad() {
+    this.images.rewardLoad().subscribe(data => {
+      this.rewardData = data; //reward 데이터 일주일치
+      console.log(this.rewardData);
     });
   }
 

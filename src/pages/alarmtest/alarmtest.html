@@ -11,7 +11,7 @@
       <button (click)="close()" ion-button icon-only>
       </button>
     </ion-buttons>
-    <ion-title class="android_title" text-wrap>알람 테스트</ion-title>
+    <ion-title class="android_title" text-wrap>알림 테스트</ion-title>
     <ion-buttons (click)="myinfo()" right>
     </ion-buttons>
   </ion-navbar>
@@ -22,17 +22,16 @@
         <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png"/>
       </button>
     </ion-buttons>
-    <ion-title class="ios_title" text-wrap>블루투스 테스트</ion-title>
+    <ion-title class="ios_title" text-wrap>알림 테스트</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content no-padding>
   <ion-grid>
     <ion-row>
       <ion-col>
-        <!-- <button ion-button (click)="getBuy()">구매 알림</button> -->
         <button ion-button (click)="buyAlarm()">구매 알림</button>
       </ion-col>
       <ion-col>
@@ -46,4 +45,31 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ng-container *ngIf="detailAlarmData">
+    <ng-container *ngIf="userData">
+      <ng-container *ngIf="detailAlarmData.writerEmail === userData.email" no-padding><!-- 데이터가 없을 때가 아니고 알람 데이터에 자기 이메일이 없을 때?-->
+        <ng-container *ngIf="!detailAlarmData.writerEmail">
+          <div class="nodataText">알림내역이 없습니다.</div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngFor="let detail of detailAlarmData; let k = index;" no-padding>
+    <ng-container *ngIf="skinQnaData">
+    <ion-item class="line_item" no-lines>
+      <!-- <ion-col (click)="community_qna_modify(skinQnaData._id)" class="container"> -->
+      <ion-col (click)="community_qna_modify(detail.skinId)" class="container">
+      <!-- <ion-col class="container"> -->
+        <ion-row class="beauty_row">
+          <div class="beauty_note_title_img2">{{getCovertKoreaTime(detail.createdAt).substr(0,16).replace('T', ' ')}}</div>
+          <ion-col col-8 class="beauty_note_title_img3">{{detail.alarmName}}</ion-col>
+        </ion-row>
+        <ion-row class="beauty_row">
+          <ion-col col-8 class="beauty_note_title_contents_img">{{detail.alarmDesc}}</ion-col>
+        </ion-row>
+      </ion-col>
+      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
+    </ion-item>
+    </ng-container>
+  </ng-container>
 </ion-content>

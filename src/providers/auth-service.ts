@@ -940,14 +940,20 @@ export class AuthService {
 
 
 
-  public replySkinQnaSave(userData, content) {
+  public replySkinQnaSave(userData, content, skinQnaOneLoadData) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
 
     let body = {
-      email: userData.email,
+      writerEmail: skinQnaOneLoadData.email, // 게시글 작성자의 이메일
+      email: userData.email, // Comment 작성자의 이메일
+      skinId: content.id, //skinQna 아이디
       id: content.id,
       comment: content.comment,
+      alertType: "뷰티플",
+      alarmName: "댓글 알림",
+      alarmDesc: content.comment,
+      mange: true,
     };
 
     console.log("ReplySave : " + JSON.stringify(body));
@@ -2814,6 +2820,11 @@ export class AuthService {
     return this.http.get(CONFIG.apiUrl + 'Point/getUserOrder/' + email + '/' + dateTime)
       .map(response => response.json());
   }
+
+  // public getAlarmList(email, dateTime) {
+  //   return this.http.get(CONFIG.apiUrl + 'Point/getAlarmList/' + email + '/' + dateTime)
+  //     .map(response => response.json());
+  // }
 
   public billingsUser(key) {
     let headers = new Headers();

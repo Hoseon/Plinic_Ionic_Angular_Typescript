@@ -190,6 +190,11 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  // public compareEmail(email) {
+  //   return this.http.get(this.apiURL + 'reward/compareemail/' + email)
+  //   .map(response => response.json());
+  // }
+
   // public missionPointUpdate(id, email, point) {
   //   return this.http.get(this.apiURL + 'carezone/missionpointupdate/' + id + '/' + email + '/' + point)
   //     .map(response => response.json());
@@ -214,6 +219,11 @@ export class ImagesProvider {
 
   public giveupChallenge(email) {
     return this.http.get(this.apiURL + 'carezone/giveupchallenge/' + email)
+      .map(response => response.json());
+  }
+
+  public upChallenge(email) {
+    return this.http.get(this.apiURL + 'carezone/upchallenge/' + email)
       .map(response => response.json());
   }
 
@@ -277,6 +287,13 @@ export class ImagesProvider {
 
   public beautyNoteOneLoad(id) {
     return this.http.get(this.apiURL + 'beautynote/list/' + id)
+      .map(response => response.json());
+  }
+
+
+
+  public rewardLoad() {
+    return this.http.get(this.apiURL + 'reward/email_list')
       .map(response => response.json());
   }
 
@@ -606,6 +623,10 @@ export class ImagesProvider {
 
   getUserOrdersTrackingInfo(email, t_invoice) { //20210312 배송 정보 조회 스윗트래커 
     return this.http.get(this.apiURL + 'api/getUserOrdersTrackingInfo/' + email + '/' + t_invoice).map(response => response.json());
+  }
+
+  getUserAlarms(writerEmail) {
+    return this.http.get(this.apiURL + 'api/getUserAlarms/' + writerEmail).map(response => response.json()); 
   }
 
   getPlinicProductCosmetic() {

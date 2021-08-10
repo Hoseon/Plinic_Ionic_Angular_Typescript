@@ -932,6 +932,7 @@ export class CommunityModifyPage {
   saveSkinQnaReply() {
     this.registerReply.id = this.id;
     if (this.userData.from === 'kakao' || this.userData.from === 'naver' || this.userData.from === 'google') {
+
       this.auth.replySkinQnaSnsSave(this.userData, this.registerReply).subscribe(data => {
         if (data !== "") {
           let alert2 = this.alertCtrl.create({
@@ -956,7 +957,10 @@ export class CommunityModifyPage {
         this.showError(JSON.parse(error._body).msg);
       });
     } else {
-      this.auth.replySkinQnaSave(this.userData, this.registerReply).subscribe(data => {
+
+
+
+      this.auth.replySkinQnaSave(this.userData, this.registerReply, this.skinQnaOneLoadData).subscribe(data => {
         if (data !== "") {
           let alert2 = this.alertCtrl.create({
             cssClass: 'push_alert',
@@ -979,39 +983,44 @@ export class CommunityModifyPage {
       }, error => {
         this.showError(JSON.parse(error._body).msg);
       });
+
+
     }
 
 
     //2019-09-18 댓글 등록 시 본문 게시자에게 푸쉬 알림 전송
     //자신이 작성한 글에는 댓글 알람이 가지 않도록 한다.
-    if (this.skinQnaOneLoadData.email !== this.userData.email) {
-      let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      headers.append('Authorization',
-        'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
-      let option = new RequestOptions({ headers: headers });
-      let payload = {
-        // "to": this.pushToken,
-        "to": this.skinQnaOneLoadData.pushtoken,
-        "priority": "high",
-        data: { "mode": "qna", "id": this.skinQnaOneLoadData._id },
-        "notification": {
-          // "title": this.skinQnaOneLoadData.title,
-          // "body": this.registerReply.comment,
-          // "subtitle" : '댓글알림 subtitle',
-          // "badge": 1,
-          "title": '피부고민 댓글이 작성되었습니다.',
-          "body": this.skinQnaOneLoadData.title,
-          "sound": "default",
-          "click_action": "FCM_PLUGIN_ACTIVITY",
-        },
-        //토큰
-      }
-      this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
-        .map(res => res.json())
-        .subscribe(data => {
-        });
-    }
+    // if (this.skinQnaOneLoadData.email !== this.userData.email) {
+      
+    //   let headers = new Headers();
+    //   headers.append('Content-Type', 'application/json');
+    //   headers.append('Authorization',
+    //     'key=' + "AIzaSyCAcTA318i_SVCMl94e8SFuXHhI5VtXdhU");   //서버키
+    //   let option = new RequestOptions({ headers: headers });
+    //   let payload = {
+    //     // "to": this.pushToken,
+    //     "to": this.skinQnaOneLoadData.pushtoken,
+    //     "priority": "high",
+    //     data: { "mode": "qna", "id": this.skinQnaOneLoadData._id },
+    //     "notification": {
+    //       // "title": this.skinQnaOneLoadData.title,
+    //       // "body": this.registerReply.comment,
+    //       // "subtitle" : '댓글알림 subtitle',
+    //       // "badge": 1,
+    //       "title": '피부고민 댓글이 작성되었습니다.',
+    //       "body": this.skinQnaOneLoadData.title,
+    //       "sound": "default",
+    //       "click_action": "FCM_PLUGIN_ACTIVITY",
+    //     },
+    //     //토큰
+    //   }
+    //   this.http.post('https://fcm.googleapis.com/fcm/send', JSON.stringify(payload), option)
+    //     .map(res => res.json())
+    //     .subscribe(data => {
+    //     });
+
+
+    // }
 
 
   }

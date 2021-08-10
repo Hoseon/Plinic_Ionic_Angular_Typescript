@@ -81,16 +81,16 @@
             </button>
           </ng-container>
           <ng-container *ngIf="isReward">
-            <ng-container *ngIf="!challengeReward">
-              <button ion-button class="cell2" text-align="center" (click)="showMissionsuccess()">
-                <div class="cell_text1">보상받기</div>
-              </button>
-            </ng-container>
-            <ng-container *ngIf="challengeReward">
-              <button ion-button class="cell3" text-align="center">
-                <div class="cell_text1">종료</div>
-              </button>
-            </ng-container>
+              <ng-container *ngIf="!challengeReward">
+                <button ion-button class="cell2" text-align="center" (click)="showMissionsuccess()">
+                  <div class="cell_text1">보상받기</div>
+                </button>
+              </ng-container>
+              <ng-container *ngIf="challengeReward">
+                <button (click)="showChallengeExit()" ion-button class="cell3" text-align="center">
+                  <div class="cell_text1">종료</div>
+                </button>
+              </ng-container>
           </ng-container>
         </ng-container>
         <ng-container *ngIf="isFail">

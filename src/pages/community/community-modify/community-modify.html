@@ -290,7 +290,8 @@
         <!-- 수정 -->
         <textarea *ngIf="comment_popover_option_textarea === i " id="updatereply" class="content_comment_textarea" #myInput maxLength="300" (keydown)="resize()" [(ngModel)]="registerReply.comment" (input)="adjustTextareaUpdate($event)"
           autofocus="true" (focus)="focus($event)"></textarea>
-        <div class="time_comment">{{getCovertKoreaTime(registerReply.createdAt).substr(0,16).replace('T', ' ')}} 
+        <div class="time_comment">
+          <!-- {{getCovertKoreaTime(registerReply.createdAt).substr(0,16).replace('T', ' ')}}  -->
           <span *ngIf="!isShowReComments[i]" (click)="showReComments(i)" class="text_bold" > 답글 달기</span>
           <span *ngIf="isShowReComments[i]" (click)="noShowReComments(i)"> 취소</span>
         </div>

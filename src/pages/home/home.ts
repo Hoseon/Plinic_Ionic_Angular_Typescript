@@ -40,6 +40,7 @@ import { SkinDiagnoseFirstMoisturePage } from "../skin-diagnose-first-moisture/s
 import { CommunityModifyPage } from "../community/community-modify/community-modify";
 import { CommunityPage } from "../community/community";
 import { QnaReadPage } from "../myinfo/details/qna/qna-read/qna-read";
+import { AlarmTestPage } from "../alarmtest/alarmtest";
 import { Observable } from "rxjs/Rx";
 import { FCM } from "@ionic-native/fcm";
 import { SearchPage } from "../community/search/search";
@@ -955,6 +956,15 @@ export class HomePage {
             myModal.onDidDismiss(data => {});
             myModal.present();
           }
+          if (data.mode === "alarm") {
+            //내 알람페이지
+            let myModal = this.modalCtrl.create(AlarmTestPage, {
+              id: data.id,
+              mode: data.mode
+            });
+            myModal.onDidDismiss(data => {});
+            myModal.present();
+          }
         } else {
           // 앱 안에서 클릭했을시
           if (data.mode === "qna" || data.mode === "note") {
@@ -962,7 +972,7 @@ export class HomePage {
               showCloseButton: true,
               closeButtonText: "OK",
               message:
-                "작성한 게시물에 댓글이 등록되었습니다. \n" +
+                "작성하신 게시물에 댓글이 등록되었습니다. \n" +
                 data.aps.alert.title +
                 "\n" +
                 data.aps.alert.body,
@@ -978,6 +988,21 @@ export class HomePage {
               closeButtonText: "OK",
               message:
                 "문의하신 게시물에 댓글이 등록되었습니다. \n" +
+                data.aps.alert.title +
+                "\n" +
+                data.aps.alert.body,
+              duration: 10000
+            });
+            toast.present();
+            console.log("Received in foreground - iOS");
+          }
+
+          if (data.mode === "alarm") {
+            const toast = this.toastCtrl.create({
+              showCloseButton: true,
+              closeButtonText: "OK",
+              message:
+                "작성하신 게시물에 댓글이 등록되었습니다. \n" +
                 data.aps.alert.title +
                 "\n" +
                 data.aps.alert.body,
@@ -1037,6 +1062,17 @@ export class HomePage {
             myModal.present();
             // });
           }
+          if (data.mode === "alarm") {
+            let myModal = this.modalCtrl.create(AlarmTestPage, {
+              id: data.id,
+              mode: data.mode
+            });
+            myModal.onDidDismiss(data => {
+              this.nav.parent.select(3);
+            });
+            myModal.present();
+            // });
+          }
         } else {
           //앱 안에서 클릭 했을 경우 처리
           if (data.mode === "qna" || data.mode === "note") {
@@ -1065,6 +1101,19 @@ export class HomePage {
             });
             toast.present();
             console.log("Received in foreground - android");
+          }
+          if (data.mode === "alarm") {
+            const toast = this.toastCtrl.create({
+              showCloseButton: true,
+              closeButtonText: "OK",
+              message:
+                "작성한 게시물에 댓글이 등록되었습니다. \n" +
+                data.title +
+                "\n" +
+                data.body,
+              duration: 10000
+            });
+            toast.present();
           }
         }
       });

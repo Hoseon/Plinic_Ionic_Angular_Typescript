@@ -14,6 +14,7 @@
     </ion-buttons>
     <ion-title class="android_title" text-wrap> MY </ion-title>
     <img class="android_setting" (click)="setting_page();" src="assets/img/myinfo/ic-system-setting@3x.png" />
+    <ion-icon class="android_alarm" (click)="alarm_page();" ios="ios-notifications" md="ios-notifications-outline"></ion-icon>
   </ion-navbar>
 
   <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
@@ -29,6 +30,8 @@
     <ion-buttons end>
       <button ion-button icon-only clear (click)="setting_page();"><img margin-right float-end
         class="ios_setting" src="assets/img/myinfo/ic-system-setting@3x.png" /></button>
+      <button ion-button icon-only clear (click)="alarm_page();"><ion-icon 
+        class="ios_alarm" ios="ios-notifications" md="ios-notifications-outline"></ion-icon></button>
     </ion-buttons>
     <ion-title class="ios_title" text-wrap> MY </ion-title>
     <!-- <img class="ios_setting" (click)="setting_page();" src="assets/img/myinfo/ic-system-setting@3x.png" /> -->
