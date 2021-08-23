@@ -939,32 +939,34 @@ export class HomePage {
 
       this.fcm.onNotification().subscribe(data => {
         if (data.wasTapped) {
+          this.images.alarmTypeUpdate2(data.id).subscribe(data => {
           //앱 밖에서 알림을 클릭하여 접근 했을 시,
           //커뮤니티 (뷰티노트, 피부고민 알림 처리)
-          if (data.mode === "qna" || data.mode === "note") {
-            // this.nav.parent.select(3).then(() => {
-            let myModal = this.modalCtrl.create(CommunityModifyPage, {
-              id: data.id,
-              mode: data.mode
-            });
-            myModal.onDidDismiss(data => {});
-            myModal.present();
-          }
-          if (data.mode === "myqna") {
-            //문의하기
-            let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
-            myModal.onDidDismiss(data => {});
-            myModal.present();
-          }
-          if (data.mode === "alarm") {
-            //내 알람페이지
-            let myModal = this.modalCtrl.create(AlarmTestPage, {
-              id: data.id,
-              mode: data.mode
-            });
-            myModal.onDidDismiss(data => {});
-            myModal.present();
-          }
+            if (data.mode === "qna" || data.mode === "note") {
+              // this.nav.parent.select(3).then(() => {
+              let myModal = this.modalCtrl.create(CommunityModifyPage, {
+                id: data.id,
+                mode: data.mode
+              });
+              myModal.onDidDismiss(data => {});
+              myModal.present();
+            }
+            if (data.mode === "myqna") {
+              //문의하기
+              let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
+              myModal.onDidDismiss(data => {});
+              myModal.present();
+            }
+            if (data.mode === "alarm") {
+              //내 알람페이지
+              let myModal = this.modalCtrl.create(AlarmTestPage, {
+                id: data.id,
+                mode: data.mode
+              });
+              myModal.onDidDismiss(data => {});
+              myModal.present();
+            }
+          }); 
         } else {
           // 앱 안에서 클릭했을시
           if (data.mode === "qna" || data.mode === "note") {
@@ -1044,35 +1046,37 @@ export class HomePage {
       this.fcm.onNotification().subscribe(data => {
         console.log("FCM data ::::::::::::::" + JSON.stringify(data));
         if (data.wasTapped) {
-          //앱 밖에서 클릭 했을 경우 처리
-          if (data.mode === "qna" || data.mode === "note") {
-            let myModal = this.modalCtrl.create(CommunityModifyPage, {
-              id: data.id,
-              mode: data.mode
-            });
-            myModal.onDidDismiss(data => {
-              this.nav.parent.select(3);
-            });
-            myModal.present();
-            // });
-          }
-          if (data.mode === "myqna") {
-            let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
-            myModal.onDidDismiss(data => {});
-            myModal.present();
-            // });
-          }
-          if (data.mode === "alarm") {
-            let myModal = this.modalCtrl.create(AlarmTestPage, {
-              id: data.id,
-              mode: data.mode
-            });
-            myModal.onDidDismiss(data => {
-              this.nav.parent.select(3);
-            });
-            myModal.present();
-            // });
-          }
+          this.images.alarmTypeUpdate2(data.id).subscribe(data => {
+            //앱 밖에서 클릭 했을 경우 처리
+            if (data.mode === "qna" || data.mode === "note") {
+              let myModal = this.modalCtrl.create(CommunityModifyPage, {
+                id: data.id,
+                mode: data.mode
+              });
+              myModal.onDidDismiss(data => {
+                this.nav.parent.select(3);
+              });
+              myModal.present();
+              // });
+            }
+            if (data.mode === "myqna") {
+              let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
+              myModal.onDidDismiss(data => {});
+              myModal.present();
+              // });
+            }
+            if (data.mode === "alarm") {
+              let myModal = this.modalCtrl.create(AlarmTestPage, {
+                id: data.id,
+                mode: data.mode
+              });
+              myModal.onDidDismiss(data => {
+                this.nav.parent.select(3);
+              });
+              myModal.present();
+              // });
+            }
+          }); 
         } else {
           //앱 안에서 클릭 했을 경우 처리
           if (data.mode === "qna" || data.mode === "note") {

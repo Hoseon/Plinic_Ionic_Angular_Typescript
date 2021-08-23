@@ -6,12 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar *ngIf="platform.is('android') || platform.is('core') ">
+  <ion-navbar *ngIf="platform.is('android') || platform.is('core')">
     <ion-buttons left>
       <button (click)="close()" ion-button icon-only>
       </button>
     </ion-buttons>
-    <ion-title class="android_title" text-wrap>알림 테스트</ion-title>
+    <ion-title class="android_title" text-wrap>알림함</ion-title>
     <ion-buttons (click)="myinfo()" right>
     </ion-buttons>
   </ion-navbar>
@@ -22,14 +22,14 @@
         <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png"/>
       </button>
     </ion-buttons>
-    <ion-title class="ios_title" text-wrap>알림 테스트</ion-title>
+    <ion-title class="ios_title" text-wrap>알림함</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content no-padding>
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>
       <ion-col>
         <button ion-button (click)="buyAlarm()">구매 알림</button>
@@ -44,32 +44,70 @@
         <button ion-button (click)="challAlarm()">챌린지 알림</button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
   <ng-container *ngIf="detailAlarmData">
     <ng-container *ngIf="userData">
       <ng-container *ngIf="detailAlarmData.writerEmail === userData.email" no-padding><!-- 데이터가 없을 때가 아니고 알람 데이터에 자기 이메일이 없을 때?-->
-        <ng-container *ngIf="!detailAlarmData.writerEmail">
+        <ng-container *ngIf="!detailAlarmData.writerEmail && detailAlarmData.mange == false">
           <div class="nodataText">알림내역이 없습니다.</div>
         </ng-container>
       </ng-container>
     </ng-container>
   </ng-container>
+  <ion-grid padding>
+    <ion-row>
+      <button class="delBtn" (click)="delAlarm()">
+        <ion-icon name="ios-trash-outline"></ion-icon>
+        전체삭제
+      </button>
+    </ion-row>
+  </ion-grid>
   <ng-container *ngFor="let detail of detailAlarmData; let k = index;" no-padding>
     <ng-container *ngIf="skinQnaData">
-    <ion-item class="line_item" no-lines>
-      <!-- <ion-col (click)="community_qna_modify(skinQnaData._id)" class="container"> -->
-      <ion-col (click)="community_qna_modify(detail.skinId)" class="container">
-      <!-- <ion-col class="container"> -->
-        <ion-row class="beauty_row">
-          <div class="beauty_note_title_img2">{{getCovertKoreaTime(detail.createdAt).substr(0,16).replace('T', ' ')}}</div>
-          <ion-col col-8 class="beauty_note_title_img3">{{detail.alarmName}}</ion-col>
-        </ion-row>
-        <ion-row class="beauty_row">
-          <ion-col col-8 class="beauty_note_title_contents_img">{{detail.alarmDesc}}</ion-col>
-        </ion-row>
-      </ion-col>
-      <div style="height:1px; width:90%; margin:0 auto; display: block; background-color:#f1f1f1"></div>
-    </ion-item>
+      <ng-container *ngIf="detail.mange === true">
+        <ng-container *ngIf="detail.alarmCondition == false">
+          <ion-grid padding class="line_item">
+            <ion-row >
+              <ion-col col-1><img class="close_img" (click)="delAlarm2(detail._id)"
+                src="assets/img/sungwoo_img/icon-contents@3x.png"/></ion-col>
+              <ion-col col-7 class="alarmText">{{detail.alertType}}</ion-col>
+              <ion-col col-4 ><img class="close_img" (click)="delAlarm2(detail._id)"
+                src="assets/img/beauty/ic-system-close-black@3x.png"/></ion-col>
+            </ion-row>
+            <ion-row >
+              <ion-col col-1></ion-col>
+              <ion-col col-11 class="alarmText2">{{detail.alarmName}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-1></ion-col>
+              <ion-col col-7 class="alarmText3">{{getCovertKoreaTime(detail.createdAt).substr(0,10)}}</ion-col>
+              <ion-col col-4 class="alarmText4" (click)="community_qna_modify(detail.skinId, detail._id)">자세히 보기<ion-icon class="alarm_img" name="md-arrow-round-forward"></ion-icon></ion-col>
+            </ion-row>
+          </ion-grid>
+          <div style="height:1px; width:100%; margin:0 auto; display: block; border: solid 0.3px #ececec;"></div>
+        </ng-container>
+        <ng-container *ngIf="detail.alarmCondition == true">
+          <ion-grid padding class="line_item2">
+            <ion-row >
+              <ion-col col-1><img class="close_img" (click)="delAlarm2(detail._id)"
+                src="assets/img/sungwoo_img/icon-contents@3x.png"/></ion-col>
+              <ion-col col-7 class="alarmText">{{detail.alertType}}</ion-col>
+              <ion-col col-4 ><img class="close_img" (click)="delAlarm2(detail._id)"
+                src="assets/img/beauty/ic-system-close-black@3x.png"/></ion-col>
+            </ion-row>
+            <ion-row >
+              <ion-col col-1></ion-col>
+              <ion-col col-11 class="alarmText2">{{detail.alarmName}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-1></ion-col>
+              <ion-col col-7 class="alarmText3">{{getCovertKoreaTime(detail.createdAt).substr(0,10)}}</ion-col>
+              <ion-col col-4 class="alarmText4" (click)="community_qna_modify(detail.skinId, detail._id)">자세히 보기<ion-icon class="alarm_img" name="md-arrow-round-forward"></ion-icon></ion-col>
+            </ion-row>
+          </ion-grid>
+          <div style="height:1px; width:100%; margin:0 auto; display: block; border: solid 0.3px #ececec;"></div>
+        </ng-container>
+      </ng-container>
     </ng-container>
   </ng-container>
 </ion-content>

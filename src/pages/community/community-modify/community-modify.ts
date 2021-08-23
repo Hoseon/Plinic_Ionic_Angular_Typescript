@@ -933,7 +933,7 @@ export class CommunityModifyPage {
     this.registerReply.id = this.id;
     if (this.userData.from === 'kakao' || this.userData.from === 'naver' || this.userData.from === 'google') {
 
-      this.auth.replySkinQnaSnsSave(this.userData, this.registerReply).subscribe(data => {
+      this.auth.replySkinQnaSnsSave(this.userData, this.registerReply, this.skinQnaOneLoadData).subscribe(data => {
         if (data !== "") {
           let alert2 = this.alertCtrl.create({
             cssClass: 'push_alert',

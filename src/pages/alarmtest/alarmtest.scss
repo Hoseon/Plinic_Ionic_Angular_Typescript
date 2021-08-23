@@ -122,7 +122,13 @@ page-alarmtest {
     margin: 50% auto;
   }
 
+  .delBtn {
+    font-family: AppleSDGothicNeo-Regular;
+    background-color: #fff;
+  }
+
   .line_item {
+    position: relative;
     width: 100%;
     height: 31.5vw;
     padding: 0px;
@@ -130,36 +136,53 @@ page-alarmtest {
     background-color: #f1f1f1;
   }
 
-  .container {
-    position: inherit;
-    // width: 100%;
+  .line_item2 {
+    position: relative;
+    width: 100%;
+    height: 31.5vw;
+    padding: 0px;
+    margin: 0px;
+    background-color: #fff;
   }
 
-  .beauty_note_title_img2 {
-    position: absolute;
-    top: 5.5vw;
-    left: 5%;
-    // width: 38px;
-    // height: 10.5px;
-    font-family: NotoSansKR;
-    font-size: 11px;
-    font-weight: 500;
+  .alarmText {
+    // position: absolute;
+    // max-width: 65%;
+    // top: 15vw;
+    // left: 3.5%;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 12px;
+    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.14;
-    letter-spacing: -0.33px;
+    line-height: 1.44;
+    letter-spacing: -0.36px;
     text-align: left;
-    color: #6562b9;
+    color: #292929;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  .beauty_note_title_img3 {
-    position: absolute;
-    top: 9vw;
-    left: 3.5%;
-    max-width: 65%;
+  .close_img {
+    // margin-top: 0.5vw;
+    // margin-right: 1vw;
+    left: 3%;
+    width: 15.5px;
+    object-fit: contain;
+    float: right;
+    // background-color: #fff;
+  }
+
+  .alarmText2 {
+    // position: absolute;
+    // top: 9vw;
+    // left: 3.5%;
+    height: 40px;
+    max-width: 95%;
     // width: 140px;
     // height: 13px;
-    font-family: NotoSansKR;
+    font-family: AppleSDGothicNeo-Regular;
     font-size: 13.5px;
     font-weight: 500;
     font-stretch: normal;
@@ -169,27 +192,47 @@ page-alarmtest {
     text-align: left;
     color: #292929;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    word-break: keep-all;
+    // text-overflow: ellipsis;
   }
 
-  .beauty_note_title_contents_img {
-    position: absolute;
-    max-width: 65%;
-    // top: 15vw;
-    left: 3.5%;
-    font-family: NotoSansKR;
-    font-size: 12px;
-    font-weight: normal;
+  .alarmText3 {
+    // position: absolute;
+    // top: 5.5vw;
+    // left: 3%;
+    // width: 38px;
+    // height: 10.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 11px;
+    font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.44;
-    letter-spacing: -0.36px;
+    line-height: 1.14;
+    letter-spacing: -0.33px;
     text-align: left;
     color: #a9a9a9;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  }
+
+  .alarmText4 {
+    // position: absolute;
+    // top: 5.5vw;
+    // left: 3%;
+    // width: 38px;
+    // height: 10.5px;
+    font-family: AppleSDGothicNeo-Regular;
+    font-size: 13px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.14;
+    letter-spacing: -0.33px;
+    text-align: right;
+    color: #3dd4c8;
+  }
+
+  .alarm_img {
+    width: 23px;
+    // padding-left: 5%;
   }
 
 }

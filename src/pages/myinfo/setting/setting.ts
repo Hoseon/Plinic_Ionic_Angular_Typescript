@@ -50,7 +50,6 @@ import { async } from 'q';
 import { MembershipManagePage } from '../../bill/membership-manage/membership-manage';
 import { SungwooSettingPage } from '../../sungwoo-setting/sungwoo-setting';
 import { BleTestPage } from '../../bletest/bletest';
-import { AlarmTestPage } from '../../alarmtest/alarmtest';
 
 /**
  * Generated class for the SettingPage page.
@@ -296,10 +295,6 @@ export class SettingPage {
 
   public bleTest() {
     this.navCtrl.push(BleTestPage);
-  }
-
-  public alarmTest() {
-    this.navCtrl.push(AlarmTestPage);
   }
 
   public noti() {

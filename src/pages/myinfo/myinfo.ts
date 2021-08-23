@@ -41,6 +41,8 @@ import { KakaoCordovaSDK } from 'kakao-sdk';
 
 import { OpenNativeSettings } from '@ionic-native/open-native-settings';
 
+import { AlarmTestPage } from '../alarmtest/alarmtest';
+
 declare var cordova: any;
 
 
@@ -183,6 +185,8 @@ export class MyinfoPage {
   orderCount: any;
   customer_uid: any;
 
+  alarmData: any;
+
   // pushToken: any;
 
 
@@ -194,13 +198,17 @@ export class MyinfoPage {
     public auth: AuthService, @Inject(DOCUMENT) document, private loadingCtrl: LoadingController, private themeableBrowser: ThemeableBrowser, public viewCtrl: ViewController,
     public _kakaoCordovaSDK: KakaoCordovaSDK,
     private openNativeSettings: OpenNativeSettings,
+    public navCtrl: NavController,
     ) {
     this.platform.ready().then((readySource) => {
 
       this.androidBackButton();
       this.segment_moisture = "수분";
     });
-
+    if (this.navParams.get('alarmList')) {
+      this.alarmData = this.navParams.get('alarmList');
+      // this.yearAgo.setMonth(this.yearAgo.getMonth() - 12);
+    }
   }
 
   test_openSetting() {
@@ -269,6 +277,14 @@ export class MyinfoPage {
 
     //2021-03-11 사용자 구매정보 가져 오기
     this.getUserOrder(this.userData.email);
+
+    //알람 데이터
+    if (this.navParams.get('alarmList')) {
+      this.alarmData = this.navParams.get('alarmList');
+      // this.yearAgo.setMonth(this.yearAgo.getMonth() - 12);
+    } else {
+      this.getAlarmTime(this.userData.email);
+    }
   }
 
 
@@ -2196,5 +2212,20 @@ export class MyinfoPage {
       console.error(error);
     })
   }
+
+  public alarm_page() {
+    this.navCtrl.push(AlarmTestPage);
+  }
+  
+  getAlarmTime(writerEmail) {
+    this.images.getAlarmTime(writerEmail).subscribe(data => {
+      // this.alarmList = data;
+      this.alarmData = data;
+    })
+  }
+
+  // alarmDataTime(writerEmail) {
+
+  // }
   
 }

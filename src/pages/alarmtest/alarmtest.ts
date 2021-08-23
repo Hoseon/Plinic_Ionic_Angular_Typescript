@@ -127,37 +127,111 @@ export class AlarmTestPage {
     this.skinQnaLoad();
   }
 
+  // 알림 전체 삭제
+  public delAlarm() {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "삭제 알림",
+      message: "전체 알림을 삭제하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            for(let i= 0; i < this.detailAlarmData.length; i++) {
+            this.images.delAlarm(this.userData.email, this.detailAlarmData[i]._id).subscribe(data => {
+              console.log('삭제')
+              this.viewCtrl.dismiss({});
+            },
+              error => {
+                this.showError(JSON.parse(error._body).msg);
+              }
+            );
+            }
+          }
+        }]
+    });
+    alert.present();
+  }
+
+  // 알림 선택 삭제
+  public delAlarm2(_id) {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "삭제 알림",
+      message: "선택한 알림을 삭제하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            this.images.delAlarm2(this.userData.email, _id).subscribe(data => {
+              console.log('삭제')
+              this.viewCtrl.dismiss({});
+            },
+              error => {
+                this.showError(JSON.parse(error._body).msg);
+              }
+            );
+          }
+        }]
+    });
+    alert.present();
+  }
+
   public skinQnaLoad() {
     this.images.skinQnaLoad().subscribe(data => {
       this.skinQnaData = data;
     });
   }
 
-  // public community_qna_modify() {
-  //   let myModal = this.modalCtrl.create(CommunityModifyPage, {
-  //     // skinId: skinId,
-  //     // mode: "qna"
-  //   });
-  //   myModal.onDidDismiss(data => {
-  //     if(this.detailAlarmData.skinId === this.skinQnaData.id) {
-  //       let myModal = this.modalCtrl.create(CommunityModifyPage);
-  //       myModal.present();
-  //     }
-  //   });
-  //   myModal.present();
-  // }
-
-  public community_qna_modify(skinId) {
-    if(this.detailAlarmData.skinId === this.skinQnaData.id) {
-    let myModal = this.modalCtrl.create(CommunityModifyPage, {
-      id: skinId,
-      mode: "qna"
-    });
-    
-    myModal.onDidDismiss(data => {
-    });
-    myModal.present();
-  }
+  //알림함 > 댓글 달린 페이지 이동(삭제되면 삭제된 페이지입니다 alert창)
+  public community_qna_modify(skinId, _id) {
+    this.images.alarmTypeUpdate(_id).subscribe(data => {
+      for(let i= 0; i < this.skinQnaData.length; i++) {
+        if(skinId === this.skinQnaData[i]._id) {
+          let myModal = this.modalCtrl.create(CommunityModifyPage, {
+            id: skinId,
+            mode: "qna",
+          });
+          myModal.onDidDismiss(data => {
+          });
+          myModal.present();
+          break;
+        } else {
+          let alert = this.alertCtrl.create({
+          cssClass: 'push_alert_cancel',
+            title: "plinic",
+            message: "삭제된 게시글입니다.",
+            buttons: [
+              {
+                text: '확인',
+                role: 'cancel',
+                handler: () => {
+                  console.log('확인');
+                }
+              }
+            ]
+        });
+        alert.present();
+        break;
+        }
+      }
+    },
+      // error => {
+      //   this.showError(JSON.parse(error._body).msg);
+      // }
+    );  
   }
 
 
@@ -224,8 +298,8 @@ export class AlarmTestPage {
       this.saveAlarmData = {
         // name: this.name,
         email: this.userData.email,
-        alertType: "buyAlarm",
-        alarmName: "구매 알림",
+        alertType: "구매알림",
+        alarmName: "구매알림",
         // alarmCondition: this.alarmData.alarmCondition,
         alarmCondition: "알람 상태1",
         alarmDesc: "알람 내용1",
@@ -310,8 +384,8 @@ export class AlarmTestPage {
       this.saveAlarmData = {
         // name: this.name,
         email: this.userData.email,
-        alertType: "marketingAlarm",
-        alarmName: "마케팅 알림",
+        alertType: "마케팅알림",
+        alarmName: "마케팅알림",
         // alarmCondition: this.alarmData.alarmCondition,
         alarmCondition: "알람 상태2",
         alarmDesc: "알람 내용2",
@@ -372,8 +446,8 @@ export class AlarmTestPage {
       this.saveAlarmData = {
         // name: this.name,
         email: this.userData.email,
-        alertType: "commentAlarm",
-        alarmName: "댓글 알림",
+        alertType: "댓글알림",
+        alarmName: "내가 쓴 글에 댓글이 달렸어요! 지금 바로 확인해보세요.",
         // alarmCondition: this.alarmData.alarmCondition,
         alarmCondition: "알람 상태3",
         alarmDesc: "알람 내용3",
@@ -434,8 +508,8 @@ export class AlarmTestPage {
       this.saveAlarmData = {
         // name: this.name,
         email: this.userData.email,
-        alertType: "challAlarm",
-        alarmName: "챌린지 알림",
+        alertType: "챌린지알림",
+        alarmName: "축하합니다! 챌린지에 성공하여 이벤트 상품이 발송될 예정입니다.",
         // alarmCondition: this.alarmData.alarmCondition,
         alarmCondition: "알람 상태4",
         alarmDesc: "알람 내용4",

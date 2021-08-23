@@ -950,9 +950,10 @@ export class AuthService {
       skinId: content.id, //skinQna 아이디
       id: content.id,
       comment: content.comment,
-      alertType: "뷰티플",
-      alarmName: "댓글 알림",
+      alertType: "댓글알림",
+      alarmName: "내가 쓴 글에 댓글이 달렸어요! 지금 바로 확인해보세요.",
       alarmDesc: content.comment,
+      alarmCondition: false,
       mange: true,
     };
 
@@ -966,15 +967,25 @@ export class AuthService {
       });
   }
 
-  public replySkinQnaSnsSave(userData, content) {
+  public replySkinQnaSnsSave(userData, content, skinQnaOneLoadData) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
 
     let body = {
-      email: userData.email,
-      img_url: userData.thumbnail_image,
+      // email: userData.email,
+      // img_url: userData.thumbnail_image,
+      // id: content.id,
+      // comment: content.comment,
+      writerEmail: skinQnaOneLoadData.email, // 게시글 작성자의 이메일
+      email: userData.email, // Comment 작성자의 이메일
+      skinId: content.id, //skinQna 아이디
       id: content.id,
       comment: content.comment,
+      alertType: "댓글알림",
+      alarmName: "내가 쓴 글에 댓글이 달렸어요! 지금 바로 확인해보세요.",
+      alarmDesc: content.comment,
+      alarmCondition: false,
+      mange: true,
     };
 
     console.log("ReplySave : " + JSON.stringify(body));
@@ -1996,6 +2007,36 @@ export class AuthService {
         return data;
       });
   }
+
+
+  // public alarmTypeUpdate(_id) {
+  //   // let headers = new Headers();
+  //   // headers.append("Content-Type", "application/json");
+
+  //   let body = {
+  //     id: _id,
+  //     // writerEmail: content.email, // 게시글 작성자의 이메일
+  //     // skinId: content.id, //skinQna 아이디
+  //     // comment: content.comment,
+  //     // alertType: "뷰티플",  
+  //     // alarmName: "댓글 알림",
+  //     // alarmDesc: content.comment,
+  //     alarmCondition: true, //true로 바꿔야함
+  //     // mange: true,
+  //   };
+
+  //   return this.http.post(CONFIG.apiUrl + 'api/alarmTypeUpdate', JSON.stringify(body))//{headers: headers}
+  //     .map(res => res.json())
+  //     .map(data => {
+  //       console.log(data);
+  //       return data;
+  //     });
+  // }
+
+  // public alarmTypeUpdate(_id) {
+  //   return this.http.get(CONFIG.apiUrl + 'api/alarmTypeUpdate' + _id)
+  //     .map(response => response.json());
+  // }
 
 
   public alarmBuySave(userdata, content) {

@@ -306,7 +306,7 @@ export class ChalMissionIngPage {
           text: '챌린지 종료',
           handler: () => {
             //do
-            this.images.upChallenge(this.userData.email).subscribe(data => {
+            this.images.giveupChallenge(this.userData.email).subscribe(data => {
               this.viewCtrl.dismiss({ reload: true });
             }, error => {
               this.showError(JSON.parse(error._body).msg);
@@ -315,7 +315,7 @@ export class ChalMissionIngPage {
         }]
     });
     alert.onDidDismiss(()=>{
-      this.images.upChallenge(this.userData.email).subscribe(data => {
+      this.images.giveupChallenge(this.userData.email).subscribe(data => {
         this.viewCtrl.dismiss({ reload: true });
       }, error => {
         this.showError(JSON.parse(error._body).msg);
@@ -921,7 +921,7 @@ export class ChalMissionIngPage {
           // } else {
           //   this.rewardEmail = true;
           // }
-          //rewardData는 reward 데이터 일주일치
+          //rewardData는 7일간의 보상 데이터
           for(let i= 0; i < this.rewardData.length; i++) { //현재 이메일이 reward의 이메일과 같으면
             console.log(this.rewardData[i].email);
             if(this.challengeuseTime.email == this.rewardData[i].email) {
@@ -945,9 +945,10 @@ export class ChalMissionIngPage {
     });
   }
 
+  // 7일간의 보상 데이터 불러오기
   public rewardLoad() {
     this.images.rewardLoad().subscribe(data => {
-      this.rewardData = data; //reward 데이터 일주일치
+      this.rewardData = data;
       console.log(this.rewardData);
     });
   }

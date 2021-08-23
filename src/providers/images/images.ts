@@ -629,6 +629,26 @@ export class ImagesProvider {
     return this.http.get(this.apiURL + 'api/getUserAlarms/' + writerEmail).map(response => response.json()); 
   }
 
+  getAlarmTime(writerEmail) {
+    return this.http.get(this.apiURL + 'api/getAlarmTime/' + writerEmail).map(response => response.json());
+  }
+
+  alarmTypeUpdate(_id) {
+    return this.http.get(this.apiURL + 'api/alarmTypeUpdate/' + _id).map(response => response.json());
+  }
+
+  alarmTypeUpdate2(id) {
+    return this.http.get(this.apiURL + 'api/alarmTypeUpdate2/' + id).map(response => response.json());
+  }
+
+  delAlarm(writerEmail, _id) {
+    return this.http.get(this.apiURL + 'api/delAlarm/' + writerEmail + '/' + _id).map(response => response.json());
+  }
+
+  delAlarm2(writerEmail, _id) {
+    return this.http.get(this.apiURL + 'api/delAlarm2/' + writerEmail + '/' + _id).map(response => response.json());
+  }
+
   getPlinicProductCosmetic() {
     return this.http.get(this.apiURL + 'product/getPlinicProductCosmetic/')
       .map(response => response.json()); 
