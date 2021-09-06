@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
-import { IonicPage, NavController, NavParams, Platform, AlertController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController, ModalController, ViewController } from 'ionic-angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { AuthService } from '../../providers/auth-service';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import {CommunityModifyPage} from '../community/community-modify/community-modify';
 
 /**
  * Generated class for the AlarmtestPage page.
@@ -21,11 +22,19 @@ export class AlarmTestPage {
 
   cucumber: boolean;
   userData: any = {};
-  alarmData: any;
+  // alarmData: any;
+  detailAlarmData: any;
+  alarmList: any;
   thumb_image: any;
   jwtHelper: JwtHelper = new JwtHelper();
   saveAlarmData: any;
   profileimg_url: any;
+  yearAgo: Date = new Date();
+  skinQnaData: any;
+
+
+  
+
 
   constructor(
     private http: Http, 
@@ -37,19 +46,39 @@ export class AlarmTestPage {
     private auth: AuthService, 
     public alertCtrl: AlertController,
     public viewCtrl: ViewController,
+    public modalCtrl: ModalController,
   ) 
   {
 
     this.platform.ready().then(() => {});
     // this.alarmData = this.loadBuy(this.userData.id);
+    if (this.navParams.get('alarmList')) {
+      this.detailAlarmData = this.navParams.get('alarmList');
+      this.yearAgo.setMonth(this.yearAgo.getMonth() - 12);
+    }
   }
 
   async ionViewDidLoad() {
     // console.log('ionViewDidLoad AlarmTestPage');
     // this.getBuy(this.userData.id);
     this.userData = await this.loadItems();
+    // if (this.navParams.get('alarmId')) {
+    //   this.detailAlarmData = this.getUserAlarms(this.navParams.get('alarmId')); //이거 detailAlarmData 말고 따로 alarmData 선언해서 써보기
+    // }
   }
 
+  async ionViewDidEnter() {
+      // this.getUserAlarms();
+      // this.getUserAlarms(this.userData.email);
+      await this.alarmTime(this.userData.email);
+      if (this.navParams.get('alarmList')) {
+        this.detailAlarmData = this.navParams.get('alarmList');
+        this.yearAgo.setMonth(this.yearAgo.getMonth() - 12);
+      } else {
+        this.getUserAlarms(this.userData.email);
+      }
+  }
+  
   updateCucumber() {
       console.log('Cucumbers new state:' + this.cucumber);
   }
@@ -94,6 +123,121 @@ export class AlarmTestPage {
   //     }
   //   });
   // }
+
+  ionViewWillEnter() {
+    this.skinQnaLoad();
+  }
+
+  // 알림 전체 삭제
+  public delAlarm() {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "삭제 알림",
+      message: "전체 알림을 삭제하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            for(let i= 0; i < this.detailAlarmData.length; i++) {
+            this.images.delAlarm(this.userData.email, this.detailAlarmData[i]._id).subscribe(data => {
+              console.log('삭제')
+              this.viewCtrl.dismiss({});
+            },
+              error => {
+                this.showError(JSON.parse(error._body).msg);
+              }
+            );
+            }
+          }
+        }]
+    });
+    alert.present();
+  }
+
+  // 알림 선택 삭제
+  public delAlarm2(_id) {
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "삭제 알림",
+      message: "선택한 알림을 삭제하시겠습니까?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            this.images.delAlarm2(this.userData.email, _id).subscribe(data => {
+              console.log('삭제')
+              this.viewCtrl.dismiss({});
+            },
+              error => {
+                this.showError(JSON.parse(error._body).msg);
+              }
+            );
+          }
+        }]
+    });
+    alert.present();
+  }
+
+  public alarmTime(email) { //alertType가 '챌린지알림'일 때 자세히 보기가 안보이게 만들어야 함. *ngIf="alertType!=="챌린지알림""
+
+  }
+
+  public skinQnaLoad() {
+    this.images.skinQnaLoad().subscribe(data => {
+      this.skinQnaData = data;
+    });
+  }
+
+  //알림함 > 댓글 달린 페이지 이동(삭제되면 삭제된 페이지입니다 alert창)
+  public community_qna_modify(skinId, _id) {
+    this.images.alarmTypeUpdate(_id).subscribe(data => {
+      for(let i= 0; i < this.skinQnaData.length; i++) {
+        if(skinId === this.skinQnaData[i]._id) {
+          let myModal = this.modalCtrl.create(CommunityModifyPage, {
+            id: skinId,
+            mode: "qna",
+          });
+          myModal.onDidDismiss(data => {
+          });
+          myModal.present();
+          break;
+        } else {
+          let alert = this.alertCtrl.create({
+          cssClass: 'push_alert_cancel',
+            title: "plinic",
+            message: "삭제된 게시글입니다.",
+            buttons: [
+              {
+                text: '확인',
+                role: 'cancel',
+                handler: () => {
+                  console.log('확인');
+                }
+              }
+            ]
+        });
+        alert.present();
+        break;
+        }
+      }
+    },
+      // error => {
+      //   this.showError(JSON.parse(error._body).msg);
+      // }
+    );  
+  }
 
 
   public loadItems() {
@@ -158,8 +302,9 @@ export class AlarmTestPage {
       if(this.userData.email) {
       this.saveAlarmData = {
         // name: this.name,
-        alertType: "buyAlarm",
-        alarmName: "구매 알림",
+        email: this.userData.email,
+        alertType: "구매알림",
+        alarmName: "구매알림",
         // alarmCondition: this.alarmData.alarmCondition,
         alarmCondition: "알람 상태1",
         alarmDesc: "알람 내용1",
@@ -243,8 +388,9 @@ export class AlarmTestPage {
       if(this.userData.email) {
       this.saveAlarmData = {
         // name: this.name,
-        alertType: "marketingAlarm",
-        alarmName: "마케팅 알림",
+        email: this.userData.email,
+        alertType: "마케팅알림",
+        alarmName: "마케팅알림",
         // alarmCondition: this.alarmData.alarmCondition,
         alarmCondition: "알람 상태2",
         alarmDesc: "알람 내용2",
@@ -304,8 +450,9 @@ export class AlarmTestPage {
       if(this.userData.email) {
       this.saveAlarmData = {
         // name: this.name,
-        alertType: "commentAlarm",
-        alarmName: "댓글 알림",
+        email: this.userData.email,
+        alertType: "댓글알림",
+        alarmName: "내가 쓴 글에 댓글이 달렸어요! 지금 바로 확인해보세요.",
         // alarmCondition: this.alarmData.alarmCondition,
         alarmCondition: "알람 상태3",
         alarmDesc: "알람 내용3",
@@ -365,8 +512,9 @@ export class AlarmTestPage {
       if(this.userData.email) {
       this.saveAlarmData = {
         // name: this.name,
-        alertType: "challAlarm",
-        alarmName: "챌린지 알림",
+        email: this.userData.email,
+        alertType: "챌린지알림",
+        alarmName: "축하합니다! 챌린지에 성공하여 이벤트 상품이 발송될 예정입니다.",
         // alarmCondition: this.alarmData.alarmCondition,
         alarmCondition: "알람 상태4",
         alarmDesc: "알람 내용4",
@@ -545,5 +693,67 @@ export class AlarmTestPage {
     //     });
     // }
   // }
+
+  // getUserAlarms(email) {
+  //   this.images.getUserAlarms(email).subscribe(data => {
+  //     this.detailAlarmData = data;
+  //   })
+  // }
+
+  // getUserAlarms(id) { 
+  //   this.images.getUserAlarms(id).subscribe(data => {
+  //     setTimeout(() => {
+  //       this.detailAlarmData = data;
+  //     }, 300);
+  //   },err=>{
+  //     alert("데이터 에러 발생");
+  //   })
+  // }
+
+  // getUserAlarms(email) {
+  //   this.images.getUserAlarms(email).subscribe(data => {
+  //     if(data !='') {
+  //       this.alarmList = data;
+  //     } else {
+  //       this.alarmList = null;
+  //     }
+  //   }, error => {
+  //     console.error(error);
+  //   })
+  // }
+
+  // getAlarmList(email) {
+  //   this.auth.getAlarmList(email, 'All').subscribe(data => {
+  //     if(data !='') {
+  //         this.alarmList = data;
+  //     } else {
+  //       this.alarmList = null;
+  //     }
+  //   }, error => {
+  //     console.error("주문 배송 정보 가져 오기 실패 : " + error);
+  //   })
+  // }
+
+  getUserAlarms(writerEmail) {
+    this.images.getUserAlarms(writerEmail).subscribe(data => {
+      // this.alarmList = data;
+      this.detailAlarmData = data;
+    })
+  }
+
+  // dateConvert(date) {
+  //   date = this.getCovertKoreaTime(date);
+  //   var month = '';
+  //   var day = '';
+
+  //   month = date.substr(5, 2);
+  //   day = date.substr(8, 2);
+
+  //   return month + '월' + day + '일';
+  // }
+
+  getCovertKoreaTime(time) {
+    return new Date(new Date(time).getTime() - new Date().getTimezoneOffset() * 60000).toISOString()
+  }
 
 }

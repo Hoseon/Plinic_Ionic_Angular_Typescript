@@ -40,6 +40,7 @@ import { SkinDiagnoseFirstMoisturePage } from "../skin-diagnose-first-moisture/s
 import { CommunityModifyPage } from "../community/community-modify/community-modify";
 import { CommunityPage } from "../community/community";
 import { QnaReadPage } from "../myinfo/details/qna/qna-read/qna-read";
+import { AlarmTestPage } from "../alarmtest/alarmtest";
 import { Observable } from "rxjs/Rx";
 import { FCM } from "@ionic-native/fcm";
 import { SearchPage } from "../community/search/search";
@@ -190,6 +191,8 @@ export class HomePage {
   videoDetailData: Array<any> = new Array<any>();
   isExitApp: boolean = false;
   checkPlinicUser: any;
+  popupData: any;
+  adUrl: any;
 
   constructor(
     private fcm: FCM,
@@ -295,6 +298,7 @@ export class HomePage {
       this.compareAppVersion();
     }
     this.auth.setUserStoragetab(0);
+    this.getPopupList();
   }
 
   ionViewWillEnter() {
@@ -938,23 +942,34 @@ export class HomePage {
 
       this.fcm.onNotification().subscribe(data => {
         if (data.wasTapped) {
+          this.images.alarmTypeUpdate2(data.id).subscribe(data => {
           //앱 밖에서 알림을 클릭하여 접근 했을 시,
           //커뮤니티 (뷰티노트, 피부고민 알림 처리)
-          if (data.mode === "qna" || data.mode === "note") {
-            // this.nav.parent.select(3).then(() => {
-            let myModal = this.modalCtrl.create(CommunityModifyPage, {
-              id: data.id,
-              mode: data.mode
-            });
-            myModal.onDidDismiss(data => {});
-            myModal.present();
-          }
-          if (data.mode === "myqna") {
-            //문의하기
-            let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
-            myModal.onDidDismiss(data => {});
-            myModal.present();
-          }
+            if (data.mode === "qna" || data.mode === "note") {
+              // this.nav.parent.select(3).then(() => {
+              let myModal = this.modalCtrl.create(CommunityModifyPage, {
+                id: data.id,
+                mode: data.mode
+              });
+              myModal.onDidDismiss(data => {});
+              myModal.present();
+            }
+            if (data.mode === "myqna") {
+              //문의하기
+              let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
+              myModal.onDidDismiss(data => {});
+              myModal.present();
+            }
+            if (data.mode === "alarm") {
+              //내 알람페이지
+              let myModal = this.modalCtrl.create(AlarmTestPage, {
+                id: data.id,
+                mode: data.mode
+              });
+              myModal.onDidDismiss(data => {});
+              myModal.present();
+            }
+          }); 
         } else {
           // 앱 안에서 클릭했을시
           if (data.mode === "qna" || data.mode === "note") {
@@ -962,7 +977,7 @@ export class HomePage {
               showCloseButton: true,
               closeButtonText: "OK",
               message:
-                "작성한 게시물에 댓글이 등록되었습니다. \n" +
+                "작성하신 게시물에 댓글이 등록되었습니다. \n" +
                 data.aps.alert.title +
                 "\n" +
                 data.aps.alert.body,
@@ -978,6 +993,21 @@ export class HomePage {
               closeButtonText: "OK",
               message:
                 "문의하신 게시물에 댓글이 등록되었습니다. \n" +
+                data.aps.alert.title +
+                "\n" +
+                data.aps.alert.body,
+              duration: 10000
+            });
+            toast.present();
+            console.log("Received in foreground - iOS");
+          }
+
+          if (data.mode === "alarm") {
+            const toast = this.toastCtrl.create({
+              showCloseButton: true,
+              closeButtonText: "OK",
+              message:
+                "작성하신 게시물에 댓글이 등록되었습니다. \n" +
                 data.aps.alert.title +
                 "\n" +
                 data.aps.alert.body,
@@ -1019,24 +1049,37 @@ export class HomePage {
       this.fcm.onNotification().subscribe(data => {
         console.log("FCM data ::::::::::::::" + JSON.stringify(data));
         if (data.wasTapped) {
-          //앱 밖에서 클릭 했을 경우 처리
-          if (data.mode === "qna" || data.mode === "note") {
-            let myModal = this.modalCtrl.create(CommunityModifyPage, {
-              id: data.id,
-              mode: data.mode
-            });
-            myModal.onDidDismiss(data => {
-              this.nav.parent.select(3);
-            });
-            myModal.present();
-            // });
-          }
-          if (data.mode === "myqna") {
-            let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
-            myModal.onDidDismiss(data => {});
-            myModal.present();
-            // });
-          }
+          this.images.alarmTypeUpdate2(data.id).subscribe(data => {
+            //앱 밖에서 클릭 했을 경우 처리
+            if (data.mode === "qna" || data.mode === "note") {
+              let myModal = this.modalCtrl.create(CommunityModifyPage, {
+                id: data.id,
+                mode: data.mode
+              });
+              myModal.onDidDismiss(data => {
+                this.nav.parent.select(3);
+              });
+              myModal.present();
+              // });
+            }
+            if (data.mode === "myqna") {
+              let myModal = this.modalCtrl.create(QnaReadPage, { id: data.id });
+              myModal.onDidDismiss(data => {});
+              myModal.present();
+              // });
+            }
+            if (data.mode === "alarm") {
+              let myModal = this.modalCtrl.create(AlarmTestPage, {
+                id: data.id,
+                mode: data.mode
+              });
+              myModal.onDidDismiss(data => {
+                this.nav.parent.select(3);
+              });
+              myModal.present();
+              // });
+            }
+          }); 
         } else {
           //앱 안에서 클릭 했을 경우 처리
           if (data.mode === "qna" || data.mode === "note") {
@@ -1065,6 +1108,19 @@ export class HomePage {
             });
             toast.present();
             console.log("Received in foreground - android");
+          }
+          if (data.mode === "alarm") {
+            const toast = this.toastCtrl.create({
+              showCloseButton: true,
+              closeButtonText: "OK",
+              message:
+                "작성한 게시물에 댓글이 등록되었습니다. \n" +
+                data.title +
+                "\n" +
+                data.body,
+              duration: 10000
+            });
+            toast.present();
           }
         }
       });
@@ -1148,12 +1204,27 @@ export class HomePage {
     alertUpdate.present();
   }
 
+  getPopupList() {
+    this.images.getPopupList().subscribe((data) => {
+      setTimeout(() => {
+        this.popupData = data;
+      }, 300);
+    },err=>{
+      alert("데이터 에러 발생");
+    })
+  }
+
   showAlertProduct_android(title, message) {
+    this.popupData;
+    var filename = this.popupData.filename;
+    console.log(this.popupData.filename);
     let alertUpdate = this.alertCtrl.create({
       cssClass: "push_alert_product2_android",
 
       message:
-        '<img class="product_android" src="assets/img/home/plinic_product3.png" />',
+        // '<img class="product_android" src="assets/img/home/popup.png" />',
+        // this.adUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + "" + this.popupData.filename,
+        '<img class="product_android" *ngIf="popupData" src="https://plinic.s3.ap-northeast-2.amazonaws.com/'+this.popupData.filename+'"/>',
 
       inputs: [
         {
@@ -1181,19 +1252,19 @@ export class HomePage {
           }
         }
       ],
-      buttons: [
-        {
-          text: "회원혜택 보러가기",
-          handler: () => {
-            this.auth.setPointShoptab(1);
-            this.nav.parent.select(2);
-            // this.openBrowser_android(
-            //   "https://smartstore.naver.com/plinic",
-            //   "플리닉"
-            // );
-          }
-        }
-      ]
+      // buttons: [
+      //   {
+      //     text: "회원혜택 보러가기",
+      //     handler: () => {
+      //       this.auth.setPointShoptab(1);
+      //       this.nav.parent.select(2);
+      //       // this.openBrowser_android(
+      //       //   "https://smartstore.naver.com/plinic",
+      //       //   "플리닉"
+      //       // );
+      //     }
+      //   }
+      // ]
     });
     alertUpdate.present();
   }
@@ -1203,7 +1274,8 @@ export class HomePage {
       cssClass: "push_alert_product2_ios",
 
       message:
-        '<img class="product_ios" src="assets/img/home/plinic_product3.png" />',
+        // '<img class="product_ios" src="assets/img/home/popup.png" />',
+        '<img class="product_ios" *ngIf="popupData" src="https://plinic.s3.ap-northeast-2.amazonaws.com/'+this.popupData.filename+'"/>',
 
       inputs: [
         {
@@ -1230,19 +1302,19 @@ export class HomePage {
           }
         }
       ],
-      buttons: [
-        {
-          text: "회원혜택 보러가기",
-          handler: () => {
-            this.auth.setPointShoptab(1);
-            this.nav.parent.select(2);
-            // this.openBrowser_android(
-            //   "https://smartstore.naver.com/plinic",
-            //   "플리닉"
-            // );
-          }
-        }
-      ]
+      // buttons: [
+      //   {
+      //     text: "회원혜택 보러가기",
+      //     handler: () => {
+      //       this.auth.setPointShoptab(1);
+      //       this.nav.parent.select(2);
+      //       // this.openBrowser_android(
+      //       //   "https://smartstore.naver.com/plinic",
+      //       //   "플리닉"
+      //       // );
+      //     }
+      //   }
+      // ]
     });
     alertUpdate.present();
   }

@@ -200,7 +200,21 @@ page-myinfo {
     object-fit: contain;
     right: 5%;
     top: 30%;
-    position: absolute;
+    margin-top: 9%;
+    // position: absolute;
+  }
+
+  .android_alarm {
+    width: 25px;
+    height: 12px;
+    object-fit: contain;
+    left: 15%;
+    top: 30%;
+    // position: absolute;
+  }
+
+  .android_alarmCount {
+    color: white;
   }
 
   .ios_setting {
@@ -208,6 +222,27 @@ page-myinfo {
     height: 25px;
     object-fit: contain;
   }
+
+  .ios_alarm {
+    width: 25px;
+    height: 12px;
+    object-fit: contain;
+    margin-top: -1%;
+  }
+
+  .ios_alarmCount {
+    color: white;
+  }
+
+  .fab[mini] {
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+    right: 5%;
+    position: absolute;
+    top: 45%;
+    margin: 0;
+}
 
   .profile_image {
     width: 70px;

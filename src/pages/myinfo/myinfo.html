@@ -12,8 +12,43 @@
         <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
       </button>
     </ion-buttons>
+
+    <!-- <ion-icon class="android_alarm" (click)="alarm_page();" ios="ios-notifications" md="ios-notifications-outline">
+      <button ion-fab mini color="danger">
+        <span class="android_alarmCount">2</span>
+      </button>
+    </ion-icon> -->
+    <ion-buttons end>
+      <ng-container *ngIf="alarmData">
+        <ng-container *ngIf="alarmData.length >= 1">
+          <button ion-button icon-only clear float-left (click)="alarm_page();">
+            <ion-icon
+              class="android_alarm" ios="ios-notifications" md="ios-notifications-outline">
+              <button ion-fab mini color="danger">
+                <span class="android_alarmCount">{{alarmData.length}}</span>
+              </button>
+            </ion-icon>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="alarmData.length == 0">
+          <button ion-button icon-only clear (click)="alarm_page();">
+            <ion-icon
+              class="android_alarm" ios="ios-notifications" md="ios-notifications-outline">
+            </ion-icon>
+          </button>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="!alarmData">
+        <button ion-button icon-only clear (click)="alarm_page();">
+          <ion-icon
+            class="android_alarm" ios="ios-notifications" md="ios-notifications-outline">
+          </ion-icon>
+        </button>
+      </ng-container>
+    
+      <img float-right class="android_setting" (click)="setting_page();" src="assets/img/myinfo/ic-system-setting@3x.png" />
+    </ion-buttons>
     <ion-title class="android_title" text-wrap> MY </ion-title>
-    <img class="android_setting" (click)="setting_page();" src="assets/img/myinfo/ic-system-setting@3x.png" />
   </ion-navbar>
 
   <!-- <ion-navbar  hideBackButton="true" *ngIf="platform.is('ios')">
@@ -27,6 +62,32 @@
       </button>
     </ion-buttons>
     <ion-buttons end>
+      <ng-container *ngIf="alarmData">
+        <ng-container *ngIf="alarmData.length >= 1">
+          <button ion-button icon-only clear (click)="alarm_page();">
+            <ion-icon margin-left
+              class="ios_alarm" ios="ios-notifications" md="ios-notifications-outline">
+              <button ion-fab mini color="danger">
+                <span class="ios_alarmCount">{{alarmData.length}}</span>
+              </button>
+            </ion-icon>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="alarmData.length == 0">
+          <button ion-button icon-only clear (click)="alarm_page();">
+            <ion-icon margin-left
+              class="ios_alarm" ios="ios-notifications" md="ios-notifications-outline">
+            </ion-icon>
+          </button>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="!alarmData">
+        <button ion-button icon-only clear (click)="alarm_page();">
+          <ion-icon margin-left
+            class="ios_alarm" ios="ios-notifications" md="ios-notifications-outline">
+          </ion-icon>
+        </button>
+      </ng-container>
       <button ion-button icon-only clear (click)="setting_page();"><img margin-right float-end
         class="ios_setting" src="assets/img/myinfo/ic-system-setting@3x.png" /></button>
     </ion-buttons>
