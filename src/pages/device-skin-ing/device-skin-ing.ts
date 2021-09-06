@@ -342,7 +342,7 @@ export class DeviceSkinIngPage {
           // this.scanStatus = "BLE 비정상 연결해제";
           });
       },
-      disconnect => {
+      disconnect => { 
         if (this.data5 === '0') {
           console.log("BLE 종료 후 오류 disconnect----");
           // this.bleshowAlert("블루투스 연결 해제", "블루투스가 종료되었습니다.<br>케어 포인트는 자동으로 적립되었습니다.");
