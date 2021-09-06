@@ -683,5 +683,10 @@ export class ImagesProvider {
     return this.http.get(this.apiURL + 'adBanners/getadbanners/')
       .map(response => response.json()); 
   }
+
+  getPopupList() {
+    return this.http.get(this.apiURL + 'homePopups/getpopuplist/')
+      .map(response => response.json());
+  }
  
 }

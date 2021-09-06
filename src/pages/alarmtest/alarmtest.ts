@@ -67,9 +67,10 @@ export class AlarmTestPage {
     // }
   }
 
-  ionViewDidEnter() {
+  async ionViewDidEnter() {
       // this.getUserAlarms();
       // this.getUserAlarms(this.userData.email);
+      await this.alarmTime(this.userData.email);
       if (this.navParams.get('alarmList')) {
         this.detailAlarmData = this.navParams.get('alarmList');
         this.yearAgo.setMonth(this.yearAgo.getMonth() - 12);
@@ -187,6 +188,10 @@ export class AlarmTestPage {
         }]
     });
     alert.present();
+  }
+
+  public alarmTime(email) { //alertType가 '챌린지알림'일 때 자세히 보기가 안보이게 만들어야 함. *ngIf="alertType!=="챌린지알림""
+
   }
 
   public skinQnaLoad() {

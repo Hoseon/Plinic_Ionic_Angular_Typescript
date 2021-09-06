@@ -191,6 +191,8 @@ export class HomePage {
   videoDetailData: Array<any> = new Array<any>();
   isExitApp: boolean = false;
   checkPlinicUser: any;
+  popupData: any;
+  adUrl: any;
 
   constructor(
     private fcm: FCM,
@@ -296,6 +298,7 @@ export class HomePage {
       this.compareAppVersion();
     }
     this.auth.setUserStoragetab(0);
+    this.getPopupList();
   }
 
   ionViewWillEnter() {
@@ -1201,12 +1204,27 @@ export class HomePage {
     alertUpdate.present();
   }
 
+  getPopupList() {
+    this.images.getPopupList().subscribe((data) => {
+      setTimeout(() => {
+        this.popupData = data;
+      }, 300);
+    },err=>{
+      alert("데이터 에러 발생");
+    })
+  }
+
   showAlertProduct_android(title, message) {
+    this.popupData;
+    var filename = this.popupData.filename;
+    console.log(this.popupData.filename);
     let alertUpdate = this.alertCtrl.create({
       cssClass: "push_alert_product2_android",
 
       message:
-        '<img class="product_android" src="assets/img/home/plinic_product3.png" />',
+        // '<img class="product_android" src="assets/img/home/popup.png" />',
+        // this.adUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + "" + this.popupData.filename,
+        '<img class="product_android" *ngIf="popupData" src="https://plinic.s3.ap-northeast-2.amazonaws.com/'+this.popupData.filename+'"/>',
 
       inputs: [
         {
@@ -1234,19 +1252,19 @@ export class HomePage {
           }
         }
       ],
-      buttons: [
-        {
-          text: "회원혜택 보러가기",
-          handler: () => {
-            this.auth.setPointShoptab(1);
-            this.nav.parent.select(2);
-            // this.openBrowser_android(
-            //   "https://smartstore.naver.com/plinic",
-            //   "플리닉"
-            // );
-          }
-        }
-      ]
+      // buttons: [
+      //   {
+      //     text: "회원혜택 보러가기",
+      //     handler: () => {
+      //       this.auth.setPointShoptab(1);
+      //       this.nav.parent.select(2);
+      //       // this.openBrowser_android(
+      //       //   "https://smartstore.naver.com/plinic",
+      //       //   "플리닉"
+      //       // );
+      //     }
+      //   }
+      // ]
     });
     alertUpdate.present();
   }
@@ -1256,7 +1274,8 @@ export class HomePage {
       cssClass: "push_alert_product2_ios",
 
       message:
-        '<img class="product_ios" src="assets/img/home/plinic_product3.png" />',
+        // '<img class="product_ios" src="assets/img/home/popup.png" />',
+        '<img class="product_ios" *ngIf="popupData" src="https://plinic.s3.ap-northeast-2.amazonaws.com/'+this.popupData.filename+'"/>',
 
       inputs: [
         {
@@ -1283,19 +1302,19 @@ export class HomePage {
           }
         }
       ],
-      buttons: [
-        {
-          text: "회원혜택 보러가기",
-          handler: () => {
-            this.auth.setPointShoptab(1);
-            this.nav.parent.select(2);
-            // this.openBrowser_android(
-            //   "https://smartstore.naver.com/plinic",
-            //   "플리닉"
-            // );
-          }
-        }
-      ]
+      // buttons: [
+      //   {
+      //     text: "회원혜택 보러가기",
+      //     handler: () => {
+      //       this.auth.setPointShoptab(1);
+      //       this.nav.parent.select(2);
+      //       // this.openBrowser_android(
+      //       //   "https://smartstore.naver.com/plinic",
+      //       //   "플리닉"
+      //       // );
+      //     }
+      //   }
+      // ]
     });
     alertUpdate.present();
   }

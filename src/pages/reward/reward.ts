@@ -2,7 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, AlertController, ViewController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
-
+import { ChalMissionStartPage } from '../chal-mission-start/chal-mission-start';
 
 /**
  * Generated class for the RewardPage page.
@@ -47,6 +47,7 @@ export class RewardPage {
     public alertCtrl: AlertController,
     public viewCtrl: ViewController,
     public zone: NgZone,
+    public nav: NavController,
     
   ) {
 
@@ -240,9 +241,10 @@ export class RewardPage {
                       handler: () => {
                         //this.nav.pop();
                         clearInterval(this.setInter);
-                        this.viewCtrl.dismiss({
-                          // page_modify: this.page_modify
-                        });
+                        // this.viewCtrl.dismiss({
+                        //   // page_modify: this.page_modify
+                        // });
+                        this.nav.push(ChalMissionStartPage, { carezoneData: this.carezoneData2, userData: this.userData });
                       }
                     }
                   ]
@@ -250,6 +252,7 @@ export class RewardPage {
                 alert2.present();
               }
               // this.nav.push(CareZoneMissionIngPage, { _id: id });
+              // this.nav.push(ChalMissionIngPage, { _id: this.saveRewardData.missionid });
             },
               error => {
                 this.showError(JSON.parse(error._body).msg);

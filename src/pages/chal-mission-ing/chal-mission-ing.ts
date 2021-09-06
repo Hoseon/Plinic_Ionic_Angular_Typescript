@@ -14,6 +14,7 @@ import { KakaoCordovaSDK, KLCustomTemplate, KLLinkObject, KLSocialObject, KLButt
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { first } from 'rxjs/operators';
 import { ChalGuidePage } from '../chal-guide/chal-guide';
+import { ChalMissionStartPage } from '../chal-mission-start/chal-mission-start';
 
 /**
  * Generated class for the CareZoneMissionIngPage page.
@@ -348,6 +349,7 @@ export class ChalMissionIngPage {
   
 
   showMissionsuccess() {
+    
     //this.loading.dismiss();
     let alert = this.alertCtrl.create({
       cssClass: 'mission_alert_success',
@@ -922,17 +924,18 @@ export class ChalMissionIngPage {
           //   this.rewardEmail = true;
           // }
           //rewardData는 7일간의 보상 데이터
-          for(let i= 0; i < this.rewardData.length; i++) { //현재 이메일이 reward의 이메일과 같으면
-            console.log(this.rewardData[i].email);
-            if(this.challengeuseTime.email == this.rewardData[i].email) {
-              // this.rewardEmail = true;
-              this.challengeReward = true;
-              break;
-            } else {
-              // this.rewardEmail = false;
-              this.challengeReward = false;
-            }
-          }
+          // for(let i= 0; i < this.rewardData.length; i++) { //현재 이메일이 reward의 이메일과 같으면
+          //   console.log(this.rewardData[i].email);
+          //   if(this.challengeuseTime.email == this.rewardData[i].email) {
+          //     // this.rewardEmail = true;
+          //     this.challengeReward = true;
+          //     // this.nav.push(ChalMissionStartPage, { carezoneData: carezoneData });
+          //     break;
+          //   } else {
+          //     // this.rewardEmail = false;
+          //     this.challengeReward = false;
+          //   }
+          // }
         // }
       // });
       
