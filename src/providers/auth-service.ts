@@ -46,8 +46,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  apiUrl: 'http://plinic.cafe24app.com/',
-  // apiUrl: 'http://localhost:8001/',
+  // apiUrl: 'http://plinic.cafe24app.com/',
+  apiUrl: 'http://localhost:8001/',
   subapiUrl: 'https://plinicshop.com/',
   adminapiUrl: 'http://plinicshop.com:50082/',
 };
@@ -753,6 +753,22 @@ export class AuthService {
         this.setCurrentUser(data.token);
         this.authenticationState.next(true);
         return data.token;
+      });
+  }
+
+  public giveupLogin(credentials) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: credentials
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/giveuplogin', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
       });
   }
 
@@ -1772,6 +1788,22 @@ export class AuthService {
     // console.log("missionPointUpdate : " + JSON.stringify(body));
 
     return this.http.post(CONFIG.apiUrl + 'api/challengeUpdate2', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+
+    public ChallengeLogTest(id, email) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    let body = {
+      email: email,
+      id: id,
+    };
+    return this.http.post(CONFIG.apiUrl + 'api/challengelogtest', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);

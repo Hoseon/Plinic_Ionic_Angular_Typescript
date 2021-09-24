@@ -221,6 +221,7 @@ page-myinfo {
     width: 25px;
     height: 25px;
     object-fit: contain;
+    // position: relative;
   }
 
   .ios_alarm {
@@ -228,6 +229,17 @@ page-myinfo {
     height: 12px;
     object-fit: contain;
     margin-top: -1%;
+  }
+
+  .postion {
+    // margin-top: 20px;
+    position: relative;
+  }
+
+  .headerIoncMargin {
+    margin: 5px;
+    margin-top: 9px !important;
+    color: black;
   }
 
   .ios_alarmCount {
@@ -239,8 +251,10 @@ page-myinfo {
     height: 15px;
     object-fit: contain;
     right: 5%;
+    // right: 23%;
     position: absolute;
     top: 45%;
+    // top: 31%;
     margin: 0;
 }
 
@@ -1853,11 +1867,6 @@ page-myinfo {
 
   .testborder {
     border: solid 1px #5c59b6;
-  }
-
-  .headerIoncMargin {
-    margin: 5px;
-    margin-top: 10px !important;
   }
 
 }

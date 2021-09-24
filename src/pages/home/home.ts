@@ -1223,7 +1223,6 @@ export class HomePage {
 
       message:
         // '<img class="product_android" src="assets/img/home/popup.png" />',
-        // this.adUrl = 'https://plinic.s3.ap-northeast-2.amazonaws.com/' + "" + this.popupData.filename,
         '<img class="product_android" *ngIf="popupData" src="https://plinic.s3.ap-northeast-2.amazonaws.com/'+this.popupData.filename+'"/>',
 
       inputs: [

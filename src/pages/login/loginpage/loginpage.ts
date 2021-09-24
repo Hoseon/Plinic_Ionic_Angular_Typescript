@@ -265,10 +265,12 @@ export class LoginpagePage {
 
   public onSubmit() {
     this.showLoading()
+    this.auth.giveupLogin(this.registerCredentials.email).subscribe(data => {
     this.auth.login(this.registerCredentials).subscribe(data => {
       if (data !== '') {
         this.loading.dismiss();
         // this.nav.setRoot('TabsPage')
+        
       } else {
         this.showError("Access Denied");
       }
@@ -277,6 +279,7 @@ export class LoginpagePage {
         this.showError(JSON.parse(error._body).msg);
         // this.showError(error._body);
       });
+    });
   }
 
 
