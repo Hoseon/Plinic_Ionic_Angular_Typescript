@@ -779,7 +779,52 @@ export class ChalMissionIngPage {
     alert.present();
   }
 
+  challengeTest() {
 
+    let alert = this.alertCtrl.create({
+      cssClass: 'push_alert_cancel',
+      title: "테스트",
+      message: "테스트?",
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: '확인',
+          handler: () => {
+            this.auth.ChallengeLogTest(this.carezoneData._id, this.userData.email).subscribe(data => {
+              if (data) {
+                let alert2 = this.alertCtrl.create({
+                  cssClass: 'push_alert',
+                  title: '글 작성',
+                  message: "테스트 확인",
+                  buttons: [
+                    {
+                      text: '확인',
+                      handler: () => {
+                        //this.nav.pop();
+                        this.viewCtrl.dismiss({
+                          // page_modify: this.page_modify
+                        });
+                      }
+                    }
+                  ]
+                });
+                alert2.present();
+              }
+              // this.nav.push(CareZoneMissionIngPage, { _id: id });
+            },
+              error => {
+                this.showError(JSON.parse(error._body).msg);
+              });
+          }
+        }]
+    });
+    alert.present();
+  }
 
 
   //20190812 미션 참여자 플리닉 사용시간 Get

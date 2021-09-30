@@ -33,6 +33,7 @@ export class RegisterPage {
   unregisterBackButtonAction: Function;
   loading : Loading;
   isPush: boolean;
+  updatedAt: Date = new Date();
 
   constructor(
       private _camera: Camera, 
@@ -160,7 +161,8 @@ export class RegisterPage {
         email: this.userData.email,
         password: this.userData.password,
         imagePath: this.imagePath2,
-        ispush: this.isPush
+        ispush: this.isPush,
+        updatedAt: new Date()
       });
     }, error => {
       // console.log(JSON.stringify(error._body.msg));

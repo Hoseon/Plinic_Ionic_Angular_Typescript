@@ -57,6 +57,7 @@
     pushToken: any;
     signupform2: FormGroup;
     loading : Loading;
+    updatedAt : Date = new Date();
     // registerCredentials = {email: '' , password: '' , name: '', gender: '', country: '' , birthday: '', skincomplaint: '', interest: '', user_jwt: 'true' };
     registerCredentials = {
       email: '',
@@ -73,6 +74,7 @@
       snsid: '',
       from: '',
       ispush: false,
+      updatedAt: new Date(),
     };
     snsUserData: any;
     isPush: boolean;
@@ -340,6 +342,7 @@
       this.registerCredentials.email = this.email;
       this.registerCredentials.password = this.password;
       this.registerCredentials.ispush = this.isPush; //푸쉬 알림 체크
+      this.registerCredentials.updatedAt = this.updatedAt;
       this.registerCredentials.pushtoken = this.pushToken; //2019-09-16 사용자 가입시 푸쉬토큰 저장 로직
       if (this.snsUserData) {
         this.registerCredentials.from = this.snsUserData.from

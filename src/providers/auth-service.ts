@@ -756,6 +756,57 @@ export class AuthService {
       });
   }
 
+  // 20210924 로그인 시 해당 회원 마지막 이력 업데이트
+  public giveupLogin(credentials) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: credentials
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/giveuplogin', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  // 20210924 로그인 시 해당 회원 마지막 이력 업데이트 (SNS로그인 시)
+  public giveupLogin2(snsUserdata) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+  
+    let body = {
+      email: snsUserdata.email
+    };
+  
+    return this.http.post(CONFIG.apiUrl + 'api/giveuplogin', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  // 20210927 로그인 상태로 어플 오픈 시 해당 회원 마지막 이력 업데이트
+  public giveupMember(email) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/giveupmember', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
   public qnaSave(email, content) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -1772,6 +1823,22 @@ export class AuthService {
     // console.log("missionPointUpdate : " + JSON.stringify(body));
 
     return this.http.post(CONFIG.apiUrl + 'api/challengeUpdate2', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+
+    public ChallengeLogTest(id, email) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    let body = {
+      email: email,
+      id: id,
+    };
+    return this.http.post(CONFIG.apiUrl + 'api/challengelogtest', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);

@@ -18,6 +18,7 @@
         <span class="android_alarmCount">2</span>
       </button>
     </ion-icon> -->
+
     <ion-buttons end>
       <ng-container *ngIf="alarmData">
         <ng-container *ngIf="alarmData.length >= 1">
@@ -46,7 +47,10 @@
         </button>
       </ng-container>
     
-      <img float-right class="android_setting" (click)="setting_page();" src="assets/img/myinfo/ic-system-setting@3x.png" />
+      <!-- <img float-right class="android_setting" (click)="setting_page();" src="assets/img/myinfo/ic-system-setting@3x.png" /> -->
+
+      <button ion-button icon-only clear (click)="setting_page();" padding-left>
+        <img margin-right float-end class="android_setting" src="assets/img/myinfo/ic-system-setting@3x.png" /></button>
     </ion-buttons>
     <ion-title class="android_title" text-wrap> MY </ion-title>
   </ion-navbar>
@@ -61,6 +65,9 @@
         <img class="ios_nav" src="assets/img/agreement/ic-system-back-black@3x.png" />
       </button>
     </ion-buttons>
+
+
+
     <ion-buttons end>
       <ng-container *ngIf="alarmData">
         <ng-container *ngIf="alarmData.length >= 1">
@@ -88,7 +95,7 @@
           </ion-icon>
         </button>
       </ng-container>
-      <button ion-button icon-only clear (click)="setting_page();"><img margin-right float-end
+      <button ion-button icon-only clear (click)="setting_page();" padding-left><img margin-right float-end
         class="ios_setting" src="assets/img/myinfo/ic-system-setting@3x.png" /></button>
     </ion-buttons>
     <ion-title class="ios_title" text-wrap> MY </ion-title>

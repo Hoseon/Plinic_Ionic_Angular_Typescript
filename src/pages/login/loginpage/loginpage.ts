@@ -215,6 +215,8 @@ export class LoginpagePage {
         const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
         modal.present();
       }
+      this.auth.giveupLogin2(snsUserdata).subscribe(data => {
+      })
     }).catch(reject => {
       console.log("카카오 로그인 실패" + reject);
     })
@@ -228,6 +230,8 @@ export class LoginpagePage {
         const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
         modal.present();
       }
+      this.auth.giveupLogin2(snsUserdata).subscribe(data => {
+      })
     }).catch(reject => {
       console.log("애플 로그인 실패" + reject);
     });
@@ -257,6 +261,8 @@ export class LoginpagePage {
         const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
         modal.present();
       }
+      this.auth.giveupLogin2(snsUserdata).subscribe(data => {
+      })
     }).catch(reject => {
       console.log("구글 로그인 실패" + reject);
     })
@@ -265,10 +271,12 @@ export class LoginpagePage {
 
   public onSubmit() {
     this.showLoading()
+    this.auth.giveupLogin(this.registerCredentials.email).subscribe(data => {
     this.auth.login(this.registerCredentials).subscribe(data => {
       if (data !== '') {
         this.loading.dismiss();
         // this.nav.setRoot('TabsPage')
+        
       } else {
         this.showError("Access Denied");
       }
@@ -277,6 +285,7 @@ export class LoginpagePage {
         this.showError(JSON.parse(error._body).msg);
         // this.showError(error._body);
       });
+    });
   }
 
 
