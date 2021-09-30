@@ -250,6 +250,9 @@ export class HomePage {
             console.log("팝업 가져오기 에러 : " + error);
           }
         );
+            // // 어플 오픈 시 해당 회원 마지막 이력 업데이트
+            // this.auth.giveupMember(this.userData.email).subscribe(data => {
+            // });
       }, 3000);
     } else {
       setTimeout(() => {
@@ -272,6 +275,14 @@ export class HomePage {
             console.log("팝업 가져오기 에러 : " + error);
           }
         );
+        // if(this.userData.email == '') {
+        //   this.auth.giveupMember(this.userData.email).subscribe(data => {
+            
+        //   });
+        // }
+            // // 어플 오픈 시 해당 회원 마지막 이력 업데이트
+            // this.auth.giveupMember(this.userData.email).subscribe(data => {
+            // });
       }, 3000);
     }
   }
@@ -1441,6 +1452,8 @@ export class HomePage {
           this.app.getRootNav().setRoot(LoginpagePage);
         });
       }
+      this.auth.giveupMember(email).subscribe(data => {
+      });
     }, error => {
       this.auth.logout().then(() => {
         this.app.getRootNav().setRoot(LoginpagePage);

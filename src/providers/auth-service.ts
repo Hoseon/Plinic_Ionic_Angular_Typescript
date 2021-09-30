@@ -46,8 +46,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  // apiUrl: 'http://plinic.cafe24app.com/',
-  apiUrl: 'http://localhost:8001/',
+  apiUrl: 'http://plinic.cafe24app.com/',
+  // apiUrl: 'http://localhost:8001/',
   subapiUrl: 'https://plinicshop.com/',
   adminapiUrl: 'http://plinicshop.com:50082/',
 };
@@ -756,6 +756,7 @@ export class AuthService {
       });
   }
 
+  // 20210924 로그인 시 해당 회원 마지막 이력 업데이트
   public giveupLogin(credentials) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -765,6 +766,40 @@ export class AuthService {
     };
 
     return this.http.post(CONFIG.apiUrl + 'api/giveuplogin', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  // 20210924 로그인 시 해당 회원 마지막 이력 업데이트 (SNS로그인 시)
+  public giveupLogin2(snsUserdata) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+  
+    let body = {
+      email: snsUserdata.email
+    };
+  
+    return this.http.post(CONFIG.apiUrl + 'api/giveuplogin', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  // 20210927 로그인 상태로 어플 오픈 시 해당 회원 마지막 이력 업데이트
+  public giveupMember(email) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    let body = {
+      email: email
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/giveupmember', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {
         console.log(data);
