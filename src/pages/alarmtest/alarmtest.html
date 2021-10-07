@@ -68,6 +68,10 @@
         <ng-container *ngIf="detail.alarmCondition == false">
           <ion-grid padding class="line_item">
             <ion-row>
+              <ng-container *ngIf="detail.alertType == '마케팅알림'">
+                <ion-col col-1><img class="close_img"
+                  src="assets/img/sungwoo_img/marketingAlarm.png"/></ion-col>
+              </ng-container>
               <ng-container *ngIf="detail.alertType == '챌린지알림'">
                 <ion-col col-1><img class="close_img"
                   src="assets/img/sungwoo_img/challAlarm.png"/></ion-col>
@@ -87,7 +91,7 @@
             <ion-row>
               <ion-col col-1></ion-col>
               <ion-col col-7 class="alarmText3">{{getCovertKoreaTime(detail.createdAt).substr(0,10)}}</ion-col>
-              <ng-container *ngIf="detail.alertType != '챌린지알림'">
+              <ng-container *ngIf="detail.alertType != '챌린지알림' && detail.alertType != '마케팅알림'">
                 <ion-col col-4 class="alarmText4" (click)="community_qna_modify(detail.skinId, detail._id)">자세히 보기<ion-icon class="alarm_img" name="md-arrow-round-forward"></ion-icon></ion-col>
               </ng-container>
             </ion-row>
@@ -97,6 +101,10 @@
         <ng-container *ngIf="detail.alarmCondition == true">
           <ion-grid padding class="line_item2">
             <ion-row>
+              <ng-container *ngIf="detail.alertType == '마케팅알림'">
+                <ion-col col-1><img class="close_img"
+                  src="assets/img/sungwoo_img/marketingAlarm.png"/></ion-col>
+              </ng-container>
               <ng-container *ngIf="detail.alertType == '챌린지알림'">
                 <ion-col col-1><img class="close_img"
                   src="assets/img/sungwoo_img/challAlarm.png"/></ion-col>
@@ -116,7 +124,7 @@
             <ion-row>
               <ion-col col-1></ion-col>
               <ion-col col-7 class="alarmText3">{{getCovertKoreaTime(detail.createdAt).substr(0,10)}}</ion-col>
-              <ng-container *ngIf="detail.alertType != '챌린지알림'">
+              <ng-container *ngIf="detail.alertType != '챌린지알림' && detail.alertType != '마케팅알림'">
                 <ion-col col-4 class="alarmText4" (click)="community_qna_modify(detail.skinId, detail._id)">자세히 보기<ion-icon class="alarm_img" name="md-arrow-round-forward"></ion-icon></ion-col>
               </ng-container>
             </ion-row>
