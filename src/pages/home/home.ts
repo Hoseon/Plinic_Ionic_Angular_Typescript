@@ -980,6 +980,15 @@ export class HomePage {
               myModal.onDidDismiss(data => {});
               myModal.present();
             }
+            if (data.mode === "marketing") {
+              //내 알람페이지
+              let myModal = this.modalCtrl.create(AlarmTestPage, {
+                id: data.id,
+                mode: data.mode
+              });
+              myModal.onDidDismiss(data => {});
+              myModal.present();
+            }
           }); 
         } else {
           // 앱 안에서 클릭했을시
@@ -1014,6 +1023,21 @@ export class HomePage {
           }
 
           if (data.mode === "alarm") {
+            const toast = this.toastCtrl.create({
+              showCloseButton: true,
+              closeButtonText: "OK",
+              message:
+                "작성하신 게시물에 댓글이 등록되었습니다. \n" +
+                data.aps.alert.title +
+                "\n" +
+                data.aps.alert.body,
+              duration: 10000
+            });
+            toast.present();
+            console.log("Received in foreground - iOS");
+          }
+
+          if (data.mode === "marketing") {
             const toast = this.toastCtrl.create({
               showCloseButton: true,
               closeButtonText: "OK",
@@ -1085,7 +1109,18 @@ export class HomePage {
                 mode: data.mode
               });
               myModal.onDidDismiss(data => {
-                this.nav.parent.select(3);
+                // this.nav.parent.select(3);
+              });
+              myModal.present();
+              // });
+            }
+            if (data.mode === "marketing") {
+              let myModal = this.modalCtrl.create(AlarmTestPage, {
+                id: data.id,
+                mode: data.mode
+              });
+              myModal.onDidDismiss(data => {
+                // this.nav.parent.select(3);
               });
               myModal.present();
               // });
@@ -1121,6 +1156,19 @@ export class HomePage {
             console.log("Received in foreground - android");
           }
           if (data.mode === "alarm") {
+            const toast = this.toastCtrl.create({
+              showCloseButton: true,
+              closeButtonText: "OK",
+              message:
+                "작성한 게시물에 댓글이 등록되었습니다. \n" +
+                data.title +
+                "\n" +
+                data.body,
+              duration: 10000
+            });
+            toast.present();
+          }
+          if (data.mode === "marketing") {
             const toast = this.toastCtrl.create({
               showCloseButton: true,
               closeButtonText: "OK",
