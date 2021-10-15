@@ -46,8 +46,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  apiUrl: 'http://plinic.cafe24app.com/',
-  // apiUrl: 'http://localhost:8001/',
+  // apiUrl: 'http://plinic.cafe24app.com/',
+  apiUrl: 'http://localhost:8001/',
   subapiUrl: 'https://plinicshop.com/',
   adminapiUrl: 'http://plinicshop.com:50082/',
 };
@@ -990,7 +990,29 @@ export class AuthService {
   }
 
 
+  // 20211008 마케팅 알람 수신 시
+  public alarmCreate(data, email) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
 
+    let body = {
+      writerEmail: email,
+      skinId: data.id,
+      alarmCondition: true,
+      mange: true,
+      alertType: data.title,
+      alarmName: data.body
+    };
+
+    return this.http.post(CONFIG.apiUrl + 'api/alarmcreate', JSON.stringify(body), {headers: headers})
+      .map(res => res.json())
+      .map(data => {
+        console.log(data);
+        return data;
+      });
+  }
+
+  
   public replySkinQnaSave(userData, content, skinQnaOneLoadData) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");

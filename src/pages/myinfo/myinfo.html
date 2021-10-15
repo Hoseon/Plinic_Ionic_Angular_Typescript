@@ -22,13 +22,19 @@
     <ion-buttons end>
       <ng-container *ngIf="alarmData">
         <ng-container *ngIf="alarmData.length >= 1">
-          <button ion-button icon-only clear float-left (click)="alarm_page();">
+          <button ion-button icon-only clear float-left (click)="alarm_page();" style="width: 90px;">
             <ion-icon
               class="android_alarm" ios="ios-notifications" md="ios-notifications-outline">
-              <button ion-fab mini color="danger">
+              <!-- <button ion-fab mini color="danger">
                 <span class="android_alarmCount">{{alarmData.length}}</span>
-              </button>
+              </button> -->
+              <ion-badge item-end>{{alarmData.length}}</ion-badge>
             </ion-icon>
+            <!-- <ion-item>
+              <ion-icon name="logo-twitter" item-start>
+                <ion-badge item-end>260k</ion-badge>
+              </ion-icon>
+            </ion-item> -->
           </button>
         </ng-container>
         <ng-container *ngIf="alarmData.length == 0">
@@ -67,16 +73,16 @@
     </ion-buttons>
 
 
-
     <ion-buttons end>
       <ng-container *ngIf="alarmData">
         <ng-container *ngIf="alarmData.length >= 1">
-          <button ion-button icon-only clear (click)="alarm_page();">
-            <ion-icon margin-left
-              class="ios_alarm" ios="ios-notifications" md="ios-notifications-outline">
-              <button ion-fab mini color="danger">
+          <button ion-button icon-only clear (click)="alarm_page();" style="width: 55px;">
+            <ion-icon 
+              class="ios_alarm" ios="ios-notifications" md="ios-notifications-outline" style="height: 10px;">
+              <!-- <button ion-fab mini color="danger">
                 <span class="ios_alarmCount">{{alarmData.length}}</span>
-              </button>
+              </button> -->
+              <ion-badge >{{alarmData.length}}</ion-badge>
             </ion-icon>
           </button>
         </ng-container>
