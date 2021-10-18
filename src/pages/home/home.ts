@@ -981,6 +981,7 @@ export class HomePage {
               myModal.present();
             }
             if (data.mode === "marketing") {
+              this.auth.alarmCreate(data.id, this.userData.email).subscribe(data => { // -
               //내 알람페이지
               let myModal = this.modalCtrl.create(AlarmTestPage, {
                 id: data.id,
@@ -988,6 +989,7 @@ export class HomePage {
               });
               myModal.onDidDismiss(data => {});
               myModal.present();
+            }); //})
             }
           }); 
         } else {
@@ -1115,6 +1117,7 @@ export class HomePage {
               // });
             }
             if (data.mode === "marketing") {
+              this.auth.alarmCreate(data.id, this.userData.email).subscribe(data => { // -
               let myModal = this.modalCtrl.create(AlarmTestPage, {
                 id: data.id,
                 mode: data.mode
@@ -1124,6 +1127,7 @@ export class HomePage {
               });
               myModal.present();
               // });
+            }); //})
             }
           }); 
         } else {
