@@ -56,7 +56,7 @@
     "call-number": "^1.0.1",
     "chart.js": "^2.8.0",
     "chartjs-plugin-labels": "^1.1.0",
-    "cordova-android": "8.0.0",
+    "cordova-android": "9.1.0",
     "cordova-browser": "^5.0.4",
     "cordova-ios": "5.0.1",
     "cordova-open-native-settings": "1.5.2",

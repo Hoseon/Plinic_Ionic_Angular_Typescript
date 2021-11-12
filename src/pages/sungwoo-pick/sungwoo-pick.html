@@ -73,7 +73,7 @@
 
 <ion-footer mode="ios" class="footer" keyboard-attach no-bounce no-lines>
   <button ion-button (click)="order()" class="pick_btn1"><div class="cart_text">장바구니</div></button>
-  <button *ngIf="productData && userData" ion-button (click)="buy(productData, userData, ProductCount, ProductAmount)" color="Purple" class="pick_btn2">
+  <button *ngIf="productData && userData" ion-button (click)="buy(productData, userData, ProductCount, ProductAmount)" color="Purple" class="pick_btn2" disabled>
     <div class="buy_text">구매하기</div>
   </button>
 </ion-footer>
