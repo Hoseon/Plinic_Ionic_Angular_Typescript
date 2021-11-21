@@ -180,7 +180,7 @@ export class ChalMissionIngPage {
         tabs[key].style.display = '';
       });
     } // end if
-    this.rewardLoad();
+    // this.rewardLoad();
   }
 
   ionViewWillLeave() {
@@ -282,70 +282,70 @@ export class ChalMissionIngPage {
     alert.present();
   }
 
-  showChallengeExit() {
-    // this.loading.dismiss();
-    let alert = this.alertCtrl.create({
-      cssClass: 'mission_alert_fail',
-      // title: '최종 순위 ' + this.rank + '위',
-      subTitle: '이미 보상신청을 하셨습니다. <br /> 다음 챌린지에 도전하세요!',
-      message: '피부가 좋아지는 그날까지 <br />챌린지에 참여하세요.',
-      enableBackdropDismiss: true,
-      buttons: [
-        // {
-        //   text: 'X',
-        //   role: 'cancel',
-        //   handler: () => {
-        //     this.images.giveupChallenge(this.userData.email).subscribe(data => {
-        //       this.viewCtrl.dismiss({ reload: true });
-        //     }, error => {
-        //       this.showError(JSON.parse(error._body).msg);
-        //     });
-        //   },
-        //   cssClass: 'cancle_btn' 
-        // },
-        {
-          text: '챌린지 종료',
-          handler: () => {
-            //do
-            this.images.giveupChallenge(this.userData.email).subscribe(data => {
-              this.viewCtrl.dismiss({ reload: true });
-            }, error => {
-              this.showError(JSON.parse(error._body).msg);
-            });
-          }
-        }]
-    });
-    alert.onDidDismiss(()=>{
-      this.images.giveupChallenge(this.userData.email).subscribe(data => {
-        this.viewCtrl.dismiss({ reload: true });
-      }, error => {
-        this.showError(JSON.parse(error._body).msg);
-      });
-    });
-    alert.present();
-    // let alert = this.alertCtrl.create({
-    //   cssClass: 'mission_alert_fail',
-    //   // title: '최종 순위 ' + this.rank + '위',
-    //   subTitle: '이미 보상신청을 하셨습니다. <br /> 다음 챌린지에 도전하세요!',
-    //   message: '피부가 좋아지는 그날까지 <br />챌린지에 참여하세요.',
-    //   buttons: [
-    //     {
-    //       text: 'X',
-    //       role: 'cancel',
-    //       handler: () => {
-    //       },
-    //       cssClass: 'cancle_btn'
-    //     },
-    //     {
-    //       text: '확인',
-    //       handler: () => {
-    //         //do
-    //         this.challenge_giveup();
-    //       }
-    //     }]
-    // });
-    // alert.present();
-  }
+  // showChallengeExit() {
+  //   // this.loading.dismiss();
+  //   let alert = this.alertCtrl.create({
+  //     cssClass: 'mission_alert_fail',
+  //     // title: '최종 순위 ' + this.rank + '위',
+  //     subTitle: '이미 보상신청을 하셨습니다. <br /> 다음 챌린지에 도전하세요!',
+  //     message: '피부가 좋아지는 그날까지 <br />챌린지에 참여하세요.',
+  //     enableBackdropDismiss: true,
+  //     buttons: [
+  //       // {
+  //       //   text: 'X',
+  //       //   role: 'cancel',
+  //       //   handler: () => {
+  //       //     this.images.giveupChallenge(this.userData.email).subscribe(data => {
+  //       //       this.viewCtrl.dismiss({ reload: true });
+  //       //     }, error => {
+  //       //       this.showError(JSON.parse(error._body).msg);
+  //       //     });
+  //       //   },
+  //       //   cssClass: 'cancle_btn' 
+  //       // },
+  //       {
+  //         text: '챌린지 종료',
+  //         handler: () => {
+  //           //do
+  //           this.images.giveupChallenge(this.userData.email).subscribe(data => {
+  //             this.viewCtrl.dismiss({ reload: true });
+  //           }, error => {
+  //             this.showError(JSON.parse(error._body).msg);
+  //           });
+  //         }
+  //       }]
+  //   });
+  //   alert.onDidDismiss(()=>{
+  //     this.images.giveupChallenge(this.userData.email).subscribe(data => {
+  //       this.viewCtrl.dismiss({ reload: true });
+  //     }, error => {
+  //       this.showError(JSON.parse(error._body).msg);
+  //     });
+  //   });
+  //   alert.present();
+  //   // let alert = this.alertCtrl.create({
+  //   //   cssClass: 'mission_alert_fail',
+  //   //   // title: '최종 순위 ' + this.rank + '위',
+  //   //   subTitle: '이미 보상신청을 하셨습니다. <br /> 다음 챌린지에 도전하세요!',
+  //   //   message: '피부가 좋아지는 그날까지 <br />챌린지에 참여하세요.',
+  //   //   buttons: [
+  //   //     {
+  //   //       text: 'X',
+  //   //       role: 'cancel',
+  //   //       handler: () => {
+  //   //       },
+  //   //       cssClass: 'cancle_btn'
+  //   //     },
+  //   //     {
+  //   //       text: '확인',
+  //   //       handler: () => {
+  //   //         //do
+  //   //         this.challenge_giveup();
+  //   //       }
+  //   //     }]
+  //   // });
+  //   // alert.present();
+  // }
   
 
   showMissionsuccess() {
@@ -779,53 +779,6 @@ export class ChalMissionIngPage {
     alert.present();
   }
 
-  challengeTest() {
-
-    let alert = this.alertCtrl.create({
-      cssClass: 'push_alert_cancel',
-      title: "테스트",
-      message: "테스트?",
-      buttons: [
-        {
-          text: '취소',
-          role: 'cancel',
-          handler: () => {
-          }
-        },
-        {
-          text: '확인',
-          handler: () => {
-            this.auth.ChallengeLogTest(this.carezoneData._id, this.userData.email).subscribe(data => {
-              if (data) {
-                let alert2 = this.alertCtrl.create({
-                  cssClass: 'push_alert',
-                  title: '글 작성',
-                  message: "테스트 확인",
-                  buttons: [
-                    {
-                      text: '확인',
-                      handler: () => {
-                        //this.nav.pop();
-                        this.viewCtrl.dismiss({
-                          // page_modify: this.page_modify
-                        });
-                      }
-                    }
-                  ]
-                });
-                alert2.present();
-              }
-              // this.nav.push(CareZoneMissionIngPage, { _id: id });
-            },
-              error => {
-                this.showError(JSON.parse(error._body).msg);
-              });
-          }
-        }]
-    });
-    alert.present();
-  }
-
 
   //20190812 미션 참여자 플리닉 사용시간 Get
   public missionUseTime(carezoneData, email) {
@@ -994,12 +947,12 @@ export class ChalMissionIngPage {
   }
 
   // 7일간의 보상 데이터 불러오기
-  public rewardLoad() {
-    this.images.rewardLoad().subscribe(data => {
-      this.rewardData = data;
-      console.log(this.rewardData);
-    });
-  }
+  // public rewardLoad() {
+  //   this.images.rewardLoad().subscribe(data => {
+  //     this.rewardData = data;
+  //     console.log(this.rewardData);
+  //   });
+  // }
 
 
   //20190617 미션 참여자 인원 count

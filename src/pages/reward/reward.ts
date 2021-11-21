@@ -244,7 +244,7 @@ export class RewardPage {
                         // this.viewCtrl.dismiss({
                         //   // page_modify: this.page_modify
                         // });
-                        this.nav.push(ChalMissionStartPage, { carezoneData: this.carezoneData2, userData: this.userData });
+                        this.nav.push(ChalMissionStartPage, { carezoneData: this.carezoneData2, userData: this.userData }); // 보상받기 저장하면 버튼 상태를 바꾸기 위해 데이터를 끌고 챌린지 미션 시작 페이지로 간다.(성우)
                       }
                     }
                   ]
