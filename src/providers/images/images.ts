@@ -302,6 +302,11 @@ export class ImagesProvider {
       .map(response => response.json());
   }
 
+  public noticeLoad() {
+    return this.http.get(this.apiURL + 'skinqna/main_list')
+      .map(response => response.json());
+  }
+
   public userSkinQnaLoad(email) {
     return this.http.get(this.apiURL + 'skinqna/skinqna_list/' + email)
       .map(response => response.json());

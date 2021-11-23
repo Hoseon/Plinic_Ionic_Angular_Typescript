@@ -4,7 +4,8 @@ import { IonicPage, NavController, NavParams, Platform, AlertController, ModalCo
 import { ImagesProvider } from '../../providers/images/images';
 import { AuthService } from '../../providers/auth-service';
 import { AuthHttp, AuthModule, JwtHelper, tokenNotExpired } from 'angular2-jwt';
-import {CommunityModifyPage} from '../community/community-modify/community-modify';
+import { CommunityModifyPage } from '../community/community-modify/community-modify';
+import { NoticePage } from '../myinfo/details/notice/notice';
 
 /**
  * Generated class for the AlarmtestPage page.
@@ -31,6 +32,7 @@ export class AlarmTestPage {
   profileimg_url: any;
   yearAgo: Date = new Date();
   skinQnaData: any;
+  noticeData: any;
 
 
   
@@ -126,6 +128,7 @@ export class AlarmTestPage {
 
   ionViewWillEnter() {
     this.skinQnaLoad();
+    this.noticeLoad();
   }
 
   // 알림 전체 삭제
@@ -200,6 +203,12 @@ export class AlarmTestPage {
     });
   }
 
+  public noticeLoad() {
+    this.images.noticeLoad().subscribe(data => {
+      this.noticeData = data;
+    });
+  }
+
   //알림함 > 댓글 달린 페이지 이동(삭제되면 삭제된 페이지입니다 alert창)
   public community_qna_modify(skinId, _id) {
     this.images.alarmTypeUpdate(_id).subscribe(data => {
@@ -238,6 +247,43 @@ export class AlarmTestPage {
       // }
     );  
   }
+
+
+    //알림함 > 공지사항 페이지 이동(삭제되면 삭제된 페이지입니다 alert창)
+    public noticeMove(skinId, _id) {
+      this.images.alarmTypeUpdate(_id).subscribe(data => {
+        for(let i= 0; i < this.noticeData.length; i++) {
+          if(skinId === this.noticeData[i]._id) {
+            let myModal = this.modalCtrl.create(NoticePage, {
+              id: skinId,
+              mode: "notice",
+            });
+            myModal.onDidDismiss(data => {
+            });
+            myModal.present();
+            break;
+          } else {
+            let alert = this.alertCtrl.create({
+            cssClass: 'push_alert_cancel',
+              title: "plinic",
+              message: "삭제된 게시글입니다.",
+              buttons: [
+                {
+                  text: '확인',
+                  role: 'cancel',
+                  handler: () => {
+                    console.log('확인');
+                  }
+                }
+              ]
+          });
+          alert.present();
+          break;
+          }
+        }
+      },
+      );  
+    }
 
 
   public loadItems() {

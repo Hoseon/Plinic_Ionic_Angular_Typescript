@@ -215,8 +215,8 @@ export class LoginpagePage {
         const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
         modal.present();
       }
-      this.auth.giveupLogin2(snsUserdata).subscribe(data => {
-      })
+      // this.auth.giveupLogin2(snsUserdata).subscribe(data => {
+      // })
     }).catch(reject => {
       console.log("카카오 로그인 실패" + reject);
     })
@@ -230,8 +230,8 @@ export class LoginpagePage {
         const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
         modal.present();
       }
-      this.auth.giveupLogin2(snsUserdata).subscribe(data => {
-      })
+      // this.auth.giveupLogin2(snsUserdata).subscribe(data => {
+      // })
     }).catch(reject => {
       console.log("애플 로그인 실패" + reject);
     });
@@ -261,8 +261,8 @@ export class LoginpagePage {
         const modal = this.modalCtrl.create(AddinfoPage, {snsUserdata : snsUserdata});
         modal.present();
       }
-      this.auth.giveupLogin2(snsUserdata).subscribe(data => {
-      })
+      // this.auth.giveupLogin2(snsUserdata).subscribe(data => {
+      // })
     }).catch(reject => {
       console.log("구글 로그인 실패" + reject);
     })

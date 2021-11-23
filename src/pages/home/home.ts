@@ -41,6 +41,7 @@ import { CommunityModifyPage } from "../community/community-modify/community-mod
 import { CommunityPage } from "../community/community";
 import { QnaReadPage } from "../myinfo/details/qna/qna-read/qna-read";
 import { AlarmTestPage } from "../alarmtest/alarmtest";
+import { NoticePage } from "../myinfo/details/notice/notice";
 import { Observable } from "rxjs/Rx";
 import { FCM } from "@ionic-native/fcm";
 import { SearchPage } from "../community/search/search";
@@ -991,6 +992,17 @@ export class HomePage {
               myModal.present();
             }); //})
             }
+            if (data.mode === "notice") {
+              this.auth.alarmCreate(data.id, this.userData.email).subscribe(data => { // -
+              //내 알람페이지
+              let myModal = this.modalCtrl.create(NoticePage, {
+                id: data.id,
+                mode: data.mode
+              });
+              myModal.onDidDismiss(data => {});
+              myModal.present();
+            }); //})
+            }
           }); 
         } else {
           // 앱 안에서 클릭했을시
@@ -1040,6 +1052,21 @@ export class HomePage {
           }
 
           if (data.mode === "marketing") {
+            const toast = this.toastCtrl.create({
+              showCloseButton: true,
+              closeButtonText: "OK",
+              message:
+                "작성하신 게시물에 댓글이 등록되었습니다. \n" +
+                data.aps.alert.title +
+                "\n" +
+                data.aps.alert.body,
+              duration: 10000
+            });
+            toast.present();
+            console.log("Received in foreground - iOS");
+          }
+
+          if (data.mode === "notice") {
             const toast = this.toastCtrl.create({
               showCloseButton: true,
               closeButtonText: "OK",
@@ -1129,6 +1156,19 @@ export class HomePage {
               // });
             }); //})
             }
+            if (data.mode === "notice") {
+              this.auth.alarmCreate(data.id, this.userData.email).subscribe(data => { // -
+              let myModal = this.modalCtrl.create(NoticePage, {
+                id: data.id,
+                mode: data.mode
+              });
+              myModal.onDidDismiss(data => {
+                // this.nav.parent.select(3);
+              });
+              myModal.present();
+              // });
+            }); //})
+            }
           }); 
         } else {
           //앱 안에서 클릭 했을 경우 처리
@@ -1173,6 +1213,19 @@ export class HomePage {
             toast.present();
           }
           if (data.mode === "marketing") {
+            const toast = this.toastCtrl.create({
+              showCloseButton: true,
+              closeButtonText: "OK",
+              message:
+                "작성한 게시물에 댓글이 등록되었습니다. \n" +
+                data.title +
+                "\n" +
+                data.body,
+              duration: 10000
+            });
+            toast.present();
+          }
+          if (data.mode === "notice") {
             const toast = this.toastCtrl.create({
               showCloseButton: true,
               closeButtonText: "OK",
