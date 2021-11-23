@@ -66,7 +66,7 @@
       </ion-grid>
       <br>
       <ion-grid no-padding class="new_grid">
-        <ion-slides mode="ios" id="movie" pager>
+        <ion-slides mode="ios" id="movie" pager >
           <ng-container *ngIf="newSlideData">
             <ion-slide *ngFor="let newSlide of newSlideData; let i = index;"
               (click)="openBrowser_ios(newSlide.posturl, newSlide.body, newSlide._id)">

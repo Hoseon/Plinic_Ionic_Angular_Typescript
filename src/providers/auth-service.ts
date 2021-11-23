@@ -990,7 +990,7 @@ export class AuthService {
   }
 
 
-  // 20211008 마케팅 알람 수신 시
+  // 20211008 마케팅,공지사항 알람 수신 시
   public alarmCreate(data, email) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
