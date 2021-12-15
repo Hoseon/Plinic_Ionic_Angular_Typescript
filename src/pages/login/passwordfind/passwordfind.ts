@@ -19,7 +19,8 @@ import { AuthService } from '../../../providers/auth-service';
 export class PasswordfindPage {
   public country: any;
   signupform: FormGroup;
-  userData = { "password": "", "passwordconfirm": "", "temp": "", "name" : "", "email" : "" , "birthday" : ""};
+  // userData = { "password": "", "passwordconfirm": "", "temp": "", "name" : "", "email" : "" , "birthday" : ""};
+  userData = { "password": "", "passwordconfirm": "", "temp": "", "name" : "", "email" : ""};
   myImage: any;
   myImage2: any;
   myImage3: any;
@@ -41,7 +42,7 @@ export class PasswordfindPage {
     if(this.navParams.get('credentials')) {
       this.userData.email = this.navParams.get('credentials').email;
       this.userData.name = this.navParams.get('credentials').name;
-      this.userData.birthday = this.navParams.get('credentials').birthday;
+      // this.userData.birthday = this.navParams.get('credentials').birthday;
     }
   }
 
