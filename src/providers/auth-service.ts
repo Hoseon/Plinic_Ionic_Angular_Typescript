@@ -2846,7 +2846,7 @@ export class AuthService {
     let body = {
       email: credentials.email,
       name: credentials.name,
-      birthday: credentials.birthday,
+      // birthday: credentials.birthday,
     };
 
     return this.http.post(CONFIG.apiUrl + 'api/validIdandSendemail', JSON.stringify(body), {headers: headers})
@@ -2863,7 +2863,7 @@ export class AuthService {
     let body = {
       email: credentials.email,
       name: credentials.name,
-      birthday: credentials.birthday,
+      // birthday: credentials.birthday,
       temp: credentials.temp,
       password: credentials.password
     };
