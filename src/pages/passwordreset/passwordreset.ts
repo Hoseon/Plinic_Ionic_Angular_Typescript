@@ -23,7 +23,7 @@ export class PasswordresetPage {
   registerCredentials = {
     email: "",
     name: "",
-    birthday: "",
+    // birthday: "",
   };
   signupform: FormGroup;
   issendEmail: boolean = false;
@@ -76,9 +76,9 @@ export class PasswordresetPage {
     this.viewCtrl.dismiss();
   }
 
-  birthday() {
-    console.log(this.registerCredentials.birthday);
-  }
+  // birthday() {
+  //   console.log(this.registerCredentials.birthday);
+  // }
 
   public goPassword() {
     this.navCtrl.push(PasswordfindPage, {credentials : this.registerCredentials}).then(() => {

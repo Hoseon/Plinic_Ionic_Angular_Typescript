@@ -57,7 +57,6 @@
     "chart.js": "^2.8.0",
     "chartjs-plugin-labels": "^1.1.0",
     "cordova-android": "9.1.0",
-    "cordova-browser": "^5.0.4",
     "cordova-ios": "5.0.1",
     "cordova-open-native-settings": "1.5.2",
     "cordova-plugin-ble-central": "1.2.5",
@@ -146,15 +145,13 @@
       },
       "call-number": {},
       "cordova-plugin-fcm-with-dependecy-updated": {},
-      "mx.ferreyra.callnumber": {},
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       },
       "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
-      "ios",
-      "browser"
+      "ios"
     ]
   }
 }
