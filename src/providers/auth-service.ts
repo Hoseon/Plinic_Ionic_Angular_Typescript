@@ -46,8 +46,8 @@ export class User {
 
 const TOKEN_KEY = 'userData';
 const CONFIG = {
-  apiUrl: 'http://plinic.cafe24app.com/',
-  // apiUrl: 'http://localhost:8001/',
+  // apiUrl: 'http://plinic.cafe24app.com/',
+  apiUrl: 'http://localhost:8001/',
   subapiUrl: 'https://plinicshop.com/',
   adminapiUrl: 'http://plinicshop.com:50082/',
 };
@@ -956,6 +956,7 @@ export class AuthService {
     let body = {
       email: userData.email,
       body: content.body,
+      nameAdmin: false,
     };
 
     console.log("ReplySave : " + JSON.stringify(body));
@@ -976,6 +977,7 @@ export class AuthService {
     let body = {
       email: userData.email,
       body: content.body,
+      nameAdmin: false,
     };
 
     console.log("ReplySave : " + JSON.stringify(body));
@@ -1453,8 +1455,14 @@ export class AuthService {
       body: sub,
       maxmember: maxmember,
       userImageFilename: userimagefile,
-      filename: filename
+      filename: filename,
+      createdAt: createdAt = new Date
     };
+
+    var createdAt = body.createdAt
+    createdAt.setHours(createdAt.getHours() +9);
+    console.log(createdAt);
+
     return this.http.post(CONFIG.apiUrl + 'api/challengesave', JSON.stringify(body), {headers: headers})
       .map(res => res.json())
       .map(data => {

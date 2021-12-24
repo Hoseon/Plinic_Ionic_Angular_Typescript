@@ -456,7 +456,7 @@ export class ChalMissionStartPage {
     });
   }
 
-  //2020-04-14 제일 마지막에 참여 했던 챌린지의 시작날짜 + 14일이 지났는지 체크 // 14일 이전에는 다른 미션에 참가 할수 없도록 하기 위함
+  //2020-04-14 제일 마지막에 참여 했던 챌린지의 시작날짜 + 14일이 지났는지 체크 // 14일 이전에는 다른 미션에 참가 할수 없도록 하기 위함 // 20211216 28일 4주로 변경
   public challengeChkStartDate(email) {
     this.images.challengeChkStartDate(email).subscribe(data => {
       if (data.length <= 0) {
@@ -465,8 +465,8 @@ export class ChalMissionStartPage {
         for (let i = 0; i < data.length; i++) {
           if (data[i].createdAt) {
             console.log(this.getCovertKoreaTime(data[i].createdAt));
-            console.log(this.getCovertKoreaTime(this.addDays(data[i].createdAt, 14)));
-            var compareDay = this.getCovertKoreaTime(this.addDays(data[i].createdAt, 14));
+            console.log(this.getCovertKoreaTime(this.addDays(data[i].createdAt, 28)));
+            var compareDay = this.getCovertKoreaTime(this.addDays(data[i].createdAt, 28));
             var today1 = new Date();
             var today2 = this.getCovertKoreaTime(today1); 
             this.startChallDate = compareDay.substr(0,10);
