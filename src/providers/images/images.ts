@@ -16,8 +16,8 @@ export const YOUTUBE_API_KEY: string = 'AIzaSyCQ7I3wA7JDk9QFWMA7VaSMCCakpTN5K_U'
 @Injectable()
 export class ImagesProvider {
 
-  apiURL = 'http://plinic.cafe24app.com/';
-  // apiURL = 'http://localhost:8001/';
+  // apiURL = 'http://plinic.cafe24app.com/';
+  apiURL = 'http://localhost:8001/';
   youTubeApiUrl = 'https://www.googleapis.com/youtube/v3/videos?';
   iamPortUrl = 'https://api.iamport.kr/';
   iamPortToken = '0bb7f5bc3b8fc3737a9a2eec8daeba22c45e5989'
@@ -219,11 +219,6 @@ export class ImagesProvider {
 
   public giveupChallenge(email) {
     return this.http.get(this.apiURL + 'carezone/giveupchallenge/' + email)
-      .map(response => response.json());
-  }
-
-  public upChallenge(email) {
-    return this.http.get(this.apiURL + 'carezone/upchallenge/' + email)
       .map(response => response.json());
   }
 
